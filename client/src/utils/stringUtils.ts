@@ -23,3 +23,5 @@ export const getUniqueString = (str: string, existingStrings: string[]): string 
 	}
 	return `${str}${currNum}`;
 };
+
+export const reverse = (s: string) => s.split("").reverse().join("");

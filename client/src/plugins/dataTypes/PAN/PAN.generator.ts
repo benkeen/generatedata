@@ -1,6 +1,6 @@
 import { DTMetadata, DTGenerateResult, DTOnMessage, DTGenerationData } from '~types/dataTypes';
 // import { creditCardFormats } from './formats';
-// import { getRandomArrayValue } from '../../../utils/randomUtils';
+import utils from '../../../utils';
 import { PanState } from './PAN';
 
 
@@ -10,28 +10,17 @@ export const rowStateReducer = ({ cardFormats, example }: PanState): any => ({
 });
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
-	// console.log(data);
+	const cards = Object.keys(data.rowState.cardFormats);
+	const randomCard = utils.randomUtils.getRandomArrayValue(cards);
 
-	// creditCardFormats[data.example]
+	const { formats, prefix } = data.rowState.cardFormats[randomCard];
+	const randomPrefix: number = utils.randomUtils.getRandomArrayValue(prefix);
+	const randomFormat: string = utils.randomUtils.getRandomArrayValue(formats);
 
-	// this just gets a random length of the format
-	// $ccLength    = self::getRandomPANLength($options["cc_length"]);
-
-	// boy this is bad code. Looks lke this then returns the random format itself
-	// $ccFormat    = self::getRandomPANFormat($options["cc_format"], $ccLength);
-
-	// nope. Removed.
-	// $ccSeparator = self::getRandomPANSeparator($options["cc_separator"]);
-	//
-	// $ccData = self::getCreditCardData($options["cc_brand"]);
-	// $card = self::generateCreditCardNumber($ccData["prefix"], $ccLength);
-	// $cardNumber = $this->convertFormat($ccLength, $ccFormat, $ccSeparator, $card);
-	//
-	// if (empty($cardNumber)) {
-	// 	$cardNumber = "$ccLength, $ccFormat, {$options["cc_brand"]}, {$options["cc_format"]}";
-	// }
-
-	return { display: '' };
+	return {
+		display: generatePAN(randomPrefix, randomFormat),
+		cardType: randomCard
+	};
 };
 
 
@@ -45,8 +34,39 @@ export const onmessage = (e: DTOnMessage) => {
 	postMessage(generate(e.data));
 };
 
+const generatePAN = (prefix: number, format: string) => {
+	let panNums: string = utils.randomUtils.generateRandomAlphanumericStr(format.replace(/[^X]/g, ''));
+
+	const numChars = panNums.length;
+	const reversedNums = utils.stringUtils.reverse(panNums);
+
+	// calculate sum
+	let sum = 0;
+	let pos = 0;
+	while (pos < numChars-1) {
+		const currentNum: number = +reversedNums[pos];
+		let odd = currentNum*2;
+		if (odd > 9) {
+			odd -= 9;
+		}
+		sum += odd;
+
+		if (pos != (numChars - 2)) {
+			sum += +reversedNums[pos+1];
+		}
+		pos += 2;
+	}
+
+	// calculate check digit
+	const checkDigit = ((Math.floor(sum/10) + 1) * 10 - sum) % 10;
+	panNums += checkDigit;
+
+	return panNums;
+};
+
 
 /*
+	// ??????
 	public function __construct($runtimeContext) {
 		for ($i=622126; $i<=622925; $i++) {
             self::$creditCardData["discover"][] = $i;
@@ -78,44 +98,6 @@ export const onmessage = (e: DTOnMessage) => {
 		return array(
 			"display" => $cardNumber
 		);
-	}
-
-	public function setRandomCardInfo($options) {
-		$selectedCard = $options["cc_random_card"][array_rand($options["cc_random_card"])];
-
-		if ($selectedCard == "jcb") {
-			$jcbCards = array("jcb15", "jcb16");
-			$selectedCard = $jcbCards[mt_rand(0, 1)];
-		}
-
-		$cardData = self::getCreditCardData($selectedCard);
-
-		$options["cc_brand"] = $selectedCard;
-		$options["cc_format"] = $cardData["formats"][array_rand($cardData["formats"])];
-		$options["cc_length"] = self::getRandomPANLength($cardData["length"]);
-
-		return $options;
-	}
-
-	* @param $ccLength
-	 * @param $ccFormat
-	 * @param $ccSeparator
-	 * @param $ccNumber
-	 * @return array|bool|string
-	private static function convertFormat($ccLength, $ccFormat, $ccSeparator, $ccNumber) {
-
-		// TODO pity we need this extra test on each call
-		if ($ccLength == strlen($ccNumber)) {
-			$a = self::convertXtoNumber($ccFormat, $ccNumber);
-
-			if ($a == $ccNumber) {
-				return $a;
-			} else {
-				return implode($ccSeparator, $a);
-			}
-		} else {
-			return false;
-		}
 	}
 
 	 * Convert X's to the specified number
@@ -196,23 +178,6 @@ export const onmessage = (e: DTOnMessage) => {
 		return $chosenSep;
 	}
 
-	// private static function getRandomPANLength($userSelectedLength) {
-	// 	// if there's more than 1 card length then pick a random one
-	// 	if ($userSelectedLength == "12-19") {
-	// 		$userSelectedLength = "12,13,14,15,16,17,18,19";
-	// 	} else if ($userSelectedLength == "16-19") {
-	// 		$userSelectedLength = "16,17,18,19";
-	// 	}
-	//
-	// 	$lengths = explode(",", $userSelectedLength);
-	// 	$chosenLength = 0;
-	// 	if (count($lengths) >= 1) {
-	// 		$chosenLength = $lengths[mt_rand(0, count($lengths)-1)];
-	// 	}
-	//
-	// 	return $chosenLength;
-	// }
-
 	// --------------------------------------------------------------------------------------------
 	// Public functions
 
@@ -227,49 +192,6 @@ export const onmessage = (e: DTOnMessage) => {
 		}
 		return $data;
 	}
-
-	public static function getAllCreditCardData() {
-		return self::$creditCardData;
-	}
-*/
-
-/*
-const generateCreditCardNumber = (prefixList: string[], length: number) => {
-
-	// why is this call ccNumber? It was a prefix...
-	const ccNumber = getRandomArrayValue(prefixList);
-
-	// generate digits
-	$count = strlen($ccNumber);
-	while ($count < ($length - 1)) {
-		$ccNumber .= mt_rand(0, 9);
-		$count++;
-	}
-
-	// calculate sum
-	$sum = 0;
-	$pos = 0;
-
-	$reversedCCnumber = strrev($ccNumber);
-	while ($pos < $length - 1) {
-		$odd = $reversedCCnumber[$pos]*2;
-		if ($odd > 9) {
-			$odd -= 9;
-		}
-		$sum += $odd;
-
-		if ($pos != ($length - 2)) {
-			$sum += $reversedCCnumber[$pos+1];
-		}
-		$pos += 2;
-	}
-
-	// calculate check digit
-	$checkDigit = ((floor($sum/10) + 1) * 10 - $sum) % 10;
-	$ccNumber .= $checkDigit;
-
-	return $ccNumber;
-}
 */
 
 
