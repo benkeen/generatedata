@@ -191,7 +191,11 @@ window.gd.localeLoaded(i18n);
 			tasks[`webWorkerWatcher${index}`] = {
 				files: [workerPath],
 				options: { spawn: false },
-				tasks: [`shell:buildWebWorker${index}`, `md5:webWorkerMd5Task${index}`, 'generateWorkerMapFile']
+				tasks: [
+					`shell:buildWebWorker${index}`,
+					`md5:webWorkerMd5Task${index}`,
+					'generateWorkerMapFile'
+				]
 			};
 		});
 
