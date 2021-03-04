@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
-import { countryList } from '../../../../_plugins';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 // import { DropdownOption } from '~components/dropdown/Dropdown';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import { CountrySource } from '../Country/Country';
+import styles from './Track1.scss';
 
 export type Track1Source = 'row' | 'random';
 
@@ -26,32 +26,46 @@ const Track1Dialog = ({ visible, data, id, onClose, onUpdateSource, coreI18n, i1
 				<DialogTitle onClose={onClose}>Track1 Data Source</DialogTitle>
 				<DialogContent dividers>
 					<div>
-						The fields below let you target other fields to create more realistic Track1 values. By default
-						it generates arbitrary names and
+						This lets you target other fields to create more realistic Track1 values. By default
+						it generates arbitrary strings for the PAN and name parts, so supplying actual rows
+						generating that data ensures a valid and consistent Track1 value.
 					</div>
 
-					<h3>{i18n.source}</h3>
+					<h3>PAN source</h3>
 
 					<RadioPillRow>
 						<RadioPill
-							label={`${i18n.countryPlugins} (${countryList.length})`}
-							onClick={(): void => onUpdateSource('plugins')}
+							label="Pan row"
+							onClick={(): void => onUpdateSource('random')}
 							name={`${id}-source`}
-							checked={data.source === 'plugins'}
+							checked={data.panSource === 'random'}
 							tooltip={i18n.countryPluginsDesc}
 						/>
 						<RadioPill
-							label={`${i18n.allCountries}`}
-							onClick={(): void => onUpdateSource('all')}
+							label="Random string"
+							onClick={(): void => onUpdateSource('row')}
 							name={`${id}-source`}
-							checked={data.source === 'all'}
+							checked={data.panSource === 'all'}
 						/>
 					</RadioPillRow>
 
-					<h3>{i18n.filter}</h3>
-					<p>
-						{i18n.filterDesc}
-					</p>
+					<h3>Name source</h3>
+					<RadioPillRow>
+						<RadioPill
+							label="Name row"
+							onClick={(): void => onUpdateSource('random')}
+							name={`${id}-source`}
+							checked={data.nameSource === 'random'}
+							tooltip={i18n.countryPluginsDesc}
+						/>
+						<RadioPill
+							label="Random string"
+							onClick={(): void => onUpdateSource('row')}
+							name={`${id}-source`}
+							checked={data.nameSource === 'all'}
+						/>
+					</RadioPillRow>
+
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
@@ -63,7 +77,6 @@ const Track1Dialog = ({ visible, data, id, onClose, onUpdateSource, coreI18n, i1
 
 export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
-	const numSelected = data.selectedCountries.length;
 
 	const onUpdateSource = (source: CountrySource): void => {
 		onUpdate({
@@ -79,20 +92,22 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 		});
 	};
 
-	let label = '';
-	if (data.source === 'all') {
-		if (data.selectedCountries.length) {
-			label = `<b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
-		} else {
-			label = i18n.allCountries;
-		}
-	} else {
-		if (data.selectedCountries.length) {
-			label = `<b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.countryPlugin : i18n.countryPlugins);
-		} else {
-			label = i18n.allCountryPlugins;
-		}
-	}
+	// let label = '';
+	// if (data.source === 'all') {
+	// 	if (data.selectedCountries.length) {
+	// 		label = `<b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
+	// 	} else {
+	// 		label = i18n.allCountries;
+	// 	}
+	// } else {
+	// 	if (data.selectedCountries.length) {
+	// 		label = `<b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.countryPlugin : i18n.countryPlugins);
+	// 	} else {
+	// 		label = i18n.allCountryPlugins;
+	// 	}
+	// }
+
+	const label = 'Source info';
 
 	return (
 		<div className={styles.buttonLabel}>
@@ -118,4 +133,13 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 	);
 };
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.track1_help_intro}</p>;
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
+
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(255)',
+		field_Oracle: 'varchar2(255)',
+		field_MSSQL: 'VARCHAR(255) NULL'
+	}
+});
+
