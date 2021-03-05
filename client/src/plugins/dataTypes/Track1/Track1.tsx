@@ -4,22 +4,71 @@ import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 // import { DropdownOption } from '~components/dropdown/Dropdown';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
-import { CountrySource } from '../Country/Country';
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import styles from './Track1.scss';
 
 export type Track1Source = 'row' | 'random';
 
 export type Track1State = {
 	panSource: Track1Source;
+	targetPanRowId: string;
 	nameSource: Track1Source;
+	targetNameRowId: string;
 }
 
 export const initialState: Track1State = {
 	panSource: 'random',
-	nameSource: 'random'
+	targetPanRowId: '',
+	nameSource: 'random',
+	targetNameRowId: ''
 };
 
-const Track1Dialog = ({ visible, data, id, onClose, onUpdateSource, coreI18n, i18n }: any): JSX.Element => {
+const Track1Dialog = ({
+	visible, data, id, panRows, nameRows, onClose, onUpdatePANSource, onUpdateNameSource, onUpdateRowSource, coreI18n,
+	i18n
+}: any): JSX.Element => {
+
+	const getPanSourceDropdown = (): JSX.Element | null => {
+		if (data.panSource !== "row") {
+			return null;
+		}
+
+		const panRowOptions = panRows.map(({ pan, title, index }: any) => ({
+			value: index + 1,
+			label: `Row #${index+1}: ${title}`
+		}));
+
+		return (
+			<Dropdown
+				value={data.targetPanRowId}
+				onChange={({ value }: DropdownOption) => onUpdateRowSource('targetPanRowId', value)}
+				options={panRowOptions}
+			/>
+		);
+	};
+
+	const getNameSourceDropdown = (): JSX.Element | null => {
+
+		console.log(nameRows);
+
+		if (data.nameSource !== "row") {
+			return null;
+		}
+
+		const nameRowOptions = nameRows.map(({ pan, title, index }: any) => ({
+			value: index + 1,
+			label: `Row #${index+1}: ${title}`
+		}));
+
+		return (
+			<Dropdown
+				value={data.targetNameRowId}
+				onChange={({ value }: DropdownOption) => onUpdateRowSource('targetNameRowId', value)}
+				options={nameRowOptions}
+			/>
+		);
+	};
+
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
@@ -35,36 +84,42 @@ const Track1Dialog = ({ visible, data, id, onClose, onUpdateSource, coreI18n, i1
 
 					<RadioPillRow>
 						<RadioPill
-							label="Pan row"
-							onClick={(): void => onUpdateSource('random')}
-							name={`${id}-source`}
+							label="Random string"
+							onClick={(): void => onUpdatePANSource('random')}
+							name={`${id}-panSource`}
 							checked={data.panSource === 'random'}
-							tooltip={i18n.countryPluginsDesc}
 						/>
 						<RadioPill
-							label="Random string"
-							onClick={(): void => onUpdateSource('row')}
-							name={`${id}-source`}
-							checked={data.panSource === 'all'}
+							label="PAN row"
+							onClick={(): void => onUpdatePANSource('row')}
+							name={`${id}-panSource`}
+							checked={data.panSource === 'row'}
+							tooltip={i18n.countryPluginsDesc}
+							disabled={panRows.length === 0}
 						/>
 					</RadioPillRow>
+
+					{getPanSourceDropdown()}
 
 					<h3>Name source</h3>
 					<RadioPillRow>
 						<RadioPill
-							label="Name row"
-							onClick={(): void => onUpdateSource('random')}
-							name={`${id}-source`}
+							label="Random string"
+							onClick={(): void => onUpdateNameSource('random')}
+							name={`${id}-nameSource`}
 							checked={data.nameSource === 'random'}
-							tooltip={i18n.countryPluginsDesc}
 						/>
 						<RadioPill
-							label="Random string"
-							onClick={(): void => onUpdateSource('row')}
-							name={`${id}-source`}
-							checked={data.nameSource === 'all'}
+							label="Name row"
+							onClick={(): void => onUpdateNameSource('row')}
+							name={`${id}-nameSource`}
+							checked={data.nameSource === 'row'}
+							tooltip={i18n.countryPluginsDesc}
+							disabled={nameRows.length === 0}
 						/>
 					</RadioPillRow>
+
+					{getNameSourceDropdown()}
 
 				</DialogContent>
 				<DialogActions>
@@ -75,39 +130,17 @@ const Track1Dialog = ({ visible, data, id, onClose, onUpdateSource, coreI18n, i1
 	);
 };
 
-export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ i18n, coreI18n, countryI18n, panRows, nameRows, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
-	const onUpdateSource = (source: CountrySource): void => {
-		onUpdate({
-			source,
-			selectedCountries: []
-		});
-	};
-
-	const onUpdateSelectedCountries = (selectedCountries: string[]): void => {
+	const onUpdateSource = (prop: string, value: any): void => {
 		onUpdate({
 			...data,
-			selectedCountries
+			[prop]: value
 		});
 	};
 
-	// let label = '';
-	// if (data.source === 'all') {
-	// 	if (data.selectedCountries.length) {
-	// 		label = `<b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
-	// 	} else {
-	// 		label = i18n.allCountries;
-	// 	}
-	// } else {
-	// 	if (data.selectedCountries.length) {
-	// 		label = `<b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.countryPlugin : i18n.countryPlugins);
-	// 	} else {
-	// 		label = i18n.allCountryPlugins;
-	// 	}
-	// }
-
-	const label = 'Source info';
+	const label = 'Track1 Source';
 
 	return (
 		<div className={styles.buttonLabel}>
@@ -121,12 +154,15 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 			<Track1Dialog
 				visible={dialogVisible}
 				data={data}
+				panRows={panRows}
+				nameRows={nameRows}
 				id={id}
 				coreI18n={coreI18n}
 				i18n={i18n}
 				countryI18n={countryI18n}
-				onUpdateSource={onUpdateSource}
-				onUpdateSelectedCountries={onUpdateSelectedCountries}
+				onUpdateRowSource={(section: any, value: any) => onUpdateSource(section, value)}
+				onUpdatePANSource={(value: any) => onUpdateSource('panSource', value)}
+				onUpdateNameSource={(value: any) => onUpdateSource('nameSource', value)}
 				onClose={(): void => setDialogVisibility(false)}
 			/>
 		</div>

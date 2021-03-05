@@ -1,8 +1,25 @@
-import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
-// import { getRandomArrayValue } from '../../../utils/randomUtils';
+// import utils from '../../../utils';
+import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 
-// data: GenerationData
-export const generate = (): DTGenerateResult => {
+let utilsLoaded = false;
+export const onmessage = (e: DTOnMessage) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
+	}
+	postMessage(generate(e.data));
+};
+
+export const generate = ({ }: DTGenerationData): DTGenerateResult => {
+	// const { words, numWordsToGenerate } = rowState;
+	const track1 = "%B$generatedCardNumber^{$firstName}{$lastName}^$calendar$serviceCode{$discretionaryData[$disc_data]}?$LRC_array[$LRC]";
+
+	return {
+		display: track1
+	};
+};
+
+
 	// const selectedCardData = getRandomArrayValue(cardData);
 	// $generatedCardNumber = DataType_PAN::generateCreditCardNumber($cardData["prefix"], $cardData["length"]);
 
@@ -43,13 +60,11 @@ export const generate = (): DTGenerateResult => {
 		Longitudinal redundancy check (LRC) — it is one character and a validity character calculated from other
 			data on the track.
 	*/
-	const track1 = "%B$generatedCardNumber^{$firstName}{$lastName}^$calendar$serviceCode{$discretionaryData[$disc_data]}?$LRC_array[$LRC]";
-
-	return {
-		display: track1
-	};
-};
-
+	// const track1 = "%B$generatedCardNumber^{$firstName}{$lastName}^$calendar$serviceCode{$discretionaryData[$disc_data]}?$LRC_array[$LRC]";
+	//
+	// return {
+	// 	display: track1
+	// };
 
 /*
 	public function __construct($runtimeContext) {
