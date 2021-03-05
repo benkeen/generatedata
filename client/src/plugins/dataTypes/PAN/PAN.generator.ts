@@ -28,7 +28,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 };
 
 let utilsLoaded = false;
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTOnMessage): void => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;

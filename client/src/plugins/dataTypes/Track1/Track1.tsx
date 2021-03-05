@@ -32,15 +32,15 @@ const Track1Dialog = ({
 			return null;
 		}
 
-		const panRowOptions = panRows.map(({ pan, title, index }: any) => ({
-			value: index + 1,
-			label: `Row #${index+1}: ${title}`
+		const panRowOptions = panRows.map(({ id, title, index }: any) => ({
+			value: id,
+			label: `${i18n.row} #${index+1}: ${title}`
 		}));
 
 		return (
 			<Dropdown
 				value={data.targetPanRowId}
-				onChange={({ value }: DropdownOption) => onUpdateRowSource('targetPanRowId', value)}
+				onChange={({ value }: DropdownOption): void => onUpdateRowSource('targetPanRowId', value)}
 				options={panRowOptions}
 			/>
 		);
@@ -51,15 +51,15 @@ const Track1Dialog = ({
 			return null;
 		}
 
-		const nameRowOptions = nameRows.map(({ pan, title, index }: any) => ({
-			value: index + 1,
+		const nameRowOptions = nameRows.map(({ title, id, index }: any) => ({
+			value: id,
 			label: `${i18n.row} #${index+1}: ${title}`
 		}));
 
 		return (
 			<Dropdown
 				value={data.targetNameRowId}
-				onChange={({ value }: DropdownOption) => onUpdateRowSource('targetNameRowId', value)}
+				onChange={({ value }: DropdownOption): void => onUpdateRowSource('targetNameRowId', value)}
 				options={nameRowOptions}
 			/>
 		);
@@ -137,20 +137,17 @@ export const Options = ({
 		});
 	};
 
-	console.log(data);
-
-	let label = 'Choose sources';
+	let label = i18n.customizeSource;
 	if (data.targetPanRowId !== '' && data.targetNameRowId !== '') {
-		const panRowNum = panRows.find((row: any) => row.id === data.targetPanRowId);
-		const nameRowNum = nameRows.find((row: any) => row.id === data.targetNameRowId);
-		label = `PAN row: #${panRowNum+1}, Name row: #${nameRowNum+1}`;
+		const { index: panIndex } = panRows.find((row: any) => row.id === data.targetPanRowId);
+		const { index: nameIndex } = nameRows.find((row: any) => row.id === data.targetNameRowId);
+		label = `${i18n.panRow}: #${panIndex+1}, ${i18n.nameRow}: #${nameIndex+1}`;
 	} else if (data.targetPanRowId !== '') {
 		const { index } = panRows.find((row: any) => row.id === data.targetPanRowId);
-		label = `PAN row: #${index+1}`;
+		label = `${i18n.panRow}: #${index+1}`;
 	} else if (data.targetNameRowId !== '') {
 		const row = nameRows.find((row: any) => row.id === data.targetNameRowId);
-		console.log("--->", row);
-		label = `Name row: #${row.index+1}`;
+		label = `${i18n.nameRow}: #${row.index+1}`;
 	}
 
 	return (
@@ -171,9 +168,9 @@ export const Options = ({
 				coreI18n={coreI18n}
 				i18n={i18n}
 				countryI18n={countryI18n}
-				onUpdateRowSource={(section: any, value: any) => onUpdateSource(section, value)}
-				onUpdatePANSource={(value: any) => onUpdateSource('panSource', value)}
-				onUpdateNameSource={(value: any) => onUpdateSource('nameSource', value)}
+				onUpdateRowSource={(section: any, value: any): void => onUpdateSource(section, value)}
+				onUpdatePANSource={(value: any): void => onUpdateSource('panSource', value)}
+				onUpdateNameSource={(value: any): void => onUpdateSource('nameSource', value)}
 				onClose={(): void => setDialogVisibility(false)}
 			/>
 		</div>
@@ -183,6 +180,9 @@ export const Options = ({
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
 
 export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'string'
+	},
 	sql: {
 		field: 'varchar(255)',
 		field_Oracle: 'varchar2(255)',

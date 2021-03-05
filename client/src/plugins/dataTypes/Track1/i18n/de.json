@@ -1,5 +1,14 @@
 {
   "NAME": "Track 1",
-  "DESC": "Spur 1 enthält den Namen des Karteninhabers sowie die Kontonummer und andere Ermessens Daten. Die Kreditkarte kann von jedem Typ (Visa, Mastercard, etc.) sein.",
-  "DEFAULT_TITLE": "track1"
+  "DESC": "Spur 1 ist ein Datenformat, in dem Informationen auf Magnetkartenstreifen gespeichert werden. Es enthält den Namen des Karteninhabers sowie die Kontonummer und andere diskretionäre Daten. Die Kreditkarte kann von einem beliebigen Typ sein (Visa, Mastercard usw.).",
+  "DEFAULT_TITLE": "Lied1",
+  "dialogTitle": "Track1-Datenquelle",
+  "dialogDesc": "Auf diese Weise können Sie auf andere Felder zielen, um realistischere Track1-Werte zu erstellen. Standardmäßig werden beliebige Zeichenfolgen für die PAN- und Namensteile generiert, sodass durch die Angabe der tatsächlichen Quellzeilen ein gültiger und konsistenter Track1-Wert sichergestellt wird.",
+  "panSource": "PAN-Quelle",
+  "randomString": "Zufällige Zeichenfolge",
+  "panRow": "PAN-Reihe",
+  "nameRow": "Namenszeile",
+  "row": "Reihe",
+  "nameSource": "Namensquelle",
+  "customizeSource": "Quelle anpassen"
 }

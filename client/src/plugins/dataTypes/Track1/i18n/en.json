@@ -9,5 +9,6 @@
   "panRow": "PAN row",
   "nameRow": "Name row",
   "row": "Row",
-  "nameSource": "Name source"
+  "nameSource": "Name source",
+  "customizeSource": "Customize source"
 }
