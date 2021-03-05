@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-// import { DropdownOption } from '~components/dropdown/Dropdown';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
@@ -48,16 +47,13 @@ const Track1Dialog = ({
 	};
 
 	const getNameSourceDropdown = (): JSX.Element | null => {
-
-		console.log(nameRows);
-
 		if (data.nameSource !== "row") {
 			return null;
 		}
 
 		const nameRowOptions = nameRows.map(({ pan, title, index }: any) => ({
 			value: index + 1,
-			label: `Row #${index+1}: ${title}`
+			label: `${i18n.row} #${index+1}: ${title}`
 		}));
 
 		return (
@@ -72,25 +68,23 @@ const Track1Dialog = ({
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
-				<DialogTitle onClose={onClose}>Track1 Data Source</DialogTitle>
+				<DialogTitle onClose={onClose}>{i18n.dialogTitle}</DialogTitle>
 				<DialogContent dividers>
 					<div>
-						This lets you target other fields to create more realistic Track1 values. By default
-						it generates arbitrary strings for the PAN and name parts, so supplying actual rows
-						generating that data ensures a valid and consistent Track1 value.
+						{i18n.dialogDesc}
 					</div>
 
-					<h3>PAN source</h3>
+					<h3>{i18n.panSource}</h3>
 
 					<RadioPillRow>
 						<RadioPill
-							label="Random string"
+							label={i18n.randomString}
 							onClick={(): void => onUpdatePANSource('random')}
 							name={`${id}-panSource`}
 							checked={data.panSource === 'random'}
 						/>
 						<RadioPill
-							label="PAN row"
+							label={i18n.panRow}
 							onClick={(): void => onUpdatePANSource('row')}
 							name={`${id}-panSource`}
 							checked={data.panSource === 'row'}
@@ -101,16 +95,17 @@ const Track1Dialog = ({
 
 					{getPanSourceDropdown()}
 
-					<h3>Name source</h3>
+					<h3>{i18n.nameSource}</h3>
+
 					<RadioPillRow>
 						<RadioPill
-							label="Random string"
+							label={i18n.randomString}
 							onClick={(): void => onUpdateNameSource('random')}
 							name={`${id}-nameSource`}
 							checked={data.nameSource === 'random'}
 						/>
 						<RadioPill
-							label="Name row"
+							label={i18n.nameRow}
 							onClick={(): void => onUpdateNameSource('row')}
 							name={`${id}-nameSource`}
 							checked={data.nameSource === 'row'}
@@ -130,7 +125,9 @@ const Track1Dialog = ({
 	);
 };
 
-export const Options = ({ i18n, coreI18n, countryI18n, panRows, nameRows, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({
+	i18n, coreI18n, countryI18n, panRows, nameRows, id, data, onUpdate
+}: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
 	const onUpdateSource = (prop: string, value: any): void => {
@@ -140,7 +137,21 @@ export const Options = ({ i18n, coreI18n, countryI18n, panRows, nameRows, id, da
 		});
 	};
 
-	const label = 'Track1 Source';
+	console.log(data);
+
+	let label = 'Choose sources';
+	if (data.targetPanRowId !== '' && data.targetNameRowId !== '') {
+		const panRowNum = panRows.find((row: any) => row.id === data.targetPanRowId);
+		const nameRowNum = nameRows.find((row: any) => row.id === data.targetNameRowId);
+		label = `PAN row: #${panRowNum+1}, Name row: #${nameRowNum+1}`;
+	} else if (data.targetPanRowId !== '') {
+		const { index } = panRows.find((row: any) => row.id === data.targetPanRowId);
+		label = `PAN row: #${index+1}`;
+	} else if (data.targetNameRowId !== '') {
+		const row = nameRows.find((row: any) => row.id === data.targetNameRowId);
+		console.log("--->", row);
+		label = `Name row: #${row.index+1}`;
+	}
 
 	return (
 		<div className={styles.buttonLabel}>

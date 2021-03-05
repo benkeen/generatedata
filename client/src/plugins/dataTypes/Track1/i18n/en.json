@@ -1,5 +1,13 @@
 {
   "NAME": "Track 1",
   "DESC": "Track 1 is a data format used to store information on magnetic card stripes. It contains the cardholder's name as well as account number and other discretionary data. The credit card may be of any type (Visa, Mastercard, etc).",
-  "DEFAULT_TITLE": "track1"
+  "DEFAULT_TITLE": "track1",
+  "dialogTitle": "Track1 Data Source",
+  "dialogDesc": "This lets you target other fields to create more realistic Track1 values. By default it generates arbitrary strings for the PAN and name parts, so supplying actual rows generating that data ensures a valid and consistent Track1 value.",
+  "panSource": "PAN source",
+  "randomString": "Random string",
+  "panRow": "PAN row",
+  "nameRow": "Name row",
+  "row": "Row",
+  "nameSource": "Name source"
 }
