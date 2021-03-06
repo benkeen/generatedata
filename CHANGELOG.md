@@ -12,6 +12,8 @@ Right now it's in early alpha. The current goals are:
 
 The next phase will be adding in the backend: user accounts, saving data sets and so on. 
 
+- `4.0.0-alpha-20210305`:
+    - Track1 Data Type added.
 - `4.0.0-alpha-20210301`:
     - Credit Card PAN Data Type added.
 - `4.0.0-alpha-20210224`:
