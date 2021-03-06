@@ -136,7 +136,7 @@ export const Options = ({
 			[prop]: value
 		};
 
-		// always autoselect the first Country row when switching to `Country Row` as the source
+		// always autoselect the first PAN/Name row when switching to a row as the source
 		if (prop === 'panSource' && value === 'row') {
 			newValues.targetPanRowId = panRows[0].id;
 		} else if (prop === 'nameSource' && value === 'row') {

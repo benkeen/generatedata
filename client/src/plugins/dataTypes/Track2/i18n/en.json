@@ -1,5 +1,12 @@
 {
   "NAME": "Track 2",
-  "DESC": "Track 2 contains the cardholder's account, encrypted PIN, plus other discretionary data. The credit card may be of any type (Visa, Mastercard, etc).",
-  "DEFAULT_TITLE": "track2"
+  "DESC": "Track 2 is a data format used to store information on magnetic card stripes. It contains the cardholder's account number, encrypted PIN and other discretionary data. The credit card may be of any type (Visa, Mastercard, etc).",
+  "DEFAULT_TITLE": "track2",
+  "dialogTitle": "Track2 Data Source",
+  "dialogDesc": "This lets you target a PAN field to create more realistic Track1 values. By default it generates arbitrary strings for the PAN, so supplying an actual PAN row ensures a valid and consistent Track2 value.",
+  "panSource": "PAN source",
+  "randomString": "Random string",
+  "panRow": "PAN row",
+  "row": "Row",
+  "customizeSource": "Customize source"
 }

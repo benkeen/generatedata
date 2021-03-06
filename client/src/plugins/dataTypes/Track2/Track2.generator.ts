@@ -1,39 +1,72 @@
 /**
- * @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
+ * @author Ben Keen <ben.keen@gmail.com>, original code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
  */
-import { DTGenerateResult, DTOnMessage } from '~types/dataTypes';
-
-export const generate = (): DTGenerateResult => {
-	return { display: '' };
-};
+import utils from '../../../utils';
+import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 
 let utilsLoaded = false;
-
 export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;
 	}
+	postMessage(generate(e.data));
+};
 
-	postMessage(generate());
+/*
+	Source - http://en.wikipedia.org/wiki/Magnetic_stripe_card#Financial_cards
+
+	- Start sentinel: one character (generally ';')
+	- Primary account number (PAN): up to 19 characters. Usually, but not always, matches the credit card
+	  number printed on the front of the card.
+	- Separator: one char (generally '=')
+	- Expiration date: four characters in the form YYMM.
+	- Service code: three digits. The first digit specifies the interchange rules, the second specifies
+		authorisation processing and the third specifies the range of services
+	- Discretionary data: as in track one
+	- End sentinel: one character (generally '?')
+	- Longitudinal redundancy check (LRC): it is one character and a validity character calculated from
+		other data on the track.
+	- Most reader devices do not return this value when the card is swiped to the presentation layer, and
+		use it only to verify the input internally to the reader.
+*/
+export const generate = (data: DTGenerationData): DTGenerateResult => {
+	const { panSource, targetPanRowId } = data.rowState;
+
+	let pan = '';
+	if (panSource === 'random') {
+		pan = utils.randomUtils.generateRandomAlphanumericStr('Xxxxxxxxxxxxxxxx');
+	} else {
+		const found = data.existingRowData.find(({ id }) => id === targetPanRowId);
+		if (found) {
+			pan = found.data.display as string;
+		}
+	}
+
+	const panWithoutSpaces = pan.replace(/[^\d]/g, '');
+
+	const randYear = utils.stringUtils.padString(utils.randomUtils.getRandomNum(0, 99), 2);
+	const randMonth = utils.stringUtils.padString(utils.randomUtils.getRandomNum(1, 12), 2);
+	const date = `${randYear}${randMonth}`;
+	const serviceCode = utils.randomUtils.getRandomNum(111, 999);
+
+	// could be more efficient
+	const discretionaryData = [
+		utils.randomUtils.getRandomNum(1, 9),
+		utils.randomUtils.getRandomNum(111, 999),
+		utils.randomUtils.getRandomNum(1111, 9999)
+	];
+	const index = utils.randomUtils.getRandomNum(0, 2);
+	const dataItem = discretionaryData[index];
+	const lrc = utils.randomUtils.getRandomCharInString(' 123456789');
+
+	return {
+		display: `%B${panWithoutSpaces}=${date}${serviceCode}${dataItem}?${lrc}`
+	};
 };
 
 
 /* private $cardData;
-
-	public function __construct($runtimeContext) {
-		for ($i=622126; $i<=622925; $i++){
-			$this->prefixList["prefix"][] = $i;
-		}
-		for ($i=3528; $i<=3589; $i++){
-			$this->prefixList["jcb16"][] = $i;
-		}
-		parent::__construct($runtimeContext);
-
-		if (class_exists("DataType_PAN")) {
-			$this->cardData = DataType_PAN::getAllCreditCardData();
-		}
-	}
 
 	public function generate($generator, $generationContextData) {
 		$cardData = $this->cardData[array_rand($this->cardData)];
@@ -46,20 +79,6 @@ export const onmessage = (e: DTOnMessage) => {
 		$LRC_array = array(" ", rand(1, 9));
 		$LRC = array_rand($LRC_array);
 
-		// Source - http://en.wikipedia.org/wiki/Magnetic_stripe_card#Financial_cards
-		// Start sentinel ó one character (generally ';')
-		// Primary account number (PAN) ó up to 19 characters. Usually, but not always, matches the credit card
-		// 	number printed on the front of the card.
-		// Separator ó one char (generally '=')
-		// Expiration date ó four characters in the form YYMM.
-		// Service code ó three digits. The first digit specifies the interchange rules, the second specifies
-		// 	authorisation processing and the third specifies the range of services
-		// Discretionary data ó as in track one
-		// End sentinel ó one character (generally '?')
-		// Longitudinal redundancy check (LRC) ó it is one character and a validity character calculated from
-		// 	other data on the track.
-		// Most reader devices do not return this value when the card is swiped to the presentation layer, and
-		// 	use it only to verify the input internally to the reader.
 		$track2 = ";$generatedCardNumber={$calendar}{$serviceCode}$discretionaryData[$discData]?$LRC_array[$LRC]";
 
 		return array(
