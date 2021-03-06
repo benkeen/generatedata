@@ -137,11 +137,10 @@ export const Options = ({
 		};
 
 		// always autoselect the first PAN/Name row when switching to a row as the source
-		if (prop === 'panSource' && value === 'row') {
-			newValues.targetPanRowId = panRows[0].id;
-		} else if (prop === 'nameSource' && value === 'row') {
-			newValues.targetNameRowId = nameRows[0].id;
-		}
+		if (prop === 'panSource') {
+			newValues.targetPanRowId = (value === 'row') ? panRows[0].id : '';
+		} else if (prop === 'nameSource') {
+			newValues.targetNameRowId = (value === 'row') ? nameRows[0].id : '';		}
 
 		onUpdate(newValues);
 	};

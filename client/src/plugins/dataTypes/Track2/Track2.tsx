@@ -87,8 +87,8 @@ export const Options = ({ i18n, coreI18n, countryI18n, panRows, id, data, onUpda
 		};
 
 		// always autoselect the first Country row when switching to `Country Row` as the source
-		if (prop === 'panSource' && value === 'row') {
-			newValues.targetPanRowId = panRows[0].id;
+		if (prop === 'panSource') {
+			newValues.targetPanRowId = (value === 'row') ? panRows[0].id : '';
 		}
 
 		onUpdate(newValues);
