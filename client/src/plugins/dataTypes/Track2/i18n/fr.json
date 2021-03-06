@@ -1,5 +1,12 @@
 {
-  "NAME": "Track 2",
-  "DESC": "Piste 2 contient le compte du titulaire de carte, code PIN crypté, ainsi que d'autres données discrétionnaires. La carte de crédit peut être de tout type (Visa, Mastercard, etc.)",
-  "DEFAULT_TITLE": "track2"
+  "NAME": "Track2",
+  "DESC": "Track2 est un format de données utilisé pour stocker des informations sur des bandes de cartes magnétiques. Il contient le numéro de compte du titulaire de la carte, le code PIN crypté et d'autres données discrétionnaires. La carte de crédit peut être de tout type (Visa, Mastercard, etc.).",
+  "DEFAULT_TITLE": "track2",
+  "dialogTitle": "Source de données Track2",
+  "dialogDesc": "Cela vous permet de cibler une ligne PAN pour créer des valeurs Track2 plus réalistes. Par défaut, il génère des chaînes arbitraires pour le PAN, de sorte que la fourniture d'une ligne PAN réelle garantit une valeur Track2 valide et cohérente.",
+  "panSource": "Source PAN",
+  "randomString": "Chaîne aléatoire",
+  "panRow": "Rangée PAN",
+  "row": "Rangée",
+  "customizeSource": "Personnaliser la source"
 }

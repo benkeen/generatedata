@@ -1,5 +1,12 @@
 {
-  "NAME": "Track 2",
-  "DESC": "Track 2 contains the cardholder's account, encrypted PIN, plus other discretionary data. The credit card may be of any type (Visa, Mastercard, etc).",
-  "DEFAULT_TITLE": "track2"
+  "NAME": "Track2",
+  "DESC": "المسار 2 هو تنسيق بيانات يستخدم لتخزين المعلومات على أشرطة البطاقة الممغنطة. يحتوي على رقم حساب حامل البطاقة ورقم التعريف الشخصي المشفر والبيانات التقديرية الأخرى. قد تكون بطاقة الائتمان من أي نوع (Visa ، Mastercard ، إلخ).",
+  "DEFAULT_TITLE": "track2",
+  "dialogTitle": "مصدر بيانات Track2",
+  "dialogDesc": "يتيح لك هذا استهداف صف PAN لإنشاء قيم Track2 أكثر واقعية. بشكل افتراضي ، يقوم بإنشاء سلاسل عشوائية لـ PAN ، لذا فإن توفير صف PAN فعلي يضمن قيمة Track2 صالحة ومتسقة.",
+  "panSource": "مصدر PAN",
+  "randomString": "سلسلة عشوائية",
+  "panRow": "صف PAN",
+  "row": "صف",
+  "customizeSource": "تخصيص المصدر"
 }

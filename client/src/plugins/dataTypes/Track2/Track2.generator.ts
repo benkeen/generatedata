@@ -64,25 +64,3 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 		display: `%B${panWithoutSpaces}=${date}${serviceCode}${dataItem}?${lrc}`
 	};
 };
-
-
-/* private $cardData;
-
-	public function generate($generator, $generationContextData) {
-		$cardData = $this->cardData[array_rand($this->cardData)];
-		$generatedCardNumber = DataType_PAN::generateCreditCardNumber($cardData["prefix"], $cardData["length"]);
-
-		$calendar = date("ym", mt_rand());
-		$serviceCode = mt_rand(111, 999);
-		$discretionaryData = array(rand(1, 9),rand(111, 999), rand(1111, 9999));
-		$discData = array_rand($discretionaryData);
-		$LRC_array = array(" ", rand(1, 9));
-		$LRC = array_rand($LRC_array);
-
-		$track2 = ";$generatedCardNumber={$calendar}{$serviceCode}$discretionaryData[$discData]?$LRC_array[$LRC]";
-
-		return array(
-			"display" => $track2
-		);
-	}
-*/

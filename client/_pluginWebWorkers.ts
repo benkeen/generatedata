@@ -36,7 +36,7 @@ export default {
 		"TextFixed": "DT-TextFixed.generator-dbdafbc3a1a8e232f2d1ae874ec8fca3.js",
 		"TextRandom": "DT-TextRandom.generator-8438585e9d15fcb44940588d3fb7ecde.js",
 		"Track1": "DT-Track1.generator-b7067c479e2399d9bb686057045e21e7.js",
-		"Track2": "DT-Track2.generator-853bfefc8d3f8a2a9d055de5f7c6a1f7.js"
+		"Track2": "DT-Track2.generator-d6f9fd9a693fdcb128fab9bbc7ddacdf.js"
 	},
 	"exportTypes": {
 		"CSV": "ET-CSV.generator-1133b36681cf5839f9613dbce1e1eb36.js",

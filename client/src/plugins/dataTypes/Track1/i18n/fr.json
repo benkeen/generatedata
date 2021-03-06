@@ -1,7 +1,7 @@
 {
-  "NAME": "Track 1",
-  "DESC": "La piste 1 est un format de données utilisé pour stocker des informations sur des bandes de cartes magnétiques. Il contient le nom du titulaire de la carte ainsi que le numéro de compte et d'autres données discrétionnaires. La carte de crédit peut être de tout type (Visa, Mastercard, etc.).",
-  "DEFAULT_TITLE": "Piste1",
+  "NAME": "Track1",
+  "DESC": "Track1 est un format de données utilisé pour stocker des informations sur des bandes de cartes magnétiques. Il contient le nom du titulaire de la carte ainsi que le numéro de compte et d'autres données discrétionnaires. La carte de crédit peut être de tout type (Visa, Mastercard, etc.).",
+  "DEFAULT_TITLE": "track1",
   "dialogTitle": "Source de données Track1",
   "dialogDesc": "Cela vous permet de cibler d'autres champs pour créer des valeurs Track1 plus réalistes. Par défaut, il génère des chaînes arbitraires pour les parties PAN et nom, de sorte que la fourniture de lignes source réelles garantit une valeur Track1 valide et cohérente.",
   "panSource": "Source PAN",

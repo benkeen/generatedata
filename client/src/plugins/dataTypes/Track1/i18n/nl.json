@@ -1,6 +1,6 @@
 {
-  "NAME": "Track 1",
-  "DESC": "Spoor 1 is een gegevensformaat dat wordt gebruikt om informatie op magnetische kaartstrips op te slaan. Het bevat zowel de naam van de kaarthouder als het rekeningnummer en andere discretionaire gegevens. De creditcard kan van elk type zijn (Visa, Mastercard, enz.).",
+  "NAME": "Track1",
+  "DESC": "Track1 is een gegevensformaat dat wordt gebruikt om informatie op magnetische kaartstrips op te slaan. Het bevat zowel de naam van de kaarthouder als het rekeningnummer en andere discretionaire gegevens. De creditcard kan van elk type zijn (Visa, Mastercard, enz.).",
   "DEFAULT_TITLE": "Spoor1",
   "dialogTitle": "Track1-gegevensbron",
   "dialogDesc": "Hierdoor kunt u zich op andere velden richten om realistischere Track1-waarden te creëren. Standaard genereert het willekeurige strings voor de PAN- en naamgedeelten, dus het leveren van werkelijke bronrijen zorgt voor een geldige en consistente Track1-waarde.",

@@ -137,4 +137,3 @@ export const getMetadata = (): DTMetadata => ({
 		field_MSSQL: 'VARCHAR(255) NULL'
 	}
 });
-

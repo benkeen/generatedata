@@ -1,5 +1,5 @@
 {
-  "NAME": "Track 1",
+  "NAME": "Track1",
   "DESC": "トラック1は、磁気カードストライプに情報を保存するために使用されるデータ形式です。 カード所有者の名前、口座番号、その他の任意のデータが含まれています。 クレジットカードはどのタイプでもかまいません（Visa、Mastercardなど）。",
   "DEFAULT_TITLE": "track1",
   "dialogTitle": "Track1データソース",

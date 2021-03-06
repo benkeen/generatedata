@@ -1,7 +1,7 @@
 {
-  "NAME": "Track 1",
+  "NAME": "Track1",
   "DESC": "磁道1是一种用于在磁卡条带上存储信息的数据格式。 它包含持卡人的姓名，帐号和其他可自行决定的数据。 信用卡可以是任何类型（Visa，Mastercard等）。",
-  "DEFAULT_TITLE": "音轨1",
+  "DEFAULT_TITLE": "track1",
   "dialogTitle": "Track1数据源",
   "dialogDesc": "这使您可以将其他字段作为目标以创建更逼真的Track1值。 默认情况下，它将为PAN和名称部分生成任意字符串，因此提供实际的源行可确保有效且一致的Track1值。",
   "panSource": "PAN源",
