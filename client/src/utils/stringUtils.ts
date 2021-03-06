@@ -26,3 +26,10 @@ export const getUniqueString = (str: string, existingStrings: string[]): string 
 
 export const reverse = (s: string): string => s.split("").reverse().join("");
 
+export const padString = (val: number | string, length: number): string => {
+	let str = '' + val;
+	while (str.length < length) {
+		str = '0' + str;
+	}
+	return str;
+};

@@ -131,10 +131,19 @@ export const Options = ({
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
 	const onUpdateSource = (prop: string, value: any): void => {
-		onUpdate({
+		const newValues = {
 			...data,
 			[prop]: value
-		});
+		};
+
+		// always autoselect the first Country row when switching to `Country Row` as the source
+		if (prop === 'panSource' && value === 'row') {
+			newValues.targetPanRowId = panRows[0].id;
+		} else if (prop === 'nameSource' && value === 'row') {
+			newValues.targetNameRowId = nameRows[0].id;
+		}
+
+		onUpdate(newValues);
 	};
 
 	let label = i18n.customizeSource;
