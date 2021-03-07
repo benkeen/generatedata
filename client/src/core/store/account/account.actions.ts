@@ -1,7 +1,7 @@
 import { SelectedAccountTab } from '~types/account';
-import { AccountEditingData } from '~store/account/account.reducer';
+import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
 import { getEditingData } from '~store/account/account.selectors';
-import { getDataSetSavePackage, getCurrentDataSetId } from '~store/generator/generator.selectors';
+import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
 import { GDAction } from '~types/general';
 import { Dispatch } from 'redux';
 import { apolloClient } from '../../apolloClient';
@@ -70,13 +70,19 @@ export const savePassword = (currentPassword: string, newPassword: string, onSuc
 };
 
 export const SHOW_SAVE_DATA_SET_DIALOG = 'SHOW_SAVE_DATA_SET_DIALOG';
-export const showSaveDataSetDialog = (): GDAction => ({ type: SHOW_SAVE_DATA_SET_DIALOG });
+export const showSaveDataSetDialog = (dialogType: SaveDataDialogType): GDAction => ({
+	type: SHOW_SAVE_DATA_SET_DIALOG,
+	payload: {
+		dialogType
+	}
+});
 
 export const HIDE_SAVE_DATA_SET_DIALOG = 'HIDE_SAVE_DATA_SET_DIALOG';
 export const hideSaveDataSetDialog = (): GDAction => ({ type: HIDE_SAVE_DATA_SET_DIALOG });
 
 export const LOAD_DATA_SETS = 'LOAD_DATA_SETS';
 export const SET_CURRENT_DATA_SET = 'SET_CURRENT_DATA_SET';
+
 export const saveNewDataSet = (dataSetName: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();
 	const data: any = getDataSetSavePackage(getState());
@@ -109,6 +115,29 @@ export const saveNewDataSet = (dataSetName: string): any => async (dispatch: Dis
 	// TODO error handling
 };
 
+export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState: any): Promise<any> => {
+	const i18n = getStrings();
+
+	const state = getState();
+	const data: any = getDataSetSavePackage(state);
+	const dataSetId = getCurrentDataSetId(state);
+
+	const response = await apolloClient.mutate({
+		mutation: queries.SAVE_CURRENT_DATA_SET,
+		variables: {
+			dataSetId,
+			content: JSON.stringify(data)
+		}
+	});
+
+	if (response.data.saveDataSet.success) {
+		addToast({
+			type: 'success',
+			message: i18n.core.dataSetSaved
+		});
+	}
+};
+
 
 export const UPDATE_CURRENT_DATA_SET_NAME = 'UPDATE_CURRENT_DATA_SET_NAME';
 export const renameDataSet = (dataSetName: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
@@ -134,28 +163,5 @@ export const renameDataSet = (dataSetName: string): any => async (dispatch: Disp
 		// 	type: 'success',
 		// 	message: i18n.core.dataSetSaved
 		// });
-	}
-};
-
-export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState: any): Promise<any> => {
-	const i18n = getStrings();
-
-	const state = getState();
-	const data: any = getDataSetSavePackage(state);
-	const dataSetId = getCurrentDataSetId(state);
-
-	const response = await apolloClient.mutate({
-		mutation: queries.SAVE_CURRENT_DATA_SET,
-		variables: {
-			dataSetId,
-			content: JSON.stringify(data)
-		}
-	});
-
-	if (response.data.saveDataSet.success) {
-		addToast({
-			type: 'success',
-			message: i18n.core.dataSetSaved
-		});
 	}
 };

@@ -14,6 +14,7 @@ import { updateBodyClass, getGeneratorRoute } from '~utils/routeUtils';
 import { CLEAR_GRID } from '~store/generator/generator.actions';
 import * as actions from '~store/generator/generator.actions';
 import C from '~core/constants';
+import { SaveDataDialogType } from '~store/account/account.reducer';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -154,7 +155,7 @@ export const onLoginSuccess = (tokenExpiry: number | null, onPageRender: boolean
 		});
 
 		if (loginFlow === 'fromSaveDataSet') {
-			dispatch(showSaveDataSetDialog());
+			dispatch(showSaveDataSetDialog(SaveDataDialogType.save));
 			loginFlow = '';
 		}
 	}

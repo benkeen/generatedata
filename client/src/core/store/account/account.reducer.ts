@@ -12,8 +12,14 @@ export type AccountEditingData = {
 	region: string;
 };
 
+export enum SaveDataDialogType {
+	save = 'save',
+	saveAs = 'saveAs'
+}
+
 export type AccountState = {
 	showSaveDataSetDialog: boolean;
+	saveDataDialogType: SaveDataDialogType;
 	firstName: string;
 	lastName: string;
 	email: string;
@@ -30,6 +36,7 @@ export type AccountState = {
 
 export const initialState: AccountState = {
 	showSaveDataSetDialog: false,
+	saveDataDialogType: SaveDataDialogType.save,
 	firstName: '',
 	lastName: '',
 	email: '',
@@ -109,6 +116,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 
 		case actions.SHOW_SAVE_DATA_SET_DIALOG:
 			draft.showSaveDataSetDialog = true;
+			draft.saveDataDialogType = action.payload.dialogType;
 			break;
 
 		case actions.HIDE_SAVE_DATA_SET_DIALOG:

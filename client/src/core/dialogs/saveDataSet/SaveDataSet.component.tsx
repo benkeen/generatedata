@@ -2,12 +2,14 @@ import React, { useRef, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import TextField from '~components/TextField';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './SaveDataSet.scss';
+import { SaveDataDialogType } from '~store/account/account.reducer';
 
 export type SaveDataSetDialogProps = {
 	visible: boolean;
 	isLoggedIn: boolean;
+	dialogType: SaveDataDialogType;
 	onRedirectToLogin: () => void;
 	onClose: any;
 	onSave: (dataSetName: string) => void;
@@ -15,13 +17,13 @@ export type SaveDataSetDialogProps = {
 };
 
 const SaveDataSetDialog = ({
-	visible, isLoggedIn, onClose, onSave, onRedirectToLogin, i18n
+	visible, isLoggedIn, dialogType, onClose, onSave, onRedirectToLogin, i18n
 }: SaveDataSetDialogProps): JSX.Element => {
 	const newDataSetNameField = useRef<HTMLInputElement>();
 	const [newDataSetName, setNewDataSetName] = useState('');
 	const [newDataSetNameError, setNewDataSetErrorName] = useState('');
 
-	let title = i18n.save;
+	let title = dialogType === SaveDataDialogType.save ? i18n.save : i18n.saveAs;
 	let content = (
 		<div className={styles.newDataSet}>
 			<TextField

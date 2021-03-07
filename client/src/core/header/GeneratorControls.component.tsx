@@ -19,12 +19,13 @@ export type GeneratorControlsProps = {
 	isLoggedIn: boolean;
 	onUpdate: (newDataSetName: string) => void;
 	onSaveDataSet: () => void;
+	onSaveAs: () => void;
 	onClearGrid: () => void;
 	disabled: boolean;
 };
 
 const GeneratorControls = ({
-	i18n, isLoggedIn, dataSetId, dataSetName, onUpdate, onSaveDataSet, onClearGrid, disabled
+	i18n, isLoggedIn, dataSetId, dataSetName, onUpdate, onSaveDataSet, onSaveAs, onClearGrid, disabled
 }: GeneratorControlsProps): JSX.Element => {
 	const popoverRef = useRef(null);
 	const inputFieldRef = useRef(null);
@@ -106,6 +107,15 @@ const GeneratorControls = ({
 									}}>
 									<ListItemText primary={i18n.delete} />
 								</ListItem>
+								<ListItem
+									button
+									key="saveAs"
+									onClick={(): any => {
+										setMenuVisibility(false);
+										onSaveAs();
+									}}>
+									<ListItemText primary={i18n.saveAs} />
+								</ListItem>
 							</List>
 						</div>
 					}
@@ -123,6 +133,7 @@ const GeneratorControls = ({
 	const onFocus = (e: any): void => {
 		e.preventDefault();
 
+		// this prompts the Save Data Set dialog, which contains a note about having to login/register
 		if (!isLoggedIn || dataSetId === null) {
 			onSaveDataSet();
 			// @ts-ignore-line

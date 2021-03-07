@@ -1,10 +1,11 @@
-import { createStore, applyMiddleware, Store } from 'redux';
+import { applyMiddleware, createStore, Store } from 'redux';
 import thunk from 'redux-thunk';
 import { FlushThunks } from 'redux-testkit';
 import { rootReducer } from '../../../../../tests/testHelpers';
 import * as actions from '../account.actions';
 import * as selectors from '../account.selectors';
-import { setAuthenticationData, LOGOUT } from '~store/main/main.actions';
+import { LOGOUT, setAuthenticationData } from '~store/main/main.actions';
+import { SaveDataDialogType } from '~store/account/account.reducer';
 
 describe('accounts section', () => {
 	let flushThunks;
@@ -113,7 +114,7 @@ describe('accounts section', () => {
 	it('save dialog visibility', () => {
 		expect(selectors.shouldShowSaveDataSetDialog(store.getState())).toEqual(false);
 
-		store.dispatch(actions.showSaveDataSetDialog());
+		store.dispatch(actions.showSaveDataSetDialog(SaveDataDialogType.save));
 		expect(selectors.shouldShowSaveDataSetDialog(store.getState())).toEqual(true);
 
 		store.dispatch(actions.hideSaveDataSetDialog());

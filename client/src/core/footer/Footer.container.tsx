@@ -11,6 +11,7 @@ import * as accountActions from '../store/account/account.actions';
 import * as coreUtils from '../../utils/coreUtils';
 import { isExportTypeValid } from '~utils/exportTypeUtils';
 import { getCustomFooterLinks } from '~utils/extensionUtils';
+import { SaveDataDialogType } from '~store/account/account.reducer';
 
 const mapStateToProps = (state: any): Partial<FooterProps> => {
 	const exportType = selectors.getExportType(state);
@@ -32,7 +33,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
 	// @ts-ignore-line
 	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
 	onSave: (): any => dispatch(accountActions.saveCurrentDataSet()),
-	onSaveNewDataSet: (): any => dispatch(accountActions.showSaveDataSetDialog()),
+	onSaveNewDataSet: (): any => dispatch(accountActions.showSaveDataSetDialog(SaveDataDialogType.save)),
+	onSaveAs: (): any => dispatch(accountActions.showSaveDataSetDialog(SaveDataDialogType.saveAs)),
 	onGenerate: (): any => dispatch(actions.showGenerationSettingsPanel()),
 
 	// @ts-ignore-line
