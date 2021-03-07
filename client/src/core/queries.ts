@@ -13,15 +13,18 @@ export const GET_ACCOUNTS = gql`
 `;
 
 export const GET_DATA_SETS = gql`
-    query GetDataSets {
-        dataSets {
-            dataSetId
-            dataSetName
-            status
-            dateCreated
-			content
-            numRowsGenerated
-            historyDateCreatedUnix
+    query GetDataSets ($limit: Int, $offset: Int) {
+        dataSets (limit: $limit, offset: $offset) {
+            totalCount
+			results {
+				dataSetId
+				dataSetName
+				status
+				dateCreated
+				content
+				numRowsGenerated
+				historyDateCreatedUnix
+			}
         }
     }
 `;

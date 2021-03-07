@@ -12,6 +12,7 @@ declare namespace DataSetsScssNamespace {
     page: string;
     row: string;
     status: string;
+    table: string;
   }
 }
 

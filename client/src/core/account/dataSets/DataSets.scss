@@ -4,15 +4,14 @@
 	margin: 0 auto 0;
 	width: 100%;
 	padding: 0 10px;
-	height: 100%;
+}
+
+.table {
 	flex: 1;
 	display: flex;
-
-	&>div {
-		display: flex;
-		flex-direction: column;
-		flex: 1;
-	}
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 15px;
 }
 
 .row {

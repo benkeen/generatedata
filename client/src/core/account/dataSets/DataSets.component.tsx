@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import Pagination from '~components/Pagination';
 import * as queries from '~core/queries';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
@@ -36,11 +37,16 @@ export type DataSetsProps = {
 	i18n: any;
 };
 
-const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Element | null => {
+const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.Element | null => {
 	const history = useHistory();
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
-	const { data } = useQuery(queries.GET_DATA_SETS);
+	const { data } = useQuery(queries.GET_DATA_SETS, {
+		variables: {
+			offset: 0,
+			limit: 10
+		}
+	});
 
 	const loadDataSet = (dataSet: DataSetListItem): void => {
 		onLoadDataSet(dataSet);
@@ -66,10 +72,14 @@ const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Elemen
 		setDeleteDialogVisibility(true);
 	};
 
+	const { results, totalCount } = data.dataSets;
+
 	return (
 		<>
 			<section className={`${className} ${styles.page}`}>
-				<div style={{ width: '100%' }}>
+				<h2><span>{totalCount}</span></h2>
+
+				<div className={styles.table}>
 					<div className={`${styles.row} ${styles.header}`}>
 						<div className={styles.dataSetName}>{i18n.dataSetName}</div>
 						<div className={styles.lastModified}>{i18n.lastModified}</div>
@@ -80,7 +90,7 @@ const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Elemen
 						<div className={styles.del} />
 					</div>
 					<div className={styles.body}>
-						{data.dataSets.map((dataSet: DataSetListItem) => (
+						{results.map((dataSet: DataSetListItem) => (
 							<Row
 								key={dataSet.dataSetId}
 								dataSet={dataSet}
@@ -91,7 +101,15 @@ const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Elemen
 						))}
 					</div>
 				</div>
+				<Pagination
+					numPages={Math.ceil(totalCount / 10)}
+					currentPage={1}
+					onChange={(e: any, value: number) => {
+						console.log(value);
+					}}
+				/>
 			</section>
+
 			<DeleteDataSetDialog
 				visible={dialogVisible}
 				dataSetName={selectedDataSet ? selectedDataSet.dataSetName : null}

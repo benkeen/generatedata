@@ -24,10 +24,11 @@ const resolvers = {
 		},
 
 		dataSets: async (root, args, { token, user }) => {
+			const { limit, offset } = args;
+
 			authUtils.authenticate(token);
 
 			const { accountId } = user;
-
 			const [results] = await db.sequelize.query(`
 				SELECT d.dataset_name,
 				    d.dataset_id AS dataSetId,
@@ -44,19 +45,30 @@ const resolvers = {
 						 ORDER BY history_id DESC
 						 LIMIT 1)
 				WHERE account_id = ${accountId}
-				ORDER BY dsh.date_created DESC 
+				ORDER BY dsh.date_created DESC
+				LIMIT ${limit}
+				OFFSET ${offset} 
 			`);
 
-			return results.map((row) => ({
-				dataSetId: row.dataSetId,
-				status: row.status,
-				numRowsGenerated: row.numRowsGenerated,
-				historyId: row.history_id,
-				dataSetName: row.dataset_name,
-				content: row.content,
-				dataCreatedUnix: row.dateCreatedUnix,
-				historyDateCreatedUnix: row.historyDateCreatedUnix
-			}));
+			const [totalCountQuery] = await db.sequelize.query(`
+				SELECT count(*) as c
+				FROM datasets
+				WHERE account_id = ${accountId} 
+			`, { raw: true, type: db.sequelize.QueryTypes.SELECT });
+
+			return {
+				totalCount: totalCountQuery.c,
+				results: results.map((row) => ({
+					dataSetId: row.dataSetId,
+					status: row.status,
+					numRowsGenerated: row.numRowsGenerated,
+					historyId: row.history_id,
+					dataSetName: row.dataset_name,
+					content: row.content,
+					dataCreatedUnix: row.dateCreatedUnix,
+					historyDateCreatedUnix: row.historyDateCreatedUnix
+				}))
+			};
 		}
 	},
 

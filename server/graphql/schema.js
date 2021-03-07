@@ -5,7 +5,7 @@ const typeDefs = gql`
         accounts: [Account]
         account: Account
         settings: [Setting]
-        dataSets: [DataSetListItem]
+        dataSets(limit: Int, offset: Int): DataSetResults
         dataSet(id: ID!): DataSet
 	    dataSetHistory(dataSetId: ID!): DataSetHistory
     }
@@ -66,6 +66,10 @@ const typeDefs = gql`
 	    dataSetId: ID!
 	    dateCreated: String
 	    content: String
+    }
+    type DataSetResults {
+        results: [DataSetListItem]
+	    totalCount: Int
     }
     type AuthResponse {
         success: Boolean

@@ -28,3 +28,7 @@ body :global(div.MuiTooltip-popper) {
 body :global(.MuiAlert-filledError) {
 	background-color: #c52820;
 }
+
+ul:global(.MuiPagination-ul) li {
+	padding: 0 !important;
+}
