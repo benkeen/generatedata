@@ -45,7 +45,7 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [currentPage, setCurrentPage] = useState(1);
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
-	
+
 	const { data } = useQuery(queries.GET_DATA_SETS, {
 		fetchPolicy: 'no-cache',
 		variables: {

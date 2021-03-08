@@ -60,68 +60,28 @@ const Accounts = ({ selectedTab, accounts, onInit, onChangeTab, i18n }: Accounts
 						className={selectedTab === 'accounts' ? sharedStyles.selected : ''}
 						onClick={(): void => onChangeTab('accounts')}
 					>
-						{i18n.yourAccount}
+						Accounts
 					</li>
 					<li
 						className={selectedTab === 'createAccount' ? sharedStyles.selected : ''}
 						onClick={(): void => onChangeTab('createAccount')}
 					>
-						{i18n.changePassword}
+						Create Account
 					</li>
 				</ul>
 			</nav>
 			<div className={sharedStyles.tab}>
-
 				{getTable()}
-
-				<div>
-					<div>
-						<label>{i18n.firstName}</label>
-						<div style={{ marginBottom: 15 }}>
-							<TextField
-								value=""
-								error=""
-								name="firstName"
-								onChange={(): void => {}}
-								style={{ width: '100%' }}
-								autoFocus
-							/>
-						</div>
-
-						<label>{i18n.lastName}</label>
-						<div style={{ marginBottom: 15 }}>
-							<TextField
-								type="password"
-								error=""
-								name="password"
-								value=""
-								onChange={(): void => {}}
-								style={{ width: '100%' }}
-							/>
-						</div>
-
-						<label>{i18n.email}</label>
-						<div style={{ marginBottom: 15 }}>
-							<TextField
-								value=""
-								error=""
-								name="email"
-								onChange={(): void => {}}
-								style={{ width: '100%' }}
-								autoFocus
-							/>
-						</div>
-					</div>
-				</div>
-
-				<Button size="medium" onClick={(): void => {}} color="primary" variant="outlined">
-					{i18n.createAccount}
-				</Button>
-
 			</div>
 		</section>
-
 	);
+
+	/*
+	<Button size="medium" onClick={(): void => {}} color="primary" variant="outlined">
+		{i18n.createAccount}
+	</Button>
+	*/
+
 };
 
 export default Accounts;
