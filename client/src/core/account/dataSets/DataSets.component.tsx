@@ -37,14 +37,20 @@ export type DataSetsProps = {
 	i18n: any;
 };
 
+// to be moved to a user setting at some point
+const NUM_PER_PAGE = 10;
+
 const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.Element | null => {
 	const history = useHistory();
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
+	const [currentPage, setCurrentPage] = useState(1);
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
+	
 	const { data } = useQuery(queries.GET_DATA_SETS, {
+		fetchPolicy: 'no-cache',
 		variables: {
-			offset: 0,
-			limit: 10
+			offset: (currentPage - 1) * NUM_PER_PAGE,
+			limit: NUM_PER_PAGE
 		}
 	});
 
@@ -77,7 +83,7 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 	return (
 		<>
 			<section className={`${className} ${styles.page}`}>
-				<h2><span>{totalCount}</span></h2>
+				<h2><span>{totalCount}</span> {i18n.dataSets}</h2>
 
 				<div className={styles.table}>
 					<div className={`${styles.row} ${styles.header}`}>
@@ -101,13 +107,13 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 						))}
 					</div>
 				</div>
-				<Pagination
-					numPages={Math.ceil(totalCount / 10)}
-					currentPage={1}
-					onChange={(e: any, value: number) => {
-						console.log(value);
-					}}
-				/>
+				<div className={styles.paginationRow}>
+					<Pagination
+						numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
+						currentPage={currentPage}
+						onChange={(e: any, pageNum: number): void => setCurrentPage(pageNum)}
+					/>
+				</div>
 			</section>
 
 			<DeleteDataSetDialog

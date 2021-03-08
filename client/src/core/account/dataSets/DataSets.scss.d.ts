@@ -10,6 +10,7 @@ declare namespace DataSetsScssNamespace {
     numRowsGenerated: string;
     open: string;
     page: string;
+    paginationRow: string;
     row: string;
     status: string;
     table: string;
