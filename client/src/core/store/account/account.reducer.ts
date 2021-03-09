@@ -131,6 +131,16 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			};
 			break;
 
+		case actions.CANCEL_CREATE_ACCOUNT_CHANGES:
+			draft.createAccountData = {
+				firstName: draft.firstName,
+				lastName: draft.lastName,
+				email: draft.email,
+				country: draft.country,
+				region: draft.region
+			};
+			break;
+
 		case actions.ACCOUNT_UPDATED:
 			draft.firstName = draft.editingData.firstName;
 			draft.lastName = draft.editingData.lastName;
