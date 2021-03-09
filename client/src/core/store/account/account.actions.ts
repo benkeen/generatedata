@@ -17,6 +17,14 @@ export const updateAccount = (data: AccountEditingData): GDAction => ({
 	}
 });
 
+export const UPDATE_CREATE_ACCOUNT_DATA = '';
+export const updateCreateAccountData = (data: AccountEditingData): GDAction => ({
+	type: UPDATE_CREATE_ACCOUNT_DATA,
+	payload: {
+		...data
+	}
+});
+
 export const CHANGE_ACCOUNT_TAB = 'CHANGE_ACCOUNT_TAB';
 export const onChangeTab = (tab: SelectedAccountTab): GDAction => ({
 	type: CHANGE_ACCOUNT_TAB,

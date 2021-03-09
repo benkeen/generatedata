@@ -13,3 +13,12 @@
 	opacity: 1;
 	transition: opacity 200ms ease-in-out;
 }
+
+.yourAccountPage {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 10px;
+	& > * {
+		flex: 1;
+	}
+}

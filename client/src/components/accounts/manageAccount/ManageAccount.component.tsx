@@ -6,21 +6,21 @@ import { canadianProvinceOptions, countryDropdownOptions } from '~utils/countryU
 import { AccountEditingData } from '~store/account/account.reducer';
 import { isValidEmail } from '~utils/generalUtils';
 import sharedStyles from '../../../styles/shared.scss';
-// import styles from '../Account.scss';
 
-export type YourAccountProps = {
+export type ManageAccountProps = {
 	data: AccountEditingData;
 	accountHasChanges: boolean;
 	updateAccount: (data: AccountEditingData) => void;
+	submitButtonLabel: string;
+	i18n: any;
 	onSave: () => void;
 	onCancel: () => void;
-	className: string;
-	i18n: any;
+	className?: string;
 };
 
-const CreateAccount = ({
-	data, accountHasChanges, updateAccount, onSave, onCancel, className, i18n
-}: YourAccountProps): JSX.Element => {
+const ManageAccount = ({
+	data, accountHasChanges, updateAccount, onSave, onCancel, submitButtonLabel, i18n, className = ''
+}: ManageAccountProps): JSX.Element => {
 	const update = (fieldName: string, value: string): void => {
 		updateAccount({
 			...data,
@@ -49,7 +49,7 @@ const CreateAccount = ({
 
 		return (
 			<>
-				<label>Province</label>
+				<label>{i18n.province}</label>
 				<div style={{ marginBottom: 15 }}>
 					<Dropdown
 						value={data.region}
@@ -120,9 +120,6 @@ const CreateAccount = ({
 
 					{getCanadianRegions()}
 				</div>
-
-				<div style={{ flex: 1, borderLeft: '1px solid #f2f2f2', paddingLeft: 20 }}>
-				</div>
 			</div>
 
 			<div>
@@ -133,7 +130,7 @@ const CreateAccount = ({
 					disableElevation
 					disabled={!saveButtonEnabled}
 				>
-					{i18n.save}
+					{submitButtonLabel}
 				</Button>
 
 				<span onClick={onCancel} className={sharedStyles.cancelLink}>{i18n.cancel}</span>
@@ -142,28 +139,4 @@ const CreateAccount = ({
 	);
 };
 
-export default CreateAccount;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default ManageAccount;

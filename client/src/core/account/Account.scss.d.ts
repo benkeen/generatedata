@@ -4,6 +4,7 @@ declare namespace AccountScssNamespace {
     hidden: string;
     numGeneratedRows: string;
     shown: string;
+    yourAccountPage: string;
   }
 }
 

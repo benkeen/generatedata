@@ -3,7 +3,6 @@ import produce from 'immer';
 import * as mainActions from '../main/main.actions';
 import * as actions from '../account/account.actions';
 import { AccountType, SelectedAccountTab, SelectedAccountsTab } from '~types/account';
-import { CHANGE_ACCOUNTS_TAB } from '../account/account.actions';
 
 export type AccountEditingData = {
 	firstName: string;
@@ -34,6 +33,7 @@ export type AccountState = {
 	selectedTab: SelectedAccountTab;
 	selectedAccountsTab: SelectedAccountsTab;
 	editingData: AccountEditingData;
+	createAccountData: AccountEditingData;
 };
 
 export const initialState: AccountState = {
@@ -52,6 +52,13 @@ export const initialState: AccountState = {
 	selectedTab: 'dataSets',
 	selectedAccountsTab: 'accounts',
 	editingData: {
+		firstName: '',
+		lastName: '',
+		email: '',
+		country: '',
+		region: ''
+	},
+	createAccountData: {
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -88,6 +95,13 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				country,
 				region
 			};
+			draft.createAccountData = {
+				firstName,
+				lastName,
+				email,
+				country,
+				region
+			};
 			break;
 		}
 
@@ -101,6 +115,10 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 
 		case actions.UPDATE_ACCOUNT:
 			draft.editingData = action.payload;
+			break;
+
+		case actions.UPDATE_CREATE_ACCOUNT_DATA:
+			draft.createAccountData = action.payload;
 			break;
 
 		case actions.CANCEL_ACCOUNT_CHANGES:

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 // import TextField from '~components/TextField';
 import * as sharedStyles from '../../styles/shared.scss';
 import AccountList from './accountList/AccountList';
-import CreateAccount from './createAccount/CreateAccount.container';
+import CreateAccount from './CreateAccount.container';
 
 export type AccountsPageProps = {
 	i18n: any;
@@ -32,11 +32,7 @@ const Accounts = ({ selectedTab, accounts, onInit, onChangeTab, i18n }: Accounts
 			);
 		}
 
-		return (
-			<CreateAccount
-				i18n={i18n}
-			/>
-		);
+		return <CreateAccount />;
 	};
 
 	return (
