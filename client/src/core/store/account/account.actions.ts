@@ -1,4 +1,4 @@
-import { SelectedAccountTab } from '~types/account';
+import { SelectedAccountTab, SelectedAccountsTab } from '~types/account';
 import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
 import { getEditingData } from '~store/account/account.selectors';
 import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
@@ -24,6 +24,15 @@ export const onChangeTab = (tab: SelectedAccountTab): GDAction => ({
 		tab
 	}
 });
+
+export const CHANGE_ACCOUNTS_TAB = 'CHANGE_ACCOUNTS_TAB';
+export const onChangeAccountsTab = (tab: SelectedAccountsTab): GDAction => ({
+	type: CHANGE_ACCOUNTS_TAB,
+	payload: {
+		tab
+	}
+});
+
 
 export const CANCEL_ACCOUNT_CHANGES = 'CANCEL_ACCOUNT_CHANGES';
 export const cancelChanges = (): GDAction => ({ type: CANCEL_ACCOUNT_CHANGES });

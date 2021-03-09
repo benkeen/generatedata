@@ -2,7 +2,8 @@ import { AnyAction } from 'redux';
 import produce from 'immer';
 import * as mainActions from '../main/main.actions';
 import * as actions from '../account/account.actions';
-import { AccountType, SelectedAccountTab } from '~types/account';
+import { AccountType, SelectedAccountTab, SelectedAccountsTab } from '~types/account';
+import { CHANGE_ACCOUNTS_TAB } from '../account/account.actions';
 
 export type AccountEditingData = {
 	firstName: string;
@@ -31,6 +32,7 @@ export type AccountState = {
 	numRowsGenerated: number;
 	dataSets: any[];
 	selectedTab: SelectedAccountTab;
+	selectedAccountsTab: SelectedAccountsTab;
 	editingData: AccountEditingData;
 };
 
@@ -48,6 +50,7 @@ export const initialState: AccountState = {
 	numRowsGenerated: 0,
 	dataSets: [],
 	selectedTab: 'dataSets',
+	selectedAccountsTab: 'accounts',
 	editingData: {
 		firstName: '',
 		lastName: '',
@@ -90,6 +93,10 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 
 		case actions.CHANGE_ACCOUNT_TAB:
 			draft.selectedTab = action.payload.tab;
+			break;
+
+		case actions.CHANGE_ACCOUNTS_TAB:
+			draft.selectedAccountsTab = action.payload.tab;
 			break;
 
 		case actions.UPDATE_ACCOUNT:
