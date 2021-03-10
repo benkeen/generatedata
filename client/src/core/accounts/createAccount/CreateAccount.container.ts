@@ -13,7 +13,8 @@ const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {
 		data: accountSelectors.getCreateAccountData(state),
 		accountHasChanges: accountSelectors.accountHasChanges(state),
 		i18n,
-		submitButtonLabel: i18n.createAccount
+		submitButtonLabel: i18n.createAccount,
+		showRequiredFieldError: false
 	};
 };
 
