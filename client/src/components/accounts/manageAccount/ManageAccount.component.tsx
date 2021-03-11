@@ -15,11 +15,13 @@ export type ManageAccountProps = {
 	i18n: any;
 	onSave: () => void;
 	onCancel: () => void;
+	showRequiredFieldError: boolean;
 	className?: string;
 };
 
 const ManageAccount = ({
-	data, accountHasChanges, updateAccount, onSave, onCancel, submitButtonLabel, i18n, className = ''
+	data, accountHasChanges, updateAccount, onSave, onCancel, submitButtonLabel, i18n, showRequiredFieldError,
+	className = ''
 }: ManageAccountProps): JSX.Element => {
 	const update = (fieldName: string, value: string): void => {
 		updateAccount({
@@ -30,11 +32,15 @@ const ManageAccount = ({
 
 	let fieldsValid = true;
 	if (!data.firstName.trim() || !data.lastName.trim() || !data.email.trim()) {
-		fieldsValid = false;
+		if (showRequiredFieldError) {
+			fieldsValid = false;
+		}
 	}
 	let emailError;
 	if (data.email.trim() === '') {
-		emailError = i18n.requiredField;
+		if (showRequiredFieldError) {
+			emailError = i18n.requiredField;
+		}
 	} else if (!isValidEmail(data.email)) {
 		emailError = i18n.validationInvalidEmail;
 		fieldsValid = false;
@@ -71,6 +77,9 @@ const ManageAccount = ({
 		onSave();
 	};
 
+	const firstNameError = (showRequiredFieldError && data.firstName.trim() === '') ? i18n.requiredField : '';
+	const lastNameError = (showRequiredFieldError && data.lastName.trim() === '') ? i18n.requiredField : '';
+
 	return (
 		<form onSubmit={handleSave} autoComplete="off" className={className}>
 			<div style={{ display: 'flex', flexDirection: 'row', marginBottom: 10 }}>
@@ -78,7 +87,7 @@ const ManageAccount = ({
 					<label>{i18n.firstName}</label>
 					<div style={{ marginBottom: 15 }}>
 						<TextField
-							error={data.firstName.trim() !== '' ? '' : i18n.requiredField}
+							error={firstNameError}
 							value={data.firstName}
 							name="firstName"
 							onChange={(e: any): void => update('firstName', e.target.value)}
@@ -90,7 +99,7 @@ const ManageAccount = ({
 					<label>{i18n.lastName}</label>
 					<div style={{ marginBottom: 15 }}>
 						<TextField
-							error={data.lastName.trim() !== '' ? '' : i18n.requiredField}
+							error={lastNameError}
 							value={data.lastName}
 							name="lastName"
 							onChange={(e: any): void => update('lastName', e.target.value)}

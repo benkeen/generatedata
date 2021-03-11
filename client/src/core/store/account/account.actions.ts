@@ -185,3 +185,15 @@ export const renameDataSet = (dataSetName: string): any => async (dispatch: Disp
 		// });
 	}
 };
+
+
+export const createAccount = (data: AccountEditingData) => async (dispatch: Dispatch, getState: any): Promise<any> => {
+	const response = await apolloClient.mutate({
+		mutation: queries.CREATE_ACCOUNT,
+		variables: {
+			...data
+		}
+	});
+
+	console.log(response);
+};

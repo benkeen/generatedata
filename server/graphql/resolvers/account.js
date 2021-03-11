@@ -48,7 +48,34 @@ const updatePassword = async (root, args, { token, user }) => {
 	};
 };
 
+const createAccount = async (root, args, { token, user }) => {
+
+	// TODO verify is admin
+	authUtils.authenticate(token);
+
+	const { accountId } = user;
+	const dateCreated = new Date().getTime();
+
+	const { firstName, lastName, email, country, region } = args;
+	const account = await db.accounts.create({
+		createdBy: accountId,
+		dateCreated,
+		lastUpdated: dateCreated,
+		firstName,
+		lastName,
+		email,
+		country,
+		region
+	});
+
+	return {
+		success: true
+	};
+};
+
+
 module.exports = {
 	updateAccount,
-	updatePassword
+	updatePassword,
+	createAccount
 };

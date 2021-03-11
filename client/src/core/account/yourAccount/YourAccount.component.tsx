@@ -28,6 +28,7 @@ const YourAccount = ({
 				updateAccount={updateAccount}
 				i18n={i18n}
 				submitButtonLabel={i18n.save}
+				showRequiredFieldError={true}
 			/>
 			<div style={{ flex: 1, borderLeft: '1px solid #f2f2f2', paddingLeft: 20 }}>
 				<label>{i18n.totalNumGeneratedRows}</label>

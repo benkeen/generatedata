@@ -16,6 +16,7 @@ const typeDefs = gql`
 		logout: GeneralResponse
         updateAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
 		updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
+        createAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
         saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetResponse
         saveDataSet(dataSetId: ID!, content: String!): SavedDataSetResponse
         renameDataSet(dataSetId: ID!, dataSetName: String): GeneralResponse

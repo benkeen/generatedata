@@ -95,13 +95,6 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				country,
 				region
 			};
-			draft.createAccountData = {
-				firstName,
-				lastName,
-				email,
-				country,
-				region
-			};
 			break;
 		}
 
@@ -133,11 +126,11 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 
 		case actions.CANCEL_CREATE_ACCOUNT_CHANGES:
 			draft.createAccountData = {
-				firstName: draft.firstName,
-				lastName: draft.lastName,
-				email: draft.email,
-				country: draft.country,
-				region: draft.region
+				firstName: '',
+				lastName: '',
+				email: '',
+				country: '',
+				region: ''
 			};
 			break;
 

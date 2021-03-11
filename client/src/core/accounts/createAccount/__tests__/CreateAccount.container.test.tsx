@@ -1,6 +1,6 @@
 import React from 'react'
 import CreateAccount from '../CreateAccount.container';
-import { renderWithStoreAndRouter } from '../../../../tests/testHelpers';
+import { renderWithStoreAndRouter } from '../../../../../tests/testHelpers';
 
 describe('YourAccount container', () => {
 	it('renders', () => {

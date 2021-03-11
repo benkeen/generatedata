@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
-// import Button from '@material-ui/core/Button';
-// import TextField from '~components/TextField';
 import * as sharedStyles from '../../styles/shared.scss';
 import AccountList from './accountList/AccountList';
-import CreateAccount from './CreateAccount.container';
+import CreateAccount from './createAccount/CreateAccount.container';
 
 export type AccountsPageProps = {
 	i18n: any;

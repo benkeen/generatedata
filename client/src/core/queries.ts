@@ -96,3 +96,11 @@ export const UPDATE_PASSWORD = gql`
         }
     }
 `;
+
+export const CREATE_ACCOUNT = gql`
+    mutation CreateAccount($firstName: String!, $lastName: String!, $email: String!, $country: String!, $region: String) {
+        createAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region) {
+            success
+        }
+    }
+`;
