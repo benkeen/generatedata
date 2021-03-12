@@ -49,27 +49,25 @@ const updatePassword = async (root, args, { token, user }) => {
 };
 
 const createAccount = async (root, args, { token, user }) => {
-
-	console.log("000000");
-
 	// TODO verify is admin
 	authUtils.authenticate(token);
 
 	const { accountId } = user;
 	const dateCreated = new Date().getTime();
-
-	console.log("11111");
-	const { firstName, lastName, email, country, region } = args;
+	const { firstName, lastName, password, email, country, region } = args;
 
 	const account = await db.accounts.create({
 		createdBy: accountId,
+		accountType: 'admin',
 		dateCreated,
 		lastUpdated: dateCreated,
+		password: '',
 		firstName,
 		lastName,
 		email,
 		country,
-		region
+		region,
+		numRowsGenerated: 0
 	});
 
 	console.log("2222222");
