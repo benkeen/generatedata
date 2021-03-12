@@ -84,6 +84,10 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			draft.isLoggingIn = true;
 			break;
 
+		case actions.LOGIN_ERROR:
+			draft.isLoggingIn = false;
+			break;
+
 		case actions.ONLOAD_AUTH_DETERMINED:
 			draft.isOnloadAuthDetermined = true;
 			break;

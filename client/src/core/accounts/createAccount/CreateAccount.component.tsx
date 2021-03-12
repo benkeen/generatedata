@@ -14,7 +14,7 @@ const initialState = {
 	region: ''
 };
 
-const CreateAccount = ({ i18n, onCreateAccount }: any): JSX.Element => {
+const CreateAccount = ({ i18n, onSave }: any): JSX.Element => {
 	const [data, setData] = useState(initialState);
 	const [showErrors, setShowErrors] = useState(false);
 
@@ -34,7 +34,7 @@ const CreateAccount = ({ i18n, onCreateAccount }: any): JSX.Element => {
 			submitButtonLabel={i18n.createAccount}
 			showRequiredFieldError={showErrors}
 			onCancel={onCancel}
-			onSave={onCreateAccount}
+			onSave={(): void => onSave(data)}
 		/>
 	);
 };

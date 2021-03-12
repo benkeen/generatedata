@@ -1,5 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-
 	return sequelize.define('accounts', {
 		accountId: {
 			type: DataTypes.INTEGER(8).UNSIGNED,

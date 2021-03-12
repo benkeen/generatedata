@@ -101,6 +101,9 @@ export const clearLoginFlow = (): any => {
 	loginFlow = '';
 };
 
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const setLoginError = () => ({ type: LOGIN_ERROR });
+
 // default authentication
 export const login = (email: string, password: string, onLoginError: Function): any => async (dispatch: Dispatch): Promise<any> => {
 	dispatch(startLogin());
@@ -135,6 +138,7 @@ export const login = (email: string, password: string, onLoginError: Function): 
 		}));
 		onLoginSuccess(response.data.login.tokenExpiry, false, dispatch);
 	} else {
+		dispatch(setLoginError());
 		onLoginError();
 	}
 };
