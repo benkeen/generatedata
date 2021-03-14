@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import * as styles from './AccountsList.scss';
+import { useQuery } from '@apollo/client';
+import * as queries from '~core/queries';
 
 export type AccountsListProps = {
 	i18n: any;
-	onInit: () => void;
 	onChangeTab: (tab: any) => void;
 	accounts: any[];
 };
@@ -28,10 +29,17 @@ const Row = ({ i18n, firstName, lastName, email, onEdit }: any): JSX.Element => 
 	);
 };
 
-const AccountsListComponent = ({ i18n, accounts, onInit }: AccountsListProps): JSX.Element => {
-	useEffect(() => {
-		onInit();
-	}, []);
+const NUM_PER_PAGE = 10;
+const AccountsListComponent = ({ i18n, accounts }: AccountsListProps): JSX.Element => {
+	const [currentPage, setCurrentPage] = useState(1);
+
+	const { data } = useQuery(queries.GET_ACCOUNTS, {
+		fetchPolicy: 'no-cache',
+		variables: {
+			offset: (currentPage - 1) * NUM_PER_PAGE,
+			limit: NUM_PER_PAGE
+		}
+	});
 
 	if (!accounts.length) {
 		return (
