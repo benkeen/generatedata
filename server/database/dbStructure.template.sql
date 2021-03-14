@@ -51,7 +51,8 @@ CREATE TABLE `accounts` (
   `last_logged_in` datetime DEFAULT NULL,
   `date_expires` datetime DEFAULT NULL,
   `refresh_token` varchar(200) DEFAULT NULL,
-  `account_type` enum('user','admin') NOT NULL,
+  `account_type` enum('superuser', 'admin', 'user') NOT NULL,
+  `account_status` enum('live','disabled', 'expired') NOT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
@@ -65,3 +66,6 @@ CREATE TABLE `accounts` (
 ALTER TABLE `accounts` ADD PRIMARY KEY (`account_id`);
 ALTER TABLE `accounts` MODIFY `account_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
 
+/* the admin account info is populated from the values in your .env file the first time it boots up */
+INSERT INTO `accounts` (account_id, date_created, last_updated, account_type, account_status, first_name, last_name, email, password)
+VALUES (1, '%DATE_CREATED%', '%DATE_CREATED%', 'superuser', 'live', '%FIRST_NAME%', '%LAST_NAME%', '%EMAIL%', '%PASSWORD%')

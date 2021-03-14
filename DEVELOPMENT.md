@@ -58,7 +58,7 @@ There are a several grunt helper functions for validation and managing the local
 up to date so every i18n file contains the same keys and won't cause bugs when the user selects the 
 
 #### Core localization files
-F
+
 These are found in `src/i18n`. They contain all the core i18n files.
 
 - `grunt validateI18n` - general validation function to examine all the localization files and check everything in sync.

@@ -36,13 +36,7 @@ const db = {};
 db.dataSets.hasMany(db.dataSetHistory, { foreignKey: 'dataSetId' });
 db.dataSetHistory.belongsTo(db.dataSets);
 
-// Object.keys(db).forEach(key => {
-// 	if ('associate' in db[key]) {
-// 		db[key].associate(db);
-// 	}
-// });
-
-// urgh...
+// TODO urgh...
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

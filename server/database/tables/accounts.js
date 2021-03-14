@@ -38,6 +38,11 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false,
 			field: 'account_type'
 		},
+		accountStatus: {
+			type: DataTypes.ENUM('live', 'disabled', 'expired'),
+			allowNull: false,
+			field: 'account_status'
+		},
 		firstName: {
 			type: DataTypes.STRING(255),
 			field: 'first_name'

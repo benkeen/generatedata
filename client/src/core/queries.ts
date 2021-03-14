@@ -4,10 +4,13 @@ export const GET_ACCOUNTS = gql`
     query GetAccounts {
         accounts {
             accountId
+            accountType
+			accountStatus,
             firstName
             lastName
 			email
             dateCreated
+			dateExpires
             numRowsGenerated
         }
     }

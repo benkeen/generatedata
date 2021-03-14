@@ -28,6 +28,7 @@ const typeDefs = gql`
 	    createdBy: ID
         dateExpires: String
         accountType: AccountType
+	    accountStatus: AccounStatus
         dateCreated: String
         firstName: String
 		lastName: String
@@ -101,6 +102,11 @@ const typeDefs = gql`
 	enum AccountType {
 		user
 		admin
+	}
+	enum AccounStatus {
+		live
+		disabled
+		expired
 	}
 `;
 

@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const pkg = require('../../package.json');
 const helpers = require('./helpers');
+const authUtils = require('../../server/utils/authUtils');
 
 require('dotenv').config();
 
@@ -125,7 +126,35 @@ const createImportFile = () => {
 	fs.writeFileSync(file, importLines.join('\n'));
 };
 
+
+const createDatabaseInitFile = async () => {
+	console.log('-----------------', process.env);
+
+	const now = new Date().getTime();
+	const newPasswordHash = await authUtils.getPasswordHash(process.env.GD_DEFAULT_ADMIN_PASSWORD);
+
+	const placeholders = {
+		'%FIRST_NAME%': process.env.GD_DEFAULT_ADMIN_FIRST_NAME,
+		'%LAST_NAME%': process.env.GD_DEFAULT_ADMIN_LAST_NAME,
+		'%EMAIL%': process.env.GD_DEFAULT_ADMIN_EMAIL,
+		'%PASSWORD%': newPasswordHash,
+		'%DATE_CREATED%': now
+	};
+
+	const dbStructureTemplate = fs.readFileSync(path.join(__dirname, '../../server/database/dbStructure.template.sql'), 'utf8');
+
+	let newFile = dbStructureTemplate;
+	Object.keys(placeholders).forEach((placeholder) => {
+		newFile = newFile.replace(placeholder, placeholders[placeholder]);
+	});
+
+	fs.writeFileSync(path.join(__dirname, '../../server/database/dbStructure.sql'), importLines.join('\n'));
+};
+
+
+
 generateEnvFile('_env.ts', JSON.stringify(envFile, null, '\t'));
 
+createDatabaseInitFile();
 createPluginsListFile();
 createImportFile();
