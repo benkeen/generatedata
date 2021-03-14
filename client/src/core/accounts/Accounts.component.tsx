@@ -1,32 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as sharedStyles from '../../styles/shared.scss';
-import AccountList from './accountList/AccountList';
+import AccountsList from './accountsList/AccountsList.container';
 import CreateAccount from './createAccount/CreateAccount.container';
+import { SelectedAccountsTab } from '~types/account';
 
 export type AccountsPageProps = {
 	i18n: any;
-	selectedTab: any;
-	onInit: () => void;
+	selectedTab: SelectedAccountsTab;
 	onChangeTab: (tab: any) => void;
-	accounts: any[];
 };
 
-const Accounts = ({ selectedTab, accounts, onInit, onChangeTab, i18n }: AccountsPageProps): JSX.Element | null => {
-	useEffect(() => {
-		onInit();
-	}, []);
-
-	if (!accounts) {
-		return null;
-	}
-
+const Accounts = ({ selectedTab, onChangeTab, i18n }: AccountsPageProps): JSX.Element | null => {
 	const getTab = (): JSX.Element | null => {
-		if (selectedTab === 'accounts') {
+		if (selectedTab === SelectedAccountsTab.accounts) {
 			return (
-				<AccountList
-					i18n={i18n}
-					accounts={accounts}
-				/>
+				<AccountsList />
 			);
 		}
 
@@ -56,12 +44,6 @@ const Accounts = ({ selectedTab, accounts, onInit, onChangeTab, i18n }: Accounts
 			</div>
 		</section>
 	);
-
-	/*
-	<Button size="medium" onClick={(): void => {}} color="primary" variant="outlined">
-		{i18n.createAccount}
-	</Button>
-	*/
 };
 
 export default Accounts;

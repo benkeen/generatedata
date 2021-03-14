@@ -102,7 +102,7 @@ export const clearLoginFlow = (): any => {
 };
 
 export const LOGIN_ERROR = 'LOGIN_ERROR';
-export const setLoginError = () => ({ type: LOGIN_ERROR });
+export const setLoginError = (): GDAction => ({ type: LOGIN_ERROR });
 
 // default authentication
 export const login = (email: string, password: string, onLoginError: Function): any => async (dispatch: Dispatch): Promise<any> => {

@@ -282,5 +282,7 @@
 	"yourAccount": "Your Account",
 	"yourUserAccount": "Your User Account",
 
-  "province": "Province"
+  "province": "Province",
+
+  "accountCreatedDesc": "The account has been created."
 }

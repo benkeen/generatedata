@@ -178,16 +178,13 @@ export const renameDataSet = (dataSetName: string): any => async (dispatch: Disp
 				dataSetName
 			}
 		});
-
-		// addToast({
-		// 	type: 'success',
-		// 	message: i18n.core.dataSetSaved
-		// });
 	}
 };
 
 
-export const createAccount = (data: AccountEditingData) => async (dispatch: Dispatch, getState: any): Promise<any> => {
+export const createAccount = (data: AccountEditingData) => async (dispatch: Dispatch): Promise<any> => {
+	const i18n = getStrings();
+
 	const response = await apolloClient.mutate({
 		mutation: queries.CREATE_ACCOUNT,
 		variables: {
@@ -195,5 +192,17 @@ export const createAccount = (data: AccountEditingData) => async (dispatch: Disp
 		}
 	});
 
-	console.log(response);
+	if (response.data.createAccount.success) {
+		dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
+
+		addToast({
+			type: 'success',
+			message: i18n.core.accountCreated
+		});
+	} else {
+		addToast({
+			type: 'error',
+			message: 'There was an error creating this account.'
+		});
+	}
 };

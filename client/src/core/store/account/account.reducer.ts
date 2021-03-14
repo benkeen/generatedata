@@ -50,7 +50,7 @@ export const initialState: AccountState = {
 	numRowsGenerated: 0,
 	dataSets: [],
 	selectedTab: 'dataSets',
-	selectedAccountsTab: 'accounts',
+	selectedAccountsTab: SelectedAccountsTab.accounts,
 	editingData: {
 		firstName: '',
 		lastName: '',

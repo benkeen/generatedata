@@ -6,6 +6,7 @@ export const GET_ACCOUNTS = gql`
             accountId
             firstName
             lastName
+			email
             dateCreated
             numRowsGenerated
         }

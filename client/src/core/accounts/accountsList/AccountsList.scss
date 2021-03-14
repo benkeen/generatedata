@@ -1,0 +1,61 @@
+// TODO move common code to a shared.scss file, like tables.scss or whatever
+.row {
+	display: flex;
+	width: 100%;
+	padding: 6px;
+	align-items: center;
+}
+
+.header {
+	font-weight: bold;
+	font-size: 13px;
+	color: #666666;
+	padding-top: 2px;
+	border-bottom: 1px solid #333333;
+}
+
+.body {
+	overflow: scroll;
+
+	.row {
+		&:hover {
+			background-color: #f9f9f9;
+		}
+	}
+}
+
+.firstName {
+	flex: 1 0 90px;
+}
+
+.lastName {
+	flex: 1 0 90px;
+}
+
+.email {
+	flex: 1 0 120px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.status {
+	flex: 0 0 80px;
+}
+
+.edit {
+	flex: 0 0 80px;
+	text-align: center;
+}
+
+.del {
+	flex: 0 0 30px;
+	align-items: center;
+	cursor: pointer;
+
+	&:hover {
+		svg {
+			fill: #990000;
+		}
+	}
+}

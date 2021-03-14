@@ -54,14 +54,14 @@ const createAccount = async (root, args, { token, user }) => {
 
 	const { accountId } = user;
 	const dateCreated = new Date().getTime();
-	const { firstName, lastName, password, email, country, region } = args;
+	const { firstName, lastName, email, country, region } = args;
 
 	const account = await db.accounts.create({
 		createdBy: accountId,
 		accountType: 'admin',
 		dateCreated,
 		lastUpdated: dateCreated,
-		password: '',
+		password: '', // blank password
 		firstName,
 		lastName,
 		email,
@@ -69,10 +69,6 @@ const createAccount = async (root, args, { token, user }) => {
 		region,
 		numRowsGenerated: 0
 	});
-
-	console.log("2222222");
-
-	console.log(".......", account);
 
 	return {
 		success: true
