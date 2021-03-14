@@ -12,3 +12,4 @@ client/_env.ts
 coverage
 yarn-error.log
 cypress/
+server/database/_dbStructure.sql

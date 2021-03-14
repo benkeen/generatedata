@@ -85,7 +85,7 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 		case C.APP_TYPES.LOGIN:
 			if (isLoggedIn) {
 				links = ['generator'];
-				if (accountType === 'admin' || accountType === 'superadmin') {
+				if (accountType === 'admin' || accountType === 'superuser') {
 					links.push('accounts');
 				}
 				links = links.concat(['separator', 'userAccount', 'logout']);

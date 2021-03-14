@@ -67,5 +67,7 @@ ALTER TABLE `accounts` ADD PRIMARY KEY (`account_id`);
 ALTER TABLE `accounts` MODIFY `account_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 /* the admin account info is populated from the values in your .env file the first time it boots up */
-INSERT INTO `accounts` (account_id, date_created, last_updated, account_type, account_status, first_name, last_name, email, password)
-VALUES (1, '%DATE_CREATED%', '%DATE_CREATED%', 'superuser', 'live', '%FIRST_NAME%', '%LAST_NAME%', '%EMAIL%', '%PASSWORD%')
+INSERT INTO `accounts` (account_id, date_created, last_updated, account_type, account_status, first_name, last_name,
+  email, password, country, region)
+VALUES (1, '%DATE_CREATED%', '%LAST_UPDATED%', 'superuser', 'live', '%FIRST_NAME%', '%LAST_NAME%',
+  '%EMAIL%', '%PASSWORD%', '', '')

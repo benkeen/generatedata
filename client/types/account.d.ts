@@ -1,4 +1,4 @@
-export type AccountType = 'superadmin' | 'admin' | 'user';
+export type AccountType = 'superuser' | 'admin' | 'user';
 export type SelectedAccountTab = 'dataSets' | 'yourAccount' | 'changePassword' | 'other';
 
 export const enum SelectedAccountsTab {

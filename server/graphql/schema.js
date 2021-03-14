@@ -100,8 +100,9 @@ const typeDefs = gql`
 	    dataSetId: ID
     }
 	enum AccountType {
+		superuser
+        admin
 		user
-		admin
 	}
 	enum AccounStatus {
 		live
