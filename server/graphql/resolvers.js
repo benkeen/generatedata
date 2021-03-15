@@ -8,14 +8,43 @@ const resolvers = {
 	Query: {
 		accounts: async (root, args, { token, user }) => {
 			authUtils.authenticate(token);
-			return db.accounts.findAll({
-				where: {
-					createdBy: user.accountId
-				},
-				order: [
-					['dateCreated', 'DESC']
-				]
-			});
+
+			const { limit, offset } = args;
+			const { accountId } = user;
+
+			const [results] = await db.sequelize.query(`
+				SELECT *
+				FROM accounts
+				WHERE created_by = ${accountId}
+				ORDER BY last_name DESC
+				LIMIT ${limit}
+				OFFSET ${offset} 
+			`);
+
+			const [totalCountQuery] = await db.sequelize.query(`
+				SELECT count(*) as c
+				FROM accounts
+				WHERE created_by = ${accountId} 
+			`, { raw: true, type: db.sequelize.QueryTypes.SELECT });
+
+			return {
+				totalCount: totalCountQuery.c,
+				results: results.map((row) => ({
+					accountId: row.account_id,
+					dateCreated: row.date_created,
+					lastUpdated: row.last_updated,
+					lastLoggedIn: row.last_logged_in,
+					dateExpires: row.date_expires,
+					accountType: row.account_type,
+					accountStatus: row.account_status,
+					firstName: row.first_name,
+					lastName: row.last_name,
+					email: row.email,
+					country: row.country,
+					region: row.region,
+					numRowsGenerated: row.numRowsGenerated,
+				}))
+			};
 		},
 
 		account: async (root, args, { user, token }) => {

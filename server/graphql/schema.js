@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     type Query {
-        accounts: [Account]
+        accounts(limit: Int, offset: Int): AccountsResults
         account: Account
         settings: [Setting]
         dataSets(limit: Int, offset: Int): DataSetResults
@@ -73,6 +73,10 @@ const typeDefs = gql`
     type DataSetResults {
         results: [DataSetListItem]
 	    totalCount: Int
+    }
+    type AccountsResults {
+        results: [Account]
+        totalCount: Int
     }
     type AuthResponse {
         success: Boolean
