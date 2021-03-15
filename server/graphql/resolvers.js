@@ -82,7 +82,7 @@ const resolvers = {
 		// account-related resolvers
 		updateAccount: accountResolvers.updateAccount,
 		updatePassword: accountResolvers.updatePassword,
-		createAccount: accountResolvers.createAccount,
+		createUserAccount: accountResolvers.createUserAccount,
 		saveNewDataSet: dataSetResolvers.saveNewDataSet,
 		renameDataSet: dataSetResolvers.renameDataSet,
 		saveDataSet: dataSetResolvers.saveDataSet,

@@ -9,6 +9,11 @@
 	color: #999999;
 }
 
+.emptyText {
+	color: #666666;
+	font-style: italic;
+}
+
 input.errorField, textarea.errorField, select.errorField, button.errorField {
 	border: 1px solid $error;
 

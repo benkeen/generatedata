@@ -101,9 +101,11 @@ export const UPDATE_PASSWORD = gql`
     }
 `;
 
-export const CREATE_ACCOUNT = gql`
-    mutation CreateAccount($firstName: String!, $lastName: String!, $email: String!, $country: String!, $region: String) {
-        createAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region) {
+export const CREATE_USER_ACCOUNT = gql`
+    mutation CreateUserAccount($firstName: String!, $lastName: String!, $email: String!, $country: String, $region: String,
+		$accountStatus: AccountStatus, $dateExpires: Int) {
+        createUserAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region,
+			accountStatus: $accountStatus, dateExpires: $dateExpires) {
             success
         }
     }

@@ -16,7 +16,8 @@ const typeDefs = gql`
 		logout: GeneralResponse
         updateAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
 		updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
-        createAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
+        createUserAccount(firstName: String!, lastName: String!, email: String!, country: String, region: String,
+            accountStatus: AccountStatus, dateExpires: Int): GeneralResponse
         saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetResponse
         saveDataSet(dataSetId: ID!, content: String!): SavedDataSetResponse
         renameDataSet(dataSetId: ID!, dataSetName: String): GeneralResponse
@@ -28,7 +29,7 @@ const typeDefs = gql`
 	    createdBy: ID
         dateExpires: String
         accountType: AccountType
-	    accountStatus: AccounStatus
+	    accountStatus: AccountStatus
         dateCreated: String
         firstName: String
 		lastName: String
@@ -104,7 +105,7 @@ const typeDefs = gql`
         admin
 		user
 	}
-	enum AccounStatus {
+	enum AccountStatus {
 		live
 		disabled
 		expired

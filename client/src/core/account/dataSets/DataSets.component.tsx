@@ -6,6 +6,7 @@ import Pagination from '~components/Pagination';
 import * as queries from '~core/queries';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
+import * as sharedStyles from '../../../styles/shared.scss';
 import { DataSetListItem } from '~types/dataSets';
 import { formatUnixTime } from '~utils/dateUtils';
 import { getGeneratorRoute } from '~utils/routeUtils';
@@ -80,11 +81,29 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 
 	const { results, totalCount } = data.dataSets;
 
+	if (totalCount === 0) {
+		return (
+			<section className={`${className} ${styles.page}`}>
+				<div className={sharedStyles.emptyText}>
+					You have no data sets saved.
+				</div>
+			</section>
+		);
+	}
+
+	const paginationRow = totalCount > NUM_PER_PAGE ? (
+		<div className={styles.paginationRow}>
+			<Pagination
+				numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
+				currentPage={currentPage}
+				onChange={(e: any, pageNum: number): void => setCurrentPage(pageNum)}
+			/>
+		</div>
+	) : null;
+
 	return (
 		<>
 			<section className={`${className} ${styles.page}`}>
-				<h2><span>{totalCount}</span> {i18n.dataSets}</h2>
-
 				<div className={styles.table}>
 					<div className={`${styles.row} ${styles.header}`}>
 						<div className={styles.dataSetName}>{i18n.dataSetName}</div>
@@ -107,13 +126,7 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 						))}
 					</div>
 				</div>
-				<div className={styles.paginationRow}>
-					<Pagination
-						numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
-						currentPage={currentPage}
-						onChange={(e: any, pageNum: number): void => setCurrentPage(pageNum)}
-					/>
-				</div>
+				{paginationRow}
 			</section>
 
 			<DeleteDataSetDialog

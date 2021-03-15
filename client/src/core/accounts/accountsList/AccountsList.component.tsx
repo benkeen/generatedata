@@ -4,11 +4,11 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import * as styles from './AccountsList.scss';
 import { useQuery } from '@apollo/client';
 import * as queries from '~core/queries';
+import * as sharedStyles from '../../../styles/shared.scss';
 
 export type AccountsListProps = {
 	i18n: any;
 	onChangeTab: (tab: any) => void;
-	accounts: any[];
 };
 
 
@@ -30,7 +30,7 @@ const Row = ({ i18n, firstName, lastName, email, onEdit }: any): JSX.Element => 
 };
 
 const NUM_PER_PAGE = 10;
-const AccountsListComponent = ({ i18n, accounts }: AccountsListProps): JSX.Element => {
+const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null => {
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const { data } = useQuery(queries.GET_ACCOUNTS, {
@@ -41,10 +41,15 @@ const AccountsListComponent = ({ i18n, accounts }: AccountsListProps): JSX.Eleme
 		}
 	});
 
-	if (!accounts.length) {
+	// TODO
+	if (!data) {
+		return null;
+	}
+
+	if (!data.accounts.length) {
 		return (
-			<div>
-				No accounts.
+			<div className={`${styles.page} ${sharedStyles.emptyText}`}>
+				No accounts have been created.
 			</div>
 		);
 	}
@@ -60,7 +65,7 @@ const AccountsListComponent = ({ i18n, accounts }: AccountsListProps): JSX.Eleme
 				<div className={styles.del} />
 			</div>
 			<div className={styles.body}>
-				{accounts.map((row: any) => (
+				{data.accounts.map((row: any) => (
 					<Row
 						key={row.accountId}
 						{...row}

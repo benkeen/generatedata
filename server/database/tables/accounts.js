@@ -59,6 +59,12 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(255),
 			allowNull: false
 		},
+		country: {
+			type: DataTypes.STRING(255)
+		},
+		region: {
+			type: DataTypes.STRING(255)
+		},
 		numRowsGenerated: {
 			type: DataTypes.INTEGER(9).UNSIGNED,
 			allowNull: false,

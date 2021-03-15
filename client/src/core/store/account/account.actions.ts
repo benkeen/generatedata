@@ -182,17 +182,32 @@ export const renameDataSet = (dataSetName: string): any => async (dispatch: Disp
 };
 
 
-export const createAccount = (data: AccountEditingData) => async (dispatch: Dispatch): Promise<any> => {
+// TODO typings
+export const createAccount = (data: any) => async (dispatch: Dispatch): Promise<any> => {
 	const i18n = getStrings();
 
+	const { firstName, lastName, email, country, region, disabled, expiry, expiryDate } = data;
+
+	let accountStatus = 'live';
+	if (disabled) {
+		accountStatus = 'expired';
+	}
+
+	const expiryDateValue = (expiry) ? expiryDate : null;
 	const response = await apolloClient.mutate({
-		mutation: queries.CREATE_ACCOUNT,
+		mutation: queries.CREATE_USER_ACCOUNT,
 		variables: {
-			...data
+			firstName,
+			lastName,
+			email,
+			country,
+			region,
+			accountStatus,
+			expiryDate: expiryDateValue
 		}
 	});
 
-	if (response.data.createAccount.success) {
+	if (response.data.createUserAccount.success) {
 		dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
 
 		addToast({

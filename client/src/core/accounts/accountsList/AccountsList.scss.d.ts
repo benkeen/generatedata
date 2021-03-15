@@ -7,6 +7,7 @@ declare namespace AccountsListScssNamespace {
     firstName: string;
     header: string;
     lastName: string;
+    page: string;
     row: string;
     status: string;
   }

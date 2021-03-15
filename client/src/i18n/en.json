@@ -284,5 +284,9 @@
 
   "province": "Province",
 
-  "accountCreatedDesc": "The account has been created."
+  "accountCreatedDesc": "The account has been created.",
+
+  "accountDisabled": "Account disabled",
+  "noExpiry": "No expiry",
+  "selectExpiryDate": "Select expiry date"
 }

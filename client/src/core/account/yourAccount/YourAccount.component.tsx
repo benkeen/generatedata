@@ -17,7 +17,7 @@ export type YourAccountProps = {
 const YourAccount = ({
 	data, numGeneratedRows, accountHasChanges, updateAccount, onSave, onCancel, className, i18n
 }: YourAccountProps): JSX.Element => {
-
+	// TODO hack CSS
 	return (
 		<div className={`${className} ${styles.yourAccountPage}`}>
 			<ManageAccount
@@ -30,10 +30,12 @@ const YourAccount = ({
 				submitButtonLabel={i18n.save}
 				showRequiredFieldError={true}
 			/>
-			<div style={{ flex: 1, borderLeft: '1px solid #f2f2f2', paddingLeft: 20 }}>
-				<label>{i18n.totalNumGeneratedRows}</label>
-				<div className={styles.numGeneratedRows} style={{ marginBottom: 15 }}>
-					{numGeneratedRows}
+			<div style={{ flex: 1, marginLeft: 20 }}>
+				<div style={{ borderLeft: '1px solid #f2f2f2', paddingLeft: 20, height: '83%' }}>
+					<label>{i18n.totalNumGeneratedRows}</label>
+					<div className={styles.numGeneratedRows} style={{ marginBottom: 15 }}>
+						{numGeneratedRows}
+					</div>
 				</div>
 			</div>
 		</div>

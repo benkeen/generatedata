@@ -3,6 +3,7 @@ declare namespace SharedScssNamespace {
     cancelLink: string;
     copyCol: string;
     emptyCol: string;
+    emptyText: string;
     errorField: string;
     fadeIn: string;
     generatorControls: string;

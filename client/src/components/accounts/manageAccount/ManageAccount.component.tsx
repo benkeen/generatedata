@@ -82,53 +82,51 @@ const ManageAccount = ({
 
 	return (
 		<form onSubmit={handleSave} autoComplete="off" className={className}>
-			<div style={{ display: 'flex', flexDirection: 'row', marginBottom: 10 }}>
-				<div style={{ flex: 1, paddingRight: 20 }}>
-					<label>{i18n.firstName}</label>
-					<div style={{ marginBottom: 15 }}>
-						<TextField
-							error={firstNameError}
-							value={data.firstName}
-							name="firstName"
-							onChange={(e: any): void => update('firstName', e.target.value)}
-							style={{ width: '100%' }}
-							autoFocus
-						/>
-					</div>
-
-					<label>{i18n.lastName}</label>
-					<div style={{ marginBottom: 15 }}>
-						<TextField
-							error={lastNameError}
-							value={data.lastName}
-							name="lastName"
-							onChange={(e: any): void => update('lastName', e.target.value)}
-							style={{ width: '100%' }}
-						/>
-					</div>
-
-					<label>{i18n.email}</label>
-					<div style={{ marginBottom: 15 }}>
-						<TextField
-							error={emailError}
-							value={data.email}
-							name="email"
-							onChange={(e: any): void => update('email', e.target.value)}
-							style={{ width: '100%' }}
-						/>
-					</div>
-
-					<label>{i18n.country}</label>
-					<div style={{ marginBottom: 15 }}>
-						<Dropdown
-							value={data.country}
-							onChange={(item: any): any => update('country', item.value)}
-							options={countryDropdownOptions}
-						/>
-					</div>
-
-					{getCanadianRegions()}
+			<div>
+				<label>{i18n.firstName}</label>
+				<div style={{ marginBottom: 15 }}>
+					<TextField
+						error={firstNameError}
+						value={data.firstName}
+						name="firstName"
+						onChange={(e: any): void => update('firstName', e.target.value)}
+						style={{ width: '100%' }}
+						autoFocus
+					/>
 				</div>
+
+				<label>{i18n.lastName}</label>
+				<div style={{ marginBottom: 15 }}>
+					<TextField
+						error={lastNameError}
+						value={data.lastName}
+						name="lastName"
+						onChange={(e: any): void => update('lastName', e.target.value)}
+						style={{ width: '100%' }}
+					/>
+				</div>
+
+				<label>{i18n.email}</label>
+				<div style={{ marginBottom: 15 }}>
+					<TextField
+						error={emailError}
+						value={data.email}
+						name="email"
+						onChange={(e: any): void => update('email', e.target.value)}
+						style={{ width: '100%' }}
+					/>
+				</div>
+
+				<label>{i18n.country}</label>
+				<div style={{ marginBottom: 15 }}>
+					<Dropdown
+						value={data.country}
+						onChange={(item: any): any => update('country', item.value)}
+						options={countryDropdownOptions}
+					/>
+				</div>
+
+				{getCanadianRegions()}
 			</div>
 
 			<div>
