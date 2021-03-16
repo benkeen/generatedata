@@ -7,6 +7,7 @@ import * as sharedStyles from '../../../styles/shared.scss';
 import Pagination from '~components/Pagination';
 import * as queries from '~core/queries';
 import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
+import DeleteAccountDialog from '~core/dialogs/deleteAccount/DeleteAccount.component';
 import { format, fromUnixTime } from 'date-fns';
 import C from '~core/constants';
 
@@ -16,7 +17,7 @@ export type AccountsListProps = {
 };
 
 
-const Row = ({ i18n, firstName, lastName, onEdit, accountStatus, dateExpires }: any): JSX.Element => {
+const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, dateExpires }: any): JSX.Element => {
 	let expiryDate: any = <span className={sharedStyles.blank}>&#8212;</span>;
 	try {
 		expiryDate = format(fromUnixTime(dateExpires), C.DATE_FORMAT);
@@ -33,7 +34,7 @@ const Row = ({ i18n, firstName, lastName, onEdit, accountStatus, dateExpires }: 
 			<div className={styles.edit}>
 				<Button size="small" type="submit" color="primary" variant="outlined" onClick={onEdit}>{i18n.edit}</Button>
 			</div>
-			<div className={styles.del}>
+			<div className={styles.del} onClick={onDelete}>
 				<HighlightOffIcon />
 			</div>
 		</div>
@@ -43,6 +44,7 @@ const Row = ({ i18n, firstName, lastName, onEdit, accountStatus, dateExpires }: 
 const NUM_PER_PAGE = 10;
 const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null => {
 	const [currentPage, setCurrentPage] = useState(1);
+	const [deleteAccountId, setDeleteAccountId] = useState<number | null>(null);
 
 	const { data } = useQuery(queries.GET_ACCOUNTS, {
 		fetchPolicy: 'no-cache',
@@ -94,11 +96,19 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 							{...row}
 							i18n={i18n}
 							onEdit={(): void => {}}
+							onDelete={(): void => setDeleteAccountId(row.accountId)}
 						/>
 					))}
 				</div>
 			</div>
 			{paginationRow}
+
+			<DeleteAccountDialog
+				visible={deleteAccountId !== null}
+				onClose={(): void => setDeleteAccountId(null)}
+				onDelete={(): void => {}}
+				i18n={i18n}
+			/>
 		</>
 	);
 };
