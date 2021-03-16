@@ -5,3 +5,9 @@ export const enum SelectedAccountsTab {
 	accounts = 'accounts',
 	createAccount = 'createAccount'
 }
+
+export const enum AccountStatus {
+	live = 'live',
+	disabled = 'disabled',
+	expired = 'expired'
+}

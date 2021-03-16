@@ -283,10 +283,16 @@
 	"yourUserAccount": "Your User Account",
 
   "province": "Province",
-
   "accountCreatedDesc": "The account has been created.",
 
   "accountDisabled": "Account disabled",
   "noExpiry": "No expiry",
-  "selectExpiryDate": "Select expiry date"
+  "selectExpiryDate": "Select expiry date",
+
+  "live": "Live",
+  "disabled": "Disabled",
+  "expired": "Expired",
+  "expiryDate": "Expiry Date",
+  "noAccountsCreated": "No accounts have been created."
+
 }

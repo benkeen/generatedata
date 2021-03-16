@@ -12,6 +12,7 @@ import TextField from '~components/TextField';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import * as sharedStyles from '../../../styles/shared.scss';
 import * as styles from './Date.scss';
+import C from '../../../core/constants';
 
 
 export type DateState = {
@@ -120,14 +121,14 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 		toDateClass += ` ${sharedStyles.errorField}`;
 		toDateError = i18n.endDateEarlierThanStartDate;
 	}
-	
+
 	return (
 		<MuiPickersUtilsProvider utils={DateFnsUtils}>
 			<div>
 				<div className={styles.dateRow}>
 					<Button onClick={(): void => onBtnClick('fromDate')} variant="outlined" disableElevation className={styles.dateBtn}>
 						<span style={{ marginRight: 3 }}>
-							{format(fromUnixTime(data.fromDate), 'MMM d, y')}
+							{format(fromUnixTime(data.fromDate), C.DATE_FORMAT)}
 						</span>
 						<Event />
 					</Button>
@@ -135,7 +136,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 					<ErrorTooltip title={toDateError} arrow disableHoverListener={!toDateError} disableFocusListener={!toDateError}>
 						<Button onClick={(): void => onBtnClick('toDate')} variant="outlined" disableElevation className={toDateClass}>
 							<span style={{ marginRight: 3 }}>
-								{format(fromUnixTime(data.toDate), 'MMM d, y')}
+								{format(fromUnixTime(data.toDate), C.DATE_FORMAT)}
 							</span>
 							<Event />
 						</Button>

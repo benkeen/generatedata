@@ -33,7 +33,6 @@ export type AccountState = {
 	selectedTab: SelectedAccountTab;
 	selectedAccountsTab: SelectedAccountsTab;
 	editingData: AccountEditingData;
-	createAccountData: AccountEditingData;
 };
 
 export const initialState: AccountState = {
@@ -52,13 +51,6 @@ export const initialState: AccountState = {
 	selectedTab: 'dataSets',
 	selectedAccountsTab: SelectedAccountsTab.accounts,
 	editingData: {
-		firstName: '',
-		lastName: '',
-		email: '',
-		country: '',
-		region: ''
-	},
-	createAccountData: {
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -110,10 +102,6 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			draft.editingData = action.payload;
 			break;
 
-		case actions.UPDATE_CREATE_ACCOUNT_DATA:
-			draft.createAccountData = action.payload;
-			break;
-
 		case actions.CANCEL_ACCOUNT_CHANGES:
 			draft.editingData = {
 				firstName: draft.firstName,
@@ -121,16 +109,6 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				email: draft.email,
 				country: draft.country,
 				region: draft.region
-			};
-			break;
-
-		case actions.CANCEL_CREATE_ACCOUNT_CHANGES:
-			draft.createAccountData = {
-				firstName: '',
-				lastName: '',
-				email: '',
-				country: '',
-				region: ''
 			};
 			break;
 

@@ -74,5 +74,7 @@ export default {
 		'northAmerica',
 		'oceania',
 		'southAmerica'
-	]
+	],
+
+	DATE_FORMAT: 'MMM d, y'
 };

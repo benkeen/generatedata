@@ -3,7 +3,7 @@ declare namespace AccountsListScssNamespace {
     body: string;
     del: string;
     edit: string;
-    email: string;
+    expiryDate: string;
     firstName: string;
     header: string;
     lastName: string;

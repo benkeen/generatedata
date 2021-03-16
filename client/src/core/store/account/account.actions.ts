@@ -1,4 +1,4 @@
-import { SelectedAccountTab, SelectedAccountsTab } from '~types/account';
+import { SelectedAccountTab, SelectedAccountsTab, AccountStatus } from '~types/account';
 import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
 import { getEditingData } from '~store/account/account.selectors';
 import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
@@ -8,18 +8,11 @@ import { apolloClient } from '../../apolloClient';
 import { addToast } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
 import * as queries from '~core/queries';
+import { format } from 'date-fns';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 export const updateAccount = (data: AccountEditingData): GDAction => ({
 	type: UPDATE_ACCOUNT,
-	payload: {
-		...data
-	}
-});
-
-export const UPDATE_CREATE_ACCOUNT_DATA = '';
-export const updateCreateAccountData = (data: AccountEditingData): GDAction => ({
-	type: UPDATE_CREATE_ACCOUNT_DATA,
 	payload: {
 		...data
 	}
@@ -188,12 +181,20 @@ export const createAccount = (data: any) => async (dispatch: Dispatch): Promise<
 
 	const { firstName, lastName, email, country, region, disabled, expiry, expiryDate } = data;
 
-	let accountStatus = 'live';
+	let accountStatus = AccountStatus.live;
 	if (disabled) {
-		accountStatus = 'expired';
+		accountStatus = AccountStatus.disabled;
+	} else {
+		// check the expiry date hasn't already passed
+		if (expiryDate) {
+			const now = Number(format(new Date(), 't'));
+			if (expiryDate < now) {
+				accountStatus = AccountStatus.expired;
+			}
+		}
 	}
 
-	const expiryDateValue = (expiry) ? expiryDate : null;
+	const expiryDateValue = (expiry) ? parseInt(expiryDate, 10) : null;
 	const response = await apolloClient.mutate({
 		mutation: queries.CREATE_USER_ACCOUNT,
 		variables: {
@@ -203,7 +204,7 @@ export const createAccount = (data: any) => async (dispatch: Dispatch): Promise<
 			country,
 			region,
 			accountStatus,
-			expiryDate: expiryDateValue
+			dateExpires: expiryDateValue
 		}
 	});
 

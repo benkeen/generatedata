@@ -5,6 +5,7 @@ import ManageAccount from '~components/accounts/manageAccount/ManageAccount.comp
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import * as styles from '../../../plugins/dataTypes/Date/Date.scss';
 import { format, fromUnixTime, add } from 'date-fns';
+import C from '../../constants';
 
 export type CreateAccountProps = {
 	i18n: any;
@@ -94,8 +95,7 @@ const CreateAccount = ({ i18n, onSave }: any): JSX.Element => {
 
 	let expiryLabel = i18n.selectExpiryDate;
 	if (data.expiryDate !== null) {
-		console.log(data.expiryDate);
-		expiryLabel = format(fromUnixTime(data.expiryDate), 'MMM d, y');
+		expiryLabel = format(fromUnixTime(data.expiryDate), C.DATE_FORMAT);
 	}
 
 	return (

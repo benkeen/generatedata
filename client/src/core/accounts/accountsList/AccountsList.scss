@@ -34,26 +34,26 @@
 }
 
 .firstName {
-	flex: 1 0 90px;
+	flex: 1 0 110px;
 }
 
 .lastName {
-	flex: 1 0 90px;
+	flex: 1 0 110px;
 }
 
-.email {
-	flex: 1 0 120px;
+.expiryDate {
+	flex: 1 0 90px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
 .status {
-	flex: 0 0 80px;
+	flex: 1 0 70px;
 }
 
 .edit {
-	flex: 0 0 80px;
+	flex: 0 0 90px;
 	text-align: center;
 }
 

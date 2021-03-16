@@ -1,5 +1,6 @@
 declare namespace SharedScssNamespace {
   export interface ISharedScss {
+    blank: string;
     cancelLink: string;
     copyCol: string;
     emptyCol: string;

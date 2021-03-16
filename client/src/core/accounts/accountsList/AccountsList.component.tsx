@@ -6,6 +6,9 @@ import * as styles from './AccountsList.scss';
 import * as sharedStyles from '../../../styles/shared.scss';
 import Pagination from '~components/Pagination';
 import * as queries from '~core/queries';
+import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
+import { format, fromUnixTime } from 'date-fns';
+import C from '~core/constants';
 
 export type AccountsListProps = {
 	i18n: any;
@@ -13,23 +16,20 @@ export type AccountsListProps = {
 };
 
 
-const Row = ({ i18n, firstName, lastName, onEdit, expiryDate, accountStatus }: any): JSX.Element => {
-
-	let status;
-	if (accountStatus === 'live') {
-		status = 'Live';
-	} else if (accountStatus === 'expired') {
-		status = 'Expired';
-	} else if (accountStatus === 'disabled') {
-		status = 'Disabled';
-	}
+const Row = ({ i18n, firstName, lastName, onEdit, accountStatus, dateExpires }: any): JSX.Element => {
+	let expiryDate: any = <span className={sharedStyles.blank}>&#8212;</span>;
+	try {
+		expiryDate = format(fromUnixTime(dateExpires), C.DATE_FORMAT);
+	} catch (e) {}
 
 	return (
 		<div className={styles.row}>
 			<div className={styles.firstName}>{firstName}</div>
 			<div className={styles.lastName}>{lastName}</div>
-			<div className={styles.status}>{status}</div>
-			<div className={styles.email}>{expiryDate}</div>
+			<div className={styles.status}>
+				<AccountStatusPill status={accountStatus} i18n={i18n} />
+			</div>
+			<div className={styles.expiryDate}>{expiryDate}</div>
 			<div className={styles.edit}>
 				<Button size="small" type="submit" color="primary" variant="outlined" onClick={onEdit}>{i18n.edit}</Button>
 			</div>
@@ -61,7 +61,7 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 	if (totalCount === 0) {
 		return (
 			<div className={`${styles.page} ${sharedStyles.emptyText}`}>
-				No accounts have been created.
+				{i18n.noAccountsCreated}
 			</div>
 		);
 	}
@@ -83,7 +83,7 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 					<div className={styles.firstName}>{i18n.firstName}</div>
 					<div className={styles.lastName}>{i18n.lastName}</div>
 					<div className={styles.status}>{i18n.status}</div>
-					<div className={styles.email}>Expiry Date</div>
+					<div className={styles.expiryDate}>{i18n.expiryDate}</div>
 					<div className={styles.edit} />
 					<div className={styles.del} />
 				</div>

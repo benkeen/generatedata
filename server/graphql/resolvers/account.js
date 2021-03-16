@@ -55,17 +55,21 @@ const createUserAccount = async (root, args, { token, user }) => {
 
 	const { accountId } = user;
 	const dateCreated = new Date().getTime();
-	const { firstName, lastName, email, country, region, accountStatus, expiryDate } = args;
+	const { firstName, lastName, email, country, region, accountStatus, dateExpires } = args;
 
-	console.log(args);
+	let dateExpiresMs = null;
+	if (dateExpires) {
+		dateExpiresMs = parseInt(dateExpires) * 1000;
+	}
 
+	// const expiryDateMs = dateExpires * 1000;
 	const account = await db.accounts.create({
 		createdBy: accountId,
 		accountType: 'user',
 		accountStatus,
 		dateCreated,
 		lastUpdated: dateCreated,
-		expiryDate,
+		dateExpires: dateExpiresMs,
 		password: '', // blank password
 		firstName,
 		lastName,
