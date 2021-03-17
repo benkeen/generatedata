@@ -3,14 +3,6 @@
 	font-size: 13px;
 }
 
-.row {
-	display: flex;
-	width: 100%;
-	padding: 6px;
-	align-items: center;
-	font-size: 13px;
-}
-
 .body {
 	overflow: scroll;
 
@@ -25,38 +17,51 @@
 	margin: 15px 0;
 }
 
-.firstName {
-	flex: 1 0 110px;
-}
+.accountsListTable {
+	width: 100%;
+	margin-bottom: 20px;
 
-.lastName {
-	flex: 1 0 110px;
-}
+	.row {
+		display: flex;
+		width: 100%;
+		padding: 6px;
+		align-items: center;
+		font-size: 13px;
+	}
 
-.expiryDate {
-	flex: 1 0 90px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
+	.firstName {
+		flex: 1 0 110px;
+	}
 
-.status {
-	flex: 1 0 70px;
-}
+	.lastName {
+		flex: 1 0 110px;
+	}
 
-.edit {
-	flex: 0 0 90px;
-	text-align: center;
-}
+	.expiryDate {
+		flex: 1 0 90px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 
-.del {
-	flex: 0 0 30px;
-	align-items: center;
-	cursor: pointer;
+	.status {
+		flex: 1 0 70px;
+	}
 
-	&:hover {
-		svg {
-			fill: #990000;
+	.edit {
+		flex: 0 0 90px;
+		text-align: center;
+	}
+
+	.del {
+		flex: 0 0 30px;
+		align-items: center;
+		cursor: pointer;
+
+		&:hover {
+			svg {
+				fill: #990000;
+			}
 		}
 	}
 }

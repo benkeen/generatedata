@@ -18,8 +18,8 @@ export type TableHeaderProps = {
 };
 
 const TableHeader = ({ cols, sortColumn, sortDir }: TableHeaderProps) => {
-	const columns = cols.map((col: TableCol) => (
-		<div className={col.className || ''}>
+	const columns = cols.map((col: TableCol, index: number) => (
+		<div className={col.className || ''} key={index}>
 			{col.label || ''}
 		</div>
 	));
@@ -28,7 +28,7 @@ const TableHeader = ({ cols, sortColumn, sortDir }: TableHeaderProps) => {
 		<div className={`${styles.row} ${styles.header}`}>
 			{columns}
 		</div>
-	)
+	);
 };
 
 export default TableHeader;

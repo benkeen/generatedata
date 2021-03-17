@@ -1,5 +1,6 @@
 declare namespace AccountsListScssNamespace {
   export interface IAccountsListScss {
+    accountsListTable: string;
     body: string;
     del: string;
     edit: string;

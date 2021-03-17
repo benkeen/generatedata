@@ -104,13 +104,13 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 		{ label: i18n.lastName, className: styles.lastName },
 		{ label: i18n.status, className: styles.status },
 		{ label: i18n.expiryDate, className: styles.expiryDate },
-		{ label: i18n.edit, className: styles.firstName },
+		{ label: i18n.edit, className: styles.edit },
 		{ label: '', className: styles.del }
 	];
 
 	return (
 		<>
-			<div style={{ width: '100%', marginBottom: 20 }}>
+			<div className={styles.accountsListTable}>
 				<TableHeader
 					cols={cols}
 					sortDir={ColSortDir.asc}

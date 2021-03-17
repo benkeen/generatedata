@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Pagination from '~components/Pagination';
+import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
 import * as queries from '~core/queries';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
@@ -101,18 +102,26 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 		</div>
 	) : null;
 
+	const cols = [
+		{ label: i18n.dataSetName, className: styles.dataSetName },
+		{ label: i18n.lastModified, className: styles.lastModified },
+		{ label: i18n.numRowsGenerated, className: styles.numRowsGenerated },
+		{ label: i18n.status, className: styles.status },
+		{ label: i18n.open, className: styles.open },
+		{ label: i18n.history, className: styles.history },
+		{ label: '', className: styles.del },
+	];
+
 	return (
 		<>
 			<section className={`${className} ${styles.page}`}>
 				<div className={styles.table}>
 					<div className={`${styles.row} ${styles.header}`}>
-						<div className={styles.dataSetName}>{i18n.dataSetName}</div>
-						<div className={styles.lastModified}>{i18n.lastModified}</div>
-						<div className={styles.numRowsGenerated}>{i18n.rowsGenerated}</div>
-						<div className={styles.status}>{i18n.status}</div>
-						<div className={styles.open}>{i18n.open}</div>
-						<div className={styles.history}>{i18n.history}</div>
-						<div className={styles.del} />
+						<TableHeader
+							cols={cols}
+							sortDir={ColSortDir.asc}
+							sortColumn=""
+						/>
 					</div>
 					<div className={styles.body}>
 						{results.map((dataSet: DataSetListItem) => (
