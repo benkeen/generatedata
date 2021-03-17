@@ -1,7 +1,9 @@
 declare namespace TableHeaderScssNamespace {
   export interface ITableHeaderScss {
+    colHeader: string;
     header: string;
     row: string;
+    sortable: string;
   }
 }
 

@@ -39,6 +39,7 @@ export type DataSetsProps = {
 	i18n: any;
 };
 
+
 // to be moved to a user setting at some point
 const NUM_PER_PAGE = 10;
 
@@ -103,10 +104,10 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 	) : null;
 
 	const cols = [
-		{ label: i18n.dataSetName, className: styles.dataSetName },
-		{ label: i18n.lastModified, className: styles.lastModified },
-		{ label: i18n.numRowsGenerated, className: styles.numRowsGenerated },
-		{ label: i18n.status, className: styles.status },
+		{ label: i18n.dataSetName, className: styles.dataSetName, sortable: true },
+		{ label: i18n.lastModified, className: styles.lastModified, sortable: true },
+		{ label: i18n.numRowsGenerated, className: styles.numRowsGenerated, sortable: true },
+		{ label: i18n.status, className: styles.status, sortable: true },
 		{ label: i18n.open, className: styles.open },
 		{ label: i18n.history, className: styles.history },
 		{ label: '', className: styles.del },
@@ -116,13 +117,11 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 		<>
 			<section className={`${className} ${styles.page}`}>
 				<div className={styles.table}>
-					<div className={`${styles.row} ${styles.header}`}>
-						<TableHeader
-							cols={cols}
-							sortDir={ColSortDir.asc}
-							sortColumn=""
-						/>
-					</div>
+					<TableHeader
+						cols={cols}
+						sortDir={ColSortDir.asc}
+						sortCol=""
+					/>
 					<div className={styles.body}>
 						{results.map((dataSet: DataSetListItem) => (
 							<Row

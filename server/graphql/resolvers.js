@@ -9,14 +9,21 @@ const resolvers = {
 		accounts: async (root, args, { token, user }) => {
 			authUtils.authenticate(token);
 
-			const { limit, offset } = args;
+			const { limit, offset, sortCol, sortDir } = args;
 			const { accountId } = user;
+
+			const sortColMap = {
+				lastName: 'last_name',
+				firstName: 'first_name',
+				accountStatus: 'account_status',
+				dateExpires: 'date_expires'
+			};
 
 			const [results] = await db.sequelize.query(`
 				SELECT *
 				FROM accounts
 				WHERE created_by = ${accountId}
-				ORDER BY last_name DESC
+				ORDER BY ${sortColMap[sortCol]} ${sortDir}
 				LIMIT ${limit}
 				OFFSET ${offset} 
 			`);

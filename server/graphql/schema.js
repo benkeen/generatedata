@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     type Query {
-        accounts(limit: Int, offset: Int): AccountsResults
+        accounts(limit: Int, offset: Int, sortCol: String, sortDir: SortDir): AccountsResults
         account: Account
         settings: [Setting]
         dataSets(limit: Int, offset: Int): DataSetResults
@@ -114,6 +114,10 @@ const typeDefs = gql`
 		live
 		disabled
 		expired
+	}
+	enum SortDir {
+		ASC
+		DESC
 	}
 `;
 

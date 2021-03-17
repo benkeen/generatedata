@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { format, fromUnixTime } from 'date-fns';
-// import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
-// import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import { useMutation, useQuery } from '@apollo/client';
 import * as styles from './AccountsList.scss';
 import * as sharedStyles from '../../../styles/shared.scss';
@@ -18,7 +16,6 @@ export type AccountsListProps = {
 	i18n: any;
 	onChangeTab: (tab: any) => void;
 };
-
 
 const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, dateExpires }: any): JSX.Element => {
 	let expiryDate: any = <span className={sharedStyles.blank}>&#8212;</span>;
@@ -48,12 +45,16 @@ const NUM_PER_PAGE = 10;
 const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [deleteAccountId, setDeleteAccountId] = useState<number | null>(null);
+	const [sortCol, setSortCol] = useState('lastName');
+	const [sortDir, setSortDir] = useState<ColSortDir>(ColSortDir.asc);
 
 	const { data } = useQuery(queries.GET_ACCOUNTS, {
 		fetchPolicy: 'cache-and-network',
 		variables: {
 			offset: (currentPage - 1) * NUM_PER_PAGE,
-			limit: NUM_PER_PAGE
+			limit: NUM_PER_PAGE,
+			sortCol,
+			sortDir
 		}
 	});
 
@@ -66,7 +67,9 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 				query: queries.GET_ACCOUNTS,
 				variables: {
 					offset: (afterDeletePage - 1) * NUM_PER_PAGE,
-					limit: NUM_PER_PAGE
+					limit: NUM_PER_PAGE,
+					sortCol,
+					sortDir
 				}
 			}
 		],
@@ -100,10 +103,30 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 	) : null;
 
 	const cols = [
-		{ label: i18n.firstName, className: styles.firstName },
-		{ label: i18n.lastName, className: styles.lastName },
-		{ label: i18n.status, className: styles.status },
-		{ label: i18n.expiryDate, className: styles.expiryDate },
+		{
+			label: i18n.firstName,
+			className: styles.firstName,
+			field: 'firstName',
+			sortable: true
+		},
+		{
+			label: i18n.lastName,
+			className: styles.lastName,
+			field: 'lastName',
+			sortable: true
+		},
+		{
+			label: i18n.status,
+			className: styles.status,
+			field: 'status',
+			sortable: true
+		},
+		{
+			label: i18n.expiryDate,
+			className: styles.expiryDate,
+			field: 'dateExpires',
+			sortable: true
+		},
 		{ label: i18n.edit, className: styles.edit },
 		{ label: '', className: styles.del }
 	];
@@ -114,7 +137,7 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 				<TableHeader
 					cols={cols}
 					sortDir={ColSortDir.asc}
-					sortColumn="accountId"
+					sortCol={sortCol}
 				/>
 				<div className={styles.body}>
 					{results.map((row: any) => (
@@ -129,7 +152,6 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 				</div>
 			</div>
 			{paginationRow}
-
 			<DeleteAccountDialog
 				visible={deleteAccountId !== null}
 				onClose={(): void => setDeleteAccountId(null)}

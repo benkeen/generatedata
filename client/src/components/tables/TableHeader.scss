@@ -13,3 +13,27 @@
 	align-items: center;
 	font-size: 13px;
 }
+
+.colHeader {
+	display: flex;
+	align-items: center;
+
+	&.sortable {
+		cursor: pointer;
+
+		svg {
+			font-size: 20px;
+			margin-right: 6px;
+		}
+
+		&:hover {
+			svg {
+				fill: #111111;
+			}
+		}
+	}
+
+	span {
+		flex: 1;
+	}
+}
