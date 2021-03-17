@@ -18,6 +18,16 @@ export const GET_ACCOUNTS = gql`
     }
 `;
 
+export const DELETE_ACCOUNT = gql`
+    mutation DeleteAccount($accountId: ID!) {
+        deleteAccount(accountId: $accountId) {
+            success
+            error
+        }
+    }
+`;
+
+
 export const GET_DATA_SETS = gql`
     query GetDataSets ($limit: Int, $offset: Int) {
         dataSets (limit: $limit, offset: $offset) {

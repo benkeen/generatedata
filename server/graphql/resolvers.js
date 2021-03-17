@@ -112,6 +112,9 @@ const resolvers = {
 		updateAccount: accountResolvers.updateAccount,
 		updatePassword: accountResolvers.updatePassword,
 		createUserAccount: accountResolvers.createUserAccount,
+		deleteAccount: accountResolvers.deleteAccount,
+
+		// data-sets
 		saveNewDataSet: dataSetResolvers.saveNewDataSet,
 		renameDataSet: dataSetResolvers.renameDataSet,
 		saveDataSet: dataSetResolvers.saveDataSet,

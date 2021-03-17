@@ -58,9 +58,9 @@ const createUserAccount = async (root, args, { token, user }) => {
 	const { firstName, lastName, email, country, region, accountStatus, dateExpires } = args;
 
 	let dateExpiresMs = null;
-	if (dateExpires) {
-		dateExpiresMs = parseInt(dateExpires) * 1000;
-	}
+	// if (dateExpires) {
+	// 	dateExpiresMs = parseInt(dateExpires) * 1000;
+	// }
 
 	// const expiryDateMs = dateExpires * 1000;
 	const account = await db.accounts.create({
@@ -84,9 +84,25 @@ const createUserAccount = async (root, args, { token, user }) => {
 	};
 };
 
+const deleteAccount = async (root, { accountId, content }, { token, user }) => {
+	authUtils.authenticate(token);
+
+	// TODO improve security here
+	if (user.accountType === 'user') {
+		return;
+	}
+
+	db.accounts.destroy({ where: { accountId } });
+
+	return {
+		success: true
+	};
+};
+
 
 module.exports = {
 	updateAccount,
 	updatePassword,
-	createUserAccount
+	createUserAccount,
+	deleteAccount
 };

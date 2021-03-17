@@ -48,7 +48,7 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
 
 	const { data } = useQuery(queries.GET_DATA_SETS, {
-		fetchPolicy: 'no-cache',
+		fetchPolicy: 'cache-and-network',
 		variables: {
 			offset: (currentPage - 1) * NUM_PER_PAGE,
 			limit: NUM_PER_PAGE

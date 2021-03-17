@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import { useQuery } from '@apollo/client';
+import { format, fromUnixTime } from 'date-fns';
+// import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
+// import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import { useMutation, useQuery } from '@apollo/client';
 import * as styles from './AccountsList.scss';
 import * as sharedStyles from '../../../styles/shared.scss';
 import Pagination from '~components/Pagination';
+import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
 import * as queries from '~core/queries';
 import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
 import DeleteAccountDialog from '~core/dialogs/deleteAccount/DeleteAccount.component';
-import { format, fromUnixTime } from 'date-fns';
 import C from '~core/constants';
 
 export type AccountsListProps = {
@@ -47,10 +50,28 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 	const [deleteAccountId, setDeleteAccountId] = useState<number | null>(null);
 
 	const { data } = useQuery(queries.GET_ACCOUNTS, {
-		fetchPolicy: 'no-cache',
+		fetchPolicy: 'cache-and-network',
 		variables: {
 			offset: (currentPage - 1) * NUM_PER_PAGE,
 			limit: NUM_PER_PAGE
+		}
+	});
+
+	const numItemsOnPage = data?.accounts?.results?.length || 0;
+	const afterDeletePage = numItemsOnPage === 1 ? currentPage-1 : currentPage;
+
+	const [deleteAccount] = useMutation(queries.DELETE_ACCOUNT, {
+		refetchQueries: [
+			{
+				query: queries.GET_ACCOUNTS,
+				variables: {
+					offset: (afterDeletePage - 1) * NUM_PER_PAGE,
+					limit: NUM_PER_PAGE
+				}
+			}
+		],
+		onCompleted: () => {
+			setDeleteAccountId(null);
 		}
 	});
 
@@ -78,17 +99,23 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 		</div>
 	) : null;
 
+	const cols = [
+		{ label: i18n.firstName, className: styles.firstName },
+		{ label: i18n.lastName, className: styles.lastName },
+		{ label: i18n.status, className: styles.status },
+		{ label: i18n.expiryDate, className: styles.expiryDate },
+		{ label: i18n.edit, className: styles.firstName },
+		{ label: '', className: styles.del }
+	];
+
 	return (
 		<>
 			<div style={{ width: '100%', marginBottom: 20 }}>
-				<div className={`${styles.row} ${styles.header}`}>
-					<div className={styles.firstName}>{i18n.firstName}</div>
-					<div className={styles.lastName}>{i18n.lastName}</div>
-					<div className={styles.status}>{i18n.status}</div>
-					<div className={styles.expiryDate}>{i18n.expiryDate}</div>
-					<div className={styles.edit} />
-					<div className={styles.del} />
-				</div>
+				<TableHeader
+					cols={cols}
+					sortDir={ColSortDir.asc}
+					sortColumn="accountId"
+				/>
 				<div className={styles.body}>
 					{results.map((row: any) => (
 						<Row
@@ -106,7 +133,14 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 			<DeleteAccountDialog
 				visible={deleteAccountId !== null}
 				onClose={(): void => setDeleteAccountId(null)}
-				onDelete={(): void => {}}
+				onDelete={(): any => {
+					deleteAccount({
+						variables: {
+							accountId: deleteAccountId
+						}
+					});
+					setCurrentPage(afterDeletePage);
+				}}
 				i18n={i18n}
 			/>
 		</>

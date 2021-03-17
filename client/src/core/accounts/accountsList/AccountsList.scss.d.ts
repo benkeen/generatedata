@@ -5,7 +5,6 @@ declare namespace AccountsListScssNamespace {
     edit: string;
     expiryDate: string;
     firstName: string;
-    header: string;
     lastName: string;
     page: string;
     paginationRow: string;
