@@ -19,19 +19,11 @@ export type TableHeaderProps = {
 	cols: TableCol[];
 	sortCol: string;
 	sortDir: ColSortDir;
+	onSort: (col: string, dir: ColSortDir) => void;
 };
 
-const TableHeader = ({ cols, sortCol, sortDir }: TableHeaderProps): JSX.Element => {
+const TableHeader = ({ cols, sortCol, sortDir, onSort }: TableHeaderProps): JSX.Element => {
 	const columns = cols.map((col: TableCol, index: number) => {
-		let sorter: any;
-		if (col.field === sortCol) {
-			if (sortDir === ColSortDir.asc) {
-				sorter = <ArrowDropUp />;
-			} else {
-				sorter = <ArrowDropDown />;
-			}
-		}
-
 		let colClasses = styles.colHeader;
 		if (col.className) {
 			colClasses += ` ${col.className}`;
@@ -40,8 +32,33 @@ const TableHeader = ({ cols, sortCol, sortDir }: TableHeaderProps): JSX.Element 
 			colClasses += ` ${styles.sortable}`;
 		}
 
+		const colProps: any = {
+			className: colClasses
+		};
+
+		let sorter: any = null;
+		let colSortDir = sortDir === ColSortDir.asc ? ColSortDir.desc : ColSortDir.asc;
+
+		if (col.field === 'firstName') {
+			console.log(col, sortCol, sortDir);
+		}
+
+		if (col.field === sortCol) {
+			if (sortDir === ColSortDir.asc) {
+				sorter = <ArrowDropUp />;
+				colSortDir = ColSortDir.desc;
+			} else {
+				sorter = <ArrowDropDown />;
+				colSortDir = ColSortDir.asc;
+			}
+		}
+
+		if (col.sortable) {
+			colProps.onClick = (): void => onSort(col.field!, colSortDir);
+		}
+
 		return (
-			<div className={colClasses} key={index}>
+			<div {...colProps} key={index}>
 				<span>{col.label || ''}</span>
 				{sorter}
 			</div>

@@ -118,7 +118,7 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 		{
 			label: i18n.status,
 			className: styles.status,
-			field: 'status',
+			field: 'accountStatus',
 			sortable: true
 		},
 		{
@@ -136,8 +136,12 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 			<div className={styles.accountsListTable}>
 				<TableHeader
 					cols={cols}
-					sortDir={ColSortDir.asc}
+					sortDir={sortDir}
 					sortCol={sortCol}
+					onSort={(col: string, dir: ColSortDir): void => {
+						setSortCol(col);
+						setSortDir(dir);
+					}}
 				/>
 				<div className={styles.body}>
 					{results.map((row: any) => (

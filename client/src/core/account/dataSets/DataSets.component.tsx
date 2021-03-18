@@ -48,6 +48,8 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [currentPage, setCurrentPage] = useState(1);
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
+	const [sortCol, setSortCol] = useState('lastName');
+	const [sortDir, setSortDir] = useState<ColSortDir>(ColSortDir.asc);
 
 	const { data } = useQuery(queries.GET_DATA_SETS, {
 		fetchPolicy: 'cache-and-network',
@@ -121,6 +123,10 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 						cols={cols}
 						sortDir={ColSortDir.asc}
 						sortCol=""
+						onSort={(col: string, dir: ColSortDir): void => {
+							setSortCol(col);
+							setSortDir(dir);
+						}}
 					/>
 					<div className={styles.body}>
 						{results.map((dataSet: DataSetListItem) => (
