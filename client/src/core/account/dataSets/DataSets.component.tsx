@@ -132,7 +132,7 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 			sortable: true
 		},
 		{
-			label: i18n.numRowsGenerated,
+			label: i18n.rowsGenerated,
 			className: styles.numRowsGenerated,
 			field: 'numRowsGenerated',
 			sortable: true
