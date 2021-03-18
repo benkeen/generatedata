@@ -5,7 +5,7 @@ const typeDefs = gql`
         accounts(limit: Int, offset: Int, sortCol: String, sortDir: SortDir): AccountsResults
         account: Account
         settings: [Setting]
-        dataSets(limit: Int, offset: Int): DataSetResults
+        dataSets(limit: Int, offset: Int, sortCol: String, sortDir: SortDir): DataSetResults
         dataSet(id: ID!): DataSet
 	    dataSetHistory(dataSetId: ID!): DataSetHistory
     }

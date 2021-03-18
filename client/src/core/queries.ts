@@ -29,8 +29,8 @@ export const DELETE_ACCOUNT = gql`
 
 
 export const GET_DATA_SETS = gql`
-    query GetDataSets ($limit: Int, $offset: Int) {
-        dataSets (limit: $limit, offset: $offset) {
+    query GetDataSets ($limit: Int, $offset: Int, $sortCol: String, $sortDir: SortDir) {
+        dataSets (limit: $limit, offset: $offset, sortCol: $sortCol, sortDir: $sortDir) {
             totalCount
 			results {
 				dataSetId

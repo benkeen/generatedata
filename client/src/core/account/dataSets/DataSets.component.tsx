@@ -48,14 +48,16 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [currentPage, setCurrentPage] = useState(1);
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
-	const [sortCol, setSortCol] = useState('lastName');
+	const [sortCol, setSortCol] = useState('dataSetName');
 	const [sortDir, setSortDir] = useState<ColSortDir>(ColSortDir.asc);
 
 	const { data } = useQuery(queries.GET_DATA_SETS, {
 		fetchPolicy: 'cache-and-network',
 		variables: {
 			offset: (currentPage - 1) * NUM_PER_PAGE,
-			limit: NUM_PER_PAGE
+			limit: NUM_PER_PAGE,
+			sortDir,
+			sortCol
 		}
 	});
 
@@ -64,9 +66,20 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 		history.push(getGeneratorRoute());
 	};
 
+	const numItemsOnPage = data?.dataSets?.results?.length || 0;
+	const afterDeletePage = numItemsOnPage === 1 ? currentPage-1 : currentPage;
+
 	const [deleteDataSet] = useMutation(queries.DELETE_DATA_SET, {
 		refetchQueries: [
-			{ query: queries.GET_DATA_SETS }
+			{
+				query: queries.GET_DATA_SETS,
+				variables: {
+					offset: (afterDeletePage - 1) * NUM_PER_PAGE,
+					limit: NUM_PER_PAGE,
+					sortDir,
+					sortCol
+				}
+			}
 		],
 		onCompleted: () => {
 			setDeleteDialogVisibility(false);
@@ -106,10 +119,30 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 	) : null;
 
 	const cols = [
-		{ label: i18n.dataSetName, className: styles.dataSetName, sortable: true },
-		{ label: i18n.lastModified, className: styles.lastModified, sortable: true },
-		{ label: i18n.numRowsGenerated, className: styles.numRowsGenerated, sortable: true },
-		{ label: i18n.status, className: styles.status, sortable: true },
+		{
+			label: i18n.dataSetName,
+			className: styles.dataSetName,
+			field: 'dataSetName',
+			sortable: true
+		},
+		{
+			label: i18n.lastModified,
+			className: styles.lastModified,
+			field: 'lastUpdated',
+			sortable: true
+		},
+		{
+			label: i18n.numRowsGenerated,
+			className: styles.numRowsGenerated,
+			field: 'numRowsGenerated',
+			sortable: true
+		},
+		{
+			label: i18n.status,
+			className: styles.status,
+			field: 'status',
+			sortable: true
+		},
 		{ label: i18n.open, className: styles.open },
 		{ label: i18n.history, className: styles.history },
 		{ label: '', className: styles.del },
@@ -121,8 +154,8 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 				<div className={styles.table}>
 					<TableHeader
 						cols={cols}
-						sortDir={ColSortDir.asc}
-						sortCol=""
+						sortDir={sortDir}
+						sortCol={sortCol}
 						onSort={(col: string, dir: ColSortDir): void => {
 							setSortCol(col);
 							setSortDir(dir);

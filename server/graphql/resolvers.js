@@ -60,9 +60,16 @@ const resolvers = {
 		},
 
 		dataSets: async (root, args, { token, user }) => {
-			const { limit, offset } = args;
+			const { limit, offset, sortDir, sortCol } = args;
 
 			authUtils.authenticate(token);
+
+			const sortColMap = {
+				dataSetName: 'd.dataset_name',
+				lastUpdated: 'dsh.date_created',
+				// accountStatus: 'account_status',
+				// dateExpires: 'date_expires'
+			};
 
 			const { accountId } = user;
 			const [results] = await db.sequelize.query(`
@@ -81,9 +88,9 @@ const resolvers = {
 						 ORDER BY history_id DESC
 						 LIMIT 1)
 				WHERE account_id = ${accountId}
-				ORDER BY dsh.date_created DESC
+				ORDER BY ${sortColMap[sortCol]} ${sortDir}
 				LIMIT ${limit}
-				OFFSET ${offset} 
+				OFFSET ${offset}
 			`);
 
 			const [totalCountQuery] = await db.sequelize.query(`
