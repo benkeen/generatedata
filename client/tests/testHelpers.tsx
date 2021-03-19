@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { Router } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
@@ -18,7 +19,6 @@ import mainReducer from '~store/main/main.reducer';
 import packetsReducer from '~store/packets/packets.reducer';
 import accountReducer from '~store/account/account.reducer';
 import accountsReducer from '~store/accounts/accounts.reducer';
-import thunk from 'redux-thunk';
 import actionsInterceptor from '~core/actionInterceptor';
 import { GeneratorLayout } from '~core/generator/Generator.component';
 import { ETSettings } from '~types/exportTypes';

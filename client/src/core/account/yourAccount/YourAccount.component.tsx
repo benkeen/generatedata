@@ -1,5 +1,5 @@
 import React from 'react';
-import ManageAccount from '~components/accounts/manageAccount/ManageAccount.component';
+import MainFields from '~components/accounts/mainFields/MainFields.component';
 import { AccountEditingData } from '~store/account/account.reducer';
 import styles from '../Account.scss';
 
@@ -20,7 +20,7 @@ const YourAccount = ({
 	// TODO hack CSS
 	return (
 		<div className={`${className} ${styles.yourAccountPage}`}>
-			<ManageAccount
+			<MainFields
 				accountHasChanges={accountHasChanges}
 				data={data}
 				onSave={onSave}

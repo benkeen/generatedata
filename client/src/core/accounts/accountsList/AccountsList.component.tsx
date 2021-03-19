@@ -13,8 +13,8 @@ import DeleteAccountDialog from '~core/dialogs/deleteAccount/DeleteAccount.compo
 import C from '~core/constants';
 
 export type AccountsListProps = {
+	onEditAccount: (accountId: number) => void;
 	i18n: any;
-	onChangeTab: (tab: any) => void;
 };
 
 const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, dateExpires }: any): JSX.Element => {
@@ -42,7 +42,7 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, dateE
 };
 
 const NUM_PER_PAGE = 10;
-const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null => {
+const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element | null => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [deleteAccountId, setDeleteAccountId] = useState<number | null>(null);
 	const [sortCol, setSortCol] = useState('lastName');
@@ -149,7 +149,7 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 							key={row.accountId}
 							{...row}
 							i18n={i18n}
-							onEdit={(): void => {}}
+							onEdit={(): void => onEditAccount(row.accountId)}
 							onDelete={(): void => setDeleteAccountId(row.accountId)}
 						/>
 					))}
@@ -173,4 +173,4 @@ const AccountsListComponent = ({ i18n }: AccountsListProps): JSX.Element | null 
 	);
 };
 
-export default AccountsListComponent;
+export default AccountsList;

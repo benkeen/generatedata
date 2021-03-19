@@ -132,8 +132,14 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 		case actions.LOAD_DATA_SETS:
 			draft.dataSets = action.payload.dataSets;
 			break;
+
+		case actions.ON_EDIT_ACCOUNT:
+			draft.selectedAccountsTab = SelectedAccountsTab.editAccount;
+			break;
 	}
 
 }, initialState);
 
 export default reducer;
+
+

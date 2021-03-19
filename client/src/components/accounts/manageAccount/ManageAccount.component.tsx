@@ -1,148 +1,153 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '~components/TextField';
-import Dropdown from '~components/dropdown/Dropdown';
-import { canadianProvinceOptions, countryDropdownOptions } from '~utils/countryUtils';
-import { AccountEditingData } from '~store/account/account.reducer';
-import { isValidEmail } from '~utils/generalUtils';
-import sharedStyles from '../../../styles/shared.scss';
+import React, { useState } from 'react';
+import DateFnsUtils from '@date-io/date-fns';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MainFields from '~components/accounts/mainFields/MainFields.component';
+import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import * as styles from '../../../plugins/dataTypes/Date/Date.scss';
+import { format, fromUnixTime, add } from 'date-fns';
+import C from '../../../core/constants';
 
 export type ManageAccountProps = {
-	data: AccountEditingData;
-	accountHasChanges: boolean;
-	updateAccount: (data: AccountEditingData) => void;
-	submitButtonLabel: string;
 	i18n: any;
-	onSave: () => void;
-	onCancel: () => void;
-	showRequiredFieldError: boolean;
-	className?: string;
-};
+	onSave: (state: ManageAccountState) => void;
+	initialState: ManageAccountState;
+}
 
-const ManageAccount = ({
-	data, accountHasChanges, updateAccount, onSave, onCancel, submitButtonLabel, i18n, showRequiredFieldError,
-	className = ''
-}: ManageAccountProps): JSX.Element => {
-	const update = (fieldName: string, value: string): void => {
-		updateAccount({
+export enum ExpiryOption {
+	none = 'none',
+	date = 'date'
+}
+
+export type ManageAccountState = {
+	firstName: string;
+	lastName: string;
+	email: string;
+	country: string;
+	region: string;
+	disabled: boolean;
+	expiry: ExpiryOption;
+	expiryDate: null | number;
+}
+
+const yearFromNow = Number(format(add(new Date(), { years: 1 }), 't'));
+
+const ManageAccount = ({ i18n, onSave, initialState }: ManageAccountProps): JSX.Element => {
+	const [data, setData] = useState(initialState);
+	const [showDatepicker, setShowDatepicker] = useState(false);
+	const [showErrors] = useState(false);
+
+	let accountHasChanges = data.firstName !== '' && data.lastName !== '' && data.email !== '' && data.country !== '';
+	if (data.country === 'CA' && data.region === '') {
+		accountHasChanges = false;
+	}
+
+	const onCancel = (): void => setData(initialState);
+
+	const updateAccountData = (newData: any): void => {
+		setData({
 			...data,
-			[fieldName]: value
+			...newData
 		});
 	};
 
-	let fieldsValid = true;
-	if (!data.firstName.trim() || !data.lastName.trim() || !data.email.trim()) {
-		if (showRequiredFieldError) {
-			fieldsValid = false;
-		}
-	}
-	let emailError;
-	if (data.email.trim() === '') {
-		if (showRequiredFieldError) {
-			emailError = i18n.requiredField;
-		}
-	} else if (!isValidEmail(data.email)) {
-		emailError = i18n.validationInvalidEmail;
-		fieldsValid = false;
-	}
-
-	const saveButtonEnabled = accountHasChanges && fieldsValid;
-
-	const getCanadianRegions = (): JSX.Element | null => {
-		if (data.country !== 'CA') {
-			return null;
-		}
-
-		return (
-			<>
-				<label>{i18n.province}</label>
-				<div style={{ marginBottom: 15 }}>
-					<Dropdown
-						value={data.region}
-						onChange={(item: any): any => update('region', item.value)}
-						options={canadianProvinceOptions}
-					/>
-				</div>
-			</>
-		);
+	const toggleAccountDisabled = (disabled: boolean): void => {
+		setData({
+			...data,
+			disabled
+		});
 	};
 
-	const handleSave = (e: any): void => {
-		e.preventDefault();
+	const toggleExpiry = (expiry: ExpiryOption): void => {
+		setData({
+			...data,
+			expiry
+		});
 
-		if (!fieldsValid) {
-			return;
+		if (expiry === ExpiryOption.date) {
+			setShowDatepicker(true);
 		}
-
-		onSave();
 	};
 
-	const firstNameError = (showRequiredFieldError && data.firstName.trim() === '') ? i18n.requiredField : '';
-	const lastNameError = (showRequiredFieldError && data.lastName.trim() === '') ? i18n.requiredField : '';
+	const onSelectDate = (expiryDate: any): void => {
+		setData({
+			...data,
+			expiryDate
+		});
+	};
+
+	const accountData = {
+		firstName: data.firstName,
+		lastName: data.lastName,
+		email: data.email,
+		country: data.country,
+		region: data.region
+	};
+
+	let expiryLabel = i18n.selectExpiryDate;
+	if (data.expiryDate !== null) {
+		expiryLabel = format(fromUnixTime(data.expiryDate), C.DATE_FORMAT);
+	}
 
 	return (
-		<form onSubmit={handleSave} autoComplete="off" className={className}>
-			<div>
-				<label>{i18n.firstName}</label>
-				<div style={{ marginBottom: 15 }}>
-					<TextField
-						error={firstNameError}
-						value={data.firstName}
-						name="firstName"
-						onChange={(e: any): void => update('firstName', e.target.value)}
-						style={{ width: '100%' }}
-						autoFocus
-					/>
+		<div style={{ display: 'flex' }}>
+			<div style={{ flex: 1 }}>
+				<MainFields
+					i18n={i18n}
+					data={accountData}
+					updateAccount={updateAccountData}
+					accountHasChanges={accountHasChanges}
+					submitButtonLabel={i18n.createAccount}
+					showRequiredFieldError={showErrors}
+					onCancel={onCancel}
+					onSave={(): void => onSave(data)}
+				/>
+			</div>
+			<div style={{ flex: 1, marginLeft: 20, borderLeft: '1px solid #f2f2f2', paddingLeft: 20 }}>
+				<div>
+					<div style={{ marginBottom: 15, display: 'flex', marginTop: 2 }}>
+						<input
+							type="checkbox"
+							checked={data.disabled}
+							id="accountDisabled"
+							onChange={(e): void => toggleAccountDisabled(e.target.checked)}
+						/>
+						<label htmlFor="accountDisabled">{i18n.accountDisabled}</label>
+					</div>
 				</div>
-
-				<label>{i18n.lastName}</label>
-				<div style={{ marginBottom: 15 }}>
-					<TextField
-						error={lastNameError}
-						value={data.lastName}
-						name="lastName"
-						onChange={(e: any): void => update('lastName', e.target.value)}
-						style={{ width: '100%' }}
-					/>
+				<div>
+					<div style={{ marginBottom: 15, marginTop: 2 }}>
+						<RadioPillRow>
+							<RadioPill
+								label={i18n.noExpiry}
+								onClick={(): void => toggleExpiry(ExpiryOption.none)}
+								name="expiry"
+								checked={data.expiry === 'none'}
+								style={{ marginRight: 6 }}
+							/>
+							<RadioPill
+								label={expiryLabel}
+								onClick={(): void => toggleExpiry(ExpiryOption.date)}
+								name="expiry"
+								checked={data.expiry === 'date'}
+							/>
+						</RadioPillRow>
+					</div>
 				</div>
-
-				<label>{i18n.email}</label>
-				<div style={{ marginBottom: 15 }}>
-					<TextField
-						error={emailError}
-						value={data.email}
-						name="email"
-						onChange={(e: any): void => update('email', e.target.value)}
-						style={{ width: '100%' }}
-					/>
-				</div>
-
-				<label>{i18n.country}</label>
-				<div style={{ marginBottom: 15 }}>
-					<Dropdown
-						value={data.country}
-						onChange={(item: any): any => update('country', item.value)}
-						options={countryDropdownOptions}
-					/>
-				</div>
-
-				{getCanadianRegions()}
 			</div>
 
-			<div>
-				<Button
-					type="submit"
-					color="primary"
-					variant="contained"
-					disableElevation
-					disabled={!saveButtonEnabled}
-				>
-					{submitButtonLabel}
-				</Button>
-
-				<span onClick={onCancel} className={sharedStyles.cancelLink}>{i18n.cancel}</span>
+			<div style={{ display: 'none' }}>
+				<MuiPickersUtilsProvider utils={DateFnsUtils}>
+					<DatePicker
+						autoOk
+						open={showDatepicker}
+						className={styles.dateField}
+						value={data.expiryDate === null ? fromUnixTime(yearFromNow) : fromUnixTime(data.expiryDate!)}
+						onChange={(val: any): void => onSelectDate(format(val, 't'))}
+						onClose={(): void => setShowDatepicker(false)}
+					/>
+				</MuiPickersUtilsProvider>
 			</div>
-		</form>
+		</div>
 	);
 };
 

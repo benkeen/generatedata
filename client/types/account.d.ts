@@ -3,7 +3,8 @@ export type SelectedAccountTab = 'dataSets' | 'yourAccount' | 'changePassword' |
 
 export const enum SelectedAccountsTab {
 	accounts = 'accounts',
-	createAccount = 'createAccount'
+	createAccount = 'createAccount',
+	editAccount = 'editAccount'
 }
 
 export const enum AccountStatus {

@@ -2,6 +2,7 @@ import React from 'react';
 import * as sharedStyles from '../../styles/shared.scss';
 import AccountsList from './accountsList/AccountsList.container';
 import CreateAccount from './createAccount/CreateAccount.container';
+import EditAccount from './editAccount/EditAccount.container';
 import { SelectedAccountsTab } from '~types/account';
 
 export type AccountsPageProps = {
@@ -13,11 +14,10 @@ export type AccountsPageProps = {
 const Accounts = ({ selectedTab, onChangeTab, i18n }: AccountsPageProps): JSX.Element | null => {
 	const getTab = (): JSX.Element | null => {
 		if (selectedTab === SelectedAccountsTab.accounts) {
-			return (
-				<AccountsList />
-			);
+			return <AccountsList />;
+		} else if (selectedTab === SelectedAccountsTab.editAccount) {
+			return <EditAccount />;
 		}
-
 		return <CreateAccount />;
 	};
 

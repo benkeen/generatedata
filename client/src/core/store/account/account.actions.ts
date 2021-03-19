@@ -34,6 +34,13 @@ export const onChangeAccountsTab = (tab: SelectedAccountsTab): GDAction => ({
 	}
 });
 
+export const ON_EDIT_ACCOUNT = 'ON_EDIT_ACCOUNT';
+export const editAccount = (accountId: number) => ({
+	type: ON_EDIT_ACCOUNT,
+	payload: {
+		accountId
+	}
+});
 
 export const CANCEL_ACCOUNT_CHANGES = 'CANCEL_ACCOUNT_CHANGES';
 export const cancelChanges = (): GDAction => ({ type: CANCEL_ACCOUNT_CHANGES });
