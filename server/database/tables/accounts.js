@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.DATE,
 			field: 'last_logged_in'
 		},
-		dateExpires: {
+		expiryDate: {
 			type: DataTypes.DATE,
 			field: 'date_expires'
 		},

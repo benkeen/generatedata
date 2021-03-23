@@ -11,6 +11,7 @@ export type ManageAccountProps = {
 	i18n: any;
 	onSave: (state: ManageAccountState) => void;
 	initialState: ManageAccountState;
+	submitButtonLabel: string;
 }
 
 export enum ExpiryOption {
@@ -31,7 +32,7 @@ export type ManageAccountState = {
 
 const yearFromNow = Number(format(add(new Date(), { years: 1 }), 't'));
 
-const ManageAccount = ({ i18n, onSave, initialState }: ManageAccountProps): JSX.Element => {
+const ManageAccount = ({ i18n, onSave, initialState, submitButtonLabel }: ManageAccountProps): JSX.Element => {
 	const [data, setData] = useState(initialState);
 	const [showDatepicker, setShowDatepicker] = useState(false);
 	const [showErrors] = useState(false);
@@ -96,7 +97,7 @@ const ManageAccount = ({ i18n, onSave, initialState }: ManageAccountProps): JSX.
 					data={accountData}
 					updateAccount={updateAccountData}
 					accountHasChanges={accountHasChanges}
-					submitButtonLabel={i18n.createAccount}
+					submitButtonLabel={submitButtonLabel}
 					showRequiredFieldError={showErrors}
 					onCancel={onCancel}
 					onSave={(): void => onSave(data)}

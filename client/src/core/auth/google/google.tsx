@@ -52,7 +52,7 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 					error
                     firstName
                     lastName
-                    dateExpires
+                    expiryDate
                     accountType
                     dateCreated
                     email

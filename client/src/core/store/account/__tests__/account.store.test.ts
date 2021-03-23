@@ -131,7 +131,7 @@ describe('accounts section', () => {
 			country: 'United States',
 			region: 'Montana',
 			profileImage: 'image-here.jpg',
-			dateExpires: '1000010101001',
+			expiryDate: '1000010101001',
 			dateCreated: '1000010101001',
 			accountType: 'admin',
 			numRowsGenerated: 50000

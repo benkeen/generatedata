@@ -35,10 +35,10 @@ export const onChangeAccountsTab = (tab: SelectedAccountsTab): GDAction => ({
 });
 
 export const ON_EDIT_ACCOUNT = 'ON_EDIT_ACCOUNT';
-export const editAccount = (accountId: number) => ({
+export const editAccount = (accountInfo: any) => ({
 	type: ON_EDIT_ACCOUNT,
 	payload: {
-		accountId
+		accountInfo
 	}
 });
 
@@ -211,7 +211,7 @@ export const createAccount = (data: any) => async (dispatch: Dispatch): Promise<
 			country,
 			region,
 			accountStatus,
-			dateExpires: expiryDateValue
+			expiryDate: expiryDateValue
 		}
 	});
 

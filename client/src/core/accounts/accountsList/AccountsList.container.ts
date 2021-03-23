@@ -11,7 +11,7 @@ const mapStateToProps = (state: Store): Partial<AccountsListProps> => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountsListProps> => ({
 	// TODO store the entire current state of the account
-	onEditAccount: (accountId: number) => dispatch(accountActions.editAccount(accountId))
+	onEditAccount: (accountInfo: any) => dispatch(accountActions.editAccount(accountInfo))
 });
 
 const container: any = connect(

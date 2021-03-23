@@ -66,7 +66,7 @@ export type AuthData = {
 	country: string;
 	region: string;
 	profileImage: string;
-	dateExpires: string;
+	expiryDate: string;
 	dateCreated: string;
 	accountType: AccountType;
 	numRowsGenerated: number;
@@ -120,7 +120,7 @@ export const login = (email: string, password: string, onLoginError: Function): 
                     email
                     country
                     region
-                    dateExpires
+                    expiryDate
                     accountType
                     dateCreated
                     numRowsGenerated
@@ -212,7 +212,7 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
                     email
                     country
                     region
-                    dateExpires
+                    expiryDate
                     accountType
                     dateCreated
                     numRowsGenerated

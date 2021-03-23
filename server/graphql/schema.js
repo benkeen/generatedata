@@ -17,7 +17,7 @@ const typeDefs = gql`
         updateAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
 		updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
         createUserAccount(firstName: String!, lastName: String!, email: String!, country: String, region: String,
-            accountStatus: AccountStatus, dateExpires: Int): GeneralResponse
+            accountStatus: AccountStatus, expiryDate: Int): GeneralResponse
         deleteAccount(accountId: ID!): GeneralResponse
         saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetResponse
         saveDataSet(dataSetId: ID!, content: String!): SavedDataSetResponse
@@ -28,7 +28,7 @@ const typeDefs = gql`
     type Account {
 	    accountId: ID!
 	    createdBy: ID
-        dateExpires: String
+        expiryDate: String
         accountType: AccountType
 	    accountStatus: AccountStatus
         dateCreated: String
@@ -85,7 +85,7 @@ const typeDefs = gql`
         tokenExpiry: Int
         error: String
         accountId: ID
-        dateExpires: String
+        expiryDate: String
         accountType: AccountType
         dateCreated: String
         firstName: String

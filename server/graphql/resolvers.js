@@ -16,7 +16,7 @@ const resolvers = {
 				lastName: 'last_name',
 				firstName: 'first_name',
 				accountStatus: 'account_status',
-				dateExpires: 'date_expires'
+				expiryDate: 'expiry_date'
 			};
 
 			const [results] = await db.sequelize.query(`
@@ -41,7 +41,7 @@ const resolvers = {
 					dateCreated: row.date_created,
 					lastUpdated: row.last_updated,
 					lastLoggedIn: row.last_logged_in,
-					dateExpires: row.date_expires,
+					expiryDate: row.expiry_date,
 					accountType: row.account_type,
 					accountStatus: row.account_status,
 					firstName: row.first_name,
@@ -68,7 +68,7 @@ const resolvers = {
 				dataSetName: 'd.dataset_name',
 				lastUpdated: 'dsh.date_created',
 				// accountStatus: 'account_status',
-				// dateExpires: 'date_expires'
+				// expiryDate: 'expiry_date'
 			};
 
 			const { accountId } = user;

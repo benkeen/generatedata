@@ -2,25 +2,19 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as selectors from '~store/generator/generator.selectors';
 import * as accountActions from '~store/account/account.actions';
-import ManageAccount, { ManageAccountState, ManageAccountProps, ExpiryOption } from '../../../components/accounts/manageAccount/ManageAccount.component';
+import * as actionSelectors from '~store/account/account.selectors';
+import ManageAccount, { ManageAccountProps } from '../../../components/accounts/manageAccount/ManageAccount.component';
 import { Store } from '~types/general';
-
-const initialState: ManageAccountState = {
-	firstName: '',
-	lastName: '',
-	email: '',
-	country: '',
-	region: '',
-	disabled: false,
-	expiry: ExpiryOption.none,
-	expiryDate: null
-};
 
 const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {
 	const i18n = selectors.getCoreI18n(state);
+
+	const initialState = actionSelectors.getEditingData(state);
+
 	return {
 		initialState,
-		i18n
+		i18n,
+		submitButtonLabel: i18n.editAccount
 	};
 };
 

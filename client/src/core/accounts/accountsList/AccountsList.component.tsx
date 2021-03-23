@@ -17,10 +17,10 @@ export type AccountsListProps = {
 	i18n: any;
 };
 
-const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, dateExpires }: any): JSX.Element => {
-	let expiryDate: any = <span className={sharedStyles.blank}>&#8212;</span>;
+const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, expiryDate }: any): JSX.Element => {
+	let expiryDateVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
 	try {
-		expiryDate = format(fromUnixTime(dateExpires), C.DATE_FORMAT);
+		expiryDateVal = format(fromUnixTime(expiryDate), C.DATE_FORMAT);
 	} catch (e) {}
 
 	return (
@@ -30,7 +30,7 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, dateE
 			<div className={styles.status}>
 				<AccountStatusPill status={accountStatus} i18n={i18n} />
 			</div>
-			<div className={styles.expiryDate}>{expiryDate}</div>
+			<div className={styles.expiryDate}>{expiryDateVal}</div>
 			<div className={styles.edit}>
 				<Button size="small" type="submit" color="primary" variant="outlined" onClick={onEdit}>{i18n.edit}</Button>
 			</div>
@@ -124,7 +124,7 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 		{
 			label: i18n.expiryDate,
 			className: styles.expiryDate,
-			field: 'dateExpires',
+			field: 'expiryDate',
 			sortable: true
 		},
 		{ label: i18n.edit, className: styles.edit },
@@ -149,7 +149,7 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 							key={row.accountId}
 							{...row}
 							i18n={i18n}
-							onEdit={(): void => onEditAccount(row.accountId)}
+							onEdit={(): void => onEditAccount(row)}
 							onDelete={(): void => setDeleteAccountId(row.accountId)}
 						/>
 					))}

@@ -2,14 +2,19 @@ import { AnyAction } from 'redux';
 import produce from 'immer';
 import * as mainActions from '../main/main.actions';
 import * as actions from '../account/account.actions';
-import { AccountType, SelectedAccountTab, SelectedAccountsTab } from '~types/account';
+import { AccountType, SelectedAccountTab, SelectedAccountsTab, AccountStatus } from '~types/account';
 
+// use for Edit Account, Your Account
 export type AccountEditingData = {
 	firstName: string;
 	lastName: string;
 	email: string;
 	country: string;
 	region: string;
+	disabled?: boolean;
+	accountId?: number;
+	status?: AccountStatus;
+	expiryDate?: number;
 };
 
 export enum SaveDataDialogType {
@@ -25,7 +30,7 @@ export type AccountState = {
 	email: string;
 	country: string;
 	region: string;
-	dateExpires: string;
+	expiryDate: string;
 	accountType: AccountType;
 	profileImage: string | null;
 	numRowsGenerated: number;
@@ -43,7 +48,7 @@ export const initialState: AccountState = {
 	email: '',
 	country: '',
 	region: '',
-	dateExpires: '',
+	expiryDate: '',
 	accountType: 'user',
 	profileImage: null,
 	numRowsGenerated: 0,
@@ -70,13 +75,13 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case mainActions.SET_AUTHENTICATION_DATA: {
-			const { firstName, lastName, dateExpires, accountType, email, country, region, profileImage, numRowsGenerated } = action.payload;
+			const { firstName, lastName, expiryDate, accountType, email, country, region, profileImage, numRowsGenerated } = action.payload;
 			draft.firstName = firstName;
 			draft.lastName = lastName;
 			draft.email = email;
 			draft.country = country;
 			draft.region = region;
-			draft.dateExpires = dateExpires;
+			draft.expiryDate = expiryDate;
 			draft.accountType = accountType;
 			draft.profileImage = profileImage;
 			draft.numRowsGenerated = numRowsGenerated;
@@ -134,7 +139,22 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case actions.ON_EDIT_ACCOUNT:
+			const { accountId, firstName, lastName, email, country, region, expiryDate } = action.payload.accountInfo;
+
+			console.log(action.payload.accountInfo);
+
 			draft.selectedAccountsTab = SelectedAccountsTab.editAccount;
+			draft.editingData = {
+				accountId,
+				firstName,
+				lastName,
+				email,
+				country,
+				region,
+				expiryDate
+			};
+
+			// status?: AccountStatus;
 			break;
 	}
 

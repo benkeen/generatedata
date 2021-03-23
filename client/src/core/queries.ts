@@ -10,8 +10,11 @@ export const GET_ACCOUNTS = gql`
                 accountStatus,
                 firstName
                 lastName
+				email
+				country
+				region
                 dateCreated
-                dateExpires
+                expiryDate
                 numRowsGenerated
             }
         }
@@ -115,9 +118,9 @@ export const UPDATE_PASSWORD = gql`
 
 export const CREATE_USER_ACCOUNT = gql`
     mutation CreateUserAccount($firstName: String!, $lastName: String!, $email: String!, $country: String, $region: String,
-		$accountStatus: AccountStatus, $dateExpires: Int) {
+		$accountStatus: AccountStatus, $expiryDate: Int) {
         createUserAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region,
-			accountStatus: $accountStatus, dateExpires: $dateExpires) {
+			accountStatus: $accountStatus, expiryDate: $expiryDate) {
             success
         }
     }

@@ -20,7 +20,8 @@ const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {
 	const i18n = selectors.getCoreI18n(state);
 	return {
 		initialState,
-		i18n
+		i18n,
+		submitButtonLabel: i18n.createAccount
 	};
 };
 
