@@ -87,6 +87,7 @@ const typeDefs = gql`
         accountId: ID
         expiryDate: String
         accountType: AccountType
+	    accountStatus: AccountStatus
         dateCreated: String
         firstName: String
         lastName: String

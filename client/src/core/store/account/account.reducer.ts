@@ -55,12 +55,17 @@ export const initialState: AccountState = {
 	dataSets: [],
 	selectedTab: 'dataSets',
 	selectedAccountsTab: SelectedAccountsTab.accounts,
+
 	editingData: {
 		firstName: '',
 		lastName: '',
 		email: '',
 		country: '',
-		region: ''
+		region: '',
+		disabled: undefined,
+		accountId: undefined,
+		status: undefined,
+		expiryDate: undefined
 	}
 };
 
@@ -75,7 +80,8 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case mainActions.SET_AUTHENTICATION_DATA: {
-			const { firstName, lastName, expiryDate, accountType, email, country, region, profileImage, numRowsGenerated } = action.payload;
+			const { accountId, firstName, lastName, expiryDate, accountType, email, country, region, profileImage,
+				numRowsGenerated } = action.payload;
 			draft.firstName = firstName;
 			draft.lastName = lastName;
 			draft.email = email;
@@ -85,12 +91,20 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			draft.accountType = accountType;
 			draft.profileImage = profileImage;
 			draft.numRowsGenerated = numRowsGenerated;
+
+			console.log(action.payload);
+
+			// disabled?: boolean;
+			// status?: AccountStatus;
+
 			draft.editingData = {
 				firstName,
 				lastName,
 				email,
 				country,
-				region
+				region,
+				expiryDate,
+				accountId
 			};
 			break;
 		}

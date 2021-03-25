@@ -5,7 +5,7 @@ import * as langUtils from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
 import { getAuthMethod, getCurrentPage } from '~store/main/main.selectors';
 import { logoutVendor, setAuthTokenRefresh } from '~utils/authUtils';
-import { AccountType } from '~types/account';
+import { AccountStatus, AccountType } from '~types/account';
 import store from '~core/store';
 import { showSaveDataSetDialog } from '~store/account/account.actions';
 import { addToast, setTourComponents } from '~utils/generalUtils';
@@ -60,6 +60,7 @@ export const SET_AUTHENTICATION_DATA = 'SET_AUTHENTICATION_DATA';
 export type AuthData = {
 	authMethod?: AuthMethod;
 	token: string;
+	accountId: number;
 	firstName: string;
 	lastName: string;
 	email: string;
@@ -69,6 +70,7 @@ export type AuthData = {
 	expiryDate: string;
 	dateCreated: string;
 	accountType: AccountType;
+	accountStatus: AccountStatus;
 	numRowsGenerated: number;
 };
 
@@ -115,6 +117,7 @@ export const login = (email: string, password: string, onLoginError: Function): 
                     token
                     tokenExpiry
                     success
+					accountId
                     firstName
                     lastName
                     email
@@ -122,6 +125,7 @@ export const login = (email: string, password: string, onLoginError: Function): 
                     region
                     expiryDate
                     accountType
+					accountStatus
                     dateCreated
                     numRowsGenerated
                     profileImage

@@ -17,7 +17,6 @@ export type YourAccountProps = {
 const YourAccount = ({
 	data, numGeneratedRows, accountHasChanges, updateAccount, onSave, onCancel, className, i18n
 }: YourAccountProps): JSX.Element => {
-	// TODO hack CSS
 	return (
 		<div className={`${className} ${styles.yourAccountPage}`}>
 			<MainFields

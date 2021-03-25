@@ -85,6 +85,9 @@ const ManageAccount = ({ i18n, onSave, initialState, submitButtonLabel }: Manage
 	};
 
 	let expiryLabel = i18n.selectExpiryDate;
+
+	console.log(data);
+
 	if (data.expiryDate !== null) {
 		expiryLabel = format(fromUnixTime(data.expiryDate), C.DATE_FORMAT);
 	}
