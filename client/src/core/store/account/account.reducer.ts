@@ -11,10 +11,10 @@ export type AccountEditingData = {
 	email: string;
 	country: string;
 	region: string;
+	expiryDate?: number;
 	disabled?: boolean;
 	accountId?: number;
 	status?: AccountStatus;
-	expiryDate?: number;
 };
 
 export enum SaveDataDialogType {
@@ -62,10 +62,10 @@ export const initialState: AccountState = {
 		email: '',
 		country: '',
 		region: '',
+		expiryDate: undefined,
 		disabled: undefined,
 		accountId: undefined,
-		status: undefined,
-		expiryDate: undefined
+		status: undefined
 	}
 };
 

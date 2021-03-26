@@ -45,9 +45,6 @@ export const editAccount = (accountInfo: any) => ({
 export const CANCEL_ACCOUNT_CHANGES = 'CANCEL_ACCOUNT_CHANGES';
 export const cancelChanges = (): GDAction => ({ type: CANCEL_ACCOUNT_CHANGES });
 
-export const CANCEL_CREATE_ACCOUNT_CHANGES = 'CANCEL_CREATE_ACCOUNT_CHANGES';
-export const cancelCreateAccountChanges = (): GDAction => ({ type: CANCEL_CREATE_ACCOUNT_CHANGES });
-
 export const ACCOUNT_UPDATED = 'ACCOUNT_UPDATED';
 export const accountUpdated = (): GDAction => ({ type: ACCOUNT_UPDATED });
 

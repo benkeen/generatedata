@@ -1,9 +1,10 @@
-import { createStore, combineReducers } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import reducer from '../main.reducer';
 import * as selectors from '../main.selectors';
 import * as actions from '../main.actions';
 import { setAuthenticationData } from '../main.actions';
 import C from '../../../constants';
+import { AccountStatus } from '~types/account';
 
 describe('main actions', () => {
 	let store: any;
@@ -31,6 +32,7 @@ describe('main actions', () => {
 		store.dispatch(setAuthenticationData({
 			authMethod: 'google',
 			token: '123456',
+			accountId: 5,
 			firstName: 'Jim',
 			lastName: 'Beam',
 			email: 'jim@beam.net',
@@ -40,6 +42,7 @@ describe('main actions', () => {
 			expiryDate: '1000010101001',
 			dateCreated: '1000010101001',
 			accountType: 'admin',
+			accountStatus: AccountStatus.live,
 			numRowsGenerated: 50000
 		}));
 

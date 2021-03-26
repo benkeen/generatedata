@@ -6,6 +6,7 @@ import * as actions from '../account.actions';
 import * as selectors from '../account.selectors';
 import { LOGOUT, setAuthenticationData } from '~store/main/main.actions';
 import { SaveDataDialogType } from '~store/account/account.reducer';
+import { AccountStatus, AccountType } from '~types/account';
 
 describe('accounts section', () => {
 	let flushThunks;
@@ -125,6 +126,7 @@ describe('accounts section', () => {
 		store.dispatch(setAuthenticationData({
 			authMethod: 'google',
 			token: '123456',
+			accountId: 5,
 			firstName: 'Jim',
 			lastName: 'Beam',
 			email: 'jim@beam.net',
@@ -134,6 +136,7 @@ describe('accounts section', () => {
 			expiryDate: '1000010101001',
 			dateCreated: '1000010101001',
 			accountType: 'admin',
+			accountStatus: AccountStatus.live,
 			numRowsGenerated: 50000
 		}));
 
