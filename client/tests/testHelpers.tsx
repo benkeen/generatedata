@@ -11,14 +11,12 @@ import { getInitialState } from '~store/generator/generator.reducer';
 import { initialState as initialMainState } from '~store/main/main.reducer';
 import { initialState as initialPacketState } from '~store/packets/packets.reducer';
 import { initialState as initialAccountState } from '~store/account/account.reducer';
-import { initialState as initialAccountsState } from '~store/accounts/accounts.reducer';
 import * as langUtils from '~utils/langUtils';
 import { setLocaleFileLoaded } from '~store/main/main.actions';
 import generatorReducer from '~store/generator/generator.reducer';
 import mainReducer from '~store/main/main.reducer';
 import packetsReducer from '~store/packets/packets.reducer';
 import accountReducer from '~store/account/account.reducer';
-import accountsReducer from '~store/accounts/accounts.reducer';
 import actionsInterceptor from '~core/actionInterceptor';
 import { GeneratorLayout } from '~core/generator/Generator.component';
 import { ETSettings } from '~types/exportTypes';
@@ -31,8 +29,7 @@ export const rootReducer = combineReducers({
 	generator: generatorReducer,
 	main: mainReducer,
 	packets: packetsReducer,
-	account: accountReducer,
-	accounts: accountsReducer
+	account: accountReducer
 });
 
 export const renderWithStoreAndRouter = (
@@ -76,8 +73,7 @@ export const getTestState = () => ({
 	generator: getInitialState(),
 	main: { ...initialMainState },
 	packets: { ...initialPacketState },
-	account: { ...initialAccountState },
-	accounts: { ...initialAccountsState }
+	account: { ...initialAccountState }
 });
 
 // requires the DT test to supply i18n and rowState (if pertinent)

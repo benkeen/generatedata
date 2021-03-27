@@ -4,7 +4,6 @@ import { PacketsState } from '~store/packets/packets.reducer';
 import { AccountState } from '~store/account/account.reducer';
 import { DataTypeFolder } from '../_plugins';
 import { DTMetadata } from '~types/dataTypes';
-import { AccountsState } from '~store/accounts/accounts.reducer';
 
 declare global {
     interface Window {
@@ -21,7 +20,6 @@ export type Store = {
 	main: MainState;
 	packets: PacketsState;
 	account: AccountState;
-	accounts: AccountsState;
 };
 
 export type AuthMethod = 'default' | 'google';
