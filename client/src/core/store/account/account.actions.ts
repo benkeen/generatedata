@@ -1,4 +1,4 @@
-import { SelectedAccountTab, SelectedAccountsTab, AccountStatus } from '~types/account';
+import { AccountStatus, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
 import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
 import { getEditingData } from '~store/account/account.selectors';
 import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
@@ -35,7 +35,7 @@ export const onChangeAccountsTab = (tab: SelectedAccountsTab): GDAction => ({
 });
 
 export const ON_EDIT_ACCOUNT = 'ON_EDIT_ACCOUNT';
-export const editAccount = (accountInfo: any) => ({
+export const editAccount = (accountInfo: any): GDAction => ({
 	type: ON_EDIT_ACCOUNT,
 	payload: {
 		accountInfo
@@ -45,25 +45,44 @@ export const editAccount = (accountInfo: any) => ({
 export const CANCEL_ACCOUNT_CHANGES = 'CANCEL_ACCOUNT_CHANGES';
 export const cancelChanges = (): GDAction => ({ type: CANCEL_ACCOUNT_CHANGES });
 
-export const ACCOUNT_UPDATED = 'ACCOUNT_UPDATED';
-export const accountUpdated = (): GDAction => ({ type: ACCOUNT_UPDATED });
+export const YOUR_ACCOUNT_UPDATED = 'YOUR_ACCOUNT_UPDATED';
+export const yourAccountUpdated = (): GDAction => ({ type: YOUR_ACCOUNT_UPDATED });
 
-export const saveChanges = (): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
+export const saveYourAccount = (): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();
 
 	const { firstName, lastName, email, country, region } = getEditingData(getState());
 
 	await apolloClient.mutate({
-		mutation: queries.SAVE_ACCOUNT,
+		mutation: queries.SAVE_CURRENT_ACCOUNT,
 		variables: { firstName, lastName, email, country, region }
 	});
 
 	addToast({
 		type: 'success',
-		message: i18n.core.accountUpdated
+		message: i18n.core.userAccountUpdated
 	});
 
-	dispatch(accountUpdated());
+	dispatch(yourAccountUpdated());
+};
+
+// for an admin updating an account
+export const saveAccount = (data: any): any => async (dispatch: Dispatch): Promise<any> => {
+	const i18n = getStrings();
+	const { accountId, firstName, lastName, email, country, region, disabled, expiryDate } = data;
+	const accountStatus = getAccountStatus(disabled, expiryDate);
+
+	await apolloClient.mutate({
+		mutation: queries.SAVE_ACCOUNT,
+		variables: { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate }
+	});
+
+	addToast({
+		type: 'success',
+		message: i18n.core.yourAccountUpdated
+	});
+
+	dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
 };
 
 export const savePassword = (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void): any => async (): Promise<any> => {
@@ -182,21 +201,8 @@ export const renameDataSet = (dataSetName: string): any => async (dispatch: Disp
 // TODO typings
 export const createAccount = (data: any) => async (dispatch: Dispatch): Promise<any> => {
 	const i18n = getStrings();
-
 	const { firstName, lastName, email, country, region, disabled, expiry, expiryDate } = data;
-
-	let accountStatus = AccountStatus.live;
-	if (disabled) {
-		accountStatus = AccountStatus.disabled;
-	} else {
-		// check the expiry date hasn't already passed
-		if (expiryDate) {
-			const now = Number(format(new Date(), 't'));
-			if (expiryDate < now) {
-				accountStatus = AccountStatus.expired;
-			}
-		}
-	}
+	const accountStatus = getAccountStatus(disabled, expiryDate);
 
 	const expiryDateValue = (expiry) ? parseInt(expiryDate, 10) : null;
 	const response = await apolloClient.mutate({
@@ -225,4 +231,22 @@ export const createAccount = (data: any) => async (dispatch: Dispatch): Promise<
 			message: 'There was an error creating this account.'
 		});
 	}
+};
+
+
+export const getAccountStatus = (disabled: boolean, expiryDate: number): AccountStatus => {
+	let accountStatus = AccountStatus.live;
+	if (disabled) {
+		accountStatus = AccountStatus.disabled;
+	} else {
+		// check the expiry date hasn't already passed
+		if (expiryDate) {
+			const now = Number(format(new Date(), 't'));
+			if (expiryDate < now) {
+				accountStatus = AccountStatus.expired;
+			}
+		}
+	}
+
+	return accountStatus;
 };

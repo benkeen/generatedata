@@ -91,7 +91,7 @@ describe('accounts section', () => {
 		expect(selectors.getCountry(store.getState())).toEqual('');
 		expect(selectors.getRegion(store.getState())).toEqual('');
 
-		store.dispatch(actions.accountUpdated());
+		store.dispatch(actions.yourAccountUpdated());
 
 		expect(selectors.getFirstName(store.getState())).toEqual('Tom');
 		expect(selectors.getLastName(store.getState())).toEqual('Jones');

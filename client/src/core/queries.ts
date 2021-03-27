@@ -99,12 +99,22 @@ export const SAVE_CURRENT_DATA_SET = gql`
 	}
 `;
 
-export const SAVE_ACCOUNT = gql`
-	mutation UpdateAccount($firstName: String!, $lastName: String!, $email: String!, $country: String!, $region: String) {
-		updateAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region) {
+export const SAVE_CURRENT_ACCOUNT = gql`
+	mutation UpdateCurrentAccount($firstName: String!, $lastName: String!, $email: String!, $country: String!, $region: String) {
+		updateCurrentAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region) {
 			success
 		}
 	}
+`;
+
+export const SAVE_ACCOUNT = gql`
+    mutation UpdateAccount($accountId: ID!, $accountStatus: AccountStatus, $firstName: String!, $lastName: String!,
+		$email: String!, $country: String!, $region: String, $expiryDate: Int) {
+        updateAccount(accountId: $accountId, accountStatus: $accountStatus, firstName: $firstName, lastName: $lastName, email: $email, country: $country,
+			region: $region, expiryDate: $expiryDate) {
+            success
+        }
+    }
 `;
 
 export const UPDATE_PASSWORD = gql`

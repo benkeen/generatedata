@@ -10,7 +10,7 @@
 	"accountInfo": "Account Info",
 	"accountSettings": "Account Settings",
 	"accountType": "Account type",
-	"accountUpdated": "Your account has been updated.",
+	"yourAccountUpdated": "Your account has been updated.",
 	"accounts": "Accounts",
 	"add": "Add",
 	"addRowsDesc": "To add more rows to the data grid just use the form at the bottom of the page. When you have a lot of fields, this section may be hidden off page so you'll have to scroll the panel to the bottom to see the form.",
@@ -292,5 +292,6 @@
 	"yourAccount": "Your Account",
 	"yourUserAccount": "Your User Account",
 
-  "editAccount": "Edit Account"
+  "editAccount": "Edit Account",
+  "userAccountUpdated": "The user account has been updated."
 }

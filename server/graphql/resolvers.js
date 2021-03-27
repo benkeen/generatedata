@@ -124,6 +124,7 @@ const resolvers = {
 
 		// account-related resolvers
 		updateAccount: accountResolvers.updateAccount,
+		updateCurrentAccount: accountResolvers.updateCurrentAccount,
 		updatePassword: accountResolvers.updatePassword,
 		createUserAccount: accountResolvers.createUserAccount,
 		deleteAccount: accountResolvers.deleteAccount,

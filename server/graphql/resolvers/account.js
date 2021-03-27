@@ -1,7 +1,7 @@
 const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
 
-const updateAccount = async (root, args, { token, user }) => {
+const updateCurrentAccount = async (root, args, { token, user }) => {
 	authUtils.authenticate(token);
 
 	const { accountId } = user;
@@ -14,6 +14,29 @@ const updateAccount = async (root, args, { token, user }) => {
 		email,
 		country,
 		region
+	});
+
+	return {
+		success: true
+	};
+};
+
+const updateAccount = async (root, args, { token }) => {
+	authUtils.authenticate(token);
+
+	// TODO verify
+
+	const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate } = args;
+	const userRecord = await db.accounts.findByPk(accountId);
+
+	userRecord.update({
+		accountStatus,
+		firstName,
+		lastName,
+		email,
+		country,
+		region,
+		expiryDate
 	});
 
 	return {
@@ -95,6 +118,7 @@ const deleteAccount = async (root, { accountId, content }, { token, user }) => {
 
 
 module.exports = {
+	updateCurrentAccount,
 	updateAccount,
 	updatePassword,
 	createUserAccount,

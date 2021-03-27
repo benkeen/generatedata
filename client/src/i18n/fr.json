@@ -10,7 +10,7 @@
 	"accountInfo": "Informations sur le compte",
 	"accountSettings": "Paramètres du compte",
 	"accountType": "Type de compte",
-	"accountUpdated": "Votre compte a été mis à jour.",
+	"yourAccountUpdated": "Votre compte a été mis à jour.",
 	"accounts": "Comptes",
 	"add": "Ajouter",
 	"addRowsDesc": "Pour ajouter plus de lignes à la grille de données, utilisez simplement le formulaire en bas de la page. Lorsque vous avez beaucoup de champs, cette section peut être masquée hors de la page, vous devrez donc faire défiler le panneau vers le bas pour voir le formulaire.",

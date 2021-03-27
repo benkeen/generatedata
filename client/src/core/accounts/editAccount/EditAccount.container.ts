@@ -28,7 +28,7 @@ const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<ManageAccountProps> => ({
 	// @ts-ignore-line
-	onSave: (data: any): any => dispatch(accountActions.createAccount(data)),
+	onSave: (data: any): any => dispatch(accountActions.saveAccount(data)),
 	onCancel: (): any => dispatch(accountActions.onChangeAccountsTab(SelectedAccountsTab.accounts))
 });
 

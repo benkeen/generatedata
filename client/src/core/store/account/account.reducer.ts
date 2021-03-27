@@ -131,7 +131,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			};
 			break;
 
-		case actions.ACCOUNT_UPDATED:
+		case actions.YOUR_ACCOUNT_UPDATED:
 			draft.firstName = draft.editingData.firstName;
 			draft.lastName = draft.editingData.lastName;
 			draft.email = draft.editingData.email;
@@ -154,8 +154,6 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 
 		case actions.ON_EDIT_ACCOUNT:
 			const { accountId, firstName, lastName, email, country, region, expiryDate } = action.payload.accountInfo;
-
-			console.log(action.payload.accountInfo);
 
 			draft.selectedAccountsTab = SelectedAccountsTab.editAccount;
 			draft.editingData = {

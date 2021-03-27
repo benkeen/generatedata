@@ -10,7 +10,7 @@
 	"accountInfo": "Información de cuenta",
 	"accountSettings": "Ajustes de cuenta",
 	"accountType": "Tipo de cuenta",
-	"accountUpdated": "Tu cuenta ha sido actualizada.",
+	"yourAccountUpdated": "Tu cuenta ha sido actualizada.",
 	"accounts": "Cuentas",
 	"add": "Añadir",
 	"addRowsDesc": "Para agregar más filas a la cuadrícula de datos, simplemente use el formulario en la parte inferior de la página. Cuando tiene muchos campos, esta sección puede estar oculta fuera de la página, por lo que tendrá que desplazar el panel hacia la parte inferior para ver el formulario.",

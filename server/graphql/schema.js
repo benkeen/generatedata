@@ -14,7 +14,9 @@ const typeDefs = gql`
         loginWithGoogle(googleToken: String!): AuthResponse
         refreshToken: AuthResponse
 		logout: GeneralResponse
-        updateAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
+        updateAccount(accountId: ID!, accountStatus: AccountStatus, firstName: String!, lastName: String!, email: String!,
+	        country: String!, region: String, expiryDate: Int): GeneralResponse
+        updateCurrentAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
 		updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
         createUserAccount(firstName: String!, lastName: String!, email: String!, country: String, region: String,
             accountStatus: AccountStatus, expiryDate: Int): GeneralResponse

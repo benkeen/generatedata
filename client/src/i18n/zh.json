@@ -10,7 +10,7 @@
 	"accountInfo": "账户信息",
 	"accountSettings": "账户设置",
 	"accountType": "账户类型",
-	"accountUpdated": "你的账户已更新.",
+	"yourAccountUpdated": "你的账户已更新.",
 	"accounts": "账号",
 	"add": "增加",
 	"addRowsDesc": "要将更多行添加到数据网格，只需使用页面底部的表单即可。 当您有很多字段时，此部分可能会隐藏在页面外，因此您必须将面板滚动到底部才能看到表单。",
