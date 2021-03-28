@@ -16,7 +16,7 @@ const resolvers = {
 				lastName: 'last_name',
 				firstName: 'first_name',
 				accountStatus: 'account_status',
-				expiryDate: 'expiry_date'
+				expiryDate: 'date_expires'
 			};
 
 			const [results] = await db.sequelize.query(`
@@ -41,7 +41,7 @@ const resolvers = {
 					dateCreated: row.date_created,
 					lastUpdated: row.last_updated,
 					lastLoggedIn: row.last_logged_in,
-					expiryDate: row.expiry_date,
+					expiryDate: row.date_expires,
 					accountType: row.account_type,
 					accountStatus: row.account_status,
 					firstName: row.first_name,

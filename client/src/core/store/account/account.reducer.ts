@@ -2,7 +2,7 @@ import { AnyAction } from 'redux';
 import produce from 'immer';
 import * as mainActions from '../main/main.actions';
 import * as actions from '../account/account.actions';
-import { AccountType, SelectedAccountTab, SelectedAccountsTab, AccountStatus } from '~types/account';
+import { AccountStatus, AccountType, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
 
 // use for Edit Account, Your Account
 export type AccountEditingData = {
@@ -53,7 +53,7 @@ export const initialState: AccountState = {
 	profileImage: null,
 	numRowsGenerated: 0,
 	dataSets: [],
-	selectedTab: 'dataSets',
+	selectedTab: SelectedAccountTab.dataSets,
 	selectedAccountsTab: SelectedAccountsTab.accounts,
 
 	editingData: {
@@ -92,11 +92,6 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			draft.profileImage = profileImage;
 			draft.numRowsGenerated = numRowsGenerated;
 
-			console.log(action.payload);
-
-			// disabled?: boolean;
-			// status?: AccountStatus;
-
 			draft.editingData = {
 				firstName,
 				lastName,
@@ -111,6 +106,20 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 
 		case actions.CHANGE_ACCOUNT_TAB:
 			draft.selectedTab = action.payload.tab;
+
+			if (action.payload.tab === SelectedAccountTab.yourAccount) {
+				draft.editingData = {
+					firstName: draft.firstName,
+					lastName: draft.lastName,
+					email: draft.email,
+					country: draft.country,
+					region: draft.region,
+					expiryDate: undefined,
+					disabled: undefined,
+					accountId: undefined,
+					status: undefined
+				};
+			}
 			break;
 
 		case actions.CHANGE_ACCOUNTS_TAB:
@@ -153,11 +162,12 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case actions.ON_EDIT_ACCOUNT:
-			const { accountId, firstName, lastName, email, country, region, expiryDate } = action.payload.accountInfo;
+			const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate } = action.payload.accountInfo;
 
 			draft.selectedAccountsTab = SelectedAccountsTab.editAccount;
 			draft.editingData = {
 				accountId,
+				disabled: accountStatus === AccountStatus.disabled,
 				firstName,
 				lastName,
 				email,
@@ -165,8 +175,6 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				region,
 				expiryDate
 			};
-
-			// status?: AccountStatus;
 			break;
 	}
 

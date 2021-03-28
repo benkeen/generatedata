@@ -6,7 +6,7 @@ import * as actions from '../account.actions';
 import * as selectors from '../account.selectors';
 import { LOGOUT, setAuthenticationData } from '~store/main/main.actions';
 import { SaveDataDialogType } from '~store/account/account.reducer';
-import { AccountStatus, AccountType } from '~types/account';
+import { AccountStatus, SelectedAccountTab } from '~types/account';
 
 describe('accounts section', () => {
 	let flushThunks;
@@ -105,11 +105,11 @@ describe('accounts section', () => {
 		expect(selectors.getSelectedTab(store.getState())).toEqual('dataSets');
 
 		// change tabs
-		store.dispatch(actions.onChangeTab('yourAccount'));
-		expect(selectors.getSelectedTab(store.getState())).toEqual('yourAccount');
+		store.dispatch(actions.onChangeTab(SelectedAccountTab.yourAccount));
+		expect(selectors.getSelectedTab(store.getState())).toEqual(SelectedAccountTab.yourAccount);
 
-		store.dispatch(actions.onChangeTab('changePassword'));
-		expect(selectors.getSelectedTab(store.getState())).toEqual('changePassword');
+		store.dispatch(actions.onChangeTab(SelectedAccountTab.changePassword));
+		expect(selectors.getSelectedTab(store.getState())).toEqual(SelectedAccountTab.changePassword);
 	});
 
 	it('save dialog visibility', () => {

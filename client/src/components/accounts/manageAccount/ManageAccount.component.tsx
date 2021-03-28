@@ -78,7 +78,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 	const onSelectDate = (expiryDate: any): void => {
 		setData({
 			...data,
-			expiryDate
+			expiryDate: parseInt(expiryDate, 10)
 		});
 	};
 

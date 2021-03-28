@@ -72,9 +72,23 @@ export const saveAccount = (data: any): any => async (dispatch: Dispatch): Promi
 	const { accountId, firstName, lastName, email, country, region, disabled, expiryDate } = data;
 	const accountStatus = getAccountStatus(disabled, expiryDate);
 
+	let cleanExpiryDate = expiryDate;
+	if (expiryDate) {
+		cleanExpiryDate = parseInt(expiryDate, 10);
+	}
+
 	await apolloClient.mutate({
 		mutation: queries.SAVE_ACCOUNT,
-		variables: { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate }
+		variables: {
+			accountId,
+			accountStatus,
+			firstName,
+			lastName,
+			email,
+			country,
+			region,
+			expiryDate: cleanExpiryDate
+		}
 	});
 
 	addToast({

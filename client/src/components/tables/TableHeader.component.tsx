@@ -39,10 +39,6 @@ const TableHeader = ({ cols, sortCol, sortDir, onSort }: TableHeaderProps): JSX.
 		let sorter: any = null;
 		let colSortDir = sortDir === ColSortDir.asc ? ColSortDir.desc : ColSortDir.asc;
 
-		if (col.field === 'firstName') {
-			console.log(col, sortCol, sortDir);
-		}
-
 		if (col.field === sortCol) {
 			if (sortDir === ColSortDir.asc) {
 				sorter = <ArrowDropUp />;

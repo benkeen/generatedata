@@ -1,5 +1,10 @@
 export type AccountType = 'superuser' | 'admin' | 'user';
-export type SelectedAccountTab = 'dataSets' | 'yourAccount' | 'changePassword' | 'other';
+export const enum SelectedAccountTab {
+	dataSets = 'dataSets',
+	yourAccount = 'yourAccount',
+	changePassword = 'changePassword',
+	other = 'other' // mysterious!
+}
 
 export const enum SelectedAccountsTab {
 	accounts = 'accounts',

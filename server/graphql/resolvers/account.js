@@ -1,3 +1,4 @@
+const dateFns = require("date-fns");
 const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
 
@@ -29,8 +30,16 @@ const updateAccount = async (root, args, { token }) => {
 	const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate } = args;
 	const userRecord = await db.accounts.findByPk(accountId);
 
+	let validatedAccountStatus = accountStatus;
+	if (expiryDate) {
+		const now = Number(dateFns.format(new Date(), 't'));
+		if (expiryDate < now) {
+			validatedAccountStatus = 'expired';
+		}
+	}
+
 	userRecord.update({
-		accountStatus,
+		accountStatus: validatedAccountStatus,
 		firstName,
 		lastName,
 		email,

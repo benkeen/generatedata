@@ -50,19 +50,19 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 				<ul>
 					<li
 						className={selectedTab === 'dataSets' ? sharedStyles.selected : ''}
-						onClick={(): void => onChangeTab('dataSets')}
+						onClick={(): void => onChangeTab(SelectedAccountTab.dataSets)}
 					>
 						{i18n.dataSets}
 					</li>
 					<li
 						className={selectedTab === 'yourAccount' ? sharedStyles.selected : ''}
-						onClick={(): void => onChangeTab('yourAccount')}
+						onClick={(): void => onChangeTab(SelectedAccountTab.yourAccount)}
 					>
 						{i18n.yourAccount}
 					</li>
 					<li
 						className={selectedTab === 'changePassword' ? sharedStyles.selected : ''}
-						onClick={(): void => onChangeTab('changePassword')}
+						onClick={(): void => onChangeTab(SelectedAccountTab.changePassword)}
 					>
 						{i18n.changePassword}
 					</li>
