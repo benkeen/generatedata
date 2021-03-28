@@ -13,7 +13,8 @@ const mapStateToProps = (state: Store): Partial<AccountsPageProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountsPageProps> => ({
-	onChangeTab: (tab: SelectedAccountsTab): any => dispatch(accountActions.onChangeAccountsTab(tab))
+	onChangeTab: (tab: SelectedAccountsTab): any => dispatch(accountActions.onChangeAccountsTab(tab)),
+	onDestroy: (): any => dispatch(accountActions.onCleanupAccountsPage())
 });
 
 const container: any = connect(

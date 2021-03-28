@@ -1,0 +1,19 @@
+.root {
+	display: flex;
+	flex: 1;
+	margin-bottom: 15px;
+}
+
+.rightCol {
+	flex: 1;
+	margin-left: 20px;
+	border-left: 1px solid #f2f2f2;
+	padding-left: 20px;
+}
+
+.disabledFieldRow {
+	display: flex;
+	margin-bottom: 15px;
+	margin-top: 2px;
+}
+

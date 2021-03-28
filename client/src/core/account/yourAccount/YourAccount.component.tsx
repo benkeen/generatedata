@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
 import { AccountEditingData } from '~store/account/account.reducer';
 import styles from '../Account.scss';
@@ -8,6 +8,7 @@ export type YourAccountProps = {
 	numGeneratedRows: number;
 	accountHasChanges: boolean;
 	updateAccount: (data: AccountEditingData) => void;
+	onInit: () => void;
 	onSave: () => void;
 	onCancel: () => void;
 	className: string;
@@ -15,8 +16,13 @@ export type YourAccountProps = {
 };
 
 const YourAccount = ({
-	data, numGeneratedRows, accountHasChanges, updateAccount, onSave, onCancel, className, i18n
+	data, numGeneratedRows, accountHasChanges, updateAccount, onSave, onCancel, className, i18n, onInit
 }: YourAccountProps): JSX.Element => {
+
+	useEffect(() => {
+		onInit();
+	}, []);
+
 	return (
 		<div className={`${className} ${styles.yourAccountPage}`}>
 			<MainFields

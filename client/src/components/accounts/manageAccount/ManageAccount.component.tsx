@@ -3,9 +3,10 @@ import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
-import * as styles from '../../../plugins/dataTypes/Date/Date.scss';
+import * as dateStyles from '../../../plugins/dataTypes/Date/Date.scss';
 import { format, fromUnixTime, add } from 'date-fns';
 import C from '../../../core/constants';
+import styles from './ManageAccount.scss';
 
 export type ManageAccountProps = {
 	i18n: any;
@@ -97,7 +98,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 	}
 
 	return (
-		<div style={{ display: 'flex' }}>
+		<div className={styles.root}>
 			<div style={{ flex: 1 }}>
 				<MainFields
 					i18n={i18n}
@@ -110,9 +111,9 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 					onSave={(): void => onSave(data)}
 				/>
 			</div>
-			<div style={{ flex: 1, marginLeft: 20, borderLeft: '1px solid #f2f2f2', paddingLeft: 20 }}>
+			<div className={styles.rightCol}>
 				<div>
-					<div style={{ marginBottom: 15, display: 'flex', marginTop: 2 }}>
+					<div className={styles.disabledFieldRow}>
 						<input
 							type="checkbox"
 							checked={data.disabled}
@@ -148,7 +149,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 					<DatePicker
 						autoOk
 						open={showDatepicker}
-						className={styles.dateField}
+						className={dateStyles.dateField}
 						value={data.expiryDate === null ? fromUnixTime(yearFromNow) : fromUnixTime(data.expiryDate!)}
 						onChange={(val: any): void => onSelectDate(format(val, 't'))}
 						onClose={(): void => setShowDatepicker(false)}

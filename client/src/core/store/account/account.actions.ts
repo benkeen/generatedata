@@ -1,6 +1,6 @@
 import { AccountStatus, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
 import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
-import { getEditingData } from '~store/account/account.selectors';
+import { getEditingData, getSelectedAccountsPageTab } from '~store/account/account.selectors';
 import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
 import { GDAction } from '~types/general';
 import { Dispatch } from 'redux';
@@ -42,11 +42,24 @@ export const editAccount = (accountInfo: any): GDAction => ({
 	}
 });
 
+export const ON_EDIT_YOUR_ACCOUNT = 'ON_EDIT_YOUR_ACCOUNT';
+export const onEditYourAccount = (): GDAction => ({ type: ON_EDIT_YOUR_ACCOUNT });
+
 export const CANCEL_ACCOUNT_CHANGES = 'CANCEL_ACCOUNT_CHANGES';
 export const cancelChanges = (): GDAction => ({ type: CANCEL_ACCOUNT_CHANGES });
 
 export const YOUR_ACCOUNT_UPDATED = 'YOUR_ACCOUNT_UPDATED';
 export const yourAccountUpdated = (): GDAction => ({ type: YOUR_ACCOUNT_UPDATED });
+
+// simple garbage collection. If the user happened to be on Edit Account page when navigating away, reset it back
+// to the main Accounts page. Otherwise the data may not still be available when navigating back
+export const onCleanupAccountsPage = (): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
+	const tab = getSelectedAccountsPageTab(getState());
+
+	if (tab === SelectedAccountsTab.editAccount) {
+		dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
+	}
+};
 
 export const saveYourAccount = (): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();
