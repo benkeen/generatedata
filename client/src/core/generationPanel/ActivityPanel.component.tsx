@@ -220,7 +220,7 @@ const ActivityPanel = ({
 					</Dialog>
 				)}
 			</Measure>
-			<Engine />
+			{visible && <Engine />}
 		</>
 	);
 };

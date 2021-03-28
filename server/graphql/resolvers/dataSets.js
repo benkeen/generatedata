@@ -85,9 +85,26 @@ const deleteDataSet = async (root, { dataSetId, content }, { token, user }) => {
 	};
 };
 
-const updateDataSetGenerationCount = (root, { dataSetId, content }, { token, user }) => {
+const updateDataSetGenerationCount = async (root, { dataSetId, generatedRows }, { token, user }) => {
 	authUtils.authenticate(token);
 
+	// TODO auth
+
+	let addRows = generatedRows;
+	if (/\D/.test(generatedRows)) {
+		addRows = 0;
+	}
+
+	const dataSet = await db.dataSets.findByPk(dataSetId);
+	const { numRowsGenerated } = dataSet.dataValues;
+
+	await dataSet.update({
+		numRowsGenerated: numRowsGenerated + addRows
+	});
+
+	return {
+		success: true
+	};
 };
 
 module.exports = {

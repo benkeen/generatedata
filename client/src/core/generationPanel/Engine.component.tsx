@@ -29,6 +29,7 @@ const Engine = ({ packet, workerResources, logDataBatch, fullI18n }: EngineProps
 			return;
 		}
 
+		// just fires once at the start of the data generation. This kicks off the whole process.
 		dataTypeWorker.postMessage({
 			action: 'generate',
 			numResults: numRowsToGenerate,

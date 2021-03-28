@@ -23,7 +23,6 @@ export const SmallScreenSettingsIcon = ({
 
 		// @ts-ignore-line
 		if (e.target && e.target.closest && (e.target.closest('.react-select__menu') || e.target.closest('gd-is-portal'))) {
-			console.log("is react select!");
 			return;
 		}
 		setOpen(false);

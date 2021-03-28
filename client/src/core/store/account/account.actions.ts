@@ -73,7 +73,7 @@ export const saveYourAccount = (): any => async (dispatch: Dispatch, getState: a
 
 	addToast({
 		type: 'success',
-		message: i18n.core.userAccountUpdated
+		message: i18n.core.yourAccountUpdated
 	});
 
 	dispatch(yourAccountUpdated());
@@ -106,7 +106,7 @@ export const saveAccount = (data: any): any => async (dispatch: Dispatch): Promi
 
 	addToast({
 		type: 'success',
-		message: i18n.core.yourAccountUpdated
+		message: i18n.core.userAccountUpdated
 	});
 
 	dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));

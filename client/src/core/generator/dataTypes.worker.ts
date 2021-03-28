@@ -110,14 +110,13 @@ const generateBatch = ({ template, unchanged, numResults, i18n, firstRow, lastRo
 
 	Promise.all(rowPromises)
 		.then((generatedData: any) => {
-			resolve();
-
 			context.postMessage({
 				completedBatchNum: batchNum,
 				numGeneratedRows: lastRow,
 				numResults,
 				generatedData
 			});
+			resolve();
 		});
 });
 

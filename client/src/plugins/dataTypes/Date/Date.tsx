@@ -98,7 +98,6 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 	const [isOpen, setOpen] = React.useState(false);
 	const [selectedDatePicker, setDatePicker] = React.useState('fromDate');
 	const onChange = (field: string, value: any): void => {
-		console.log("on change? ", field, value);
 		onUpdate({
 			...data,
 			[field]: value
