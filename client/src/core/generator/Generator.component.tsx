@@ -76,16 +76,18 @@ const Builder = ({
 	};
 
 	return (
-		<div style={{ height: '100%' }}>
-			<div style={{ height: '100%', position: 'relative' }}>
-				{getContent()}
+		<>
+			<div style={{ height: '100%' }}>
+				<div style={{ height: '100%', position: 'relative' }}>
+					{getContent()}
+				</div>
+				<ExportSettings />
+				<DataSetHistory />
+				<GenerationSettings />
+				<ActivityPanel />
+				<TourDialog />
 			</div>
-			<ExportSettings />
-			<GenerationSettings />
-			<ActivityPanel />
-			<TourDialog />
-			<DataSetHistory />
-		</div>
+		</>
 	);
 };
 export default Builder;

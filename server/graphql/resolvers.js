@@ -112,6 +112,40 @@ const resolvers = {
 					historyDateCreatedUnix: row.historyDateCreatedUnix
 				}))
 			};
+		},
+
+		dataSetHistory: async (root, args, { token, user }) => {
+			const { dataSetId, limit, offset } = args;
+
+			authUtils.authenticate(token);
+
+			// TODO auth
+			// const { accountId } = user;
+
+			const [results] = await db.sequelize.query(`
+				SELECT *
+				FROM dataset_history dh
+				WHERE dataset_id = ${dataSetId}
+				ORDER BY history_id DESC
+				LIMIT ${limit}
+				OFFSET ${offset}
+			`);
+
+			const [totalCountQuery] = await db.sequelize.query(`
+				SELECT count(*) as c
+				FROM dataset_history
+				WHERE dataset_id = ${dataSetId} 
+			`, { raw: true, type: db.sequelize.QueryTypes.SELECT });
+
+			return {
+				totalCount: totalCountQuery.c,
+				results: results.map((row) => ({
+					dataSetId: row.dataset_id,
+					historyId: row.history_id,
+					content: row.content,
+					dateCreated: row.date_created
+				}))
+			};
 		}
 	},
 

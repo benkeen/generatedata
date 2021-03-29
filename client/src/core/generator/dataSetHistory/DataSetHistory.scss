@@ -1,6 +1,16 @@
 .panel {
-	background-color: white;
-	border-radius: 5px;
-	height: 50px;
-	width: 300px;
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	height: 100%;
+
+	section {
+		flex: 1;
+	}
+	footer {
+		padding: 15px;
+		button {
+			width: 100%;
+		}
+	}
 }

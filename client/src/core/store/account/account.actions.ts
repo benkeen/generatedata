@@ -279,11 +279,13 @@ export const getAccountStatus = (disabled: boolean, expiryDate: number): Account
 };
 
 
-export const VIEW_DATA_SET_HISTORY = 'VIEW_DATA_SET_HISTORY';
-export const viewDataSetHistory = (dataSetId: number): GDAction => ({
-	type: VIEW_DATA_SET_HISTORY,
+export const SHOW_DATA_SET_HISTORY = 'SHOW_DATA_SET_HISTORY';
+export const showDataSetHistory = (dataSetId: number): GDAction => ({
+	type: SHOW_DATA_SET_HISTORY,
 	payload: {
 		dataSetId
 	}
 });
 
+export const CLEAR_VIEW_DATA_SET_HISTORY = 'CLEAR_VIEW_DATA_SET_HISTORY';
+export const clearViewHistoryDataSet = () => ({ type: CLEAR_VIEW_DATA_SET_HISTORY });
