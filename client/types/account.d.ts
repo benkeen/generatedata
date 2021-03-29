@@ -1,6 +1,7 @@
 export type AccountType = 'superuser' | 'admin' | 'user';
 export const enum SelectedAccountTab {
 	dataSets = 'dataSets',
+	dataSetHistory = 'dataSetHistory',
 	yourAccount = 'yourAccount',
 	changePassword = 'changePassword',
 	other = 'other' // mysterious!

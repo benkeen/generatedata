@@ -7,7 +7,7 @@ const typeDefs = gql`
         settings: [Setting]
         dataSets(limit: Int, offset: Int, sortCol: String, sortDir: SortDir): DataSetResults
         dataSet(id: ID!): DataSet
-	    dataSetHistory(dataSetId: ID!): DataSetHistory
+	    dataSetHistory(dataSetId: ID!, limit: Int, offset: Int): DataSetHistoryResults
     }
 	type Mutation {
 		login(email: String!, password: String!): AuthResponse
@@ -67,11 +67,15 @@ const typeDefs = gql`
         dataCreatedUnix: Int
         historyDateCreatedUnix: Int
     }
+    type DataSetHistoryResults {
+        results: [DataSetHistory]
+        totalCount: Int
+    }
     type DataSetHistory {
         historyId: ID!
-	    dataSetId: ID!
-	    dateCreated: String
-	    content: String
+        dataSetId: ID!
+        dateCreated: String
+        content: String
     }
     type DataSetResults {
         results: [DataSetListItem]

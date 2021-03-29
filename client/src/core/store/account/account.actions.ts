@@ -277,3 +277,13 @@ export const getAccountStatus = (disabled: boolean, expiryDate: number): Account
 
 	return accountStatus;
 };
+
+
+export const VIEW_DATA_SET_HISTORY = 'VIEW_DATA_SET_HISTORY';
+export const viewDataSetHistory = (dataSetId: number): GDAction => ({
+	type: VIEW_DATA_SET_HISTORY,
+	payload: {
+		dataSetId
+	}
+});
+

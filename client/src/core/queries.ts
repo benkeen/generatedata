@@ -48,20 +48,30 @@ export const GET_DATA_SETS = gql`
     }
 `;
 
-export const GET_DATA_SET = gql`
-	query GetDataSet($dataSetId: ID!) {
-		dataSet(id: $dataSetId){
-            dataSetId
-            dataSetName
-            status
-            dateCreated
-            numRowsGenerated
-		}
-	}
+export const GET_DATA_SET_HISTORY = gql`
+    query GetDataSetHistory($dataSetId: ID!, $limit: Int, $offset: Int) {
+        dataSetHistory(dataSetId: $dataSetId, limit: $limit, offset: $offset) {
+			totalCount
+            results {
+                historyId
+                dateCreated
+                content	
+			}
+        }
+    }
 `;
 
 export const DELETE_DATA_SET = gql`
     mutation DeleteDataSet($dataSetId: ID!) {
+        deleteDataSet(dataSetId: $dataSetId) {
+            success
+            error
+        }
+    }
+`;
+
+export const DELETE_DATA_SET_HISTORY = gql`
+    mutation DeleteDataSetHistory($dataSetId: ID!) {
         deleteDataSet(dataSetId: $dataSetId) {
             success
             error

@@ -293,5 +293,6 @@
 	"yourUserAccount": "Your User Account",
 
   "editAccount": "Edit Account",
-  "userAccountUpdated": "The user account has been updated."
+  "userAccountUpdated": "The user account has been updated.",
+  "noDataSetsSaved": "You have no data sets saved."
 }

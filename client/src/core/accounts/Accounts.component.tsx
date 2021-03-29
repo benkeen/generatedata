@@ -33,14 +33,14 @@ const Accounts = ({ selectedTab, onChangeTab, onDestroy, i18n }: AccountsPagePro
 			<nav>
 				<ul>
 					<li
-						className={selectedTab === 'accounts' ? sharedStyles.selected : ''}
-						onClick={(): void => onChangeTab('accounts')}
+						className={selectedTab === SelectedAccountsTab.accounts ? sharedStyles.selected : ''}
+						onClick={(): void => onChangeTab(SelectedAccountsTab.accounts)}
 					>
 						{i18n.accounts}
 					</li>
 					<li
-						className={selectedTab === 'createAccount' ? sharedStyles.selected : ''}
-						onClick={(): void => onChangeTab('createAccount')}
+						className={selectedTab === SelectedAccountsTab.createAccount ? sharedStyles.selected : ''}
+						onClick={(): void => onChangeTab(SelectedAccountsTab.createAccount)}
 					>
 						{i18n.createAccount}
 					</li>

@@ -37,6 +37,7 @@ export type AccountState = {
 	dataSets: any[];
 	selectedTab: SelectedAccountTab;
 	selectedAccountsTab: SelectedAccountsTab;
+	viewHistoryDataSetId: number | null;
 	editingData: AccountEditingData;
 };
 
@@ -55,7 +56,7 @@ export const initialState: AccountState = {
 	dataSets: [],
 	selectedTab: SelectedAccountTab.dataSets,
 	selectedAccountsTab: SelectedAccountsTab.accounts,
-
+	viewHistoryDataSetId: null,
 	editingData: {
 		firstName: '',
 		lastName: '',
@@ -165,6 +166,10 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				region,
 				expiryDate
 			};
+			break;
+
+		case actions.VIEW_DATA_SET_HISTORY:
+			draft.viewHistoryDataSetId = action.payload.dataSetId;
 			break;
 	}
 

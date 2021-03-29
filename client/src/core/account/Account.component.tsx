@@ -18,26 +18,28 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 	const [changePasswordClasses, setChangePasswordClasses] = useState(styles.hidden);
 
 	useEffect(() => {
-		if (selectedTab === 'yourAccount') {
-			setDataSetsClasses(styles.hidden);
-			setChangePasswordClasses(styles.hidden);
-			setYourAccountClasses(styles.shown);
-		} else if (selectedTab === 'dataSets') {
-			setDataSetsClasses(styles.shown);
-			setChangePasswordClasses(styles.hidden);
-			setYourAccountClasses(styles.hidden);
+		let dsClasses = styles.hidden;
+		let cpClasses = styles.hidden;
+		let yaClasses = styles.hidden;
+
+		if (selectedTab === SelectedAccountTab.yourAccount) {
+			yaClasses = styles.shown;
+		} else if (selectedTab === SelectedAccountTab.dataSets) {
+			dsClasses = styles.shown;
 		} else {
-			setDataSetsClasses(styles.hidden);
-			setChangePasswordClasses(styles.shown);
-			setYourAccountClasses(styles.hidden);
+			cpClasses = styles.shown;
 		}
+
+		setDataSetsClasses(dsClasses);
+		setChangePasswordClasses(cpClasses);
+		setYourAccountClasses(yaClasses);
 	}, [selectedTab]);
 
 	const getTab = (): JSX.Element | null => {
-		if (selectedTab === 'dataSets') {
+		if (selectedTab === SelectedAccountTab.dataSets) {
 			return <DataSets className={dataSetsClasses}/>;
 		}
-		if (selectedTab === 'yourAccount') {
+		if (selectedTab === SelectedAccountTab.yourAccount) {
 			return <YourAccount className={yourAccountClasses} />;
 		}
 
@@ -49,19 +51,19 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 			<nav>
 				<ul>
 					<li
-						className={selectedTab === 'dataSets' ? sharedStyles.selected : ''}
+						className={selectedTab === SelectedAccountTab.dataSets ? sharedStyles.selected : ''}
 						onClick={(): void => onChangeTab(SelectedAccountTab.dataSets)}
 					>
 						{i18n.dataSets}
 					</li>
 					<li
-						className={selectedTab === 'yourAccount' ? sharedStyles.selected : ''}
+						className={selectedTab === SelectedAccountTab.yourAccount ? sharedStyles.selected : ''}
 						onClick={(): void => onChangeTab(SelectedAccountTab.yourAccount)}
 					>
 						{i18n.yourAccount}
 					</li>
 					<li
-						className={selectedTab === 'changePassword' ? sharedStyles.selected : ''}
+						className={selectedTab === SelectedAccountTab.changePassword ? sharedStyles.selected : ''}
 						onClick={(): void => onChangeTab(SelectedAccountTab.changePassword)}
 					>
 						{i18n.changePassword}

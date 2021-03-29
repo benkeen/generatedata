@@ -32,6 +32,8 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, i18n }
 
 	useEffect(() => {
 		if (!visible) {
+			setEmail('');
+			setPassword('');
 			return;
 		}
 		getLoginComponentRenderMethods().map((func) => func());

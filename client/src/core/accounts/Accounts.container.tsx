@@ -6,6 +6,7 @@ import * as accountActions from '~store/account/account.actions';
 import AccountsPage, { AccountsPageProps } from './Accounts.component';
 import { SelectedAccountsTab } from '~types/account';
 import { Store } from '~types/general';
+import { withAuth } from '~core/auth/withAuth';
 
 const mapStateToProps = (state: Store): Partial<AccountsPageProps> => ({
 	i18n: selectors.getCoreI18n(state),
@@ -22,4 +23,4 @@ const container: any = connect(
 	mapDispatchToProps
 )(AccountsPage);
 
-export default container;
+export default withAuth(container);

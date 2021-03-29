@@ -17,9 +17,9 @@ export const enum ColSortDir {
 
 export type TableHeaderProps = {
 	cols: TableCol[];
-	sortCol: string;
-	sortDir: ColSortDir;
-	onSort: (col: string, dir: ColSortDir) => void;
+	sortCol?: string;
+	sortDir?: ColSortDir;
+	onSort?: (col: string, dir: ColSortDir) => void;
 };
 
 const TableHeader = ({ cols, sortCol, sortDir, onSort }: TableHeaderProps): JSX.Element => {
@@ -50,7 +50,7 @@ const TableHeader = ({ cols, sortCol, sortDir, onSort }: TableHeaderProps): JSX.
 		}
 
 		if (col.sortable) {
-			colProps.onClick = (): void => onSort(col.field!, colSortDir);
+			colProps.onClick = (): void => onSort!(col.field!, colSortDir);
 		}
 
 		return (

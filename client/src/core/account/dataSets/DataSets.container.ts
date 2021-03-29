@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as selectors from '~store/generator/generator.selectors';
 import * as actions from '~store/generator/generator.actions';
+import * as accountActions from '~store/account/account.actions';
 import DataSets, { DataSetsProps } from './DataSets.component';
 import { Store } from '~types/general';
 import { withAuth } from '~core/auth/withAuth';
@@ -12,7 +13,11 @@ const mapStateToProps = (state: Store): Partial<DataSetsProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetsProps> => ({
-	onLoadDataSet: (dataSet: DataSetListItem): any => dispatch(actions.loadDataSet(dataSet))
+	onLoadDataSet: (dataSet: DataSetListItem): any => dispatch(actions.loadDataSet(dataSet)),
+	onViewHistory: (dataSet: DataSetListItem): any => {
+		dispatch(accountActions.viewDataSetHistory(dataSet.dataSetId));
+		dispatch(actions.loadDataSet(dataSet));
+	},
 });
 
 const container: any = connect(
