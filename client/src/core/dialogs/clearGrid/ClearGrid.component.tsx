@@ -4,7 +4,10 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import styles from './ClearGrid.scss';
 
-export type ClearType = 'dataOnly' | 'everything';
+export const enum ClearType {
+	dataOnly = 'dataOnly',
+	everything = 'everything'
+}
 
 export type ClearGridProps = {
 	visible: boolean;
@@ -14,7 +17,7 @@ export type ClearGridProps = {
 };
 
 const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): JSX.Element => {
-	const [clearType, onChangeClearType] = useState<ClearType>('dataOnly');
+	const [clearType, onChangeClearType] = useState<ClearType>(ClearType.dataOnly);
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
@@ -32,8 +35,8 @@ const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): J
 									type="radio"
 									name="gdClearPageOption"
 									id="gdClearPageOption1"
-									checked={clearType === 'dataOnly'}
-									onChange={(): void => onChangeClearType('dataOnly')}
+									checked={clearType === ClearType.dataOnly}
+									onChange={(): void => onChangeClearType(ClearType.dataOnly)}
 								/>
 								<label htmlFor="gdClearPageOption1">{i18n.clearDataGridOnly}</label>
 							</li>
@@ -43,7 +46,7 @@ const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): J
 									name="gdClearPageOption"
 									id="gdClearPageOption2"
 									checked={clearType === 'everything'}
-									onChange={(): void => onChangeClearType('everything')}
+									onChange={(): void => onChangeClearType(ClearType.everything)}
 								/>
 								<label htmlFor="gdClearPageOption2">{i18n.resetEverything}</label>
 							</li>

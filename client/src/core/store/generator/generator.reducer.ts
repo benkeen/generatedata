@@ -50,6 +50,7 @@ export type StashedGeneratorState = {
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
 	showGenerationSettingsPanel: boolean;
+	showDataSetHistory: boolean;
 	bulkActionPending: boolean;
 	showHelpDialog: boolean;
 	helpDialogSection: DataTypeFolder | null;
@@ -96,6 +97,7 @@ export type GeneratorState = {
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
 	showGenerationSettingsPanel: boolean;
+	showDataSetHistory: boolean;
 	bulkActionPending: boolean;
 	showHelpDialog: boolean;
 	helpDialogSection: DataTypeFolder | null;
@@ -137,6 +139,7 @@ export const getInitialState = (): GeneratorState => ({
 	dataTypePreviewData: {},
 	exportSettingsTab: 'exportType',
 	showGenerationSettingsPanel: false,
+	showDataSetHistory: false,
 	bulkActionPending: true, // for brand new page loads we assume there's a bulk action to re-load
 	showHelpDialog: false,
 	helpDialogSection: null,
@@ -419,6 +422,15 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 		case actions.HIDE_HELP_DIALOG:
 			draft.showHelpDialog = false;
 			break;
+
+		case actions.SHOW_DATA_SET_HISTORY:
+			draft.showDataSetHistory = true;
+			break;
+
+		case actions.HIDE_DATA_SET_HISTORY:
+			draft.showDataSetHistory = false;
+			break;
+
 	}
 }, getInitialState());
 

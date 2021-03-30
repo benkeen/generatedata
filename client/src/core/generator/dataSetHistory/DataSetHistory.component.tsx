@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import DragIndicator from '@material-ui/icons/DragIndicator';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -9,15 +8,16 @@ import * as queries from '~core/queries';
 import * as styles from './DataSetHistory.scss';
 
 export type DataSetHistoryProps = {
+	showPanel: boolean;
 	dataSetId: number | null;
-	i18n: any;
 	closePanel: () => void;
+	i18n: any;
 };
 
 const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
-export const DataSetHistory = ({ dataSetId, closePanel, i18n }: DataSetHistoryProps): React.ReactElement | null => {
+export const DataSetHistory = ({ showPanel, dataSetId, closePanel, i18n }: DataSetHistoryProps): React.ReactElement | null => {
 	if (!dataSetId) {
 		return null;
 	}
@@ -32,9 +32,8 @@ export const DataSetHistory = ({ dataSetId, closePanel, i18n }: DataSetHistoryPr
 	});
 
 	return (
-		<Drawer open={dataSetId !== null} anchor="left" onClose={() => {}}>
+		<Drawer open={showPanel} anchor="left" onClose={() => {}}>
 			<div className={`${styles.panel} tour-dataSetHistoryPanel`}>
-				<DragIndicator />
 				<h3>{i18n.history}</h3>
 
 				<ArrowLeftIcon />

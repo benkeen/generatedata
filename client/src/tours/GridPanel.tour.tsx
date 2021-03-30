@@ -6,6 +6,7 @@ import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
 import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
+import { ClearType } from '~core/dialogs/clearGrid/ClearGrid.component';
 
 const Step1 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
@@ -163,7 +164,7 @@ const steps = [
 		position: 'center' as ReactourStepPosition,
 		action: (): void => {
 			setTimeout(() => {
-				store.dispatch(actions.clearGrid('dataOnly', false));
+				store.dispatch(actions.clearGrid(ClearType.dataOnly, false));
 				store.dispatch(actions.addRows(10));
 
 				const state = store.getState();

@@ -28,7 +28,8 @@ export const shouldEnableLineWrapping = (state: Store): boolean => state.generat
 export const getTheme = (state: Store): string => state.generator.theme;
 export const getPreviewTextSize = (state: Store): number => state.generator.previewTextSize;
 export const getDataTypePreviewData = (state: Store): any => state.generator.dataTypePreviewData;
-export const shouldShowExportSettings = (state: Store): any => state.generator.showExportSettings;
+export const shouldShowExportSettings = (state: Store): boolean => state.generator.showExportSettings;
+export const shouldShowDataSetHistory = (state: Store): boolean => state.generator.showDataSetHistory;
 export const getExportTypeSettings = (state: Store): any => state.generator.exportTypeSettings;
 export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
 export const isGenerationSettingsPanelVisible = (state: Store): boolean => state.generator.showGenerationSettingsPanel;

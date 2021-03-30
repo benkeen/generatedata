@@ -3,7 +3,6 @@ import produce from 'immer';
 import * as mainActions from '../main/main.actions';
 import * as actions from '../account/account.actions';
 import { AccountStatus, AccountType, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
-import { CLEAR_VIEW_DATA_SET_HISTORY } from '../account/account.actions';
 
 // use for both Edit Account, Your Account. Your Account only uses a subset of the fields.
 export type AccountEditingData = {
@@ -38,7 +37,6 @@ export type AccountState = {
 	dataSets: any[];
 	selectedTab: SelectedAccountTab;
 	selectedAccountsTab: SelectedAccountsTab;
-	viewHistoryDataSetId: number | null;
 	editingData: AccountEditingData;
 };
 
@@ -57,7 +55,6 @@ export const initialState: AccountState = {
 	dataSets: [],
 	selectedTab: SelectedAccountTab.dataSets,
 	selectedAccountsTab: SelectedAccountsTab.accounts,
-	viewHistoryDataSetId: null,
 	editingData: {
 		firstName: '',
 		lastName: '',
@@ -167,14 +164,6 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				region,
 				expiryDate
 			};
-			break;
-
-		case actions.SHOW_DATA_SET_HISTORY:
-			draft.viewHistoryDataSetId = action.payload.dataSetId;
-			break;
-
-		case actions.CLEAR_VIEW_DATA_SET_HISTORY:
-			draft.viewHistoryDataSetId = null;
 			break;
 	}
 

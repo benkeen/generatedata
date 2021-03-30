@@ -274,18 +274,5 @@ export const getAccountStatus = (disabled: boolean, expiryDate: number): Account
 			}
 		}
 	}
-
 	return accountStatus;
 };
-
-
-export const SHOW_DATA_SET_HISTORY = 'SHOW_DATA_SET_HISTORY';
-export const showDataSetHistory = (dataSetId: number): GDAction => ({
-	type: SHOW_DATA_SET_HISTORY,
-	payload: {
-		dataSetId
-	}
-});
-
-export const CLEAR_VIEW_DATA_SET_HISTORY = 'CLEAR_VIEW_DATA_SET_HISTORY';
-export const clearViewHistoryDataSet = () => ({ type: CLEAR_VIEW_DATA_SET_HISTORY });

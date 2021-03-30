@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react';
-import ClearGrid from '../ClearGrid.component';
+import ClearGrid, { ClearType } from '../ClearGrid.component';
 const i18n = require('../../../../i18n/en.json');
 
 jest.mock('copy-to-clipboard', () => {
@@ -41,7 +41,7 @@ describe('ClearGrid', () => {
 
 		const yesButton = baseElement.querySelector('.clearGrid') as HTMLButtonElement;
 		fireEvent.click(yesButton);
-		expect(onClear).toHaveBeenCalledWith('dataOnly');
+		expect(onClear).toHaveBeenCalledWith(ClearType.dataOnly);
 	});
 
 	it('clicking Yes calls onClear with "dataOnly" by default', () => {
@@ -55,7 +55,7 @@ describe('ClearGrid', () => {
 
 		const yesButton = baseElement.querySelector('.clearGrid') as HTMLButtonElement;
 		fireEvent.click(yesButton);
-		expect(onClear).toHaveBeenCalledWith('dataOnly');
+		expect(onClear).toHaveBeenCalledWith(ClearType.dataOnly);
 	});
 
 	it('choosing second option calls onClear with "everything"', () => {
@@ -80,6 +80,6 @@ describe('ClearGrid', () => {
 		const noButton = baseElement.querySelector('.clearGrid') as HTMLButtonElement;
 		fireEvent.click(noButton);
 
-		expect(onClear).toHaveBeenCalledWith('dataOnly');
+		expect(onClear).toHaveBeenCalledWith(ClearType.dataOnly);
 	});
 });

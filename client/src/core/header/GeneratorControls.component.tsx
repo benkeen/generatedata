@@ -20,12 +20,13 @@ export type GeneratorControlsProps = {
 	onUpdate: (newDataSetName: string) => void;
 	onSaveDataSet: () => void;
 	onSaveAs: () => void;
+	onShowHistory: (dataSetId: number) => void;
 	onClearGrid: () => void;
 	disabled: boolean;
 };
 
 const GeneratorControls = ({
-	i18n, isLoggedIn, dataSetId, dataSetName, onUpdate, onSaveDataSet, onSaveAs, onClearGrid, disabled
+	i18n, isLoggedIn, dataSetId, dataSetName, onUpdate, onSaveDataSet, onSaveAs, onClearGrid, onShowHistory, disabled
 }: GeneratorControlsProps): JSX.Element => {
 	const popoverRef = useRef(null);
 	const inputFieldRef = useRef(null);
@@ -95,7 +96,7 @@ const GeneratorControls = ({
 								<ListItem
 									button
 									key="history"
-									onClick={(): void => {}}>
+									onClick={(): void => onShowHistory(dataSetId)}>
 									<ListItemText primary={i18n.history} />
 								</ListItem>
 								<ListItem

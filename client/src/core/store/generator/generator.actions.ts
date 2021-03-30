@@ -413,3 +413,9 @@ export const stashGeneratorState = (): GDAction => ({ type: STASH_GENERATOR_STAT
 export const POP_STASHED_STATE = 'POP_STASHED_STATE';
 export const popStashedState = (): GDAction => ({ type: POP_STASHED_STATE });
 
+
+export const SHOW_DATA_SET_HISTORY = 'SHOW_DATA_SET_HISTORY';
+export const showDataSetHistory = (): GDAction => ({ type: SHOW_DATA_SET_HISTORY });
+
+export const HIDE_DATA_SET_HISTORY = 'HIDE_DATA_SET_HISTORY';
+export const hideDataSetHistory = (): GDAction => ({ type: HIDE_DATA_SET_HISTORY });
