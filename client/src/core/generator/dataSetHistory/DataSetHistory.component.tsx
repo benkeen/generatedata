@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { format, fromUnixTime, add } from 'date-fns';
+import React, { useState } from 'react';
+import { format, fromUnixTime } from 'date-fns';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 // import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
@@ -21,26 +21,37 @@ export type DataSetHistoryProps = {
 const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
-const Row = ({ historyId, dateCreated, onDelete, content, loadHistoryVersion, i18n }: any) => (
-	<div className={styles.row}>
-		<div className={styles.id}>{historyId}</div>
-		<div className={styles.dateCreated}>{format(fromUnixTime(dateCreated/1000), C.DATETIME_FORMAT)}</div>
-		<div className={styles.edit}>
-			<Button
-				size="small"
-				color="primary"
-				variant="outlined"
-				onClick={(): void => loadHistoryVersion(content)}>
-				{i18n.open}
-			</Button>
+const Row = ({ historyId, dateCreated, onDelete, content, loadHistoryVersion, isSelected, i18n }: any) => {
+	let classes = styles.row;
+	if (isSelected) {
+		classes += ` ${styles.selectedRow}`;
+	}
+
+	return (
+		<div className={classes}>
+			<div className={styles.id}>{historyId}</div>
+			<div className={styles.dateCreated}>
+				{format(fromUnixTime(dateCreated / 1000), C.DATETIME_FORMAT)}
+			</div>
+			<div className={styles.edit}>
+				<Button
+					size="small"
+					color="primary"
+					variant="outlined"
+					onClick={(): void => loadHistoryVersion(content)}>
+					{i18n.open}
+				</Button>
+			</div>
+			<div className={styles.del} onClick={onDelete}>
+				<HighlightOffIcon/>
+			</div>
 		</div>
-		<div className={styles.del} onClick={onDelete}>
-			<HighlightOffIcon />
-		</div>
-	</div>
-);
+	);
+};
 
 export const DataSetHistory = ({ showPanel, dataSetId, closePanel, loadHistoryVersion, i18n }: DataSetHistoryProps): React.ReactElement | null => {
+	const [historyId, setSelectedHistoryId] = useState();
+
 	if (!dataSetId) {
 		return null;
 	}
@@ -54,6 +65,11 @@ export const DataSetHistory = ({ showPanel, dataSetId, closePanel, loadHistoryVe
 		}
 	});
 
+	const loadVersion = ({ historyId, content }: any) => {
+		setSelectedHistoryId(historyId);
+		loadHistoryVersion(content);
+	};
+
 	let content = null;
 
 	if (data?.dataSetHistory) {
@@ -66,7 +82,8 @@ export const DataSetHistory = ({ showPanel, dataSetId, closePanel, loadHistoryVe
 						<Row
 							{...row}
 							key={row.historyId}
-							loadHistoryVersion={loadHistoryVersion}
+							loadHistoryVersion={() => loadVersion(row)}
+							isSelected={row.historyId === historyId}
 							i18n={i18n}
 						/>
 					))}

@@ -17,6 +17,7 @@ import { ClearType } from '../../dialogs/clearGrid/ClearGrid.component';
 import { DataSetListItem } from '~types/dataSets';
 import { getUnique } from '~utils/arrayUtils';
 import { getCountryData } from '~utils/countryUtils';
+import { getCurrentDataSetId, getCurrentDataSetName } from './generator.selectors';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -416,16 +417,23 @@ export const stashGeneratorState = (): GDAction => ({ type: STASH_GENERATOR_STAT
 export const POP_STASHED_STATE = 'POP_STASHED_STATE';
 export const popStashedState = (): GDAction => ({ type: POP_STASHED_STATE });
 
-
 export const SHOW_DATA_SET_HISTORY = 'SHOW_DATA_SET_HISTORY';
 export const showDataSetHistory = (): GDAction => ({ type: SHOW_DATA_SET_HISTORY });
 
 export const HIDE_DATA_SET_HISTORY = 'HIDE_DATA_SET_HISTORY';
 export const hideDataSetHistory = (): GDAction => ({ type: HIDE_DATA_SET_HISTORY });
 
-export const loadDataSetHistoryItem = (content: any): any => ({
-	type: LOAD_DATA_SET,
-	payload: {
-		...content
-	}
-});
+export const loadDataSetHistoryItem = (content: any): any => (dispatch: Dispatch, getState: any) => {
+	const state = getState();
+	const dataSetId = getCurrentDataSetId(state);
+	const dataSetName = getCurrentDataSetName(state);
+
+	dispatch({
+		type: LOAD_DATA_SET,
+		payload: {
+			...content,
+			dataSetId,
+			dataSetName
+		}
+	});
+};

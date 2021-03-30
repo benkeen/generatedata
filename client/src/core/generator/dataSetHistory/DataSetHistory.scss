@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .panel {
 	display: flex;
 	flex-direction: column;
@@ -6,7 +8,9 @@
 
 	section {
 		flex: 1;
+		padding: 0 20px;
 	}
+
 	footer {
 		padding: 15px;
 		button {
@@ -17,31 +21,11 @@
 
 .row {
 	display: flex;
-
-	.edit {
-		flex: 0 0 90px;
-		text-align: center;
-	}
-
-	.del {
-		flex: 0 0 30px;
-		align-items: center;
-		cursor: pointer;
-
-		&:hover {
-			svg {
-				fill: #990000;
-			}
-		}
-	}
-}
-
-.row {
-	display: flex;
 	width: 100%;
 	padding: 6px;
 	align-items: center;
 	font-size: 13px;
+	border: 1px solid transparent;
 
 	.id {
 		margin-left: 10px;
@@ -74,4 +58,10 @@
 			}
 		}
 	}
+}
+
+.selectedRow {
+	border: 1px solid $primary-color;
+	background-color: $primary-pale-color;
+	border-radius: 4px;
 }
