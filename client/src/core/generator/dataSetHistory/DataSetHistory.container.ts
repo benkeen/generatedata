@@ -11,7 +11,8 @@ const mapStateToProps = (state: any): Partial<DataSetHistoryProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetHistoryProps> => ({
-	closePanel: (): any => dispatch(generatorActions.hideDataSetHistory())
+	closePanel: (): any => dispatch(generatorActions.hideDataSetHistory()),
+	loadHistoryVersion: (content: any): any => dispatch(generatorActions.loadDataSetHistoryItem(JSON.parse(content)))
 });
 
 export default connect(

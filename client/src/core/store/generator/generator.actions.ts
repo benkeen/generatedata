@@ -422,3 +422,10 @@ export const showDataSetHistory = (): GDAction => ({ type: SHOW_DATA_SET_HISTORY
 
 export const HIDE_DATA_SET_HISTORY = 'HIDE_DATA_SET_HISTORY';
 export const hideDataSetHistory = (): GDAction => ({ type: HIDE_DATA_SET_HISTORY });
+
+export const loadDataSetHistoryItem = (content: any): any => ({
+	type: LOAD_DATA_SET,
+	payload: {
+		...content
+	}
+});

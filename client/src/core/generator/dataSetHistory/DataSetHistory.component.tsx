@@ -14,18 +14,25 @@ export type DataSetHistoryProps = {
 	showPanel: boolean;
 	dataSetId: number | null;
 	closePanel: () => void;
+	loadHistoryVersion: (content: any) => void;
 	i18n: any;
 };
 
 const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
-const Row = ({ historyId, dateCreated, onDelete, i18n }: any) => (
+const Row = ({ historyId, dateCreated, onDelete, content, loadHistoryVersion, i18n }: any) => (
 	<div className={styles.row}>
 		<div className={styles.id}>{historyId}</div>
 		<div className={styles.dateCreated}>{format(fromUnixTime(dateCreated/1000), C.DATETIME_FORMAT)}</div>
 		<div className={styles.edit}>
-			<Button size="small" type="submit" color="primary" variant="outlined" onClick={() => {}}>{i18n.open}</Button>
+			<Button
+				size="small"
+				color="primary"
+				variant="outlined"
+				onClick={(): void => loadHistoryVersion(content)}>
+				{i18n.open}
+			</Button>
 		</div>
 		<div className={styles.del} onClick={onDelete}>
 			<HighlightOffIcon />
@@ -33,7 +40,7 @@ const Row = ({ historyId, dateCreated, onDelete, i18n }: any) => (
 	</div>
 );
 
-export const DataSetHistory = ({ showPanel, dataSetId, closePanel, i18n }: DataSetHistoryProps): React.ReactElement | null => {
+export const DataSetHistory = ({ showPanel, dataSetId, closePanel, loadHistoryVersion, i18n }: DataSetHistoryProps): React.ReactElement | null => {
 	if (!dataSetId) {
 		return null;
 	}
@@ -59,6 +66,7 @@ export const DataSetHistory = ({ showPanel, dataSetId, closePanel, i18n }: DataS
 						<Row
 							{...row}
 							key={row.historyId}
+							loadHistoryVersion={loadHistoryVersion}
 							i18n={i18n}
 						/>
 					))}

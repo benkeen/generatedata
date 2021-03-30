@@ -386,6 +386,8 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.LOAD_DATA_SET: {
+			debugger;
+
 			const { exportType, exportTypeSettings, rows, sortedRows, dataSetId, dataSetName } = action.payload;
 			draft.exportType = exportType;
 			draft.exportTypeSettings[exportType as ExportTypeFolder] = exportTypeSettings;
