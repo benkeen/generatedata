@@ -252,6 +252,9 @@ export const toggleExportSettings = (tab?: ExportSettingsTab): GDAction => ({
 	}
 });
 
+export const HIDE_EXPORT_SETTINGS = 'HIDE_EXPORT_SETTINGS';
+export const hideExportSettings = (): GDAction => ({ type: HIDE_EXPORT_SETTINGS });
+
 export const SELECT_EXPORT_TYPE = 'SELECT_EXPORT_TYPE';
 export const onSelectExportType = (exportType: ExportTypeFolder, shouldRefreshPreviewPanel = true): any => {
 	return (dispatch: any): any => {

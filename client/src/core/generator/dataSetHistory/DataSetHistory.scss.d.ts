@@ -1,6 +1,11 @@
 declare namespace DataSetHistoryScssNamespace {
   export interface IDataSetHistoryScss {
+    dateCreated: string;
+    del: string;
+    edit: string;
+    id: string;
     panel: string;
+    row: string;
   }
 }
 

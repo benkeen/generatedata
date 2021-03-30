@@ -34,7 +34,9 @@ export type PreviewPanelProps = {
 	changeSmallScreenVisiblePanel: () => void;
 	exportTypeLoaded: boolean;
 	toggleExportSettings: () => void;
+	closeOverlayPanels: () => void;
 	exportSettingsVisible: boolean;
+	dataSetHistoryVisible: boolean;
 	hasData: boolean;
 	theme: string;
 	previewTextSize: number;
@@ -86,8 +88,8 @@ const NoResultsBlock = ({ i18n, type }: any): JSX.Element => {
 
 const PreviewPanel = ({
 	i18n, theme, togglePreview, hasData, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible,
-	exportTypeLabel, changeSmallScreenVisiblePanel, exportTypeLoaded, initialDependenciesLoaded,
-	hasValidExportTypeSettings, hasBulkActionPending, previewPanelDependenciesLoaded, initRefresh
+	dataSetHistoryVisible, exportTypeLabel, changeSmallScreenVisiblePanel, exportTypeLoaded, initialDependenciesLoaded,
+	hasValidExportTypeSettings, hasBulkActionPending, previewPanelDependenciesLoaded, initRefresh, closeOverlayPanels
 }: PreviewPanelProps): React.ReactNode => {
 	const windowSize = useWindowSize();
 
@@ -122,8 +124,8 @@ const PreviewPanel = ({
 
 	let closeIconAction: any;
 	let exportTypeLabelBtnAction: any;
-	if (exportSettingsVisible) {
-		closeIconAction = toggleExportSettings;
+	if (exportSettingsVisible || dataSetHistoryVisible) {
+		closeIconAction = closeOverlayPanels;
 		exportTypeLabelBtnAction = (): void => {};
 	} else {
 		if (windowSize.width < C.SMALL_SCREEN_WIDTH) {
@@ -151,6 +153,29 @@ const PreviewPanel = ({
 	const getExportSettingsBtn = (): React.ReactNode => {
 		if (exportSettingsVisible) {
 			return <div />;
+		}
+
+		if (dataSetHistoryVisible) {
+			return (
+				<div>
+					<Button
+						disableElevation
+						onClick={exportTypeLabelBtnAction}
+						variant="outlined"
+						color="primary"
+						size="medium">
+						{i18n.grid}
+					</Button>
+					<Button
+						disableElevation
+						onClick={exportTypeLabelBtnAction}
+						variant="outlined"
+						color="primary"
+						size="medium">
+						{i18n.preview}
+					</Button>
+				</div>
+			);
 		}
 
 		let exportTypeButtonClasses = 'tour-exportTypeBtn';
@@ -231,7 +256,7 @@ const PreviewPanel = ({
 		</div>
 	);
 
-	if (exportSettingsVisible) {
+	if (exportSettingsVisible || dataSetHistoryVisible) {
 		return (
 			<Portal id="previewPanelFullScreen">
 				<div className={`${styles.previewPanel} ${themeName}`}>{content}</div>

@@ -1,4 +1,5 @@
 import { format, fromUnixTime } from 'date-fns';
+import C from '~core/constants';
 
 export const formatDuration = (duration: number): string => {
 	const secondsStr = Math.floor(duration % 60).toString();
@@ -22,5 +23,5 @@ export const formatUnixTime = (time: number): string => {
 	if (!time) {
 		return '';
 	}
-	return format(fromUnixTime(time), 'MMM d, y h:mm a');
+	return format(fromUnixTime(time), C.DATETIME_FORMAT);
 };

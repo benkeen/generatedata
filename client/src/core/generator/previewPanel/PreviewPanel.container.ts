@@ -13,6 +13,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		i18n: selectors.getCoreI18n(state),
 		theme: selectors.getTheme(state),
 		exportSettingsVisible: selectors.shouldShowExportSettings(state),
+		dataSetHistoryVisible: selectors.shouldShowDataSetHistory(state),
 		previewTextSize: selectors.getPreviewTextSize(state),
 		exportTypeLoaded: selectors.selectedExportTypeLoaded(state),
 		exportTypeLabel: selectors.getExportTypeLabel(state),
@@ -27,13 +28,13 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelProps> => ({
 	togglePreview: (): any => dispatch(actions.togglePreview()),
 	refreshPreview: (): any => dispatch(actions.refreshPreview()),
-
-	// TODO rename?
-	initRefresh: (): any => {
-		dispatch(actions.refreshPreview([], actions.setInitialDependenciesLoaded));
-	},
+	initRefresh: (): any => dispatch(actions.refreshPreview([], actions.setInitialDependenciesLoaded)),
 	toggleExportSettings: (): any => dispatch(actions.toggleExportSettings('previewPanel')),
-	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel())
+	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel()),
+	closeOverlayPanels: (): any => {
+		dispatch(actions.hideExportSettings());
+		dispatch(actions.hideDataSetHistory());
+	}
 });
 
 const container: any = connect(

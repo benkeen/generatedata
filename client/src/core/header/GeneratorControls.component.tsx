@@ -20,7 +20,7 @@ export type GeneratorControlsProps = {
 	onUpdate: (newDataSetName: string) => void;
 	onSaveDataSet: () => void;
 	onSaveAs: () => void;
-	onShowHistory: (dataSetId: number) => void;
+	onShowHistory: () => void;
 	onClearGrid: () => void;
 	disabled: boolean;
 };
@@ -96,7 +96,10 @@ const GeneratorControls = ({
 								<ListItem
 									button
 									key="history"
-									onClick={(): void => onShowHistory(dataSetId)}>
+									onClick={(): void => {
+										setMenuVisibility(false);
+										onShowHistory();
+									}}>
 									<ListItemText primary={i18n.history} />
 								</ListItem>
 								<ListItem

@@ -76,5 +76,6 @@ export default {
 		'southAmerica'
 	],
 
-	DATE_FORMAT: 'MMM d, y'
+	DATE_FORMAT: 'MMM d, y',
+	DATETIME_FORMAT: 'MMM d, y h:mm a'
 };

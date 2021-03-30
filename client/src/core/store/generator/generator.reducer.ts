@@ -330,9 +330,13 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 		case actions.TOGGLE_EXPORT_SETTINGS:
 			draft.showExportSettings = !draft.showExportSettings;
-			if (action.payload.tab) {
+			if (action.payload?.tab) {
 				draft.exportSettingsTab = action.payload.tab;
 			}
+			break;
+
+		case actions.HIDE_EXPORT_SETTINGS:
+			draft.showExportSettings = false;
 			break;
 
 		case actions.SHOW_GENERATION_SETTINGS_PANEL:

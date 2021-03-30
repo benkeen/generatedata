@@ -14,3 +14,64 @@
 		}
 	}
 }
+
+.row {
+	display: flex;
+
+	.edit {
+		flex: 0 0 90px;
+		text-align: center;
+	}
+
+	.del {
+		flex: 0 0 30px;
+		align-items: center;
+		cursor: pointer;
+
+		&:hover {
+			svg {
+				fill: #990000;
+			}
+		}
+	}
+}
+
+.row {
+	display: flex;
+	width: 100%;
+	padding: 6px;
+	align-items: center;
+	font-size: 13px;
+
+	.id {
+		margin-left: 10px;
+		flex: 0 1 50px;
+		color: #999999;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.dateCreated {
+		flex: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.edit {
+		margin-right: 10px;
+	}
+
+	.del {
+		flex: 0 0 30px;
+		align-items: center;
+		cursor: pointer;
+
+		&:hover {
+			svg {
+				fill: #990000;
+			}
+		}
+	}
+}
