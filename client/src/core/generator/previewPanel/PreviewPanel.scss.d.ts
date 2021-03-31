@@ -1,6 +1,7 @@
 declare namespace PreviewPanelScssNamespace {
   export interface IPreviewPanelScss {
     controls: string;
+    dataSetHistoryBtnClass: string;
     error: string;
     loading: string;
     noResults: string;

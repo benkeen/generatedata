@@ -6,6 +6,7 @@ declare namespace DataSetHistoryScssNamespace {
     id: string;
     panel: string;
     row: string;
+    rows: string;
     selectedRow: string;
   }
 }

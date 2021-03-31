@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { format, fromUnixTime } from 'date-fns';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
-// import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
-// import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import HistoryIcon from '@material-ui/icons/History';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { useQuery } from '@apollo/client';
 import * as queries from '~core/queries';
@@ -13,6 +12,7 @@ import C from '~core/constants';
 export type DataSetHistoryProps = {
 	showPanel: boolean;
 	dataSetId: number | null;
+	dataSetName: string;
 	closePanel: () => void;
 	loadHistoryVersion: (content: any) => void;
 	i18n: any;
@@ -21,7 +21,7 @@ export type DataSetHistoryProps = {
 const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
-const Row = ({ historyId, dateCreated, onDelete, content, loadHistoryVersion, isSelected, i18n }: any) => {
+const Row = ({ historyId, dateCreated, onDelete, content, loadHistoryVersion, isSelected, i18n }: any): React.ReactElement => {
 	let classes = styles.row;
 	if (isSelected) {
 		classes += ` ${styles.selectedRow}`;
@@ -43,20 +43,22 @@ const Row = ({ historyId, dateCreated, onDelete, content, loadHistoryVersion, is
 				</Button>
 			</div>
 			<div className={styles.del} onClick={onDelete}>
-				<HighlightOffIcon/>
+				<HighlightOffIcon />
 			</div>
 		</div>
 	);
 };
 
-export const DataSetHistory = ({ showPanel, dataSetId, closePanel, loadHistoryVersion, i18n }: DataSetHistoryProps): React.ReactElement | null => {
-	const [historyId, setSelectedHistoryId] = useState();
+export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, loadHistoryVersion,
+	i18n }: DataSetHistoryProps): React.ReactElement | null => {
+
+	const [historyId, setSelectedHistoryId] = useState<number | null>(null);
 
 	if (!dataSetId) {
 		return null;
 	}
 
-	const { data } = useQuery(queries.GET_DATA_SET_HISTORY, {
+	const { data, loading } = useQuery(queries.GET_DATA_SET_HISTORY, {
 		fetchPolicy: 'cache-and-network',
 		variables: {
 			dataSetId,
@@ -64,6 +66,12 @@ export const DataSetHistory = ({ showPanel, dataSetId, closePanel, loadHistoryVe
 			limit: NUM_PER_PAGE
 		}
 	});
+
+	useEffect(() => {
+		if (historyId === null && data?.dataSetHistory.results.length > 1) {
+			setSelectedHistoryId(data.dataSetHistory.results[0].historyId);
+		}
+	}, [data]);
 
 	const loadVersion = ({ historyId, content }: any) => {
 		setSelectedHistoryId(historyId);
@@ -74,10 +82,10 @@ export const DataSetHistory = ({ showPanel, dataSetId, closePanel, loadHistoryVe
 
 	if (data?.dataSetHistory) {
 		if (data.dataSetHistory.totalCount === 1) {
-			content = <p>No history.</p>;
+			content = <p>No history yet!</p>;
 		} else {
 			content = (
-				<div>
+				<div className={styles.rows}>
 					{data.dataSetHistory.results.map((row: any) => (
 						<Row
 							{...row}
@@ -92,15 +100,29 @@ export const DataSetHistory = ({ showPanel, dataSetId, closePanel, loadHistoryVe
 		}
 	}
 
+	let loader = null;
+	if (loading) {
+
+	}
+
 	return (
 		<Drawer open={showPanel} anchor="left" onClose={() => {}}>
 			<div className={`${styles.panel} tour-dataSetHistoryPanel`}>
-				<h2>{i18n.history}</h2>
+				<h2>
+					<HistoryIcon />
+					{dataSetName}
+				</h2>
 				<section>
+					<p>
+						This panel shows the history of changes made to this data set. Click the Open buttons to browse
+						earlier versions. To revert to an earlier version, just open it then close this panel and re-save.
+					</p>
+					{loader}
 					{content}
 				</section>
 				<footer>
 					<Button onClick={closePanel} variant="outlined" color="primary" disableElevation>
+						<HighlightOffIcon />
 						{i18n.closePanel}
 					</Button>
 				</footer>

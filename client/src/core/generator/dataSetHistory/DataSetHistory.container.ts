@@ -7,12 +7,13 @@ import * as generatorActions from '~store/generator/generator.actions';
 const mapStateToProps = (state: any): Partial<DataSetHistoryProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	dataSetId: selectors.getCurrentDataSetId(state),
+	dataSetName: selectors.getCurrentDataSetName(state),
 	showPanel: selectors.shouldShowDataSetHistory(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetHistoryProps> => ({
 	closePanel: (): any => dispatch(generatorActions.hideDataSetHistory()),
-	loadHistoryVersion: (content: any): any => dispatch(generatorActions.loadDataSetHistoryItem(JSON.parse(content)))
+	loadHistoryVersion: (content: any): any => dispatch(generatorActions.loadDataSetHistoryItem(content))
 });
 
 export default connect(

@@ -6,17 +6,48 @@
 	width: 400px;
 	height: 100%;
 
+	h2 {
+		display: flex;
+		align-items: center;
+		flex: 0 0 auto;
+		margin: 15px 20px;
+
+		svg {
+			margin-right: 5px;
+			font-size: 19px;
+			fill: #888888;
+		}
+	}
+
 	section {
+		display: flex;
+		flex-direction: column;
 		flex: 1;
+		overflow: hidden;
 		padding: 0 20px;
+
+		p {
+			flex: 0 0 auto;
+			margin-top: 0;
+		}
 	}
 
 	footer {
+		flex: 0 0 auto;
 		padding: 15px;
 		button {
 			width: 100%;
+
+			svg {
+				margin-right: 5px;
+			}
 		}
 	}
+}
+
+.rows {
+	flex: 1;
+	overflow: auto;
 }
 
 .row {
@@ -66,3 +97,4 @@
 	background-color: $primary-pale-color;
 	border-radius: 4px;
 }
+

@@ -12,6 +12,6 @@
   "customTextDesc": "This field lets you enter whatever text you would like to be used as the data source.",
   "source": "Source",
   "explanation": "This section lets you customize the text used as the data source.",
-  "enterCustomText": "Enter some custom text here. Make sure you enter a good amount of words.",
+  "enterCustomText": "Enter some custom text here. Make sure you enter enough words to cover what you need.",
   "custom": "Custom"
 }

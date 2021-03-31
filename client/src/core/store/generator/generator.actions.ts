@@ -370,10 +370,9 @@ export const SET_INITIAL_DEPENDENCIES_LOADED = 'SET_INITIAL_DEPENDENCIES_LOADED'
 export const setInitialDependenciesLoaded = (): GDAction => ({ type: SET_INITIAL_DEPENDENCIES_LOADED });
 
 export const SET_BULK_ACTION = 'SET_BULK_ACTION';
-export const setBulkAction = (isComplete: boolean): GDAction => ({ type: SET_BULK_ACTION, payload: { isComplete } });
-
 export const LOAD_DATA_SET = 'LOAD_DATA_SET';
-export const loadDataSet = (dataSet: DataSetListItem): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
+
+export const loadDataSet = (dataSet: DataSetListItem, showToast = true): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();
 	const { exportType, exportTypeSettings, rows, sortedRows } = JSON.parse(dataSet.content);
 
@@ -405,10 +404,12 @@ export const loadDataSet = (dataSet: DataSetListItem): any => async (dispatch: D
 		}
 	});
 
-	addToast({
-		type: 'success',
-		message: i18n.core.dataSetLoaded
-	});
+	if (showToast) {
+		addToast({
+			type: 'success',
+			message: i18n.core.dataSetLoaded
+		});
+	}
 };
 
 export const STASH_GENERATOR_STATE = 'STASH_GENERATOR_STATE';
@@ -423,17 +424,14 @@ export const showDataSetHistory = (): GDAction => ({ type: SHOW_DATA_SET_HISTORY
 export const HIDE_DATA_SET_HISTORY = 'HIDE_DATA_SET_HISTORY';
 export const hideDataSetHistory = (): GDAction => ({ type: HIDE_DATA_SET_HISTORY });
 
-export const loadDataSetHistoryItem = (content: any): any => (dispatch: Dispatch, getState: any) => {
+export const loadDataSetHistoryItem = (content: any): any => (dispatch: Dispatch, getState: any): any => {
 	const state = getState();
 	const dataSetId = getCurrentDataSetId(state);
 	const dataSetName = getCurrentDataSetName(state);
 
-	dispatch({
-		type: LOAD_DATA_SET,
-		payload: {
-			...content,
-			dataSetId,
-			dataSetName
-		}
-	});
+	dispatch(loadDataSet({
+		dataSetId,
+		dataSetName,
+		content
+	} as DataSetListItem, false));
 };

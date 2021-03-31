@@ -1,4 +1,5 @@
 import * as React from 'react';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import Tabs from '@material-ui/core/Tabs';
@@ -42,6 +43,7 @@ export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings 
 				</section>
 				<footer>
 					<Button onClick={toggleExportSettings} variant="outlined" color="primary" disableElevation>
+						<HighlightOffIcon />
 						{i18n.closePanel}
 					</Button>
 				</footer>

@@ -150,6 +150,11 @@ const PreviewPanel = ({
 		refreshIconProps = { disabled: true };
 	}
 
+	let exportTypeButtonClasses = 'tour-exportTypeBtn';
+	if (!hasValidExportTypeSettings) {
+		exportTypeButtonClasses += ` ${styles.error}`;
+	}
+
 	const getExportSettingsBtn = (): React.ReactNode => {
 		if (exportSettingsVisible) {
 			return <div />;
@@ -164,6 +169,7 @@ const PreviewPanel = ({
 						variant="outlined"
 						color="primary"
 						size="medium"
+						className={styles.dataSetHistoryBtnClass}
 						style={{ marginRight: 10 }}>
 						{i18n.grid}
 					</Button>
@@ -172,16 +178,12 @@ const PreviewPanel = ({
 						onClick={exportTypeLabelBtnAction}
 						variant="outlined"
 						color="primary"
+						className={styles.dataSetHistoryBtnClass}
 						size="medium">
 						{i18n.preview}
 					</Button>
 				</div>
 			);
-		}
-
-		let exportTypeButtonClasses = 'tour-exportTypeBtn';
-		if (!hasValidExportTypeSettings) {
-			exportTypeButtonClasses += ` ${styles.error}`;
 		}
 
 		return (

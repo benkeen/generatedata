@@ -106,6 +106,9 @@ input.errorField, textarea.errorField, select.errorField, button.errorField {
 }
 
 .generatorControls {
+	flex: 1;
+	overflow: hidden;
+	padding-right: 18px;
 	opacity: 0;
 	transition: opacity 200ms ease-in-out;
 
