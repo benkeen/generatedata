@@ -13,7 +13,7 @@ import { formatUnixTime } from '~utils/dateUtils';
 import { getGeneratorRoute } from '~utils/routeUtils';
 import { useHistory } from 'react-router';
 
-const Row = ({ onDelete, onLoad, onViewHistory, dataSet, i18n }: any): JSX.Element => (
+const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 	<div className={styles.row}>
 		<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
 		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
@@ -22,10 +22,7 @@ const Row = ({ onDelete, onLoad, onViewHistory, dataSet, i18n }: any): JSX.Eleme
 			{dataSet.status === 'public' ? i18n.public : i18n.private}
 		</div>
 		<div className={styles.open}>
-			<Button size="small" type="submit" color="secondary" variant="outlined" onClick={onLoad}>{i18n.open}</Button>
-		</div>
-		<div className={styles.history}>
-			<Button size="small" type="submit" color="primary" variant="outlined" onClick={onViewHistory}>{i18n.history}</Button>
+			<Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>{i18n.open}</Button>
 		</div>
 		<div className={styles.del} onClick={onDelete}>
 			<HighlightOffIcon />
@@ -35,7 +32,6 @@ const Row = ({ onDelete, onLoad, onViewHistory, dataSet, i18n }: any): JSX.Eleme
 
 export type DataSetsProps = {
 	onLoadDataSet: (dataSet: DataSetListItem) => void;
-	onViewHistory: (dataSet: DataSetListItem) => void;
 	className: string;
 	i18n: any;
 };
@@ -43,7 +39,7 @@ export type DataSetsProps = {
 // to be moved to a user setting at some point
 const NUM_PER_PAGE = 10;
 
-const DataSets = ({ onLoadDataSet, onViewHistory, i18n, className = '' }: DataSetsProps): JSX.Element | null => {
+const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.Element | null => {
 	const history = useHistory();
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [currentPage, setCurrentPage] = useState(1);
@@ -63,11 +59,6 @@ const DataSets = ({ onLoadDataSet, onViewHistory, i18n, className = '' }: DataSe
 
 	const loadDataSet = (dataSet: DataSetListItem): void => {
 		onLoadDataSet(dataSet);
-		history.push(getGeneratorRoute());
-	};
-
-	const viewDataSetHistory = (dataSet: DataSetListItem): void => {
-		onViewHistory(dataSet);
 		history.push(getGeneratorRoute());
 	};
 
@@ -149,7 +140,6 @@ const DataSets = ({ onLoadDataSet, onViewHistory, i18n, className = '' }: DataSe
 			sortable: true
 		},
 		{ label: i18n.open, className: styles.open },
-		{ label: i18n.history, className: styles.history },
 		{ label: '', className: styles.del },
 	];
 
@@ -173,7 +163,6 @@ const DataSets = ({ onLoadDataSet, onViewHistory, i18n, className = '' }: DataSe
 								dataSet={dataSet}
 								onDelete={(): void => onShowDeleteDialog(dataSet)}
 								onLoad={(): void => loadDataSet(dataSet)}
-								onViewHistory={(): void => viewDataSetHistory(dataSet)}
 								i18n={i18n}
 							/>
 						))}
