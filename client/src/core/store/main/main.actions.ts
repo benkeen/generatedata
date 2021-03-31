@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import { gql } from '@apollo/client';
+import Cookies from 'js-cookie';
 import { AuthMethod, GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
@@ -116,6 +117,7 @@ export const login = (email: string, password: string, onLoginError: Function): 
                 login(email: $email, password: $password) {
                     token
                     tokenExpiry
+					refreshToken
                     success
 					accountId
                     firstName
@@ -136,11 +138,17 @@ export const login = (email: string, password: string, onLoginError: Function): 
 	});
 
 	if (response.data.login.success) {
+		const { tokenExpiry, refreshToken } = response.data.login;
 		dispatch(setAuthenticationData({
 			...response.data.login,
 			authMethod: 'default'
 		}));
-		onLoginSuccess(response.data.login.tokenExpiry, false, dispatch);
+
+		Cookies.set('refreshToken', refreshToken, {
+			expires: new Date(tokenExpiry)
+		});
+
+		onLoginSuccess(tokenExpiry, false, dispatch);
 	} else {
 		dispatch(setLoginError());
 		onLoginError();
@@ -151,7 +159,7 @@ export const onLoginSuccess = (tokenExpiry: number | null, onPageRender: boolean
 	const i18n = getStrings();
 
 	if (tokenExpiry) {
-		setAuthTokenRefresh(tokenExpiry, (): any => refreshToken()(dispatch));
+		setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
 	}
 
 	dispatch(setLoginDialogVisibility(false));
@@ -175,6 +183,8 @@ export const logout = (): any => async (dispatch: Dispatch, getState: any): Prom
 
 	// if the user logged in with Google, Facebook etc. we need to also let them know
 	logoutVendor(getAuthMethod(getState()));
+
+	Cookies.remove('refreshToken');
 
 	dispatch({ type: LOGOUT });
 	dispatch({ type: CLEAR_GRID });
@@ -201,7 +211,7 @@ export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = (token: string): GDAction => ({ type: SET_AUTH_TOKEN, payload: { token } });
 
 export const REFRESHING_TOKEN = 'REFRESHING_TOKEN';
-export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
+export const updateRefreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 	dispatch({ type: REFRESHING_TOKEN });
 
 	const response = await apolloClient.mutate({
@@ -210,6 +220,7 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
                 refreshToken {
                     token
                     tokenExpiry
+					refreshToken
                     success
                     firstName
                     lastName
@@ -228,12 +239,15 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 
 	const success = response.data.refreshToken.success;
 	if (success) {
-		const { token, tokenExpiry } = response.data.refreshToken;
-		setAuthTokenRefresh(tokenExpiry, (): any => refreshToken()(dispatch));
+		const { token, tokenExpiry, refreshToken } = response.data.refreshToken;
+
+		Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
+
+		setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
 		dispatch(setAuthenticationData(response.data.refreshToken));
 		dispatch(setAuthToken(token));
 	} else {
-		console.log('token NOT refreshed', response);
+		console.log('token NOT refreshed -- user logged out');
 	}
 
 	dispatch(setAuthenticated(success));

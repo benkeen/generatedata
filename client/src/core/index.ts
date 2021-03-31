@@ -29,7 +29,7 @@ export const init = (): void => {
 
 	// if there's a live session, verify the JWT is still valid
 	if (mainSelectors.isLoggedIn(state)) {
-		store.dispatch(mainActions.refreshToken());
+		store.dispatch(mainActions.updateRefreshToken());
 	} else {
 		store.dispatch(mainActions.setOnloadAuthDetermined());
 	}

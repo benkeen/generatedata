@@ -153,7 +153,7 @@ const resolvers = {
 		// authentication resolvers
 		login: authResolvers.login,
 		loginWithGoogle: authResolvers.loginWithGoogle,
-		refreshToken: authResolvers.refreshToken,
+		refreshToken: authResolvers.checkAndUpdateRefreshToken,
 		logout: authResolvers.logout,
 
 		// account-related resolvers

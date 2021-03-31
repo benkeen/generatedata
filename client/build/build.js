@@ -22,7 +22,8 @@ const envSettings = {
 	defaultExportType: process.env.GD_DEFAULT_EXPORT_TYPE,
 	apiEnabled: process.env.GD_REST_API_ENABLED === "true",
 	availableLocales: process.env.GD_LOCALES.split(','),
-	googleAuthClientId: process.env.GD_GOOGLE_AUTH_CLIENT_ID
+	googleAuthClientId: process.env.GD_GOOGLE_AUTH_CLIENT_ID,
+	jwtDurationMins: parseInt(process.env.GD_JWT_LIFESPAN_MINS)
 };
 
 const envSettingsFile = `${banner}
@@ -43,6 +44,7 @@ export type EnvSettings = {
 	apiEnabled: boolean;
 	availableLocales: GDLocale[];
 	googleAuthClientId: string;
+	jwtDurationMins: number;
 };
 `;
 

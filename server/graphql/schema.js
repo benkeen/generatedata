@@ -88,7 +88,8 @@ const typeDefs = gql`
     type AuthResponse {
         success: Boolean
         token: String
-        tokenExpiry: Int
+        tokenExpiry: String
+		refreshToken: String
         error: String
         accountId: ID
         expiryDate: String

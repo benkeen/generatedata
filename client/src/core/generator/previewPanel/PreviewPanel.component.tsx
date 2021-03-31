@@ -163,7 +163,8 @@ const PreviewPanel = ({
 						onClick={exportTypeLabelBtnAction}
 						variant="outlined"
 						color="primary"
-						size="medium">
+						size="medium"
+						style={{ marginRight: 10 }}>
 						{i18n.grid}
 					</Button>
 					<Button

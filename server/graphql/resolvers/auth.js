@@ -25,12 +25,13 @@ const login = async (root, { email, password }, { res }) => {
 		return { success: false };
 	}
 
-	const { token, tokenExpiry } = await getNewTokenAndSetRefreshTokenCookie(accountId, email, user, res);
+	const { token, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
 
 	return {
 		success: true,
 		token,
 		tokenExpiry,
+		refreshToken,
 		email,
 		...user.dataValues
 	};
@@ -96,35 +97,40 @@ const loginWithGoogle = async (root, { googleToken }) => {
 	};
 };
 
-const refreshToken = async (root, args, { token, req, res }) => {
+const checkAndUpdateRefreshToken = async (root, args, { token, req, res }) => {
+
+	console.log("COOKIES: ", req.cookies);
+
 	if (!req.cookies.refreshToken) {
-		console.log('no existing refresh token! unable to refresh');
 		return { success: false };
 	}
 
-	const refreshToken = req.cookies.refreshToken;
+	const oldRefreshToken = req.cookies.refreshToken;
 	const user = await db.accounts.findOne({
 		attributes: [
 			'accountId', 'accountType', 'firstName', 'email', 'lastName', 'country', 'region', 'dateCreated',
 			'expiryDate', 'numRowsGenerated'
 		],
 		where: {
-			refreshToken
+			refreshToken: oldRefreshToken
 		}
 	});
 
 	if (!user) {
 		console.log('not found with token: ', req.cookies.refreshToken);
 		return { success: false };
+	} else {
+		console.log("FOUND USER WITH refresh token. Still active?????");
 	}
 
 	const { accountId, email } = user.dataValues;
-	const { token: newToken, tokenExpiry } = await getNewTokenAndSetRefreshTokenCookie(accountId, email, user, res);
+	const { token: newToken, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
 
 	return {
 		success: true,
 		token: newToken,
 		tokenExpiry,
+		refreshToken,
 		...user.dataValues
 	};
 };
@@ -147,32 +153,27 @@ const logout = async (root, args, { req }) => {
 	return { success: true };
 };
 
-const getNewTokenAndSetRefreshTokenCookie = async (accountId, email, user, res) => {
+const getNewTokens = async (accountId, email, user) => {
 	const token = await authUtils.getJwt({ accountId, email });
 
 	// store the refresh token in a cookie and stash in the db
 	const refreshToken = nanoid();
 	await user.update({ refreshToken: refreshToken });
 
-	// now set it in a cookie. This info cannot be accessed by any running JS in the page (thanks to httpOnly),
-	// but it'll be automatically passed along with any subsequent requests to the server - including the
-	// all-important refreshToken refresh. This info enables the front-end code to automatically extend the
-	// lifespan of the living token (`token`)
-	const tokenExpiry = process.env.GD_JWT_LIFESPAN_MINS * 60 * 1000; // milliseconds
+	// ideally we'd set this cookie here on the server by passing back a Set-Cookie header. But due to the different
+	// ports, that's a no go. Instead, this is passed back to the client which sets it in a cookie. That info is then
+	// sent along with any subsequent requests to the server - including the all-important refreshToken request. This
+	// info enables the front-end code to transparently extend the lifespan of the living token (`token`) just by making
+	// requests
+	const expiryMsFromNow = process.env.GD_JWT_LIFESPAN_MINS * 60 * 1000;
+	const tokenExpiry = new Date().getTime() + expiryMsFromNow; // TODO hash this for sending to the client?
 
-	res.cookie("refreshToken", refreshToken, { // TODO hash this for sending to the client?
-		secure: false, // TODO
-		httpOnly: true,
-		maxAge: tokenExpiry,
-		domain: process.env.GD_WEB_DOMAIN
-	});
-
-	return { token, tokenExpiry };
+	return { token, tokenExpiry, refreshToken };
 };
 
 module.exports = {
 	login,
 	loginWithGoogle,
-	refreshToken,
+	checkAndUpdateRefreshToken,
 	logout
 };
