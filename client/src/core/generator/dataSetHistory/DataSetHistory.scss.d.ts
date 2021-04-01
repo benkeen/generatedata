@@ -1,5 +1,6 @@
 declare namespace DataSetHistoryScssNamespace {
   export interface IDataSetHistoryScss {
+    dataSetHistoryBtnClass: string;
     dateCreated: string;
     del: string;
     edit: string;

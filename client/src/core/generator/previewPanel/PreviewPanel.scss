@@ -7,7 +7,7 @@
 	}
 }
 
-:global(#previewPanelFullScreen) {
+:global(#overlayPanelFullScreen) {
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -98,9 +98,4 @@ button.error {
 		background-color: #503636;
 		border-color: #dc4040;
 	}
-}
-
-button.dataSetHistoryBtnClass {
-	color: white;
-	border-color: white;
 }

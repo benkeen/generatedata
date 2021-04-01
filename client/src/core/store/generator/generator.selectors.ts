@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { GeneratorLayout } from '../../generator/Generator.component';
-import { DataRow, DataRows, GeneratorPanel } from './generator.reducer';
+import { DataRow, DataRows } from './generator.reducer';
+import { GeneratorPanel } from '~types/general';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import * as mainSelectors from '../main/main.selectors';
 import * as langUtils from '~utils/langUtils';
@@ -30,6 +31,7 @@ export const getPreviewTextSize = (state: Store): number => state.generator.prev
 export const getDataTypePreviewData = (state: Store): any => state.generator.dataTypePreviewData;
 export const shouldShowExportSettings = (state: Store): boolean => state.generator.showExportSettings;
 export const shouldShowDataSetHistory = (state: Store): boolean => state.generator.showDataSetHistory;
+export const getDataSetHistoryViewPanel = (state: Store): GeneratorPanel => state.generator.dataSetHistoryViewPanel;
 export const getExportTypeSettings = (state: Store): any => state.generator.exportTypeSettings;
 export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
 export const isGenerationSettingsPanelVisible = (state: Store): boolean => state.generator.showGenerationSettingsPanel;

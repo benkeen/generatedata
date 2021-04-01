@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Measure from 'react-measure';
 import { useWindowSize } from 'react-hooks-window-size';
@@ -8,12 +8,12 @@ import Button from '@material-ui/core/Button';
 import * as styles from './Grid.scss';
 import HelpDialog from '../../dialogs/help/HelpDialog.component';
 import { Tooltip } from '~components/tooltips';
+import PanelButtons from '~core/generator/dataSetHistory/PanelButtons.container';
 import { DataRow } from '~store/generator/generator.reducer';
 import { DataTypeFolder } from '../../../../_plugins';
 import GridRow from './GridRow.container';
 import C from '../../constants';
-import { useMemo } from 'react';
-
+import Portal from '~components/Portal';
 
 export type GridProps = {
 	rows: DataRow[];
@@ -30,12 +30,14 @@ export type GridProps = {
 	hideHelpDialog: () => void;
 	helpDialogSection: DataTypeFolder | null;
 	helpDialogVisible: boolean;
+	exportSettingsVisible: boolean;
+	dataSetHistoryVisible: boolean;
 };
 
 
 const Grid = ({
 	rows, onAddRows, onSelectDataType, onSort, i18n, dataTypeI18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel,
-	showHelpDialog, hideHelpDialog, helpDialogSection, helpDialogVisible
+	showHelpDialog, hideHelpDialog, helpDialogSection, helpDialogVisible, exportSettingsVisible, dataSetHistoryVisible
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
@@ -69,8 +71,12 @@ const Grid = ({
 		dimensions.width
 	]);
 
-	return (
+	const content = (
 		<>
+			<div style={{ padding: 10 }}>
+				<PanelButtons />
+			</div>
+
 			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={onClose}>
 				<Tooltip
 					title={<span dangerouslySetInnerHTML={{ __html: i18n.closePanel }}/>}
@@ -132,11 +138,11 @@ const Grid = ({
 								<form onSubmit={(e): any => e.preventDefault()} className={`${styles.addRows} tour-addRows`}>
 									<span>{i18n.add}</span>
 									<input type="number"
-										value={numRows}
-										onChange={(e): void => setNumRows(parseInt(e.target.value, 10))}
-										min={1}
-										max={1000}
-										step={1}
+										   value={numRows}
+										   onChange={(e): void => setNumRows(parseInt(e.target.value, 10))}
+										   min={1}
+										   max={1000}
+										   step={1}
 									/>
 									<Button
 										size="small"
@@ -162,6 +168,16 @@ const Grid = ({
 			</Measure>
 		</>
 	);
+
+	if (exportSettingsVisible || dataSetHistoryVisible) {
+		return (
+			<Portal id="overlayPanelFullScreen">
+				<div className={styles.gridOverlay}>{content}</div>
+			</Portal>
+		);
+	}
+
+	return content;
 };
 
 export default Grid;

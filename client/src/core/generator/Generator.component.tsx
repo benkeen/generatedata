@@ -3,7 +3,7 @@ import { useWindowSize } from 'react-hooks-window-size';
 import SplitPane from 'react-split-pane';
 import Grid from './grid/Grid.container';
 import Preview from './previewPanel/PreviewPanel.container';
-import { GeneratorPanel } from '~store/generator/generator.reducer';
+import { GeneratorPanel } from '~types/general';
 import ExportSettings from './exportSettings/ExportSettings.container';
 import ActivityPanel from '../generationPanel/ActivityPanel.container';
 import GenerationSettings from '../generationPanel/GenerationSettings.container';
@@ -22,11 +22,13 @@ export type GeneratorProps = {
 	lastLayoutWidth: number | null;
 	lastLayoutHeight: number | null;
 	smallScreenVisiblePanel: GeneratorPanel;
+	showDataSetHistory: boolean;
+	dataSetHistoryPanel: GeneratorPanel;
 }
 
 const Builder = ({
 	isGridVisible, isPreviewVisible, generatorLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight,
-	smallScreenVisiblePanel
+	smallScreenVisiblePanel, showDataSetHistory, dataSetHistoryPanel
 }: GeneratorProps): JSX.Element => {
 
 	const windowSize = useWindowSize();
@@ -52,6 +54,11 @@ const Builder = ({
 	const getContent = (): JSX.Element => {
 		if (windowSize.width < C.SMALL_SCREEN_WIDTH) {
 			return smallScreenVisiblePanel === 'grid' ? <Grid /> : <Preview />;
+		}
+
+		// data set history only available on desktop
+		if (showDataSetHistory) {
+			return (dataSetHistoryPanel === GeneratorPanel.grid) ? <Grid /> : <Preview />;
 		}
 
 		if (isGridVisible && isPreviewVisible) {

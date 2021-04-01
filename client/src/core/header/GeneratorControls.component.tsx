@@ -95,15 +95,6 @@ const GeneratorControls = ({
 							<List disablePadding>
 								<ListItem
 									button
-									key="history"
-									onClick={(): void => {
-										setMenuVisibility(false);
-										onShowHistory();
-									}}>
-									<ListItemText primary={i18n.history} />
-								</ListItem>
-								<ListItem
-									button
 									key="delete"
 									onClick={(): any => {
 										setMenuVisibility(false);
@@ -119,6 +110,15 @@ const GeneratorControls = ({
 										onSaveAs();
 									}}>
 									<ListItemText primary={i18n.saveAs} />
+								</ListItem>
+								<ListItem
+									button
+									key="history"
+									onClick={(): void => {
+										setMenuVisibility(false);
+										onShowHistory();
+									}}>
+									<ListItemText primary={i18n.history} />
 								</ListItem>
 							</List>
 						</div>

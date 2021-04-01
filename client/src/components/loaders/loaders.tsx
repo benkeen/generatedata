@@ -20,22 +20,6 @@ export const MediumSpinner = (props: any): any => (
 	/>
 );
 
-// export const FadeInOutSpinner = ({ visible }: any): any => {
-// 	let classes = styles.spinner;
-// 	if (visible) {
-// 		classes += ` ${styles.visibleSpinner}`;
-// 	}
-//
-// 	return (
-// 		<CircularProgress
-// 			disableShrink
-// 			className={classes}
-// 			size={40}
-// 			style={{ color: '#999999', margin: 5 }}
-// 		/>
-// 	);
-// };
-
 export const DefaultSpinner = (): JSX.Element => <CircularProgress />;
 
 export const DialogLoadingSpinner = ({ visible }: any): JSX.Element | null => {

@@ -12,6 +12,7 @@ import CodeMirrorWrapper from './CodeMirrorWrapper.container';
 import { Tooltip } from '~components/tooltips';
 import Portal from '~components/Portal';
 import { PreviewPanelLoader } from './PreviewPanelLoader.component';
+import PanelButtons from '~core/generator/dataSetHistory/PanelButtons.container';
 import C from '../../constants';
 import * as styles from './PreviewPanel.scss';
 
@@ -161,29 +162,7 @@ const PreviewPanel = ({
 		}
 
 		if (dataSetHistoryVisible) {
-			return (
-				<div>
-					<Button
-						disableElevation
-						onClick={exportTypeLabelBtnAction}
-						variant="outlined"
-						color="primary"
-						size="medium"
-						className={styles.dataSetHistoryBtnClass}
-						style={{ marginRight: 10 }}>
-						{i18n.grid}
-					</Button>
-					<Button
-						disableElevation
-						onClick={exportTypeLabelBtnAction}
-						variant="outlined"
-						color="primary"
-						className={styles.dataSetHistoryBtnClass}
-						size="medium">
-						{i18n.preview}
-					</Button>
-				</div>
-			);
+			return <PanelButtons />;
 		}
 
 		return (
@@ -261,7 +240,7 @@ const PreviewPanel = ({
 
 	if (exportSettingsVisible || dataSetHistoryVisible) {
 		return (
-			<Portal id="previewPanelFullScreen">
+			<Portal id="overlayPanelFullScreen">
 				<div className={`${styles.previewPanel} ${themeName}`}>{content}</div>
 			</Portal>
 		);

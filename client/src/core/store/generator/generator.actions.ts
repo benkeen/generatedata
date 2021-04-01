@@ -10,7 +10,7 @@ import { getUniqueString } from '~utils/stringUtils';
 import { loadExportTypeBundle, getExportTypeInitialState } from '~utils/exportTypeUtils';
 import { addToast } from '~utils/generalUtils';
 import { DTBundle } from '~types/dataTypes';
-import { GDAction } from '~types/general';
+import { GDAction, GeneratorPanel } from '~types/general';
 import C from '../../constants';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
 import { ClearType } from '../../dialogs/clearGrid/ClearGrid.component';
@@ -435,3 +435,11 @@ export const loadDataSetHistoryItem = (content: any): any => (dispatch: Dispatch
 		content
 	} as DataSetListItem, false));
 };
+
+export const SET_DATA_SET_HISTORY_PANEL = 'SET_DATA_SET_HISTORY_PANEL';
+export const setDataSetHistoryPanel = (panel: GeneratorPanel) => ({
+	type: SET_DATA_SET_HISTORY_PANEL,
+	payload: {
+		panel
+	}
+});

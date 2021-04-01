@@ -11,6 +11,7 @@ declare namespace GridScssNamespace {
     gridHeader: string;
     gridHeaderWrapper: string;
     gridMedium: string;
+    gridOverlay: string;
     gridRow: string;
     gridRowsWrapper: string;
     gridSmall: string;

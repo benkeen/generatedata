@@ -294,5 +294,6 @@
 
   "editAccount": "Edit Account",
   "userAccountUpdated": "The user account has been updated.",
-  "noDataSetsSaved": "You have no data sets saved."
+  "noDataSetsSaved": "You have no data sets saved.",
+  "historyPanelDesc": "This panel shows the history of changes made to this data set. Click the Open buttons to browse earlier versions. To revert to an earlier version, just open it then close this panel and re-save."
 }

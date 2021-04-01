@@ -12,7 +12,9 @@ const mapStateToProps = (state: any): Partial<GridProps> => ({
 	rows: selectors.getSortedRowsArray(state),
 	loadedDataTypes: selectors.getLoadedDataTypes(state),
 	helpDialogVisible: selectors.isHelpDialogVisible(state),
-	helpDialogSection: selectors.getHelpDialogSection(state)
+	helpDialogSection: selectors.getHelpDialogSection(state),
+	exportSettingsVisible: selectors.shouldShowExportSettings(state),
+	dataSetHistoryVisible: selectors.shouldShowDataSetHistory(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({

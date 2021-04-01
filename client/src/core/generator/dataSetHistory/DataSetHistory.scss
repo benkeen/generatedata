@@ -25,11 +25,6 @@
 		flex: 1;
 		overflow: hidden;
 		padding: 0 20px;
-
-		p {
-			flex: 0 0 auto;
-			margin-top: 0;
-		}
 	}
 
 	footer {
@@ -98,3 +93,7 @@
 	border-radius: 4px;
 }
 
+button.dataSetHistoryBtnClass {
+	color: white;
+	border-color: white;
+}

@@ -7,6 +7,8 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { useQuery } from '@apollo/client';
 import * as queries from '~core/queries';
 import * as styles from './DataSetHistory.scss';
+import { Tooltip } from '~components/tooltips';
+import { DefaultSpinner, Centered } from '~components/loaders/loaders';
 import C from '~core/constants';
 
 export type DataSetHistoryProps = {
@@ -102,21 +104,23 @@ export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, 
 
 	let loader = null;
 	if (loading) {
-
+		loader = (
+			<Centered>
+				<DefaultSpinner />
+			</Centered>
+		);
 	}
 
 	return (
 		<Drawer open={showPanel} anchor="left" onClose={() => {}}>
 			<div className={`${styles.panel} tour-dataSetHistoryPanel`}>
 				<h2>
-					<HistoryIcon />
+					<Tooltip title={i18n.historyPanelDesc} arrow>
+						<HistoryIcon />
+					</Tooltip>
 					{dataSetName}
 				</h2>
 				<section>
-					<p>
-						This panel shows the history of changes made to this data set. Click the Open buttons to browse
-						earlier versions. To revert to an earlier version, just open it then close this panel and re-save.
-					</p>
 					{loader}
 					{content}
 				</section>

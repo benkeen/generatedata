@@ -6,10 +6,11 @@ import * as mainActions from '../main/main.actions';
 import * as accountActions from '../account/account.actions';
 import * as packetActions from '../packets/packets.actions';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder, exportTypes, dataTypes } from '../../../../_plugins';
+import { DataTypeFolder, dataTypes, ExportTypeFolder, exportTypes } from '../../../../_plugins';
 import { GeneratorLayout } from '../../generator/Generator.component';
 import env from '../../../../_env';
 import C from '../../constants';
+import { GeneratorPanel } from '~types/general';
 
 export type DataRow = {
 	id: string;
@@ -37,8 +38,6 @@ export type ExportTypeSettings = {
 	[exportType in ExportTypeFolder]: any;
 };
 
-export type GeneratorPanel = 'grid' | 'preview';
-
 export type StashedGeneratorState = {
 	exportType: ExportTypeFolder;
 	rows: DataRows;
@@ -49,6 +48,7 @@ export type StashedGeneratorState = {
 	generatorLayout: GeneratorLayout;
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
+	dataSetHistoryViewPanel: GeneratorPanel;
 	showGenerationSettingsPanel: boolean;
 	showDataSetHistory: boolean;
 	bulkActionPending: boolean;
@@ -72,7 +72,7 @@ const stashProps = [
 	'generatorLayout', 'showExportSettings', 'exportTypeSettings', 'showGenerationSettingsPanel', 'showHelpDialog',
 	'helpDialogSection', 'showLineNumbers', 'enableLineWrapping', 'theme', 'previewTextSize', 'dataTypePreviewData',
 	'exportSettingsTab', 'numPreviewRows', 'stripWhitespace', 'numPreviewRows', 'stripWhitespace',
-	'currentDataSetId', 'currentDataSetName'
+	'currentDataSetId', 'currentDataSetName', 'dataSetHistoryViewPanel'
 ];
 
 export type GeneratorState = {
@@ -96,6 +96,7 @@ export type GeneratorState = {
 	generatorLayout: GeneratorLayout;
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
+	dataSetHistoryViewPanel: GeneratorPanel;
 	showGenerationSettingsPanel: boolean;
 	showDataSetHistory: boolean;
 	bulkActionPending: boolean;
@@ -127,9 +128,10 @@ export const getInitialState = (): GeneratorState => ({
 	sortedRows: [],
 	showGrid: true,
 	showPreview: true,
-	smallScreenVisiblePanel: 'grid',
+	smallScreenVisiblePanel: GeneratorPanel.grid,
 	generatorLayout: 'horizontal',
 	showExportSettings: false,
+	dataSetHistoryViewPanel: GeneratorPanel.preview,
 	exportTypeSettings: {},
 	numPreviewRows: 5,
 	showLineNumbers: true,
@@ -361,7 +363,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL:
-			draft.smallScreenVisiblePanel = draft.smallScreenVisiblePanel === 'grid' ? 'preview' : 'grid';
+			draft.smallScreenVisiblePanel = draft.smallScreenVisiblePanel === GeneratorPanel.grid ? GeneratorPanel.preview : GeneratorPanel.grid;
 			break;
 
 		case actions.SET_BULK_ACTION:
@@ -435,6 +437,9 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.showDataSetHistory = false;
 			break;
 
+		case actions.SET_DATA_SET_HISTORY_PANEL:
+			draft.dataSetHistoryViewPanel = action.payload.panel;
+			break;
 	}
 }, getInitialState());
 

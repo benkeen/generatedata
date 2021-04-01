@@ -94,3 +94,8 @@ export const enum GenerationActivityPanel {
 	small = 'small',
 	large = 'large'
 }
+
+export const enum GeneratorPanel {
+	grid = 'grid',
+	preview = 'preview'
+}
