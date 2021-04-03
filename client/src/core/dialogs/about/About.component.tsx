@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { PrimaryButton } from '~components/Buttons.component';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import { Github } from '~components/icons';
 import Link from '~components/Link.component';
@@ -35,15 +35,15 @@ const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps): JSX
 				</p>
 			</DialogContent>
 			<DialogActions className={styles.actions}>
-				<Button onClick={onClose} color="default" variant="outlined">
+				<PrimaryButton onClick={onClose} color="default">
 					{i18n.close}
-				</Button>
-				<Button onClick={(): void => {
+				</PrimaryButton>
+				<PrimaryButton onClick={(): void => {
 					window.open('https://github.com/benkeen/generatedata', '_blank');
-				}} color="primary" variant="outlined">
+				}}>
 					<Github />
 					{i18n.viewOnGithub}
-				</Button>
+				</PrimaryButton>
 			</DialogActions>
 		</div>
 	</Dialog>

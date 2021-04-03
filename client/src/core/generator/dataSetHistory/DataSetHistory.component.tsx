@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { format, fromUnixTime } from 'date-fns';
-import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { useQuery } from '@apollo/client';
+import { DefaultSpinner, Centered } from '~components/loaders/loaders';
+import { PrimaryButton, SecondaryButton } from '~components/Buttons.component';
+import { Tooltip } from '~components/tooltips';
 import * as queries from '~core/queries';
 import * as styles from './DataSetHistory.scss';
-import { Tooltip } from '~components/tooltips';
-import { DefaultSpinner, Centered } from '~components/loaders/loaders';
 import C from '~core/constants';
 
 export type DataSetHistoryProps = {
@@ -23,7 +23,7 @@ export type DataSetHistoryProps = {
 const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
-const Row = ({ historyId, isCurrentVersion, dateCreated, onDelete, content, loadHistoryVersion, isSelected, i18n }: any): React.ReactElement => {
+const Row = ({ historyId, rowLabel, dateCreated, onDelete, content, loadHistoryVersion, isSelected, i18n, Btn }: any): React.ReactElement => {
 	let classes = styles.row;
 	if (isSelected) {
 		classes += ` ${styles.selectedRow}`;
@@ -31,33 +31,28 @@ const Row = ({ historyId, isCurrentVersion, dateCreated, onDelete, content, load
 
 	return (
 		<div className={classes}>
-			<div className={styles.dateCreated}>
-				{format(fromUnixTime(dateCreated / 1000), C.DATETIME_FORMAT)}
-			</div>
-			<div className={styles.edit}>
-				<Button
-					size="small"
-					color="primary"
-					variant="outlined"
-					onClick={(): void => loadHistoryVersion(content)}>
-					{i18n.view}
-				</Button>
-			</div>
-			<div className={styles.del} onClick={onDelete}>
-				<HighlightOffIcon />
+			{rowLabel && <label>{rowLabel}</label>}
+			<div className={styles.rowWrapper}>
+				<div className={styles.dateCreated}>
+					{format(fromUnixTime(dateCreated / 1000), C.DATETIME_FORMAT)}
+				</div>
+				<div className={styles.edit}>
+					<Btn
+						size="small"
+						onClick={(): void => loadHistoryVersion(content)}>
+						{i18n.view}
+					</Btn>
+				</div>
+				<div className={styles.del} onClick={onDelete}>
+					<HighlightOffIcon />
+				</div>
 			</div>
 		</div>
 	);
 };
 
-export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, loadHistoryVersion,
-	i18n }: DataSetHistoryProps): React.ReactElement | null => {
-
+export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, loadHistoryVersion, i18n }: DataSetHistoryProps): React.ReactElement | null => {
 	const [historyId, setSelectedHistoryId] = useState<number | null>(null);
-
-	if (!dataSetId) {
-		return null;
-	}
 
 	const { data, loading } = useQuery(queries.GET_DATA_SET_HISTORY, {
 		fetchPolicy: 'cache-and-network',
@@ -65,7 +60,8 @@ export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, 
 			dataSetId,
 			offset: (currentPage - 1) * NUM_PER_PAGE,
 			limit: NUM_PER_PAGE
-		}
+		},
+		skip: !dataSetId
 	});
 
 	useEffect(() => {
@@ -73,6 +69,10 @@ export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, 
 			setSelectedHistoryId(data.dataSetHistory.results[0].historyId);
 		}
 	}, [data]);
+
+	if (!dataSetId) {
+		return null;
+	}
 
 	const loadVersion = ({ historyId, content }: any) => {
 		setSelectedHistoryId(historyId);
@@ -83,21 +83,37 @@ export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, 
 
 	if (data?.dataSetHistory) {
 		if (data.dataSetHistory.totalCount === 1) {
-			content = <p>No history yet!</p>;
+			content = <p>{i18n.noHistory}</p>;
 		} else {
+			const latestRow = data.dataSetHistory.results[0];
+
 			content = (
-				<div className={styles.rows}>
-					{data.dataSetHistory.results.map((row: any, index: number) => (
+				<>
+					<div className={styles.currentVersionRow}>
 						<Row
-							{...row}
-							key={row.historyId}
-							isCurrentVersion={index === 0}
-							loadHistoryVersion={() => loadVersion(row)}
-							isSelected={row.historyId === historyId}
+							{...latestRow}
+							rowLabel="Current version"
+							key={latestRow.historyId}
+							loadHistoryVersion={() => loadVersion(latestRow)}
+							isSelected={latestRow.historyId === historyId}
 							i18n={i18n}
+							Btn={SecondaryButton}
 						/>
-					))}
-				</div>
+					</div>
+					<div className={styles.rows}>
+						{data.dataSetHistory.results.slice(1).map((row: any) => (
+							<Row
+								{...row}
+								className={styles.row}
+								key={row.historyId}
+								loadHistoryVersion={() => loadVersion(row)}
+								isSelected={row.historyId === historyId}
+								i18n={i18n}
+								Btn={PrimaryButton}
+							/>
+						))}
+					</div>
+				</>
 			);
 		}
 	}
@@ -125,10 +141,10 @@ export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, 
 					{content}
 				</section>
 				<footer>
-					<Button onClick={closePanel} variant="outlined" color="primary" disableElevation>
+					<PrimaryButton onClick={closePanel}>
 						<HighlightOffIcon />
 						{i18n.closePanel}
-					</Button>
+					</PrimaryButton>
 				</footer>
 			</div>
 		</Drawer>

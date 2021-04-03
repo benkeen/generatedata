@@ -1,5 +1,6 @@
 declare namespace DataSetHistoryScssNamespace {
   export interface IDataSetHistoryScss {
+    currentVersionRow: string;
     dataSetHistoryBtnClass: string;
     dateCreated: string;
     del: string;
@@ -7,6 +8,7 @@ declare namespace DataSetHistoryScssNamespace {
     id: string;
     panel: string;
     row: string;
+    rowWrapper: string;
     rows: string;
     selectedRow: string;
   }

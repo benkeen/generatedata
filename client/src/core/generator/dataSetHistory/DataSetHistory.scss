@@ -49,14 +49,21 @@
 	overflow: auto;
 }
 
-.row {
+.rowWrapper {
 	display: flex;
-	width: 100%;
-	padding: 6px;
-	align-items: center;
 	font-size: 13px;
 	border: 1px solid transparent;
 	transition: all 0.2s ease-in-out;
+	align-items: center;
+}
+
+.row {
+	padding: 6px;
+
+	label {
+		color: #999999;
+		font-size: 11px;
+	}
 
 	.id {
 		margin-left: 10px;
@@ -100,4 +107,15 @@
 button.dataSetHistoryBtnClass {
 	color: white;
 	border-color: white;
+}
+
+.currentVersionRow {
+	flex: 0 0 auto;
+
+	.row {
+		border: 1px solid $secondary-color;
+		background-color: $secondary-pale-color;
+		color: $secondary-dark-color;
+		margin-bottom: 10px;
+	}
 }

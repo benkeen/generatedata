@@ -13,7 +13,11 @@ import ClearPageDialog from '../dialogs/clearPage/ClearPage.container';
 import C from '../constants';
 import './Generator.scss';
 
-export type GeneratorLayout = 'horizontal' | 'vertical';
+export const enum GeneratorLayout {
+	horizontal = 'horizontal',
+	vertical = 'vertical'
+};
+
 export type GeneratorProps = {
 	i18n: any;
 	isGridVisible: boolean;
@@ -24,12 +28,11 @@ export type GeneratorProps = {
 	lastLayoutHeight: number | null;
 	smallScreenVisiblePanel: GeneratorPanel;
 	showDataSetHistory: boolean;
-	dataSetHistoryPanel: GeneratorPanel;
 }
 
 const Builder = ({
 	isGridVisible, isPreviewVisible, generatorLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight,
-	smallScreenVisiblePanel, showDataSetHistory, dataSetHistoryPanel
+	smallScreenVisiblePanel, showDataSetHistory
 }: GeneratorProps): JSX.Element => {
 
 	const windowSize = useWindowSize();
@@ -38,7 +41,7 @@ const Builder = ({
 	let minSize: number;
 	let maxSize: number;
 	let defaultSize: number | string = '50%';
-	if (generatorLayout === 'vertical') {
+	if (generatorLayout === GeneratorLayout.vertical) {
 		minSize = 350;
 		maxSize = windowSize.width - 350;
 		if (lastLayoutWidth) {
@@ -59,7 +62,7 @@ const Builder = ({
 
 		// data set history only available on desktop
 		if (showDataSetHistory) {
-			return (dataSetHistoryPanel === GeneratorPanel.grid) ? <Grid /> : <Preview />;
+			return <Preview />;
 		}
 
 		if (isGridVisible && isPreviewVisible) {

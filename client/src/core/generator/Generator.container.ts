@@ -13,8 +13,7 @@ const mapStateToProps = (state: any): Partial<GeneratorProps> => ({
 	lastLayoutWidth: selectors.getLastLayoutWidth(state),
 	lastLayoutHeight: selectors.getLastLayoutHeight(state),
 	smallScreenVisiblePanel: selectors.getSmallScreenVisiblePanel(state),
-	showDataSetHistory: selectors.shouldShowDataSetHistory(state),
-	dataSetHistoryPanel: selectors.getDataSetHistoryViewPanel(state)
+	showDataSetHistory: selectors.shouldShowDataSetHistory(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorProps> => ({

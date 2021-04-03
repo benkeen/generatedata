@@ -129,7 +129,7 @@ export const getInitialState = (): GeneratorState => ({
 	showGrid: true,
 	showPreview: true,
 	smallScreenVisiblePanel: GeneratorPanel.grid,
-	generatorLayout: 'horizontal',
+	generatorLayout: GeneratorLayout.horizontal,
 	showExportSettings: false,
 	exportTypeSettings: {},
 	numPreviewRows: 5,
@@ -309,7 +309,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.TOGGLE_LAYOUT:
-			draft.generatorLayout = draft.generatorLayout === 'horizontal' ? 'vertical' : 'horizontal';
+			draft.generatorLayout = draft.generatorLayout === GeneratorLayout.horizontal ? GeneratorLayout.vertical : GeneratorLayout.horizontal;
 			break;
 
 		case actions.TOGGLE_LINE_WRAPPING:

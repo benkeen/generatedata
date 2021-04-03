@@ -18,7 +18,7 @@ export const PanelButtons = ({ selectVersion, i18n }: PanelButtonsProps) => {
 				className={styles.dataSetHistoryBtnClass}
 				size="medium"
 				style={{ marginRight: 10 }}>
-				Reinstate this version
+				Revert to this version
 			</Button>
 		</div>
 	);

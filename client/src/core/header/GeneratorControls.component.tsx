@@ -72,7 +72,7 @@ const GeneratorControls = ({
 			// @ts-ignore-line
 			inputFieldRef.current?.blur();
 			addToast({
-				message: 'The data set name has been updated.',
+				message: i18n.dataSetNameUpdated,
 				type: 'success'
 			});
 		}

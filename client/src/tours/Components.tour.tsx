@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { PrimaryButton } from '~components/Buttons.component';
 import { getStrings } from '~utils/langUtils';
 
 
@@ -19,17 +19,18 @@ export const TourCompleteStep = ({ close }: any): JSX.Element => {
 			</p>
 
 			<p>
-				<Button
+				<PrimaryButton
 					size="medium"
-					color="primary"
-					variant="outlined"
 					style={{ marginRight: 6 }}
-					onClick={close}>{i18n.tryDifferentTour}</Button>
-				<Button
+					onClick={close}>
+					{i18n.tryDifferentTour}
+				</PrimaryButton>
+				<PrimaryButton
 					size="medium"
 					color="default"
-					variant="outlined"
-					onClick={onExit}>Exit</Button>
+					onClick={onExit}>
+					Exit
+				</PrimaryButton>
 			</p>
 		</>
 	);

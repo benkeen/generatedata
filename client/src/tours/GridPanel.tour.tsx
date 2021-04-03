@@ -7,6 +7,7 @@ import * as selectors from '~store/generator/generator.selectors';
 import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
 import { ClearPageType } from '~core/dialogs/clearPage/ClearPage.component';
+import { GeneratorLayout } from '~core/generator/Generator.component';
 
 const Step1 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
@@ -178,7 +179,7 @@ const steps = [
 				}
 
 				const layout = selectors.getGeneratorLayout(state);
-				if (layout === 'vertical') {
+				if (layout === GeneratorLayout.vertical) {
 					store.dispatch(actions.toggleLayout());
 				}
 

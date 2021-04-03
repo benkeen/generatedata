@@ -295,7 +295,8 @@
   "editAccount": "Edit Account",
   "userAccountUpdated": "The user account has been updated.",
   "noDataSetsSaved": "You have no data sets saved.",
-  "historyPanelDesc": "This panel shows the history of changes made to the data set. Click the View buttons to examine earlier versions. To revert to an earlier version, just click the Reinstate this Version button in the preview panel.",
+  "historyPanelDesc": "This panel shows the history of changes made to the data set. Click the View buttons to examine earlier versions. To revert to an earlier version, just view it, then click the \"Revert to this Version\" button.",
   "view": "View",
-  "newDataSet": "New data set"
+  "dataSetNameUpdated": "The data set name has been updated.",
+  "noHistory": "No history yet."
 }

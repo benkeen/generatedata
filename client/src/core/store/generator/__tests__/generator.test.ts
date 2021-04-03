@@ -3,6 +3,7 @@ import * as actions from '../generator.actions';
 import * as selectors from '../generator.selectors';
 import generatorReducer from '../generator.reducer';
 import mainReducer from '../../main/main.reducer';
+import { GeneratorLayout } from '~core/generator/Generator.component';
 
 describe('generator section', () => {
 	let store: any;
@@ -64,15 +65,15 @@ describe('generator section', () => {
 	});
 
 	it('layout is horizontal by default', () => {
-		expect(selectors.getGeneratorLayout(store.getState())).toEqual('horizontal');
+		expect(selectors.getGeneratorLayout(store.getState())).toEqual(GeneratorLayout.horizontal);
 	});
 
 	it('toggling the layout', () => {
 		store.dispatch(actions.toggleLayout());
-		expect(selectors.getGeneratorLayout(store.getState())).toEqual('vertical');
+		expect(selectors.getGeneratorLayout(store.getState())).toEqual(GeneratorLayout.vertical);
 
 		store.dispatch(actions.toggleLayout());
-		expect(selectors.getGeneratorLayout(store.getState())).toEqual('horizontal');
+		expect(selectors.getGeneratorLayout(store.getState())).toEqual(GeneratorLayout.horizontal);
 	});
 
 	it('sets the default number of rows to 5', () => {
