@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import WarningIcon from '@material-ui/icons/Warning';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
-import styles from './ClearGrid.scss';
+import styles from './ClearPage.scss';
 
-export const enum ClearType {
+export const enum ClearPageType {
 	dataOnly = 'dataOnly',
 	everything = 'everything'
 }
 
-export type ClearGridProps = {
+export type ClearPageDialogProps = {
 	visible: boolean;
 	onClose: any;
-	onClear: (clearType: ClearType) => void;
+	onClear: (clearType: ClearPageType) => void;
 	i18n: any;
 };
 
-const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): JSX.Element => {
-	const [clearType, onChangeClearType] = useState<ClearType>(ClearType.dataOnly);
+const ClearPageDialog = ({ visible, onClose, onClear, i18n }: ClearPageDialogProps): JSX.Element => {
+	const [clearType, onChangeClearType] = useState<ClearPageType>(ClearPageType.dataOnly);
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
@@ -35,8 +35,8 @@ const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): J
 									type="radio"
 									name="gdClearPageOption"
 									id="gdClearPageOption1"
-									checked={clearType === ClearType.dataOnly}
-									onChange={(): void => onChangeClearType(ClearType.dataOnly)}
+									checked={clearType === ClearPageType.dataOnly}
+									onChange={(): void => onChangeClearType(ClearPageType.dataOnly)}
 								/>
 								<label htmlFor="gdClearPageOption1">{i18n.clearDataGridOnly}</label>
 							</li>
@@ -46,7 +46,7 @@ const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): J
 									name="gdClearPageOption"
 									id="gdClearPageOption2"
 									checked={clearType === 'everything'}
-									onChange={(): void => onChangeClearType(ClearType.everything)}
+									onChange={(): void => onChangeClearType(ClearPageType.everything)}
 								/>
 								<label htmlFor="gdClearPageOption2">{i18n.resetEverything}</label>
 							</li>
@@ -66,4 +66,4 @@ const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): J
 	);
 };
 
-export default ClearGridDialog;
+export default ClearPageDialog;

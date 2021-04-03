@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useMutation } from '@apollo/client';
 import Measure from 'react-measure';
 import AutoSizer from 'react-input-autosize';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import { HtmlTooltip } from '~components/tooltips';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import useOnClickOutside from 'use-onclickoutside';
-import { useMutation } from '@apollo/client';
+import { addToast } from '~utils/generalUtils';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import * as queries from '~core/queries';
 
@@ -22,11 +24,13 @@ export type GeneratorControlsProps = {
 	onSaveAs: () => void;
 	onShowHistory: () => void;
 	onClearGrid: () => void;
+	showClearPageDialog: () => void;
 	disabled: boolean;
 };
 
 const GeneratorControls = ({
-	i18n, isLoggedIn, dataSetId, dataSetName, onUpdate, onSaveDataSet, onSaveAs, onClearGrid, onShowHistory, disabled
+	i18n, isLoggedIn, dataSetId, dataSetName, onUpdate, onSaveDataSet, onSaveAs, onClearGrid, onShowHistory, disabled,
+	showClearPageDialog
 }: GeneratorControlsProps): JSX.Element => {
 	const popoverRef = useRef(null);
 	const inputFieldRef = useRef(null);
@@ -61,8 +65,16 @@ const GeneratorControls = ({
 	const onKeyUp = (e: any): void => {
 		if (e.key === 'Escape') {
 			setNewDataSetName(dataSetName);
+			// @ts-ignore-line
+			inputFieldRef.current?.blur();
 		} else if (e.key === 'Enter') {
 			onUpdate(newDataSetName);
+			// @ts-ignore-line
+			inputFieldRef.current?.blur();
+			addToast({
+				message: 'The data set name has been updated.',
+				type: 'success'
+			});
 		}
 	};
 
@@ -95,15 +107,6 @@ const GeneratorControls = ({
 							<List disablePadding>
 								<ListItem
 									button
-									key="delete"
-									onClick={(): any => {
-										setMenuVisibility(false);
-										setDeleteDialogVisibility(true);
-									}}>
-									<ListItemText primary={i18n.delete} />
-								</ListItem>
-								<ListItem
-									button
 									key="saveAs"
 									onClick={(): any => {
 										setMenuVisibility(false);
@@ -113,12 +116,33 @@ const GeneratorControls = ({
 								</ListItem>
 								<ListItem
 									button
+									key="delete"
+									onClick={(): any => {
+										setMenuVisibility(false);
+										setDeleteDialogVisibility(true);
+									}}>
+									<ListItemText primary={i18n.delete} />
+								</ListItem>
+								<ListItem
+									button
 									key="history"
 									onClick={(): void => {
 										setMenuVisibility(false);
 										onShowHistory();
 									}}>
 									<ListItemText primary={i18n.history} />
+								</ListItem>
+							</List>
+							<Divider />
+							<List disablePadding>
+								<ListItem
+									button
+									key="newDataSet"
+									onClick={(): any => {
+										setMenuVisibility(false);
+										showClearPageDialog();
+									}}>
+									<ListItemText primary={i18n.newDataSet} />
 								</ListItem>
 							</List>
 						</div>

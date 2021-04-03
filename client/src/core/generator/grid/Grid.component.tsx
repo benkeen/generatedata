@@ -73,10 +73,6 @@ const Grid = ({
 
 	const content = (
 		<>
-			<div style={{ padding: 10 }}>
-				<PanelButtons />
-			</div>
-
 			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={onClose}>
 				<Tooltip
 					title={<span dangerouslySetInnerHTML={{ __html: i18n.closePanel }}/>}

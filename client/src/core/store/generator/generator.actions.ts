@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import * as selectors from './generator.selectors';
+import { getCurrentDataSetId, getCurrentDataSetName } from './generator.selectors';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import { requestDataTypeBundle } from '~utils/dataTypeUtils';
@@ -7,17 +8,16 @@ import { registerInterceptors } from '../../actionInterceptor';
 import * as coreUtils from '~utils/coreUtils';
 import { getStrings } from '~utils/langUtils';
 import { getUniqueString } from '~utils/stringUtils';
-import { loadExportTypeBundle, getExportTypeInitialState } from '~utils/exportTypeUtils';
+import { getExportTypeInitialState, loadExportTypeBundle } from '~utils/exportTypeUtils';
 import { addToast } from '~utils/generalUtils';
 import { DTBundle } from '~types/dataTypes';
 import { GDAction, GeneratorPanel } from '~types/general';
 import C from '../../constants';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
-import { ClearType } from '../../dialogs/clearGrid/ClearGrid.component';
+import { ClearPageType } from '../../dialogs/clearPage/ClearPage.component';
 import { DataSetListItem } from '~types/dataSets';
 import { getUnique } from '~utils/arrayUtils';
 import { getCountryData } from '~utils/countryUtils';
-import { getCurrentDataSetId, getCurrentDataSetName } from './generator.selectors';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -331,8 +331,8 @@ export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITE
 
 export const CLEAR_GRID = 'CLEAR_GRID';
 export const RESET_GENERATOR = 'RESET_GENERATOR';
-export const clearGrid = (clearType: ClearType, addDefaultRows = true): any => (dispatch: Dispatch, getState: any): void => {
-	if (clearType === "everything") {
+export const clearPage = (clearType: ClearPageType, addDefaultRows = true): any => (dispatch: Dispatch, getState: any): void => {
+	if (clearType === ClearPageType.everything) {
 		const loadedExportTypes = selectors.getLoadedExportTypesArray(getState());
 
 		const exportTypeInitialStates: any = {};
@@ -436,10 +436,8 @@ export const loadDataSetHistoryItem = (content: any): any => (dispatch: Dispatch
 	} as DataSetListItem, false));
 };
 
-export const SET_DATA_SET_HISTORY_PANEL = 'SET_DATA_SET_HISTORY_PANEL';
-export const setDataSetHistoryPanel = (panel: GeneratorPanel) => ({
-	type: SET_DATA_SET_HISTORY_PANEL,
-	payload: {
-		panel
-	}
-});
+export const SHOW_CLEAR_PAGE_DIALOG = 'SHOW_CLEAR_PAGE_DIALOG';
+export const showClearPageDialog = () => ({ type: SHOW_CLEAR_PAGE_DIALOG });
+
+export const HIDE_CLEAR_GRID_DIALOG = 'HIDE_CLEAR_GRID_DIALOG';
+export const hideClearPageDialog = () => ({ type: HIDE_CLEAR_GRID_DIALOG });

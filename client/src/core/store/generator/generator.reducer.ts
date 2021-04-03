@@ -48,11 +48,11 @@ export type StashedGeneratorState = {
 	generatorLayout: GeneratorLayout;
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
-	dataSetHistoryViewPanel: GeneratorPanel;
 	showGenerationSettingsPanel: boolean;
 	showDataSetHistory: boolean;
 	bulkActionPending: boolean;
 	showHelpDialog: boolean;
+	showClearPageDialog: boolean;
 	helpDialogSection: DataTypeFolder | null;
 	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
@@ -72,7 +72,7 @@ const stashProps = [
 	'generatorLayout', 'showExportSettings', 'exportTypeSettings', 'showGenerationSettingsPanel', 'showHelpDialog',
 	'helpDialogSection', 'showLineNumbers', 'enableLineWrapping', 'theme', 'previewTextSize', 'dataTypePreviewData',
 	'exportSettingsTab', 'numPreviewRows', 'stripWhitespace', 'numPreviewRows', 'stripWhitespace',
-	'currentDataSetId', 'currentDataSetName', 'dataSetHistoryViewPanel'
+	'currentDataSetId', 'currentDataSetName'
 ];
 
 export type GeneratorState = {
@@ -96,11 +96,11 @@ export type GeneratorState = {
 	generatorLayout: GeneratorLayout;
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
-	dataSetHistoryViewPanel: GeneratorPanel;
 	showGenerationSettingsPanel: boolean;
 	showDataSetHistory: boolean;
 	bulkActionPending: boolean;
 	showHelpDialog: boolean;
+	showClearPageDialog: boolean;
 	helpDialogSection: DataTypeFolder | null;
 	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
@@ -131,7 +131,6 @@ export const getInitialState = (): GeneratorState => ({
 	smallScreenVisiblePanel: GeneratorPanel.grid,
 	generatorLayout: 'horizontal',
 	showExportSettings: false,
-	dataSetHistoryViewPanel: GeneratorPanel.preview,
 	exportTypeSettings: {},
 	numPreviewRows: 5,
 	showLineNumbers: true,
@@ -144,6 +143,7 @@ export const getInitialState = (): GeneratorState => ({
 	showDataSetHistory: false,
 	bulkActionPending: true, // for brand new page loads we assume there's a bulk action to re-load
 	showHelpDialog: false,
+	showClearPageDialog: false,
 	helpDialogSection: null,
 	numRowsToGenerate: env.defaultNumRows,
 	stripWhitespace: false,
@@ -182,11 +182,13 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.sortedRows = [];
 			draft.currentDataSetId = null;
 			draft.currentDataSetName = '';
+			draft.showClearPageDialog = false;
 			break;
 
 		case actions.RESET_GENERATOR: {
 			draft.rows = {};
 			draft.sortedRows = [];
+			draft.showClearPageDialog = false;
 
 			const initialState = getInitialState();
 			const settingsToReset = [
@@ -437,8 +439,12 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.showDataSetHistory = false;
 			break;
 
-		case actions.SET_DATA_SET_HISTORY_PANEL:
-			draft.dataSetHistoryViewPanel = action.payload.panel;
+		case actions.SHOW_CLEAR_PAGE_DIALOG:
+			draft.showClearPageDialog = true;
+			break;
+
+		case actions.HIDE_CLEAR_GRID_DIALOG:
+			draft.showClearPageDialog = false;
 			break;
 	}
 }, getInitialState());

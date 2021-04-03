@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { format, fromUnixTime } from 'date-fns';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
-import HistoryIcon from '@material-ui/icons/History';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { useQuery } from '@apollo/client';
 import * as queries from '~core/queries';
@@ -23,7 +23,7 @@ export type DataSetHistoryProps = {
 const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
-const Row = ({ historyId, dateCreated, onDelete, content, loadHistoryVersion, isSelected, i18n }: any): React.ReactElement => {
+const Row = ({ historyId, isCurrentVersion, dateCreated, onDelete, content, loadHistoryVersion, isSelected, i18n }: any): React.ReactElement => {
 	let classes = styles.row;
 	if (isSelected) {
 		classes += ` ${styles.selectedRow}`;
@@ -31,7 +31,6 @@ const Row = ({ historyId, dateCreated, onDelete, content, loadHistoryVersion, is
 
 	return (
 		<div className={classes}>
-			<div className={styles.id}>{historyId}</div>
 			<div className={styles.dateCreated}>
 				{format(fromUnixTime(dateCreated / 1000), C.DATETIME_FORMAT)}
 			</div>
@@ -41,7 +40,7 @@ const Row = ({ historyId, dateCreated, onDelete, content, loadHistoryVersion, is
 					color="primary"
 					variant="outlined"
 					onClick={(): void => loadHistoryVersion(content)}>
-					{i18n.open}
+					{i18n.view}
 				</Button>
 			</div>
 			<div className={styles.del} onClick={onDelete}>
@@ -88,10 +87,11 @@ export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, 
 		} else {
 			content = (
 				<div className={styles.rows}>
-					{data.dataSetHistory.results.map((row: any) => (
+					{data.dataSetHistory.results.map((row: any, index: number) => (
 						<Row
 							{...row}
 							key={row.historyId}
+							isCurrentVersion={index === 0}
 							loadHistoryVersion={() => loadVersion(row)}
 							isSelected={row.historyId === historyId}
 							i18n={i18n}
@@ -115,10 +115,10 @@ export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, 
 		<Drawer open={showPanel} anchor="left" onClose={() => {}}>
 			<div className={`${styles.panel} tour-dataSetHistoryPanel`}>
 				<h2>
+					<span>{dataSetName}</span>
 					<Tooltip title={i18n.historyPanelDesc} arrow>
-						<HistoryIcon />
+						<InfoIcon />
 					</Tooltip>
-					{dataSetName}
 				</h2>
 				<section>
 					{loader}

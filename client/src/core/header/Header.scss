@@ -59,6 +59,7 @@
 		z-index: 1;
 
 		input {
+			color: #222222;
 			background-color: transparent;
 			border: 1px solid transparent;
 			transition: border 150ms ease-in-out;
@@ -67,6 +68,9 @@
 			&:hover, &:focus {
 				border: 1px solid $primary-color;
 				text-overflow: inherit;
+			}
+			&:focus {
+				color: #000000;
 			}
 		}
 	}

@@ -69,7 +69,6 @@ const Footer = ({
 	const anchorRef = React.useRef<HTMLDivElement>(null);
 	const [saveAsMenuOpen, setSaveAsMenuOpen] = useState(false);
 	const [showAboutDialog, setAboutDialogVisibility] = useState(false);
-
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
 

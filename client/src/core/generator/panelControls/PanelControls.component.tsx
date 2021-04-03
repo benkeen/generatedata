@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Delete from '@material-ui/icons/Delete';
@@ -8,7 +8,6 @@ import SwapHoriz from '@material-ui/icons/SwapHoriz';
 import SwapVert from '@material-ui/icons/SwapVert';
 import { toSentenceCase } from '~utils/stringUtils';
 import { Tooltip } from '~components/tooltips';
-import ClearGridDialog, { ClearType } from '../../dialogs/clearGrid/ClearGrid.component';
 import { GeneratorLayout } from '../Generator.component';
 import * as styles from './PanelControls.scss';
 
@@ -17,7 +16,7 @@ export type PanelControlsProps = {
 	toggleGrid: () => void;
 	togglePreview: () => void;
 	toggleLayout: () => void;
-	onClearGrid: (clearType: ClearType) => void;
+	showClearPageDialog: () => void;
 	isGridVisible: boolean;
 	isPreviewVisible: boolean;
 	generatorLayout: GeneratorLayout;
@@ -25,10 +24,8 @@ export type PanelControlsProps = {
 };
 
 export const PanelControls = ({
-	className, toggleGrid, togglePreview, toggleLayout, onClearGrid, isGridVisible, isPreviewVisible, generatorLayout, i18n
+	className, toggleGrid, togglePreview, toggleLayout, showClearPageDialog, isGridVisible, isPreviewVisible, generatorLayout, i18n
 }: PanelControlsProps): JSX.Element => {
-	const [showClearDialog, setShowClearDialog] = useState(false);
-
 	const toggleLayoutEnabled = isGridVisible && isPreviewVisible;
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
 	const PreviewIcon = isPreviewVisible ? CheckBox : CheckBoxOutlineBlank;
@@ -69,36 +66,24 @@ export const PanelControls = ({
 	};
 
 	return (
-		<>
-			<ButtonGroup aria-label="" size="small" className={`${className} ${styles.builderControls}`}>
-				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowGrid }} />} arrow>
-					<Button className={gridBtnClasses} onClick={toggleGrid} startIcon={<GridIcon fontSize="small"/>}>
-						{i18n.grid}
-					</Button>
-				</Tooltip>
-				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowPreviewPanel }} />} arrow>
-					<Button className={previewBtnClasses} onClick={togglePreview} startIcon={<PreviewIcon/>}>
-						{i18n.preview}
-					</Button>
-				</Tooltip>
-				{getToggleLayoutBtn()}
-				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: toSentenceCase(i18n.clearPage) }} />} arrow>
-					<Button onClick={(): void => setShowClearDialog(true)}>
-						<Delete/>
-					</Button>
-				</Tooltip>
-			</ButtonGroup>
-
-			<ClearGridDialog
-				visible={showClearDialog}
-				onClose={(): void => setShowClearDialog(false)}
-				onClear={(clearType): void => {
-					onClearGrid(clearType);
-					setShowClearDialog(false);
-				}}
-				i18n={i18n}
-			/>
-		</>
+		<ButtonGroup aria-label="" size="small" className={`${className} ${styles.builderControls}`}>
+			<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowGrid }} />} arrow>
+				<Button className={gridBtnClasses} onClick={toggleGrid} startIcon={<GridIcon fontSize="small"/>}>
+					{i18n.grid}
+				</Button>
+			</Tooltip>
+			<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowPreviewPanel }} />} arrow>
+				<Button className={previewBtnClasses} onClick={togglePreview} startIcon={<PreviewIcon/>}>
+					{i18n.preview}
+				</Button>
+			</Tooltip>
+			{getToggleLayoutBtn()}
+			<Tooltip title={<span dangerouslySetInnerHTML={{ __html: toSentenceCase(i18n.clearPage) }} />} arrow>
+				<Button onClick={showClearPageDialog}>
+					<Delete/>
+				</Button>
+			</Tooltip>
+		</ButtonGroup>
 	);
 };
 
