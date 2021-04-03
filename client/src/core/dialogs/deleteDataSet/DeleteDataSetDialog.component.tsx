@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { PrimaryButton, NullButton } from '~components/Buttons.component';
 import WarningIcon from '@material-ui/icons/Warning';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import styles from './DeleteDataSetDialog.scss';
@@ -24,8 +24,8 @@ const DeleteDataSetDialog = ({ visible, dataSetName, onClose, onDelete, i18n }: 
 				</div>
 			</DialogContent>
 			<DialogActions>
-				<Button onClick={onClose} color="secondary" variant="outlined">{i18n.cancel}</Button>
-				<Button onClick={onDelete} color="primary" variant="outlined">{i18n.delete}</Button>
+				<NullButton onClick={onClose}>{i18n.cancel}</NullButton>
+				<PrimaryButton onClick={onDelete}>{i18n.delete}</PrimaryButton>
 			</DialogActions>
 		</div>
 	</Dialog>

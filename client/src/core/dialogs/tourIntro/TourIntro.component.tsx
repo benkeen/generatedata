@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@material-ui/core/Button';
+import { PrimaryButton } from '~components/Buttons.component';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import { getTourComponents } from '~utils/generalUtils';
 import styles from './TourIntro.scss';
 import { useWindowSize } from 'react-hooks-window-size';
 
+// TODO enum
 type Tour = 'intro' | 'gridPanel' | 'previewPanel' | 'yourAccount';
 
 export type TourDialogProps = {
@@ -129,30 +130,30 @@ const TourDialog = ({
 
 							<div className={`${styles.col} ${styles.buttonCol}`}>
 								<div>
-									<Button color="primary" variant="outlined" onClick={(): void => selectTour('intro')}>
+									<PrimaryButton onClick={(): void => selectTour('intro')}>
 										1. {i18n.introToGenerator}
-									</Button>
+									</PrimaryButton>
 								</div>
 								<div>
-									<Button color="primary" variant="outlined" onClick={(): void => selectTour('gridPanel')}>
+									<PrimaryButton onClick={(): void => selectTour('gridPanel')}>
 										2. {i18n.theGridPanel}
-									</Button>
+									</PrimaryButton>
 								</div>
 								<div>
-									<Button color="primary" variant="outlined" onClick={(): void => selectTour('previewPanel')}>
+									<PrimaryButton onClick={(): void => selectTour('previewPanel')}>
 										3. {i18n.thePreviewPanel}
-									</Button>
+									</PrimaryButton>
 								</div>
 								<div>
-									<Button color="primary" variant="outlined" disabled={true} onClick={(): void => selectTour('yourAccount')}>
+									<PrimaryButton disabled={true} onClick={(): void => selectTour('yourAccount')}>
 										4. {i18n.yourUserAccount}
-									</Button>
+									</PrimaryButton>
 								</div>
 							</div>
 						</div>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={closeIntroDialog} color="default" variant="outlined">{i18n.close}</Button>
+						<PrimaryButton onClick={closeIntroDialog} color="default">{i18n.close}</PrimaryButton>
 					</DialogActions>
 				</div>
 				<DialogLoadingSpinner visible={loadingBundle} />

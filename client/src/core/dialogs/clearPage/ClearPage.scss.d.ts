@@ -1,5 +1,6 @@
 declare namespace ClearPageScssNamespace {
   export interface IClearPageScss {
+    clearPageSelection: string;
     contentPanel: string;
   }
 }

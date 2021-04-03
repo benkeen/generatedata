@@ -33,7 +33,6 @@
 	"centralAmerica": "Central America",
 	"changePassword": "Change Password",
 	"clear": "Clear",
-	"clearDataGridOnly": "Clear data grid only",
 	"clearPage": "Clear Page",
 	"clearPageConfirmation": "Are you sure you want to clear the page? Any changes you've made will be lost.",
 	"clearThePage": "Clear the Page",
@@ -298,5 +297,8 @@
   "historyPanelDesc": "This panel shows the history of changes made to the data set. Click the View buttons to examine earlier versions. To revert to an earlier version, just view it, then click the \"Revert to this Version\" button.",
   "view": "View",
   "dataSetNameUpdated": "The data set name has been updated.",
-  "noHistory": "No history yet."
+  "noHistory": "No history yet.",
+  "clearAllDesc": "This option resets the entire generator, including your Export Type choice, configuration and panel layout.",
+
+  "clearDataGridOnly": "Clear data set only"
 }

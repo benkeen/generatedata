@@ -1,5 +1,5 @@
 import React from 'react';
-import { PrimaryButton } from '~components/Buttons.component';
+import { PrimaryButton, NullButton } from '~components/Buttons.component';
 import { getStrings } from '~utils/langUtils';
 
 
@@ -25,12 +25,11 @@ export const TourCompleteStep = ({ close }: any): JSX.Element => {
 					onClick={close}>
 					{i18n.tryDifferentTour}
 				</PrimaryButton>
-				<PrimaryButton
+				<NullButton
 					size="medium"
-					color="default"
 					onClick={onExit}>
 					Exit
-				</PrimaryButton>
+				</NullButton>
 			</p>
 		</>
 	);

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import WarningIcon from '@material-ui/icons/Warning';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
+import { PrimaryButton } from '~components/Buttons.component';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+import { Tooltip } from '~components/tooltips';
 import styles from './ClearPage.scss';
 
 export const enum ClearPageType {
@@ -40,7 +43,7 @@ const ClearPageDialog = ({ visible, onClose, onClear, i18n }: ClearPageDialogPro
 								/>
 								<label htmlFor="gdClearPageOption1">{i18n.clearDataGridOnly}</label>
 							</li>
-							<li>
+							<li className={styles.clearPageSelection}>
 								<input
 									type="radio"
 									name="gdClearPageOption"
@@ -49,6 +52,9 @@ const ClearPageDialog = ({ visible, onClose, onClear, i18n }: ClearPageDialogPro
 									onChange={(): void => onChangeClearType(ClearPageType.everything)}
 								/>
 								<label htmlFor="gdClearPageOption2">{i18n.resetEverything}</label>
+								<Tooltip title={i18n.clearAllDesc} arrow>
+									<InfoIcon />
+								</Tooltip>
 							</li>
 						</ul>
 					</div>
@@ -57,9 +63,9 @@ const ClearPageDialog = ({ visible, onClose, onClear, i18n }: ClearPageDialogPro
 					<Button onClick={(): void => onClear(clearType)} color="secondary" variant="outlined" className="clearGrid">
 						{i18n.yes}
 					</Button>
-					<Button onClick={onClose} color="primary" variant="outlined" className="cancelClearGrid">
+					<PrimaryButton onClick={onClose} className="cancelClearGrid">
 						{i18n.no}
-					</Button>
+					</PrimaryButton>
 				</DialogActions>
 			</div>
 		</Dialog>
