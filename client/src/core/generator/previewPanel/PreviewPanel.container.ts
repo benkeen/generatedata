@@ -33,6 +33,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelProps> => (
 	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel()),
 	closeOverlayPanels: (): any => {
 		dispatch(actions.hideExportSettings());
+		dispatch(actions.popStashedState());
 		dispatch(actions.hideDataSetHistory());
 	}
 });

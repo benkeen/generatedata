@@ -4,15 +4,14 @@ import Measure from 'react-measure';
 import { useWindowSize } from 'react-hooks-window-size';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import * as styles from './Grid.scss';
 import HelpDialog from '../../dialogs/help/HelpDialog.component';
 import { Tooltip } from '~components/tooltips';
+import { PrimaryButton } from '~components/Buttons.component';
 import { DataRow } from '~store/generator/generator.reducer';
 import { DataTypeFolder } from '../../../../_plugins';
 import GridRow from './GridRow.container';
 import C from '../../constants';
-import Portal from '~components/Portal';
 
 export type GridProps = {
 	rows: DataRow[];
@@ -29,14 +28,12 @@ export type GridProps = {
 	hideHelpDialog: () => void;
 	helpDialogSection: DataTypeFolder | null;
 	helpDialogVisible: boolean;
-	exportSettingsVisible: boolean;
-	dataSetHistoryVisible: boolean;
 };
 
 
 const Grid = ({
 	rows, onAddRows, onSelectDataType, onSort, i18n, dataTypeI18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel,
-	showHelpDialog, hideHelpDialog, helpDialogSection, helpDialogVisible, exportSettingsVisible, dataSetHistoryVisible
+	showHelpDialog, hideHelpDialog, helpDialogSection, helpDialogVisible
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
@@ -70,7 +67,7 @@ const Grid = ({
 		dimensions.width
 	]);
 
-	const content = (
+	return (
 		<>
 			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={onClose}>
 				<Tooltip
@@ -139,14 +136,9 @@ const Grid = ({
 										   max={1000}
 										   step={1}
 									/>
-									<Button
-										size="small"
-										onClick={(): void => onAddRows(numRows)}
-										variant="contained"
-										color="primary"
-										disableElevation>
+									<PrimaryButton size="small" onClick={(): void => onAddRows(numRows)}>
 										{addRowsBtnLabel}
-									</Button>
+									</PrimaryButton>
 								</form>
 							</div>
 						</div>
@@ -163,16 +155,6 @@ const Grid = ({
 			</Measure>
 		</>
 	);
-
-	if (exportSettingsVisible || dataSetHistoryVisible) {
-		return (
-			<Portal id="overlayPanelFullScreen">
-				<div className={styles.gridOverlay}>{content}</div>
-			</Portal>
-		);
-	}
-
-	return content;
 };
 
 export default Grid;

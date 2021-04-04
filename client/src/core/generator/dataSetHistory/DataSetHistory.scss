@@ -52,13 +52,19 @@
 .rowWrapper {
 	display: flex;
 	font-size: 13px;
-	border: 1px solid transparent;
-	transition: all 0.2s ease-in-out;
 	align-items: center;
+}
+
+div.selectedRow {
+	border: 1px solid $primary-color;
+	background-color: $primary-pale-color;
+	border-radius: 4px;
 }
 
 .row {
 	padding: 6px;
+	border: 1px solid transparent;
+	transition: all 0.2s ease-in-out;
 
 	label {
 		color: #999999;
@@ -98,15 +104,15 @@
 	}
 }
 
-.selectedRow {
-	border: 1px solid $primary-color;
-	background-color: $primary-pale-color;
-	border-radius: 4px;
-}
-
 button.dataSetHistoryBtnClass {
 	color: white;
 	border-color: white;
+
+	&:disabled {
+		color: white;
+		border-color: white;
+		opacity: 0.2;
+	}
 }
 
 .currentVersionRow {
@@ -117,5 +123,6 @@ button.dataSetHistoryBtnClass {
 		background-color: $secondary-pale-color;
 		color: $secondary-dark-color;
 		margin-bottom: 10px;
+		border-radius: 4px;
 	}
 }

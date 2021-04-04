@@ -1,7 +1,5 @@
 import React, { useEffect, CSSProperties } from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import ErrorIcon from '@material-ui/icons/ErrorOutline';
 import ErrorSolidIcon from '@material-ui/icons/Error';
@@ -10,24 +8,13 @@ import AddCircle from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
 import CodeMirrorWrapper from './CodeMirrorWrapper.container';
 import { Tooltip } from '~components/tooltips';
+import { PreviewPanelButton } from '~components/Buttons.component';
 import Portal from '~components/Portal';
 import { PreviewPanelLoader } from './PreviewPanelLoader.component';
 import PanelButtons from '~core/generator/dataSetHistory/PanelButtons.container';
 import C from '../../constants';
 import * as styles from './PreviewPanel.scss';
 
-const ExportTypeButton = withStyles({
-	root: {
-		borderColor: '#ffffff',
-		color: '#ffffff',
-		marginRight: 6,
-		'&:hover': {
-			backgroundColor: '#0069d9',
-			borderColor: '#0062cc',
-			boxShadow: 'none'
-		}
-	}
-})(Button);
 
 export type PreviewPanelProps = {
 	togglePreview: () => void;
@@ -166,16 +153,12 @@ const PreviewPanel = ({
 		}
 
 		return (
-			<ExportTypeButton
-				disableElevation
+			<PreviewPanelButton
 				onClick={exportTypeLabelBtnAction}
-				variant="outlined"
-				color="primary"
-				size="medium"
 				className={exportTypeButtonClasses}>
 				{exportTypeLabel}
 				{!hasValidExportTypeSettings ? <ErrorIcon /> : null}
-			</ExportTypeButton>
+			</PreviewPanelButton>
 		);
 	};
 

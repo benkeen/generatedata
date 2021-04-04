@@ -38,6 +38,7 @@ export type ExportTypeSettings = {
 	[exportType in ExportTypeFolder]: any;
 };
 
+// TODO remove the duplications for the types here
 export type StashedGeneratorState = {
 	exportType: ExportTypeFolder;
 	rows: DataRows;
@@ -65,6 +66,10 @@ export type StashedGeneratorState = {
 	numRowsToGenerate: number;
 	currentDataSetId: number | null;
 	currentDataSetName: string;
+	selectedDataSetHistory: {
+		historyId: number | null;
+		isLatest: boolean;
+	};
 };
 
 const stashProps = [
@@ -115,6 +120,10 @@ export type GeneratorState = {
 	numRowsToGenerate: number;
 	currentDataSetId: number | null;
 	currentDataSetName: string;
+	selectedDataSetHistory: {
+		historyId: number | null;
+		isLatest: boolean;
+	};
 	stashedState: StashedGeneratorState | null;
 };
 
@@ -138,7 +147,7 @@ export const getInitialState = (): GeneratorState => ({
 	theme: 'lucario',
 	previewTextSize: 12,
 	dataTypePreviewData: {},
-	exportSettingsTab: 'exportType',
+	exportSettingsTab: 'exportType', // TODO enum
 	showGenerationSettingsPanel: false,
 	showDataSetHistory: false,
 	bulkActionPending: true, // for brand new page loads we assume there's a bulk action to re-load
@@ -151,6 +160,10 @@ export const getInitialState = (): GeneratorState => ({
 	lastLayoutHeight: null,
 	currentDataSetId: null,
 	currentDataSetName: '',
+	selectedDataSetHistory: {
+		historyId: null,
+		isLatest: false
+	},
 	stashedState: null
 });
 
@@ -414,12 +427,21 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 		}
 
-		case actions.POP_STASHED_STATE:
+		case actions.POP_STASHED_STATE: {
 			stashProps.map((prop: string) => {
 				// @ts-ignore-line
 				draft[prop] = draft.stashedState[prop];
 			});
 			draft.stashedState = null;
+			break;
+		}
+
+		// loads the last stashed state, but doesn't pop it
+		case actions.LOAD_STASHED_STATE:
+			stashProps.map((prop: string) => {
+				// @ts-ignore-line
+				draft[prop] = draft.stashedState[prop];
+			});
 			break;
 
 		case actions.SHOW_HELP_DIALOG:
@@ -437,6 +459,10 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 		case actions.HIDE_DATA_SET_HISTORY:
 			draft.showDataSetHistory = false;
+			draft.selectedDataSetHistory = {
+				historyId: null,
+				isLatest: false
+			};
 			break;
 
 		case actions.SHOW_CLEAR_PAGE_DIALOG:
@@ -445,6 +471,13 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 		case actions.HIDE_CLEAR_GRID_DIALOG:
 			draft.showClearPageDialog = false;
+			break;
+
+		case actions.SELECT_DATA_SET_HISTORY_ITEM:
+			draft.selectedDataSetHistory = {
+				historyId: action.payload.historyId,
+				isLatest: action.payload.isLatest
+			};
 			break;
 	}
 }, getInitialState());

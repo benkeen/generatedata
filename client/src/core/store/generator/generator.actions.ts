@@ -14,6 +14,7 @@ import { DTBundle } from '~types/dataTypes';
 import { GDAction } from '~types/general';
 import C from '../../constants';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
+import * as accountActions from '~store/account/account.actions';
 import { ClearPageType } from '../../dialogs/clearPage/ClearPage.component';
 import { DataSetListItem } from '~types/dataSets';
 import { getUnique } from '~utils/arrayUtils';
@@ -51,9 +52,9 @@ export const onChangeTitle = (id: string, value: string): any => async (dispatch
 };
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
-export const onSelectDataType = (dataType: DataTypeFolder, gridRowId?: string): any => {
-	return (dispatch: any, getState: any): any => loadDataTypeBundle(dispatch, getState, dataType, { gridRowId });
-};
+export const onSelectDataType = (dataType: DataTypeFolder, gridRowId?: string): any => (
+	(dispatch: any, getState: any): any => loadDataTypeBundle(dispatch, getState, dataType, { gridRowId })
+);
 
 export type LoadDataTypeBundleOptions = {
 	gridRowId?: string;
@@ -401,6 +402,9 @@ export const stashGeneratorState = (): GDAction => ({ type: STASH_GENERATOR_STAT
 export const POP_STASHED_STATE = 'POP_STASHED_STATE';
 export const popStashedState = (): GDAction => ({ type: POP_STASHED_STATE });
 
+export const LOAD_STASHED_STATE = 'LOAD_STASHED_STATE';
+export const loadStashedState = (): GDAction => ({ type: LOAD_STASHED_STATE });
+
 export const SHOW_DATA_SET_HISTORY = 'SHOW_DATA_SET_HISTORY';
 export const showDataSetHistory = (): GDAction => ({ type: SHOW_DATA_SET_HISTORY });
 
@@ -424,3 +428,22 @@ export const showClearPageDialog = (): GDAction => ({ type: SHOW_CLEAR_PAGE_DIAL
 
 export const HIDE_CLEAR_GRID_DIALOG = 'HIDE_CLEAR_GRID_DIALOG';
 export const hideClearPageDialog = (): GDAction => ({ type: HIDE_CLEAR_GRID_DIALOG });
+
+export const SELECT_DATA_SET_HISTORY_ITEM = 'SELECT_DATA_SET_HISTORY_ITEM';
+export const selectDataSetHistoryItem = (historyId: number, isLatest: boolean) => ({
+	type: SELECT_DATA_SET_HISTORY_ITEM,
+	payload: {
+		historyId,
+		isLatest
+	}
+});
+
+// N.B. the version was actually selected when they clicked "View". This just closes the overlay and saves the
+// current state of the generator
+export const revertToHistoryVersion = (): any => (dispatch: Dispatch, getState: any): any => {
+	const state = getState();
+	const i18n = selectors.getCoreI18n(state);
+
+	dispatch(hideDataSetHistory());
+	dispatch(accountActions.saveCurrentDataSet(i18n.dataSetReverted));
+};

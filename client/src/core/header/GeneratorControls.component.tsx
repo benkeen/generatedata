@@ -62,19 +62,32 @@ const GeneratorControls = ({
 		setNewDataSetName(e.target.value);
 	};
 
+	const onBlur = () => {
+		// we save the new name if they click outside - since there's no save button, we want to make it really simple
+		if (newDataSetName !== dataSetName) {
+			saveNewDataSet();
+		}
+	};
+
+	const saveNewDataSet = () => {
+		onUpdate(newDataSetName);
+
+		// @ts-ignore-line
+		inputFieldRef.current?.blur();
+
+		addToast({
+			message: i18n.dataSetNameUpdated,
+			type: 'success'
+		});
+	};
+
 	const onKeyUp = (e: any): void => {
 		if (e.key === 'Escape') {
 			setNewDataSetName(dataSetName);
 			// @ts-ignore-line
 			inputFieldRef.current?.blur();
 		} else if (e.key === 'Enter') {
-			onUpdate(newDataSetName);
-			// @ts-ignore-line
-			inputFieldRef.current?.blur();
-			addToast({
-				message: i18n.dataSetNameUpdated,
-				type: 'success'
-			});
+			saveNewDataSet();
 		}
 	};
 
@@ -187,6 +200,7 @@ const GeneratorControls = ({
 							onFocus={onFocus}
 							onChange={onChange}
 							onKeyUp={onKeyUp}
+							onBlur={onBlur}
 							value={newDataSetName}
 							disabled={disabled}
 						/>

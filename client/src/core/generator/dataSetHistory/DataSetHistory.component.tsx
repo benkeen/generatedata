@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { format, fromUnixTime } from 'date-fns';
+import { useQuery } from '@apollo/client';
 import Drawer from '@material-ui/core/Drawer';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import { useQuery } from '@apollo/client';
 import { DefaultSpinner, Centered } from '~components/loaders/loaders';
 import { PrimaryButton, SecondaryButton } from '~components/Buttons.component';
 import { Tooltip } from '~components/tooltips';
@@ -15,13 +15,20 @@ export type DataSetHistoryProps = {
 	showPanel: boolean;
 	dataSetId: number | null;
 	dataSetName: string;
+	selectedDataSetHistoryItem: {
+		historyId: number | null;
+		isLatest: boolean;
+	};
+	setSelectedDataHistoryItem: (historyId: number, isLatest: boolean) => void;
 	closePanel: () => void;
 	loadHistoryVersion: (content: any) => void;
+	loadStashedVersion: () => void;
 	i18n: any;
 };
 
 const NUM_PER_PAGE = 200;
 const currentPage = 1;
+
 
 const Row = ({ historyId, rowLabel, dateCreated, onDelete, content, loadHistoryVersion, isSelected, i18n, Btn }: any): React.ReactElement => {
 	let classes = styles.row;
@@ -39,6 +46,7 @@ const Row = ({ historyId, rowLabel, dateCreated, onDelete, content, loadHistoryV
 				<div className={styles.edit}>
 					<Btn
 						size="small"
+						disabled={isSelected}
 						onClick={(): void => loadHistoryVersion(content)}>
 						{i18n.view}
 					</Btn>
@@ -51,8 +59,11 @@ const Row = ({ historyId, rowLabel, dateCreated, onDelete, content, loadHistoryV
 	);
 };
 
-export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, loadHistoryVersion, i18n }: DataSetHistoryProps): React.ReactElement | null => {
-	const [historyId, setSelectedHistoryId] = useState<number | null>(null);
+export const DataSetHistory = ({
+	showPanel, dataSetId, dataSetName, closePanel, loadHistoryVersion, loadStashedVersion, selectedDataSetHistoryItem,
+	setSelectedDataHistoryItem, i18n
+}: DataSetHistoryProps): React.ReactElement | null => {
+	const { historyId } = selectedDataSetHistoryItem;
 
 	const { data, loading } = useQuery(queries.GET_DATA_SET_HISTORY, {
 		fetchPolicy: 'cache-and-network',
@@ -64,25 +75,20 @@ export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, 
 		skip: !dataSetId
 	});
 
-	useEffect(() => {
-		if (historyId === null && data?.dataSetHistory.results.length > 1) {
-			setSelectedHistoryId(data.dataSetHistory.results[0].historyId);
-		}
-	}, [data]);
-
 	if (!dataSetId) {
 		return null;
 	}
 
-	const loadVersion = ({ historyId, content }: any) => {
-		setSelectedHistoryId(historyId);
+	const loadVersion = (version: any, isLatest: boolean): void => {
+		const { historyId, content } = version;
+		setSelectedDataHistoryItem(historyId, isLatest);
 		loadHistoryVersion(content);
 	};
 
 	let content = null;
 
 	if (data?.dataSetHistory) {
-		if (data.dataSetHistory.totalCount === 1) {
+		if (data.dataSetHistory.totalCount === 0) {
 			content = <p>{i18n.noHistory}</p>;
 		} else {
 			const latestRow = data.dataSetHistory.results[0];
@@ -92,21 +98,21 @@ export const DataSetHistory = ({ showPanel, dataSetId, dataSetName, closePanel, 
 					<div className={styles.currentVersionRow}>
 						<Row
 							{...latestRow}
-							rowLabel="Current version"
+							rowLabel={i18n.currentVersion}
 							key={latestRow.historyId}
-							loadHistoryVersion={() => loadVersion(latestRow)}
-							isSelected={latestRow.historyId === historyId}
+							loadHistoryVersion={loadStashedVersion}
+							isSelected={historyId === null}
 							i18n={i18n}
 							Btn={SecondaryButton}
 						/>
 					</div>
 					<div className={styles.rows}>
-						{data.dataSetHistory.results.slice(1).map((row: any) => (
+						{data.dataSetHistory.results.map((row: any) => (
 							<Row
 								{...row}
 								className={styles.row}
 								key={row.historyId}
-								loadHistoryVersion={() => loadVersion(row)}
+								loadHistoryVersion={() => loadVersion(row, false)}
 								isSelected={row.historyId === historyId}
 								i18n={i18n}
 								Btn={PrimaryButton}

@@ -21,7 +21,10 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorControlsProps>
 	onSaveAs: (): any => dispatch(actions.showSaveDataSetDialog(SaveDataDialogType.saveAs)),
 	onClearGrid: (): any => dispatch(generatorActions.clearPage(ClearPageType.dataOnly)),
 	showClearPageDialog: (): any => dispatch(generatorActions.showClearPageDialog()),
-	onShowHistory: (): any => dispatch(generatorActions.showDataSetHistory())
+	onShowHistory: (): any => {
+		dispatch(generatorActions.stashGeneratorState());
+		dispatch(generatorActions.showDataSetHistory());
+	}
 });
 
 const container: any = connect(

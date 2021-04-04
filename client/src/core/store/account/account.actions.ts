@@ -178,9 +178,10 @@ export const saveNewDataSet = (dataSetName: string): any => async (dispatch: Dis
 	// TODO error handling
 };
 
-export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState: any): Promise<any> => {
+export const saveCurrentDataSet = (successMsg?: string): any => async(dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();
 
+	const successMessage = successMsg || i18n.core.dataSetSaved;
 	const state = getState();
 	const data: any = getDataSetSavePackage(state);
 	const dataSetId = getCurrentDataSetId(state);
@@ -196,7 +197,7 @@ export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState:
 	if (response.data.saveDataSet.success) {
 		addToast({
 			type: 'success',
-			message: i18n.core.dataSetSaved
+			message: successMessage
 		});
 	}
 };
@@ -223,7 +224,6 @@ export const renameDataSet = (dataSetName: string): any => async (dispatch: Disp
 		});
 	}
 };
-
 
 // TODO typings
 export const createAccount = (data: any) => async (dispatch: Dispatch): Promise<any> => {

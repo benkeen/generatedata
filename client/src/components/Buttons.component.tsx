@@ -31,3 +31,26 @@ export const SecondaryButton = ({ children, ...props }: ButtonProps) => (
 		{children}
 	</SecondaryStyledButton>
 );
+
+export const StyledPreviewPanelButton = withStyles({
+	root: {
+		borderColor: '#ffffff',
+		color: '#ffffff',
+		marginRight: 6,
+		'&:hover': {
+			backgroundColor: '#0069d9',
+			borderColor: '#0062cc',
+			boxShadow: 'none'
+		}
+	}
+})(Button);
+
+export const PreviewPanelButton = ({ children, ...props }: ButtonProps) => (
+	<StyledPreviewPanelButton
+		color="primary"
+		variant="outlined"
+		size="medium"
+		{...props}>
+		{children}
+	</StyledPreviewPanelButton>
+);

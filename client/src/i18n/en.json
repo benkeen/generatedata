@@ -299,6 +299,9 @@
   "dataSetNameUpdated": "The data set name has been updated.",
   "noHistory": "No history yet.",
   "clearAllDesc": "This option resets the entire generator, including your Export Type choice, configuration and panel layout.",
+  "dataSetReverted": "Your data set has been reverted to the selected older version.",
+  "revertToVersion": "Revert to this version",
+  "currentVersion": "Current version being edited",
 
   "clearDataGridOnly": "Clear data set only"
 }

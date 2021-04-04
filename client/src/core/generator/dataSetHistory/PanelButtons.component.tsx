@@ -1,25 +1,27 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { PreviewPanelButton } from '~components/Buttons.component';
 import * as styles from './DataSetHistory.scss';
 
 export type PanelButtonsProps = {
 	selectVersion: () => void;
+	selectedDataSetHistoryItem: {
+		historyId: number | null;
+		isLatest: boolean;
+	};
 	i18n: any;
 };
 
-export const PanelButtons = ({ selectVersion, i18n }: PanelButtonsProps) => {
+export const PanelButtons = ({ selectVersion, selectedDataSetHistoryItem, i18n }: PanelButtonsProps) => {
+	const { isLatest } = selectedDataSetHistoryItem;
+
 	return (
 		<div>
-			<Button
-				disableElevation
+			<PreviewPanelButton
 				onClick={selectVersion}
-				variant="outlined"
-				color="primary"
 				className={styles.dataSetHistoryBtnClass}
-				size="medium"
-				style={{ marginRight: 10 }}>
-				Revert to this version
-			</Button>
+				disabled={isLatest}>
+				{i18n.revertToVersion}
+			</PreviewPanelButton>
 		</div>
 	);
 };

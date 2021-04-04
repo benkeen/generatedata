@@ -5,7 +5,6 @@ import { GeneratorPanel } from '~types/general';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import * as mainSelectors from '../main/main.selectors';
 import * as langUtils from '~utils/langUtils';
-import { getUnique } from '~utils/arrayUtils';
 import { processBatches, getDataType } from '~utils/dataTypeUtils';
 import {
 	getExportTypeLabel as exportTypeUtilsGetExportTypeLabel,
@@ -31,6 +30,7 @@ export const getPreviewTextSize = (state: Store): number => state.generator.prev
 export const getDataTypePreviewData = (state: Store): any => state.generator.dataTypePreviewData;
 export const shouldShowExportSettings = (state: Store): boolean => state.generator.showExportSettings;
 export const shouldShowDataSetHistory = (state: Store): boolean => state.generator.showDataSetHistory;
+export const getSelectedDataSetHistoryItem = (state: Store): any => state.generator.selectedDataSetHistory;
 export const getExportTypeSettings = (state: Store): any => state.generator.exportTypeSettings;
 export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
 export const isGenerationSettingsPanelVisible = (state: Store): boolean => state.generator.showGenerationSettingsPanel;
@@ -45,11 +45,6 @@ export const shouldStripWhitespace = (state: Store): boolean => state.generator.
 export const getCurrentDataSetId = (state: Store): number | null => state.generator.currentDataSetId;
 export const getCurrentDataSetName = (state: Store): string => state.generator.currentDataSetName;
 export const hasBulkActionPending = (state: Store): boolean => state.generator.bulkActionPending;
-
-export const getRowIds = createSelector(
-	getRows,
-	(rows) => Object.keys(rows)
-);
 
 export const getNumRows = createSelector(
 	getSortedRows,
@@ -167,11 +162,6 @@ export const getGenerationTemplate = createSelector(
 
 		return templateByProcessOrder;
 	}
-);
-
-export const getUniqueSelectedDataTypes = createSelector(
-	getSortedRowsArray,
-	(rows) => getUnique(rows.map((i: any): DataTypeFolder => i.dataType)).filter((i => i !== null))
 );
 
 export const hasData = createSelector(
@@ -353,4 +343,3 @@ export const getDataSetSavePackage = createSelector(
 		sortedRows
 	})
 );
-
