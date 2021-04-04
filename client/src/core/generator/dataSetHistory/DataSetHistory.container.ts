@@ -13,10 +13,13 @@ const mapStateToProps = (state: any): Partial<DataSetHistoryProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetHistoryProps> => ({
-	closePanel: (): any => dispatch(actions.hideDataSetHistory()),
-	setSelectedDataHistoryItem: (historyId: number, isLatest: boolean) => dispatch(actions.selectDataSetHistoryItem(historyId, isLatest)),
+	closePanel: (): any => {
+		dispatch(actions.popStashedState());
+		dispatch(actions.hideDataSetHistory());
+	},
+	setSelectedDataHistoryItem: (historyId: number, isLatest: boolean): any => dispatch(actions.selectDataSetHistoryItem(historyId, isLatest)),
 	loadHistoryVersion: (content: any): any => dispatch(actions.loadDataSetHistoryItem(content)),
-	loadStashedVersion: () => dispatch(actions.loadStashedState())
+	loadStashedVersion: (): any => dispatch(actions.loadStashedState()),
 });
 
 export default connect(

@@ -430,7 +430,7 @@ export const HIDE_CLEAR_GRID_DIALOG = 'HIDE_CLEAR_GRID_DIALOG';
 export const hideClearPageDialog = (): GDAction => ({ type: HIDE_CLEAR_GRID_DIALOG });
 
 export const SELECT_DATA_SET_HISTORY_ITEM = 'SELECT_DATA_SET_HISTORY_ITEM';
-export const selectDataSetHistoryItem = (historyId: number, isLatest: boolean) => ({
+export const selectDataSetHistoryItem = (historyId: number, isLatest: boolean): GDAction => ({
 	type: SELECT_DATA_SET_HISTORY_ITEM,
 	payload: {
 		historyId,

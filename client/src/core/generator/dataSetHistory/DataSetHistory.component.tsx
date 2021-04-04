@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { format, fromUnixTime } from 'date-fns';
 import { useQuery } from '@apollo/client';
 import Drawer from '@material-ui/core/Drawer';
@@ -30,7 +30,9 @@ const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
 
-const Row = ({ historyId, rowLabel, dateCreated, onDelete, content, loadHistoryVersion, isSelected, i18n, Btn }: any): React.ReactElement => {
+const Row = ({
+	rowLabel, dateCreated, content, loadHistoryVersion, isSelected, i18n, Btn
+}: any): React.ReactElement => {
 	let classes = styles.row;
 	if (isSelected) {
 		classes += ` ${styles.selectedRow}`;
@@ -50,9 +52,6 @@ const Row = ({ historyId, rowLabel, dateCreated, onDelete, content, loadHistoryV
 						onClick={(): void => loadHistoryVersion(content)}>
 						{i18n.view}
 					</Btn>
-				</div>
-				<div className={styles.del} onClick={onDelete}>
-					<HighlightOffIcon />
 				</div>
 			</div>
 		</div>
@@ -112,7 +111,7 @@ export const DataSetHistory = ({
 								{...row}
 								className={styles.row}
 								key={row.historyId}
-								loadHistoryVersion={() => loadVersion(row, false)}
+								loadHistoryVersion={(): void => loadVersion(row, false)}
 								isSelected={row.historyId === historyId}
 								i18n={i18n}
 								Btn={PrimaryButton}
@@ -134,7 +133,7 @@ export const DataSetHistory = ({
 	}
 
 	return (
-		<Drawer open={showPanel} anchor="left" onClose={() => {}}>
+		<Drawer open={showPanel} anchor="left" onClose={closePanel}>
 			<div className={`${styles.panel} tour-dataSetHistoryPanel`}>
 				<h2>
 					<span>{dataSetName}</span>

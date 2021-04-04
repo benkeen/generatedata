@@ -13,14 +13,16 @@ import SaveIcon from '@material-ui/icons/Save';
 import GearIcon from '@material-ui/icons/Settings';
 import Person from '@material-ui/icons/EmojiPeople';
 import { HtmlTooltip, Tooltip } from '~components/tooltips';
-import styles from './Footer.scss';
-import sharedStyles from '../../styles/shared.scss';
 import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
 import AboutDialog from '~core/dialogs/about/About.component';
 import { GDLocale } from '~types/general';
 import useOnClickOutside from 'use-onclickoutside';
+import styles from './Footer.scss';
+import sharedStyles from '../../styles/shared.scss';
+import { useWindowSize } from 'react-hooks-window-size';
+import C from '~core/constants';
 
 export type FooterProps = {
 	locale: GDLocale;
@@ -71,6 +73,8 @@ const Footer = ({
 	const [showAboutDialog, setAboutDialogVisibility] = useState(false);
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
+
+	const windowSize = useWindowSize();
 
 	useOnClickOutside(popoverRef, () => {
 		setLocaleTooltipVisibility(false);
@@ -192,6 +196,11 @@ const Footer = ({
 		generatorControlsClasses += ` ${sharedStyles.visible}`;
 	}
 
+	let panelControls;
+	if (windowSize.width > C.SMALL_SCREEN_WIDTH) {
+		panelControls = <PanelControls className={`${styles.controls} tour-panelControls`} />;
+	}
+
 	return (
 		<>
 			<footer className={styles.footer}>
@@ -218,7 +227,7 @@ const Footer = ({
 					</ul>
 
 					<div className={generatorControlsClasses}>
-						<PanelControls className={`${styles.controls} tour-panelControls`} />
+						{panelControls}
 						{getSaveButton()}
 						<Button
 							onClick={onGenerate}

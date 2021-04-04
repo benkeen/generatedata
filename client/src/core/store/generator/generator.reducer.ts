@@ -442,6 +442,10 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 				// @ts-ignore-line
 				draft[prop] = draft.stashedState[prop];
 			});
+			draft.selectedDataSetHistory = {
+				historyId: null,
+				isLatest: true
+			};
 			break;
 
 		case actions.SHOW_HELP_DIALOG:

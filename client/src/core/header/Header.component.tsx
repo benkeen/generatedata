@@ -8,11 +8,11 @@ import LoginDialog from '../dialogs/login/Login.container';
 import GeneratorControls from './GeneratorControls.container';
 import { GeneratorPanel, GDLocale } from '~types/general';
 import C from '../constants';
-import sharedStyles from '../../styles/shared.scss';
-import styles from './Header.scss';
 import HeaderLinks from './HeaderLinks.component';
 import { getHeaderLinks } from '~utils/routeUtils';
 import { AccountType } from '~types/account';
+import sharedStyles from '../../styles/shared.scss';
+import styles from './Header.scss';
 
 export type HeaderProps = {
 	currentPage: string;

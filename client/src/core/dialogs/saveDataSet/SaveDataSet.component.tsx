@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import Button from '@material-ui/core/Button';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import TextField from '~components/TextField';
+import { PrimaryButton } from '~components/Buttons.component';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './SaveDataSet.scss';
 import { SaveDataDialogType } from '~store/account/account.reducer';
@@ -53,9 +53,7 @@ const SaveDataSetDialog = ({
 	};
 
 	let buttons = (
-		<Button type="submit" color="primary" variant="outlined">
-			{i18n.save}
-		</Button>
+		<PrimaryButton type="submit">{i18n.save}</PrimaryButton>
 	);
 
 	if (!isLoggedIn) {
@@ -68,12 +66,8 @@ const SaveDataSetDialog = ({
 		);
 		buttons = (
 			<>
-				<Button onClick={onRedirectToLogin} color="primary" variant="outlined">
-					{i18n.login}
-				</Button>
-				<Button onClick={onClose} color="primary" variant="outlined">
-					{i18n.register}
-				</Button>
+				<PrimaryButton onClick={onRedirectToLogin}>{i18n.login}</PrimaryButton>
+				<PrimaryButton onClick={onClose}>{i18n.register}</PrimaryButton>
 			</>
 		);
 	}

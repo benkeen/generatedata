@@ -96,6 +96,14 @@ div.selectedRow {
 		align-items: center;
 		cursor: pointer;
 
+		&.disabled {
+			cursor: inherit;
+
+			svg {
+				opacity: 0.2;
+			}
+		}
+
 		&:hover {
 			svg {
 				fill: #990000;

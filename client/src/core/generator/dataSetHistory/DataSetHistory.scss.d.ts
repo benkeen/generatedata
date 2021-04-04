@@ -4,6 +4,7 @@ declare namespace DataSetHistoryScssNamespace {
     dataSetHistoryBtnClass: string;
     dateCreated: string;
     del: string;
+    disabled: string;
     edit: string;
     id: string;
     panel: string;

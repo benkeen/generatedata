@@ -62,14 +62,14 @@ const GeneratorControls = ({
 		setNewDataSetName(e.target.value);
 	};
 
-	const onBlur = () => {
+	const onBlur = (): void => {
 		// we save the new name if they click outside - since there's no save button, we want to make it really simple
 		if (newDataSetName !== dataSetName) {
 			saveNewDataSet();
 		}
 	};
 
-	const saveNewDataSet = () => {
+	const saveNewDataSet = (): void => {
 		onUpdate(newDataSetName);
 
 		// @ts-ignore-line
