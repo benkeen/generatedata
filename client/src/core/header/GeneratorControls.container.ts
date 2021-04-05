@@ -11,8 +11,7 @@ import { ClearPageType } from '~core/dialogs/clearPage/ClearPage.component';
 const mapStateToProps = (state: any): Partial<GeneratorControlsProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	isLoggedIn: mainSelectors.isLoggedIn(state),
-	dataSetName: selectors.getCurrentDataSetName(state),
-	dataSetId: selectors.getCurrentDataSetId(state)
+	dataSet: selectors.getCurrentDataSet(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorControlsProps> => ({

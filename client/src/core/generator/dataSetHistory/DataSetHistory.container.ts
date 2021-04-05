@@ -6,8 +6,7 @@ import * as actions from '~store/generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<DataSetHistoryProps> => ({
 	i18n: selectors.getCoreI18n(state),
-	dataSetId: selectors.getCurrentDataSetId(state),
-	dataSetName: selectors.getCurrentDataSetName(state),
+	dataSet: selectors.getCurrentDataSet(state),
 	selectedDataSetHistoryItem: selectors.getSelectedDataSetHistoryItem(state),
 	showPanel: selectors.shouldShowDataSetHistory(state)
 });

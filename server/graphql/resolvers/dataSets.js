@@ -24,7 +24,8 @@ const saveNewDataSet = async (root, { dataSetName, content }, { token, user }) =
 
 	return {
 		success: true,
-		dataSetId
+		dataSetId,
+		savedDate: dateCreated
 	};
 };
 
@@ -63,7 +64,8 @@ const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
 
 	return {
 		success: true,
-		dataSetId
+		dataSetId,
+		savedDate: dateCreated
 	};
 };
 

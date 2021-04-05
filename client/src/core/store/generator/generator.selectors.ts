@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { GeneratorLayout } from '../../generator/Generator.component';
-import { DataRow, DataRows } from './generator.reducer';
+import { CurrentDataSet, DataRow, DataRows } from './generator.reducer';
 import { GeneratorPanel } from '~types/general';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import * as mainSelectors from '../main/main.selectors';
@@ -42,8 +42,8 @@ export const getLastLayoutWidth = (state: Store): number | null => state.generat
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
 export const isInitialDependenciesLoaded = (state: Store): boolean => state.generator.initialDependenciesLoaded;
 export const shouldStripWhitespace = (state: Store): boolean => state.generator.stripWhitespace;
-export const getCurrentDataSetId = (state: Store): number | null => state.generator.currentDataSetId;
-export const getCurrentDataSetName = (state: Store): string => state.generator.currentDataSetName;
+export const getCurrentDataSetId = (state: Store): number | null => state.generator.currentDataSet.dataSetId;
+export const getCurrentDataSet = (state: Store): CurrentDataSet => state.generator.currentDataSet;
 export const hasBulkActionPending = (state: Store): boolean => state.generator.bulkActionPending;
 
 export const getNumRows = createSelector(

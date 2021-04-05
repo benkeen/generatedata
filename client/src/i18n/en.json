@@ -301,5 +301,9 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourAccountUpdated": "Your account has been updated.",
-	"yourUserAccount": "Your User Account"
+	"yourUserAccount": "Your User Account",
+
+  "errorCreatingAccount": "There was an error creating this account.",
+  "confirmDeleteAccount": "Are you sure you want to delete this account?",
+  "accountDeleted": "The account has been deleted."
 }

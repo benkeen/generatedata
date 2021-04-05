@@ -13,11 +13,11 @@ import useOnClickOutside from 'use-onclickoutside';
 import { addToast } from '~utils/generalUtils';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import * as queries from '~core/queries';
+import { CurrentDataSet } from '~store/generator/generator.reducer';
 
 export type GeneratorControlsProps = {
 	i18n: any;
-	dataSetId: number | null;
-	dataSetName: string;
+	dataSet: CurrentDataSet;
 	isLoggedIn: boolean;
 	onUpdate: (newDataSetName: string) => void;
 	onSaveDataSet: () => void;
@@ -29,12 +29,13 @@ export type GeneratorControlsProps = {
 };
 
 const GeneratorControls = ({
-	i18n, isLoggedIn, dataSetId, dataSetName, onUpdate, onSaveDataSet, onSaveAs, onClearGrid, onShowHistory, disabled,
+	i18n, isLoggedIn, dataSet, onUpdate, onSaveDataSet, onSaveAs, onClearGrid, onShowHistory, disabled,
 	showClearPageDialog
 }: GeneratorControlsProps): JSX.Element => {
 	const popoverRef = useRef(null);
 	const inputFieldRef = useRef(null);
 
+	const { dataSetId, dataSetName } = dataSet;
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
 	const [dimensions, setDimensions] = useState<any>({ height: 0, width: 0 });
 	const [newDataSetName, setNewDataSetName] = useState(dataSetName);

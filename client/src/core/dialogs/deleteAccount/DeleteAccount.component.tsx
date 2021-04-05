@@ -1,32 +1,33 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+import { PrimaryButton, NullButton } from '~components/Buttons.component';
 import styles from './DeleteAccount.scss';
 
 export type DeleteAccountDialogProps = {
 	visible: boolean;
+	name: string;
 	onClose: () => void;
 	onDelete: () => void;
+	onExited: () => void;
 	i18n: any;
-	// dataSetName?: string | null;
 };
 
-const DeleteAccountDialog = ({ visible, onClose, onDelete, i18n }: DeleteAccountDialogProps): JSX.Element => (
-	<Dialog onClose={onClose} open={visible}>
+const DeleteAccountDialog = ({ visible, name, onClose, onDelete, onExited, i18n }: DeleteAccountDialogProps): JSX.Element => (
+	<Dialog onClose={onClose} open={visible} onExited={onExited}>
 		<div style={{ width: 420 }}>
 			<DialogTitle onClose={onClose}>{i18n.deleteAccount}</DialogTitle>
 			<DialogContent dividers className={styles.contentPanel}>
 				<p>
-					Are you sure you want to delete this account?
+					{i18n.confirmDeleteAccount}
 				</p>
 
 				<p className={styles.accountName}>
-					<b>Tom Jones</b>
+					<b>{name}</b>
 				</p>
 			</DialogContent>
 			<DialogActions>
-				<Button onClick={onClose} color="secondary" variant="outlined">{i18n.cancel}</Button>
-				<Button onClick={onDelete} color="primary" variant="outlined">{i18n.delete}</Button>
+				<NullButton onClick={onClose}>{i18n.cancel}</NullButton>
+				<PrimaryButton onClick={onDelete}>{i18n.delete}</PrimaryButton>
 			</DialogActions>
 		</div>
 	</Dialog>

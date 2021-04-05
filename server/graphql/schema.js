@@ -112,6 +112,7 @@ const typeDefs = gql`
 	    success: Boolean
 	    error: String
 	    dataSetId: ID
+	    savedDate: String
     }
 	enum AccountType {
 		superuser

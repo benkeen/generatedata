@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import * as selectors from './generator.selectors';
-import { getCurrentDataSetId, getCurrentDataSetName } from './generator.selectors';
+import { getCurrentDataSet } from './generator.selectors';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import { registerInterceptors } from '../../actionInterceptor';
@@ -413,8 +413,7 @@ export const hideDataSetHistory = (): GDAction => ({ type: HIDE_DATA_SET_HISTORY
 
 export const loadDataSetHistoryItem = (content: any): any => (dispatch: Dispatch, getState: any): any => {
 	const state = getState();
-	const dataSetId = getCurrentDataSetId(state);
-	const dataSetName = getCurrentDataSetName(state);
+	const { dataSetId, dataSetName } = getCurrentDataSet(state);
 
 	dispatch(loadDataSet({
 		dataSetId,

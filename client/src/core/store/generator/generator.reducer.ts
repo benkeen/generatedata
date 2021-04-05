@@ -11,6 +11,7 @@ import { GeneratorLayout } from '../../generator/Generator.component';
 import env from '../../../../_env';
 import C from '../../constants';
 import { GeneratorPanel } from '~types/general';
+import { UPDATE_CURRENT_DATA_SET_LAST_SAVED } from '../account/account.actions';
 
 export type DataRow = {
 	id: string;
@@ -80,6 +81,17 @@ const stashProps = [
 	'currentDataSetId', 'currentDataSetName'
 ];
 
+export type CurrentDataSet = {
+	dataSetId: number | null;
+	dataSetName: string;
+	lastSaved: any;
+};
+
+export type SelectedDataSetHistoryItem = {
+	historyId: number | null;
+	isLatest: boolean;
+};
+
 export type GeneratorState = {
 	loadedDataTypes: {
 		[str in DataTypeFolder]: boolean;
@@ -118,12 +130,8 @@ export type GeneratorState = {
 	lastLayoutWidth: number | null;
 	lastLayoutHeight: number | null;
 	numRowsToGenerate: number;
-	currentDataSetId: number | null;
-	currentDataSetName: string;
-	selectedDataSetHistory: {
-		historyId: number | null;
-		isLatest: boolean;
-	};
+	currentDataSet: CurrentDataSet;
+	selectedDataSetHistory: SelectedDataSetHistoryItem;
 	stashedState: StashedGeneratorState | null;
 };
 
@@ -158,8 +166,11 @@ export const getInitialState = (): GeneratorState => ({
 	stripWhitespace: false,
 	lastLayoutWidth: null,
 	lastLayoutHeight: null,
-	currentDataSetId: null,
-	currentDataSetName: '',
+	currentDataSet: {
+		dataSetId: null,
+		dataSetName: '',
+		lastSaved: null
+	},
 	selectedDataSetHistory: {
 		historyId: null,
 		isLatest: false
@@ -180,22 +191,31 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 		// TODO needs to be cleaned up. Combine with LOGOUT action?
 		case mainActions.AUTHENTICATED:
 			if (!action.payload.authenticated) {
-				draft.currentDataSetId = null;
-				draft.currentDataSetName = '';
+				draft.currentDataSet = {
+					dataSetId: null,
+					dataSetName: '',
+					lastSaved: null
+				};
 			}
 			break;
 
 		case mainActions.LOGOUT:
-			draft.currentDataSetId = null;
-			draft.currentDataSetName = '';
+			draft.currentDataSet = {
+				dataSetId: null,
+				dataSetName: '',
+				lastSaved: null
+			};
 			break;
 
 		case actions.CLEAR_GRID:
 			draft.rows = {};
 			draft.sortedRows = [];
-			draft.currentDataSetId = null;
-			draft.currentDataSetName = '';
 			draft.showClearPageDialog = false;
+			draft.currentDataSet = {
+				dataSetId: null,
+				dataSetName: '',
+				lastSaved: null
+			};
 			break;
 
 		case actions.RESET_GENERATOR: {
@@ -398,8 +418,15 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case accountActions.SET_CURRENT_DATA_SET:
-			draft.currentDataSetName = action.payload.dataSetName;
-			draft.currentDataSetId = action.payload.dataSetId;
+			draft.currentDataSet = {
+				dataSetId: action.payload.dataSetId,
+				dataSetName: action.payload.dataSetName,
+				lastSaved: null
+			};
+			break;
+
+		case accountActions.UPDATE_CURRENT_DATA_SET_LAST_SAVED:
+			draft.currentDataSet.lastSaved = action.payload.lastSaved;
 			break;
 
 		case actions.LOAD_DATA_SET: {
@@ -408,13 +435,16 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.exportTypeSettings[exportType as ExportTypeFolder] = exportTypeSettings;
 			draft.rows = rows;
 			draft.sortedRows = sortedRows;
-			draft.currentDataSetId = dataSetId;
-			draft.currentDataSetName = dataSetName;
+			draft.currentDataSet = {
+				dataSetId,
+				dataSetName,
+				lastSaved: null
+			};
 			break;
 		}
 
 		case accountActions.UPDATE_CURRENT_DATA_SET_NAME:
-			draft.currentDataSetName = action.payload.dataSetName;
+			draft.currentDataSet.dataSetName = action.payload.dataSetName;
 			break;
 
 		case actions.STASH_GENERATOR_STATE: {

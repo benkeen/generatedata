@@ -85,6 +85,7 @@ export const SAVE_NEW_DATA_SET = gql`
 			success
 			error
 			dataSetId
+			savedDate
 		}
 	}
 `;
@@ -105,6 +106,7 @@ export const SAVE_CURRENT_DATA_SET = gql`
 			success
 			error
 			dataSetId
+			savedDate
 		}
 	}
 `;

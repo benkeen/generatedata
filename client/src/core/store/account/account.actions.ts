@@ -1,14 +1,14 @@
-import { AccountStatus, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
+import { Dispatch } from 'redux';
+import { format } from 'date-fns';
+import { apolloClient } from '../../apolloClient';
 import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
 import { getEditingData, getSelectedAccountsPageTab } from '~store/account/account.selectors';
 import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
+import { AccountStatus, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
 import { GDAction } from '~types/general';
-import { Dispatch } from 'redux';
-import { apolloClient } from '../../apolloClient';
 import { addToast } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
 import * as queries from '~core/queries';
-import { format } from 'date-fns';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 export const updateAccount = (data: AccountEditingData): GDAction => ({
@@ -178,6 +178,14 @@ export const saveNewDataSet = (dataSetName: string): any => async (dispatch: Dis
 	// TODO error handling
 };
 
+export const UPDATE_CURRENT_DATA_SET_LAST_SAVED = 'UPDATE_CURRENT_DATA_SET_LAST_SAVED';
+export const updateCurrentDataSetLastSaved = (lastSaved: any): GDAction => ({
+	type: UPDATE_CURRENT_DATA_SET_LAST_SAVED,
+	payload: {
+		lastSaved
+	}
+});
+
 export const saveCurrentDataSet = (successMsg?: string): any => async(dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();
 
@@ -195,6 +203,8 @@ export const saveCurrentDataSet = (successMsg?: string): any => async(dispatch: 
 	});
 
 	if (response.data.saveDataSet.success) {
+		dispatch(updateCurrentDataSetLastSaved(response.data.saveDataSet.savedDate));
+
 		addToast({
 			type: 'success',
 			message: successMessage
@@ -255,7 +265,7 @@ export const createAccount = (data: any) => async (dispatch: Dispatch): Promise<
 	} else {
 		addToast({
 			type: 'error',
-			message: 'There was an error creating this account.'
+			message: i18n.core.errorCreatingAccount
 		});
 	}
 };

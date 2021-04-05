@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { format, fromUnixTime } from 'date-fns';
 import { useMutation, useQuery } from '@apollo/client';
+import { addToast } from '~utils/generalUtils';
 import * as styles from './AccountsList.scss';
 import * as sharedStyles from '../../../styles/shared.scss';
 import Pagination from '~components/Pagination';
@@ -44,7 +45,8 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, expir
 const NUM_PER_PAGE = 10;
 const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element | null => {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [deleteAccountId, setDeleteAccountId] = useState<number | null>(null);
+	const [dialogVisible, setDialogVisible] = useState(false);
+	const [deleteAccountInfo, setDeleteAccountInfo] = useState<any>(null);
 	const [sortCol, setSortCol] = useState('lastName');
 	const [sortDir, setSortDir] = useState<ColSortDir>(ColSortDir.asc);
 
@@ -74,7 +76,13 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 			}
 		],
 		onCompleted: () => {
-			setDeleteAccountId(null);
+			setDialogVisible(false);
+			setDeleteAccountInfo(null);
+
+			addToast({
+				message: i18n.accountDeleted,
+				type: 'success'
+			});
 		}
 	});
 
@@ -150,23 +158,28 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 							{...row}
 							i18n={i18n}
 							onEdit={(): void => onEditAccount(row)}
-							onDelete={(): void => setDeleteAccountId(row.accountId)}
+							onDelete={(): void => {
+								setDialogVisible(true);
+								setDeleteAccountInfo(row);
+							}}
 						/>
 					))}
 				</div>
 			</div>
 			{paginationRow}
 			<DeleteAccountDialog
-				visible={deleteAccountId !== null}
-				onClose={(): void => setDeleteAccountId(null)}
+				visible={dialogVisible}
+				onClose={(): void => setDialogVisible(false)}
+				onExited={(): void => setDeleteAccountInfo(null)}
 				onDelete={(): any => {
 					deleteAccount({
 						variables: {
-							accountId: deleteAccountId
+							accountId: deleteAccountInfo?.accountId
 						}
 					});
 					setCurrentPage(afterDeletePage);
 				}}
+				name={`${deleteAccountInfo?.firstName} ${deleteAccountInfo?.lastName}`}
 				i18n={i18n}
 			/>
 		</>

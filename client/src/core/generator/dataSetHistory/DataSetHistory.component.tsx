@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { format, fromUnixTime } from 'date-fns';
 import { useQuery } from '@apollo/client';
 import Drawer from '@material-ui/core/Drawer';
@@ -10,11 +10,11 @@ import { Tooltip } from '~components/tooltips';
 import * as queries from '~core/queries';
 import * as styles from './DataSetHistory.scss';
 import C from '~core/constants';
+import { CurrentDataSet } from '~store/generator/generator.reducer';
 
 export type DataSetHistoryProps = {
 	showPanel: boolean;
-	dataSetId: number | null;
-	dataSetName: string;
+	dataSet: CurrentDataSet;
 	selectedDataSetHistoryItem: {
 		historyId: number | null;
 		isLatest: boolean;
@@ -59,20 +59,28 @@ const Row = ({
 };
 
 export const DataSetHistory = ({
-	showPanel, dataSetId, dataSetName, closePanel, loadHistoryVersion, loadStashedVersion, selectedDataSetHistoryItem,
+	showPanel, dataSet, closePanel, loadHistoryVersion, loadStashedVersion, selectedDataSetHistoryItem,
 	setSelectedDataHistoryItem, i18n
 }: DataSetHistoryProps): React.ReactElement | null => {
+	const { dataSetId, dataSetName, lastSaved } = dataSet;
 	const { historyId } = selectedDataSetHistoryItem;
 
-	const { data, loading } = useQuery(queries.GET_DATA_SET_HISTORY, {
+	const { data, loading, called, refetch } = useQuery(queries.GET_DATA_SET_HISTORY, {
 		fetchPolicy: 'cache-and-network',
 		variables: {
 			dataSetId,
 			offset: (currentPage - 1) * NUM_PER_PAGE,
 			limit: NUM_PER_PAGE
 		},
-		skip: !dataSetId
+		skip: !dataSetId || !showPanel
 	});
+
+	// need to clear the cache whenever the lastSaved changes
+	useEffect(() => {
+		if (called && showPanel && dataSetId) {
+			refetch();
+		}
+	}, [dataSetId, called, lastSaved, showPanel]);
 
 	if (!dataSetId) {
 		return null;
