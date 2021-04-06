@@ -60,10 +60,10 @@ const ClearPageDialog = ({ visible, onClose, onClear, i18n }: ClearPageDialogPro
 					</div>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={(): void => onClear(clearType)} color="secondary" variant="outlined" className="clearGrid">
+					<Button onClick={(): void => onClear(clearType)} color="secondary" variant="outlined" className="clearPage">
 						{i18n.yes}
 					</Button>
-					<PrimaryButton onClick={onClose} className="cancelClearGrid">
+					<PrimaryButton onClick={onClose} className="cancelClearPage">
 						{i18n.no}
 					</PrimaryButton>
 				</DialogActions>

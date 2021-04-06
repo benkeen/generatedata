@@ -11,7 +11,6 @@ import { GeneratorLayout } from '../../generator/Generator.component';
 import env from '../../../../_env';
 import C from '../../constants';
 import { GeneratorPanel } from '~types/general';
-import { UPDATE_CURRENT_DATA_SET_LAST_SAVED } from '../account/account.actions';
 
 export type DataRow = {
 	id: string;

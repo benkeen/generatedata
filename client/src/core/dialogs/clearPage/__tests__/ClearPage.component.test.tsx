@@ -25,7 +25,7 @@ describe('ClearPageDialog', () => {
 			/>
 		);
 
-		const closeButton = baseElement.querySelector('.cancelClearGrid') as HTMLButtonElement;
+		const closeButton = baseElement.querySelector('.cancelClearPage') as HTMLButtonElement;
 		fireEvent.click(closeButton);
 		expect(onClose).toHaveBeenCalled();
 	});
