@@ -1,6 +1,8 @@
 declare namespace LoginScssNamespace {
   export interface ILoginScss {
+    actionsRow: string;
     col: string;
+    forgotPasswordLink: string;
     loginDialog: string;
     separator: string;
     withSecondCol: string;

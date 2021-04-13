@@ -79,7 +79,7 @@ These are found in `src/i18n`. They contain all the core i18n files.
 Local dev, general steps:
 
 - `yarn prodAllBuild` - 
-- `yarn startDevServer` - 
+- `yarn startDevServer` -
 
 
 ### Common problems

@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .loginDialog {
 	label {
 		color: #999999;
@@ -29,5 +31,20 @@
 		background-color: white;
 		padding: 2px;
 		color: #555555;
+	}
+}
+
+div.actionsRow {
+	justify-content: space-between;
+}
+
+.forgotPasswordLink {
+	margin-left: 10px;
+	color: #666666;
+	cursor: pointer;
+
+	&:hover {
+		color: $primary-color;
+		text-decoration: underline;
 	}
 }

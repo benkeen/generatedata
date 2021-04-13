@@ -149,7 +149,8 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, i18n }
 								{getSecondColumn()}
 							</div>
 						</DialogContent>
-						<DialogActions>
+						<DialogActions className={styles.actionsRow}>
+							<div className={styles.forgotPasswordLink}>Forgot password?</div>
 							<Button type="submit" color="primary" variant="outlined" disabled={isLoggingIn}>
 								{i18n.login}
 							</Button>
