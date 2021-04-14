@@ -48,7 +48,8 @@ function initStore(state: any): any {
 		blacklist: [
 			'localeFileLoaded',
 			'isOnloadAuthDetermined',
-			'tourBundleLoaded'
+			'tourBundleLoaded',
+			'dialogProcessing'
 		]
 	};
 

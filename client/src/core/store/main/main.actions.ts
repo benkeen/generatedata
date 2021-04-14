@@ -301,7 +301,7 @@ export const loadTourBundle = (): any => (dispatch: Dispatch): void => {
 };
 
 
-export const sendPasswordResetEmail = (email: string, onLoginError: any): any => async (dispatch: Dispatch) => {
+export const sendPasswordResetEmail = (email: string, onLoginError: any): any => async (dispatch: Dispatch): Promise<any> => {
 	dispatch(startDialogProcessing());
 
 	const response = await apolloClient.mutate({

@@ -49,7 +49,6 @@ const sendPasswordResetEmail = async (root, { email }, { res }) => {
 	});
 
 	if (user) {
-		console.log("found!");
 		await emailUtils.sendEmail(email, 'Password reset', 'test here!');
 	}
 
