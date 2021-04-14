@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<PasswordResetDialogProp
 	onClose: (): any => dispatch(mainActions.setLoginDialogVisibility(false)),
 	onExited: (): any => mainActions.clearLoginFlow(),
 	onSubmit: (email: string, onLoginError: Function): any => {
-		//dispatch(mainActions.login(email, onLoginError))
+		dispatch(mainActions.sendPasswordResetEmail(email, onLoginError))
 	},
 	showLoginDialog: () => {
 		dispatch(mainActions.setLoginDialogVisibility(true));

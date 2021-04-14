@@ -2,6 +2,7 @@ const { OAuth2Client } = require('google-auth-library');
 const { nanoid } = require('nanoid');
 const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
+const nodemailer = require('nodemailer');
 
 
 const login = async (root, { email, password }, { res }) => {
@@ -37,6 +38,9 @@ const login = async (root, { email, password }, { res }) => {
 	};
 };
 
+const sendPasswordResetEmail = async (root, { email }, { res }) => {
+
+};
 
 const loginWithGoogle = async (root, { googleToken }) => {
 	const client = new OAuth2Client(process.env.GD_GOOGLE_AUTH_CLIENT_ID);

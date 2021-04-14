@@ -299,3 +299,33 @@ export const loadTourBundle = (): any => (dispatch: Dispatch): void => {
 			});
 		});
 };
+
+
+export const sendPasswordResetEmail = (email: string, onLoginError: () => {}) => (dispatch: Dispatch) => {
+	dispatch(startLogin());
+
+	const response = await apolloClient.mutate({
+		mutation: gql`
+            mutation SendPasswordResetEmailMutation($email: String!) {
+                sendPasswordResetEmail(email: $email) {
+                    success
+                }
+            }
+		`,
+		variables: { email }
+	});
+
+	if (response.data.login.success) {
+		const { tokenExpiry, refreshToken } = response.data.login;
+		dispatch(setAuthenticationData({
+			...response.data.login,
+			authMethod: 'default'
+		}));
+
+		onLoginSuccess(tokenExpiry, false, dispatch);
+	} else {
+		dispatch(setLoginError());
+		onLoginError();
+	}
+
+};

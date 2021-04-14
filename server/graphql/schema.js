@@ -12,6 +12,7 @@ const typeDefs = gql`
 	type Mutation {
 		login(email: String!, password: String!): AuthResponse
         loginWithGoogle(googleToken: String!): AuthResponse
+		sendPasswordResetEmail(email: String!): GeneralResponse
         refreshToken: AuthResponse
 		logout: GeneralResponse
         updateAccount(accountId: ID!, accountStatus: AccountStatus, firstName: String!, lastName: String!, email: String!,
