@@ -116,7 +116,6 @@
 	"filterDataTypes": "Filter Data Types",
 	"financial": "Financial",
 	"firstName": "First Name",
-	"forgottenYourPasswordQ": "Forgotten your password?",
 	"format": "Format",
 	"generate": "Generate",
 	"generateBtnDesc": "Once you've finished configuring your data set and confirmed that it looks how you want, it's time to generate some data in volume! Click this button to generate your data. Depending on the number of rows in the data grid and the number of rows you want to generate, this may take some time.",
@@ -305,5 +304,10 @@
 
   "errorCreatingAccount": "There was an error creating this account.",
   "confirmDeleteAccount": "Are you sure you want to delete this account?",
-  "accountDeleted": "The account has been deleted."
+  "accountDeleted": "The account has been deleted.",
+
+  "forgottenYourPasswordQ": "Forget password?",
+  "passwordReset": "Password Reset",
+  "backToLogin": "Back to login",
+  "sendEmail": "Send email"
 }

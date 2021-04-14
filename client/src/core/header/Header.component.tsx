@@ -5,6 +5,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import LoginDialog from '../dialogs/login/Login.container';
+import PasswordResetDialog from '../dialogs/passwordReset/PasswordReset.container';
 import GeneratorControls from './GeneratorControls.container';
 import { GeneratorPanel, GDLocale } from '~types/general';
 import C from '../constants';
@@ -142,6 +143,7 @@ const Header = ({
 				</div>
 			</header>
 			<LoginDialog />
+			<PasswordResetDialog />
 		</>
 	);
 };

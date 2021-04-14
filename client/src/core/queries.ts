@@ -70,15 +70,6 @@ export const DELETE_DATA_SET = gql`
     }
 `;
 
-export const DELETE_DATA_SET_HISTORY = gql`
-    mutation DeleteDataSetHistory($dataSetId: ID!) {
-        deleteDataSet(dataSetId: $dataSetId) {
-            success
-            error
-        }
-    }
-`;
-
 export const SAVE_NEW_DATA_SET = gql`
 	mutation SaveNewDataSet($dataSetName: String!, $content: String!) {
 		saveNewDataSet(dataSetName: $dataSetName, content: $content) {
@@ -98,7 +89,6 @@ export const RENAME_DATA_SET = gql`
         }
     }
 `;
-
 
 export const SAVE_CURRENT_DATA_SET = gql`
 	mutation SaveDataSet($dataSetId: ID!, $content: String!) {

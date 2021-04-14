@@ -11,6 +11,7 @@ export type MainState = {
 	localeFileLoaded: boolean;
 	locale: GDLocale;
 	showLoginDialog: boolean;
+	showPasswordResetDialog: boolean;
 	isLoggedIn: boolean;
 	authToken: string;
 	isOnloadAuthDetermined: boolean;
@@ -27,6 +28,7 @@ export const initialState: MainState = {
 	localeFileLoaded: false,
 	locale: env.defaultLocale,
 	showLoginDialog: false,
+	showPasswordResetDialog: false,
 	isLoggedIn: false,
 	authToken: '',
 	isOnloadAuthDetermined: false,
@@ -53,6 +55,10 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.SET_LOGIN_DIALOG_VISIBILITY:
 			draft.showLoginDialog = action.payload.visible;
+			break;
+
+		case actions.SET_PASSWORD_RESET_DIALOG_VISIBILITY:
+			draft.showPasswordResetDialog = action.payload.visible;
 			break;
 
 		case actions.AUTHENTICATED:

@@ -56,6 +56,14 @@ export const setLoginDialogVisibility = (visible: boolean): GDAction => ({
 	}
 });
 
+export const SET_PASSWORD_RESET_DIALOG_VISIBILITY = 'SET_PASSWORD_RESET_DIALOG_VISIBILITY';
+export const setPasswordResetDialogVisibility = (visible: boolean): GDAction => ({
+	type: SET_PASSWORD_RESET_DIALOG_VISIBILITY,
+	payload: {
+		visible
+	}
+});
+
 export const SET_AUTHENTICATION_DATA = 'SET_AUTHENTICATION_DATA';
 
 export type AuthData = {

@@ -9,6 +9,7 @@ const defaultProps = {
 	onClose: () => {},
 	onSubmit: () => {},
 	onExited: () => {},
+	showPasswordResetDialog: () => {},
 	isLoggingIn: false,
 	i18n
 };

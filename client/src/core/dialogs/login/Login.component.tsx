@@ -16,6 +16,7 @@ export type LoginDialogProps = {
 	onClose: () => void;
 	onExited: () => void;
 	onSubmit: (email: string, password: string, onError: Function) => void;
+	showPasswordResetDialog: () => void;
 	i18n: any;
 };
 
@@ -23,7 +24,7 @@ export type LoginDialogProps = {
  * The login dialog has baked-in support for standard logging into our database, but also optionally supports
  * logging in via external vendors: Google, Facebook and Github.
  */
-const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, i18n }: LoginDialogProps): JSX.Element => {
+const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, showPasswordResetDialog, i18n }: LoginDialogProps): JSX.Element => {
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');
@@ -150,7 +151,9 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, i18n }
 							</div>
 						</DialogContent>
 						<DialogActions className={styles.actionsRow}>
-							<div className={styles.forgotPasswordLink}>Forgot password?</div>
+							<div className={styles.forgotPasswordLink} onClick={showPasswordResetDialog}>
+								{i18n.forgottenYourPasswordQ}
+							</div>
 							<Button type="submit" color="primary" variant="outlined" disabled={isLoggingIn}>
 								{i18n.login}
 							</Button>
