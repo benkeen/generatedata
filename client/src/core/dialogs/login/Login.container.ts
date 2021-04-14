@@ -8,7 +8,7 @@ import * as mainActions from '~store/main/main.actions';
 const mapStateToProps = (state: any): Partial<LoginDialogProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: mainSelectors.shouldShowLoginDialog(state),
-	isLoggingIn: mainSelectors.isLoggingIn(state)
+	dialogProcessing: mainSelectors.isDialogProcessing(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<LoginDialogProps> => ({

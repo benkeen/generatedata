@@ -9,15 +9,14 @@ import styles from './PasswordReset.scss';
 
 export type PasswordResetDialogProps = {
 	visible: boolean;
-	isLoggingIn: boolean;
+	dialogProcessing: boolean;
 	onClose: () => void;
-	onExited: () => void;
 	onSubmit: (email: string, onError: Function) => void;
 	showLoginDialog: () => void;
 	i18n: any;
 };
 
-const PasswordResetDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, showLoginDialog, i18n }: PasswordResetDialogProps): JSX.Element => {
+const PasswordResetDialog = ({ visible, onClose, dialogProcessing, onSubmit, showLoginDialog, i18n }: PasswordResetDialogProps): JSX.Element => {
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');
@@ -63,42 +62,40 @@ const PasswordResetDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited
 	};
 
 	return (
-		<>
-			<Dialog onClose={onClose} open={visible} className={styles.loginDialog} onExited={onExited}>
-				<form onSubmit={onLogin}>
-					<div style={{ width: 380 }}>
-						<DialogTitle onClose={onClose}>{i18n.passwordReset}</DialogTitle>
-						<DialogContent dividers>
-							<label>{i18n.email}</label>
-							<div style={{ marginBottom: 15 }}>
-								<TextField
-									ref={textFieldRef}
-									value={email}
-									error={emailError}
-									name="email"
-									onChange={(e: any): void => updateEmail(e.target.value)}
-									style={{ width: '100%' }}
-									disabled={isLoggingIn}
-									autoFocus
-								/>
+		<Dialog onClose={onClose} open={visible} className={styles.loginDialog}>
+			<form onSubmit={onLogin}>
+				<div style={{ width: 380 }}>
+					<DialogTitle onClose={onClose}>{i18n.passwordReset}</DialogTitle>
+					<DialogContent dividers>
+						<label>{i18n.email}</label>
+						<div style={{ marginBottom: 15 }}>
+							<TextField
+								ref={textFieldRef}
+								value={email}
+								error={emailError}
+								name="email"
+								onChange={(e: any): void => updateEmail(e.target.value)}
+								style={{ width: '100%' }}
+								disabled={dialogProcessing}
+								autoFocus
+							/>
+						</div>
+					</DialogContent>
+					<DialogActions className={styles.actionsRow}>
+						<div className={styles.loginLink} onClick={showLoginDialog}>
+							<div>
+								<ArrowLeftIcon />
+								{i18n.backToLogin}
 							</div>
-						</DialogContent>
-						<DialogActions className={styles.actionsRow}>
-							<div className={styles.loginLink} onClick={showLoginDialog}>
-								<div>
-									<ArrowLeftIcon />
-									{i18n.backToLogin}
-								</div>
-							</div>
-							<Button type="submit" color="primary" variant="outlined" disabled={isLoggingIn}>
-								{i18n.sendEmail}
-							</Button>
-						</DialogActions>
-					</div>
-				</form>
-				<DialogLoadingSpinner visible={isLoggingIn} />
-			</Dialog>
-		</>
+						</div>
+						<Button type="submit" color="primary" variant="outlined" disabled={dialogProcessing}>
+							{i18n.sendEmail}
+						</Button>
+					</DialogActions>
+				</div>
+			</form>
+			<DialogLoadingSpinner visible={dialogProcessing} />
+		</Dialog>
 	);
 };
 

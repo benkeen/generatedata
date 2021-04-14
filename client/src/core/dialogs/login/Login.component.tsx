@@ -12,7 +12,7 @@ const vendorLoginButtons = getVendorLoginButtons();
 
 export type LoginDialogProps = {
 	visible: boolean;
-	isLoggingIn: boolean;
+	dialogProcessing: boolean;
 	onClose: () => void;
 	onExited: () => void;
 	onSubmit: (email: string, password: string, onError: Function) => void;
@@ -24,7 +24,7 @@ export type LoginDialogProps = {
  * The login dialog has baked-in support for standard logging into our database, but also optionally supports
  * logging in via external vendors: Google, Facebook and Github.
  */
-const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, showPasswordResetDialog, i18n }: LoginDialogProps): JSX.Element => {
+const LoginDialog = ({ visible, onClose, dialogProcessing, onSubmit, onExited, showPasswordResetDialog, i18n }: LoginDialogProps): JSX.Element => {
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');
@@ -129,7 +129,7 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, showPa
 											name="email"
 											onChange={(e: any): void => updateEmail(e.target.value)}
 											style={{ width: '100%' }}
-											disabled={isLoggingIn}
+											disabled={dialogProcessing}
 											autoFocus
 										/>
 									</div>
@@ -143,7 +143,7 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, showPa
 											value={password}
 											onChange={(e: any): void => updatePassword(e.target.value)}
 											style={{ width: '100%' }}
-											disabled={isLoggingIn}
+											disabled={dialogProcessing}
 										/>
 									</div>
 								</div>
@@ -154,13 +154,13 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, showPa
 							<div className={styles.forgotPasswordLink} onClick={showPasswordResetDialog}>
 								{i18n.forgottenYourPasswordQ}
 							</div>
-							<Button type="submit" color="primary" variant="outlined" disabled={isLoggingIn}>
+							<Button type="submit" color="primary" variant="outlined" disabled={dialogProcessing}>
 								{i18n.login}
 							</Button>
 						</DialogActions>
 					</div>
 				</form>
-				<DialogLoadingSpinner visible={isLoggingIn} />
+				<DialogLoadingSpinner visible={dialogProcessing} />
 			</Dialog>
 		</>
 	);

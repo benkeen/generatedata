@@ -8,14 +8,13 @@ import * as mainActions from '~store/main/main.actions';
 const mapStateToProps = (state: any): Partial<PasswordResetDialogProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: mainSelectors.shouldShowPasswordResetDialog(state),
-	isLoggingIn: mainSelectors.isLoggingIn(state)
+	dialogProcessing: mainSelectors.isDialogProcessing(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PasswordResetDialogProps> => ({
-	onClose: (): any => dispatch(mainActions.setLoginDialogVisibility(false)),
-	onExited: (): any => mainActions.clearLoginFlow(),
-	onSubmit: (email: string, onLoginError: Function): any => {
-		dispatch(mainActions.sendPasswordResetEmail(email, onLoginError))
+	onClose: (): any => dispatch(mainActions.setPasswordResetDialogVisibility(false)),
+	onSubmit: (email: string, onLoginError: any): any => {
+		dispatch(mainActions.sendPasswordResetEmail(email, onLoginError));
 	},
 	showLoginDialog: () => {
 		dispatch(mainActions.setLoginDialogVisibility(true));

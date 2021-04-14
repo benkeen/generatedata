@@ -8,7 +8,7 @@ export const shouldShowLoginDialog = (state: Store): boolean => state.main.showL
 export const shouldShowPasswordResetDialog = (state: Store): boolean => state.main.showPasswordResetDialog;
 export const isLoggedIn = (state: Store): boolean => state.main.isLoggedIn;
 export const isOnloadAuthDetermined = (state: Store): boolean => state.main.isOnloadAuthDetermined;
-export const isLoggingIn = (state: Store): boolean => state.main.isLoggingIn;
+export const isDialogProcessing = (state: Store): boolean => state.main.dialogProcessing;
 export const getAuthToken = (state: Store): string => state.main.authToken;
 export const getCurrentPage = (state: Store): string => state.main.currentPage;
 export const tourIntroDialogVisible = (state: Store): boolean => state.main.tourIntroDialogVisible;

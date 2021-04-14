@@ -96,8 +96,8 @@ export const setAuthenticated = (authenticated = true): GDAction => ({
 	}
 });
 
-export const START_LOGIN = 'START_LOGIN';
-export const startLogin = (): GDAction => ({ type: START_LOGIN });
+export const START_DIALOG_PROCESSING = 'START_DIALOG_PROCESSING';
+export const startDialogProcessing = (): GDAction => ({ type: START_DIALOG_PROCESSING });
 
 
 // hacky, but if we need something like this elsewhere I can revisit. This is used by the Login button in Save dialog.
@@ -117,7 +117,7 @@ export const setLoginError = (): GDAction => ({ type: LOGIN_ERROR });
 
 // default authentication
 export const login = (email: string, password: string, onLoginError: Function): any => async (dispatch: Dispatch): Promise<any> => {
-	dispatch(startLogin());
+	dispatch(startDialogProcessing());
 
 	const response = await apolloClient.mutate({
 		mutation: gql`
@@ -301,8 +301,8 @@ export const loadTourBundle = (): any => (dispatch: Dispatch): void => {
 };
 
 
-export const sendPasswordResetEmail = (email: string, onLoginError: () => {}) => (dispatch: Dispatch) => {
-	dispatch(startLogin());
+export const sendPasswordResetEmail = (email: string, onLoginError: any): any => async (dispatch: Dispatch) => {
+	dispatch(startDialogProcessing());
 
 	const response = await apolloClient.mutate({
 		mutation: gql`
@@ -315,14 +315,8 @@ export const sendPasswordResetEmail = (email: string, onLoginError: () => {}) =>
 		variables: { email }
 	});
 
-	if (response.data.login.success) {
-		const { tokenExpiry, refreshToken } = response.data.login;
-		dispatch(setAuthenticationData({
-			...response.data.login,
-			authMethod: 'default'
-		}));
+	if (response.data.sendPasswordResetEmail.success) {
 
-		onLoginSuccess(tokenExpiry, false, dispatch);
 	} else {
 		dispatch(setLoginError());
 		onLoginError();

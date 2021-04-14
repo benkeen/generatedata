@@ -2,7 +2,7 @@ const { OAuth2Client } = require('google-auth-library');
 const { nanoid } = require('nanoid');
 const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
-const nodemailer = require('nodemailer');
+const emailUtils = require('../../utils/emailUtils');
 
 
 const login = async (root, { email, password }, { res }) => {
@@ -40,6 +40,22 @@ const login = async (root, { email, password }, { res }) => {
 
 const sendPasswordResetEmail = async (root, { email }, { res }) => {
 
+	// see if the email exists
+	const user = await db.accounts.findOne({
+		attributes: ['accountId'],
+		where: {
+			email
+		}
+	});
+
+	if (user) {
+		console.log("found!");
+		await emailUtils.sendEmail(email, 'Password reset', 'test here!');
+	}
+
+	// regardless of whether it was found or not, just return true. This prevents people being sneaky and finding out
+	// if people have an account or not
+	return { success: true };
 };
 
 const loginWithGoogle = async (root, { googleToken }) => {
@@ -178,6 +194,7 @@ const getNewTokens = async (accountId, email, user) => {
 module.exports = {
 	login,
 	loginWithGoogle,
+	sendPasswordResetEmail,
 	checkAndUpdateRefreshToken,
 	logout
 };

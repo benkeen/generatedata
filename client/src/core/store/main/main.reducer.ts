@@ -16,7 +16,7 @@ export type MainState = {
 	authToken: string;
 	isOnloadAuthDetermined: boolean;
 	isRefreshingToken: boolean;
-	isLoggingIn: boolean;
+	dialogProcessing: boolean; // isDialogProcessing
 	currentPage: string;
 	tourIntroDialogVisible: boolean;
 	tourBundleLoaded: boolean;
@@ -33,7 +33,7 @@ export const initialState: MainState = {
 	authToken: '',
 	isOnloadAuthDetermined: false,
 	isRefreshingToken: false,
-	isLoggingIn: false,
+	dialogProcessing: false,
 	currentPage: '',
 	tourIntroDialogVisible: false,
 	tourBundleLoaded: false
@@ -68,7 +68,7 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.SET_AUTHENTICATION_DATA:
 			draft.isLoggedIn = true;
-			draft.isLoggingIn = false;
+			draft.dialogProcessing = false;
 			draft.authToken = action.payload.token;
 			draft.authMethod = action.payload.authMethod;
 			break;
@@ -86,12 +86,12 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			draft.authToken = action.payload.token;
 			break;
 
-		case actions.START_LOGIN:
-			draft.isLoggingIn = true;
+		case actions.START_DIALOG_PROCESSING:
+			draft.dialogProcessing = true;
 			break;
 
 		case actions.LOGIN_ERROR:
-			draft.isLoggingIn = false;
+			draft.dialogProcessing = false;
 			break;
 
 		case actions.ONLOAD_AUTH_DETERMINED:

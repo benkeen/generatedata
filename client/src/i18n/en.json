@@ -309,5 +309,6 @@
   "forgottenYourPasswordQ": "Forget password?",
   "passwordReset": "Password Reset",
   "backToLogin": "Back to login",
-  "sendEmail": "Send email"
+  "sendEmail": "Send email",
+  "resetPasswordMsg": ""
 }
