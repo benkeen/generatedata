@@ -99,6 +99,8 @@ export const setAuthenticated = (authenticated = true): GDAction => ({
 export const START_DIALOG_PROCESSING = 'START_DIALOG_PROCESSING';
 export const startDialogProcessing = (): GDAction => ({ type: START_DIALOG_PROCESSING });
 
+export const STOP_DIALOG_PROCESSING = 'STOP_DIALOG_PROCESSING';
+export const stopDialogProcessing = (): GDAction => ({ type: STOP_DIALOG_PROCESSING });
 
 // hacky, but if we need something like this elsewhere I can revisit. This is used by the Login button in Save dialog.
 // When the user clicks that, we want to return them to the Save dialog after authentication. The register process is more
@@ -316,7 +318,13 @@ export const sendPasswordResetEmail = (email: string, onLoginError: any): any =>
 	});
 
 	if (response.data.sendPasswordResetEmail.success) {
-
+		addToast({
+			type: 'success',
+			message: i18n.passwordResetMsg
+		});
+		dispatch(setPasswordResetDialogVisibility(false));
+		dispatch(setLoginDialogVisibility(true));
+		dispatch(stopDialogProcessing());
 	} else {
 		dispatch(setLoginError());
 		onLoginError();

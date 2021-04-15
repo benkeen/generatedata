@@ -16,7 +16,7 @@ export type MainState = {
 	authToken: string;
 	isOnloadAuthDetermined: boolean;
 	isRefreshingToken: boolean;
-	dialogProcessing: boolean; // isDialogProcessing
+	dialogProcessing: boolean;
 	currentPage: string;
 	tourIntroDialogVisible: boolean;
 	tourBundleLoaded: boolean;
@@ -88,6 +88,10 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.START_DIALOG_PROCESSING:
 			draft.dialogProcessing = true;
+			break;
+
+		case actions.STOP_DIALOG_PROCESSING:
+			draft.dialogProcessing = false;
 			break;
 
 		case actions.LOGIN_ERROR:

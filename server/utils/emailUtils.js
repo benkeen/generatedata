@@ -1,8 +1,6 @@
 const nodemailer = require('nodemailer');
 
 const sendEmail = async (recipientEmail, subject, content) => {
-	console.log(process.env);
-
 	const transporter = nodemailer.createTransport({
 		host: 'smtp.gmail.com',
 		port: 465,
@@ -11,8 +9,8 @@ const sendEmail = async (recipientEmail, subject, content) => {
 			type: 'OAuth2',
 			user: process.env.GD_EMAIL_ADMIN_ACCOUNT,
 			serviceClient: process.env.GD_EMAIL_OAUTH_SERVICE_CLIENT_ID,
-			privateKey: process.env.GD_EMAIL_OAUTH_PRIVATE_KEY
-		},
+			privateKey: process.env.GD_EMAIL_OAUTH_PRIVATE_KEY.replace(/\\n/g, '\n')
+		}
 	});
 
 	try {

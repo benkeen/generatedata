@@ -310,5 +310,5 @@
   "passwordReset": "Password Reset",
   "backToLogin": "Back to login",
   "sendEmail": "Send email",
-  "resetPasswordMsg": ""
+  "passwordResetMsg": "If the email was on file, your password has been reset and your have been emailed temporary login information."
 }

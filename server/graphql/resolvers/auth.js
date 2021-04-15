@@ -39,7 +39,6 @@ const login = async (root, { email, password }, { res }) => {
 };
 
 const sendPasswordResetEmail = async (root, { email }, { res }) => {
-
 	// see if the email exists
 	const user = await db.accounts.findOne({
 		attributes: ['accountId'],
@@ -49,6 +48,7 @@ const sendPasswordResetEmail = async (root, { email }, { res }) => {
 	});
 
 	if (user) {
+		// TODO check if valid or not. If it's expired, send a different email
 		await emailUtils.sendEmail(email, 'Password reset', 'test here!');
 	}
 
