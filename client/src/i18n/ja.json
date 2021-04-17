@@ -116,7 +116,7 @@
 	"filterDataTypes": "データ型をフィルタリングする",
 	"financial": "財務",
 	"firstName": "ファーストネーム",
-	"forgottenYourPasswordQ": "パスワードをお忘れですか？",
+	"forgottenYourPasswordQ": "パスワードを忘れましたか？",
 	"format": "フォーマット",
 	"generate": "生む",
 	"generateBtnDesc": "データセットの構成が完了し、希望どおりに表示されることを確認したら、データを大量に生成します。 このボタンをクリックして、データを生成します。 データグリッドの行数と生成する行数によっては、時間がかかる場合があります。",
@@ -301,5 +301,13 @@
 	"yes": "Yes",
 	"yourAccount": "あなたのアカウント",
 	"yourAccountUpdated": "アカウントが更新されました。",
-	"yourUserAccount": "あなたのユーザーアカウント"
+	"yourUserAccount": "あなたのユーザーアカウント",
+
+  "errorCreatingAccount": "このアカウントの作成中にエラーが発生しました。",
+  "confirmDeleteAccount": "このアカウントを削除してもよろしいですか？",
+  "accountDeleted": "アカウントが削除されました。",
+  "passwordReset": "パスワードのリセット",
+  "backToLogin": "ログインに戻る",
+  "sendEmail": "メールを送る",
+  "passwordResetMsg": "電子メールがファイルにある場合は、パスワードがリセットされ、一時的なログイン情報が電子メールで送信されています。"
 }

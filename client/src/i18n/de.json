@@ -301,5 +301,13 @@
 	"yes": "Ja",
 	"yourAccount": "Ihr Konto",
 	"yourAccountUpdated": "Ihr Benutzerkonto wurde aktualisiert.",
-	"yourUserAccount": "Ihr Benutzerkonto"
+	"yourUserAccount": "Ihr Benutzerkonto",
+
+  "errorCreatingAccount": "Beim Erstellen dieses Kontos ist ein Fehler aufgetreten.",
+  "confirmDeleteAccount": "Möchten Sie dieses Konto wirklich löschen?",
+  "accountDeleted": "Das Konto wurde gelöscht.",
+  "passwordReset": "Passwort zurücksetzen",
+  "backToLogin": "Zurück zur Anmeldung",
+  "sendEmail": "E-Mail senden",
+  "passwordResetMsg": "Wenn die E-Mail gespeichert war, wurde Ihr Passwort zurückgesetzt und Ihnen wurden temporäre Anmeldeinformationen per E-Mail gesendet."
 }

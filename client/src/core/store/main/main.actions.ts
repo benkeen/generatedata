@@ -34,6 +34,8 @@ export const selectLocale = (locale: GDLocale): any => (dispatch: Dispatch): any
 	const s = document.createElement('script');
 	s.src = `./${locale}.js`;
 	document.body.appendChild(s);
+
+	Cookies.set('lang', locale);
 };
 
 export const RESET_STORE = 'RESET_STORE';
@@ -304,6 +306,8 @@ export const loadTourBundle = (): any => (dispatch: Dispatch): void => {
 
 
 export const sendPasswordResetEmail = (email: string, onLoginError: any): any => async (dispatch: Dispatch): Promise<any> => {
+	const i18n = getStrings();
+
 	dispatch(startDialogProcessing());
 
 	const response = await apolloClient.mutate({
@@ -329,5 +333,4 @@ export const sendPasswordResetEmail = (email: string, onLoginError: any): any =>
 		dispatch(setLoginError());
 		onLoginError();
 	}
-
 };

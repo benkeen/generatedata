@@ -116,7 +116,7 @@
 	"filterDataTypes": "Filtrer les types de données",
 	"financial": "Financière",
 	"firstName": "Prénom",
-	"forgottenYourPasswordQ": "Vous avez oublié votre mot de passe?",
+	"forgottenYourPasswordQ": "Mot de passe oublié?",
 	"format": "Format",
 	"generate": "Générer",
 	"generateBtnDesc": "Une fois que vous avez terminé de configurer votre ensemble de données et confirmé qu'il vous convient, il est temps de générer des données en volume! Cliquez sur ce bouton pour générer vos données. Selon le nombre de lignes dans la grille de données et le nombre de lignes que vous souhaitez générer, cela peut prendre un certain temps.",
@@ -301,5 +301,13 @@
 	"yes": "Oui",
 	"yourAccount": "Votre compte",
 	"yourAccountUpdated": "Votre compte a été mis à jour.",
-	"yourUserAccount": "Su cuenta de usuario"
+	"yourUserAccount": "Su cuenta de usuario",
+
+  "errorCreatingAccount": "Une erreur s'est produite lors de la création de ce compte.",
+  "confirmDeleteAccount": "Voulez-vous vraiment supprimer ce compte?",
+  "accountDeleted": "Le compte a été supprimé.",
+  "passwordReset": "Réinitialisation du mot de passe",
+  "backToLogin": "Retour connexion",
+  "sendEmail": "Envoyer un e-mail",
+  "passwordResetMsg": "Si l'e-mail était enregistré, votre mot de passe a été réinitialisé et des informations de connexion temporaires vous ont été envoyées par e-mail."
 }

@@ -116,7 +116,7 @@
 	"filterDataTypes": "Filtrar tipos de datos",
 	"financial": "Financiera",
 	"firstName": "Nombre",
-	"forgottenYourPasswordQ": "¿Olvidate tu contraseña?",
+	"forgottenYourPasswordQ": "¿Contraseña olvidada?",
 	"format": "Formato",
 	"generate": "Generar",
 	"generateBtnDesc": "Una vez que haya terminado de configurar su conjunto de datos y haya confirmado que se ve como desea, ¡es hora de generar algunos datos en volumen! Haga clic en este botón para generar sus datos. Dependiendo de la cantidad de filas en la cuadrícula de datos y la cantidad de filas que desee generar, esto puede llevar algún tiempo.",
@@ -301,5 +301,13 @@
 	"yes": "Sí",
 	"yourAccount": "Tu cuenta",
 	"yourAccountUpdated": "Tu cuenta ha sido actualizada.",
-	"yourUserAccount": "Su cuenta de usuario"
+	"yourUserAccount": "Su cuenta de usuario",
+
+  "errorCreatingAccount": "Hubo un error al crear esta cuenta.",
+  "confirmDeleteAccount": "¿Estás segura de que quieres eliminar esta cuenta?",
+  "accountDeleted": "La cuenta ha sido eliminada.",
+  "passwordReset": "Restablecimiento de contraseña",
+  "backToLogin": "Atrás para iniciar sesión",
+  "sendEmail": "Enviar correo electrónico",
+  "passwordResetMsg": "Si el correo electrónico estaba en el archivo, su contraseña se ha restablecido y se le ha enviado por correo electrónico información de inicio de sesión temporal."
 }

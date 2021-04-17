@@ -1,8 +1,10 @@
 const { OAuth2Client } = require('google-auth-library');
 const { nanoid } = require('nanoid');
+const dateFns = require("date-fns");
 const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
 const emailUtils = require('../../utils/emailUtils');
+const { passwordResetAccountExpired } = require('../../emails');
 
 
 const login = async (root, { email, password }, { res }) => {
@@ -38,17 +40,32 @@ const login = async (root, { email, password }, { res }) => {
 	};
 };
 
-const sendPasswordResetEmail = async (root, { email }, { res }) => {
+const sendPasswordResetEmail = async (root, { email }, { req, res }) => {
 	// see if the email exists
 	const user = await db.accounts.findOne({
-		attributes: ['accountId'],
+		attributes: ['accountId', 'firstName', 'expiryDate'],
 		where: {
 			email
 		}
 	});
 
+	const lang = req.cookies.lang || 'en';
+
 	if (user) {
-		// TODO check if valid or not. If it's expired, send a different email
+		// if the user's account has expired, let 'em know. Sodding ORM adds a degree of confusion but expiryDate is
+		// actually a JS object
+		let expired = false;
+		if (user.dataValues.expiryDate !== null) {
+			const { firstName, expiryDate } = user.dataValues;
+			const expiryTimeUnix = expiryDate.getTime();
+			const now = new Date();
+			if (expiryTimeUnix < now.getTime()) {
+				const { subject, text, html } = passwordResetAccountExpired({ firstName });
+
+				await emailUtils.sendEmail(email, 'Password reset', 'test here!');
+			}
+		}
+
 		await emailUtils.sendEmail(email, 'Password reset', 'test here!');
 	}
 

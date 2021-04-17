@@ -116,7 +116,7 @@
 	"filterDataTypes": "筛选数据类型",
 	"financial": "金融",
 	"firstName": "名字",
-	"forgottenYourPasswordQ": "忘记密码?",
+	"forgottenYourPasswordQ": "忘记密码？",
 	"format": "格式",
 	"generate": "生成",
 	"generateBtnDesc": "完成数据集的配置并确认其外观后，现在该生成大量数据了！ 单击此按钮生成您的数据。 根据数据网格中的行数和要生成的行数，这可能需要一些时间。",
@@ -301,5 +301,13 @@
 	"yes": "确认",
 	"yourAccount": "你的账号",
 	"yourAccountUpdated": "你的账户已更新.",
-	"yourUserAccount": "您的用户帐号"
+	"yourUserAccount": "您的用户帐号",
+
+  "errorCreatingAccount": "创建此帐户时出错。",
+  "confirmDeleteAccount": "您确定要删除此帐户吗？",
+  "accountDeleted": "该帐户已被删除。",
+  "passwordReset": "重设密码",
+  "backToLogin": "回到登入",
+  "sendEmail": "发送电子邮件",
+  "passwordResetMsg": "如果电子邮件已归档，则您的密码已重置，并且已通过电子邮件发送给您临时登录信息。"
 }

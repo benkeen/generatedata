@@ -116,7 +116,7 @@
 	"filterDataTypes": "Filter gegevenstypen",
 	"financial": "Financieel",
 	"firstName": "Voornaam",
-	"forgottenYourPasswordQ": "Uw wachtwoord vergeten?",
+	"forgottenYourPasswordQ": "Wachtwoord vergeten?",
 	"format": "Formaat",
 	"generate": "Genereer",
 	"generateBtnDesc": "Als je klaar bent met het configureren van je dataset en hebt bevestigd dat het eruitziet zoals je wilt, is het tijd om wat data in volume te genereren! Klik op deze knop om uw gegevens te genereren. Afhankelijk van het aantal rijen in het gegevensraster en het aantal rijen dat u wilt genereren, kan dit even duren.",
@@ -301,5 +301,13 @@
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
 	"yourAccountUpdated": "Uw gebruikersaccount is bijgewerkt.",
-	"yourUserAccount": "Uw gebruikersaccount"
+	"yourUserAccount": "Uw gebruikersaccount",
+
+  "errorCreatingAccount": "Er is een fout opgetreden bij het maken van dit account.",
+  "confirmDeleteAccount": "Weet u zeker dat u dit account wilt verwijderen?",
+  "accountDeleted": "Het account is verwijderd.",
+  "passwordReset": "Wachtwoord reset",
+  "backToLogin": "Terug naar Inloggen",
+  "sendEmail": "E-mail verzenden",
+  "passwordResetMsg": "Als de e-mail geregistreerd was, is uw wachtwoord opnieuw ingesteld en heeft u tijdelijke inloggegevens per e-mail ontvangen."
 }
