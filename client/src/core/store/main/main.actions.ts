@@ -198,7 +198,7 @@ export const onLoginSuccess = (tokenExpiry: number | null, onPageRender: boolean
 };
 
 export const onOneTimeLoginSuccess = (tokenExpiry: number, history: any, dispatch: Dispatch): void => {
-	// const i18n = getStrings();
+	const i18n = getStrings();
 	setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
 	dispatch(setLoginDialogVisibility(false));
 
@@ -207,7 +207,7 @@ export const onOneTimeLoginSuccess = (tokenExpiry: number, history: any, dispatc
 
 	addToast({
 		type: 'success',
-		message: 'You have been logged in using a <b>one-time password</b>. Please set a new password now.'
+		message: i18n.core.oneTimePasswordLogin
 	});
 };
 
