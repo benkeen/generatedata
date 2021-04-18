@@ -1,9 +1,9 @@
 const { OAuth2Client } = require('google-auth-library');
 const { nanoid } = require('nanoid');
-const dateFns = require("date-fns");
 const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
 const emailUtils = require('../../utils/emailUtils');
+const langUtils = require('../../utils/langUtils');
 const { passwordResetAccountExpired } = require('../../emails');
 
 
@@ -40,7 +40,7 @@ const login = async (root, { email, password }, { res }) => {
 	};
 };
 
-const sendPasswordResetEmail = async (root, { email }, { req, res }) => {
+const sendPasswordResetEmail = async (root, { email }, { req }) => {
 	// see if the email exists
 	const user = await db.accounts.findOne({
 		attributes: ['accountId', 'firstName', 'expiryDate'],
@@ -49,24 +49,26 @@ const sendPasswordResetEmail = async (root, { email }, { req, res }) => {
 		}
 	});
 
-	const lang = req.cookies.lang || 'en';
+	const i18n = langUtils.getStrings(req.cookies.lang || 'en');
 
 	if (user) {
 		// if the user's account has expired, let 'em know. Sodding ORM adds a degree of confusion but expiryDate is
 		// actually a JS object
-		let expired = false;
-		if (user.dataValues.expiryDate !== null) {
-			const { firstName, expiryDate } = user.dataValues;
-			const expiryTimeUnix = expiryDate.getTime();
-			const now = new Date();
-			if (expiryTimeUnix < now.getTime()) {
-				const { subject, text, html } = passwordResetAccountExpired({ firstName });
+		const { firstName, expiryDate } = user.dataValues;
+		const expiryTimeUnix = expiryDate.getTime();
+		const now = new Date();
 
-				await emailUtils.sendEmail(email, 'Password reset', 'test here!');
-			}
+		if (user.dataValues.expiryDate !== null && expiryTimeUnix < now.getTime()) {
+			const { subject, text, html } = passwordResetAccountExpired({ firstName, i18n });
+
+			console.log({ subject, text, html });
+
+			await emailUtils.sendEmail(email, subject, text, html);
+		} else {
+
 		}
 
-		await emailUtils.sendEmail(email, 'Password reset', 'test here!');
+		// await emailUtils.sendEmail(email, 'Password reset', 'test here!');
 	}
 
 	// regardless of whether it was found or not, just return true. This prevents people being sneaky and finding out

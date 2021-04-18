@@ -308,5 +308,12 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourAccountUpdated": "Your account has been updated.",
-	"yourUserAccount": "Your User Account"
+	"yourUserAccount": "Your User Account",
+
+  "passwordResetAccountExpired": "Password reset - account expired",
+  "emailIntroLineWithName": "Hi %1,",
+  "passwordResetAccountExpiredDesc": "We just received a request to reset your password, however your account has already expired.",
+  "ifWantToReregister": "If you'd like to re-register please visit:",
+  "administrator": "Administrator",
+  "emailFooterDisclaimer": "If you've received this email in error please reach out to the site administrator."
 }

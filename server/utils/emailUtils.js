@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const sendEmail = async (recipientEmail, subject, content) => {
+const sendEmail = async (recipientEmail, subject, textContent, htmlContent) => {
 	const transporter = nodemailer.createTransport({
 		host: 'smtp.gmail.com',
 		port: 465,
@@ -19,13 +19,23 @@ const sendEmail = async (recipientEmail, subject, content) => {
 			from: process.env.GD_EMAIL_ADMIN_ACCOUNT,
 			to: recipientEmail,
 			subject,
-			text: content
+			text: textContent
+			// html: htmlContent
 		});
 	} catch (err) {
 		console.error(err);
 	}
 };
 
+const getAdminEmail = () => {
+	return process.env.GD_DEFAULT_ADMIN_EMAIL;
+};
+
+const getEmailSender = () => {
+	return process.env.GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME;
+};
+
 module.exports = {
-	sendEmail
+	sendEmail,
+	getAdminEmail
 };
