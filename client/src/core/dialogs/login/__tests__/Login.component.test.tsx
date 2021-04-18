@@ -90,6 +90,6 @@ describe('LoginDialog', () => {
 
 		fireEvent.submit(inputFields[0]);
 
-		expect(onSubmit).toHaveBeenCalledWith("tom@something.com", "password123", expect.anything());
+		expect(onSubmit).toHaveBeenCalledWith("tom@something.com", "password123", undefined, expect.anything());
 	});
 });
