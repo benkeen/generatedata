@@ -284,6 +284,8 @@ export const hideTourIntroDialog = (): GDAction => ({ type: HIDE_TOUR_INTRO_DIAL
 
 export const TOUR_BUNDLE_LOADED = 'TOUR_BUNDLE_LOADED';
 export const loadTourBundle = (): any => (dispatch: Dispatch): void => {
+	const i18n = getStrings();
+
 	// TODO check hashing of bundle here
 	import(
 		/* webpackChunkName: "tour" */
@@ -299,7 +301,7 @@ export const loadTourBundle = (): any => (dispatch: Dispatch): void => {
 
 			addToast({
 				type: 'success',
-				message: 'Sorry, there was a problem loading the tour.'
+				message: i18n.core.problemLoadingTour
 			});
 		});
 };
@@ -324,7 +326,7 @@ export const sendPasswordResetEmail = (email: string, onLoginError: any): any =>
 	if (response.data.sendPasswordResetEmail.success) {
 		addToast({
 			type: 'success',
-			message: i18n.passwordResetMsg
+			message: i18n.core.passwordResetMsg
 		});
 		dispatch(setPasswordResetDialogVisibility(false));
 		dispatch(setLoginDialogVisibility(true));

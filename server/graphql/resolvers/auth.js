@@ -4,8 +4,7 @@ const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
 const emailUtils = require('../../utils/emailUtils');
 const langUtils = require('../../utils/langUtils');
-const { passwordResetAccountExpired } = require('../../emails');
-
+const { passwordReset, passwordResetAccountExpired } = require('../../emails');
 
 const login = async (root, { email, password }, { res }) => {
 	const user = await db.accounts.findOne({
@@ -62,10 +61,16 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
 			const { subject, text, html } = passwordResetAccountExpired({ firstName, i18n });
 			await emailUtils.sendEmail(email, subject, text, html);
 		} else {
+			const tempPassword = nanoid(14);
 
+			// set this temporary password in the DB
+			await user.update({
+				oneTimePassword: tempPassword
+			});
+
+			const { subject, text, html } = passwordReset({ firstName, tempPassword, i18n });
+			await emailUtils.sendEmail(email, subject, text, html);
 		}
-
-		// await emailUtils.sendEmail(email, 'Password reset', 'test here!');
 	}
 
 	// regardless of whether it was found or not, just return true. This prevents people being sneaky and finding out
@@ -133,9 +138,6 @@ const loginWithGoogle = async (root, { googleToken }) => {
 };
 
 const checkAndUpdateRefreshToken = async (root, args, { token, req, res }) => {
-
-	console.log("COOKIES: ", req.cookies);
-
 	if (!req.cookies.refreshToken) {
 		return { success: false };
 	}

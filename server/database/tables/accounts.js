@@ -59,6 +59,9 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(255),
 			allowNull: false
 		},
+		oneTimePassword: {
+			type: DataTypes.STRING(255)
+		},
 		country: {
 			type: DataTypes.STRING(255)
 		},

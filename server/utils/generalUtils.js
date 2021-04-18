@@ -11,7 +11,7 @@ const getSiteUrl = () => {
 		port = `:${port}`;
 	}
 
-	return `${protocol}${domain}${port}`;
+	return `${protocol}://${domain}${port}`;
 };
 
 

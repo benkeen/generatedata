@@ -315,5 +315,10 @@
   "passwordResetAccountExpiredDesc": "We just received a request to reset your password, however your account has already expired.",
   "ifWantToReregister": "If you'd like to re-register please visit:",
   "administrator": "Administrator",
-  "emailFooterDisclaimer": "If you've received this email in error please reach out to the site administrator."
+  "emailFooterDisclaimer": "If you've received this email in error please reach out to the site administrator.",
+  "problemLoadingTour": " Sorry, there was a problem loading the tour.",
+  "passwordResetEmailDesc": "We've received a request to reset your password. This email contains a temporary one-time password you can use to log in. After logging in, you'll need to set a new password.",
+  "emailLabel": "Email:",
+  "passwordLabel": "Password:",
+  "loginUrlLabel": "Login URL:"
 }
