@@ -9,8 +9,8 @@ const { passwordReset, passwordResetAccountExpired } = require('../../emails');
 const login = async (root, { email, password }, { res }) => {
 	const user = await db.accounts.findOne({
 		attributes: [
-			'accountId', 'accountType', 'password', 'firstName', 'lastName', 'country', 'region', 'dateCreated',
-			'expiryDate', 'numRowsGenerated'
+			'accountId', 'accountType', 'password', 'oneTimePassword', 'firstName', 'lastName', 'country', 'region',
+			'dateCreated', 'expiryDate', 'numRowsGenerated'
 		],
 		where: {
 			email
@@ -21,9 +21,21 @@ const login = async (root, { email, password }, { res }) => {
 		return { success: false };
 	}
 
-	const { accountId, password: encodedPassword } = user.dataValues;
+	const { accountId, password: encodedPassword, oneTimePassword } = user.dataValues;
 	const isCorrect = await authUtils.isValidPassword(password, encodedPassword);
-	if (!isCorrect) {
+
+	let oneTimePasswordIsCorrect = false;
+	if (oneTimePassword) {
+		oneTimePasswordIsCorrect = await authUtils.isValidPassword(password, oneTimePassword);
+
+		if (oneTimePasswordIsCorrect) {
+			await user.update({
+				oneTimePassword: null
+			});
+		}
+	}
+
+	if (!isCorrect && !oneTimePasswordIsCorrect) {
 		return { success: false };
 	}
 
@@ -35,6 +47,7 @@ const login = async (root, { email, password }, { res }) => {
 		tokenExpiry,
 		refreshToken,
 		email,
+		wasOneTimeLogin: oneTimePasswordIsCorrect,
 		...user.dataValues
 	};
 };
@@ -54,21 +67,21 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
 		// if the user's account has expired, let 'em know. Sodding ORM adds a degree of confusion but expiryDate is
 		// actually a JS object
 		const { firstName, expiryDate } = user.dataValues;
-		const expiryTimeUnix = expiryDate.getTime();
 		const now = new Date();
 
-		if (user.dataValues.expiryDate !== null && expiryTimeUnix < now.getTime()) {
+		if (expiryDate !== null && expiryDate.getTime() < now.getTime()) {
 			const { subject, text, html } = passwordResetAccountExpired({ firstName, i18n });
 			await emailUtils.sendEmail(email, subject, text, html);
 		} else {
 			const tempPassword = nanoid(14);
+			const tempPasswordHash = await authUtils.getPasswordHash(tempPassword);
 
 			// set this temporary password in the DB
 			await user.update({
-				oneTimePassword: tempPassword
+				oneTimePassword: tempPasswordHash
 			});
 
-			const { subject, text, html } = passwordReset({ firstName, tempPassword, i18n });
+			const { subject, text, html } = passwordReset({ firstName, email, tempPassword, i18n });
 			await emailUtils.sendEmail(email, subject, text, html);
 		}
 	}

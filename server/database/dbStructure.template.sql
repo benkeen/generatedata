@@ -57,6 +57,7 @@ CREATE TABLE `accounts` (
   `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(100) NOT NULL,
+  `one_time_password` varchar(100) NULL,
   `country` varchar(255) NOT NULL,
   `region` varchar(255) NOT NULL,
   `num_rows_generated` mediumint(9) DEFAULT '0',

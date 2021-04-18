@@ -6,6 +6,7 @@ import { isValidEmail, addToast } from '~utils/generalUtils';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import { hasVendorLogin, getVendorLoginButtons, getLoginComponentRenderMethods } from '~utils/authUtils';
 import styles from './Login.scss';
+import { useHistory } from 'react-router';
 
 const showVendorLoginColumn = hasVendorLogin();
 const vendorLoginButtons = getVendorLoginButtons();
@@ -15,7 +16,7 @@ export type LoginDialogProps = {
 	dialogProcessing: boolean;
 	onClose: () => void;
 	onExited: () => void;
-	onSubmit: (email: string, password: string, onError: Function) => void;
+	onSubmit: (email: string, password: string, history: any, onError: Function) => void;
 	showPasswordResetDialog: () => void;
 	i18n: any;
 };
@@ -25,6 +26,8 @@ export type LoginDialogProps = {
  * logging in via external vendors: Google, Facebook and Github.
  */
 const LoginDialog = ({ visible, onClose, dialogProcessing, onSubmit, onExited, showPasswordResetDialog, i18n }: LoginDialogProps): JSX.Element => {
+	const history = useHistory();
+
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');
@@ -55,7 +58,7 @@ const LoginDialog = ({ visible, onClose, dialogProcessing, onSubmit, onExited, s
 		setPasswordError(pError);
 
 		if (!eError && !pError) {
-			onSubmit(email, password, () => {
+			onSubmit(email, password, history, () => {
 				addToast({
 					type: 'error',
 					message: i18n.userNotFound

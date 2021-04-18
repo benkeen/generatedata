@@ -104,6 +104,7 @@ const typeDefs = gql`
 	    region: String
         numRowsGenerated: Int
         profileImage: String
+        wasOneTimeLogin: Boolean
     }
 	type GeneralResponse {
 		success: Boolean

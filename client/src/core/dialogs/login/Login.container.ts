@@ -14,7 +14,9 @@ const mapStateToProps = (state: any): Partial<LoginDialogProps> => ({
 const mapDispatchToProps = (dispatch: Dispatch): Partial<LoginDialogProps> => ({
 	onClose: (): any => dispatch(mainActions.setLoginDialogVisibility(false)),
 	onExited: (): any => mainActions.clearLoginFlow(),
-	onSubmit: (email: string, password: string, onLoginError: Function): any => dispatch(mainActions.login(email, password, onLoginError)),
+	onSubmit: (email: string, password: string, history: any, onLoginError: Function): any => {
+		dispatch(mainActions.login(email, password, history, onLoginError));
+	},
 	showPasswordResetDialog: () => {
 		dispatch(mainActions.setLoginDialogVisibility(false));
 		dispatch(mainActions.setPasswordResetDialogVisibility(true));

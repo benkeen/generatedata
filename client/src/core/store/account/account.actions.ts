@@ -260,7 +260,7 @@ export const createAccount = (data: any) => async (dispatch: Dispatch): Promise<
 
 		addToast({
 			type: 'success',
-			message: i18n.core.accountCreated
+			message: i18n.core.accountCreatedDesc
 		});
 	} else {
 		addToast({

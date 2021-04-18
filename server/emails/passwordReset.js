@@ -3,7 +3,7 @@ const generalUtils = require('../utils/generalUtils');
 const langUtils = require('../utils/langUtils');
 
 
-const passwordReset = ({ firstName, tempPassword, i18n }) => {
+const passwordReset = ({ firstName, email, tempPassword, i18n }) => {
 	const emailIntroLineWithName = langUtils.getI18nString(i18n.emailIntroLineWithName, [firstName]);
 	const adminEmail = emailUtils.getAdminEmail();
 	const siteUrl = generalUtils.getSiteUrl();
@@ -12,9 +12,9 @@ const passwordReset = ({ firstName, tempPassword, i18n }) => {
 
 ${i18n.passwordResetEmailDesc} 
 
-${emailLabel} ${email}
-${passwordLabel} ${tempPassword}
-${loginUrlLabel} ${siteUrl}
+${i18n.emailLabel} ${email}
+${i18n.passwordLabel} ${tempPassword}
+${i18n.loginUrlLabel} ${siteUrl}
 
 ${i18n.emailFooterDisclaimer}
 
@@ -33,15 +33,15 @@ ${adminEmail}
 
 <table>
 <tr>
-	<td width="140"><b>${emailLabel}</b></td>
+	<td width="140"><b>${i18n.emailLabel}</b></td>
 	<td>${email}</td>
 </tr>
 <tr>
-	<td><b>${passwordLabel}</b></td>
+	<td><b>${i18n.passwordLabel}</b></td>
 	<td>${tempPassword}</td>
 </tr>
 <tr>
-	<td><b>${loginUrlLabel}</b></td>
+	<td><b>${i18n.loginUrlLabel}</b></td>
 	<td><a href="${siteUrl}">${siteUrl}</a></td>
 </tr>
 </table>

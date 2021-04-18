@@ -155,8 +155,6 @@ const createDatabaseInitFile = async () => {
 	fs.writeFileSync(path.join(__dirname, '../../server/database/_dbStructure.sql'), newFile);
 };
 
-
-
 generateEnvFile('_env.ts', JSON.stringify(envFile, null, '\t'));
 
 createDatabaseInitFile();

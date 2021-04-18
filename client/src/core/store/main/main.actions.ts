@@ -3,17 +3,17 @@ import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
 import { AuthMethod, GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
+import { getStrings } from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
 import { getAuthMethod, getCurrentPage } from '~store/main/main.selectors';
 import { logoutVendor, setAuthTokenRefresh } from '~utils/authUtils';
-import { AccountStatus, AccountType } from '~types/account';
+import { AccountStatus, AccountType, SelectedAccountTab } from '~types/account';
 import store from '~core/store';
-import { showSaveDataSetDialog } from '~store/account/account.actions';
+import { onChangeTab, showSaveDataSetDialog } from '~store/account/account.actions';
 import { addToast, setTourComponents } from '~utils/generalUtils';
-import { getStrings } from '~utils/langUtils';
-import { updateBodyClass, getGeneratorRoute } from '~utils/routeUtils';
-import { CLEAR_GRID } from '~store/generator/generator.actions';
+import { getGeneratorRoute, updateBodyClass } from '~utils/routeUtils';
 import * as actions from '~store/generator/generator.actions';
+import { CLEAR_GRID } from '~store/generator/generator.actions';
 import C from '~core/constants';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 
@@ -120,51 +120,59 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const setLoginError = (): GDAction => ({ type: LOGIN_ERROR });
 
 // default authentication
-export const login = (email: string, password: string, onLoginError: Function): any => async (dispatch: Dispatch): Promise<any> => {
-	dispatch(startDialogProcessing());
+export const login = (email: string, password: string, history: any, onLoginError: Function): any => {
+	return async (dispatch: Dispatch): Promise<any> => {
+		dispatch(startDialogProcessing());
 
-	const response = await apolloClient.mutate({
-		mutation: gql`
-            mutation LoginMutation($email: String!, $password: String!) {
-                login(email: $email, password: $password) {
-                    token
-                    tokenExpiry
-					refreshToken
-                    success
-					accountId
-                    firstName
-                    lastName
-                    email
-                    country
-                    region
-                    expiryDate
-                    accountType
-					accountStatus
-                    dateCreated
-                    numRowsGenerated
-                    profileImage
+		const response = await apolloClient.mutate({
+			mutation: gql`
+                mutation LoginMutation($email: String!, $password: String!) {
+                    login(email: $email, password: $password) {
+                        token
+                        tokenExpiry
+                        refreshToken
+                        success
+                        accountId
+                        firstName
+                        lastName
+                        email
+                        country
+                        region
+                        expiryDate
+                        accountType
+                        accountStatus
+                        dateCreated
+                        numRowsGenerated
+                        profileImage
+                        wasOneTimeLogin
+                    }
                 }
-            }
-		`,
-		variables: { email, password }
-	});
-
-	if (response.data.login.success) {
-		const { tokenExpiry, refreshToken } = response.data.login;
-		dispatch(setAuthenticationData({
-			...response.data.login,
-			authMethod: 'default'
-		}));
-
-		Cookies.set('refreshToken', refreshToken, {
-			expires: new Date(tokenExpiry)
+			`,
+			variables: { email, password }
 		});
 
-		onLoginSuccess(tokenExpiry, false, dispatch);
-	} else {
-		dispatch(setLoginError());
-		onLoginError();
-	}
+		if (response.data.login.success) {
+			const { tokenExpiry, refreshToken } = response.data.login;
+			dispatch(setAuthenticationData({
+				...response.data.login,
+				authMethod: 'default'
+			}));
+
+			Cookies.set('refreshToken', refreshToken, {
+				expires: new Date(tokenExpiry)
+			});
+
+			if (response.data.login.wasOneTimeLogin) {
+				onOneTimeLoginSuccess(tokenExpiry, history, dispatch);
+			} else {
+				onLoginSuccess(tokenExpiry, false, dispatch);
+			}
+
+		} else {
+			dispatch(setLoginError());
+			onLoginError();
+		}
+	};
 };
 
 export const onLoginSuccess = (tokenExpiry: number | null, onPageRender: boolean, dispatch: Dispatch): void => {
@@ -187,6 +195,20 @@ export const onLoginSuccess = (tokenExpiry: number | null, onPageRender: boolean
 			loginFlow = '';
 		}
 	}
+};
+
+export const onOneTimeLoginSuccess = (tokenExpiry: number, history: any, dispatch: Dispatch): void => {
+	// const i18n = getStrings();
+	setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
+	dispatch(setLoginDialogVisibility(false));
+
+	history.push('/account');
+	dispatch(onChangeTab(SelectedAccountTab.changePassword));
+
+	addToast({
+		type: 'success',
+		message: 'You have been logged in using a <b>one-time password</b>. Please set a new password now.'
+	});
 };
 
 export const LOGOUT = 'LOGOUT';
