@@ -60,9 +60,6 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
 
 		if (user.dataValues.expiryDate !== null && expiryTimeUnix < now.getTime()) {
 			const { subject, text, html } = passwordResetAccountExpired({ firstName, i18n });
-
-			console.log({ subject, text, html });
-
 			await emailUtils.sendEmail(email, subject, text, html);
 		} else {
 

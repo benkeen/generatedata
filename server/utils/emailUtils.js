@@ -16,11 +16,11 @@ const sendEmail = async (recipientEmail, subject, textContent, htmlContent) => {
 	try {
 		await transporter.verify();
 		await transporter.sendMail({
-			from: process.env.GD_EMAIL_ADMIN_ACCOUNT,
+			from: getEmailSender(),
 			to: recipientEmail,
 			subject,
-			text: textContent
-			// html: htmlContent
+			text: textContent,
+			html: htmlContent
 		});
 	} catch (err) {
 		console.error(err);
@@ -32,7 +32,7 @@ const getAdminEmail = () => {
 };
 
 const getEmailSender = () => {
-	return process.env.GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME;
+	return `${process.env.GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME} <${process.env.GD_EMAIL_ADMIN_ACCOUNT}>`;
 };
 
 module.exports = {
