@@ -12,6 +12,8 @@ Right now it's in early alpha. The current goals are:
 
 The next phase will be adding in the backend: user accounts, saving data sets and so on. 
 
+- `4.0.0-alpha-20210421`:
+    - Safari error page.
 - `4.0.0-alpha-20210418`:
     - Email support added.
     - Forget password email; expiry emails.
