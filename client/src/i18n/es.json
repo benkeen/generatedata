@@ -320,5 +320,9 @@
 	"yes": "Sí",
 	"yourAccount": "Tu cuenta",
 	"yourAccountUpdated": "Tu cuenta ha sido actualizada.",
-	"yourUserAccount": "Su cuenta de usuario"
+	"yourUserAccount": "Su cuenta de usuario",
+
+  "noSafari": "¡Lo siento, no Safari!",
+  "safariExplanation": "Este sitio requiere un navegador web actualizado que implemente estándares web modernos. Desafortunadamente, Safari se ha quedado atrás de otros navegadores y no ejecutará este script. Hasta que averigüemos cómo adaptarlo, utilice uno de los siguientes navegadores. Todo gratis para descargar."
+
 }

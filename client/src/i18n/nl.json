@@ -320,5 +320,8 @@
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
 	"yourAccountUpdated": "Uw gebruikersaccount is bijgewerkt.",
-	"yourUserAccount": "Uw gebruikersaccount"
+	"yourUserAccount": "Uw gebruikersaccount",
+
+  "noSafari": "Sorry, geen Safari!",
+  "safariExplanation": "Deze site vereist een up-to-date webbrowser die moderne webstandaarden implementeert. Safari is helaas achterop geraakt bij de andere browsers en zal dit script niet uitvoeren. Gebruik een van de volgende browsers totdat we erachter zijn gekomen hoe we dit kunnen aanpassen. Allemaal gratis te downloaden."
 }

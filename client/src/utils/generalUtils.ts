@@ -41,3 +41,5 @@ export const setTourComponents = (tour: any): void => {
 };
 
 export const getTourComponents = (): any => tourComponents;
+
+export const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);

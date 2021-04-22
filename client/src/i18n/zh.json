@@ -320,5 +320,9 @@
 	"yes": "确认",
 	"yourAccount": "你的账号",
 	"yourAccountUpdated": "你的账户已更新.",
-	"yourUserAccount": "您的用户帐号"
+	"yourUserAccount": "您的用户帐号",
+
+  "noSafari": "抱歉，没有Safari！",
+  "safariExplanation": "该站点需要实现现代Web标准的最新Web浏览器。 不幸的是，Safari落后于其他浏览器，并且无法运行此脚本。 在弄清楚如何容纳它之前，请使用以下浏览器之一。 全部免费下载。"
+
 }

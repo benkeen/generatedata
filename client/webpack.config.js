@@ -111,7 +111,7 @@ module.exports = (env, argv) => {
 			// host: '0.0.0.0', // needed when running within docker container
 		};
 
-		// just uncomment this & the include above to auto-genenerate the bundle analyzer treemap. It'll show up when
+		// just uncomment this & the include above to auto-generate the bundle analyzer treemap. It'll show up when
 		// running `yarn start`
 		// config.plugins.push(new BundleAnalyzerPlugin());
 	}

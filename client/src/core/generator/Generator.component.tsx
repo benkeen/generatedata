@@ -10,6 +10,8 @@ import GenerationSettings from '../generationPanel/GenerationSettings.container'
 import TourDialog from '~core/dialogs/tourIntro/TourIntro.container';
 import DataSetHistory from './dataSetHistory/DataSetHistory.container';
 import ClearPageDialog from '../dialogs/clearPage/ClearPage.container';
+import IncompatibleBrowser from './IncompatibleBrowser.component';
+import * as generalUtils from '../../utils/generalUtils';
 import C from '../constants';
 import './Generator.scss';
 
@@ -32,7 +34,7 @@ export type GeneratorProps = {
 
 const Builder = ({
 	isGridVisible, isPreviewVisible, generatorLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight,
-	smallScreenVisiblePanel, showDataSetHistory
+	smallScreenVisiblePanel, showDataSetHistory, i18n
 }: GeneratorProps): JSX.Element => {
 
 	const windowSize = useWindowSize();
@@ -56,6 +58,10 @@ const Builder = ({
 	}
 
 	const getContent = (): JSX.Element => {
+		if (generalUtils.isSafari) {
+			return <IncompatibleBrowser i18n={i18n} />;
+		}
+
 		if (windowSize.width < C.SMALL_SCREEN_WIDTH) {
 			return smallScreenVisiblePanel === 'grid' ? <Grid /> : <Preview />;
 		}
