@@ -73,7 +73,6 @@ These are found in `src/i18n`. They contain all the core i18n files.
 - tooltips: sentence case, no ending period
 
 
-
 ### Building
 
 Local dev, general steps:

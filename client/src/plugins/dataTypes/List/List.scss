@@ -1,0 +1,18 @@
+.colLabel {
+	display: flex;
+	flex: 0 0 120px;
+	align-items: center;
+}
+
+.content {
+	flex: 1;
+	display: flex;
+	align-items: center;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+	height: 30px;
+}

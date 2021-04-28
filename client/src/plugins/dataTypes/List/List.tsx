@@ -1,10 +1,18 @@
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import TextField from '~components/TextField';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Tooltip } from '~components/tooltips';
+import * as styles from './List.scss';
 
-export type ListType = 'exactly' | 'atMost';
+export const enum ListType {
+	exactly = 'exactly',
+	atMost = 'atMost'
+}
 
 export type ListState = {
 	example: string;
@@ -12,14 +20,16 @@ export type ListState = {
 	exactly: string;
 	atMost: string;
 	values: string[];
+	delimiter: string;
 };
 
 export const initialState: ListState = {
 	example: '1|3|5|7|9|11|13|15|17|19',
-	listType: 'exactly',
+	listType: ListType.exactly,
 	exactly: '1',
 	atMost: '1',
-	values: ['1', '3', '5', '7', '9', '11', '13', '15', '17', '19']
+	values: ['1', '3', '5', '7', '9', '11', '13', '15', '17', '19'],
+	delimiter: ','
 };
 
 export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element => {
@@ -56,7 +66,7 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 	);
 };
 
-export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps): JSX.Element => {
+const ListDialog = ({ visible, data, id, onClose, countryI18n, onUpdate, coreI18n, i18n }: any): JSX.Element => {
 	const exactlyField = React.useRef<any>();
 	const atMostField = React.useRef<any>();
 
@@ -71,62 +81,114 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 	const atMostError = data.atMost ? '' : coreI18n.requiredField;
 
 	return (
+		<Dialog onClose={onClose} open={visible}>
+			<div style={{ width: 500 }}>
+				<DialogTitle onClose={onClose}>List settings</DialogTitle>
+				<DialogContent dividers>
+					<div className={styles.row}>
+						<div className={styles.colLabel}>{i18n.source}</div>
+						<div className={styles.content}>
+							<input
+								type="radio"
+								id={`listType1-${id}`}
+								value="exactly"
+								checked={data.listType === 'exactly'}
+								onChange={(): void => {
+									onChange('listType', 'exactly');
+									exactlyField.current.focus();
+								}}
+							/>
+							<label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
+							<TextField
+								error={exactlyError}
+								ref={exactlyField}
+								type="number"
+								min={1}
+								id={`dtListExactly_${id}`}
+								value={data.exactly}
+								style={{ margin: '0 6px 0 4px', width: 50 }}
+								onChange={(e: any): void => {
+									onUpdate({
+										...data,
+										exactly: e.target.value,
+										listType: 'exactly'
+									});
+								}}
+							/>
+							<input
+								type="radio"
+								id={`listType2-${id}`}
+								value="atMost"
+								checked={data.listType === 'atMost'}
+								onChange={(): void => {
+									onChange('listType', 'atMost');
+									atMostField.current.focus();
+								}}
+							/>
+							<label htmlFor={`listType2-${id}`}>{i18n.atMost}</label>
+							<TextField
+								error={atMostError}
+								ref={atMostField}
+								type="number"
+								min={1}
+								id={`dtListAtMost_${id}`}
+								value={data.atMost}
+								style={{ margin: '0 6px 0 4px', width: 50 }}
+								onChange={(e: any): void => {
+									onUpdate({
+										...data,
+										atMost: e.target.value,
+										listType: 'atMost'
+									});
+								}}
+							/>
+							<Tooltip title="blah blah blah" arrow>
+								<InfoIcon />
+							</Tooltip>
+						</div>
+					</div>
+					<div className={styles.row}>
+						<div className={styles.colLabel}>
+							Delimiter char(s):
+						</div>
+						<div className={styles.content}>
+							<input type="text" style={{ width: 40 }} value="|" />
+						</div>
+					</div>
+					<div className={styles.row}>
+						<div className={styles.content}>
+							<input type="checkbox" />
+							<label>Separate values, if supported by Export Type</label>
+							<Tooltip title="blah blah blah" arrow style={{ marginLeft: 6 }}>
+								<InfoIcon />
+							</Tooltip>
+						</div>
+					</div>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
+				</DialogActions>
+			</div>
+		</Dialog>
+	);
+};
+
+
+export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps): JSX.Element => {
+	const [dialogVisible, setDialogVisibility] = React.useState(false);
+
+	return (
 		<>
 			<div style={{ margin: 4 }}>
-				<input
-					type="radio"
-					id={`listType1-${id}`}
-					value="exactly"
-					checked={data.listType === 'exactly'}
-					onChange={(): void => {
-						onChange('listType', 'exactly');
-						exactlyField.current.focus();
-					}}
-				/>
-				<label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
-				<TextField
-					error={exactlyError}
-					ref={exactlyField}
-					type="number"
-					min={1}
-					id={`dtListExactly_${id}`}
-					value={data.exactly}
-					style={{ margin: '0 6px 0 4px', width: 50 }}
-					onChange={(e: any): void => {
-						onUpdate({
-							...data,
-							exactly: e.target.value,
-							listType: 'exactly'
-						});
-					}}
-				/>
-				<input
-					type="radio"
-					id={`listType2-${id}`}
-					value="atMost"
-					checked={data.listType === 'atMost'}
-					onChange={(): void => {
-						onChange('listType', 'atMost');
-						atMostField.current.focus();
-					}}
-				/>
-				<label htmlFor={`listType2-${id}`}>{i18n.atMost}</label>
-				<TextField
-					error={atMostError}
-					ref={atMostField}
-					type="number"
-					min={1}
-					id={`dtListAtMost_${id}`}
-					value={data.atMost}
-					style={{ margin: '0 6px 0 4px', width: 50 }}
-					onChange={(e: any): void => {
-						onUpdate({
-							...data,
-							atMost: e.target.value,
-							listType: 'atMost'
-						});
-					}}
-				/>
+				<span>Exactly <b>1</b> item from list</span>
+				<Button
+					onClick={(): void => setDialogVisibility(true)}
+					variant="outlined"
+					color="primary"
+					size="small"
+					style={{ marginLeft: 6 }}>
+					Customize
+				</Button>
 			</div>
 			<div>
 				<CreatablePillField
@@ -134,6 +196,15 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 					onChange={(values: any): void => onUpdate({ ...data, values })}
 				/>
 			</div>
+			<ListDialog
+				visible={dialogVisible}
+				data={data}
+				id={id}
+				coreI18n={coreI18n}
+				i18n={i18n}
+				onUpdate={onUpdate}
+				onClose={(): void => setDialogVisibility(false)}
+			/>
 		</>
 	);
 };
