@@ -55,11 +55,13 @@
 	display: flex;
     flex: 1;
     flex-direction: column;
+	overflow: hidden;
 
     & > div, & > div > div {
         display: flex;
         flex-direction: column;
         flex: 1;
+		overflow: hidden;
     }
 
 	.loading {
