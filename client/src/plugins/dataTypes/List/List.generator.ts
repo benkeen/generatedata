@@ -18,8 +18,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	}
 
 	return {
-		display: val,
-		list: items
+		display: val
 	};
 };
 
