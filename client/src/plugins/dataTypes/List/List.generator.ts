@@ -1,18 +1,26 @@
 import utils from '../../../utils';
 import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { ListType } from './List';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const { listType, values, exactly, atMost } = data.rowState;
+	const { listType, values, exactly, atMost, delimiter } = data.rowState;
 
+	const delim = delimiter ? delimiter : ', ';
 	let val = '';
-	if (listType === 'exactly') {
-		val = utils.randomUtils.getRandomSubset(values, exactly).join(', ');
+	let items;
+	if (listType === ListType.exactly) {
+		items = utils.randomUtils.getRandomSubset(values, exactly);
+		val = items.join(delim);
 	} else {
 		const numItems = utils.randomUtils.getRandomNum(0, atMost);
-		val = utils.randomUtils.getRandomSubset(values, numItems).join(', ');
+		items = utils.randomUtils.getRandomSubset(values, numItems);
+		val = items.join(delim);
 	}
 
-	return { display: val };
+	return {
+		display: val,
+		list: items
+	};
 };
 
 let utilsLoaded = false;

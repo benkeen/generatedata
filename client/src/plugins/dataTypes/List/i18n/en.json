@@ -30,9 +30,12 @@
   "carBrands": "Toyota|Volkswagen|BMW|Mercedes-Benz|Ford|Nissan|Honda|Porsche|Hyundai Motors|Renault|Peugeot|Chevrolet|Fiat|Audi|Kia Motors|Suzuki|General Motors|Citroën|Daimler|GMC|JLR|Ferrari|Tata Motors|Mazda|Subaru|Lexus|Volvo|MINI|Vauxhall|Isuzu|Dongfeng Motor|Mitsubishi Motors|Mahindra and Mahindra|Daihatsu|Jeep|Kenworth|Dodge|Cadillac|Chrysler|Skoda|Acura|Infiniti|Buick|Lincoln|RAM Trucks|Maruti Suzuki|Smart|Dacia|FAW|Seat",
 
   "source": "Source",
-  "sourceDesc": "This setting controls the number of items generated from your list. You can choose an exact number or a random number of items.",
+  "sourceDesc": "This setting controls the number of items generated from your list. You can choose an exact number or a random number of items up to a particular count.",
   "exactly1Item": "Exactly %1 item from list",
   "exactlyNItems": "Exactly %1 items from list",
   "atMost1Item": "At most %1 item from list",
-  "atMostNItems": "At most %1 items from list"
+  "atMostNItems": "At most %1 items from list",
+  "customize": "Customize",
+  "listSettings": "List Settings",
+  "delimChars": "Delimiter char(s)"
 }

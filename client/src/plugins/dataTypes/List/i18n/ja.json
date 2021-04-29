@@ -27,5 +27,15 @@
   "invalidIntFields": "カスタムリストデータ型の[正確]フィールドと[最大]フィールドにのみ数値を入力してください。 次の行を修正してください。",
   "drugNames": "Hydrocodone/APAP|LevothyroxineSodium|Lipitor|Simvastatin|Plavix|Singulair|Azithromycin|Crestor|Nexium|Metoprolol Tartrate|Synthroid|Lexapro|Proair HFA|Ibuprofen (Rx)|Trazodone HCl|Amoxicillin|Omeprazole (Rx)|Advair Diskus|Cymbalta|Tramadol HCl|Sulfamethoxazole/Trimethoprim|Amlodipine Besylate|Fluticasone Propionate|Hydrochlorothiazide|Ventolin HFA|Diovan|Warfarin Sodium|Sertraline HCl|Alprazolam|Pravastatin Sodium|Metoprolol Succinate|Seroquel|Promethazine HCl|Amoxicillin Trihydrate/Potassium Clavulanate|Oxycodone/APAP|Zolpidem Tartrate|Metformin HCl|Prednisone|Fluconazole|Clonazepam|Actos|Gabapentin|Lantus|Vitamin D (Rx)|Fluoxetine HCl|Furosemide|Citalopram HBr|Ciprofloxacin HCl|Atenolol|Meloxicam|Lorazepam|Celebrex|Venlafaxine HCl ER|Lyrica|Nasonex|Spiriva Handihaler|Cyclobenzaprin HCl|Cephalexin|Abilify|Citalopram HBR|Carvedilol|Potassium Chloride|Viagra||Vyvanse|Zetia|Albuterol|Namenda|Januvia|Tricor|Lisinopril|Loestrin 24 Fe|Allopurinol|Cialis|Alendronate Sodium|Losartan Potassium|Amitriptyline HCl|Oxycodone HCl|Suboxone|Oxycontin|Niaspan|Doxycycline Hyclate|Digoxin|Vytorin|Lantus Solostar|APAP/Codeine|Triamcinolone Acetonide|Premarin|Paroxetine HCl|Metoprolol Succinatee|Flovent HFA|Carisoprodol|Klor-Con M20|Benicar|Lovastatin|Amphetamine Salts|Risperidone|Levoxyl|Naproxen|Lovaza|Bystolic|Penicillin VK|Famotidine|Methylprednisolone|Nuvaring|Glyburide|Clindamycin HCl|Folic Acid|Enalapril Maleate|Tamsulosin HCl|Cheratussin AC|Benicar HCT|Levaquin|TriNessa|Ranitidine HCl|Levothyroxine Sodium|Glipizide|Tri-Sprintec|Symbicort|Lidoderm|Pantoprazole Sodium|Zyprexa|Endocet|Gianvi|Diazepam",
   "foodTypes": "パスタ|パイ|サラダ|サンドイッチ|スープ|シチュー|シリアル|シーフード|デザート|麺",
-  "carBrands": "Toyota|Volkswagen|BMW|Mercedes-Benz|Ford|Nissan|Honda|Porsche|Hyundai Motors|Renault|Peugeot|Chevrolet|Fiat|Audi|Kia Motors|Suzuki|General Motors|Citroën|Daimler|GMC|JLR|Ferrari|Tata Motors|Mazda|Subaru|Lexus|Volvo|MINI|Vauxhall|Isuzu|Dongfeng Motor|Mitsubishi Motors|Mahindra and Mahindra|Daihatsu|Jeep|Kenworth|Dodge|Cadillac|Chrysler|Skoda|Acura|Infiniti|Buick|Lincoln|RAM Trucks|Maruti Suzuki|Smart|Dacia|FAW|Seat"
+  "carBrands": "Toyota|Volkswagen|BMW|Mercedes-Benz|Ford|Nissan|Honda|Porsche|Hyundai Motors|Renault|Peugeot|Chevrolet|Fiat|Audi|Kia Motors|Suzuki|General Motors|Citroën|Daimler|GMC|JLR|Ferrari|Tata Motors|Mazda|Subaru|Lexus|Volvo|MINI|Vauxhall|Isuzu|Dongfeng Motor|Mitsubishi Motors|Mahindra and Mahindra|Daihatsu|Jeep|Kenworth|Dodge|Cadillac|Chrysler|Skoda|Acura|Infiniti|Buick|Lincoln|RAM Trucks|Maruti Suzuki|Smart|Dacia|FAW|Seat",
+
+  "source": "ソース",
+  "sourceDesc": "この設定は、リストから生成されるアイテムの数を制御します。 特定の数までのアイテムの正確な数またはランダムな数を選択できます。",
+  "exactly1Item": "リストから正確に%1アイテム",
+  "exactlyNItems": "リストから正確に%1アイテム",
+  "atMost1Item": "リストから最大%1個のアイテム",
+  "atMostNItems": "リストから最大%1個のアイテム",
+  "customize": "カスタマイズ",
+  "listSettings": "リスト設定",
+  "delimChars": "区切り文字"
 }

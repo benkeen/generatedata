@@ -7,6 +7,7 @@ import CreatablePillField from '~components/creatablePillField/CreatablePillFiel
 import TextField from '~components/TextField';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { Tooltip } from '~components/tooltips';
+import * as langUtils from '~utils/langUtils';
 import * as styles from './List.scss';
 
 export const enum ListType {
@@ -29,7 +30,7 @@ export const initialState: ListState = {
 	exactly: '1',
 	atMost: '1',
 	values: ['1', '3', '5', '7', '9', '11', '13', '15', '17', '19'],
-	delimiter: ','
+	delimiter: ', '
 };
 
 export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element => {
@@ -66,7 +67,7 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 	);
 };
 
-const ListDialog = ({ visible, data, id, onClose, countryI18n, onUpdate, coreI18n, i18n }: any): JSX.Element => {
+const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: any): JSX.Element => {
 	const exactlyField = React.useRef<any>();
 	const atMostField = React.useRef<any>();
 
@@ -77,13 +78,20 @@ const ListDialog = ({ visible, data, id, onClose, countryI18n, onUpdate, coreI18
 		});
 	};
 
+	const updateDelimiter = (e: any): void => {
+		onUpdate({
+			...data,
+			delimiter: e.target.value
+		});
+	};
+
 	const exactlyError = data.exactly ? '' : coreI18n.requiredField;
 	const atMostError = data.atMost ? '' : coreI18n.requiredField;
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
-				<DialogTitle onClose={onClose}>List settings</DialogTitle>
+				<DialogTitle onClose={onClose}>{i18n.listSettings}</DialogTitle>
 				<DialogContent dividers>
 					<div className={styles.row}>
 						<div className={styles.colLabel}>{i18n.source}</div>
@@ -91,10 +99,10 @@ const ListDialog = ({ visible, data, id, onClose, countryI18n, onUpdate, coreI18
 							<input
 								type="radio"
 								id={`listType1-${id}`}
-								value="exactly"
-								checked={data.listType === 'exactly'}
+								value={ListType.exactly}
+								checked={data.listType === ListType.exactly}
 								onChange={(): void => {
-									onChange('listType', 'exactly');
+									onChange('listType', ListType.exactly);
 									exactlyField.current.focus();
 								}}
 							/>
@@ -111,17 +119,17 @@ const ListDialog = ({ visible, data, id, onClose, countryI18n, onUpdate, coreI18
 									onUpdate({
 										...data,
 										exactly: e.target.value,
-										listType: 'exactly'
+										listType: ListType.exactly
 									});
 								}}
 							/>
 							<input
 								type="radio"
 								id={`listType2-${id}`}
-								value="atMost"
-								checked={data.listType === 'atMost'}
+								value={ListType.atMost}
+								checked={data.listType === ListType.atMost}
 								onChange={(): void => {
-									onChange('listType', 'atMost');
+									onChange('listType', ListType.atMost);
 									atMostField.current.focus();
 								}}
 							/>
@@ -138,30 +146,26 @@ const ListDialog = ({ visible, data, id, onClose, countryI18n, onUpdate, coreI18
 									onUpdate({
 										...data,
 										atMost: e.target.value,
-										listType: 'atMost'
+										listType: ListType.atMost
 									});
 								}}
 							/>
-							<Tooltip title="blah blah blah" arrow>
+							<Tooltip title={i18n.sourceDesc} arrow>
 								<InfoIcon />
 							</Tooltip>
 						</div>
 					</div>
 					<div className={styles.row}>
 						<div className={styles.colLabel}>
-							Delimiter char(s):
+							{i18n.delimChars}
 						</div>
 						<div className={styles.content}>
-							<input type="text" style={{ width: 40 }} value="|" />
-						</div>
-					</div>
-					<div className={styles.row}>
-						<div className={styles.content}>
-							<input type="checkbox" />
-							<label>Separate values, if supported by Export Type</label>
-							<Tooltip title="blah blah blah" arrow style={{ marginLeft: 6 }}>
-								<InfoIcon />
-							</Tooltip>
+							<input
+								type="text"
+								style={{ width: 40 }}
+								value={data.delimiter}
+								onChange={updateDelimiter}
+							/>
 						</div>
 					</div>
 				</DialogContent>
@@ -177,17 +181,32 @@ const ListDialog = ({ visible, data, id, onClose, countryI18n, onUpdate, coreI18
 export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
+	let label;
+	if (data.listType === ListType.exactly) {
+		if (data.exactly === '1') {
+			label = langUtils.getI18nString(i18n.exactly1Item, [`<b>1</b>`]);
+		} else {
+			label = langUtils.getI18nString(i18n.exactlyNItems, [`<b>${data.exactly}</b>`]);
+		}
+	} else {
+		if (data.atMost === '1') {
+			label = langUtils.getI18nString(i18n.atMost1Item, [`<b>1</b>`]);
+		} else {
+			label = langUtils.getI18nString(i18n.atMostNItems, [`<b>${data.atMost}</b>`]);
+		}
+	}
+
 	return (
 		<>
 			<div style={{ margin: 4 }}>
-				<span>Exactly <b>1</b> item from list</span>
+				<span dangerouslySetInnerHTML={{ __html: label }} />
 				<Button
 					onClick={(): void => setDialogVisibility(true)}
 					variant="outlined"
 					color="primary"
 					size="small"
 					style={{ marginLeft: 6 }}>
-					Customize
+					{i18n.customize}
 				</Button>
 			</div>
 			<div>

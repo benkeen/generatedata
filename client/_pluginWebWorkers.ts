@@ -19,7 +19,7 @@ export default {
 		"GUID": "DT-GUID.generator-54966dabad4987a193e4cf4a467d4d93.js",
 		"IBAN": "DT-IBAN.generator-b92eaa02e83c98a15767dfd6866d8bd1.js",
 		"LatLng": "DT-LatLng.generator-e54a6ba6fdf1679297e01d8729131379.js",
-		"List": "DT-List.generator-fb40a2699f222571bfb5fd9a5c94c8f9.js",
+		"List": "DT-List.generator-c92f2b5dc403b8cabef225d6b51d955b.js",
 		"Names": "DT-Names.generator-5ae4a508c7a493e9fc54f8e732729372.js",
 		"NormalDistribution": "DT-NormalDistribution.generator-adbc977198013088e21d0c3ad5a62e7e.js",
 		"NumberRange": "DT-NumberRange.generator-057ed424452f4e991ebc399c615ae34c.js",

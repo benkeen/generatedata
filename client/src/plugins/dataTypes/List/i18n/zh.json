@@ -27,5 +27,15 @@
   "invalidIntFields": "请仅在“自定义列表数据类型”的“完全”和“最多”字段中输入数字。 请修复以下行：",
   "drugNames": "Hydrocodone/APAP|LevothyroxineSodium|Lipitor|Simvastatin|Plavix|Singulair|Azithromycin|Crestor|Nexium|Metoprolol Tartrate|Synthroid|Lexapro|Proair HFA|Ibuprofen (Rx)|Trazodone HCl|Amoxicillin|Omeprazole (Rx)|Advair Diskus|Cymbalta|Tramadol HCl|Sulfamethoxazole/Trimethoprim|Amlodipine Besylate|Fluticasone Propionate|Hydrochlorothiazide|Ventolin HFA|Diovan|Warfarin Sodium|Sertraline HCl|Alprazolam|Pravastatin Sodium|Metoprolol Succinate|Seroquel|Promethazine HCl|Amoxicillin Trihydrate/Potassium Clavulanate|Oxycodone/APAP|Zolpidem Tartrate|Metformin HCl|Prednisone|Fluconazole|Clonazepam|Actos|Gabapentin|Lantus|Vitamin D (Rx)|Fluoxetine HCl|Furosemide|Citalopram HBr|Ciprofloxacin HCl|Atenolol|Meloxicam|Lorazepam|Celebrex|Venlafaxine HCl ER|Lyrica|Nasonex|Spiriva Handihaler|Cyclobenzaprin HCl|Cephalexin|Abilify|Citalopram HBR|Carvedilol|Potassium Chloride|Viagra||Vyvanse|Zetia|Albuterol|Namenda|Januvia|Tricor|Lisinopril|Loestrin 24 Fe|Allopurinol|Cialis|Alendronate Sodium|Losartan Potassium|Amitriptyline HCl|Oxycodone HCl|Suboxone|Oxycontin|Niaspan|Doxycycline Hyclate|Digoxin|Vytorin|Lantus Solostar|APAP/Codeine|Triamcinolone Acetonide|Premarin|Paroxetine HCl|Metoprolol Succinatee|Flovent HFA|Carisoprodol|Klor-Con M20|Benicar|Lovastatin|Amphetamine Salts|Risperidone|Levoxyl|Naproxen|Lovaza|Bystolic|Penicillin VK|Famotidine|Methylprednisolone|Nuvaring|Glyburide|Clindamycin HCl|Folic Acid|Enalapril Maleate|Tamsulosin HCl|Cheratussin AC|Benicar HCT|Levaquin|TriNessa|Ranitidine HCl|Levothyroxine Sodium|Glipizide|Tri-Sprintec|Symbicort|Lidoderm|Pantoprazole Sodium|Zyprexa|Endocet|Gianvi|Diazepam",
   "foodTypes": "面食|馅饼|沙拉|三明治|汤|炖菜|谷物|海鲜|甜点|面条",
-  "carBrands": "Toyota|Volkswagen|BMW|Mercedes-Benz|Ford|Nissan|Honda|Porsche|Hyundai Motors|Renault|Peugeot|Chevrolet|Fiat|Audi|Kia Motors|Suzuki|General Motors|Citroën|Daimler|GMC|JLR|Ferrari|Tata Motors|Mazda|Subaru|Lexus|Volvo|MINI|Vauxhall|Isuzu|Dongfeng Motor|Mitsubishi Motors|Mahindra and Mahindra|Daihatsu|Jeep|Kenworth|Dodge|Cadillac|Chrysler|Skoda|Acura|Infiniti|Buick|Lincoln|RAM Trucks|Maruti Suzuki|Smart|Dacia|FAW|Seat"
+  "carBrands": "Toyota|Volkswagen|BMW|Mercedes-Benz|Ford|Nissan|Honda|Porsche|Hyundai Motors|Renault|Peugeot|Chevrolet|Fiat|Audi|Kia Motors|Suzuki|General Motors|Citroën|Daimler|GMC|JLR|Ferrari|Tata Motors|Mazda|Subaru|Lexus|Volvo|MINI|Vauxhall|Isuzu|Dongfeng Motor|Mitsubishi Motors|Mahindra and Mahindra|Daihatsu|Jeep|Kenworth|Dodge|Cadillac|Chrysler|Skoda|Acura|Infiniti|Buick|Lincoln|RAM Trucks|Maruti Suzuki|Smart|Dacia|FAW|Seat",
+
+  "source": "来源",
+  "sourceDesc": "此设置控制从列表生成的项目数。 您可以选择确切数量或随机数量的项目（最多达到特定数量）。",
+  "exactly1Item": "清单中完全是%1个项目",
+  "exactlyNItems": "清单中有%1个项目",
+  "atMost1Item": "列表中最多%1个项目",
+  "atMostNItems": "列表中最多%1个项目",
+  "customize": "定制",
+  "listSettings": "清单设定",
+  "delimChars": "分隔符"
 }
