@@ -12,8 +12,8 @@ Right now it's in early alpha. The current goals are:
 
 The next phase will be adding in the backend: user accounts, saving data sets and so on. 
 
-- `version next`:
-    - preview panel scroll fix.
+- `4.0.0-alpha-20210429`:
+    - preview panel scrolling fix.
     - List Data Type now allows customizable delimiter.
 - `4.0.0-alpha-20210424`:
     - Safari error page.
