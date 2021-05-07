@@ -2,6 +2,7 @@ import * as React from 'react';
 import Select, { ControlProps, OptionTypeBase, IndicatorProps } from 'react-select';
 import { getStrings } from '~utils/langUtils';
 import C from '~core/constants';
+import * as styles from './Dropdown.scss';
 
 export type DropdownOption = {
 	value: string;
@@ -26,14 +27,14 @@ const selectStyles = {
 };
 
 
-const Dropdown = ({ value, isGrouped, options, placeholder, ...props }: any): JSX.Element => {
+const Dropdown = ({ value, isGrouped, options, hasError, placeholder, ...props }: any): JSX.Element => {
 	const i18n = getStrings();
 
 	// react-select has a terrible API. You need to pass the entire selected object as the `value` prop to prefill it.
-	// That's not something you'd normally save - you just want to save a single value, because, well, duh. So to
-	// make it behave like a sane component, our component here just accepts a single `value` prop - which is either the
-	// single value for the field, or an array if it's isMulti. This code converts it to an object/array of objects
-	// for react-select
+	// That's not something you'd normally save - you just want to save a single value, because, well, duh. This makes
+	// thing like localization a total pain. So to make it behave like a sane component, our component here just accepts
+	// a single `value` prop - which is either the single value for the field, or an array if it's isMulti. This code
+	// converts it to an object/array of objects for react-select
 	let selectedValue: any = '';
 	if (isGrouped) {
 		if (props.isMulti) {
@@ -64,9 +65,15 @@ const Dropdown = ({ value, isGrouped, options, placeholder, ...props }: any): JS
 
 	// for debugging: menuIsOpen={true}
 
+	let className = props.className || '';
+	if (hasError) {
+		className += ` ${styles.error}`
+	}
+
 	return (
 		<Select
 			{...props}
+			className={className}
 			options={options}
 			classNamePrefix="react-select"
 			value={selectedValue}
