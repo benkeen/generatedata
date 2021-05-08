@@ -67,7 +67,7 @@ const Dropdown = ({ value, isGrouped, options, hasError, placeholder, ...props }
 
 	let className = props.className || '';
 	if (hasError) {
-		className += ` ${styles.error}`
+		className += ` ${styles.error}`;
 	}
 
 	return (

@@ -305,7 +305,6 @@
 	"userAccounts": "User Accounts",
 	"userNotFound": "Sorry, we were unable to identify you. Please check your credentials.",
 	"validationAccountAlreadyExists": "Sorry, an account with that email address already exists",
-	"validationDifferentNewPasswords": "Please make sure your new passwords match",
 	"validationInvalidEmail": "Please enter a valid email address",
 	"validationNoCurrentPassword": "Please enter your current password",
 	"validationNoEmail": "Please enter your email address",
@@ -323,5 +322,6 @@
 	"yourUserAccount": "Your User Account",
 
   "noSafari": "Sorry, no Safari!",
-  "safariExplanation": "This site requires an up-to-date web browser that implements modern web standards. Unfortunately Safari has fallen behind the other browsers and won't run this script. Until we figure out how to accommodate it, please use one of the following browsers. All free for download."
+  "safariExplanation": "This site requires an up-to-date web browser that implements modern web standards. Unfortunately Safari has fallen behind the other browsers and won't run this script. Until we figure out how to accommodate it, please use one of the following browsers. All free for download.",
+  "validationDifferentNewPasswords": "Please make sure your passwords match"
 }

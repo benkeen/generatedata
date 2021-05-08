@@ -44,7 +44,7 @@ const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profileImage, 
 				</li>
 			);
 		} else if (headerLink === 'separator') {
-			links.push(<li key={`separator-${index}`} style={{ color: '#c0c0c3' }}>|</li>);
+			links.push(<li key={`separator-${index}`} className={styles.divider}>|</li>);
 		} else if (headerLink === 'dataSets') {
 			links.push(
 				<li key="dataSets" className={getClassName('datasets', currentPage)}>

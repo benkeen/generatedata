@@ -157,6 +157,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			draft.editingData = {
 				accountId,
 				disabled: accountStatus === AccountStatus.disabled,
+				status: accountStatus,
 				firstName,
 				lastName,
 				email,

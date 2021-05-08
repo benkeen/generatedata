@@ -6,6 +6,10 @@
 	height: 60px;
 	display: flex;
 
+	img {
+		user-select: none;
+	}
+
 	& > div {
 		width: 100%;
 		max-width: 1400px;
@@ -108,6 +112,11 @@
 
 .selected a {
 	color: $primary-color;
+}
+
+.divider {
+	color: #c0c0c3;
+	user-select: none;
 }
 
 div ul li.logoutLink {
