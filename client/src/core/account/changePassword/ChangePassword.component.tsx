@@ -1,14 +1,16 @@
 import React, { useRef, useState } from 'react';
+import Alert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 
 export type ChangePasswordProps = {
+	oneTimePassword: string;
 	onSave: (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void) => void;
 	className: string;
 	i18n: any;
 };
 
-const ChangePassword = ({ onSave, className, i18n }: ChangePasswordProps): JSX.Element => {
+const ChangePassword = ({ oneTimePassword, onSave, className, i18n }: ChangePasswordProps): JSX.Element => {
 	const currentPasswordField = useRef<HTMLInputElement>();
 	const [currentPassword, setCurrentPassword] = useState('');
 	const [currentPasswordError, setCurrentPasswordError] = useState('');
@@ -34,14 +36,16 @@ const ChangePassword = ({ onSave, className, i18n }: ChangePasswordProps): JSX.E
 		e.preventDefault();
 
 		if (isValid(true)) {
-			onSave(currentPassword, password, onSuccess, onError);
+			// for one-time password logins, just send back the one-time password for confirmation on the server
+			const currPassword = oneTimePassword ? oneTimePassword : currentPassword;
+			onSave(currPassword, password, onSuccess, onError);
 		}
 	};
 
 	// TODO move validation errors to RIGHT of field, and making them show up immediately would be nice
 	const isValid = (showErrors = false): boolean => {
 		let hasError = false;
-		if (currentPassword.trim() === '') {
+		if (!oneTimePassword && currentPassword.trim() === '') {
 			hasError = true;
 		}
 
@@ -62,9 +66,17 @@ const ChangePassword = ({ onSave, className, i18n }: ChangePasswordProps): JSX.E
 
 	const submitButtonEnabled = isValid();
 
-	return (
-		<form onSubmit={handleSave} autoComplete="off" className={className}>
-			<div style={{ marginBottom: 10, width: 400 }}>
+	const getCurrentPasswordBlock = (): JSX.Element => {
+		if (oneTimePassword) {
+			return (
+				<Alert severity="warning" style={{ marginBottom: 15 }}>
+					{i18n.oneTimePasswordLogin}
+				</Alert>
+			);
+		}
+
+		return (
+			<>
 				<label>{i18n.currentPassword}</label>
 				<div style={{ marginBottom: 15, paddingBottom: 20, borderBottom: '1px solid #dddddd' }}>
 					<TextField
@@ -82,6 +94,14 @@ const ChangePassword = ({ onSave, className, i18n }: ChangePasswordProps): JSX.E
 						autoFocus
 					/>
 				</div>
+			</>
+		);
+	};
+
+	return (
+		<form onSubmit={handleSave} autoComplete="off" className={className}>
+			<div style={{ marginBottom: 10 }}>
+				{getCurrentPasswordBlock()}
 
 				<label>{i18n.password}</label>
 				<div style={{ marginBottom: 15 }}>
@@ -93,6 +113,7 @@ const ChangePassword = ({ onSave, className, i18n }: ChangePasswordProps): JSX.E
 						onChange={(e: any): void => setPassword(e.target.value)}
 						style={{ width: 220 }}
 						tooltipPlacement="right"
+						autoFocus={oneTimePassword !== ''}
 					/>
 				</div>
 

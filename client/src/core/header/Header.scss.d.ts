@@ -2,6 +2,7 @@ declare namespace HeaderScssNamespace {
   export interface IHeaderScss {
     controls: string;
     current: string;
+    divider: string;
     fadein: string;
     header: string;
     headerLinks: string;

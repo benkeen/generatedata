@@ -9,6 +9,7 @@ import { GDAction } from '~types/general';
 import { addToast } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
 import * as queries from '~core/queries';
+import { SET_ONE_TIME_PASSWORD } from '~store/main/main.actions';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 export const updateAccount = (data: AccountEditingData): GDAction => ({
@@ -112,25 +113,37 @@ export const saveAccount = (data: any): any => async (dispatch: Dispatch): Promi
 	dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
 };
 
-export const savePassword = (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void): any => async (): Promise<any> => {
-	const i18n = getStrings();
-
-	const response = await apolloClient.mutate({
-		mutation: queries.UPDATE_PASSWORD,
-		variables: { currentPassword, newPassword }
-	});
-
-	if (!response.data.updatePassword.success) {
-		onError();
-		return;
+export const clearOneTimePassword = (): GDAction => ({
+	type: SET_ONE_TIME_PASSWORD,
+	payload: {
+		password: ''
 	}
+});
 
-	addToast({
-		type: 'success',
-		message: i18n.core.passwordUpdated
-	});
-	onSuccess();
-};
+export const savePassword = (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void): any => (
+	async (dispatch: Dispatch): Promise<any> => {
+		const i18n = getStrings();
+
+		const response = await apolloClient.mutate({
+			mutation: queries.UPDATE_PASSWORD,
+			variables: { currentPassword, newPassword }
+		});
+
+		if (!response.data.updatePassword.success) {
+			onError();
+			return;
+		}
+
+		dispatch(clearOneTimePassword());
+
+		addToast({
+			type: 'success',
+			message: i18n.core.passwordUpdated
+		});
+
+		onSuccess();
+	}
+);
 
 export const SHOW_SAVE_DATA_SET_DIALOG = 'SHOW_SAVE_DATA_SET_DIALOG';
 export const showSaveDataSetDialog = (dialogType: SaveDataDialogType): GDAction => ({

@@ -17,6 +17,7 @@ export const shouldShowSaveDataSetDialog = (state: Store): boolean => state.acco
 export const getSaveDataDialogType = (state: Store): SaveDataDialogType => state.account.saveDataDialogType;
 export const getDataSets = (state: Store): any[] => state.account.dataSets;
 export const getSelectedAccountsPageTab = (state: Store): SelectedAccountsTab => state.account.selectedAccountsTab;
+export const getOneTimePassword = (state: Store): string => state.account.oneTimePassword;
 
 export const accountHasChanges = createSelector(
 	getFirstName,

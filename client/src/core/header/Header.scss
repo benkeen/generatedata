@@ -78,6 +78,16 @@
 			}
 		}
 	}
+
+	li.divider {
+		color: #c0c0c3;
+		user-select: none;
+		cursor: inherit;
+
+		&:hover {
+			color: #c0c0c3;
+		}
+	}
 }
 
 .headerLinks {
@@ -112,11 +122,6 @@
 
 .selected a {
 	color: $primary-color;
-}
-
-.divider {
-	color: #c0c0c3;
-	user-select: none;
 }
 
 div ul li.logoutLink {

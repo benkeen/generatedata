@@ -27,12 +27,6 @@ const login = async (root, { email, password }, { res }) => {
 	let oneTimePasswordIsCorrect = false;
 	if (oneTimePassword) {
 		oneTimePasswordIsCorrect = await authUtils.isValidPassword(password, oneTimePassword);
-
-		if (oneTimePasswordIsCorrect) {
-			await user.update({
-				oneTimePassword: null
-			});
-		}
 	}
 
 	if (!isCorrect && !oneTimePasswordIsCorrect) {

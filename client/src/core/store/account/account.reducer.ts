@@ -25,6 +25,7 @@ export enum SaveDataDialogType {
 export type AccountState = {
 	showSaveDataSetDialog: boolean;
 	saveDataDialogType: SaveDataDialogType;
+	oneTimePassword: string;
 	firstName: string;
 	lastName: string;
 	email: string;
@@ -43,6 +44,7 @@ export type AccountState = {
 export const initialState: AccountState = {
 	showSaveDataSetDialog: false,
 	saveDataDialogType: SaveDataDialogType.save,
+	oneTimePassword: '',
 	firstName: '',
 	lastName: '',
 	email: '',
@@ -92,6 +94,10 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			draft.numRowsGenerated = numRowsGenerated;
 			break;
 		}
+
+		case mainActions.SET_ONE_TIME_PASSWORD:
+			draft.oneTimePassword = action.payload.password;
+			break;
 
 		case actions.CHANGE_ACCOUNT_TAB:
 			draft.selectedTab = action.payload.tab;

@@ -163,7 +163,7 @@ export const login = (email: string, password: string, history: any, onLoginErro
 			});
 
 			if (response.data.login.wasOneTimeLogin) {
-				onOneTimeLoginSuccess(tokenExpiry, history, dispatch);
+				onOneTimeLoginSuccess(tokenExpiry, password, history, dispatch);
 			} else {
 				onLoginSuccess(tokenExpiry, false, dispatch);
 			}
@@ -197,17 +197,21 @@ export const onLoginSuccess = (tokenExpiry: number | null, onPageRender: boolean
 	}
 };
 
-export const onOneTimeLoginSuccess = (tokenExpiry: number, history: any, dispatch: Dispatch): void => {
+export const SET_ONE_TIME_PASSWORD = 'SET_ONE_TIME_PASSWORD';
+export const setOneTimePassword = (password: string): GDAction => ({ type: SET_ONE_TIME_PASSWORD, payload: { password } });
+
+export const onOneTimeLoginSuccess = (tokenExpiry: number, password: string, history: any, dispatch: Dispatch): void => {
 	const i18n = getStrings();
 	setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
 	dispatch(setLoginDialogVisibility(false));
+	dispatch(setOneTimePassword(password));
 
 	history.push('/account');
 	dispatch(onChangeTab(SelectedAccountTab.changePassword));
 
 	addToast({
 		type: 'success',
-		message: i18n.core.oneTimePasswordLogin
+		message: i18n.core.nowLoggedIn
 	});
 };
 

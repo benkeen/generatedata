@@ -5,7 +5,7 @@ import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
 import { GDCustomHeaderLink, GDHeaderLink } from '~types/general';
 import { getGeneratorRoute } from '~utils/routeUtils';
 import { Tooltip } from '~components/tooltips';
-import styles from './Header.scss';
+import * as styles from './Header.scss';
 
 export type HeaderLinksProps = {
 	currentPage: string;

@@ -12,6 +12,7 @@ describe('ChangePassword container', () => {
 				className="the-class"
 				onSave={onSave}
 				i18n={i18n}
+				oneTimePassword=""
 			/>
 		);
 
@@ -28,6 +29,7 @@ describe('ChangePassword container', () => {
 				className="the-class"
 				onSave={onSave}
 				i18n={i18n}
+				oneTimePassword=""
 			/>
 		);
 
@@ -65,6 +67,7 @@ describe('ChangePassword container', () => {
 				className="the-class"
 				onSave={onSave}
 				i18n={i18n}
+				oneTimePassword=""
 			/>
 		);
 
