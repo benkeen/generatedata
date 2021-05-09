@@ -176,20 +176,23 @@ const checkAndUpdateRefreshToken = async (root, args, { token, req, res }) => {
 	});
 
 	if (!user) {
-		console.log('not found with token: ', req.cookies.refreshToken);
 		return { success: false };
 	} else {
-		console.log("FOUND USER WITH refresh token. Still active?????");
+		// TODO
+		console.log("FOUND USER WITH refresh token. Still active?");
 	}
 
 	const { accountId, email } = user.dataValues;
 	const { token: newToken, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
+
+	const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
 	return {
 		success: true,
 		token: newToken,
 		tokenExpiry,
 		refreshToken,
+		numRowsGenerated,
 		...user.dataValues
 	};
 };

@@ -2,6 +2,7 @@ import { AnyAction } from 'redux';
 import produce from 'immer';
 import * as mainActions from '../main/main.actions';
 import * as actions from '../account/account.actions';
+import * as packetActions from '../packets/packets.actions';
 import { AccountStatus, AccountType, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
 
 // use for both Edit Account, Your Account. Your Account only uses a subset of the fields.
@@ -171,6 +172,10 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				region,
 				expiryDate
 			};
+			break;
+
+		case packetActions.UPDATE_TOTAL_GENERATION_COUNT:
+			draft.numRowsGenerated += action.payload.count;
 			break;
 	}
 

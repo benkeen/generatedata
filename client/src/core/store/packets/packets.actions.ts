@@ -32,6 +32,10 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 	});
 };
 
+export const UPDATE_TOTAL_GENERATION_COUNT = 'UPDATE_TOTAL_GENERATION_COUNT';
+export const updateTotalGenerationCount = (count: number) => ({ type: UPDATE_TOTAL_GENERATION_COUNT, payload: { count } });
+
+
 export const LOG_DATA_BATCH = 'LOG_DATA_BATCH';
 export const logDataBatch = (packetId: string, numGeneratedRows: number, dataStr: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const state = getState();
@@ -41,7 +45,7 @@ export const logDataBatch = (packetId: string, numGeneratedRows: number, dataStr
 
 	// if the packet has been fully generated track the generated row count
 	if (isLoggedIn && currentDataSetId !== null && numRowsToGenerate === numGeneratedRows) {
-		await apolloClient.mutate({
+		const resp = await apolloClient.mutate({
 			mutation: gql`
                 mutation UpdateDataSetGenerationCount($dataSetId: ID!, $generatedRows: Int!) {
                     updateDataSetGenerationCount(dataSetId: $dataSetId, generatedRows: $generatedRows) {
@@ -55,6 +59,10 @@ export const logDataBatch = (packetId: string, numGeneratedRows: number, dataStr
 				generatedRows: numGeneratedRows
 			}
 		});
+
+		if (resp.data.updateDataSetGenerationCount.success) {
+			dispatch(updateTotalGenerationCount(numGeneratedRows));
+		}
 	}
 
 	dispatch({
