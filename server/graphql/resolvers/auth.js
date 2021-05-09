@@ -6,11 +6,23 @@ const emailUtils = require('../../utils/emailUtils');
 const langUtils = require('../../utils/langUtils');
 const { passwordReset, passwordResetAccountExpired } = require('../../emails');
 
+const getAccountNumRowsGenerated = async (accountId) => {
+	const results = await db.dataSets.findAll({
+		where: {
+			accountId: accountId
+		},
+		attributes: [[db.sequelize.fn('sum', db.sequelize.col('num_rows_generated')), 'totalRowsGenerated']]
+	});
+
+	return results[0].dataValues.totalRowsGenerated;
+};
+
+
 const login = async (root, { email, password }, { res }) => {
 	const user = await db.accounts.findOne({
 		attributes: [
 			'accountId', 'accountType', 'password', 'oneTimePassword', 'firstName', 'lastName', 'country', 'region',
-			'dateCreated', 'expiryDate', 'numRowsGenerated'
+			'dateCreated', 'expiryDate'
 		],
 		where: {
 			email
@@ -34,6 +46,7 @@ const login = async (root, { email, password }, { res }) => {
 	}
 
 	const { token, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
+	const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
 	return {
 		success: true,
@@ -42,6 +55,7 @@ const login = async (root, { email, password }, { res }) => {
 		refreshToken,
 		email,
 		wasOneTimeLogin: oneTimePasswordIsCorrect,
+		numRowsGenerated,
 		...user.dataValues
 	};
 };
@@ -113,7 +127,7 @@ const loginWithGoogle = async (root, { googleToken }) => {
 	const user = await db.accounts.findOne({
 		attributes: [
 			'accountId', 'accountType', 'password', 'firstName', 'lastName', 'country', 'region', 'dateCreated',
-			'expiryDate', 'numRowsGenerated'
+			'expiryDate'
 		],
 		where: {
 			email
@@ -127,8 +141,9 @@ const loginWithGoogle = async (root, { googleToken }) => {
 		};
 	}
 
-	const { accountId, accountType, firstName, lastName, expiryDate, dateCreated, numRowsGenerated } = user.dataValues;
+	const { accountId, accountType, firstName, lastName, expiryDate, dateCreated } = user.dataValues;
 	const token = await authUtils.getJwt({ accountId, email });
+	const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
 	return {
 		success: true,
@@ -153,7 +168,7 @@ const checkAndUpdateRefreshToken = async (root, args, { token, req, res }) => {
 	const user = await db.accounts.findOne({
 		attributes: [
 			'accountId', 'accountType', 'firstName', 'email', 'lastName', 'country', 'region', 'dateCreated',
-			'expiryDate', 'numRowsGenerated'
+			'expiryDate'
 		],
 		where: {
 			refreshToken: oldRefreshToken

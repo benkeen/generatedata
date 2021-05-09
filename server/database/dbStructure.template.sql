@@ -60,7 +60,6 @@ CREATE TABLE `accounts` (
   `one_time_password` varchar(100) NULL,
   `country` varchar(255) NOT NULL,
   `region` varchar(255) NOT NULL,
-  `num_rows_generated` mediumint(9) DEFAULT '0',
   `max_records` mediumint(9) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

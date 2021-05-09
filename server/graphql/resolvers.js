@@ -48,8 +48,7 @@ const resolvers = {
 					lastName: row.last_name,
 					email: row.email,
 					country: row.country,
-					region: row.region,
-					numRowsGenerated: row.numRowsGenerated,
+					region: row.region
 				}))
 			};
 		},

@@ -69,11 +69,6 @@ module.exports = (sequelize, DataTypes) => {
 		region: {
 			type: DataTypes.STRING(255)
 		},
-		numRowsGenerated: {
-			type: DataTypes.INTEGER(9).UNSIGNED,
-			allowNull: false,
-			field: 'num_rows_generated'
-		},
 		maxRecords: {
 		    type: DataTypes.INTEGER(9).UNSIGNED,
 			field: 'max_records'
