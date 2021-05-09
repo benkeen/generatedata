@@ -33,8 +33,7 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 };
 
 export const UPDATE_TOTAL_GENERATION_COUNT = 'UPDATE_TOTAL_GENERATION_COUNT';
-export const updateTotalGenerationCount = (count: number) => ({ type: UPDATE_TOTAL_GENERATION_COUNT, payload: { count } });
-
+export const updateTotalGenerationCount = (count: number): GDAction => ({ type: UPDATE_TOTAL_GENERATION_COUNT, payload: { count } });
 
 export const LOG_DATA_BATCH = 'LOG_DATA_BATCH';
 export const logDataBatch = (packetId: string, numGeneratedRows: number, dataStr: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {

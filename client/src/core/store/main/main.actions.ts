@@ -51,10 +51,11 @@ export const initRouteListener = (history: any): void => {
 };
 
 export const SET_LOGIN_DIALOG_VISIBILITY = 'SET_LOGIN_DIALOG_VISIBILITY';
-export const setLoginDialogVisibility = (visible: boolean): GDAction => ({
+export const setLoginDialogVisibility = (visible: boolean, email = ''): GDAction => ({
 	type: SET_LOGIN_DIALOG_VISIBILITY,
 	payload: {
-		visible
+		visible,
+		email
 	}
 });
 
@@ -112,8 +113,12 @@ let loginFlow = '';
 export const setReturnToSaveDataSet = (): void => {
 	loginFlow = 'fromSaveDataSet';
 };
-export const clearLoginFlow = (): any => {
+
+export const CLEAR_DEFAULT_EMAIL = 'CLEAR_DEFAULT_EMAIL';
+export const clearLoginFlow = (): GDAction => {
 	loginFlow = '';
+
+	return { type: CLEAR_DEFAULT_EMAIL };
 };
 
 export const LOGIN_ERROR = 'LOGIN_ERROR';
@@ -355,7 +360,7 @@ export const sendPasswordResetEmail = (email: string, onLoginError: any): any =>
 			message: i18n.core.passwordResetMsg
 		});
 		dispatch(setPasswordResetDialogVisibility(false));
-		dispatch(setLoginDialogVisibility(true));
+		dispatch(setLoginDialogVisibility(true, email));
 		dispatch(stopDialogProcessing());
 	} else {
 		dispatch(setLoginError());

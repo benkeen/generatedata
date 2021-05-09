@@ -12,12 +12,13 @@ import { DataSetListItem } from '~types/dataSets';
 import { formatUnixTime } from '~utils/dateUtils';
 import { getGeneratorRoute } from '~utils/routeUtils';
 import { useHistory } from 'react-router';
+import { getFormattedNum } from '~utils/numberUtils';
 
 const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 	<div className={styles.row}>
 		<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
 		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
-		<div className={styles.numRowsGenerated}>{dataSet.numRowsGenerated}</div>
+		<div className={styles.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated)}</div>
 		<div className={styles.status}>
 			{dataSet.status === 'public' ? i18n.public : i18n.private}
 		</div>

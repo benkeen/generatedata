@@ -8,12 +8,13 @@ import * as mainActions from '~store/main/main.actions';
 const mapStateToProps = (state: any): Partial<LoginDialogProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: mainSelectors.shouldShowLoginDialog(state),
-	dialogProcessing: mainSelectors.isDialogProcessing(state)
+	dialogProcessing: mainSelectors.isDialogProcessing(state),
+	defaultEmail: mainSelectors.getLoginDefaultEmail(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<LoginDialogProps> => ({
 	onClose: (): any => dispatch(mainActions.setLoginDialogVisibility(false)),
-	onExited: (): any => mainActions.clearLoginFlow(),
+	onExited: (): any => dispatch(mainActions.clearLoginFlow()),
 	onSubmit: (email: string, password: string, history: any, onLoginError: Function): any => {
 		dispatch(mainActions.login(email, password, history, onLoginError));
 	},

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
 import { AccountEditingData } from '~store/account/account.reducer';
+import { getFormattedNum } from '~utils/numberUtils';
 import styles from '../Account.scss';
 
 export type YourAccountProps = {
@@ -39,7 +40,7 @@ const YourAccount = ({
 				<div style={{ borderLeft: '1px solid #f2f2f2', paddingLeft: 20, height: '83%' }}>
 					<label>{i18n.totalNumGeneratedRows}</label>
 					<div className={styles.numGeneratedRows} style={{ marginBottom: 15 }}>
-						{numGeneratedRows}
+						{getFormattedNum(numGeneratedRows)}
 					</div>
 				</div>
 			</div>

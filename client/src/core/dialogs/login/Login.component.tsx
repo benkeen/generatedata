@@ -7,12 +7,14 @@ import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import { hasVendorLogin, getVendorLoginButtons, getLoginComponentRenderMethods } from '~utils/authUtils';
 import styles from './Login.scss';
 import { useHistory } from 'react-router';
+import { shouldShowLoginDialog } from '~store/main/main.selectors';
 
 const showVendorLoginColumn = hasVendorLogin();
 const vendorLoginButtons = getVendorLoginButtons();
 
 export type LoginDialogProps = {
 	visible: boolean;
+	defaultEmail: string;
 	dialogProcessing: boolean;
 	onClose: () => void;
 	onExited: () => void;
@@ -25,7 +27,7 @@ export type LoginDialogProps = {
  * The login dialog has baked-in support for standard logging into our database, but also optionally supports
  * logging in via external vendors: Google, Facebook and Github.
  */
-const LoginDialog = ({ visible, onClose, dialogProcessing, onSubmit, onExited, showPasswordResetDialog, i18n }: LoginDialogProps): JSX.Element => {
+const LoginDialog = ({ visible, defaultEmail, onClose, dialogProcessing, onSubmit, onExited, showPasswordResetDialog, i18n }: LoginDialogProps): JSX.Element => {
 	const history = useHistory();
 
 	const textFieldRef = useRef<any>();
@@ -33,6 +35,8 @@ const LoginDialog = ({ visible, onClose, dialogProcessing, onSubmit, onExited, s
 	const [emailError, setEmailError] = useState('');
 	const [password, setPassword] = useState('');
 	const [passwordError, setPasswordError] = useState('');
+	const [autoFocusPasswordField, shouldAutoFocusPasswordField] = useState(false);
+	const passwordFieldRef = useRef<HTMLInputElement>();
 
 	useEffect(() => {
 		if (!visible) {
@@ -42,6 +46,13 @@ const LoginDialog = ({ visible, onClose, dialogProcessing, onSubmit, onExited, s
 		}
 		getLoginComponentRenderMethods().map((func) => func());
 	}, [visible]);
+
+	useEffect(() => {
+		if (email === '') {
+			setEmail(defaultEmail);
+			shouldAutoFocusPasswordField(true);
+		}
+	}, [defaultEmail]);
 
 	const onLogin = (e: any): void => {
 		e.preventDefault();
@@ -114,9 +125,16 @@ const LoginDialog = ({ visible, onClose, dialogProcessing, onSubmit, onExited, s
 		);
 	};
 
+	const onEntered = (): void => {
+		if (autoFocusPasswordField) {
+			passwordFieldRef?.current?.focus();
+			shouldAutoFocusPasswordField(false);
+		}
+	};
+
 	return (
 		<>
-			<Dialog onClose={onClose} open={visible} className={styles.loginDialog} onExited={onExited}>
+			<Dialog onClose={onClose} open={visible} className={styles.loginDialog} onExited={onExited} onEntered={onEntered}>
 				<form onSubmit={onLogin}>
 					<div style={{ width }}>
 						<DialogTitle onClose={onClose}>{i18n.login}</DialogTitle>
@@ -142,6 +160,7 @@ const LoginDialog = ({ visible, onClose, dialogProcessing, onSubmit, onExited, s
 										<TextField
 											type="password"
 											error={passwordError}
+											ref={passwordFieldRef}
 											name="password"
 											value={password}
 											onChange={(e: any): void => updatePassword(e.target.value)}

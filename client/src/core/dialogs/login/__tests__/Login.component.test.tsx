@@ -11,6 +11,7 @@ const defaultProps = {
 	onExited: () => {},
 	showPasswordResetDialog: () => {},
 	dialogProcessing: false,
+	defaultEmail: '',
 	i18n
 };
 

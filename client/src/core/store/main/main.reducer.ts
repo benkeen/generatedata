@@ -11,6 +11,7 @@ export type MainState = {
 	localeFileLoaded: boolean;
 	locale: GDLocale;
 	showLoginDialog: boolean;
+	loginDialogDefaultEmail: string;
 	showPasswordResetDialog: boolean;
 	isLoggedIn: boolean;
 	authToken: string;
@@ -28,6 +29,7 @@ export const initialState: MainState = {
 	localeFileLoaded: false,
 	locale: env.defaultLocale,
 	showLoginDialog: false,
+	loginDialogDefaultEmail: '',
 	showPasswordResetDialog: false,
 	isLoggedIn: false,
 	authToken: '',
@@ -55,6 +57,10 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.SET_LOGIN_DIALOG_VISIBILITY:
 			draft.showLoginDialog = action.payload.visible;
+
+			if (action.payload.email) {
+				draft.loginDialogDefaultEmail = action.payload.email;
+			}
 			break;
 
 		case actions.SET_PASSWORD_RESET_DIALOG_VISIBILITY:
@@ -116,6 +122,10 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.TOUR_BUNDLE_LOADED:
 			draft.tourBundleLoaded = true;
+			break;
+
+		case actions.CLEAR_DEFAULT_EMAIL:
+			draft.loginDialogDefaultEmail = '';
 			break;
 	}
 
