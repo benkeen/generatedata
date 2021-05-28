@@ -1,6 +1,6 @@
 import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
-import styles from './Javascript.scss';
+import etShared from '../../../styles/etShared.scss';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 
 export type JavascriptExportFormat = 'variable' | 'es6' | 'commonJs';
@@ -22,8 +22,8 @@ export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element 
 	};
 
 	return (
-		<div className={styles.jsExportFormat}>
-			{i18n.format}
+		<div className={etShared.settingRow}>
+			<label>{i18n.format}</label>
 			<RadioPillRow>
 				<RadioPill
 					label={i18n.variable}

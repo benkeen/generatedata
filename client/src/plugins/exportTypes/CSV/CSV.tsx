@@ -2,6 +2,7 @@ import * as React from 'react';
 import TextField from '~components/TextField';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
+import etShared from '../../../styles/etShared.scss';
 import styles from './CSV.scss';
 
 export type CSVSettings = {
@@ -29,9 +30,9 @@ export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element 
 	};
 
 	return (
-		<div className={styles.settings}>
+		<div className={`${etShared.settingRow} ${styles.settings}`}>
 			<div>
-				<label>{i18n.delimiterChars}</label>
+				<label htmlFor={`${id}-delimiter`}>{i18n.delimiterChars}</label>
 				<TextField
 					error={data.delimiter ? '' : i18n.validationNoDelimiter}
 					style={{ width: 30 }}
@@ -41,7 +42,7 @@ export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element 
 				/>
 			</div>
 			<div>
-				<label>{i18n.eolChar}</label>
+				<label htmlFor={`${id}-eolChar`}>{i18n.eolChar}</label>
 				<Dropdown
 					id={`${id}-eolChar`}
 					value={data.lineEndings}

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
-import styles from './JSON.scss';
+import etShared from '../../../styles/etShared.scss';
+import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 
 export type DataStructureFormat = 'simple' | 'complex';
 export interface JSONSettings extends ETState {
@@ -21,29 +22,23 @@ export const Settings = ({ data, id, i18n, onUpdate }: ETSettings): JSX.Element 
 	};
 
 	return (
-		<div>
-			<div className={styles.structureFormatRow}>
-				<label>{i18n.dataStructureFormat}</label>
-			</div>
+		<div className={etShared.settingRow}>
+			<label>{i18n.dataStructureFormat}</label>
 
-			<div className={styles.settings}>
-				<input
-					type="radio"
-					value="simple"
-					id={`${id}-simple`}
+			<RadioPillRow>
+				<RadioPill
+					label={i18n.simple}
+					onClick={(): void => onChange('dataStructureFormat', 'simple')}
+					name={`${id}-simple`}
 					checked={data.dataStructureFormat === 'simple'}
-					onChange={(): void => onChange('dataStructureFormat', 'simple')}
 				/>
-				<label htmlFor={`${id}-simple`}>{i18n.simple}</label>
-				<input
-					type="radio"
-					value="complex"
-					id={`${id}-complex`}
+				<RadioPill
+					label={i18n.complex}
+					onClick={(): void => onChange('dataStructureFormat', 'complex')}
+					name={`${id}-complex`}
 					checked={data.dataStructureFormat === 'complex'}
-					onChange={(): void => onChange('dataStructureFormat', 'complex')}
 				/>
-				<label htmlFor={`${id}-complex`}>{i18n.complex}</label>
-			</div>
+			</RadioPillRow>
 		</div>
 	);
 };

@@ -14,7 +14,7 @@ for more information on that. If you need to generate random data programmatical
 The master branch now contains the incomplete v4 rewrite, so if you're downloading the script, get the most recent 
 tag: https://github.com/benkeen/generatedata/releases
 
-*This README file still contains information about the v3 code. It will stay that way until v4 is in alpha stage.*
+*This README file still contains information about the v3 code. It will stay that way until v4 is well into beta.*
 
 ## Requirements
 - PHP 5.3 or any later version of PHP 5.

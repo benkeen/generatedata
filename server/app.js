@@ -29,6 +29,8 @@ const server = new ApolloServer({
 
 		// try to retrieve a user with the token
 		const user = authUtils.getUser(token);
+		
+		console.log({ user: user });
 
 		// provides the auth token to all resolvers, plus access to the original request + response objects for
 		// more fine-tune stuff

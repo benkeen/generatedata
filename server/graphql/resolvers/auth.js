@@ -61,15 +61,14 @@ const login = async (root, { email, password }, { res }) => {
 };
 
 const sendPasswordResetEmail = async (root, { email }, { req }) => {
-	// see if the email exists
+	const i18n = langUtils.getStrings(req.cookies.lang || 'en');
+
 	const user = await db.accounts.findOne({
 		attributes: ['accountId', 'firstName', 'expiryDate'],
 		where: {
 			email
 		}
 	});
-
-	const i18n = langUtils.getStrings(req.cookies.lang || 'en');
 
 	if (user) {
 		// if the user's account has expired, let 'em know. Sodding ORM adds a degree of confusion but expiryDate is
@@ -179,7 +178,7 @@ const checkAndUpdateRefreshToken = async (root, args, { token, req, res }) => {
 		return { success: false };
 	} else {
 		// TODO
-		console.log("FOUND USER WITH refresh token. Still active?");
+		// console.log("FOUND USER WITH refresh token. Still active?");
 	}
 
 	const { accountId, email } = user.dataValues;
@@ -210,7 +209,9 @@ const logout = async (root, args, { req }) => {
 		}
 	});
 
-	user.update({ refreshToken: null });
+	if (user) {
+		user.update({ refreshToken: null });
+	}
 
 	return { success: true };
 };
@@ -228,7 +229,7 @@ const getNewTokens = async (accountId, email, user) => {
 	// info enables the front-end code to transparently extend the lifespan of the living token (`token`) just by making
 	// requests
 	const expiryMsFromNow = process.env.GD_JWT_LIFESPAN_MINS * 60 * 1000;
-	const tokenExpiry = new Date().getTime() + expiryMsFromNow; // TODO hash this for sending to the client?
+	const tokenExpiry = new Date().getTime() + expiryMsFromNow;
 
 	return { token, tokenExpiry, refreshToken };
 };

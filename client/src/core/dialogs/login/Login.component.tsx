@@ -7,7 +7,6 @@ import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import { hasVendorLogin, getVendorLoginButtons, getLoginComponentRenderMethods } from '~utils/authUtils';
 import styles from './Login.scss';
 import { useHistory } from 'react-router';
-import { shouldShowLoginDialog } from '~store/main/main.selectors';
 
 const showVendorLoginColumn = hasVendorLogin();
 const vendorLoginButtons = getVendorLoginButtons();

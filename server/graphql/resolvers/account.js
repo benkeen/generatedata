@@ -3,7 +3,11 @@ const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
 
 const updateCurrentAccount = async (root, args, { token, user }) => {
-	authUtils.authenticate(token);
+
+	// TODO check if
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
 	const { accountId } = user;
 	const userRecord = await db.accounts.findByPk(accountId);

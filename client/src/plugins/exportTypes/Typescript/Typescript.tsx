@@ -1,5 +1,6 @@
 import * as React from 'react';
 import TextField from '~components/TextField';
+import styles from './Typescript.scss';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 
 export interface TypescriptSettings extends ETState {
@@ -29,7 +30,7 @@ export const Settings = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings): JS
 	};
 
 	return (
-		<div>
+		<div className={styles.settingsBlock}>
 			<label htmlFor={`${id}-typeName`}>{i18n.typeName}</label>
 			<TextField
 				id={`${id}-typeName`}
