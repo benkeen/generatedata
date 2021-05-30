@@ -47,7 +47,7 @@ const LoginDialog = ({ visible, defaultEmail, onClose, dialogProcessing, onSubmi
 	}, [visible]);
 
 	useEffect(() => {
-		if (email === '') {
+		if (email === '' && defaultEmail) {
 			setEmail(defaultEmail);
 			shouldAutoFocusPasswordField(true);
 		}

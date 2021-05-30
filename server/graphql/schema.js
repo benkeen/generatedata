@@ -42,6 +42,7 @@ const typeDefs = gql`
 	    region: String
         numRowsGenerated: Int
         profileImage: String
+        errorStatus: Error
     }
     type Setting {
         settingName: String
@@ -85,6 +86,7 @@ const typeDefs = gql`
     type AccountsResults {
         results: [Account]
         totalCount: Int
+        errorStatus: Error
     }
     type AuthResponse {
         success: Boolean
@@ -92,7 +94,7 @@ const typeDefs = gql`
         tokenExpiry: String
 		refreshToken: String
         error: String
-        accountId: ID
+	    accountId: ID
         expiryDate: String
         accountType: AccountType
 	    accountStatus: AccountStatus
@@ -110,6 +112,9 @@ const typeDefs = gql`
 		success: Boolean
 		error: String
 	}
+    type Error {
+	    errorStatus: ErrorStatus
+    }
     type SavedDataSetResponse {
 	    success: Boolean
 	    error: String
@@ -129,6 +134,9 @@ const typeDefs = gql`
 	enum SortDir {
 		ASC
 		DESC
+	}
+	enum ErrorStatus {
+		permissionDenied
 	}
 `;
 

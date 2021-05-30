@@ -40,9 +40,9 @@ const login = async (root, { email, password }, { res }) => {
 	if (oneTimePassword) {
 		oneTimePasswordIsCorrect = await authUtils.isValidPassword(password, oneTimePassword);
 
-		if (oneTimePasswordIsCorrect) {
-			user.update({ oneTimePassword: null });
-		}
+		// note we don't reset the password here. It's needed on the request to update the password - there we DON'T
+		// check the previous one (since it's not available). We only ever want to do that if there's a one-time password
+		// still in the DB.
 	}
 
 	if (!isCorrect && !oneTimePasswordIsCorrect) {
@@ -214,7 +214,10 @@ const logout = async (root, args, { req }) => {
 	});
 
 	if (user) {
-		user.update({ refreshToken: null });
+		user.update({
+			refreshToken: null,
+			oneTimePassword: null
+		});
 	}
 
 	return { success: true };

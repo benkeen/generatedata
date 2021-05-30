@@ -70,12 +70,13 @@ const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
 };
 
 const deleteDataSet = async (root, { dataSetId, content }, { token, user }) => {
-	authUtils.authenticate(token);
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
 	// TODO check access
 
 	if (user.accountType === 'user') {
-		console.log("TODO");
 		return;
 	}
 
@@ -88,9 +89,9 @@ const deleteDataSet = async (root, { dataSetId, content }, { token, user }) => {
 };
 
 const updateDataSetGenerationCount = async (root, { dataSetId, generatedRows }, { token, user }) => {
-	authUtils.authenticate(token);
-
-	// TODO auth
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
 	let addRows = generatedRows;
 	if (/\D/.test(generatedRows)) {
@@ -98,7 +99,11 @@ const updateDataSetGenerationCount = async (root, { dataSetId, generatedRows }, 
 	}
 
 	const dataSet = await db.dataSets.findByPk(dataSetId);
-	const { numRowsGenerated } = dataSet.dataValues;
+	const { accountId, numRowsGenerated } = dataSet.dataValues;
+
+	if (user.accountId !== accountId) {
+		return { success: false };
+	}
 
 	await dataSet.update({
 		numRowsGenerated: numRowsGenerated + addRows

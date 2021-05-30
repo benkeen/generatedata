@@ -3,8 +3,6 @@ const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
 
 const updateCurrentAccount = async (root, args, { token, user }) => {
-
-	// TODO check if
 	if (!authUtils.authenticate(token)) {
 		return { success: false };
 	}
@@ -27,9 +25,18 @@ const updateCurrentAccount = async (root, args, { token, user }) => {
 };
 
 const updateAccount = async (root, args, { token }) => {
-	authUtils.authenticate(token);
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
-	// TODO verify
+	// TODO improve
+	const currentUser = await db.accounts.findByPk(user.accountId);
+	if (currentUser.dataValues.accountType !== 'superuser') {
+		return {
+			success: false,
+			errorStatus: 'PermissionDenied'
+		};
+	}
 
 	const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate } = args;
 	const userRecord = await db.accounts.findByPk(accountId);
@@ -58,11 +65,12 @@ const updateAccount = async (root, args, { token }) => {
 };
 
 const updatePassword = async (root, args, { token, user }) => {
-	authUtils.authenticate(token);
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
 	const { accountId } = user;
 	const userRecord = await db.accounts.findByPk(accountId);
-
 	const { currentPassword, newPassword } = args;
 
 	const isCorrect = await authUtils.isValidPassword(currentPassword, userRecord.dataValues.password);
@@ -91,15 +99,24 @@ const updatePassword = async (root, args, { token, user }) => {
 };
 
 const createUserAccount = async (root, args, { token, user }) => {
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
-	// TODO verify is admin
-	authUtils.authenticate(token);
+	// TODO improve
+	const userRecord = await db.accounts.findByPk(user.accountId);
+	if (userRecord.dataValues.accountType !== 'superuser') {
+		return {
+			success: false,
+			errorStatus: 'PermissionDenied'
+		};
+	}
 
 	const { accountId } = user;
 	const dateCreated = new Date().getTime();
 	const { firstName, lastName, email, country, region, accountStatus, expiryDate } = args;
 
-	const account = await db.accounts.create({
+	await db.accounts.create({
 		createdBy: accountId,
 		accountType: 'user',
 		accountStatus,
@@ -121,11 +138,16 @@ const createUserAccount = async (root, args, { token, user }) => {
 };
 
 const deleteAccount = async (root, { accountId, content }, { token, user }) => {
-	authUtils.authenticate(token);
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
-	// TODO improve security here
-	if (user.accountType === 'user') {
-		return;
+	const userRecord = await db.accounts.findByPk(user.accountId);
+	if (userRecord.dataValues.accountType !== 'superuser') {
+		return {
+			success: false,
+			errorStatus: 'PermissionDenied'
+		};
 	}
 
 	db.accounts.destroy({ where: { accountId } });

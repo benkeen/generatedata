@@ -9,6 +9,16 @@ const resolvers = {
 		accounts: async (root, args, { token, user }) => {
 			authUtils.authenticate(token);
 
+			// TODO inelegant & should be improved. Perhaps log user out? Also the FE code doesn't handle the response
+			// properly
+			const userRecord = await db.accounts.findByPk(user.accountId);
+			if (userRecord.dataValues.accountType !== 'superuser') {
+				return {
+					success: false,
+					errorStatus: 'PermissionDenied'
+				};
+			}
+
 			const { limit, offset, sortCol, sortDir } = args;
 			const { accountId } = user;
 
@@ -53,11 +63,23 @@ const resolvers = {
 			};
 		},
 
+		// retrieves any account info
 		account: async (root, args, { user, token }) => {
 			authUtils.authenticate(token);
+
+			// TODO improve
+			const userRecord = await db.accounts.findByPk(user.accountId);
+			if (userRecord.dataValues.accountType !== 'superuser') {
+				return {
+					success: false,
+					errorStatus: 'PermissionDenied'
+				};
+			}
+
 			return db.accounts.findByPk(user.accountId);
 		},
 
+		// returns current user's data sets
 		dataSets: async (root, args, { token, user }) => {
 			const { limit, offset, sortDir, sortCol } = args;
 
@@ -65,9 +87,7 @@ const resolvers = {
 
 			const sortColMap = {
 				dataSetName: 'd.dataset_name',
-				lastUpdated: 'dsh.date_created',
-				// accountStatus: 'account_status',
-				// expiryDate: 'expiry_date'
+				lastUpdated: 'dsh.date_created'
 			};
 
 			const { accountId } = user;
