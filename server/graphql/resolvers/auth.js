@@ -137,6 +137,8 @@ const loginWithGoogle = async (root, { googleToken }) => {
 		}
 	});
 
+	console.log({ user: user, chicken: 1, email: email });
+
 	if (!user) {
 		return {
 			success: false,

@@ -80,7 +80,6 @@
     color: #629755;
     font-weight: bold;
     font-style: italic;
-    text-decoration: underline;
 }
 
 .themeDarcula .cm-s-darcula span.cm-attribute {
@@ -182,4 +181,8 @@
 .themeDarcula .cm-s-darcula .CodeMirror-gutters {
     background-color: #2b2b2b;
     border-right: 1px solid #484848;
+}
+
+body .themeDarcula .cm-s-darcula .CodeMirror-gutters {
+    border-right: 0;
 }
