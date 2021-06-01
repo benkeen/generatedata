@@ -79,8 +79,10 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
 		// actually a JS object
 		const { firstName, expiryDate } = user.dataValues;
 		const now = new Date();
+		const nowMs = now.getTime();
+		const expiryDateMs = expiryDate.getTime() * 1000;
 
-		if (expiryDate !== null && expiryDate.getTime() < now.getTime()) {
+		if (expiryDate !== null && expiryDateMs < nowMs) {
 			const { subject, text, html } = passwordResetAccountExpired({ firstName, i18n });
 			await emailUtils.sendEmail(email, subject, text, html);
 		} else {
