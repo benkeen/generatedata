@@ -109,7 +109,7 @@ const loginWithGoogle = async (root, { googleToken }) => {
 	let email = '';
 	let profileImage = '';
 
-	async function verify() {
+	async function verify () {
 		const ticket = await client.verifyIdToken({
 			idToken: googleToken,
 			audience: process.env.GD_GOOGLE_AUTH_CLIENT_ID
@@ -132,14 +132,12 @@ const loginWithGoogle = async (root, { googleToken }) => {
 	const user = await db.accounts.findOne({
 		attributes: [
 			'accountId', 'accountType', 'password', 'firstName', 'lastName', 'country', 'region', 'dateCreated',
-			'expiryDate'
+			'expiryDate', 'country', 'region'
 		],
 		where: {
 			email
 		}
 	});
-
-	console.log({ user: user, chicken: 1, email: email });
 
 	if (!user) {
 		return {
@@ -148,7 +146,7 @@ const loginWithGoogle = async (root, { googleToken }) => {
 		};
 	}
 
-	const { accountId, accountType, firstName, lastName, expiryDate, dateCreated } = user.dataValues;
+	const { accountId, accountType, firstName, lastName, country, region, expiryDate, dateCreated } = user.dataValues;
 	const token = await authUtils.getJwt({ accountId, email });
 	const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
@@ -158,6 +156,8 @@ const loginWithGoogle = async (root, { googleToken }) => {
 		firstName,
 		lastName,
 		email,
+		country,
+		region,
 		accountType,
 		expiryDate,
 		dateCreated,

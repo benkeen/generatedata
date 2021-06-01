@@ -46,20 +46,22 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 	const response = await apolloClient.mutate({
 		mutation: gql`
             mutation LoginWithGoogle($googleToken: String!) {
-                loginWithGoogle(googleToken: $googleToken) {
-                    token
-                    success
+				loginWithGoogle(googleToken: $googleToken) {
+					token
+					success
 					error
-                    firstName
-                    lastName
-                    expiryDate
-                    accountType
-                    dateCreated
-                    email
-                    numRowsGenerated
-                    profileImage
-                }
-            }
+					firstName
+					lastName
+					expiryDate
+					accountType
+					dateCreated
+					email
+					numRowsGenerated
+					profileImage
+					country
+					region
+				}
+			}
 		`,
 		variables: { googleToken }
 	});
