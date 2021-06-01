@@ -91,7 +91,7 @@ const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, o
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
-			<div style={{ width: 500 }}>
+			<div style={{ maxWidth: 500 }}>
 				<DialogTitle onClose={onClose}>{i18n.selectCities}</DialogTitle>
 				<DialogContent dividers>
 					<div>

@@ -41,7 +41,7 @@ const Track2Dialog = ({ visible, data, id, panRows, onClose, onUpdatePANSource, 
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
-			<div style={{ width: 500 }}>
+			<div style={{ maxWidth: 500 }}>
 				<DialogTitle onClose={onClose}>{i18n.dialogTitle}</DialogTitle>
 				<DialogContent dividers>
 					<div>

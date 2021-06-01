@@ -7,7 +7,7 @@ export const HtmlTooltip = withStyles(() => ({
 		color: 'rgba(0, 0, 0, 0.87)',
 		fontSize: 12,
 		padding: 0,
-		boxShadow: '1px 2px 3px #999999'
+		boxShadow: '3px 3px 6px #999999'
 	},
 	arrow: {
 		color: '#ffffff'

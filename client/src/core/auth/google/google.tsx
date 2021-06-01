@@ -12,7 +12,7 @@ import {
 } from '~store/main/main.actions';
 import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';
-import { setAuthTokenRefresh } from '~utils/authUtils';
+// import { setAuthTokenRefresh } from '~utils/authUtils';
 
 const googleBtnId = 'google-signin-button';
 
@@ -56,7 +56,7 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 
 		// TODO
 		// setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
-		
+
 		store.dispatch(setOnloadAuthDetermined());
 	} else {
 		const googleToken = googleUser.getAuthResponse().id_token;
