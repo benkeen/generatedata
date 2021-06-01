@@ -22,7 +22,10 @@ export type Store = {
 	account: AccountState;
 };
 
-export type AuthMethod = 'default' | 'google';
+export const enum AuthMethod {
+	default = 'default',
+	google = 'google'
+}
 
 export type GDLocale = 'ar' | 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | 'zh';
 

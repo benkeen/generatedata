@@ -9,6 +9,7 @@ import { DataTypeFolder } from '../../_plugins';
 import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
 import { initAuthVendors } from '~utils/authUtils';
 import '../../_imports';
+import { AuthMethod } from '~types/general';
 
 export const init = (): void => {
 
@@ -29,7 +30,9 @@ export const init = (): void => {
 
 	// if there's a live session, verify the JWT is still valid
 	if (mainSelectors.isLoggedIn(state)) {
-		store.dispatch(mainActions.updateRefreshToken());
+		if (mainSelectors.getAuthMethod(state) === AuthMethod.default) {
+			store.dispatch(mainActions.updateRefreshToken());
+		}
 	} else {
 		store.dispatch(mainActions.setOnloadAuthDetermined());
 	}

@@ -1,9 +1,18 @@
 import React from 'react';
 import { gql } from '@apollo/client';
+import Cookies from 'js-cookie';
 import env from '../../../../_env';
 import { apolloClient } from '../../apolloClient';
 import store from '../../store';
-import { setAuthenticationData, onLoginSuccess } from '~store/main/main.actions';
+import {
+	onLoginSuccess,
+	setAuthenticated,
+	setAuthenticationData,
+	setOnloadAuthDetermined
+} from '~store/main/main.actions';
+import { AuthMethod } from '~types/general';
+import * as mainSelectors from '~store/main/main.selectors';
+import { setAuthTokenRefresh } from '~utils/authUtils';
 
 const googleBtnId = 'google-signin-button';
 
@@ -41,46 +50,58 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 		...opts
 	};
 
-	const googleToken = googleUser.getAuthResponse().id_token;
+	// see if the user was already logged in
+	if (mainSelectors.isLoggedIn(store.getState())) {
+		store.dispatch(setAuthenticated(true));
 
-	const response = await apolloClient.mutate({
-		mutation: gql`
-            mutation LoginWithGoogle($googleToken: String!) {
-				loginWithGoogle(googleToken: $googleToken) {
-					token
-					success
-					error
-					firstName
-					lastName
-					expiryDate
-					accountType
-					dateCreated
-					email
-					numRowsGenerated
-					profileImage
-					country
-					region
-				}
-			}
-		`,
-		variables: { googleToken }
-	});
-
-	if (response.data.loginWithGoogle.success) {
-		store.dispatch(setAuthenticationData({
-			...response.data.loginWithGoogle,
-			authMethod: 'google'
-		}));
-
-		onLoginSuccess(null, options.onPageRender, store.dispatch);
+		// TODO
+		// setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
+		
+		store.dispatch(setOnloadAuthDetermined());
 	} else {
-		console.log('Error: ', response.data.loginWithGoogle);
-		// store.onLoginError();
-	}
-};
+		const googleToken = googleUser.getAuthResponse().id_token;
+		const response = await apolloClient.mutate({
+			mutation: gql`
+                mutation LoginWithGoogle($googleToken: String!) {
+                    loginWithGoogle(googleToken: $googleToken) {
+                        token
+                        success
+                        error
+                        firstName
+                        lastName
+                        expiryDate
+                        accountType
+                        dateCreated
+                        email
+                        numRowsGenerated
+                        profileImage
+                        country
+                        region
+                    }
+                }
+			`,
+			variables: { googleToken }
+		});
 
-const onFailure = (error: any): void => {
-	console.log(error);
+		if (response.data.loginWithGoogle.success) {
+			const { tokenExpiry, refreshToken } = response.data.loginWithGoogle;
+
+			store.dispatch(setAuthenticationData({
+				...response.data.loginWithGoogle,
+				authMethod: AuthMethod.google
+			}));
+
+			Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
+
+			// TODO
+			// setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
+
+			onLoginSuccess(null, options.onPageRender, store.dispatch);
+
+		} else {
+			console.log('Error: ', response.data.loginWithGoogle);
+		}
+	}
 };
 
 export const onLoginPanelRender = (): void => {
@@ -91,9 +112,7 @@ export const onLoginPanelRender = (): void => {
 				width: 210,
 				height: 42,
 				longtitle: true,
-				theme: 'dark',
-				onsuccess: onAuthenticated,
-				onfailure: onFailure
+				theme: 'dark'
 			});
 			observer.disconnect();
 		}

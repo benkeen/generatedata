@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore-line
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { addToast } from '~utils/generalUtils';
@@ -10,8 +9,7 @@ const Copy = ({ message, tooltip, content }: any): JSX.Element => {
 		addToast({
 			type: 'success',
 			message,
-			verticalPosition: 'bottom',
-			horizontalPosition: 'right'
+			verticalPosition: 'top'
 		});
 	};
 

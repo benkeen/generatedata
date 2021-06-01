@@ -43,7 +43,7 @@ export const getLoginComponentRenderMethods = (): Function[] => {
 };
 
 export const logoutVendor = (authMethod: AuthMethod): void => {
-	if (authMethod === 'google') {
+	if (authMethod === AuthMethod.google) {
 		logoutGoogle();
 	}
 };

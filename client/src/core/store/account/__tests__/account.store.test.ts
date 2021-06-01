@@ -7,6 +7,7 @@ import * as selectors from '../account.selectors';
 import { LOGOUT, setAuthenticationData } from '~store/main/main.actions';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 import { AccountStatus, SelectedAccountTab } from '~types/account';
+import { AuthMethod } from '~types/general';
 
 describe('accounts section', () => {
 	let flushThunks;
@@ -124,7 +125,7 @@ describe('accounts section', () => {
 
 	it('auth data gets set', () => {
 		store.dispatch(setAuthenticationData({
-			authMethod: 'google',
+			authMethod: AuthMethod.google,
 			token: '123456',
 			accountId: 5,
 			firstName: 'Jim',

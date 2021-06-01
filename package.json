@@ -133,6 +133,7 @@
     "@types/loadable__component": "^5.10.0",
     "@types/node": "^14.14.7",
     "@types/react-beautiful-dnd": "^12.1.2",
+    "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/react-input-autosize": "^2.2.0",
     "@types/react-measure": "^2.0.5",
     "@types/react-redux": "^7.1.5",

@@ -5,6 +5,7 @@ import * as actions from '../main.actions';
 import { setAuthenticationData } from '../main.actions';
 import C from '../../../constants';
 import { AccountStatus } from '~types/account';
+import { AuthMethod } from '~types/general';
 
 describe('main actions', () => {
 	let store: any;
@@ -30,7 +31,7 @@ describe('main actions', () => {
 		expect(selectors.getAuthToken(store.getState())).toEqual('');
 
 		store.dispatch(setAuthenticationData({
-			authMethod: 'google',
+			authMethod: AuthMethod.google,
 			token: '123456',
 			accountId: 5,
 			firstName: 'Jim',

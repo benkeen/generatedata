@@ -25,7 +25,7 @@ export type MainState = {
 
 export const initialState: MainState = {
 	appStateVersion: C.APP_STATE_VERSION,
-	authMethod: 'default',
+	authMethod: AuthMethod.default,
 	localeFileLoaded: false,
 	locale: env.defaultLocale,
 	showLoginDialog: false,

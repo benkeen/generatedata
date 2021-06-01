@@ -70,7 +70,6 @@ export const setPasswordResetDialogVisibility = (visible: boolean): GDAction => 
 export const SET_AUTHENTICATION_DATA = 'SET_AUTHENTICATION_DATA';
 
 export type AuthData = {
-	authMethod?: AuthMethod;
 	token: string;
 	accountId: number;
 	firstName: string;
@@ -84,6 +83,7 @@ export type AuthData = {
 	accountType: AccountType;
 	accountStatus: AccountStatus;
 	numRowsGenerated: number;
+	authMethod?: AuthMethod;
 };
 
 export const setAuthenticationData = (authData: AuthData): GDAction => ({
