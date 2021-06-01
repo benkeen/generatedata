@@ -30,16 +30,15 @@ const updateAccount = async (root, args, { token }) => {
 	}
 
 	// TODO improve
-	const currentUser = await db.accounts.findByPk(user.accountId);
-	if (currentUser.dataValues.accountType !== 'superuser') {
+	const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate } = args;
+	const userRecord = await db.accounts.findByPk(accountId);
+
+	if (userRecord.dataValues.accountType !== 'superuser') {
 		return {
 			success: false,
 			errorStatus: 'PermissionDenied'
 		};
 	}
-
-	const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate } = args;
-	const userRecord = await db.accounts.findByPk(accountId);
 
 	let validatedAccountStatus = accountStatus;
 	if (expiryDate) {
