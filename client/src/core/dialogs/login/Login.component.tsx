@@ -20,13 +20,16 @@ export type LoginDialogProps = {
 	onSubmit: (email: string, password: string, history: any, onError: Function) => void;
 	showPasswordResetDialog: () => void;
 	i18n: any;
+	throttle?: boolean;
 };
 
 /**
  * The login dialog has baked-in support for standard logging into our database, but also optionally supports
  * logging in via external vendors: Google, Facebook and Github.
  */
-const LoginDialog = ({ visible, defaultEmail, onClose, dialogProcessing, onSubmit, onExited, showPasswordResetDialog, i18n }: LoginDialogProps): JSX.Element => {
+const LoginDialog = ({
+	visible, defaultEmail, onClose, dialogProcessing, onSubmit, onExited, showPasswordResetDialog, throttle, i18n
+}: LoginDialogProps): JSX.Element => {
 	const history = useHistory();
 
 	const textFieldRef = useRef<any>();
@@ -150,6 +153,7 @@ const LoginDialog = ({ visible, defaultEmail, onClose, dialogProcessing, onSubmi
 											onChange={(e: any): void => updateEmail(e.target.value)}
 											style={{ width: '100%' }}
 											disabled={dialogProcessing}
+											throttle={throttle}
 											autoFocus
 										/>
 									</div>
@@ -165,6 +169,7 @@ const LoginDialog = ({ visible, defaultEmail, onClose, dialogProcessing, onSubmi
 											onChange={(e: any): void => updatePassword(e.target.value)}
 											style={{ width: '100%' }}
 											disabled={dialogProcessing}
+											throttle={throttle}
 										/>
 									</div>
 								</div>
@@ -185,6 +190,10 @@ const LoginDialog = ({ visible, defaultEmail, onClose, dialogProcessing, onSubmi
 			</Dialog>
 		</>
 	);
+};
+
+LoginDialog.defaultProps = {
+	throttle: true
 };
 
 export default LoginDialog;

@@ -49,7 +49,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	);
 };
 
-export const Options = ({ coreI18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ coreI18n, data, throttle, onUpdate }: DTOptionsProps): JSX.Element => {
 	const titleColError = data.value.trim() === '' ? coreI18n.requiredField : '';
 
 	return (
@@ -58,8 +58,12 @@ export const Options = ({ coreI18n, data, onUpdate }: DTOptionsProps): JSX.Eleme
 			value={data.value}
 			onChange={(e: any): void => onUpdate({ ...data, value: e.target.value })}
 			style={{ width: '100%' }}
+			throttle={throttle}
 		/>
 	);
+};
+Options.defaultProps = {
+	throttle: true
 };
 
 export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (

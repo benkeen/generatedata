@@ -143,6 +143,7 @@ export const GridRow = ({
 								error={titleColError}
 								value={row.title}
 								onChange={(e: any): void => onChangeTitle(row.id, e.target.value)}
+								throttle={false}
 							/>
 						</div>
 						<div className={styles.examplesCol}>{example}</div>

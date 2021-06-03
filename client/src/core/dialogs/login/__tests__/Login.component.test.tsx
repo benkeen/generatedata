@@ -23,6 +23,7 @@ describe('LoginDialog', () => {
 				{...defaultProps}
 				visible={true}
 				onClose={onClose}
+				throttle={false}
 			/>
 		);
 
@@ -38,6 +39,7 @@ describe('LoginDialog', () => {
 				{...defaultProps}
 				visible={true}
 				onSubmit={onSubmit}
+				throttle={false}
 			/>
 		);
 
@@ -58,6 +60,7 @@ describe('LoginDialog', () => {
 				{...defaultProps}
 				visible={true}
 				onSubmit={onSubmit}
+				throttle={false}
 			/>
 		);
 
@@ -80,6 +83,7 @@ describe('LoginDialog', () => {
 				{...defaultProps}
 				visible={true}
 				onSubmit={onSubmit}
+				throttle={false}
 			/>
 		);
 

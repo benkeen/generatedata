@@ -4,7 +4,7 @@ import sharedStyles from '../styles/shared.scss';
 import { useThrottle } from '../hooks/useThrottle';
 
 const TextField = React.forwardRef(({
-	error, value, onChange, tooltipPlacement, className, ...props
+	throttle, error, value, onChange, tooltipPlacement, className, ...props
 }: any, ref: any): JSX.Element => {
 	let classes = className ? className : '';
 	if (error) {
@@ -15,7 +15,7 @@ const TextField = React.forwardRef(({
 	const [lastEvent, setChangeEvent] = useThrottle(null, 2); // second param is frames per second...
 
 	React.useEffect(() => {
-		if (lastEvent === null) {
+		if (lastEvent === null || !throttle) {
 			return;
 		}
 		onChange(lastEvent);
@@ -26,9 +26,13 @@ const TextField = React.forwardRef(({
 	}, [value]);
 
 	const controlledOnChange = (e: any): void => {
-		e.persist();
-		setChangeEvent(e);
-		setInnerValue(e.target.value);
+		if (throttle) {
+			e.persist();
+			setChangeEvent(e);
+			setInnerValue(e.target.value);
+		} else {
+			onChange(e);
+		}
 	};
 
 	return (
@@ -41,7 +45,7 @@ const TextField = React.forwardRef(({
 		>
 			<input
 				{...props}
-				value={innerValue}
+				value={throttle ? innerValue : value}
 				onChange={controlledOnChange}
 				className={classes}
 				ref={ref}
@@ -52,6 +56,7 @@ const TextField = React.forwardRef(({
 TextField.displayName = 'TextField';
 
 TextField.defaultProps = {
+	throttle: true,
 	type: 'text',
 	error: '',
 	tooltipPlacement: 'bottom'

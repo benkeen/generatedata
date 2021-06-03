@@ -13,6 +13,7 @@ describe('ChangePassword container', () => {
 				onSave={onSave}
 				i18n={i18n}
 				oneTimePassword=""
+				throttle={false}
 			/>
 		);
 
@@ -30,6 +31,7 @@ describe('ChangePassword container', () => {
 				onSave={onSave}
 				i18n={i18n}
 				oneTimePassword=""
+				throttle={false}
 			/>
 		);
 
@@ -68,6 +70,7 @@ describe('ChangePassword container', () => {
 				onSave={onSave}
 				i18n={i18n}
 				oneTimePassword=""
+				throttle={false}
 			/>
 		);
 

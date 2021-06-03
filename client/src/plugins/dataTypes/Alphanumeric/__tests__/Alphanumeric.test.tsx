@@ -39,6 +39,7 @@ describe('Options', () => {
 				{...defaultProps}
 				data={data}
 				onUpdate={onUpdate}
+				throttle={false}
 			/>
 		);
 		const field = container.querySelector('input');

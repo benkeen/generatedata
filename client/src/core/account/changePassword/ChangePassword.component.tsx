@@ -8,9 +8,10 @@ export type ChangePasswordProps = {
 	onSave: (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void) => void;
 	className: string;
 	i18n: any;
+	throttle?: boolean;
 };
 
-const ChangePassword = ({ oneTimePassword, onSave, className, i18n }: ChangePasswordProps): JSX.Element => {
+const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: ChangePasswordProps): JSX.Element => {
 	const currentPasswordField = useRef<HTMLInputElement>();
 	const [currentPassword, setCurrentPassword] = useState('');
 	const [currentPasswordError, setCurrentPasswordError] = useState('');
@@ -91,6 +92,7 @@ const ChangePassword = ({ oneTimePassword, onSave, className, i18n }: ChangePass
 						}}
 						style={{ width: 220 }}
 						tooltipPlacement="right"
+						throttle={throttle}
 						autoFocus
 					/>
 				</div>
@@ -114,6 +116,7 @@ const ChangePassword = ({ oneTimePassword, onSave, className, i18n }: ChangePass
 						style={{ width: 220 }}
 						tooltipPlacement="right"
 						autoFocus={oneTimePassword !== ''}
+						throttle={throttle}
 					/>
 				</div>
 
@@ -132,6 +135,7 @@ const ChangePassword = ({ oneTimePassword, onSave, className, i18n }: ChangePass
 						autoComplete="off"
 						style={{ width: 220 }}
 						tooltipPlacement="right"
+						throttle={throttle}
 					/>
 				</div>
 			</div>
@@ -149,6 +153,10 @@ const ChangePassword = ({ oneTimePassword, onSave, className, i18n }: ChangePass
 			</div>
 		</form>
 	);
+};
+
+ChangePassword.defaultProps = {
+	throttle: false
 };
 
 export default ChangePassword;

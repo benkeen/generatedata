@@ -73,6 +73,7 @@ export type DTOptionsProps = {
 	id: string;
 	gridPanelDimensions: Dimensions;
 	onUpdate: (data: AnyObject) => void;
+	throttle?: boolean;
 
 	// for custom props. See DTCustomProps
 	[propName: string]: any;
