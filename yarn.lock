@@ -1648,6 +1648,18 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
+"@react-hook/latest@^1.0.2":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@react-hook/latest/-/latest-1.0.3.tgz#c2d1d0b0af8b69ec6e2b3a2412ba0768ac82db80"
+  integrity sha512-dy6duzl+JnAZcDbNTfmaP3xHiKtbXYOaz3G51MGVljh548Y8MWzTr+PHLOfvpypEVW9zwvl+VyKjbWKEVbV1Rg==
+
+"@react-hook/throttle@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@react-hook/throttle/-/throttle-2.2.0.tgz#d0402714a06e1ba0bc1da1fdf5c3c5cd0e08d45a"
+  integrity sha512-LJ5eg+yMV8lXtqK3lR+OtOZ2WH/EfWvuiEEu0M3bhR7dZRfTyEJKxH1oK9uyBxiXPtWXiQggWbZirMCXam51tg==
+  dependencies:
+    "@react-hook/latest" "^1.0.2"
+
 "@rollup/plugin-commonjs@^15.1.0":
   version "15.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-15.1.0.tgz#1e7d076c4f1b2abf7e65248570e555defc37c238"
@@ -2309,6 +2321,11 @@
   integrity sha512-imDtS4TAoTcXk0g7u4kkWqedB3E4qpjXzCpD2LU5M5NAXHzCDsypyvXSaG7mM8DKYkCRa7tFp4tS/lp/Wo7Q3w==
   dependencies:
     "@types/estree" "*"
+
+"@types/throttle-debounce@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@types/throttle-debounce/-/throttle-debounce-2.1.0.tgz#1c3df624bfc4b62f992d3012b84c56d41eab3776"
+  integrity sha512-5eQEtSCoESnh2FsiLTxE121IiE60hnMqcb435fShf4bpLRjEu1Eoekht23y6zXS9Ts3l+Szu3TARnTsA0GkOkQ==
 
 "@types/ws@^7.0.0":
   version "7.4.0"
@@ -9226,6 +9243,11 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
+"memoize-one@>=3.1.1 <6":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
+  integrity sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==
+
 memoize-one@^5.0.0, memoize-one@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
@@ -11219,6 +11241,14 @@ react-transition-group@^4.0.0, react-transition-group@^4.3.0, react-transition-g
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-window@^1.8.6:
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.6.tgz#d011950ac643a994118632665aad0c6382e2a112"
+  integrity sha512-8VwEEYyjz6DCnGBsd+MgkD0KJ2/OXFULyDtorIiTz+QzwoP94tBoA7CnbtyXMm+cCeAUER5KJcPtWl9cpKbOBg==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    memoize-one ">=3.1.1 <6"
+
 react@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
@@ -12984,6 +13014,11 @@ throat@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-5.0.0.tgz#c5199235803aad18754a667d659b5e72ce16764b"
   integrity sha512-fcwX4mndzpLQKBS1DVYhGAcYaYt7vsHNIvQV+WXMvnow5cgjPphq5CaayLaGsjRdSCKZFNGt7/GYAuXaNOiYCA==
+
+throttle-debounce@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-3.0.1.tgz#32f94d84dfa894f786c9a1f290e7a645b6a19abb"
+  integrity sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==
 
 throttleit@^1.0.0:
   version "1.0.0"

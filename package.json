@@ -72,6 +72,7 @@
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/pickers": "^3.2.8",
+    "@react-hook/throttle": "^2.2.0",
     "@types/recharts": "^1.8.15",
     "apollo-server-express": "^2.19.0",
     "bcrypt": "^5.0.0",

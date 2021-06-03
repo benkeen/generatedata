@@ -95,6 +95,10 @@ export const GridRow = ({
 		example = <SmallSpinner />;
 	}
 
+	const onClickShowHelp = React.useCallback(() => {
+		showHelpDialog(row.dataType as DataTypeFolder);
+	}, [row.dataType]);
+
 	return (
 		<Draggable key={row.id} draggableId={row.id} index={index}>
 			{(provided: any, snapshot: any): any => {
@@ -131,7 +135,7 @@ export const GridRow = ({
 								options={dtDropdownOptions}
 							/>
 							<div className={styles.dataTypeHelp}>
-								{row.dataType ? <InfoIcon fontSize="inherit" onClick={(): void => showHelpDialog(row.dataType as DataTypeFolder)}/> : null}
+								{row.dataType ? <InfoIcon fontSize="inherit" onClick={onClickShowHelp} /> : null}
 							</div>
 						</div>
 						<div className={styles.titleCol}>
