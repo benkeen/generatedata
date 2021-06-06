@@ -20,7 +20,6 @@ import AboutDialog from '~core/dialogs/about/About.component';
 import { GDLocale } from '~types/general';
 import useOnClickOutside from 'use-onclickoutside';
 import styles from './Footer.scss';
-import sharedStyles from '../../styles/shared.scss';
 import { useWindowSize } from 'react-hooks-window-size';
 import C from '~core/constants';
 

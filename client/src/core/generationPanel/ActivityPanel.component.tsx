@@ -154,12 +154,11 @@ const ActivityPanel = ({
 					<Dialog className={styles.activityPanel} onClose={onClose} open={visible}>
 						<div style={{ width: '100%', height: '100%' }} ref={measureRef}>
 							<DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
-								Generated: <CountUp start={prevGeneratedRows} end={numGeneratedRows} separator="," className={styles.counter} /> rows
+								{coreI18n.generatedC} <CountUp start={prevGeneratedRows} end={numGeneratedRows} separator="," className={styles.counter} /> {coreI18n.rows}
 							</DialogTitle>
 							<DialogContent dividers style={{ padding: 0 }}>
 								<div className={styles.overlayWrapper}>
 									<div style={{ display: 'flex' }}>
-
 										<div className={styles.panel1} style={{ width: panel1Width }}>
 											<div className={styles.pie}>
 												<h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
@@ -181,19 +180,19 @@ const ActivityPanel = ({
 
 											<div className={styles.dataPanel}>
 												<div className={styles.dataRow}>
-													<div className={styles.dataRowLabel}>Estimated time:</div>
+													<div className={styles.dataRowLabel}>{coreI18n.estimatedTime}</div>
 													<div className={styles.dataRowValue}>{estimatedTime}</div>
 												</div>
 												<div className={styles.dataRow}>
-													<div className={styles.dataRowLabel}>Remaining time:</div>
+													<div className={styles.dataRowLabel}>{coreI18n.remainingTime}</div>
 													<div className={styles.dataRowValue}>{estimatedTimeRemaining}</div>
 												</div>
 												<div className={styles.dataRow}>
-													<div className={styles.dataRowLabel}>Estimated size:</div>
+													<div className={styles.dataRowLabel}>{coreI18n.estimatedSize}</div>
 													<div className={styles.dataRowValue}>{estimatedSize}</div>
 												</div>
 												<div className={styles.dataRow}>
-													<div className={styles.dataRowLabel}>Size:</div>
+													<div className={styles.dataRowLabel}>{coreI18n.size}</div>
 													<div className={styles.dataRowValue}>{dataSize}</div>
 												</div>
 											</div>
