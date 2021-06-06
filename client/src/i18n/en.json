@@ -216,7 +216,6 @@
 	"passwordUpdateInvalidPassword": "Your current password is incorrect. Please re-enter.",
 	"passwordUpdated": "Your password has been updated.",
 	"pause": "Pause",
-	"play": "Play",
 	"pleaseConfirm": "Please confirm",
 	"pleaseEnterAll": "Please enter all",
 	"pleaseEnterDataSetName": "Please enter the name of the new Data Set.",
@@ -323,5 +322,11 @@
   "noSafari": "Sorry, no Safari!",
   "safariExplanation": "This site requires an up-to-date web browser that implements modern web standards. Unfortunately Safari has fallen behind the other browsers and won't run this script. Until we figure out how to accommodate it, please use one of the following browsers. All free for download.",
   "validationDifferentNewPasswords": "Please make sure your passwords match",
-  "oneTimePasswordLogin": "You've logged in using a one-time password. Please set a new one now or you won't be able to log in again."
+  "oneTimePasswordLogin": "You've logged in using a one-time password. Please set a new one now or you won't be able to log in again.",
+  "dataGenerated": "Data generated.",
+  "generated": "Generated",
+  "abort": "Abort",
+  "hide": "Hide",
+
+  "continue": "Continue"
 }

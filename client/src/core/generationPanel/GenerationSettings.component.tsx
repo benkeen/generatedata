@@ -67,7 +67,7 @@ const GenerationSettingsPanel = ({
 					<div className={styles.generationOverlayBg} />
 					<div className={styles.generationComplete}>
 						<CheckIcon fontSize="large" />
-						Data generated.
+						{i18n.dataGenerated}
 					</div>
 				</>
 			);
@@ -79,7 +79,7 @@ const GenerationSettingsPanel = ({
 				<div className={styles.generationOverlay}>
 					<MediumSpinner style={{ margin: 15 }} />
 					<div className={styles.generationLabel}>
-						Generated <b>{numGeneratedRows}</b> / <b>{numRowsToGenerate}</b>
+						{i18n.generated} <b>{numGeneratedRows}</b> / <b>{numRowsToGenerate}</b>
 					</div>
 				</div>
 			</>
@@ -88,7 +88,7 @@ const GenerationSettingsPanel = ({
 
 	let buttonLabel = i18n.generate;
 	let actionButtonClick = onGenerate;
-	let actionButtonDisabled = !!error || isGenerating;
+	let actionButtonDisabled = !!error;
 
 	if (packet) {
 		if (packet.numGeneratedRows === numRowsToGenerate) {

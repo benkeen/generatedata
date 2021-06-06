@@ -191,9 +191,9 @@ const Footer = ({
 		);
 	};
 
-	let generatorControlsClasses = sharedStyles.generatorControls;
+	let footerControlsClasses = styles.footerControls;
 	if (currentPage === process.env.GD_GENERATOR_PATH) {
-		generatorControlsClasses += ` ${sharedStyles.visible}`;
+		footerControlsClasses += ` ${styles.visible}`;
 	}
 
 	let panelControls;
@@ -214,19 +214,20 @@ const Footer = ({
 							</Tooltip>
 						</li>
 						{getLocaleSelector()}
-						<li>
+						<li className={styles.showTourLink}>
 							<Button className={styles.tourBtn} onClick={showTourDialog}>
 								<Person />
 								<span>{i18n.takeTour}</span>
 							</Button>
 						</li>
 						{customFooterLinks}
-						<li>
-							<ActivePacketsList />
-						</li>
 					</ul>
 
-					<div className={generatorControlsClasses}>
+					<div className={styles.activePacketsList}>
+						<ActivePacketsList />
+					</div>
+
+					<div className={footerControlsClasses}>
 						{panelControls}
 						{getSaveButton()}
 						<Button

@@ -98,9 +98,14 @@ const ActivityPanel = ({
 		}
 
 		return (
-			<Button onClick={abortPacket} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
-				{coreI18n.cancel}
-			</Button>
+			<div>
+				<Button onClick={onClose} color="default" variant="outlined" style={{ marginRight: 10 }}>
+					{coreI18n.hide}
+				</Button>
+				<Button onClick={abortPacket} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
+					{coreI18n.abort}
+				</Button>
+			</div>
 		);
 	};
 
@@ -110,7 +115,7 @@ const ActivityPanel = ({
 			return null;
 		}
 
-		const tooltip = isPaused ? coreI18n.play : coreI18n.pause;
+		const tooltip = isPaused ? coreI18n.continue : coreI18n.pause;
 
 		return (
 			<div style={{ flex: 1, display: 'flex', marginRight: 80 }}>

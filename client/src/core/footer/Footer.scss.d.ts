@@ -1,8 +1,10 @@
 declare namespace FooterScssNamespace {
   export interface IFooterScss {
     aboutIconEl: string;
+    activePacketsList: string;
     controls: string;
     footer: string;
+    footerControls: string;
     generateButton: string;
     langIconEl: string;
     saveAsRow: string;
@@ -13,7 +15,9 @@ declare namespace FooterScssNamespace {
     scriptVersion: string;
     selectLocale: string;
     selectedLocale: string;
+    showTourLink: string;
     tourBtn: string;
+    visible: string;
   }
 }
 

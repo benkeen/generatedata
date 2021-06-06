@@ -5,7 +5,7 @@
 	background-image: url("./images/bg.png");
 	padding: 16px 20px;
 
-	div {
+	& > div {
 		display: flex;
 		flex: 0 0 auto;
 		margin: 0 auto;
@@ -13,8 +13,8 @@
 		max-width: 1400px;
 		height: 32px;
 
-		ul {
-			flex: 1;
+		& > ul {
+			flex: 0 0 auto;
 			display: flex;
 			flex-direction: row;
 			list-style: none;
@@ -166,5 +166,27 @@ button.saveBtnArrow {
 @media (max-width: 900px) {
 	button.tourBtn {
 		display: none;
+	}
+}
+
+.showTourLink {
+	flex: 0 0 auto;
+}
+
+.activePacketsList {
+	flex: 1 1 auto;
+	overflow: scroll;
+}
+
+.footerControls {
+	display: flex;
+	align-items: stretch;
+	flex: 0 0 auto;
+	padding-right: 18px;
+	opacity: 0;
+	transition: opacity 200ms ease-in-out;
+
+	&.visible {
+		opacity: 1;
 	}
 }

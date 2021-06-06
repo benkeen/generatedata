@@ -71,7 +71,7 @@ const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps): 
 	});
 
 	return (
-		<div>
+		<div className={styles.root}>
 			{chips}
 		</div>
 	);
