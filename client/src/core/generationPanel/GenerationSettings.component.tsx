@@ -18,6 +18,7 @@ import CheckIcon from '@material-ui/icons/Check';
 export type GenerationSettingsProps = {
 	visible: boolean;
 	packet: DataPacket | null;
+	isLoggedIn: boolean;
 	isGenerating: boolean;
 	onChangeNumRowsToGenerate: (numRows: number) => void;
 	onClose: () => void;
@@ -32,13 +33,14 @@ export type GenerationSettingsProps = {
 };
 
 const GenerationSettingsPanel = ({
-	visible, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate, onToggleStripWhitespace,
-	onGenerate, isGenerating, packet, onAbort, onDownload
+	visible, isLoggedIn, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate,
+	onToggleStripWhitespace, onGenerate, isGenerating, packet, onAbort, onDownload
 }: GenerationSettingsProps): JSX.Element => {
 	let error = '';
+
 	if (!numRowsToGenerate) {
 		error = i18n.requiredField;
-	} else if (numRowsToGenerate > env.maxDemoModeRows) {
+	} else if (!isLoggedIn && numRowsToGenerate > env.maxDemoModeRows) {
 		error = getI18nString(i18n.overMaxAnonRows, [getFormattedNum(env.maxDemoModeRows)]);
 	}
 

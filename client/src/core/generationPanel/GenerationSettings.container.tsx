@@ -7,6 +7,7 @@ import GenerationSettings, { GenerationSettingsProps } from './GenerationSetting
 import C from '~core/constants';
 import * as packetSelectors from '~store/packets/packets.selectors';
 import { GDAction } from '~types/general';
+import { isLoggedIn } from '~store/main/main.selectors';
 
 const mapStateToProps = (state: any, ownProps: Partial<GenerationSettingsProps>): Partial<GenerationSettingsProps> => {
 	const packet = packetSelectors.getCurrentPacket(state);
@@ -15,6 +16,7 @@ const mapStateToProps = (state: any, ownProps: Partial<GenerationSettingsProps>)
 	return {
 		packet,
 		visible: selectors.isGenerationSettingsPanelVisible(state),
+		isLoggedIn: isLoggedIn(state),
 		isGenerating: !largePacketSize && packetSelectors.isGenerating(state),
 		i18n: selectors.getCoreI18n(state),
 		numRowsToGenerate: selectors.getNumRowsToGenerate(state),
