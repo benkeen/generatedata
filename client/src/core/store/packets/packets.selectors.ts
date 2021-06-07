@@ -115,25 +115,32 @@ export const getEstimatedDataSize = createSelector(
 
 export const getEstimatedTime = createSelector(
 	getCurrentPacket,
-	(packet): string => {
+	(packet): number | null => {
 		if (!packet) {
-			return '-';
+			return null;
 		}
-		const timeInMs = packet.stats.averageSpeed * (packet.config.numRowsToGenerate / C.GENERATION_BATCH_SIZE);
-		return formatDuration(timeInMs / 1000);
+		return packet.stats.averageSpeed * (packet.config.numRowsToGenerate / C.GENERATION_BATCH_SIZE);
+	}
+);
+
+export const getEstimatedTimeDisplay = createSelector(
+	getEstimatedTime,
+	(time) => {
+		return time ? formatDuration(time / 1000) : '-';
 	}
 );
 
 export const getEstimatedTimeRemaining = createSelector(
 	getCurrentPacket,
-	(packet) => {
-		if (!packet) {
+	getEstimatedTime,
+	(packet, estimatedTime) => {
+		if (!estimatedTime || !packet) {
 			return '-';
 		}
-		const timeInMs = packet.stats.averageSpeed * (packet.config.numRowsToGenerate / C.GENERATION_BATCH_SIZE);
-		return formatDuration(timeInMs / 1000);
+		const now = new Date().getTime();
+		const timeTaken = estimatedTime + packet.startTime! - now;
 
-		// const remainingRows = packet.config.numRowsToGenerate - packet.numGeneratedRows;
+		return formatDuration(timeTaken / 1000);
 	}
 );
 

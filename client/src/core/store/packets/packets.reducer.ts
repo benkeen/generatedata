@@ -18,10 +18,14 @@ export type LoadTimeGraphDuration = 'all' | '15seconds' | '30seconds' | '1minute
 export type DataPacket = {
 	dataTypeWorkerId: string;
 	exportTypeWorkerId: string;
-	originalStartTime: number;
+
+	startTime: number | null;
+	endTime: number | null;
+	totalPauseDuration: number;
+	lastPauseTime: number | null;
 	resumeTime: number;
-	endTime: Date | null;
 	isPaused: boolean;
+
 	numGeneratedRows: number;
 	numBatches: number;
 	speed: number;
@@ -69,16 +73,18 @@ export const getNewPacket = ({
 	dataTypeWorkerId, exportTypeWorkerId, stripWhitespace, numRowsToGenerate, template, dataTypes, columns,
 	exportType, exportTypeSettings
 }: any): DataPacket => {
-	const now = performance.now();
+	const now = new Date().getTime();
 	const loadTimeGraphDuration = numRowsToGenerate <= 5000 ? 'all' : '15seconds';
 
 	return {
 		dataTypeWorkerId,
 		exportTypeWorkerId,
-		originalStartTime: now,
-		resumeTime: now,
+		startTime: now,
 		endTime: null,
+		totalPauseDuration: 0,
+		resumeTime: now,
 		isPaused: false,
+		lastPauseTime: null,
 		numGeneratedRows: 0,
 		numBatches: 0,
 		speed: 100,
@@ -135,11 +141,16 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 		}
 
 		case actions.PAUSE_GENERATION:
+			draft.packets[action.payload.packetId].lastPauseTime = new Date().getTime();
 			draft.packets[action.payload.packetId].isPaused = true;
 			break;
 
 		case actions.CONTINUE_GENERATION:
+			const lastPauseTimeMs = draft.packets[action.payload.packetId].lastPauseTime;
+			const pauseDuration = new Date().getTime() - lastPauseTimeMs!;
 			draft.packets[action.payload.packetId].isPaused = false;
+			draft.packets[action.payload.packetId].lastPauseTime = null;
+			draft.packets[action.payload.packetId].totalPauseDuration += pauseDuration;
 			break;
 
 		case actions.ABORT_GENERATION: {
@@ -167,7 +178,7 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 
 		// TODO yikes. TOTAAAAAALLLLY needs improving and testing. And maybe taking out behind the shed and shooting.
 		case actions.LOG_DATA_BATCH: {
-			const now = performance.now();
+			const now = new Date().getTime();
 			const { packetId, numGeneratedRows, dataStr } = action.payload;
 			const byteSize = getByteSize(dataStr);
 

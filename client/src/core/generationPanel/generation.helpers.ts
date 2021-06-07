@@ -61,10 +61,11 @@ export const getRowGenerationRatePerSecond = (
 
 	// the math below relies on this being correct otherwise we'll get stuck in an infinite loop
 	if (batchEndTime <= batchStartTime) {
+		console.log("-- ", batchEndTime, batchStartTime);
 		throw Error('invalid data passed to getRowGenerationRatePerSecond()');
 	}
 
-	// calculate the time duration of a single row over the time duratin
+	// calculate the time duration of a single row over the time duration
 	const singleRowTime = (batchEndTime - batchStartTime) / numRows;
 
 	// now split the duration into discrete seconds, and loop over them, figuring out how many would
