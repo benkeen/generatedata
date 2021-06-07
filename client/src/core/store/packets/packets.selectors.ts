@@ -48,15 +48,6 @@ export const getLoadTimeDuration = createSelector(
 	(packet) => packet!.loadTimeGraphDuration
 );
 
-export const getLoadTimeDurationOptions = createSelector(
-	getCurrentPacket,
-	(packet) => {
-		if (!packet) {
-			return null;
-		}
-	}
-);
-
 export const getBatchLoadTimes = createSelector(
 	getCurrentPacket,
 	(packet) => {
@@ -64,16 +55,17 @@ export const getBatchLoadTimes = createSelector(
 			return [];
 		}
 
-		const numSecondsToShow = 30;
+		const numSecondsToShow = 10;
 		let seconds = Object.keys(packet.stats.rowGenerationRatePerSecond);
-
 		const numLoadedSeconds = seconds.length;
-		if (numLoadedSeconds < numSecondsToShow) {
-			for (let i=numLoadedSeconds; i<=numSecondsToShow; i++) {
-				seconds.push(i.toString());
+
+		if (numLoadedSeconds <= numSecondsToShow) {
+			for (let i=numLoadedSeconds; i<numSecondsToShow; i++) {
+				seconds.push((i+1).toString());
 			}
 		} else {
-			seconds = seconds.slice(numLoadedSeconds - numSecondsToShow - 1);
+			const sliceVal = numLoadedSeconds - numSecondsToShow;
+			seconds = seconds.slice(sliceVal + 1);
 		}
 
 		return seconds.map((secondStr) => {
