@@ -1,17 +1,15 @@
 ## Changelog
 
 For transparency, this page logs the changes to the 4.0.0 release, found here:
-http://generatedata4.com
+http://site.generatedata4.com
+
+As of June 2021 it's now nearing the end of the alpha phase. All functionality is there - the site is working, the script
+is functional, user accounts are setup, email notification - all done! We'll be entering Beta in the next weeks and
+allowing registered users on the current site to start using it. 
+
  
-Right now it's in early alpha. The current goals are:
-
-- finishing all key functionality of script around generating data
-- finishing all Data Types and Export Types
-- completing all translations
-- improving testing and code coverage 
-
-The next phase will be adding in the backend: user accounts, saving data sets and so on. 
-
+- `4.0.0-alpha-20210607`:
+    - tons of updates & fixes - too many to note! UI updates, database changes, performances fixes and more.
 - `4.0.0-alpha-20210429`:
     - preview panel scrolling fix.
     - List Data Type now allows customizable delimiter.
