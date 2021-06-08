@@ -20,7 +20,8 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: 
 		dataSize: packetSelectors.getGeneratedDataSizeLabel(state),
 		estimatedSize: packetSelectors.getEstimatedDataSize(state),
 		estimatedTime: packetSelectors.getEstimatedTimeDisplay(state),
-		estimatedTimeRemaining: packetSelectors.getEstimatedTimeRemaining(state)
+		estimatedTimeRemaining: packetSelectors.getEstimatedTimeRemaining(state),
+		countUpSpeed: packetSelectors.getLastBatchGenerationDuration(state)
 	};
 
 	if (packet !== null) {

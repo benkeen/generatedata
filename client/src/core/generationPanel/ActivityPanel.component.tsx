@@ -11,12 +11,13 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import { Dialog, DialogContent, DialogTitle, DialogActions } from '~components/dialogs';
 import usePrevious from '../../hooks/usePrevious';
 import styles from './ActivityPanel.scss';
-import { DataPacket, LoadTimeGraphDuration } from '~store/packets/packets.reducer';
+import { DataPacket } from '~store/packets/packets.reducer';
 import * as coreUtils from '~utils/coreUtils';
 import C from '../constants';
 import { Tooltip } from '~components/tooltips';
 import { getPercentageLabel } from './generation.helpers';
 import Engine from './Engine.container';
+import { LoadTimeGraphDuration } from '~types/general';
 
 export type ActivityPanelProps = {
 	visible: boolean;
@@ -34,13 +35,14 @@ export type ActivityPanelProps = {
 	estimatedTime: string;
 	estimatedTimeRemaining: string;
 	loadTimeGraphDuration: LoadTimeGraphDuration;
+	countUpSpeed: number;
 };
 
 const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
 	visible, onClose, packet, onContinue, onPause, batchLoadTimes, onAbort, onDownload, onChangeSpeed, dataSize,
-	estimatedSize, estimatedTime, estimatedTimeRemaining, fullI18n
+	estimatedSize, estimatedTime, countUpSpeed, estimatedTimeRemaining, fullI18n
 }: ActivityPanelProps): any => {
 	if (packet === null || fullI18n === null) {
 		return null;
@@ -144,6 +146,12 @@ const ActivityPanel = ({
 	const panel1Width = dimensions.width / 100 * 20;
 	const pieSize = Math.floor(panel1Width * 0.9);
 
+	const countUpDuration = countUpSpeed;
+
+	const easeInOutSine = (t: any, b: any, c: any, d: any): number => {
+		return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+	};
+
 	return (
 		<>
 			<Measure
@@ -154,7 +162,16 @@ const ActivityPanel = ({
 					<Dialog className={styles.activityPanel} onClose={onClose} open={visible}>
 						<div style={{ width: '100%', height: '100%' }} ref={measureRef}>
 							<DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
-								{coreI18n.generatedC} <CountUp start={prevGeneratedRows} end={numGeneratedRows} separator="," className={styles.counter} /> {coreI18n.rows}
+								{coreI18n.generatedC}
+								<CountUp
+									start={prevGeneratedRows}
+									end={numGeneratedRows}
+									separator=","
+									easingFn={easeInOutSine}
+									className={styles.counter}
+									duration={countUpDuration}
+								/>
+								{coreI18n.rows}
 							</DialogTitle>
 							<DialogContent dividers style={{ padding: 0 }}>
 								<div className={styles.overlayWrapper}>

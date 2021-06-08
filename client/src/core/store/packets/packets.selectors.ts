@@ -1,4 +1,4 @@
-import { Store } from '~types/general';
+import { LoadTimeGraphDuration, Store } from '~types/general';
 import { createSelector } from 'reselect';
 import { DataPackets } from './packets.reducer';
 import prettyBytes from 'pretty-bytes';
@@ -55,7 +55,14 @@ export const getBatchLoadTimes = createSelector(
 			return [];
 		}
 
-		const numSecondsToShow = 10;
+		const map = {
+			[LoadTimeGraphDuration.s15]: 15,
+			[LoadTimeGraphDuration.s30]: 30,
+			[LoadTimeGraphDuration.all]: 30,
+			[LoadTimeGraphDuration.m1]: 60
+		};
+		const numSecondsToShow = map[packet.loadTimeGraphDuration];
+
 		let seconds = Object.keys(packet.stats.rowGenerationRatePerSecond);
 		const numLoadedSeconds = seconds.length;
 
@@ -149,3 +156,14 @@ export const getCompletedDataString = createSelector(
 		return str;
 	}
 );
+
+export const getLastBatchGenerationDuration = createSelector(
+	getCurrentPacket,
+	(packet) => {
+		if (!packet) {
+			return 0;
+		}
+		return packet.stats.lastBatchGenerationDuration / 1000;
+	}
+);
+

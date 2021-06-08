@@ -102,3 +102,10 @@ export const enum GeneratorPanel {
 	grid = 'grid',
 	preview = 'preview'
 }
+
+export const enum LoadTimeGraphDuration {
+	all = 'all',
+	s15 = '15seconds',
+	s30 = '30seconds',
+	m1 = '1minute'
+}

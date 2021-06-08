@@ -1,4 +1,4 @@
-import { ColumnData, GenerationActivityPanel } from '~types/general';
+import { ColumnData, GenerationActivityPanel, LoadTimeGraphDuration } from '~types/general';
 import { affectedDataTypes } from '~utils/dataTypeUtils';
 import C from '../constants';
 
@@ -161,4 +161,17 @@ export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & 
 
 export const getGenerationActivityPanel = (numRowsToGenerate: number): GenerationActivityPanel => {
 	return (numRowsToGenerate > C.SMALL_GENERATION_COUNT) ? GenerationActivityPanel.large : GenerationActivityPanel.small;
+};
+
+
+export const getGraphDuration = (numRowsToGenerate: number): LoadTimeGraphDuration => {
+	if (numRowsToGenerate < C.GRAPH_RANGES.RANGE1) {
+		return LoadTimeGraphDuration.all;
+	} else if (numRowsToGenerate < C.GRAPH_RANGES.RANGE2) {
+		return LoadTimeGraphDuration.s15;
+	} else if (numRowsToGenerate < C.GRAPH_RANGES.RANGE3) {
+		return LoadTimeGraphDuration.s30;
+	}
+
+	return LoadTimeGraphDuration.m1;
 };

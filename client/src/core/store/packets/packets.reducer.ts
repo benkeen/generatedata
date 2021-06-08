@@ -3,9 +3,10 @@ import { nanoid } from 'nanoid';
 import produce from 'immer';
 import * as actions from './packets.actions';
 import { ExportTypeFolder } from '../../../../_plugins';
-import { getByteSize, getRowGenerationRatePerSecond } from '../../generationPanel/generation.helpers';
+import { getByteSize, getGraphDuration, getRowGenerationRatePerSecond } from '../../generationPanel/generation.helpers';
 import C from '../../constants';
 import * as mainActions from '../main/main.actions';
+import { LoadTimeGraphDuration } from '~types/general';
 
 type GeneratedDataBatch = {
 	byteSize: number;
@@ -13,19 +14,15 @@ type GeneratedDataBatch = {
 	endTime: number;
 };
 
-export type LoadTimeGraphDuration = 'all' | '15seconds' | '30seconds' | '1minute';
-
 export type DataPacket = {
 	dataTypeWorkerId: string;
 	exportTypeWorkerId: string;
-
 	startTime: number | null;
 	endTime: number | null;
 	totalPauseDuration: number;
 	lastPauseTime: number | null;
 	resumeTime: number;
 	isPaused: boolean;
-
 	numGeneratedRows: number;
 	numBatches: number;
 	speed: number;
@@ -49,6 +46,7 @@ export type DataPacket = {
 		totalSize: number;
 		averageSpeed: number;
 		rowGenerationRatePerSecond: { [second: number]: number };
+		lastBatchGenerationDuration: number;
 		lastCompleteLoggedSecond: number;
 	};
 };
@@ -74,7 +72,7 @@ export const getNewPacket = ({
 	exportType, exportTypeSettings
 }: any): DataPacket => {
 	const now = new Date().getTime();
-	const loadTimeGraphDuration = numRowsToGenerate <= 5000 ? 'all' : '15seconds';
+	const loadTimeGraphDuration = getGraphDuration(numRowsToGenerate);
 
 	return {
 		dataTypeWorkerId,
@@ -103,7 +101,8 @@ export const getNewPacket = ({
 			totalSize: 0,
 			averageSpeed: 0,
 			rowGenerationRatePerSecond: {},
-			lastCompleteLoggedSecond: 0
+			lastCompleteLoggedSecond: 0,
+			lastBatchGenerationDuration: 0
 		}
 	};
 };
@@ -204,6 +203,8 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 
 			draft.packets[packetId].stats.averageSpeed = newAverageSpeed;
 			draft.packets[packetId].stats.totalSize += byteSize;
+			draft.packets[packetId].stats.lastBatchGenerationDuration = duration;
+
 
 			draft.packets[packetId].numGeneratedRows = numGeneratedRows;
 			draft.packets[packetId].data.push({
