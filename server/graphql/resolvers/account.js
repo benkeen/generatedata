@@ -24,16 +24,18 @@ const updateCurrentAccount = async (root, args, { token, user }) => {
 	};
 };
 
-const updateAccount = async (root, args, { token }) => {
+const updateAccount = async (root, args, { token, user }) => {
 	if (!authUtils.authenticate(token)) {
 		return { success: false };
 	}
 
-	// TODO improve
 	const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate } = args;
 	const userRecord = await db.accounts.findByPk(accountId);
 
-	if (userRecord.dataValues.accountType !== 'superuser') {
+	const { accountId: currentAccountId } = user;
+	const currentUser = await db.accounts.findByPk(currentAccountId);
+
+	if (currentUser.dataValues.accountType !== 'superuser') {
 		return {
 			success: false,
 			errorStatus: 'PermissionDenied'
@@ -43,6 +45,7 @@ const updateAccount = async (root, args, { token }) => {
 	let validatedAccountStatus = accountStatus;
 	if (expiryDate) {
 		const now = Number(dateFns.format(new Date(), 't'));
+
 		if (expiryDate < now) {
 			validatedAccountStatus = 'expired';
 		}
