@@ -82,3 +82,7 @@ export const performTask = (workerName: string, worker: any, postMessagePayload:
 		onMessage(data);
 	};
 };
+
+export const easeInOutSine = (t: any, b: any, c: any, d: any): number => {
+	return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+};

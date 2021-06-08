@@ -145,12 +145,7 @@ const ActivityPanel = ({
 
 	const panel1Width = dimensions.width / 100 * 20;
 	const pieSize = Math.floor(panel1Width * 0.9);
-
 	const countUpDuration = countUpSpeed;
-
-	const easeInOutSine = (t: any, b: any, c: any, d: any): number => {
-		return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
-	};
 
 	return (
 		<>
@@ -167,7 +162,7 @@ const ActivityPanel = ({
 									start={prevGeneratedRows}
 									end={numGeneratedRows}
 									separator=","
-									easingFn={easeInOutSine}
+									easingFn={coreUtils.easeInOutSine}
 									className={styles.counter}
 									duration={countUpDuration}
 								/>
