@@ -7,7 +7,7 @@ const getSiteUrl = () => {
 	}
 
 	let port = process.env.GD_WEB_SERVER_PORT.trim();
-	if (port) {
+	if (port && port !== "80" && port !== "443") {
 		port = `:${port}`;
 	}
 
