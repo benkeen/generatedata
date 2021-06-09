@@ -8,6 +8,8 @@ is functional, user accounts are setup, email notification - all done! We'll be 
 allowing registered users on the current site to start using it. 
 
  
+- `4.0.0-alpha-20210608`:
+    - minor authentication + password reset bug fixes.
 - `4.0.0-alpha-20210607`:
     - tons of updates & fixes - too many to note! UI updates, database changes, performances fixes and more.
 - `4.0.0-alpha-20210429`:
