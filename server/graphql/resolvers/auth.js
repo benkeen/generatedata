@@ -80,7 +80,7 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
 		const { firstName, expiryDate } = user.dataValues;
 		const now = new Date();
 		const nowMs = now.getTime();
-		const expiryDateMs = expiryDate.getTime() * 1000;
+		const expiryDateMs = expiryDate ? expiryDate.getTime() * 1000 : 0;
 
 		if (expiryDate !== null && expiryDateMs < nowMs) {
 			const { subject, text, html } = passwordResetAccountExpired({ firstName, i18n });
