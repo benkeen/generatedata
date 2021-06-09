@@ -17,10 +17,12 @@ export const init = (): void => {
 	createDataTypeWorker('preview');
 	createExportTypeWorker('preview');
 
+	const state = store.getState();
+
 	// initialize any external vendors (Google, Github, Facebook) that are set up for login
 	initAuthVendors();
 
-	const state = store.getState();
+	const isLoggedIn = mainSelectors.isLoggedIn(state);
 	const locale = mainSelectors.getLocale(state);
 	const exportType = selectors.getExportType(state);
 	const numRows = selectors.getNumRows(state);
@@ -29,7 +31,7 @@ export const init = (): void => {
 	store.dispatch(actions.onSelectExportType(exportType, false));
 
 	// if there's a live session, verify the JWT is still valid
-	if (mainSelectors.isLoggedIn(state)) {
+	if (isLoggedIn) {
 		if (mainSelectors.getAuthMethod(state) === AuthMethod.default) {
 			store.dispatch(mainActions.updateRefreshToken());
 		}

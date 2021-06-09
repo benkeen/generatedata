@@ -12,6 +12,9 @@ import {
 } from '~store/main/main.actions';
 import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';
+import { addToast } from '~utils/generalUtils';
+import * as langUtils from '~utils/langUtils';
+
 // import { setAuthTokenRefresh } from '~utils/authUtils';
 
 const googleBtnId = 'google-signin-button';
@@ -29,7 +32,7 @@ const init = (): void => {
 	});
 };
 
-// TODO rename
+
 export const initGoogleAuth = (): void => {
 	const script = document.createElement('script');
 	script.src = 'https://apis.google.com/js/platform.js?onload=initGoogleAuth';
@@ -45,13 +48,16 @@ export type AuthenticatedOptions = {
 };
 
 const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {}): Promise<any> => {
+	const i18n = langUtils.getStrings();
+
 	const options = {
 		onPageRender: false,
 		...opts
 	};
 
-	// see if the user was already logged in
-	if (mainSelectors.isLoggedIn(store.getState())) {
+	const isLoggedIn = mainSelectors.isLoggedIn(store.getState());
+
+	if (isLoggedIn) {
 		store.dispatch(setAuthenticated(true));
 
 		// TODO
@@ -99,7 +105,13 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 			onLoginSuccess(null, options.onPageRender, store.dispatch);
 
 		} else {
-			console.log('Error: ', response.data.loginWithGoogle);
+			if (response.data.loginWithGoogle.error === 'noUserAccount') {
+				addToast({
+					type: 'error',
+					message: i18n.core.userAccountNotFound
+				});
+				logoutGoogle();
+			}
 		}
 	}
 };
