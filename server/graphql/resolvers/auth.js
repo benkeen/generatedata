@@ -52,6 +52,11 @@ const login = async (root, { email, password }, { res }) => {
 	const { token, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
 	const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
+	// we ignore async-ness here. No point slowing down the login just to track the last logged in date
+	user.update({
+		lastLoggedIn: new Date().getTime() / 1000
+	});
+
 	return {
 		success: true,
 		token,

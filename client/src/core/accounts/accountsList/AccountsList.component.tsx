@@ -18,11 +18,16 @@ export type AccountsListProps = {
 	i18n: any;
 };
 
-const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, expiryDate }: any): JSX.Element => {
+const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastLoggedIn, expiryDate }: any): JSX.Element => {
 	let expiryDateVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
 	try {
 		expiryDateVal = format(fromUnixTime(expiryDate), C.DATE_FORMAT);
 	} catch (e) {}
+
+	let lastLoggedInVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
+	try {
+		lastLoggedInVal = format(fromUnixTime(lastLoggedIn), C.DATE_FORMAT);
+	} catch (lastLoggedInVal) {}
 
 	return (
 		<div className={styles.row}>
@@ -31,6 +36,7 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, expir
 			<div className={styles.status}>
 				<AccountStatusPill status={accountStatus} i18n={i18n} />
 			</div>
+			<div className={styles.lastLoggedIn}>{lastLoggedInVal}</div>
 			<div className={styles.expiryDate}>{expiryDateVal}</div>
 			<div className={styles.edit}>
 				<Button size="small" type="submit" color="primary" variant="outlined" onClick={onEdit}>{i18n.edit}</Button>
@@ -127,6 +133,12 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 			label: i18n.status,
 			className: styles.status,
 			field: 'accountStatus',
+			sortable: true
+		},
+		{
+			label: i18n.lastLoggedIn,
+			className: styles.lastLoggedIn,
+			field: 'lastLoggedIn',
 			sortable: true
 		},
 		{

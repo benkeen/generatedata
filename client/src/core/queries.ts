@@ -15,6 +15,7 @@ export const GET_ACCOUNTS = gql`
 				region
                 dateCreated
                 expiryDate
+				lastLoggedIn
                 numRowsGenerated
             }
         }

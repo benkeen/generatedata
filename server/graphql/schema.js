@@ -35,6 +35,7 @@ const typeDefs = gql`
         accountType: AccountType
 	    accountStatus: AccountStatus
         dateCreated: String
+	    lastLoggedIn: String
         firstName: String
 		lastName: String
 		email: String

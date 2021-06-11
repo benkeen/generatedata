@@ -44,6 +44,13 @@
 		white-space: nowrap;
 	}
 
+	.lastLoggedIn {
+		flex: 1 0 90px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
 	.status {
 		flex: 1 0 70px;
 	}
