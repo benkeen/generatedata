@@ -1,6 +1,6 @@
 {
   "name": "generatedata",
-  "version": "4.0.0-alpha-20210608",
+  "version": "4.0.0-beta-20210613",
   "description": "Free, MIT-licensed, random data generator for testing software.",
   "main": "index.js",
   "directories": {
@@ -20,7 +20,8 @@
     "prodAllBuild": "COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up --build",
     "startDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up",
     "startAndBuildDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up --build",
-    "stopDevServer": "docker-compose down"
+    "stopDevServer": "docker-compose down",
+    "dockerCleanup": "docker system prune -a && docker volume rm $(docker volume ls -qf dangling=true)"
   },
   "repository": {
     "type": "git",
