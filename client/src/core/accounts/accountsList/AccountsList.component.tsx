@@ -67,7 +67,7 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 	});
 
 	const numItemsOnPage = data?.accounts?.results?.length || 0;
-	const afterDeletePage = numItemsOnPage === 1 ? currentPage-1 : currentPage;
+	const afterDeletePage = numItemsOnPage === 1 && currentPage > 1 ? currentPage-1 : currentPage;
 
 	const [deleteAccount] = useMutation(queries.DELETE_ACCOUNT, {
 		refetchQueries: [
