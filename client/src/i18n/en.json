@@ -331,5 +331,6 @@
 	"yourAccountUpdated": "Your account has been updated.",
 	"yourUserAccount": "Your User Account",
 
-  "userAccountNotFound": "Sorry, we couldn't find your account."
+  "userAccountNotFound": "Sorry, we couldn't find your account.",
+  "accountExpiryDate": "Account expiry date"
 }

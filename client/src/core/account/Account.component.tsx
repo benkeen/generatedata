@@ -70,7 +70,7 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 					</li>
 				</ul>
 			</nav>
-			<div className={`${sharedStyles.tab} ${styles.accountPage}`}>
+			<div className={sharedStyles.tab}>
 				{getTab()}
 			</div>
 		</section>

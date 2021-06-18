@@ -1,8 +1,8 @@
 declare namespace AccountScssNamespace {
   export interface IAccountScss {
-    accountPage: string;
     hidden: string;
-    numGeneratedRows: string;
+    rightBlock: string;
+    rightCol: string;
     shown: string;
     yourAccountPage: string;
   }

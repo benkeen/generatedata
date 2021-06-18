@@ -19,9 +19,9 @@ export const formatDuration = (duration: number): string => {
 	}
 };
 
-export const formatUnixTime = (time: number): string => {
+export const formatUnixTime = (time: number, formatStr: string = C.DATETIME_FORMAT): string => {
 	if (!time) {
 		return '';
 	}
-	return format(fromUnixTime(time), C.DATETIME_FORMAT);
+	return format(fromUnixTime(time), formatStr);
 };

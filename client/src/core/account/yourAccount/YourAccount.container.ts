@@ -11,6 +11,7 @@ const mapStateToProps = (state: Store): Partial<YourAccountProps> => ({
 	data: accountSelectors.getEditingData(state),
 	numGeneratedRows: accountSelectors.getNumGeneratedRows(state),
 	accountHasChanges: accountSelectors.accountHasChanges(state),
+	expiryDate: accountSelectors.getExpiryDate(state),
 	i18n: selectors.getCoreI18n(state)
 });
 

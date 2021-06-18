@@ -1,11 +1,5 @@
 @import "../../styles/variables.scss";
 
-.accountPage {
-	.numGeneratedRows {
-		font-size: 32px;
-	}
-}
-
 .hidden {
 	opacity: 0;
 }
@@ -20,5 +14,19 @@
 	margin-bottom: 10px;
 	& > * {
 		flex: 1;
+	}
+}
+
+.rightCol {
+	border-left: 1px solid #f2f2f2;
+	padding-left: 20px;
+	height: 83%;
+
+}
+
+.rightBlock {
+	& > div {
+		margin-bottom: 15px;
+		font-size: 32px;
 	}
 }

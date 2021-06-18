@@ -18,6 +18,7 @@ export const getSaveDataDialogType = (state: Store): SaveDataDialogType => state
 export const getDataSets = (state: Store): any[] => state.account.dataSets;
 export const getSelectedAccountsPageTab = (state: Store): SelectedAccountsTab => state.account.selectedAccountsTab;
 export const getOneTimePassword = (state: Store): string => state.account.oneTimePassword;
+export const getExpiryDate = (state: Store): string => state.account.expiryDate;
 
 export const accountHasChanges = createSelector(
 	getFirstName,
