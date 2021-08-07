@@ -16,7 +16,7 @@ describe('Account component', () => {
 			/>
 		);
 
-		const page = container.querySelector('.accountPage');
+		const page = container.querySelector('[data-automation=account-page]');
 		expect(page).toBeTruthy();
 	});
 });

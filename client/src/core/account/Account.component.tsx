@@ -47,7 +47,7 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 	};
 
 	return (
-		<section className={sharedStyles.twoColPage}>
+		<section className={sharedStyles.twoColPage} data-automation="account-page">
 			<nav>
 				<ul>
 					<li
