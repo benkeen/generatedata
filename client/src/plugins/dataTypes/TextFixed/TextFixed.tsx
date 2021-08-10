@@ -87,17 +87,17 @@ export const Options = ({ coreI18n, i18n, id, data, onUpdate }: DTOptionsProps):
 		});
 	};
 
-	const onUpdateNumWords = (e: React.FormEvent<HTMLInputElement>): void => {
+	const onUpdateNumWords = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		onUpdate({
 			...data,
-			numWords: parseInt(e.currentTarget.value, 10)
+			numWords: parseInt(e.target.value, 10)
 		});
 	};
 
-	const onUpdateCustomText = (e: React.FormEvent<HTMLTextAreaElement>): void => {
+	const onUpdateCustomText = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
 		onUpdate({
 			...data,
-			customText: e.currentTarget.value
+			customText: e.target.value
 		});
 	};
 
