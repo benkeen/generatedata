@@ -8,6 +8,11 @@ is functional, user accounts are setup, email notification - all done! We'll be 
 allowing registered users on the current site to start using it. 
 
  
+- `4.0.0-beta-20210809`:
+    - back in the game! Returning to work on generatedata - misc updates. 
+    - Last logged in col on accounts page
+    - Expiry date added to accounts page 
+    - Fix for TextFixed Data Type
 - `4.0.0-alpha-20210608`:
     - minor authentication + password reset bug fixes.
 - `4.0.0-alpha-20210607`:
