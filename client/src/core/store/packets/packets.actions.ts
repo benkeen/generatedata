@@ -3,6 +3,7 @@ import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
 import * as selectors from '../generator/generator.selectors';
 import * as packetSelectors from './packets.selectors';
 import { getDownloadFileInfo } from '~utils/exportTypeUtils';
+import { getGeneratorRoute } from '~utils/routeUtils';
 import { GDAction } from '~types/general';
 import { downloadFile } from '../../generationPanel/generation.helpers';
 import * as mainSelectors from '~store/main/main.selectors';
@@ -87,7 +88,13 @@ export const HIDE_ACTIVITY_PANEL = 'HIDE_ACTIVITY_PANEL';
 export const hideActivityPanel = (): GDAction => ({ type: HIDE_ACTIVITY_PANEL });
 
 export const SHOW_ACTIVITY_PANEL = 'SHOW_ACTIVITY_PANEL';
-export const showActivityPanel = (packetId: string): GDAction => ({ type: SHOW_ACTIVITY_PANEL, payload: { packetId } });
+export const showActivityPanel = (packetId: string, history: any): GDAction => {
+	history.push(getGeneratorRoute());
+	return {
+		type: SHOW_ACTIVITY_PANEL,
+		payload: { packetId }
+	};
+};
 
 export const CHANGE_SPEED = 'CHANGE_SPEED';
 export const changeSpeed = (speed: number): GDAction => ({

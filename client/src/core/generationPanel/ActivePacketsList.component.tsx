@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useHistory } from 'react-router';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import Chip from '@material-ui/core/Chip';
 import styles from './ActivityPacketsList.scss';
@@ -16,10 +17,12 @@ export type ActivePacketList = {
 
 export type ActivePacketsListProps = {
 	packetList: ActivePacketList[];
-	openPacket: (packetId: string) => void;
+	openPacket: (packetId: string, history: any) => void;
 };
 
 const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps): JSX.Element => {
+	const history = useHistory();
+
 	const chips = packetList.map(({ packetId, label, percentage, numRowsToGenerate, isPaused }, index) => {
 		const color = isPaused ? 'default' : 'primary';
 		const pieChartData = [
@@ -62,7 +65,7 @@ const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps): 
 					className={styles.chip}
 					clickable
 					color={color}
-					onClick={(): void => openPacket(packetId)}
+					onClick={(): void => openPacket(packetId, history)}
 					variant="outlined"
 					style={{ marginLeft: 10 }}
 				/>
