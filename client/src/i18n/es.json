@@ -1,7 +1,7 @@
 {
 	"abort": "Abortar",
 	"about": "Acerca de",
-	"aboutInfoPara1": "El Generador de datos es un proyecto de código abierto que creé en la era paleolítica tardía (alrededor de 2004) y ha tenido muchos, muchos contribuyentes a lo largo de su vida útil. Cada pocos años lo reescribo utilizando las últimas y mejores tecnologías disponibles: esta versión se completó en 2021, hecha con React, Redux, Typescript, GraphQL, Docker, web Workers, bandas elásticas, cinta adhesiva y muchas maldiciones.",
+	"aboutInfoPara1": "generatedata.com es un proyecto de código abierto que creé en la era paleolítica tardía (alrededor de 2004) y ha tenido muchos, muchos contribuyentes a lo largo de su vida útil. Cada pocos años lo reescribo usando las últimas y mejores tecnologías disponibles: esta versión se completó en 2021, hecha con React, Redux, Typescript, GraphQL, Docker, web Workers, gomas, cinta adhesiva y un montón de maldiciones.",
 	"aboutInfoPara2": "Puedes encontrar el proyecto en github. Descárgalo, bifurcalo o siéntete libre de contribuir. ¡Disfrutar!",
 	"aboutThisScript": "Acerca de este guión",
 	"accountCreated": "Cuenta creada",

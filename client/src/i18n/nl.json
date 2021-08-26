@@ -1,7 +1,7 @@
 {
 	"abort": "Afbreken",
 	"about": "Over",
-	"aboutInfoPara1": "De Data Generator is een open source-project dat ik heb gemaakt in het late paleolithische tijdperk (circa 2004) en dat gedurende zijn levensduur vele, vele bijdragen heeft gehad. Om de paar jaar herschrijf ik het met behulp van de nieuwste en beste beschikbare technologieën: deze versie werd voltooid in 2021, gemaakt met React, Redux, Typescript, GraphQL, Docker, webwerkers, elastiekjes, ducttape en heel veel vloeken.",
+	"aboutInfoPara1": "generatedata.com is een open source-project dat ik heb gemaakt in het late paleolithische tijdperk (circa 2004) en gedurende zijn levensduur heeft het vele, vele bijdragers gehad. Om de paar jaar herschrijf ik het met de nieuwste en beste beschikbare technologieën: deze versie werd in 2021 voltooid, gemaakt met React, Redux, Typescript, GraphQL, Docker, webworkers, elastiekjes, ducttape en een heleboel vloeken.",
 	"aboutInfoPara2": "Je kunt het project vinden op github. Download het, vork het of voel je vrij om bij te dragen. Genieten!",
 	"aboutThisScript": "Over dit script",
 	"accountCreated": "Gebruikersaccount aangemaakt",

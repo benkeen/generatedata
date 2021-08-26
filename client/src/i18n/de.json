@@ -1,7 +1,7 @@
 {
 	"abort": "Abbrechen",
 	"about": "Über",
-	"aboutInfoPara1": "Der Datengenerator ist ein Open-Source-Projekt, das ich in der späten Altsteinzeit (ca. 2004) erstellt habe und über seine gesamte Lebensdauer viele, viele Mitwirkende hatte. Alle paar Jahre schreibe ich es mit den neuesten und besten verfügbaren Technologien neu: Diese Version wurde 2021 fertiggestellt und mit React, Redux, Typescript, GraphQL, Docker, Web-Workern, Gummibändern, Klebeband und viel Fluchen erstellt.",
+	"aboutInfoPara1": "generatedata.com ist ein Open-Source-Projekt, das ich in der späten Altsteinzeit (ca. 2004) erstellt habe und während seiner Lebensdauer viele, viele Mitwirkende hatte. Alle paar Jahre schreibe ich es mit den neuesten und besten verfügbaren Technologien neu: Diese Version wurde 2021 fertiggestellt, erstellt mit React, Redux, Typescript, GraphQL, Docker, Webworkern, Gummibändern, Klebeband und einer ganzen Menge Fluchen.",
 	"aboutInfoPara2": "Sie finden das Projekt auf github. Laden Sie es herunter, geben Sie es ab oder tragen Sie dazu bei. Genießen!",
 	"aboutThisScript": "Über dieses Skript",
 	"accountCreated": "Benutzerkonto erstellt",

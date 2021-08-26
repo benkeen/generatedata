@@ -1,7 +1,7 @@
 {
 	"abort": "中止",
 	"about": "关于",
-	"aboutInfoPara1": "数据生成器是我在旧石器时代末期（大约在2004年）创建的一个开源项目，在其生命周期中有许多贡献者。 我每隔几年就会使用最新和最先进的技术对其进行重写：此版本于2021年完成，由React，Redux，Typescript，GraphQL，Docker，Web Worker，橡皮筋，胶带和大量诅咒制成。",
+	"aboutInfoPara1": "generatedata.com 是我在旧石器时代晚期（大约 2004 年）创建的一个开源项目，并且在其生命周期内有很多很多贡献者。 每隔几年，我就会使用最新最好的可用技术重写它：这个版本于 2021 年完成，使用 React、Redux、Typescript、GraphQL、Docker、网络工作者、橡皮筋、胶带和一大堆诅咒制成。",
 	"aboutInfoPara2": "您可以在github上找到该项目。 下载，分叉或随意贡献。 请享用！",
 	"aboutThisScript": "关于此脚本",
 	"accountCreated": "账户创建",

@@ -137,7 +137,11 @@ export const getEstimatedTimeRemaining = createSelector(
 			return '-';
 		}
 		const now = new Date().getTime();
-		const timeTaken = estimatedTime + packet.startTime! - now;
+		let timeTaken = estimatedTime + packet.startTime! - now;
+
+		if (timeTaken < 0) {
+			timeTaken = 0;
+		}
 
 		return formatDuration(timeTaken / 1000);
 	}

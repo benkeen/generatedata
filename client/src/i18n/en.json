@@ -1,7 +1,7 @@
 {
 	"abort": "Abort",
 	"about": "About",
-	"aboutInfoPara1": "The Data Generator is an open source project I created back in the late paleolithic era (circa 2004) and has had many, many contributors over its lifespan. Every few years I rewrite it using the latest and greatest available technologies: this version was completed in 2021, made with React, Redux, Typescript, GraphQL, Docker, web workers, rubber bands, duct tape and a whole lot of cursing.",
+	"aboutInfoPara1": "generatedata.com is an open source project I created back in the late paleolithic era (circa 2004) and has had many, many contributors over its lifespan. Every few years I rewrite it using the latest and greatest available technologies: this version was completed in 2021, made with React, Redux, Typescript, GraphQL, Docker, web workers, rubber bands, duct tape and a whole lot of cursing.",
 	"aboutInfoPara2": "You can find the project on github. Download it, fork it, or feel free to contribute. Enjoy!",
 	"aboutThisScript": "About this script",
 	"accountCreated": "Account Created",

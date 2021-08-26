@@ -1,7 +1,7 @@
 {
 	"abort": "Avorter",
 	"about": "A propos",
-	"aboutInfoPara1": "Le générateur de données est un projet open source que j'ai créé à la fin du paléolithique (vers 2004) et qui a eu de très nombreux contributeurs au cours de sa vie. Toutes les quelques années, je la réécris en utilisant les dernières et les meilleures technologies disponibles: cette version a été achevée en 2021, réalisée avec React, Redux, Typescript, GraphQL, Docker, des web workers, des élastiques, du ruban adhésif et beaucoup de malédictions.",
+	"aboutInfoPara1": "generateata.com est un projet open source que j'ai créé à la fin de l'ère paléolithique (vers 2004) et a eu de très nombreux contributeurs au cours de sa vie. Toutes les quelques années, je le réécris en utilisant les dernières et les meilleures technologies disponibles : cette version a été achevée en 2021, réalisée avec React, Redux, Typescript, GraphQL, Docker, des travailleurs Web, des élastiques, du ruban adhésif et beaucoup de jurons.",
 	"aboutInfoPara2": "Vous pouvez trouver le projet sur github. Téléchargez-le, ajoutez-le ou n'hésitez pas à contribuer. Prendre plaisir!",
 	"aboutThisScript": "À propos de ce script",
 	"accountCreated": "Compte utilisateur créé",
