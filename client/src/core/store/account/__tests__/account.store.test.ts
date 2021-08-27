@@ -32,7 +32,8 @@ describe('accounts section', () => {
 			lastName: 'Jones',
 			email: 'tom@jones.net',
 			country: 'Canada',
-			region: 'British Columbia'
+			region: 'British Columbia',
+			numRowsGenerated: 100
 		}));
 
 		// check nothing has been changed in the main state for the user
@@ -57,7 +58,8 @@ describe('accounts section', () => {
 			lastName: 'Jones',
 			email: 'tom@jones.net',
 			country: 'Canada',
-			region: 'British Columbia'
+			region: 'British Columbia',
+			numRowsGenerated: 100
 		}));
 
 		const editingData = selectors.getEditingData(store.getState());
@@ -83,7 +85,8 @@ describe('accounts section', () => {
 			lastName: 'Jones',
 			email: 'tom@jones.net',
 			country: 'Canada',
-			region: 'British Columbia'
+			region: 'British Columbia',
+			numRowsGenerated: 100
 		}));
 
 		expect(selectors.getFirstName(store.getState())).toEqual('');
@@ -157,7 +160,8 @@ describe('accounts section', () => {
 			lastName: 'Jones',
 			email: 'tom@jones.net',
 			country: 'Canada',
-			region: 'British Columbia'
+			region: 'British Columbia',
+			numRowsGenerated: 100
 		}));
 
 		store.dispatch({ type: LOGOUT });

@@ -14,9 +14,8 @@ const getAccountNumRowsGenerated = async (accountId) => {
 		attributes: [[db.sequelize.fn('sum', db.sequelize.col('num_rows_generated')), 'totalRowsGenerated']]
 	});
 
-	return results[0].dataValues.totalRowsGenerated;
+	return results[0].dataValues.totalRowsGenerated || 0;
 };
-
 
 const login = async (root, { email, password }, { res }) => {
 	const user = await db.accounts.findOne({
@@ -255,5 +254,6 @@ module.exports = {
 	loginWithGoogle,
 	sendPasswordResetEmail,
 	checkAndUpdateRefreshToken,
-	logout
+	logout,
+	getAccountNumRowsGenerated
 };

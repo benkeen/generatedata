@@ -54,20 +54,26 @@ const resolvers = {
 
 			return {
 				totalCount: totalCountQuery.c,
-				results: results.map((row) => ({
-					accountId: row.account_id,
-					dateCreated: row.date_created,
-					lastUpdated: row.last_updated,
-					lastLoggedIn: row.last_logged_in,
-					expiryDate: row.date_expires,
-					accountType: row.account_type,
-					accountStatus: row.account_status,
-					firstName: row.first_name,
-					lastName: row.last_name,
-					email: row.email,
-					country: row.country,
-					region: row.region
-				}))
+				results: results.map(async (row) => {
+					// not great, but info is needed. May be a better idea to denormalize the DB and store this on the
+					// account row
+					const numRowsGenerated = await authResolvers.getAccountNumRowsGenerated(row.account_id);
+					return {
+						accountId: row.account_id,
+						dateCreated: row.date_created,
+						lastUpdated: row.last_updated,
+						lastLoggedIn: row.last_logged_in,
+						expiryDate: row.date_expires,
+						accountType: row.account_type,
+						accountStatus: row.account_status,
+						firstName: row.first_name,
+						lastName: row.last_name,
+						email: row.email,
+						country: row.country,
+						region: row.region,
+						numRowsGenerated
+					}
+				})
 			};
 		},
 

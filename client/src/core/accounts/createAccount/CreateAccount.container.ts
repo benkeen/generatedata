@@ -13,7 +13,8 @@ const initialState: ManageAccountState = {
 	region: '',
 	disabled: false,
 	expiry: ExpiryOption.none,
-	expiryDate: null
+	expiryDate: null,
+	numRowsGenerated: 0
 };
 
 const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {

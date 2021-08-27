@@ -148,7 +148,6 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 		{ label: '', className: styles.del }
 	];
 
-
 	let content;
 	if (totalCount === 0) {
 		content = (

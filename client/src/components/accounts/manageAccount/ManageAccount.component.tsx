@@ -30,6 +30,7 @@ export type ManageAccountState = {
 	disabled: boolean;
 	expiry: ExpiryOption;
 	expiryDate: null | number;
+	numRowsGenerated: number;
 }
 
 const yearFromNow = Number(format(add(new Date(), { years: 1 }), 't'));
@@ -88,7 +89,8 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 		lastName: data.lastName,
 		email: data.email,
 		country: data.country,
-		region: data.region
+		region: data.region,
+		numRowsGenerated: data.numRowsGenerated
 	};
 
 	let expiryLabel = i18n.selectExpiryDate;
@@ -141,6 +143,10 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 							/>
 						</RadioPillRow>
 					</div>
+				</div>
+				<div>
+					<div>Num rows generated</div>
+					<h2>{initialState.numRowsGenerated}</h2>
 				</div>
 			</div>
 

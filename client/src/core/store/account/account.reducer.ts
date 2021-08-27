@@ -12,6 +12,7 @@ export type AccountEditingData = {
 	email: string;
 	country: string;
 	region: string;
+	numRowsGenerated: number;
 	expiryDate?: number;
 	disabled?: boolean;
 	accountId?: number;
@@ -64,6 +65,7 @@ export const initialState: AccountState = {
 		email: '',
 		country: '',
 		region: '',
+		numRowsGenerated: 0,
 		expiryDate: undefined,
 		disabled: undefined,
 		accountId: undefined,
@@ -111,10 +113,11 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				email: draft.email,
 				country: draft.country,
 				region: draft.region,
+				numRowsGenerated: 0,
 				expiryDate: undefined,
 				disabled: undefined,
 				accountId: undefined,
-				status: undefined
+				status: undefined,
 			};
 			break;
 
@@ -128,6 +131,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 
 		case actions.CANCEL_ACCOUNT_CHANGES:
 			draft.editingData = {
+				...draft.editingData,
 				firstName: draft.firstName,
 				lastName: draft.lastName,
 				email: draft.email,
@@ -158,7 +162,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case actions.ON_EDIT_ACCOUNT:
-			const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate } = action.payload.accountInfo;
+			const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate, numRowsGenerated } = action.payload.accountInfo;
 
 			draft.selectedAccountsTab = SelectedAccountsTab.editAccount;
 			draft.editingData = {
@@ -170,7 +174,8 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				email,
 				country,
 				region,
-				expiryDate
+				expiryDate,
+				numRowsGenerated
 			};
 			break;
 
