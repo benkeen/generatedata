@@ -8,6 +8,7 @@ declare namespace SharedScssNamespace {
     errorField: string;
     fadeIn: string;
     generatorControls: string;
+    hidden: string;
     mainLogo: string;
     pill: string;
     selected: string;

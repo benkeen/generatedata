@@ -1,6 +1,7 @@
 declare namespace ManageAccountScssNamespace {
   export interface IManageAccountScss {
     disabledFieldRow: string;
+    rightBlock: string;
     rightCol: string;
     root: string;
   }

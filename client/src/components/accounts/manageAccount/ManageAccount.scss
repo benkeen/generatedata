@@ -17,3 +17,9 @@
 	margin-top: 2px;
 }
 
+.rightBlock {
+	& > div {
+		margin-bottom: 15px;
+		font-size: 32px;
+	}
+}

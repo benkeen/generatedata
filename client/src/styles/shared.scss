@@ -99,9 +99,14 @@ input.errorField, textarea.errorField, select.errorField, button.errorField {
 	font-size: 13px;
 	color: #999999;
 	cursor: pointer;
+	transition: visibility 200ms ease-in-out;
 
 	&:hover {
 		color: $primary-color;
+	}
+
+	&.hidden {
+		visibility: hidden;
 	}
 }
 

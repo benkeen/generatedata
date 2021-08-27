@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { format, fromUnixTime, add } from 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import { getFormattedNum } from '~utils/numberUtils';
 import * as dateStyles from '../../../plugins/dataTypes/Date/Date.scss';
-import { format, fromUnixTime, add } from 'date-fns';
 import C from '../../../core/constants';
 import styles from './ManageAccount.scss';
 
@@ -144,9 +145,11 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 						</RadioPillRow>
 					</div>
 				</div>
-				<div>
-					<div>Num rows generated</div>
-					<h2>{initialState.numRowsGenerated}</h2>
+				<div className={styles.rightBlock}>
+					<label>{i18n.totalNumGeneratedRows}</label>
+					<div>
+						{getFormattedNum(initialState.numRowsGenerated)}
+					</div>
 				</div>
 			</div>
 

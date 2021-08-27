@@ -80,6 +80,11 @@ const MainFields = ({
 	const firstNameError = (showRequiredFieldError && data.firstName.trim() === '') ? i18n.requiredField : '';
 	const lastNameError = (showRequiredFieldError && data.lastName.trim() === '') ? i18n.requiredField : '';
 
+	let cancelLinkClasses = sharedStyles.cancelLink;
+	if (!saveButtonEnabled) {
+		cancelLinkClasses += ` ${sharedStyles.hidden}`;
+	}
+
 	return (
 		<form onSubmit={handleSave} autoComplete="off" className={className}>
 			<div>
@@ -140,7 +145,7 @@ const MainFields = ({
 					{submitButtonLabel}
 				</Button>
 
-				<span onClick={onCancel} className={sharedStyles.cancelLink}>{i18n.cancel}</span>
+				<span onClick={onCancel} className={cancelLinkClasses}>{i18n.cancel}</span>
 			</div>
 		</form>
 	);
