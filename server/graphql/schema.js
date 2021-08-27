@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     type Query {
-        accounts(limit: Int, offset: Int, sortCol: String, sortDir: SortDir): AccountsResults
+        accounts(limit: Int, offset: Int, sortCol: String, sortDir: SortDir, filterStr: String): AccountsResults
         account: Account
         settings: [Setting]
         dataSets(limit: Int, offset: Int, sortCol: String, sortDir: SortDir): DataSetResults

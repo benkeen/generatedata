@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { format, fromUnixTime } from 'date-fns';
@@ -11,7 +11,9 @@ import TableHeader, { ColSortDir } from '~components/tables/TableHeader.componen
 import * as queries from '~core/queries';
 import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
 import DeleteAccountDialog from '~core/dialogs/deleteAccount/DeleteAccount.component';
+import SearchFilter from "./SearchFilter.component";
 import C from '~core/constants';
+
 
 export type AccountsListProps = {
 	onEditAccount: (accountId: number) => void;
@@ -55,18 +57,31 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 	const [deleteAccountInfo, setDeleteAccountInfo] = useState<any>(null);
 	const [sortCol, setSortCol] = useState('lastName');
 	const [sortDir, setSortDir] = useState<ColSortDir>(ColSortDir.asc);
+	const [filterStr, setFilterStr] = useState('');
+	const [lastData, setLastData] = useState<any>(null);
 
-	const { data } = useQuery(queries.GET_ACCOUNTS, {
+	const { data, loading, refetch } = useQuery(queries.GET_ACCOUNTS, {
 		fetchPolicy: 'cache-and-network',
 		variables: {
 			offset: (currentPage - 1) * NUM_PER_PAGE,
 			limit: NUM_PER_PAGE,
 			sortCol,
-			sortDir
+			sortDir,
+			filterStr
 		}
 	});
 
-	const numItemsOnPage = data?.accounts?.results?.length || 0;
+	useEffect(() => {
+		refetch();
+	}, [filterStr]);
+
+	useEffect(() => {
+		if (data) {
+			setLastData(data);
+		}
+	}, [data]);
+
+	const numItemsOnPage = lastData?.accounts?.results?.length || 0;
 	const afterDeletePage = numItemsOnPage === 1 && currentPage > 1 ? currentPage-1 : currentPage;
 
 	const [deleteAccount] = useMutation(queries.DELETE_ACCOUNT, {
@@ -77,7 +92,8 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 					offset: (afterDeletePage - 1) * NUM_PER_PAGE,
 					limit: NUM_PER_PAGE,
 					sortCol,
-					sortDir
+					sortDir,
+					filterStr
 				}
 			}
 		],
@@ -92,30 +108,11 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 		}
 	});
 
-	if (!data) {
+	if (!lastData) {
 		return null;
 	}
 
-	const { results, totalCount } = data.accounts;
-
-	if (totalCount === 0) {
-		return (
-			<div className={`${styles.page} ${sharedStyles.emptyText}`}>
-				{i18n.noAccountsCreated}
-			</div>
-		);
-	}
-
-	const paginationRow = totalCount > NUM_PER_PAGE ? (
-		<div className={styles.paginationRow}>
-			<Pagination
-				numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
-				currentPage={currentPage}
-				onChange={(e: any, pageNum: number): void => setCurrentPage(pageNum)}
-			/>
-		</div>
-	) : null;
-
+	const { results, totalCount } = lastData.accounts;
 	const cols = [
 		{
 			label: i18n.firstName,
@@ -151,34 +148,68 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 		{ label: '', className: styles.del }
 	];
 
+
+	let content;
+	if (totalCount === 0) {
+		content = (
+			<div className={`${styles.page} ${sharedStyles.emptyText}`}>
+				{i18n.noAccountsCreated}
+			</div>
+		);
+	} else {
+		const paginationRow = totalCount > NUM_PER_PAGE ? (
+			<div className={styles.paginationRow}>
+				<Pagination
+					numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
+					currentPage={currentPage}
+					onChange={(e: any, pageNum: number): void => setCurrentPage(pageNum)}
+				/>
+			</div>
+		) : null;
+
+		content = (
+			<>
+				<div className={styles.accountsListTable}>
+					<TableHeader
+						cols={cols}
+						sortDir={sortDir}
+						sortCol={sortCol}
+						onSort={(col: string, dir: ColSortDir): void => {
+							setSortCol(col);
+							setSortDir(dir);
+						}}
+					/>
+					<div className={styles.body}>
+						{results.map((row: any) => (
+							<Row
+								key={row.accountId}
+								{...row}
+								i18n={i18n}
+								onEdit={(): void => onEditAccount(row)}
+								onDelete={(): void => {
+									setDialogVisible(true);
+									setDeleteAccountInfo(row);
+								}}
+							/>
+						))}
+					</div>
+				</div>
+				{paginationRow}
+			</>
+		);
+	}
+
 	return (
 		<>
-			<div className={styles.accountsListTable}>
-				<TableHeader
-					cols={cols}
-					sortDir={sortDir}
-					sortCol={sortCol}
-					onSort={(col: string, dir: ColSortDir): void => {
-						setSortCol(col);
-						setSortDir(dir);
-					}}
+			<div>
+				<SearchFilter
+					value={filterStr}
+					onChange={setFilterStr}
+					loading={loading}
 				/>
-				<div className={styles.body}>
-					{results.map((row: any) => (
-						<Row
-							key={row.accountId}
-							{...row}
-							i18n={i18n}
-							onEdit={(): void => onEditAccount(row)}
-							onDelete={(): void => {
-								setDialogVisible(true);
-								setDeleteAccountInfo(row);
-							}}
-						/>
-					))}
-				</div>
 			</div>
-			{paginationRow}
+			{content}
+
 			<DeleteAccountDialog
 				visible={dialogVisible}
 				onClose={(): void => setDialogVisible(false)}

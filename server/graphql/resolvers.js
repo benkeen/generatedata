@@ -19,7 +19,7 @@ const resolvers = {
 				};
 			}
 
-			const { limit, offset, sortCol, sortDir } = args;
+			const { limit, offset, sortCol, sortDir, filterStr } = args;
 			const { accountId } = user;
 
 			const sortColMap = {
@@ -29,10 +29,18 @@ const resolvers = {
 				expiryDate: 'date_expires'
 			};
 
+			let filterClause = '';
+			if (filterStr) {
+				const fields = ['first_name', 'last_name', 'email'];
+				const cleanFilter = filterStr.replace(/[^a-zA-Z'\s]/, '');
+				const clauses = fields.map((field) => `${field} LIKE '%${cleanFilter}%'`);
+				filterClause = `AND (${clauses.join(' OR ')})`;
+			}
+
 			const [results] = await db.sequelize.query(`
 				SELECT *
 				FROM accounts
-				WHERE created_by = ${accountId}
+				WHERE created_by = ${accountId} ${filterClause}
 				ORDER BY ${sortColMap[sortCol]} ${sortDir}
 				LIMIT ${limit}
 				OFFSET ${offset} 
@@ -41,7 +49,7 @@ const resolvers = {
 			const [totalCountQuery] = await db.sequelize.query(`
 				SELECT count(*) as c
 				FROM accounts
-				WHERE created_by = ${accountId} 
+				WHERE created_by = ${accountId} ${filterClause}
 			`, { raw: true, type: db.sequelize.QueryTypes.SELECT });
 
 			return {
