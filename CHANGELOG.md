@@ -8,6 +8,9 @@ is functional, user accounts are setup, email notification - all done! We'll be 
 allowing registered users on the current site to start using it. 
 
  
+- `4.0.0-beta-20210826`:
+    - account searching
+    - misc bug fixes
 - `4.0.0-beta-20210809`:
     - back in the game! Returning to work on generatedata - misc updates. 
     - Last logged in col on accounts page
