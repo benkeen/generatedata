@@ -32,7 +32,7 @@ const resolvers = {
 			let filterClause = '';
 			if (filterStr) {
 				const fields = ['first_name', 'last_name', 'email'];
-				const cleanFilter = filterStr.replace(/[^a-zA-Z'\s]/, '');
+				const cleanFilter = filterStr.replace(/[^a-zA-Z'\s]/g, '').replace(/'/, '\\\'');
 				const clauses = fields.map((field) => `${field} LIKE '%${cleanFilter}%'`);
 				filterClause = `AND (${clauses.join(' OR ')})`;
 			}
