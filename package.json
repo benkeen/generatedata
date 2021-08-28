@@ -1,7 +1,7 @@
 {
   "name": "generatedata",
-  "version": "4.0.0-beta-20210826",
-  "description": "Free, MIT-licensed, random data generator for testing software.",
+  "version": "4.0.0-beta-20210827",
+  "description": "Free, MIT-licensed tool for generating random test data. Have at it.",
   "main": "index.js",
   "directories": {
     "test": "tests"
