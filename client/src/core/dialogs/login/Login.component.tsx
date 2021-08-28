@@ -134,6 +134,13 @@ const LoginDialog = ({
 		}
 	};
 
+	const onPastePassword = (e: any): void => {
+		const pwd = (e.clipboardData || window.clipboardData).getData('text');
+		if (!password && pwd) {
+			setPassword(pwd.trim());
+		}
+	};
+
 	return (
 		<>
 			<Dialog onClose={onClose} open={visible} className={styles.loginDialog} onExited={onExited} onEntered={onEntered}>
@@ -170,6 +177,7 @@ const LoginDialog = ({
 											style={{ width: '100%' }}
 											disabled={dialogProcessing}
 											throttle={throttle}
+											onPaste={onPastePassword}
 										/>
 									</div>
 								</div>
