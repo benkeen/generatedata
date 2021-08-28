@@ -8,7 +8,7 @@ import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/d
 import styles from './Currency.scss';
 
 export const initialState = {
-	example: '0.00|100.00|$|prefix',
+	example: '0.00|100.00|$|prefix|true|,|.',
 	from: '0.00',
 	to: '100.00',
 	currencySymbol: '$',
