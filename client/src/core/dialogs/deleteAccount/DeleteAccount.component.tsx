@@ -13,7 +13,9 @@ export type DeleteAccountDialogProps = {
 };
 
 const DeleteAccountDialog = ({ visible, name, onClose, onDelete, onExited, i18n }: DeleteAccountDialogProps): JSX.Element => (
-	<Dialog onClose={onClose} open={visible} onExited={onExited}>
+	<Dialog onClose={onClose} open={visible} TransitionProps={{
+		onExited
+	}}>
 		<div style={{ width: 420 }}>
 			<DialogTitle onClose={onClose}>{i18n.deleteAccount}</DialogTitle>
 			<DialogContent dividers className={styles.contentPanel}>
