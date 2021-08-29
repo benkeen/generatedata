@@ -10,13 +10,14 @@ import styles from './PasswordReset.scss';
 export type PasswordResetDialogProps = {
 	visible: boolean;
 	dialogProcessing: boolean;
+	defaultEmail: string;
 	onClose: () => void;
 	onSubmit: (email: string, onError: Function) => void;
 	showLoginDialog: () => void;
 	i18n: any;
 };
 
-const PasswordResetDialog = ({ visible, onClose, dialogProcessing, onSubmit, showLoginDialog, i18n }: PasswordResetDialogProps): JSX.Element => {
+const PasswordResetDialog = ({ visible, onClose, dialogProcessing, onSubmit, showLoginDialog, defaultEmail, i18n }: PasswordResetDialogProps): JSX.Element => {
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');
@@ -27,6 +28,10 @@ const PasswordResetDialog = ({ visible, onClose, dialogProcessing, onSubmit, sho
 			return;
 		}
 	}, [visible]);
+
+	useEffect(() => {
+		setEmail(defaultEmail);
+	}, [defaultEmail]);
 
 	const onLogin = (e: any): void => {
 		e.preventDefault();
@@ -82,7 +87,7 @@ const PasswordResetDialog = ({ visible, onClose, dialogProcessing, onSubmit, sho
 						</div>
 					</DialogContent>
 					<DialogActions className={styles.actionsRow}>
-						<div className={styles.loginLink} onClick={showLoginDialog}>
+						<div className={styles.loginLink} onClick={(): void => showLoginDialog(email)}>
 							<div>
 								<ArrowLeftIcon />
 								{i18n.backToLogin}

@@ -60,10 +60,11 @@ export const setLoginDialogVisibility = (visible: boolean, email = ''): GDAction
 });
 
 export const SET_PASSWORD_RESET_DIALOG_VISIBILITY = 'SET_PASSWORD_RESET_DIALOG_VISIBILITY';
-export const setPasswordResetDialogVisibility = (visible: boolean): GDAction => ({
+export const setPasswordResetDialogVisibility = (visible: boolean, email = ''): GDAction => ({
 	type: SET_PASSWORD_RESET_DIALOG_VISIBILITY,
 	payload: {
-		visible
+		visible,
+		email
 	}
 });
 

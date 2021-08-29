@@ -18,7 +18,7 @@ export type LoginDialogProps = {
 	onClose: () => void;
 	onExited: () => void;
 	onSubmit: (email: string, password: string, history: any, onError: Function) => void;
-	showPasswordResetDialog: () => void;
+	showPasswordResetDialog: (email: string) => void;
 	i18n: any;
 	throttle?: boolean;
 };
@@ -77,9 +77,9 @@ const LoginDialog = ({
 					message: i18n.userNotFound
 				});
 
-				if (textFieldRef && textFieldRef.current) {
-					textFieldRef.current.select();
-					textFieldRef.current.focus();
+				if (passwordFieldRef && passwordFieldRef.current) {
+					passwordFieldRef.current.select();
+					passwordFieldRef.current.focus();
 				}
 			});
 		}
@@ -185,7 +185,7 @@ const LoginDialog = ({
 							</div>
 						</DialogContent>
 						<DialogActions className={styles.actionsRow}>
-							<div className={styles.forgotPasswordLink} onClick={showPasswordResetDialog}>
+							<div className={styles.forgotPasswordLink} onClick={(): void => showPasswordResetDialog(email)}>
 								{i18n.forgottenYourPasswordQ}
 							</div>
 							<Button type="submit" color="primary" variant="outlined" disabled={dialogProcessing}>

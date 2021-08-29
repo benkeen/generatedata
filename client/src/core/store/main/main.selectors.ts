@@ -14,3 +14,4 @@ export const getCurrentPage = (state: Store): string => state.main.currentPage;
 export const tourIntroDialogVisible = (state: Store): boolean => state.main.tourIntroDialogVisible;
 export const isTourBundleLoaded = (state: Store): boolean => state.main.tourBundleLoaded;
 export const getLoginDefaultEmail = (state: Store): string => state.main.loginDialogDefaultEmail;
+export const getPasswordResetDialogDefaultEmail = (state: Store): string => state.main.passwordResetDialogDefaultEmail;

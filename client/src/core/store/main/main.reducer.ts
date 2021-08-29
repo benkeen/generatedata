@@ -13,6 +13,7 @@ export type MainState = {
 	showLoginDialog: boolean;
 	loginDialogDefaultEmail: string;
 	showPasswordResetDialog: boolean;
+	passwordResetDialogDefaultEmail: string;
 	isLoggedIn: boolean;
 	authToken: string;
 	isOnloadAuthDetermined: boolean;
@@ -31,6 +32,7 @@ export const initialState: MainState = {
 	showLoginDialog: false,
 	loginDialogDefaultEmail: '',
 	showPasswordResetDialog: false,
+	passwordResetDialogDefaultEmail: '',
 	isLoggedIn: false,
 	authToken: '',
 	isOnloadAuthDetermined: false,
@@ -65,6 +67,9 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.SET_PASSWORD_RESET_DIALOG_VISIBILITY:
 			draft.showPasswordResetDialog = action.payload.visible;
+			if (action.payload.email) {
+				draft.passwordResetDialogDefaultEmail = action.payload.email;
+			}
 			break;
 
 		case actions.AUTHENTICATED:

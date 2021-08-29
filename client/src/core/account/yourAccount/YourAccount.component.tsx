@@ -37,7 +37,7 @@ const YourAccount = ({
 			<div className={styles.rightBlock}>
 				<label>{i18n.accountExpiryDate}</label>
 				<div>
-					{formatUnixTime(parseInt(expiryDate), C.DATE_FORMAT)}
+					{formatUnixTime(parseInt(expiryDate)/1000, C.DATE_FORMAT)}
 				</div>
 			</div>
 		);
