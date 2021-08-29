@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Select, { ControlProps, OptionTypeBase, IndicatorProps } from 'react-select';
+import Select from 'react-select';
 import { getStrings } from '~utils/langUtils';
 import C from '~core/constants';
 import * as styles from './Dropdown.scss';
@@ -10,16 +10,16 @@ export type DropdownOption = {
 };
 
 const selectStyles = {
-	control: (provided: ControlProps<OptionTypeBase>): any => ({
+	control: (provided: any): any => ({
 		...provided,
 		minHeight: 20,
 		boxShadow: 'none'
 	}),
-	indicatorsContainer: (provided: IndicatorProps<OptionTypeBase>): any => ({
+	indicatorsContainer: (provided: any): any => ({
 		...provided,
 		height: 28
 	}),
-	indicatorContainer: (provided: IndicatorProps<OptionTypeBase>): any => ({
+	indicatorContainer: (provided: any): any => ({
 		...provided,
 		padding: 5
 	}),

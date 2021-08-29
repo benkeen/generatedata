@@ -143,7 +143,14 @@ const LoginDialog = ({
 
 	return (
 		<>
-			<Dialog onClose={onClose} open={visible} className={styles.loginDialog} onExited={onExited} onEntered={onEntered}>
+			<Dialog
+				onClose={onClose}
+				open={visible}
+				className={styles.loginDialog}
+				TransitionProps={{
+					onEntered,
+					onExited
+				}}>
 				<form onSubmit={onLogin}>
 					<div style={{ width }}>
 						<DialogTitle onClose={onClose}>{i18n.login}</DialogTitle>
@@ -178,6 +185,7 @@ const LoginDialog = ({
 											disabled={dialogProcessing}
 											throttle={throttle}
 											onPaste={onPastePassword}
+											autoComplete="false"
 										/>
 									</div>
 								</div>
