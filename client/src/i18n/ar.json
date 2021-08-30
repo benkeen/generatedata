@@ -329,5 +329,17 @@
 	"yes": "نعم",
 	"yourAccount": "حسابك",
 	"yourAccountUpdated": "تم تحديث حسابك",
-	"yourUserAccount": "حساب المستخدم الخاص بك"
+	"yourUserAccount": "حساب المستخدم الخاص بك",
+
+  "userAccountNotFound": "عذرا ، لم نتمكن من العثور على حسابك.",
+  "accountExpiryDate": "تاريخ انتهاء الحساب"
+
 }
+
+
+
+
+
+
+
+

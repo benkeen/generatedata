@@ -329,5 +329,9 @@
 	"yes": "ஆம்",
 	"yourAccount": "உங்கள் கணக்கு",
 	"yourAccountUpdated": "உங்கள் கணக்கு புதுப்பிக்கப்பட்டுள்ளன.",
-	"yourUserAccount": "உங்கள் பயனர் கணக்கு"
+	"yourUserAccount": "உங்கள் பயனர் கணக்கு",
+
+  "userAccountNotFound": "Sorry, we couldn't find your account.",
+  "accountExpiryDate": "Account expiry date"
+
 }

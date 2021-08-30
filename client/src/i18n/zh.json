@@ -329,5 +329,9 @@
 	"yes": "确认",
 	"yourAccount": "你的账号",
 	"yourAccountUpdated": "你的账户已更新.",
-	"yourUserAccount": "您的用户帐号"
+	"yourUserAccount": "您的用户帐号",
+
+  "userAccountNotFound": "Sorry, we couldn't find your account.",
+  "accountExpiryDate": "Account expiry date"
+
 }

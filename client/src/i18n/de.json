@@ -329,5 +329,26 @@
 	"yes": "Ja",
 	"yourAccount": "Ihr Konto",
 	"yourAccountUpdated": "Ihr Benutzerkonto wurde aktualisiert.",
-	"yourUserAccount": "Ihr Benutzerkonto"
+	"yourUserAccount": "Ihr Benutzerkonto",
+
+  "userAccountNotFound": "Sorry, we couldn't find your account.",
+  "accountExpiryDate": "Account expiry date"
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

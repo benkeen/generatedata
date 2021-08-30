@@ -329,5 +329,9 @@
 	"yes": "Sí",
 	"yourAccount": "Tu cuenta",
 	"yourAccountUpdated": "Tu cuenta ha sido actualizada.",
-	"yourUserAccount": "Su cuenta de usuario"
+	"yourUserAccount": "Su cuenta de usuario",
+
+  "userAccountNotFound": "Sorry, we couldn't find your account.",
+  "accountExpiryDate": "Account expiry date"
+
 }

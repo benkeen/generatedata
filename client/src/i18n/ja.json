@@ -329,5 +329,9 @@
 	"yes": "Yes",
 	"yourAccount": "あなたのアカウント",
 	"yourAccountUpdated": "アカウントが更新されました。",
-	"yourUserAccount": "あなたのユーザーアカウント"
+	"yourUserAccount": "あなたのユーザーアカウント",
+
+  "userAccountNotFound": "Sorry, we couldn't find your account.",
+  "accountExpiryDate": "Account expiry date"
+
 }
