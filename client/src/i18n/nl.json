@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "Er is een gebruikersaccount voor u aangemaakt.",
 	"accountDeleted": "Het account is verwijderd.",
 	"accountDisabled": "Account ongebruikelijk gemaakt",
+	"accountExpiryDate": "Vervaldatum account",
 	"accountInfo": "Gebruikersgegevens",
 	"accountSettings": "Gebruikersinstellingen",
 	"accountType": "Gebruikerstype",
@@ -310,6 +311,7 @@
 	"updateAccount": "Update gebruiker",
 	"user": "Gebruiker",
 	"userAccount": "Gebruikersaccount",
+	"userAccountNotFound": "Sorry, we konden je account niet vinden.",
 	"userAccountUpdated": "Het gebruikersaccount is bijgewerkt.",
 	"userAccounts": "Gebruikersaccounts",
 	"userNotFound": "Sorry, we kunnen u niet identificeren.",
@@ -329,9 +331,5 @@
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
 	"yourAccountUpdated": "Uw gebruikersaccount is bijgewerkt.",
-	"yourUserAccount": "Uw gebruikersaccount",
-
-  "userAccountNotFound": "Sorry, we couldn't find your account.",
-  "accountExpiryDate": "Account expiry date"
-
+	"yourUserAccount": "Uw gebruikersaccount"
 }

@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "Un compte a été créé avec succès.",
 	"accountDeleted": "Le compte a été supprimé.",
 	"accountDisabled": "Compte désactivé",
+	"accountExpiryDate": "Date d'expiration du compte",
 	"accountInfo": "Informations sur le compte",
 	"accountSettings": "Paramètres du compte",
 	"accountType": "Type de compte",
@@ -310,6 +311,7 @@
 	"updateAccount": "Mise à jour du compte",
 	"user": "Utilisateur",
 	"userAccount": "Compte utilisateur",
+	"userAccountNotFound": "Désolé, nous n'avons pas pu trouver votre compte.",
 	"userAccountUpdated": "Le compte utilisateur a été mis à jour.",
 	"userAccounts": "Comptes utilisateurs",
 	"userNotFound": "Désolé, nous n'avons pas pu vous identifier. Veuillez vérifier vos identifiants.",
@@ -329,9 +331,5 @@
 	"yes": "Oui",
 	"yourAccount": "Votre compte",
 	"yourAccountUpdated": "Votre compte a été mis à jour.",
-	"yourUserAccount": "Su cuenta de usuario",
-
-  "userAccountNotFound": "Sorry, we couldn't find your account.",
-  "accountExpiryDate": "Account expiry date"
-
+	"yourUserAccount": "Su cuenta de usuario"
 }

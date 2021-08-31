@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "உங்களுக்காக ஒரு கணக்கு உருவாக்கப்பட்டது.",
 	"accountDeleted": "கணக்கு நீக்கப்பட்டது.",
 	"accountDisabled": "கணக்கு முடக்கப்பட்டது",
+	"accountExpiryDate": "கணக்கு காலாவதி தேதி",
 	"accountInfo": "கணக்கு தகவல்",
 	"accountSettings": "கணக்கு அமைப்புகள்",
 	"accountType": "கணக்கு வகை",
@@ -59,7 +60,7 @@
 	"countrySpecific": "நாடு சார்ந்த",
 	"cpuMeltinglyFast": "CPU- உருகும் வேகமாக",
 	"createAccount": "உங்கள் கணக்கை துவங்குங்கள்",
-	"currentPassword": "Current password",
+	"currentPassword": "தற்போதைய கடவுச்சொல்",
 	"currentVersion": "தற்போதைய பதிப்பு திருத்தப்பட்டது",
 	"dataGenerated": "தரவு உருவாக்கப்பட்டது.",
 	"dataSet": "தரவு தொகுப்பு",
@@ -310,13 +311,14 @@
 	"updateAccount": "கணக்கைப் புதுப்பிக்கவும்",
 	"user": "பயனர்",
 	"userAccount": "பயனர் கணக்கு",
+	"userAccountNotFound": "மன்னிக்கவும், உங்கள் கணக்கை எங்களால் கண்டுபிடிக்க முடியவில்லை.",
 	"userAccountUpdated": "பயனர் கணக்கு புதுப்பிக்கப்பட்டது.",
 	"userAccounts": "பயனர் கணக்குகள்",
 	"userNotFound": "மன்னிக்கவும், உங்களை அடையாளம் காண முடியவில்லை. உங்கள் சான்றுகளை சரிபார்க்கவும்.",
 	"validationAccountAlreadyExists": "மன்னிக்கவும், அந்த மின்னஞ்சல் முகவரியுடன் ஒரு கணக்கு ஏற்கனவே உள்ளது.",
-	"validationDifferentNewPasswords": "Please make sure your new passwords match",
+	"validationDifferentNewPasswords": "தயவுசெய்து உங்கள் புதிய கடவுச்சொற்கள் பொருந்துகின்றனவா என்பதை உறுதிப்படுத்தவும்",
 	"validationInvalidEmail": "செல்லுபடியாகும் மின்னஞ்சல் முகவரியை உள்ளிடவும்.",
-	"validationNoCurrentPassword": "Please enter your current password",
+	"validationNoCurrentPassword": "தயவுசெய்து உங்கள் தற்போதைய கடவுச்சொல்லை உள்ளிடவும்",
 	"validationNoEmail": "உங்கள் தரவுத்தள பெயரை உள்ளிடவும்.",
 	"validationNoFirstName": "உங்கள் முதல் பெயரை உள்ளிடவும்.",
 	"validationNoLastName": "உங்கள் கடைசி பெயரை உள்ளிடவும்.",
@@ -329,9 +331,5 @@
 	"yes": "ஆம்",
 	"yourAccount": "உங்கள் கணக்கு",
 	"yourAccountUpdated": "உங்கள் கணக்கு புதுப்பிக்கப்பட்டுள்ளன.",
-	"yourUserAccount": "உங்கள் பயனர் கணக்கு",
-
-  "userAccountNotFound": "Sorry, we couldn't find your account.",
-  "accountExpiryDate": "Account expiry date"
-
+	"yourUserAccount": "உங்கள் பயனர் கணக்கு"
 }

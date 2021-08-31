@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "该账户已创建.",
 	"accountDeleted": "该帐户已被删除。",
 	"accountDisabled": "帐户已禁用",
+	"accountExpiryDate": "账户到期日",
 	"accountInfo": "账户信息",
 	"accountSettings": "账户设置",
 	"accountType": "账户类型",
@@ -310,6 +311,7 @@
 	"updateAccount": "更新账号",
 	"user": "用户",
 	"userAccount": "用户账户",
+	"userAccountNotFound": "抱歉，我们找不到您的帐户。",
 	"userAccountUpdated": "用户帐户已更新。",
 	"userAccounts": "用户账户",
 	"userNotFound": "抱歉，我们无法识别您。 请检查您的凭据。",
@@ -329,9 +331,5 @@
 	"yes": "确认",
 	"yourAccount": "你的账号",
 	"yourAccountUpdated": "你的账户已更新.",
-	"yourUserAccount": "您的用户帐号",
-
-  "userAccountNotFound": "Sorry, we couldn't find your account.",
-  "accountExpiryDate": "Account expiry date"
-
+	"yourUserAccount": "您的用户帐号"
 }

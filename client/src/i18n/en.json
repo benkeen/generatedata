@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "An account has been created for you.",
 	"accountDeleted": "The account has been deleted.",
 	"accountDisabled": "Account disabled",
+	"accountExpiryDate": "Account expiry date",
 	"accountInfo": "Account Info",
 	"accountSettings": "Account Settings",
 	"accountType": "Account type",
@@ -310,6 +311,7 @@
 	"updateAccount": "Update Account",
 	"user": "User",
 	"userAccount": "User Account",
+	"userAccountNotFound": "Sorry, we couldn't find your account.",
 	"userAccountUpdated": "The user account has been updated.",
 	"userAccounts": "User Accounts",
 	"userNotFound": "Sorry, we were unable to identify you. Please check your credentials.",
@@ -329,19 +331,5 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourAccountUpdated": "Your account has been updated.",
-	"yourUserAccount": "Your User Account",
-
-  "userAccountNotFound": "Sorry, we couldn't find your account.",
-  "accountExpiryDate": "Account expiry date"
+	"yourUserAccount": "Your User Account"
 }
-
-
-
-
-
-
-
-
-
-
-

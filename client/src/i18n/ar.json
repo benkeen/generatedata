@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "تم إنشاء حساب لك.",
 	"accountDeleted": "تم حذف الحساب.",
 	"accountDisabled": "الحساب معطل",
+	"accountExpiryDate": "تاريخ انتهاء الحساب",
 	"accountInfo": "معلومات الحساب",
 	"accountSettings": "إعدادات الحساب",
 	"accountType": "نوع الحساب",
@@ -310,6 +311,7 @@
 	"updateAccount": "تحديث الحساب",
 	"user": "المستخدم",
 	"userAccount": "حساب المستخدم",
+	"userAccountNotFound": "عذرا ، لم نتمكن من العثور على حسابك.",
 	"userAccountUpdated": "تم تحديث حساب المستخدم.",
 	"userAccounts": "حسابات المستخدمين",
 	"userNotFound": "عذرا ، لم نتمكن من التعرف عليك. يرجى التحقق من بيانات الاعتماد الخاصة بك.",
@@ -329,17 +331,5 @@
 	"yes": "نعم",
 	"yourAccount": "حسابك",
 	"yourAccountUpdated": "تم تحديث حسابك",
-	"yourUserAccount": "حساب المستخدم الخاص بك",
-
-  "userAccountNotFound": "عذرا ، لم نتمكن من العثور على حسابك.",
-  "accountExpiryDate": "تاريخ انتهاء الحساب"
-
+	"yourUserAccount": "حساب المستخدم الخاص بك"
 }
-
-
-
-
-
-
-
-

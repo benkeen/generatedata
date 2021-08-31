@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "アカウントが作成されました。",
 	"accountDeleted": "アカウントが削除されました。",
 	"accountDisabled": "アカウントが無効になっています",
+	"accountExpiryDate": "アカウントの有効期限",
 	"accountInfo": "アカウント情報",
 	"accountSettings": "アカウント設定",
 	"accountType": "口座の種類",
@@ -310,6 +311,7 @@
 	"updateAccount": "アカウントを更新する",
 	"user": "ユーザー",
 	"userAccount": "ユーザーアカウント",
+	"userAccountNotFound": "申し訳ありませんが、アカウントが見つかりませんでした。",
 	"userAccountUpdated": "ユーザーアカウントが更新されました。",
 	"userAccounts": "ユーザーアカウント",
 	"userNotFound": "申し訳ありませんが、お客様を特定できませんでした。 資格情報を確認してください。",
@@ -329,9 +331,5 @@
 	"yes": "Yes",
 	"yourAccount": "あなたのアカウント",
 	"yourAccountUpdated": "アカウントが更新されました。",
-	"yourUserAccount": "あなたのユーザーアカウント",
-
-  "userAccountNotFound": "Sorry, we couldn't find your account.",
-  "accountExpiryDate": "Account expiry date"
-
+	"yourUserAccount": "あなたのユーザーアカウント"
 }
