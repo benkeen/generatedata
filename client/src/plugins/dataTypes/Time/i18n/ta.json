@@ -1,0 +1,63 @@
+{
+  "NAME": "தேதி",
+  "DESC": "தனிப்பயன் வடிவமைக்கப்பட்ட தேதி / தேதிநேரம் / இரண்டு தேதிகளுக்கு இடையில் நேரத்தை உருவாக்குகிறது.",
+  "DEFAULT_TITLE": "தேதி",
+  "day": "நாள்",
+  "description": "விளக்கம்",
+  "example": "உதாரணமாக",
+  "formatCode": "வடிவமைப்பு குறியீடு:",
+  "from": "இருந்து:",
+  "dFormat": "முன்னணி பூஜ்ஜியங்கள் இல்லாமல் மாதத்தின் நாள்",
+  "dFormatExample": "1 முதல் 31 வரை",
+  "doFormat": "பின்னொட்டுடன் மாதத்தின் நாள்",
+  "doFormatExample": "1st, 2nd, 3rd",
+  "ddFormat": "முன்னணி பூஜ்ஜியங்களுடன் மாதத்தின் நாள்",
+  "ddFormatExample": "01 முதல் 31 வரை",
+  "EFormat": "வாரத்தின் நாள்",
+  "EFormatExample": "Mon, Tue, Wed",
+  "EEEEFormat": "வாரத்தின் நாள், நிறைந்தது",
+  "EEEEFormatExample": "Monday, Sunday",
+  "EEEEEFormat": "வாரத்தின் நாள், ஒற்றை கரி",
+  "EEEEEFormatExample": "M, T, W, T, F, S, S",
+  "EEEEEEFormat": "வாரத்தின் நாள், இரண்டு எழுத்துக்கள்",
+  "EEEEEEFormatExample": "Mo, Tu, We, Th, Fr, Su, Sa",
+  "DFormat": "ஆண்டின் நாள்",
+  "DFormatExample": "1, 2, ... 365",
+  "lFormat": "ஆண்டின் ஐஎஸ்ஓ வாரம்",
+  "lFormatExample": "1, 2, ... 53",
+  "MFormat": "ஆண்டு மாதம்",
+  "MFormatExample": "1, 2, ... 12",
+  "MoFormat": "ஆண்டின் பூஜ்ஜிய-திணிக்கப்பட்ட மாதம்",
+  "MoFormatExample": "01, 02, ... 12",
+  "MMMFormat": "ஆண்டு மூன்று கடித மாதம்",
+  "MMMFormatExample": "Jan, Feb, ... Dec",
+  "MMMMFormat": "ஆண்டின் முழு மாதம்",
+  "MMMMFormatExample": "January, ... December",
+  "YFormat": "ஆண்டு",
+  "YFormatExample": "2020, 2021",
+  "helpIntro": "இந்த தரவு வகை தோராயமாக இரண்டு தேதிகளுக்கு இடையில் வடிவமைக்கப்பட்ட தேதியை உருவாக்குகிறது. சாத்தியமான வடிவமைப்பு விதிகளின் பட்டியலுக்கு கீழே உள்ள அட்டவணையைப் பார்க்கவும். இவை <a href=\"https://date-fns.org/v2.16.1/docs/format\" target=\"_blank\" rel=\"noopener noreferrer\">date-fns தேதி வடிவமைப்பு விருப்பங்கள்</a> . நிலையான தேதி வடிவங்களிலிருந்து தேர்ந்தெடுக்க எடுத்துக்காட்டு கீழ்தோன்றலைப் பயன்படுத்தவும்.",
+  "month": "மாதம்",
+  "to": "க்கு:",
+  "week": "வாரம்",
+  "year": "ஆண்டு",
+  "endDateEarlierThanStartDate": "இறுதி தேதி தொடக்க தேதியை விட பிற்பகுதியில் இருக்க வேண்டும்",
+  "dateFormat": "தேதி வடிவம்"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

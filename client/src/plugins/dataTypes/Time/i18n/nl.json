@@ -1,0 +1,64 @@
+{
+  "NAME": "Datum",
+  "DESC": "Genereert een aangepaste opgemaakte datum / datetime / tijd tussen twee datums.",
+  "DEFAULT_TITLE": "datum",
+  "day": "Dag",
+  "description": "Omschrijving",
+  "example": "Voorbeeld",
+  "formatCode": "Formaatcode:",
+  "from": "Van:",
+  "dFormat": "Dag van de maand zonder voorloopnullen",
+  "dFormatExample": "1 tot 31",
+  "doFormat": "Dag van de maand met achtervoegsel",
+  "doFormatExample": "1st, 2nd, 3rd",
+  "ddFormat": "Dag van de maand met voorloopnullen",
+  "ddFormatExample": "01 tot en met 31",
+  "EFormat": "Dag van de week",
+  "EFormatExample": "Mon, Tue, Wed",
+  "EEEEFormat": "Dag van de week, vol",
+  "EEEEFormatExample": "Monday, Sunday",
+  "EEEEEFormat": "Dag van de week, één teken",
+  "EEEEEFormatExample": "M, T, W, T, F, S, S",
+  "EEEEEEFormat": "Dag van de week, twee tekens",
+  "EEEEEEFormatExample": "Mo, Tu, We, Th, Fr, Su, Sa",
+  "DFormat": "De dag van het jaar",
+  "DFormatExample": "1, 2, ... 365",
+  "lFormat": "ISO week van het jaar",
+  "lFormatExample": "1, 2, ... 53",
+  "MFormat": "Maand van het jaar",
+  "MFormatExample": "1, 2, ... 12",
+  "MoFormat": "Nul-gewatteerde maand van het jaar",
+  "MoFormatExample": "01, 02, ... 12",
+  "MMMFormat": "Maand van het jaar met drie letters",
+  "MMMFormatExample": "Jan, Feb, ... Dec",
+  "MMMMFormat": "Volledige maand van het jaar",
+  "MMMMFormatExample": "January, ... December",
+  "YFormat": "Het jaar",
+  "YFormatExample": "2020, 2021",
+  "helpIntro": "Dit gegevenstype genereert willekeurig een opgemaakte datum tussen twee datums. Zie de onderstaande tabel voor een lijst met bruikbare opmaakregels. Deze zijn afkomstig uit de <a href=\"https://date-fns.org/v2.16.1/docs/format\" target=\"_blank\" rel=\"noopener noreferrer\">date-fns datumopmaakopties</a>. Gebruik het vervolgkeuzemenu met voorbeelden om uit de standaard datumnotaties te kiezen.",
+  "month": "Maand",
+  "to": "Naar:",
+  "week": "Week",
+  "year": "Jaar",
+  "endDateEarlierThanStartDate": "De einddatum moet later zijn dan de startdatum",
+  "dateFormat": "Date format"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

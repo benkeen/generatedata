@@ -34,6 +34,7 @@ import SIRET from './src/plugins/dataTypes/SIRET/config';
 import StreetAddress from './src/plugins/dataTypes/StreetAddress/config';
 import TextFixed from './src/plugins/dataTypes/TextFixed/config';
 import TextRandom from './src/plugins/dataTypes/TextRandom/config';
+import Time from './src/plugins/dataTypes/Time/config';
 import Track1 from './src/plugins/dataTypes/Track1/config';
 import Track2 from './src/plugins/dataTypes/Track2/config';
 
@@ -69,6 +70,7 @@ export const dataTypes = {
 	StreetAddress,
 	TextFixed,
 	TextRandom,
+	Time,
 	Track1,
 	Track2
 };

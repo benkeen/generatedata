@@ -84,5 +84,6 @@ export default {
 	],
 
 	DATE_FORMAT: 'MMM d, y',
-	DATETIME_FORMAT: 'MMM d, y h:mm a'
+	DATETIME_FORMAT: 'MMM d, y h:mm a',
+	TIME_FORMAT: 'h:mm a'
 };

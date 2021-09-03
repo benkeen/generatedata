@@ -2,7 +2,7 @@ import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
 	fieldGroup: 'humanData',
-	fieldGroupOrder: 50
+	fieldGroupOrder: 60
 };
 
 export default definition;

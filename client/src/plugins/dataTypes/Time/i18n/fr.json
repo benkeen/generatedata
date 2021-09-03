@@ -1,0 +1,60 @@
+{
+  "NAME": "Date",
+  "DESC": "Génère une date / date / heure / heure formatée personnalisée entre deux dates.",
+  "DEFAULT_TITLE": "date",
+  "day": "journée",
+  "description": "La description",
+  "example": "Example",
+  "formatCode": "Code de format:",
+  "from": "De:",
+  "dFormat": "Jour du mois sans zéros non significatifs",
+  "dFormatExample": "1 à 31",
+  "doFormat": "Jour du mois avec suffixe",
+  "doFormatExample": "1st, 2nd, 3rd",
+  "ddFormat": "Jour du mois avec zéros non significatifs",
+  "ddFormatExample": "01 à 31",
+  "EFormat": "Jour de la semaine",
+  "EFormatExample": "Mon, Tue, Wed",
+  "EEEEFormat": "Jour de la semaine, plein",
+  "EEEEFormatExample": "Monday, Sunday",
+  "EEEEEFormat": "Jour de la semaine, un seul caractère",
+  "EEEEEFormatExample": "M, T, W, T, F, S, S",
+  "EEEEEEFormat": "Jour de la semaine, deux caractères",
+  "EEEEEEFormatExample": "Mo, Tu, We, Th, Fr, Su, Sa",
+  "DFormat": "Le jour de l'année",
+  "DFormatExample": "1, 2, ... 365",
+  "lFormat": "Semaine ISO de l'année",
+  "lFormatExample": "1, 2, ... 53",
+  "MFormat": "Mois de l'année",
+  "MFormatExample": "1, 2, ... 12",
+  "MoFormat": "Mois de l'année sans rembourrage",
+  "MoFormatExample": "01, 02, ... 12",
+  "MMMFormat": "Mois de l'année à trois lettres",
+  "MMMFormatExample": "Jan, Feb, ... Dec",
+  "MMMMFormat": "Mois complet de l'année",
+  "MMMMFormatExample": "January, ... December",
+  "YFormat": "L'année",
+  "YFormatExample": "2020, 2021",
+  "helpIntro": "Ce type de données génère de manière aléatoire une date formatée entre deux dates. Consultez le tableau ci-dessous pour une liste de règles de mise en forme viables. Celles-ci proviennent des <a href=\"https://date-fns.org/v2.16.1/docs/format\" target=\"_blank\" rel=\"noopener noreferrer\">options de mise en forme de date date-fns</a>. Utilisez l'exemple de liste déroulante pour sélectionner parmi les formats de date standard.",
+  "month": "Mois",
+  "to": "À:",
+  "week": "La semaine",
+  "year": "An",
+  "endDateEarlierThanStartDate": "La date de fin doit être postérieure à la date de début",
+  "dateFormat": "Format de date"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+{
+  "NAME": "Time",
+  "DESC": "Generates a custom formatted time within a time range.",
+  "DEFAULT_TITLE": "date",
+  "day": "Day",
+  "description": "Description",
+  "example": "Example",
+  "formatCode": "Format code:",
+  "from": "From:",
+  "YFormat": "The year",
+  "YFormatExample": "2020, 2021",
+  "helpIntro": "This data type randomly generates a formatted date between two dates. See the table below for a list of viable formatting rules. These are taken from the <a href=\"https://date-fns.org/v2.16.1/docs/format\" target=\"_blank\" rel=\"noopener noreferrer\">date-fns date formatting options</a>. Use the example dropdown to select from standard date formats.",
+  "month": "Month",
+  "to": "To:",
+  "week": "Week",
+  "year": "Year",
+  "endDateEarlierThanStartDate": "The end date should be later than the start date",
+  "dateFormat": "Date format"
+}
