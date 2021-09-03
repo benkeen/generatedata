@@ -8,7 +8,15 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 		return { display: '' };
 	}
 	const time = utils.randomUtils.getRandomNum(fromTime, toTime);
-	return { display: format(fromUnixTime(time), displayFormat) };
+
+	let display = '';
+	try {
+		display = format(fromUnixTime(time), displayFormat);
+	} catch (e) {}
+
+	return {
+		display
+	};
 };
 
 let workerUtilsLoaded = false;

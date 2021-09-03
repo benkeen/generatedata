@@ -7,6 +7,7 @@ declare namespace TimeScssNamespace {
     dateBtn: string;
     dateField: string;
     dateRow: string;
+    field: string;
     formatCodeLabel: string;
     row: string;
   }

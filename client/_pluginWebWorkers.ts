@@ -35,7 +35,7 @@ export default {
 		"StreetAddress": "DT-StreetAddress.generator-562c2395fbd1e5308000516909d2a3b6.js",
 		"TextFixed": "DT-TextFixed.generator-dbdafbc3a1a8e232f2d1ae874ec8fca3.js",
 		"TextRandom": "DT-TextRandom.generator-8438585e9d15fcb44940588d3fb7ecde.js",
-		"Time": "DT-Time.generator-8a0ab45b352fa3f1fd4318d56fffde7c.js",
+		"Time": "DT-Time.generator-3b67cb8ba92c10f0964a5db5b6d5667a.js",
 		"Track1": "DT-Track1.generator-b7067c479e2399d9bb686057045e21e7.js",
 		"Track2": "DT-Track2.generator-d6f9fd9a693fdcb128fab9bbc7ddacdf.js"
 	},

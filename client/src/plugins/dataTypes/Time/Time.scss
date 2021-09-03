@@ -60,3 +60,12 @@
 .copy {
 	margin: 4px 0 0 4px;
 }
+
+.field {
+	margin: 3px;
+	width: 90px;
+
+	input:focus {
+		border: 0
+	}
+}
