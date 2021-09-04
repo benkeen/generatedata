@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { format, startOfDay, endOfDay, fromUnixTime } from 'date-fns';
+import { format, startOfDay, endOfDay, fromUnixTime, parse } from 'date-fns';
 import Dropdown from '~components/dropdown/Dropdown';
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 import TextField from '@material-ui/core/TextField';
@@ -25,9 +25,14 @@ export const initialState: DateState = {
 	format: 'h:mm a'
 };
 
-export const rowStateReducer = ({ fromTime, toTime, format }: DateState): Partial<DateState> => ({
-	fromTime, toTime, format
-});
+const SECS_IN_DAY = 86400;
+export const rowStateReducer = ({ fromTime, toTime, format }: DateState): Partial<DateState> => {
+	return {
+		fromTime,
+		toTime: fromTime > toTime ? toTime + SECS_IN_DAY : toTime,
+		format
+	};
+};
 
 export const getMetadata = (): DTMetadata => ({
 	general: {
@@ -95,23 +100,31 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 			<div className={styles.dateRow}>
 				<TextField
 					type="time"
-					defaultValue={format(fromUnixTime(data.fromTime), 'h:mm')}
+					defaultValue={format(fromUnixTime(data.fromTime), 'HH:mm')}
 					className={styles.field}
 					InputLabelProps={{
 						shrink: true
 					}}
 					inputProps={{ step: 60 }}
+					onChange={(e: any): void => {
+						const date = parse(e.target.value, 'HH:mm', new Date());
+						onChange('fromTime', parseInt(format(date, 't'), 10));
+					}}
 				/>
 				<ArrowRightAlt />
 				<ErrorTooltip title={toTimeError} arrow disableHoverListener={!toTimeError} disableFocusListener={!toTimeError}>
 					<TextField
 						type="time"
-						defaultValue={format(fromUnixTime(data.toTime), 'h:mm')}
+						defaultValue={format(fromUnixTime(data.toTime), 'H:mm')}
 						className={styles.field}
 						InputLabelProps={{
 							shrink: true
 						}}
 						inputProps={{ step: 60 }}
+						onChange={(e: any): void => {
+							const date = parse(e.target.value, 'HH:mm', new Date());
+							onChange('toTime', parseInt(format(date, 't'), 10));
+						}}
 					/>
 				</ErrorTooltip>
 			</div>
