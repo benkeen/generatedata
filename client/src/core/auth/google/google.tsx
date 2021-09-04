@@ -6,12 +6,16 @@ import { apolloClient } from '../../apolloClient';
 import store from '../../store';
 import {
 	onLoginSuccess,
-	setAuthenticationData
+	setAuthenticated,
+	setAuthenticationData,
+	setOnloadAuthDetermined
 } from '~store/main/main.actions';
 import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';
 import { addToast } from '~utils/generalUtils';
 import * as langUtils from '~utils/langUtils';
+
+// import { setAuthTokenRefresh } from '~utils/authUtils';
 
 const googleBtnId = 'google-signin-button';
 
@@ -43,8 +47,6 @@ export type AuthenticatedOptions = {
 	onPageRender?: boolean;
 };
 
-
-// called after we've confirmed the user is logged in with Google
 const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {}): Promise<any> => {
 	const i18n = langUtils.getStrings();
 
@@ -53,57 +55,63 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 		...opts
 	};
 
-	const isLoggedInWithUs = mainSelectors.isLoggedIn(store.getState());
+	const isLoggedIn = mainSelectors.isLoggedIn(store.getState());
 
-	// note we don't do anything if the user's already signed in. Any time a user is logged in, the core script will
-	// automatically ping for a new refreshToken on page load. If we're here and it WASN'T a page load, the user wouldn't
-	// have been authenticated
-	if (isLoggedInWithUs) {
-		return;
-	}
+	if (isLoggedIn) {
+		store.dispatch(setAuthenticated(true));
 
-	const googleToken = googleUser.getAuthResponse().id_token;
-	const response = await apolloClient.mutate({
-		mutation: gql`
-			mutation LoginWithGoogle($googleToken: String!) {
-				loginWithGoogle(googleToken: $googleToken) {
-					token
-					success
-					error
-					firstName
-					lastName
-					expiryDate
-					accountType
-					dateCreated
-					email
-					numRowsGenerated
-					profileImage
-					country
-					region
-				}
-			}
-		`,
-		variables: { googleToken }
-	});
+		// TODO
+		// setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
 
-	if (response.data.loginWithGoogle.success) {
-		const { tokenExpiry, refreshToken } = response.data.loginWithGoogle;
-
-		store.dispatch(setAuthenticationData({
-			...response.data.loginWithGoogle,
-			authMethod: AuthMethod.google
-		}));
-
-		Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
-		onLoginSuccess(null, options.onPageRender, store.dispatch);
-
+		store.dispatch(setOnloadAuthDetermined());
 	} else {
-		if (response.data.loginWithGoogle.error === 'noUserAccount') {
-			addToast({
-				type: 'error',
-				message: i18n.core.userAccountNotFound
-			});
-			logoutGoogle();
+		const googleToken = googleUser.getAuthResponse().id_token;
+		const response = await apolloClient.mutate({
+			mutation: gql`
+                mutation LoginWithGoogle($googleToken: String!) {
+                    loginWithGoogle(googleToken: $googleToken) {
+                        token
+                        success
+                        error
+                        firstName
+                        lastName
+                        expiryDate
+                        accountType
+                        dateCreated
+                        email
+                        numRowsGenerated
+                        profileImage
+                        country
+                        region
+                    }
+                }
+			`,
+			variables: { googleToken }
+		});
+
+		if (response.data.loginWithGoogle.success) {
+			const { tokenExpiry, refreshToken } = response.data.loginWithGoogle;
+
+			store.dispatch(setAuthenticationData({
+				...response.data.loginWithGoogle,
+				authMethod: AuthMethod.google
+			}));
+
+			Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
+
+			// TODO
+			// setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
+
+			onLoginSuccess(null, options.onPageRender, store.dispatch);
+
+		} else {
+			if (response.data.loginWithGoogle.error === 'noUserAccount') {
+				addToast({
+					type: 'error',
+					message: i18n.core.userAccountNotFound
+				});
+				logoutGoogle();
+			}
 		}
 	}
 };

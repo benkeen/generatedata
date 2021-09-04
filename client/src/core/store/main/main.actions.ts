@@ -284,9 +284,14 @@ export const updateRefreshToken = () => async (dispatch: Dispatch): Promise<any>
 	const success = response.data.refreshToken.success;
 	if (success) {
 		const { token, tokenExpiry, refreshToken } = response.data.refreshToken;
+
+		Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
+
 		setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
-		dispatch(setAuthenticationData(refreshToken));
+		dispatch(setAuthenticationData(response.data.refreshToken));
 		dispatch(setAuthToken(token));
+	} else {
+		console.log('token NOT refreshed -- user logged out');
 	}
 
 	dispatch(setAuthenticated(success));
