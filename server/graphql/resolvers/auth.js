@@ -124,11 +124,13 @@ const loginWithGoogle = async (root, { googleToken }) => {
 		profileImage = payload.picture;
 	}
 
+	// if this inexplicably fails, check your computer clock! Must be in sync with reality or OAuth will complain
 	try {
 		await verify();
 	} catch (e) {
 		return {
-			success: false
+			success: false,
+			error: 'unverifiedToken'
 		};
 	}
 

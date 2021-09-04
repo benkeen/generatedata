@@ -6,18 +6,21 @@ import env from '../../../../_env';
 import { AuthMethod, GDLocale } from '~types/general';
 
 export type MainState = {
-	appStateVersion: number;
+	// auth-related
+	isLoggedIn: boolean;
 	authMethod: AuthMethod;
+	authToken: string;
+	isOnloadAuthDetermined: boolean; // note! This is not persisted on page reload. It's always re-computed.
+	isRefreshingToken: boolean;
+
+	// other
+	appStateVersion: number;
 	localeFileLoaded: boolean;
 	locale: GDLocale;
 	showLoginDialog: boolean;
 	loginDialogDefaultEmail: string;
 	showPasswordResetDialog: boolean;
 	passwordResetDialogDefaultEmail: string;
-	isLoggedIn: boolean;
-	authToken: string;
-	isOnloadAuthDetermined: boolean;
-	isRefreshingToken: boolean;
 	dialogProcessing: boolean;
 	currentPage: string;
 	tourIntroDialogVisible: boolean;
@@ -25,18 +28,18 @@ export type MainState = {
 };
 
 export const initialState: MainState = {
-	appStateVersion: C.APP_STATE_VERSION,
+	isLoggedIn: false,
 	authMethod: AuthMethod.default,
+	authToken: '',
+	isOnloadAuthDetermined: false,
+	isRefreshingToken: false,
+	appStateVersion: C.APP_STATE_VERSION,
 	localeFileLoaded: false,
 	locale: env.defaultLocale,
 	showLoginDialog: false,
 	loginDialogDefaultEmail: '',
 	showPasswordResetDialog: false,
 	passwordResetDialogDefaultEmail: '',
-	isLoggedIn: false,
-	authToken: '',
-	isOnloadAuthDetermined: false,
-	isRefreshingToken: false,
 	dialogProcessing: false,
 	currentPage: '',
 	tourIntroDialogVisible: false,
