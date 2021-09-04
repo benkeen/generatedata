@@ -3,11 +3,12 @@
 For transparency, this page logs the changes to the 4.0.0 release, found here:
 http://site.generatedata4.com
 
-As of June 2021 it's now nearing the end of the alpha phase. All functionality is there - the site is working, the script
-is functional, user accounts are setup, email notification - all done! We'll be entering Beta in the next weeks and
-allowing registered users on the current site to start using it. 
+As of Sept 2021 we're well into the Beta phase. People have been using the preprod site for a while and we're polishing 
+off the payment flows, getting ready for a final production launch.  
 
- 
+- `4.0.0-beta-20210903`:
+    - Time Data Type added
+    - misc bug fixes
 - `4.0.0-beta-20210826`:
     - account searching
     - misc bug fixes
