@@ -134,23 +134,24 @@ export const login = (email: string, password: string, history: any, onLoginErro
 			mutation: gql`
                 mutation LoginMutation($email: String!, $password: String!) {
                     login(email: $email, password: $password) {
-                        token
-                        tokenExpiry
-                        refreshToken
-                        success
-                        accountId
-                        firstName
-                        lastName
-                        email
-                        country
-                        region
-                        expiryDate
-                        accountType
-                        accountStatus
-                        dateCreated
-                        numRowsGenerated
-                        profileImage
-                        wasOneTimeLogin
+						token
+						tokenExpiry
+						error
+						refreshToken
+						success
+						accountId
+						firstName
+						lastName
+						email
+						country
+						region
+						expiryDate
+						accountType
+						accountStatus
+						dateCreated
+						numRowsGenerated
+						profileImage
+						wasOneTimeLogin
                     }
                 }
 			`,
@@ -164,9 +165,7 @@ export const login = (email: string, password: string, history: any, onLoginErro
 				authMethod: 'default'
 			}));
 
-			Cookies.set('refreshToken', refreshToken, {
-				expires: new Date(tokenExpiry)
-			});
+			Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
 
 			if (response.data.login.wasOneTimeLogin) {
 				onOneTimeLoginSuccess(tokenExpiry, password, history, dispatch);
@@ -176,7 +175,7 @@ export const login = (email: string, password: string, history: any, onLoginErro
 
 		} else {
 			dispatch(setLoginError());
-			onLoginError();
+			onLoginError(response.data.login.error);
 		}
 	};
 };

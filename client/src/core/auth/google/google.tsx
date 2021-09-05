@@ -59,10 +59,6 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 
 	if (isLoggedIn) {
 		store.dispatch(setAuthenticated(true));
-
-		// TODO
-		// setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
-
 		store.dispatch(setOnloadAuthDetermined());
 	} else {
 		const googleToken = googleUser.getAuthResponse().id_token;
@@ -98,14 +94,15 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 			}));
 
 			Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
-
-			// TODO
-			// setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
-
 			onLoginSuccess(null, options.onPageRender, store.dispatch);
-
 		} else {
-			if (response.data.loginWithGoogle.error === 'noUserAccount') {
+			if (response.data.loginWithGoogle.error === 'accountExpired') {
+				addToast({
+					type: 'error',
+					message: i18n.core.accountExpiredMsg
+				});
+				logoutGoogle();
+			} else if (response.data.loginWithGoogle.error === 'noUserAccount') {
 				addToast({
 					type: 'error',
 					message: i18n.core.userAccountNotFound

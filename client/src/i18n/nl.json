@@ -331,5 +331,7 @@
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
 	"yourAccountUpdated": "Uw gebruikersaccount is bijgewerkt.",
-	"yourUserAccount": "Uw gebruikersaccount"
+	"yourUserAccount": "Uw gebruikersaccount",
+
+  "accountExpiredMsg": "Sorry, uw account is verlopen."
 }

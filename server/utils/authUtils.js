@@ -46,10 +46,25 @@ const getUser = (token) => {
 	return decodedToken.payload;
 };
 
+
+const accountExpired = (expiryDate) => {
+	if (expiryDate === null) {
+		return false;
+	}
+
+	const now = new Date();
+	const nowMs = now.getTime();
+	const expiryDateMs = expiryDate ? expiryDate.getTime() * 1000 : 0;
+
+	return expiryDateMs < nowMs;
+};
+
+
 module.exports = {
 	getPasswordHash,
 	isValidPassword,
 	getJwt,
 	authenticate,
-	getUser
+	getUser,
+	accountExpired
 };

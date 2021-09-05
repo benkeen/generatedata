@@ -331,5 +331,7 @@
 	"yes": "Yes",
 	"yourAccount": "あなたのアカウント",
 	"yourAccountUpdated": "アカウントが更新されました。",
-	"yourUserAccount": "あなたのユーザーアカウント"
+	"yourUserAccount": "あなたのユーザーアカウント",
+
+  "accountExpiredMsg": "申し訳ありませんが、アカウントの有効期限が切れています。"
 }

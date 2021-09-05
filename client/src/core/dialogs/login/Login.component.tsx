@@ -71,10 +71,15 @@ const LoginDialog = ({
 		setPasswordError(pError);
 
 		if (!eError && !pError) {
-			onSubmit(email, password, history, () => {
+			onSubmit(email, password, history, (error: string) => {
+				let errorMessage = i18n.userNotFound;
+				if (error === 'accountExpired') {
+					errorMessage = i18n.accountExpiredMsg;
+				}
+
 				addToast({
 					type: 'error',
-					message: i18n.userNotFound
+					message: errorMessage
 				});
 
 				if (passwordFieldRef && passwordFieldRef.current) {

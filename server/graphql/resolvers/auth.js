@@ -32,7 +32,16 @@ const login = async (root, { email, password }, { res }) => {
 		return { success: false };
 	}
 
-	const { accountId, password: encodedPassword, oneTimePassword } = user.dataValues;
+	const { accountId, password: encodedPassword, oneTimePassword, expiryDate } = user.dataValues;
+
+	const accountExpired = authUtils.accountExpired(expiryDate);
+	if (accountExpired) {
+		return {
+			success: false,
+			error: 'accountExpired'
+		};
+	}
+
 	const isCorrect = await authUtils.isValidPassword(password, encodedPassword);
 
 	let oneTimePasswordIsCorrect = false;
@@ -82,11 +91,9 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
 		// if the user's account has expired, let 'em know. Sodding ORM adds a degree of confusion but expiryDate is
 		// actually a JS object
 		const { firstName, expiryDate } = user.dataValues;
-		const now = new Date();
-		const nowMs = now.getTime();
-		const expiryDateMs = expiryDate ? expiryDate.getTime() * 1000 : 0;
 
-		if (expiryDate !== null && expiryDateMs < nowMs) {
+		const accountExpired = authUtils.accountExpired(expiryDate);
+		if (accountExpired) {
 			const { subject, text, html } = passwordResetAccountExpired({ firstName, i18n });
 			await emailUtils.sendEmail(email, subject, text, html);
 		} else {
@@ -151,6 +158,15 @@ const loginWithGoogle = async (root, { googleToken }) => {
 	}
 
 	const { accountId, accountType, firstName, lastName, country, region, expiryDate, dateCreated } = user.dataValues;
+	const accountExpired = authUtils.accountExpired(expiryDate);
+
+	if (accountExpired) {
+		return {
+			success: false,
+			error: 'accountExpired'
+		};
+	}
+
 	const token = await authUtils.getJwt({ accountId, email });
 	const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
@@ -188,9 +204,6 @@ const checkAndUpdateRefreshToken = async (root, args, { token, req, res }) => {
 
 	if (!user) {
 		return { success: false };
-	} else {
-		// TODO
-		// console.log("FOUND USER WITH refresh token. Still active?");
 	}
 
 	const { accountId, email } = user.dataValues;
