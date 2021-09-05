@@ -23,6 +23,11 @@ const SaveDataSetDialog = ({
 	const [newDataSetName, setNewDataSetName] = useState('');
 	const [newDataSetNameError, setNewDataSetErrorName] = useState('');
 
+	const onExited = () => {
+		setNewDataSetName('');
+		setNewDataSetErrorName('');
+	};
+
 	let title = dialogType === SaveDataDialogType.save ? i18n.save : i18n.saveAs;
 	let content = (
 		<div className={styles.newDataSet}>
@@ -73,7 +78,7 @@ const SaveDataSetDialog = ({
 	}
 
 	return (
-		<Dialog onClose={onClose} open={visible}>
+		<Dialog onClose={onClose} open={visible} TransitionProps={{ onExited }}>
 			<form onSubmit={saveDataSet}>
 				<div style={{ width: 420 }}>
 					<DialogTitle onClose={onClose}>{title}</DialogTitle>
