@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/benkeen/generatedata.svg?branch=master)](https://travis-ci.com/benkeen/generatedata)
 [![Coverage Status](https://coveralls.io/repos/github/benkeen/generatedata/badge.svg?branch=master)](https://coveralls.io/github/benkeen/generatedata?branch=master)
 
-> Alpha version of 4.0.0 version website here: https://site.generatedata4.com 
+> Beta version of v4 script and website here: https://site.generatedata4.com 
 > Please report all bugs in the issues section. 
 
 This is the repo for the downloadable version of [generatedata.com](http://www.generatedata.com). The 
