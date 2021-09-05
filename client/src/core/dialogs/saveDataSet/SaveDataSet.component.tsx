@@ -23,7 +23,7 @@ const SaveDataSetDialog = ({
 	const [newDataSetName, setNewDataSetName] = useState('');
 	const [newDataSetNameError, setNewDataSetErrorName] = useState('');
 
-	const onExited = () => {
+	const onExited = (): void => {
 		setNewDataSetName('');
 		setNewDataSetErrorName('');
 	};
