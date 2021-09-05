@@ -51,6 +51,11 @@ const updateAccount = async (root, args, { token, user }) => {
 		}
 	}
 
+	let expiryDateMs = null;
+	if (expiryDate) {
+		expiryDateMs = parseInt(expiryDate, 10);
+	}
+
 	userRecord.update({
 		accountStatus: validatedAccountStatus,
 		firstName,
@@ -58,7 +63,7 @@ const updateAccount = async (root, args, { token, user }) => {
 		email,
 		country,
 		region,
-		expiryDate
+		expiryDate: expiryDateMs
 	});
 
 	return {
@@ -105,7 +110,6 @@ const createUserAccount = async (root, args, { token, user }) => {
 		return { success: false };
 	}
 
-	// TODO improve
 	const userRecord = await db.accounts.findByPk(user.accountId);
 	if (userRecord.dataValues.accountType !== 'superuser') {
 		return {
@@ -118,13 +122,18 @@ const createUserAccount = async (root, args, { token, user }) => {
 	const dateCreated = new Date().getTime();
 	const { firstName, lastName, email, country, region, accountStatus, expiryDate } = args;
 
+	let expiryDateMs = null;
+	if (expiryDate) {
+		expiryDateMs = parseInt(expiryDate, 10);
+	}
+
 	await db.accounts.create({
 		createdBy: accountId,
 		accountType: 'user',
 		accountStatus,
 		dateCreated,
 		lastUpdated: dateCreated,
-		expiryDate,
+		expiryDate: expiryDateMs,
 		password: '', // blank password
 		firstName,
 		lastName,

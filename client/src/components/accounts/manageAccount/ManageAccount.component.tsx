@@ -81,7 +81,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 	const onSelectDate = (expiryDate: any): void => {
 		setData({
 			...data,
-			expiryDate: parseInt(expiryDate, 10)
+			expiryDate
 		});
 	};
 
@@ -96,8 +96,8 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 
 	let expiryLabel = i18n.selectExpiryDate;
 
-	if (data.expiryDate !== null) {
-		expiryLabel = format(fromUnixTime(data.expiryDate), C.DATE_FORMAT);
+	if (data.expiryDate) {
+		expiryLabel = format(fromUnixTime(Math.round(data.expiryDate / 1000)), C.DATE_FORMAT);
 	}
 
 	return (
@@ -159,8 +159,8 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 						autoOk
 						open={showDatepicker}
 						className={dateStyles.dateField}
-						value={data.expiryDate === null ? fromUnixTime(yearFromNow) : fromUnixTime(data.expiryDate!)}
-						onChange={(val: any): void => onSelectDate(format(val, 't'))}
+						value={data.expiryDate === null ? fromUnixTime(yearFromNow) : fromUnixTime(data.expiryDate / 1000)}
+						onChange={(val: any): void => onSelectDate(format(val, 'T'))}
 						onClose={(): void => setShowDatepicker(false)}
 					/>
 				</MuiPickersUtilsProvider>

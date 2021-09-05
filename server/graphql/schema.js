@@ -16,11 +16,11 @@ const typeDefs = gql`
         refreshToken: AuthResponse
 		logout: GeneralResponse
         updateAccount(accountId: ID!, accountStatus: AccountStatus, firstName: String!, lastName: String!, email: String!,
-	        country: String!, region: String, expiryDate: Int): GeneralResponse
+	        country: String!, region: String, expiryDate: String): GeneralResponse
         updateCurrentAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
 		updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
         createUserAccount(firstName: String!, lastName: String!, email: String!, country: String, region: String,
-            accountStatus: AccountStatus, expiryDate: Int): GeneralResponse
+            accountStatus: AccountStatus, expiryDate: String): GeneralResponse
         deleteAccount(accountId: ID!): GeneralResponse
         saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetResponse
         saveDataSet(dataSetId: ID!, content: String!): SavedDataSetResponse

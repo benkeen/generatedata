@@ -112,7 +112,7 @@ export const SAVE_CURRENT_ACCOUNT = gql`
 
 export const SAVE_ACCOUNT = gql`
     mutation UpdateAccount($accountId: ID!, $accountStatus: AccountStatus, $firstName: String!, $lastName: String!,
-		$email: String!, $country: String!, $region: String, $expiryDate: Int) {
+		$email: String!, $country: String!, $region: String, $expiryDate: String) {
         updateAccount(accountId: $accountId, accountStatus: $accountStatus, firstName: $firstName, lastName: $lastName, email: $email, country: $country,
 			region: $region, expiryDate: $expiryDate) {
             success
@@ -131,7 +131,7 @@ export const UPDATE_PASSWORD = gql`
 
 export const CREATE_USER_ACCOUNT = gql`
     mutation CreateUserAccount($firstName: String!, $lastName: String!, $email: String!, $country: String, $region: String,
-		$accountStatus: AccountStatus, $expiryDate: Int) {
+		$accountStatus: AccountStatus, $expiryDate: String) {
         createUserAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region,
 			accountStatus: $accountStatus, expiryDate: $expiryDate) {
             success

@@ -86,9 +86,9 @@ export const saveAccount = (data: any): any => async (dispatch: Dispatch): Promi
 	const { accountId, firstName, lastName, email, country, region, disabled, expiryDate } = data;
 	const accountStatus = getAccountStatus(disabled, expiryDate);
 
-	let cleanExpiryDate = expiryDate;
+	let cleanExpiryDate = null;
 	if (expiryDate) {
-		cleanExpiryDate = parseInt(expiryDate, 10);
+		cleanExpiryDate = expiryDate;
 	}
 
 	await apolloClient.mutate({
@@ -254,7 +254,7 @@ export const createAccount = (data: any) => async (dispatch: Dispatch): Promise<
 	const { firstName, lastName, email, country, region, disabled, expiry, expiryDate } = data;
 	const accountStatus = getAccountStatus(disabled, expiryDate);
 
-	const expiryDateValue = (expiry) ? parseInt(expiryDate, 10) : null;
+	const expiryDateValue = (expiry) ? expiryDate.toString() : null;
 	const response = await apolloClient.mutate({
 		mutation: queries.CREATE_USER_ACCOUNT,
 		variables: {

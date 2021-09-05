@@ -23,7 +23,7 @@ export type AccountsListProps = {
 const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastLoggedIn, expiryDate }: any): JSX.Element => {
 	let expiryDateVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
 	try {
-		expiryDateVal = format(fromUnixTime(expiryDate), C.DATE_FORMAT);
+		expiryDateVal = format(fromUnixTime(expiryDate / 1000), C.DATE_FORMAT);
 	} catch (e) {}
 
 	let lastLoggedInVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
