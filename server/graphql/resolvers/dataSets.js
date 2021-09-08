@@ -51,7 +51,6 @@ const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
 
 	if (user.accountType === 'user') {
 		const dataSet = db.dataSets.findByPk(dataSetId);
-		console.log(dataSet);
 		return;
 	}
 
