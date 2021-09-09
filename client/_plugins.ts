@@ -8,6 +8,7 @@ import AutoIncrement from './src/plugins/dataTypes/AutoIncrement/config';
 import Boolean from './src/plugins/dataTypes/Boolean/config';
 import CVV from './src/plugins/dataTypes/CVV/config';
 import City from './src/plugins/dataTypes/City/config';
+import Colour from './src/plugins/dataTypes/Colour/config';
 import Company from './src/plugins/dataTypes/Company/config';
 import Computed from './src/plugins/dataTypes/Computed/config';
 import Constant from './src/plugins/dataTypes/Constant/config';
@@ -44,6 +45,7 @@ export const dataTypes = {
 	Boolean,
 	CVV,
 	City,
+	Colour,
 	Company,
 	Computed,
 	Constant,

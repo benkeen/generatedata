@@ -1,0 +1,5 @@
+{
+  "NAME": "Colour",
+  "DESC": "Generates a random colour in a specific hue and format.",
+  "DEFAULT_TITLE": "colour"
+}
