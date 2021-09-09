@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { format, fromUnixTime, add } from 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
 import { getFormattedNum } from '~utils/numberUtils';
 import * as dateStyles from '../../../plugins/dataTypes/Date/Date.scss';
 import C from '../../../core/constants';
@@ -154,8 +153,8 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 			</div>
 
 			<div style={{ display: 'none' }}>
-				<MuiPickersUtilsProvider utils={DateFnsUtils}>
-					<DatePicker
+				<LocalizedDatePickerProvider>
+					<LocalizedDatePicker
 						autoOk
 						open={showDatepicker}
 						className={dateStyles.dateField}
@@ -163,7 +162,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 						onChange={(val: any): void => onSelectDate(format(val, 'T'))}
 						onClose={(): void => setShowDatepicker(false)}
 					/>
-				</MuiPickersUtilsProvider>
+				</LocalizedDatePickerProvider>
 			</div>
 		</div>
 	);

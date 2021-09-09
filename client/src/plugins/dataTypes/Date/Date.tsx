@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { format, subYears, addYears, fromUnixTime } from 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
+import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
 import Button from '@material-ui/core/Button';
 import Dropdown from '~components/dropdown/Dropdown';
 import Event from '@material-ui/icons/Event';
@@ -122,7 +121,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 	}
 
 	return (
-		<MuiPickersUtilsProvider utils={DateFnsUtils}>
+		<LocalizedDatePickerProvider>
 			<div>
 				<div className={styles.dateRow}>
 					<Button onClick={(): void => onBtnClick('fromDate')} variant="outlined" disableElevation className={styles.dateBtn}>
@@ -151,7 +150,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 					/>
 				</div>
 				<div style={{ display: 'none' }}>
-					<DatePicker
+					<LocalizedDatePicker
 						autoOk
 						open={isOpen}
 						className={styles.dateField}
@@ -161,7 +160,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 					/>
 				</div>
 			</div>
-		</MuiPickersUtilsProvider>
+		</LocalizedDatePickerProvider>
 	);
 };
 
