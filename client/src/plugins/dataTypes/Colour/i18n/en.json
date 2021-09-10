@@ -1,5 +1,25 @@
 {
   "NAME": "Colour",
   "DESC": "Generates a random colour in a specific hue and format.",
-  "DEFAULT_TITLE": "colour"
+  "DEFAULT_TITLE": "colour",
+  "anyColour": "Any colour",
+  "blue": "Blue",
+  "green": "Green",
+  "red": "Red",
+  "orange": "Orange",
+  "yellow": "Yellow",
+  "purple": "Purple",
+  "pink": "Pink",
+  "monochrome": "Monochrome",
+  "customColour": "Custom colour",
+  "configureColours": "Configure Colours",
+  "colour": "Colour",
+  "luminosity": "Luminosity",
+  "any": "Any",
+  "bright": "Bright",
+  "light": "Light",
+  "dark": "Dark",
+  "format": "Format",
+  "alpha": "Alpha",
+  "refresh": "Refresh"
 }
