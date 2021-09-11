@@ -21,5 +21,6 @@
   "alpha": "Α",
   "refresh": "刷新",
   "helpDesc1": "此数据类型生成不同色调、格式（Hex、rgb、rgba）和亮度的随机颜色。 使用 rgba，您可以选择 alpha 值以提供褪色的颜色。",
-  "helpDesc2": "要查看所有设置，只需单击“选项”列中的按钮。"
+  "helpDesc2": "要查看所有设置，只需单击“选项”列中的按钮。",
+  "configureColours": "配置颜色"
 }
