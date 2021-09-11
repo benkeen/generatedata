@@ -2,7 +2,6 @@ declare namespace ColourScssNamespace {
   export interface IColourScss {
     buttonLabel: string;
     colourDropdown: string;
-    customColour: string;
     demoColours: string;
     labelCol: string;
     settings: string;

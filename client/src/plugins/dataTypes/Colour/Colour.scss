@@ -40,14 +40,3 @@
 	width: 150px;
 	display: inline-block;
 }
-
-.customColour {
-	display: inline-flex;
-	margin-left: 8px;
-	font-size: 18px;
-	align-items: center;
-
-	&>span {
-		padding: 0 3px;
-	}
-}

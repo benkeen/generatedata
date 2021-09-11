@@ -9,7 +9,7 @@ export default {
 		"Boolean": "DT-Boolean.generator-7f17cf17c450482e71f66b8ccec1530a.js",
 		"CVV": "DT-CVV.generator-c21d2fbc402d72056955f30db7831267.js",
 		"City": "DT-City.generator-ebd4355dbc806400fbda36e488cec6e0.js",
-		"Colour": "DT-Colour.generator-7f17cf17c450482e71f66b8ccec1530a.js",
+		"Colour": "DT-Colour.generator-db77c6f8b622fcac974e40561e905414.js",
 		"Company": "DT-Company.generator-b7bd7c08c48f94fb2c88412cc82fcef4.js",
 		"Computed": "DT-Computed.generator-51452612f3dcfd6bae1a695081e53a36.js",
 		"Constant": "DT-Constant.generator-ca9cf12d5f32cc92c9158072a5231bd9.js",

@@ -40,14 +40,14 @@ export const initialState: ColourState = {
 
 const getModalOptions = ({ i18n }: any): DropdownOption[] => ([
 	{ value: 'any', label: i18n.anyColour },
-	{ value: 'blue', label: i18n.blue },
-	{ value: 'green', label: i18n.green },
-	{ value: 'red', label: i18n.red },
-	{ value: 'orange', label: i18n.orange },
-	{ value: 'yellow', label: i18n.yellow },
-	{ value: 'purple', label: i18n.purple },
-	{ value: 'pink', label: i18n.pink },
-	{ value: 'monochrome', label: i18n.monochrome }
+	{ value: 'blue', label: i18n.blues },
+	{ value: 'green', label: i18n.greens },
+	{ value: 'red', label: i18n.reds },
+	{ value: 'orange', label: i18n.oranges },
+	{ value: 'yellow', label: i18n.yellows },
+	{ value: 'purple', label: i18n.purples },
+	{ value: 'pink', label: i18n.pinks },
+	{ value: 'monochrome', label: i18n.monochromes }
 ]);
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
@@ -240,10 +240,13 @@ export const Options = ({ id, i18n, coreI18n, data, onUpdate }: DTOptionsProps):
 	);
 };
 
-export const Help = ({ }: DTHelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
-			This Data Type generates random colours in different hues, formats (Hex, rbg, rbga) and luminosities.
+			{i18n.helpDesc1}
+		</p>
+		<p>
+			{i18n.helpDesc2}
 		</p>
 	</>
 );

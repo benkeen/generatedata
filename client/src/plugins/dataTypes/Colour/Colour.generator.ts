@@ -1,23 +1,23 @@
-import utils from '../../../utils';
 import rc from 'randomcolor';
 import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { ColourFormat } from './Colour';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const formats = data.rowState;
+	const { value, luminosity, format, alpha } = data.rowState;
 
-	console.log(data.rowState);
+	const display: any = rc({
+		count: 1,
+		hue: value,
+		luminosity: luminosity,
+		format,
+		alpha: format === ColourFormat.rgba ? alpha : 1
+	});
 
-	let val = '';
-	if (formats.length) {
-		let chosenFormat = formats[0];
-		if (formats.length > 1) {
-			chosenFormat = formats[utils.randomUtils.getRandomNum(0, formats.length - 1)];
-		}
-		val = chosenFormat.trim();
-	}
-
-	return { display: val };
+	return {
+		display
+	};
 };
+
 
 let utilsLoaded = false;
 
