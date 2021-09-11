@@ -3,8 +3,8 @@ import { PrimaryButton } from '~components/Buttons.component';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import { Github } from '~components/icons';
 import Link from '~components/Link.component';
-import styles from './About.scss';
 import { Tooltip } from '~components/tooltips';
+import styles from './About.scss';
 
 export type AboutProps = {
 	visible: boolean;

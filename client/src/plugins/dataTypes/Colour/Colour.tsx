@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
-import TextField from '~components/TextField';
+import rc from 'randomcolor';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
-import rc from 'randomcolor';
+import { Tooltip } from '~components/tooltips';
 import styles from './Colour.scss';
 
 export const enum ColourFormat {
@@ -47,8 +47,7 @@ const getModalOptions = ({ i18n }: any): DropdownOption[] => ([
 	{ value: 'yellow', label: i18n.yellow },
 	{ value: 'purple', label: i18n.purple },
 	{ value: 'pink', label: i18n.pink },
-	{ value: 'monochrome', label: i18n.monochrome },
-	{ value: 'customColour', label: 'Custom colour' }
+	{ value: 'monochrome', label: i18n.monochrome }
 ]);
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
@@ -59,23 +58,11 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 		});
 	};
 
-	const examples = [
-		{ value: 'any', label: i18n.anyColour },
-		{ value: 'blue', label: i18n.blue },
-		{ value: 'green', label: i18n.green },
-		{ value: 'red', label: i18n.red },
-		{ value: 'orange', label: i18n.orange },
-		{ value: 'yellow', label: i18n.yellow },
-		{ value: 'purple', label: i18n.purple },
-		{ value: 'pink', label: i18n.pink },
-		{ value: 'monochrome', label: i18n.monochrome }
-	];
-
 	return (
 		<Dropdown
 			value={data.example}
 			onChange={(i: any): void => onChange(i.value)}
-			options={examples}
+			options={getModalOptions({ i18n })}
 		/>
 	);
 };
@@ -101,122 +88,116 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
 		});
 	};
 
-	const getCustomColour = (): JSX.Element | null => {
-		if (data.value !== 'custom') {
-			return null;
-		}
-
-		return (
-			<TextField style={{ width: 120 }} />
-		);
-	};
-
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
 				<DialogTitle onClose={onClose}>{i18n.configureColours}</DialogTitle>
 				<DialogContent dividers>
 					<table className={styles.settings}>
-						<tr>
-							<td className={styles.labelCol}>{i18n.colour}</td>
-							<td>
-								<Dropdown
-									value={data.value}
-									onChange={(i: any): void => onChange('value', i.value)}
-									options={getModalOptions({ i18n })}
-									style={{ width: 150 }}
-								/>
-								{getCustomColour()}
-							</td>
-						</tr>
-						<tr>
-							<td className={styles.labelCol}>
-								{i18n.luminosity}
-							</td>
-							<td>
-								<RadioPillRow>
-									<RadioPill
-										label={i18n.any}
-										onClick={(): void => onChange('luminosity', LuminosityType.any)}
-										name={`luminosity-${id}`}
-										checked={data.luminosity === LuminosityType.any}
-										style={{ marginRight: 6 }}
+						<tbody>
+							<tr>
+								<td className={styles.labelCol}>{i18n.colour}</td>
+								<td>
+									<Dropdown
+										value={data.value}
+										onChange={(i: any): void => onChange('value', i.value)}
+										options={getModalOptions({ i18n })}
 									/>
-									<RadioPill
-										label={i18n.bright}
-										onClick={(): void => onChange('luminosity', LuminosityType.bright)}
-										name={`luminosity-${id}`}
-										checked={data.luminosity === LuminosityType.bright}
-										style={{ marginRight: 6 }}
+								</td>
+							</tr>
+							<tr>
+								<td className={styles.labelCol}>
+									{i18n.luminosity}
+								</td>
+								<td>
+									<RadioPillRow>
+										<RadioPill
+											label={i18n.any}
+											onClick={(): void => onChange('luminosity', LuminosityType.any)}
+											name={`luminosity-${id}`}
+											checked={data.luminosity === LuminosityType.any}
+											style={{ marginRight: 6 }}
+										/>
+										<RadioPill
+											label={i18n.bright}
+											onClick={(): void => onChange('luminosity', LuminosityType.bright)}
+											name={`luminosity-${id}`}
+											checked={data.luminosity === LuminosityType.bright}
+											style={{ marginRight: 6 }}
+										/>
+										<RadioPill
+											label={i18n.light}
+											onClick={(): void => onChange('luminosity', LuminosityType.light)}
+											name={`luminosity-${id}`}
+											checked={data.luminosity === LuminosityType.light}
+											style={{ marginRight: 6 }}
+										/>
+										<RadioPill
+											label={i18n.dark}
+											onClick={(): void => onChange('luminosity', LuminosityType.dark)}
+											name={`luminosity-${id}`}
+											checked={data.luminosity === LuminosityType.dark}
+										/>
+									</RadioPillRow>
+								</td>
+							</tr>
+							<tr>
+								<td className={styles.labelCol}>{i18n.format}</td>
+								<td>
+									<RadioPillRow>
+										<RadioPill
+											label="Hex"
+											onClick={(): void => onChange('format', ColourFormat.hex)}
+											name={`format-${id}`}
+											checked={data.format === ColourFormat.hex}
+											style={{ marginRight: 6 }}
+										/>
+										<RadioPill
+											label="rgb"
+											onClick={(): void => onChange('format', ColourFormat.rgb)}
+											name={`format-${id}`}
+											checked={data.format === ColourFormat.rgb}
+											style={{ marginRight: 6 }}
+										/>
+										<RadioPill
+											label="rbga"
+											onClick={(): void => onChange('format', ColourFormat.rgba)}
+											name={`format-${id}`}
+											checked={data.format === ColourFormat.rgba}
+										/>
+									</RadioPillRow>
+								</td>
+							</tr>
+							<tr>
+								<td className={styles.labelCol}>{i18n.alpha}</td>
+								<td>
+									<Slider
+										value={data.alpha}
+										onChange={(e: any, value): void => onChange('alpha', value)}
+										step={0.001}
+										min={0}
+										max={1}
+										valueLabelDisplay="auto"
+										disabled={data.format !== ColourFormat.rgba}
 									/>
-									<RadioPill
-										label={i18n.light}
-										onClick={(): void => onChange('luminosity', LuminosityType.light)}
-										name={`luminosity-${id}`}
-										checked={data.luminosity === LuminosityType.light}
-										style={{ marginRight: 6 }}
-									/>
-									<RadioPill
-										label={i18n.dark}
-										onClick={(): void => onChange('luminosity', LuminosityType.dark)}
-										name={`luminosity-${id}`}
-										checked={data.luminosity === LuminosityType.dark}
-									/>
-								</RadioPillRow>
-							</td>
-						</tr>
-						<tr>
-							<td className={styles.labelCol}>{i18n.format}</td>
-							<td>
-								<RadioPillRow>
-									<RadioPill
-										label="Hex"
-										onClick={(): void => onChange('format', ColourFormat.hex)}
-										name={`format-${id}`}
-										checked={data.format === ColourFormat.hex}
-										style={{ marginRight: 6 }}
-									/>
-									<RadioPill
-										label="rgb"
-										onClick={(): void => onChange('format', ColourFormat.rgb)}
-										name={`format-${id}`}
-										checked={data.format === ColourFormat.rgb}
-										style={{ marginRight: 6 }}
-									/>
-									<RadioPill
-										label="rbga"
-										onClick={(): void => onChange('format', ColourFormat.rgba)}
-										name={`format-${id}`}
-										checked={data.format === ColourFormat.rgba}
-									/>
-								</RadioPillRow>
-							</td>
-						</tr>
-						<tr>
-							<td className={styles.labelCol}>{i18n.alpha}</td>
-							<td>
-								<Slider
-									value={data.alpha}
-									onChange={(e: any, value): void => onChange('alpha', value)}
-									step={0.001}
-									min={0}
-									max={1}
-									valueLabelDisplay="auto"
-									disabled={data.format !== ColourFormat.rgba}
-								/>
-							</td>
-						</tr>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 
 					<ul className={styles.demoColours}>
 						{randomDemoColours.map((colour: string, index: number): JSX.Element => (
-							<li key={`${colour}-${index}`}><span style={{ backgroundColor: colour }} /></li>
+							<li key={`${colour}-${index}`}>
+								<Tooltip title={colour}>
+									<span style={{ backgroundColor: colour }} />
+								</Tooltip>
+							</li>
 						))}
 					</ul>
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={(): void => setCounter(counter+1)} color="primary" variant="outlined">
-						{coreI18n.refresh}
+						{i18n.refresh}
 					</Button>
 					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
 				</DialogActions>
@@ -259,7 +240,6 @@ export const Options = ({ id, i18n, coreI18n, data, onUpdate }: DTOptionsProps):
 	);
 };
 
-// i18n
 export const Help = ({ }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
@@ -278,6 +258,3 @@ export const getMetadata = (): DTMetadata => ({
 		field_MSSQL: 'VARCHAR(12) NULL'
 	}
 });
-
-// TODO
-export const rowStateReducer = (state: ColourState): ColourState => state;

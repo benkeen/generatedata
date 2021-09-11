@@ -1,8 +1,11 @@
 import utils from '../../../utils';
+import rc from 'randomcolor';
 import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const formats = data.rowState;
+
+	console.log(data.rowState);
 
 	let val = '';
 	if (formats.length) {
