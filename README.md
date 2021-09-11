@@ -3,8 +3,9 @@
 [![Build Status](https://travis-ci.com/benkeen/generatedata.svg?branch=master)](https://travis-ci.com/benkeen/generatedata)
 [![Coverage Status](https://coveralls.io/repos/github/benkeen/generatedata/badge.svg?branch=master)](https://coveralls.io/github/benkeen/generatedata?branch=master)
 
-> Beta version of v4 script and website here: https://site.generatedata4.com 
-> Please report all bugs in the issues section. 
+> [Sept 2021] Coming towards the end of the v4 Beta at last! Beta site: https://site.generatedata4.com 
+> The current production site (generatedata.com) has now been copied to generatedata3.com and will soon be replaced 
+> by the new script. We'll make the appropriate notifications on the website.
 
 This is the repo for the downloadable version of [generatedata.com](http://www.generatedata.com). The 
 script is essentially an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
