@@ -9,8 +9,6 @@ const resolvers = {
 		accounts: async (root, args, { token, user }) => {
 			authUtils.authenticate(token);
 
-			// TODO inelegant & should be improved. Perhaps log user out? Also the FE code doesn't handle the response
-			// properly
 			const userRecord = await db.accounts.findByPk(user.accountId);
 			if (userRecord.dataValues.accountType !== 'superuser') {
 				return {
@@ -81,7 +79,6 @@ const resolvers = {
 		account: async (root, args, { user, token }) => {
 			authUtils.authenticate(token);
 
-			// TODO improve
 			const userRecord = await db.accounts.findByPk(user.accountId);
 			if (userRecord.dataValues.accountType !== 'superuser') {
 				return {
@@ -152,8 +149,20 @@ const resolvers = {
 
 			authUtils.authenticate(token);
 
-			// TODO auth
-			// const { accountId } = user;
+			// confirm dataSetId belongs to current user
+			const exists = await db.dataSets.findOne({
+				where: {
+					accountId: user.accountId,
+					dataSetId
+				}
+			});
+
+			if (exists === null) {
+				return {
+					success: false,
+					errorStatus: 'PermissionDenied'
+				};
+			}
 
 			const [results] = await db.sequelize.query(`
 				SELECT *
