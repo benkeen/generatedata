@@ -6,6 +6,9 @@ http://site.generatedata4.com
 As of Sept 2021 we're well into the Beta phase. People have been using the preprod site for a while and we're polishing 
 off the payment flows, getting ready for a final production launch.  
 
+- `4.0.0`:
+    - initial release!
+    - bug fixes
 - `4.0.0-beta-20210911`:
     - Color Data Type added
     - Localized date picker components
