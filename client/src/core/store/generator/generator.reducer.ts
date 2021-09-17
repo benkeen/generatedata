@@ -209,6 +209,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 		case actions.CLEAR_GRID:
 			draft.rows = {};
 			draft.sortedRows = [];
+			draft.dataTypePreviewData = {};
 			draft.showClearPageDialog = false;
 			draft.currentDataSet = {
 				dataSetId: null,

@@ -158,7 +158,6 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 
 		const template = selectors.getGenerationTemplate(state);
 		const dataTypePreviewData = { ...selectors.getDataTypePreviewData(state) };
-		const sortedRows = selectors.getSortedRows(state);
 		const columns = selectors.getColumns(state);
 		const unchanged = getUnchangedData(idsToRefresh, columns, dataTypePreviewData);
 
@@ -189,10 +188,11 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 			const { data } = resp;
 			const { generatedData } = data;
 
-			sortedRows.forEach((id: string, index: number) => {
+			columns.forEach(({ id }, index: number) => {
 				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
 					return;
 				}
+
 				dataTypePreviewData[id] = generatedData.map((row: any): any => row[index]);
 			});
 
