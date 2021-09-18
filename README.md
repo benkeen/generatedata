@@ -3,11 +3,9 @@
 [![Build Status](https://travis-ci.com/benkeen/generatedata.svg?branch=master)](https://travis-ci.com/benkeen/generatedata)
 [![Coverage Status](https://coveralls.io/repos/github/benkeen/generatedata/badge.svg?branch=master)](https://coveralls.io/github/benkeen/generatedata?branch=master)
 
-> [Sept 2021] Coming towards the end of the v4 Beta at last! Beta site: https://site.generatedata4.com 
-> The current production site (generatedata.com) has now been copied to generatedata3.com and will soon be replaced 
-> by the new script. We'll make the appropriate notifications on the website.
+> [Sept 18, 2021] Form Tools 4 is now live! https://generatedata.com - For the next few days I'm going to be monitoring the prod site to make sure everything's working as expected and there aren't any major problems. Then I'll start working on documentation and creating an downloadable version of the script for easy use. The README doc below is for the old v3 script. That'll be updated soon, stay tuned.
 
-This is the repo for the downloadable version of [generatedata.com](http://www.generatedata.com). The 
+This is the repo for the downloadable version of [generatedata.com](https://generatedata.com). The 
 script is essentially an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
 so *Data Types* (types of data it generates), 8 *Export Types* (formats for the data), plus around 30 data sets for
 specific countries (city names, regions etc). But more importantly it can be extended in any way you want. Check out
