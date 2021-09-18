@@ -30,6 +30,10 @@ export const enum AuthMethod {
 
 export type GDLocale = 'ar' | 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | 'zh';
 
+export type LocaleFileMap = {
+	[locale in GDLocale]: string;
+};
+
 export type GenEnvironment = 'API' | 'UI';
 
 // these have special semantic meaning within the script. When the navigation includes them, things like the label

@@ -16,6 +16,7 @@ import * as actions from '~store/generator/generator.actions';
 import { CLEAR_GRID } from '~store/generator/generator.actions';
 import C from '~core/constants';
 import { SaveDataDialogType } from '~store/account/account.reducer';
+import { localeFileMap } from '../../../../_localeFileMap';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -32,7 +33,8 @@ export const selectLocale = (locale: GDLocale): any => (dispatch: Dispatch): any
 		dispatch(setLocaleFileLoaded(locale));
 	};
 	const s = document.createElement('script');
-	s.src = `./${locale}.js`;
+	const filename = localeFileMap[locale];
+	s.src = `./${filename}`;
 	document.body.appendChild(s);
 
 	Cookies.set('lang', locale);

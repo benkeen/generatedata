@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const helpers = require('./build/helpers');
 const i18n = require('./build/i18n');
 
@@ -16,6 +17,15 @@ const workersFolder = path.join(__dirname, '/dist/workers');
 if (!fs.existsSync(workersFolder)) {
 	fs.mkdirSync(workersFolder);
 }
+
+// returns an 8 char version of the filename hash, used for cache-busting purposes
+const getFilenameHash = (filename) => {
+	const fileBuffer = fs.readFileSync(filename);
+	const hashSum = crypto.createHash('sha256');
+	hashSum.update(fileBuffer);
+
+	return hashSum.digest('hex').substring(0, 8);
+};
 
 // stored in memory here. For the dev environment, changes to web worker files are watched and built separately,
 // then this object is updated with the change & the final map file is regenerated. For prod it's just done in
@@ -35,14 +45,29 @@ module.exports = function (grunt) {
 	const countriesFolder = 'src/plugins/countries';
 
 	const generateI18nBundles = () => {
-		locales.forEach((locale) => {
+		const fileHashMap = locales.reduce((acc, locale) => {
 			const coreLocaleStrings = JSON.parse(fs.readFileSync(`src/i18n/${locale}.json`, 'utf8'));
 			const dtImports = getPluginLocaleFiles(grunt, locale, dataTypesFolder);
 			const etImports = getPluginLocaleFiles(grunt, locale, exportTypesFolder);
 			const countryImports = getPluginLocaleFiles(grunt, locale, countriesFolder);
 
-			generateLocaleFileTemplate(locale, coreLocaleStrings, dtImports, etImports, countryImports);
-		});
+			acc = {
+				...acc,
+				...generateLocaleFileTemplate(locale, coreLocaleStrings, dtImports, etImports, countryImports)
+			};
+			return acc;
+		}, {});
+
+		// generate the i18n hashmap file. This is imported by the source code to know what files to load
+		generateI18nHashMap(fileHashMap);
+	};
+
+	const generateI18nHashMap = (content) => {
+		const filename = `./_localeFileMap.ts`;
+		const tsContent = `import { LocaleFileMap } from '~types/general';
+
+export const localeFileMap: LocaleFileMap = ${JSON.stringify(content, null, '\t')};`;
+		fs.writeFileSync(filename, tsContent);
 	};
 
 	const getPluginLocaleFiles = (grunt, locale, pluginTypeFolder) => {
@@ -77,7 +102,16 @@ const i18n = {
 window.gd.localeLoaded(i18n);
 })();`;
 
-		fs.writeFileSync(`./dist/${locale}.js`, template);
+		const filename = `./dist/${locale}.js`;
+		fs.writeFileSync(filename, template);
+
+		const hash = getFilenameHash(filename);
+		const hashedFilename = `${locale}-${hash}.js`;
+		fs.renameSync(filename, `./dist/${hashedFilename}`);
+
+		return {
+			[locale]: hashedFilename
+		};
 	};
 
 	// looks through the plugins and finds the plugins that have a generator web worker file
@@ -136,7 +170,6 @@ window.gd.localeLoaded(i18n);
 
 		webWorkerFileListWithType.forEach(({ file, type }, index) => {
 			if (omitFiles[file]) {
-				// console.log("worker file: ", file, " is unchanged. Omitting regeneration.");
 				return;
 			}
 
