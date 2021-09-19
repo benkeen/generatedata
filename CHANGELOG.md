@@ -1,5 +1,8 @@
 ## Changelog
 
+- `4.0.1` - Sept 19, 2021:
+    - localization files now cache-busted
+    - check for is-safari updated. 
 - `4.0.0` - Sept 17, 2021:
     - initial release!
     - bug fixes
