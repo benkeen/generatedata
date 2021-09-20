@@ -6,7 +6,6 @@ import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
 import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
-import { ClearPageType } from '~core/dialogs/clearPage/ClearPage.component';
 
 const Step1 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
@@ -149,7 +148,7 @@ const steps = [
 		position: 'center' as ReactourStepPosition,
 		action: (): void => {
 			setTimeout(() => {
-				store.dispatch(actions.clearPage(ClearPageType.dataOnly, false));
+				store.dispatch(actions.clearPage(false));
 				store.dispatch(actions.addRows(5));
 
 				const state = store.getState();

@@ -15,7 +15,6 @@ import { GDAction } from '~types/general';
 import C from '../../constants';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
 import * as accountActions from '~store/account/account.actions';
-import { ClearPageType } from '../../dialogs/clearPage/ClearPage.component';
 import { DataSetListItem } from '~types/dataSets';
 import { getUnique } from '~utils/arrayUtils';
 import { getCountryData } from '~utils/countryUtils';
@@ -315,24 +314,20 @@ export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITE
 
 export const CLEAR_GRID = 'CLEAR_GRID';
 export const RESET_GENERATOR = 'RESET_GENERATOR';
-export const clearPage = (clearType: ClearPageType, addDefaultRows = true): any => (dispatch: Dispatch, getState: any): void => {
-	if (clearType === ClearPageType.everything) {
-		const loadedExportTypes = selectors.getLoadedExportTypesArray(getState());
+export const clearPage = (addDefaultRows = true): any => (dispatch: Dispatch, getState: any): void => {
+	const loadedExportTypes = selectors.getLoadedExportTypesArray(getState());
 
-		const exportTypeInitialStates: any = {};
-		loadedExportTypes.forEach((et: ExportTypeFolder) => {
-			exportTypeInitialStates[et] = getExportTypeInitialState(et);
-		});
+	const exportTypeInitialStates: any = {};
+	loadedExportTypes.forEach((et: ExportTypeFolder) => {
+		exportTypeInitialStates[et] = getExportTypeInitialState(et);
+	});
 
-		dispatch({
-			type: RESET_GENERATOR,
-			payload: {
-				exportTypeInitialStates
-			}
-		});
-	} else {
-		dispatch({ type: CLEAR_GRID });
-	}
+	dispatch({
+		type: RESET_GENERATOR,
+		payload: {
+			exportTypeInitialStates
+		}
+	});
 
 	if (addDefaultRows) {
 		dispatch(addRows(5));
