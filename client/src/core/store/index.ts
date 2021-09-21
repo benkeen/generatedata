@@ -49,7 +49,11 @@ function initStore(state: any): any {
 			'localeFileLoaded',
 			'isOnloadAuthDetermined',
 			'tourBundleLoaded',
-			'dialogProcessing'
+			'dialogProcessing',
+			'accountsCurrentPage',
+			'accountsSortCol',
+			'accountsSortDir',
+			'accountsFilterStr'
 		]
 	};
 

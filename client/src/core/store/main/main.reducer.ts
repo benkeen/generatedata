@@ -4,6 +4,7 @@ import * as actions from './main.actions';
 import C from '../../constants';
 import env from '../../../../_env';
 import { AuthMethod, GDLocale } from '~types/general';
+import { ColSortDir } from '~components/tables/TableHeader.component';
 
 export type MainState = {
 	appStateVersion: number;
@@ -22,6 +23,10 @@ export type MainState = {
 	currentPage: string;
 	tourIntroDialogVisible: boolean;
 	tourBundleLoaded: boolean;
+	accountsCurrentPage: number;
+	accountsSortCol: string;
+	accountsSortDir: ColSortDir;
+	accountsFilterStr: string;
 };
 
 export const initialState: MainState = {
@@ -40,7 +45,11 @@ export const initialState: MainState = {
 	dialogProcessing: false,
 	currentPage: '',
 	tourIntroDialogVisible: false,
-	tourBundleLoaded: false
+	tourBundleLoaded: false,
+	accountsCurrentPage: 1,
+	accountsSortCol: 'lastName',
+	accountsSortDir: ColSortDir.asc,
+	accountsFilterStr: ''
 };
 
 export const reducer = produce((draft: MainState, action: AnyAction) => {
@@ -87,6 +96,10 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 		case actions.LOGOUT:
 			draft.isLoggedIn = false;
 			draft.authToken = '';
+			draft.accountsCurrentPage = 1;
+			draft.accountsSortCol = 'lastName';
+			draft.accountsSortDir = ColSortDir.asc;
+			draft.accountsFilterStr = '';
 			break;
 
 		case actions.REFRESHING_TOKEN:
@@ -131,6 +144,22 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.CLEAR_DEFAULT_EMAIL:
 			draft.loginDialogDefaultEmail = '';
+			break;
+
+		case actions.SET_ACCOUNTS_SORT_DIR:
+			draft.accountsSortDir = action.payload.sortDir;
+			break;
+
+		case actions.SET_ACCOUNTS_SORT_COL:
+			draft.accountsSortCol = action.payload.sortCol;
+			break;
+
+		case actions.SET_ACCOUNTS_CURRENT_PAGE:
+			draft.accountsCurrentPage = action.payload.page;
+			break;
+
+		case actions.SET_ACCOUNTS_FILTER_STRING:
+			draft.accountsFilterStr = action.payload.filter;
 			break;
 	}
 

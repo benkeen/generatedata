@@ -17,6 +17,7 @@ import { CLEAR_GRID } from '~store/generator/generator.actions';
 import C from '~core/constants';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 import { localeFileMap } from '../../../../_localeFileMap';
+import { ColSortDir } from '~components/tables/TableHeader.component';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -369,3 +370,15 @@ export const sendPasswordResetEmail = (email: string, onLoginError: any): any =>
 		onLoginError();
 	}
 };
+
+export const SET_ACCOUNTS_SORT_DIR = 'SET_ACCOUNTS_SORT_DIR';
+export const setAccountsSortDir = (sortDir: ColSortDir): any => ({ type: SET_ACCOUNTS_SORT_DIR, payload: { sortDir } });
+
+export const SET_ACCOUNTS_SORT_COL = 'SET_ACCOUNTS_SORT_COL';
+export const setAccountsSortCol = (sortCol: string): any => ({ type: SET_ACCOUNTS_SORT_COL, payload: { sortCol } });
+
+export const SET_ACCOUNTS_CURRENT_PAGE = 'SET_ACCOUNTS_CURRENT_PAGE';
+export const setAccountsCurrentPage = (page: number): any => ({ type: SET_ACCOUNTS_CURRENT_PAGE, payload: { page } });
+
+export const SET_ACCOUNTS_FILTER_STRING = 'SET_ACCOUNTS_FILTER_STRING';
+export const setAccountsFilterString = (filter: string): any => ({ type: SET_ACCOUNTS_FILTER_STRING, payload: { filter } });

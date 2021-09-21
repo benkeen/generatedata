@@ -1,16 +1,27 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import * as mainSelectors from '~store/main/main.selectors';
 import * as selectors from '~store/generator/generator.selectors';
 import * as accountActions from '~store/account/account.actions';
+import * as mainActions from '~store/main/main.actions';
 import AccountsList, { AccountsListProps } from './AccountsList.component';
 import { Store } from '~types/general';
+import { ColSortDir } from '~components/tables/TableHeader.component';
 
 const mapStateToProps = (state: Store): Partial<AccountsListProps> => ({
+	accountsCurrentPage: mainSelectors.getAccountsCurrentPage(state),
+	accountsSortCol: mainSelectors.getAccountsSortCol(state),
+	accountsSortDir: mainSelectors.getAccountsSortDir(state),
+	accountsFilterStr: mainSelectors.getAccountsFilterStr(state),
 	i18n: selectors.getCoreI18n(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountsListProps> => ({
-	onEditAccount: (accountInfo: any): any => dispatch(accountActions.editAccount(accountInfo))
+	onEditAccount: (accountInfo: any): any => dispatch(accountActions.editAccount(accountInfo)),
+	setAccountsSortDir: (sortDir: ColSortDir): void => dispatch(mainActions.setAccountsSortDir(sortDir)),
+	setAccountsSortCol: (sortCol: string): void => dispatch(mainActions.setAccountsSortCol(sortCol)),
+	setAccountsCurrentPage: (page: number): void => dispatch(mainActions.setAccountsCurrentPage(page)),
+	setAccountsFilterString: (filter: string): void => dispatch(mainActions.setAccountsFilterString(filter))
 });
 
 const container: any = connect(

@@ -16,7 +16,15 @@ import C from '~core/constants';
 
 
 export type AccountsListProps = {
+	accountsCurrentPage: number;
+	accountsSortCol: string;
+	accountsSortDir: ColSortDir;
+	accountsFilterStr: string;
 	onEditAccount: (accountId: number) => void;
+	setAccountsSortDir: (sortDir: ColSortDir) => void;
+	setAccountsSortCol: (sortCol: string) => void;
+	setAccountsCurrentPage: (page: number) => void;
+	setAccountsFilterString: (filter: string) => void;
 	i18n: any;
 };
 
@@ -50,30 +58,30 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastL
 	);
 };
 
+
 const NUM_PER_PAGE = 10;
-const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element | null => {
-	const [currentPage, setCurrentPage] = useState(1);
+const AccountsList = ({
+	accountsCurrentPage, accountsSortCol, accountsSortDir, accountsFilterStr, onEditAccount, setAccountsSortDir,
+	setAccountsSortCol, setAccountsCurrentPage, setAccountsFilterString, i18n
+}: AccountsListProps): JSX.Element | null => {
 	const [dialogVisible, setDialogVisible] = useState(false);
 	const [deleteAccountInfo, setDeleteAccountInfo] = useState<any>(null);
-	const [sortCol, setSortCol] = useState('lastName');
-	const [sortDir, setSortDir] = useState<ColSortDir>(ColSortDir.asc);
-	const [filterStr, setFilterStr] = useState('');
 	const [lastData, setLastData] = useState<any>(null);
 
 	const { data, loading, refetch } = useQuery(queries.GET_ACCOUNTS, {
 		fetchPolicy: 'cache-and-network',
 		variables: {
-			offset: (currentPage - 1) * NUM_PER_PAGE,
+			offset: (accountsCurrentPage - 1) * NUM_PER_PAGE,
 			limit: NUM_PER_PAGE,
-			sortCol,
-			sortDir,
-			filterStr
+			sortCol: accountsSortCol,
+			sortDir: accountsSortDir,
+			filterStr: accountsFilterStr
 		}
 	});
 
 	useEffect(() => {
 		refetch();
-	}, [filterStr]);
+	}, [accountsFilterStr]);
 
 	useEffect(() => {
 		if (data) {
@@ -82,7 +90,7 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 	}, [data]);
 
 	const numItemsOnPage = lastData?.accounts?.results?.length || 0;
-	const afterDeletePage = numItemsOnPage === 1 && currentPage > 1 ? currentPage-1 : currentPage;
+	const afterDeletePage = numItemsOnPage === 1 && accountsCurrentPage > 1 ? accountsCurrentPage-1 : accountsCurrentPage;
 
 	const [deleteAccount] = useMutation(queries.DELETE_ACCOUNT, {
 		refetchQueries: [
@@ -91,9 +99,9 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 				variables: {
 					offset: (afterDeletePage - 1) * NUM_PER_PAGE,
 					limit: NUM_PER_PAGE,
-					sortCol,
-					sortDir,
-					filterStr
+					sortCol: accountsSortCol,
+					sortDir: accountsSortDir,
+					filterStr: accountsFilterStr
 				}
 			}
 		],
@@ -160,8 +168,8 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 			<div className={styles.paginationRow}>
 				<Pagination
 					numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
-					currentPage={currentPage}
-					onChange={(e: any, pageNum: number): void => setCurrentPage(pageNum)}
+					currentPage={accountsCurrentPage}
+					onChange={(e: any, pageNum: number): void => setAccountsCurrentPage(pageNum)}
 				/>
 			</div>
 		) : null;
@@ -171,11 +179,11 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 				<div className={styles.accountsListTable}>
 					<TableHeader
 						cols={cols}
-						sortDir={sortDir}
-						sortCol={sortCol}
+						sortDir={accountsSortDir}
+						sortCol={accountsSortCol}
 						onSort={(col: string, dir: ColSortDir): void => {
-							setSortCol(col);
-							setSortDir(dir);
+							setAccountsSortCol(col);
+							setAccountsSortDir(dir);
 						}}
 					/>
 					<div className={styles.body}>
@@ -202,8 +210,8 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 		<>
 			<div>
 				<SearchFilter
-					value={filterStr}
-					onChange={setFilterStr}
+					value={accountsFilterStr}
+					onChange={setAccountsFilterString}
 					loading={loading}
 				/>
 			</div>
@@ -219,7 +227,7 @@ const AccountsList = ({ onEditAccount, i18n }: AccountsListProps): JSX.Element |
 							accountId: deleteAccountInfo?.accountId
 						}
 					});
-					setCurrentPage(afterDeletePage);
+					setAccountsCurrentPage(afterDeletePage);
 				}}
 				name={`${deleteAccountInfo?.firstName} ${deleteAccountInfo?.lastName}`}
 				i18n={i18n}
