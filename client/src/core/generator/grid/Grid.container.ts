@@ -7,22 +7,16 @@ import { DataTypeFolder } from '../../../../_plugins';
 
 const mapStateToProps = (state: any): Partial<GridProps> => ({
 	i18n: selectors.getCoreI18n(state),
-	dataTypeI18n: selectors.getDataTypeI18n(state),
 	columnTitle: selectors.getExportTypeColumnTitle(state),
-	rows: selectors.getSortedRowsArray(state),
-	loadedDataTypes: selectors.getLoadedDataTypes(state),
-	helpDialogVisible: selectors.isHelpDialogVisible(state),
-	helpDialogSection: selectors.getHelpDialogSection(state)
+	rows: selectors.getSortedRowsArray(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
 	onAddRows: (numRows: number): any => dispatch(actions.addRows(numRows)),
 	onSort: (id: string, newIndex: number): any => dispatch(actions.repositionRow(id, newIndex)),
-	onSelectDataType: (dataType: DataTypeFolder, id?: string): any => dispatch(actions.onSelectDataType(dataType, id)),
 	toggleGrid: (): any => dispatch(actions.toggleGrid()),
 	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel()),
-	showHelpDialog: (dataType: DataTypeFolder): any => dispatch(actions.showHelpDialog(dataType)),
-	hideHelpDialog: (): any => dispatch(actions.hideHelpDialog())
+	showHelpDialog: (dataType: DataTypeFolder): any => dispatch(actions.showHelpDialog(dataType))
 });
 
 const container: any = connect(

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import { DropdownOption } from '~components/dropdown/Dropdown';
@@ -8,12 +8,13 @@ import styles from './HelpDialog.scss';
 import { DataTypeFolder } from '../../../../_plugins';
 
 export type HelpDialogProps = {
-	initialDataType: DataTypeFolder | null;
 	visible: boolean;
+	initialDataType: DataTypeFolder | null;
+	loadedDataTypes: any; // done on purpose. This ensures it repaints after a new DT is loaded
 	onClose: any;
 	coreI18n: any;
 	dataTypeI18n: any;
-	onSelectDataType: (dataType: DataTypeFolder) => void;
+	onSelectDataType: (dataType: DataTypeFolder, id?: string) => void;
 };
 
 const DataTypeList = ({ onSelect, filterString }: any): any => {
@@ -43,9 +44,9 @@ const DataTypeList = ({ onSelect, filterString }: any): any => {
 	return content;
 };
 
-const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps): JSX.Element => {
-	const [dataType, setDataType] = React.useState<DataTypeFolder | null>(null);
-	const [filterString, setFilterString] = React.useState('');
+const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps): JSX.Element => {
+	const [dataType, setDataType] = useState<DataTypeFolder | null>(null);
+	const [filterString, setFilterString] = useState('');
 
 	const selectDataType = (dataType: DataTypeFolder): void => {
 		onSelectDataType(dataType);
@@ -56,8 +57,8 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 		setDataType(initialDataType);
 	}, [initialDataType]);
 
-	const { Help } = getDataType(dataType);
 	const i18n = dataType ? dataTypeI18n[dataType] : {};
+	const { Help } = getDataType(dataType);
 
 	let spinnerStyles = styles.spinner;
 	if (Help) {

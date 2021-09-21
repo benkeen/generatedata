@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -83,6 +83,10 @@ const Footer = ({
 		setSaveAsMenuOpen(false);
 	});
 
+	const onClickLang = useCallback(() => {
+		setLocaleTooltipVisibility(true);
+	}, []);
+
 	const getLocaleSelector = (): JSX.Element | null => {
 		if (availableLocales.length < 1) {
 			return null;
@@ -114,7 +118,10 @@ const Footer = ({
 						</div>
 					}
 				>
-					<LanguageIcon fontSize="large" onClick={(): void => setLocaleTooltipVisibility(true)} />
+					<LanguageIcon
+						fontSize="large"
+						onClick={onClickLang}
+					/>
 				</HtmlTooltip>
 			</li>
 		);

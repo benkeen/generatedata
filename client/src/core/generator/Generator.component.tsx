@@ -9,6 +9,7 @@ import ActivityPanel from '../generationPanel/ActivityPanel.container';
 import GenerationSettings from '../generationPanel/GenerationSettings.container';
 import TourDialog from '~core/dialogs/tourIntro/TourIntro.container';
 import DataSetHistory from './dataSetHistory/DataSetHistory.container';
+import HelpDialog from '../dialogs/help/HelpDialog.container';
 import ClearPageDialog from '../dialogs/clearPage/ClearPage.container';
 import IncompatibleBrowser from './IncompatibleBrowser.component';
 import * as generalUtils from '../../utils/generalUtils';
@@ -18,7 +19,7 @@ import './Generator.scss';
 export const enum GeneratorLayout {
 	horizontal = 'horizontal',
 	vertical = 'vertical'
-};
+}
 
 export type GeneratorProps = {
 	i18n: any;
@@ -104,6 +105,7 @@ const Builder = ({
 				<ActivityPanel />
 				<TourDialog />
 				<ClearPageDialog />
+				<HelpDialog />
 			</div>
 		</>
 	);

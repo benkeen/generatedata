@@ -16,8 +16,10 @@ const defaultProps = {
 	dataTypeI18n: {
 		Names: NamesI18n
 	},
-	onSelectDataType : () => {}
+	onSelectDataType : () => {},
+	loadedDataTypes: {}
 };
+
 
 describe('HelpDialog', () => {
 	it('clicking close calls the onClose callback', () => {

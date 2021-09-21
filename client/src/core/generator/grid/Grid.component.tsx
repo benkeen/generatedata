@@ -5,7 +5,6 @@ import { useWindowSize } from 'react-hooks-window-size';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import * as styles from './Grid.scss';
-import HelpDialog from '../../dialogs/help/HelpDialog.component';
 import { Tooltip } from '~components/tooltips';
 import { PrimaryButton } from '~components/Buttons.component';
 import { DataRow } from '~store/generator/generator.reducer';
@@ -16,24 +15,18 @@ import C from '../../constants';
 export type GridProps = {
 	rows: DataRow[];
 	onAddRows: (numRows: number) => void;
-	onSelectDataType: (dataType: DataTypeFolder, id?: string) => void;
 	onSort: (id: string, newIndex: number) => void;
 	toggleGrid: () => void;
 	i18n: any;
-	dataTypeI18n: any;
 	columnTitle: string;
-	loadedDataTypes: any; // TODO
 	changeSmallScreenVisiblePanel: () => void;
 	showHelpDialog: (section: DataTypeFolder) => void;
-	hideHelpDialog: () => void;
-	helpDialogSection: DataTypeFolder | null;
-	helpDialogVisible: boolean;
 };
 
 
 const Grid = ({
-	rows, onAddRows, onSelectDataType, onSort, i18n, dataTypeI18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel,
-	showHelpDialog, hideHelpDialog, helpDialogSection, helpDialogVisible
+	rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel,
+	showHelpDialog
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
@@ -142,14 +135,6 @@ const Grid = ({
 								</form>
 							</div>
 						</div>
-						<HelpDialog
-							visible={helpDialogVisible}
-							initialDataType={helpDialogSection}
-							onClose={hideHelpDialog}
-							coreI18n={i18n}
-							dataTypeI18n={dataTypeI18n}
-							onSelectDataType={onSelectDataType}
-						/>
 					</div>
 				)}
 			</Measure>
