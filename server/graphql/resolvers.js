@@ -24,7 +24,8 @@ const resolvers = {
 				lastName: 'last_name',
 				firstName: 'first_name',
 				accountStatus: 'account_status',
-				expiryDate: 'date_expires'
+				expiryDate: 'date_expires',
+				lastLoggedIn: 'last_logged_in'
 			};
 
 			let filterClause = '';
