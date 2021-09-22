@@ -159,6 +159,7 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			break;
 
 		case actions.SET_ACCOUNTS_FILTER_STRING:
+			draft.accountsCurrentPage = 1;
 			draft.accountsFilterStr = action.payload.filter;
 			break;
 	}
