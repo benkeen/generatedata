@@ -1,5 +1,9 @@
 ## Changelog
 
+- `4.0.2` - Sept 21, 2021
+    - misc bug fixes, UX improvements
+    - minor dependency updates
+    - https://github.com/benkeen/generatedata/milestone/28?closed=1
 - `4.0.1` - Sept 19, 2021:
     - localization files now cache-busted
     - check for is-safari updated. 
