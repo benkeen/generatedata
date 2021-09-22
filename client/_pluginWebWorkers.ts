@@ -51,7 +51,7 @@ export default {
 		"Perl": "ET-Perl.generator-df47046d1c609b2d741f89e42cccc64b.js",
 		"Python": "ET-Python.generator-102049145ee18294f99a348a88c3ddd5.js",
 		"Ruby": "ET-Ruby.generator-ac8488a5383529eec4c26079079b6508.js",
-		"SQL": "ET-SQL.generator-b41df6164e6d636efda11dadba9f32b7.js",
+		"SQL": "ET-SQL.generator-b581111d7403a078ee2969887cadfe46.js",
 		"Typescript": "ET-Typescript.generator-fef1536c370c937fd2ab9c3da2440814.js",
 		"XML": "ET-XML.generator-2bb617f90572cee10202bbc4ecfb56c9.js"
 	}

@@ -4,6 +4,7 @@ import { ColumnData } from '~types/general';
 
 const context: Worker = self as any;
 
+
 let workerUtilsLoaded = false;
 context.onmessage = (e: ETOnMessage) => {
 	if (!workerUtilsLoaded) {
@@ -28,11 +29,25 @@ context.onmessage = (e: ETOnMessage) => {
 	context.postMessage(content);
 };
 
-const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: number[], quote: string = '"'): any => {
+export const enum QuoteType {
+	single = '\'',
+	double = '"'
+}
+
+const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: number[], quote: QuoteType = QuoteType.double): any => {
 	let val = '';
 	if (numericFieldIndexes.indexOf(colIndex) !== -1) {
 		val = value;
 	} else {
+		if (quote === QuoteType.double) {
+			if (value.toString().indexOf(QuoteType.double) !== -1) {
+				value = value.replaceAll(QuoteType.double, `${QuoteType.double}${QuoteType.double}`);
+			}
+		} else {
+			if (value.toString().indexOf(QuoteType.single) !== -1) {
+				value = value.replaceAll(QuoteType.single, `${QuoteType.single}${QuoteType.single}`);
+			}
+		}
 		val = `${quote}${value}${quote}`;
 	}
 	return val;
@@ -173,7 +188,7 @@ export const generatePostgres = (generationData: ETMessageData): string => {
 		if (sqlSettings.statementType === 'insert') {
 			const displayVals: any = [];
 			colTitles.forEach((columnTitle: string, colIndex: number) => {
-				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
+				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes, QuoteType.single));
 			});
 			rowDataStr.push(displayVals.join(','));
 			if (rowDataStr.length === sqlSettings.insertBatchSize) {
@@ -357,7 +372,7 @@ export const generateOracle = (generationData: ETMessageData): string => {
 export const generateMSSQL = (generationData: ETMessageData): string => {
 	const sqlSettings: SQLSettings = generationData.settings;
 	const colTitles = generationData.columns.map(({ title }) => title);
-	const quote = sqlSettings.quotes === 'single' ? '\'' : '"';
+	const quote = sqlSettings.quotes === 'single' ? QuoteType.single : QuoteType.double;
 	let content = '';
 
 	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData.columns);
