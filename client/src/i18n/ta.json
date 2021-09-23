@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "உங்களுக்காக ஒரு கணக்கு உருவாக்கப்பட்டது.",
 	"accountDeleted": "கணக்கு நீக்கப்பட்டது.",
 	"accountDisabled": "கணக்கு முடக்கப்பட்டது",
+	"accountExpiredMsg": "மன்னிக்கவும், உங்கள் கணக்கு காலாவதியாகிவிட்டது.",
 	"accountExpiryDate": "கணக்கு காலாவதி தேதி",
 	"accountInfo": "கணக்கு தகவல்",
 	"accountSettings": "கணக்கு அமைப்புகள்",
@@ -328,7 +329,5 @@
 	"yes": "ஆம்",
 	"yourAccount": "உங்கள் கணக்கு",
 	"yourAccountUpdated": "உங்கள் கணக்கு புதுப்பிக்கப்பட்டுள்ளன.",
-	"yourUserAccount": "உங்கள் பயனர் கணக்கு",
-
-  "accountExpiredMsg": "மன்னிக்கவும், உங்கள் கணக்கு காலாவதியாகிவிட்டது."
+	"yourUserAccount": "உங்கள் பயனர் கணக்கு"
 }

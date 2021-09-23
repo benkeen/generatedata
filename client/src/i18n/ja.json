@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "アカウントが作成されました。",
 	"accountDeleted": "アカウントが削除されました。",
 	"accountDisabled": "アカウントが無効になっています",
+	"accountExpiredMsg": "申し訳ありませんが、アカウントの有効期限が切れています。",
 	"accountExpiryDate": "アカウントの有効期限",
 	"accountInfo": "アカウント情報",
 	"accountSettings": "アカウント設定",
@@ -328,7 +329,5 @@
 	"yes": "Yes",
 	"yourAccount": "あなたのアカウント",
 	"yourAccountUpdated": "アカウントが更新されました。",
-	"yourUserAccount": "あなたのユーザーアカウント",
-
-  "accountExpiredMsg": "申し訳ありませんが、アカウントの有効期限が切れています。"
+	"yourUserAccount": "あなたのユーザーアカウント"
 }

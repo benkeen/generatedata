@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "Se ha creado una cuenta para ti.",
 	"accountDeleted": "La cuenta ha sido eliminada.",
 	"accountDisabled": "Cuenta deshabilitada",
+	"accountExpiredMsg": "Lo sentimos, su cuenta ha caducado.",
 	"accountExpiryDate": "Fecha de vencimiento de la cuenta",
 	"accountInfo": "Información de cuenta",
 	"accountSettings": "Ajustes de cuenta",
@@ -328,7 +329,5 @@
 	"yes": "Sí",
 	"yourAccount": "Tu cuenta",
 	"yourAccountUpdated": "Tu cuenta ha sido actualizada.",
-	"yourUserAccount": "Su cuenta de usuario",
-
-  "accountExpiredMsg": "Lo sentimos, su cuenta ha caducado."
+	"yourUserAccount": "Su cuenta de usuario"
 }

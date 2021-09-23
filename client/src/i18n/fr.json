@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "Un compte a été créé avec succès.",
 	"accountDeleted": "Le compte a été supprimé.",
 	"accountDisabled": "Compte désactivé",
+	"accountExpiredMsg": "Désolé, votre compte a expiré.",
 	"accountExpiryDate": "Date d'expiration du compte",
 	"accountInfo": "Informations sur le compte",
 	"accountSettings": "Paramètres du compte",
@@ -328,7 +329,5 @@
 	"yes": "Oui",
 	"yourAccount": "Votre compte",
 	"yourAccountUpdated": "Votre compte a été mis à jour.",
-	"yourUserAccount": "Su cuenta de usuario",
-
-  "accountExpiredMsg": "Désolé, votre compte a expiré."
+	"yourUserAccount": "Su cuenta de usuario"
 }

@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "تم إنشاء حساب لك.",
 	"accountDeleted": "تم حذف الحساب.",
 	"accountDisabled": "الحساب معطل",
+	"accountExpiredMsg": "عذرا ، لقد انتهت صلاحية حسابك.",
 	"accountExpiryDate": "تاريخ انتهاء الحساب",
 	"accountInfo": "معلومات الحساب",
 	"accountSettings": "إعدادات الحساب",
@@ -328,7 +329,5 @@
 	"yes": "نعم",
 	"yourAccount": "حسابك",
 	"yourAccountUpdated": "تم تحديث حسابك",
-	"yourUserAccount": "حساب المستخدم الخاص بك",
-
-  "accountExpiredMsg": "عذرا ، لقد انتهت صلاحية حسابك."
+	"yourUserAccount": "حساب المستخدم الخاص بك"
 }

@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "Er is een gebruikersaccount voor u aangemaakt.",
 	"accountDeleted": "Het account is verwijderd.",
 	"accountDisabled": "Account ongebruikelijk gemaakt",
+	"accountExpiredMsg": "Sorry, uw account is verlopen.",
 	"accountExpiryDate": "Vervaldatum account",
 	"accountInfo": "Gebruikersgegevens",
 	"accountSettings": "Gebruikersinstellingen",
@@ -328,7 +329,5 @@
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
 	"yourAccountUpdated": "Uw gebruikersaccount is bijgewerkt.",
-	"yourUserAccount": "Uw gebruikersaccount",
-
-  "accountExpiredMsg": "Sorry, uw account is verlopen."
+	"yourUserAccount": "Uw gebruikersaccount"
 }

@@ -9,7 +9,6 @@
 	"accountCreatedMsg": "An account has been created for you.",
 	"accountDeleted": "The account has been deleted.",
 	"accountDisabled": "Account disabled",
-	"accountExpiredMsg": "Sorry, your account has expired.",
 	"accountExpiryDate": "Account expiry date",
 	"accountInfo": "Account Info",
 	"accountSettings": "Account Settings",
@@ -329,5 +328,7 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourAccountUpdated": "Your account has been updated.",
-	"yourUserAccount": "Your User Account"
+	"yourUserAccount": "Your User Account",
+
+  "accountExpiredMsg": "Sorry, your account has expired."
 }

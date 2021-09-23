@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "该账户已创建.",
 	"accountDeleted": "该帐户已被删除。",
 	"accountDisabled": "帐户已禁用",
+	"accountExpiredMsg": "抱歉，您的帐户已过期。",
 	"accountExpiryDate": "账户到期日",
 	"accountInfo": "账户信息",
 	"accountSettings": "账户设置",
@@ -328,7 +329,5 @@
 	"yes": "确认",
 	"yourAccount": "你的账号",
 	"yourAccountUpdated": "你的账户已更新.",
-	"yourUserAccount": "您的用户帐号",
-
-  "accountExpiredMsg": "抱歉，您的帐户已过期。"
+	"yourUserAccount": "您的用户帐号"
 }

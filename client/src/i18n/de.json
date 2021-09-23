@@ -9,6 +9,7 @@
 	"accountCreatedMsg": "Ein Benutzerkonto wurde für Sie erstellt.",
 	"accountDeleted": "Das Konto wurde gelöscht.",
 	"accountDisabled": "Account deaktiviert",
+	"accountExpiredMsg": "Ihr Konto ist leider abgelaufen.",
 	"accountExpiryDate": "Ablaufdatum des Kontos",
 	"accountInfo": "Benutzerkonten-Daten",
 	"accountSettings": "Benutzerkonto-Einstellungen",
@@ -328,7 +329,5 @@
 	"yes": "Ja",
 	"yourAccount": "Ihr Konto",
 	"yourAccountUpdated": "Ihr Benutzerkonto wurde aktualisiert.",
-	"yourUserAccount": "Ihr Benutzerkonto",
-
-  "accountExpiredMsg": "Ihr Konto ist leider abgelaufen."
+	"yourUserAccount": "Ihr Benutzerkonto"
 }
