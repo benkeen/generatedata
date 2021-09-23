@@ -1,5 +1,8 @@
 ## Changelog
 
+- `4.0.3` - Sept 22, 2021
+    - Bug fix for CSV Export Type.
+    - https://github.com/benkeen/generatedata/milestone/29?closed=1 
 - `4.0.2` - Sept 21, 2021
     - misc bug fixes, UX improvements
     - minor dependency updates
