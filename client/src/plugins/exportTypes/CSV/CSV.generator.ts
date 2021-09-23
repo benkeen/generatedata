@@ -14,6 +14,7 @@ context.onmessage = (e: ETOnMessage) => {
 	context.postMessage(generate(e.data));
 };
 
+
 const generate = (data: ETMessageData): string => {
 	const { columns, rows, isFirstBatch, settings } = data;
 	const { delimiter, lineEndings } = settings;
@@ -36,7 +37,7 @@ const generate = (data: ETMessageData): string => {
 		const cleanRow = [];
 		for (let i=0; i<numCols; i++) {
 			// see if any of the cells contains the delimiter. If it does, wrap the cell in double quotes
-			if (row[i] && row[i].indexOf(delimiter) !== -1) {
+			if (row[i] && row[i].toString().indexOf(delimiter) !== -1) {
 				cleanRow.push(`"${rows[i]}"`);
 			} else {
 				cleanRow.push(row[i]);
