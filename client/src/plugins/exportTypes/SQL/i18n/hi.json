@@ -1,0 +1,19 @@
+{
+  "EXPORT_TYPE_NAME": "SQL",
+  "COL_TITLE": "Column Name",
+  "rowLabel": "Table Column",
+  "rowLabelPlural": "Table Columns",
+  "validationInvalidColName": "Please enter valid database column names for each row (a-Z and underscore characters). Please fix the following rows: ",
+  "validationInvalidTableName": "Please enter a valid database table name (a-Z and underscores only).",
+  "dbTableName": "Database table name",
+  "dbType": "Database Type",
+  "miscOptions": "Misc Options",
+  "includeCreateTableQuery": "Include CREATE TABLE query",
+  "includeDropTableQuery": "Include DROP TABLE query",
+  "encloseTableBackquotes": "Enclose table and field names with backquotes",
+  "statementType": "Statement Type",
+  "primaryKey": "Primary Key",
+  "addDefaultAutoIncrementPrimaryKey": "Add default auto-increment primary key column",
+  "batchSize": "batch size",
+  "batchSizeDesc": "Number of rows to insert per query (1 - 300)"
+}

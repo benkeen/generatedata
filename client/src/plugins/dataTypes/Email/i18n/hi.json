@@ -1,0 +1,5 @@
+{
+  "NAME": "Email",
+  "DESC": "Generates a random email address. Currently this just generates them out of random lorem ipsum words.",
+  "DEFAULT_TITLE": "email"
+}

@@ -1,0 +1,7 @@
+{
+  "NAME": "Chilean RUT number",
+  "DESC": "Generates a RUT/RUN Chilean National Identification Number.",
+  "DEFAULT_TITLE": "rut",
+  "onlyDigit": "Only verification digit",
+  "digitUppercase": "Uppercase digit"
+}
