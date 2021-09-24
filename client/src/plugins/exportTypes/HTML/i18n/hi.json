@@ -1,6 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Column Title",
-  "dataFormat": "Data format",
-  "batchVars": "Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for users generating the data in-page, which generates the results in chunks. For all other situations, both are always true."
+  "COL_TITLE": "कॉलम शीर्षक",
+  "dataFormat": "डेटा स्वरूप",
+  "batchVars": "उत्पन्न होने वाले परिणामों का वर्तमान बैच पहला या अंतिम है या नहीं, इसके लिए बूलियन। यह केवल उन उपयोगकर्ताओं के लिए उपयोग किया जाता है जो इन-पेज डेटा उत्पन्न करते हैं, जो परिणामों को विखंडू में उत्पन्न करता है। अन्य सभी स्थितियों के लिए, दोनों हमेशा सत्य होते हैं।"
 }

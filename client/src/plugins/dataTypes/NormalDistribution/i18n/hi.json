@@ -1,8 +1,8 @@
 {
-  "NAME": "Normal Distribution",
-  "DESC": "Generates random normally distributed values with a customizable mean and standard deviation.",
+  "NAME": "सामान्य वितरण",
+  "DESC": "अनुकूलन योग्य माध्य और मानक विचलन के साथ यादृच्छिक सामान्य रूप से वितरित मान उत्पन्न करता है।",
   "DEFAULT_TITLE": "normaldist",
-  "mean": "Mean",
-  "standardDeviation": "Standard Dev.",
-  "precision": "Precision"
+  "mean": "माध्य",
+  "standardDeviation": "मानक विचलन",
+  "precision": "शुद्धता"
 }

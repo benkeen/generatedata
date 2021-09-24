@@ -1,5 +1,5 @@
 {
   "NAME": "CVV",
-  "DESC": "Generates a random credit card CVV number from 111 to 999.",
+  "DESC": "111 से 999 तक एक रैंडम क्रेडिट कार्ड CVV नंबर जेनरेट करता है।",
   "DEFAULT_TITLE": "cvv"
 }

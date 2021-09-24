@@ -1,7 +1,7 @@
 {
-  "NAME": "Chilean RUT number",
-  "DESC": "Generates a RUT/RUN Chilean National Identification Number.",
+  "NAME": "चिली आरयूटी नंबर",
+  "DESC": "एक RUT/RUN चिली राष्ट्रीय पहचान संख्या उत्पन्न करता है।",
   "DEFAULT_TITLE": "rut",
-  "onlyDigit": "Only verification digit",
-  "digitUppercase": "Uppercase digit"
+  "onlyDigit": "केवल सत्यापन अंक",
+  "digitUppercase": "अपरकेस अंक"
 }

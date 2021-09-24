@@ -1,14 +1,14 @@
 {
-  "NAME": "French SIRET",
-  "DESC": "This Data Type generates a random SIRET/SIREN French business identification number.",
+  "NAME": "फ्रेंच SIRET",
+  "DESC": "यह डेटा प्रकार एक यादृच्छिक SIRET/SIREN फ़्रेंच व्यवसाय पहचान संख्या उत्पन्न करता है।",
   "DEFAULT_TITLE": "siret",
   "helpLink": "http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements",
-  "incompleteFields": "The SIRET data type needs to have the format entered in the Options text field. Please fix the following rows:",
+  "incompleteFields": "SIRET डेटा प्रकार को विकल्प टेक्स्ट फ़ील्ड में प्रारूप दर्ज करने की आवश्यकता है। कृपया निम्न पंक्तियों को ठीक करें:",
   "exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
   "exampleSIREN": "508102811 (SIREN)",
-  "typeSIRET": " A random SIRET compound of a SIREN and NIC (508102811-00009).",
-  "typeSIREN": " A random SIREN (508102811).",
+  "typeSIRET": "A random SIRET compound of a SIREN and NIC (508102811-00009).",
+  "typeSIREN": "A random SIREN (508102811).",
   "SIRET": "SIRET:",
   "SIREN": "SIREN:",
-  "moreInfo": "More info:"
+  "moreInfo": "और जानकारी:"
 }

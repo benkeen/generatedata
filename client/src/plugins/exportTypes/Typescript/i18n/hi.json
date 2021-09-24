@@ -1,6 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "Typescript",
-  "COL_TITLE": "Property Name",
-  "typeName": "Type name",
-  "exportedVarName": "Exported variable name"
+  "COL_TITLE": "संपत्ति का नाम",
+  "typeName": "नाम लिखो",
+  "exportedVarName": "निर्यातित चर नाम"
 }

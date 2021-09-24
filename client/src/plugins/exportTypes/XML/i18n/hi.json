@@ -1,9 +1,9 @@
 {
   "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Node name",
-  "rowLabel": "Node Name",
-  "rowLabelPlural": "Node Names",
-  "invalidNodeName": "XML node names can only contain the following characters: a-Z, 0-9, -, _, .",
-  "rootNodeName": "Root node name",
-  "recordNodeName": "Record node name"
+  "COL_TITLE": "नोड का नाम",
+  "rowLabel": "नोड का नाम",
+  "rowLabelPlural": "नोड नाम",
+  "invalidNodeName": "XML नोड नामों में केवल निम्नलिखित वर्ण हो सकते हैं: a-Z, 0-9, -, _, .",
+  "rootNodeName": "रूट नोड नाम",
+  "recordNodeName": "रिकॉर्ड नोड नाम"
 }

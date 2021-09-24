@@ -1,13 +1,13 @@
 {
-  "NAME": "Organisation Number",
-  "DESC": "Generates organisation numbers, used in some countries for registration of companies, associations etc.",
+  "NAME": "संगठन संख्या",
+  "DESC": "कुछ देशों में कंपनियों, संघों आदि के पंजीकरण के लिए उपयोग की जाने वाली संगठन संख्या उत्पन्न करता है।",
   "DEFAULT_TITLE": "orgnumber",
-  "help_text": "At the present time only Swedish ones are supported. The organisation numbers are generated according to the format you specify:",
-  "incomplete_fields": "The Organisation Number Data Type needs to have the format entered in the Options text field. Please fix the following rows:",
+  "help_text": "वर्तमान समय में केवल स्वीडिश समर्थित हैं। संगठन संख्या आपके द्वारा निर्दिष्ट प्रारूप के अनुसार उत्पन्न होती है:",
+  "incomplete_fields": "संगठन संख्या डेटा प्रकार को विकल्प टेक्स्ट फ़ील्ड में प्रारूप दर्ज करने की आवश्यकता है। कृपया निम्न पंक्तियों को ठीक करें:",
   "example_OrganisationNumberWithoutHyphen": "167502241016",
   "example_OrganisationNumberWithHyphen": "16750224-1016",
-  "type_OrganisationNumberWithoutHyphen": "A (Swedish) organisation number with 12 siffers and no hyphen",
-  "type_OrganisationNumberWithHyphen": "A (Swedish) organisation number with 12 siffers and a hyphen",
-  "separators": "Separators:",
-  "separator_help": "The characters you enter here will be used as separator in the organisation number fields. Note: you can mix several separators, use | to separate them (for example -|+)"
+  "type_OrganisationNumberWithoutHyphen": "A (स्वीडिश) संगठन संख्या जिसमें 12 सिफ़र हैं और कोई हाइफ़न नहीं है",
+  "type_OrganisationNumberWithHyphen": "ए (स्वीडिश) संगठन संख्या 12 सिफर और एक हाइफ़न के साथ",
+  "separators": "विभाजक:",
+  "separator_help": "आपके द्वारा यहां दर्ज किए गए वर्ण संगठन संख्या फ़ील्ड में विभाजक के रूप में उपयोग किए जाएंगे। नोट: आप कई विभाजकों को मिला सकते हैं, उपयोग करें | उन्हें अलग करने के लिए (उदाहरण के लिए -|+)"
 }

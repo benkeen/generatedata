@@ -1,5 +1,5 @@
 {
   "NAME": "PIN",
-  "DESC": "Generates a random credit card PIN number from 1111 to 9999.",
+  "DESC": "1111 से 9999 तक एक यादृच्छिक क्रेडिट कार्ड पिन नंबर उत्पन्न करता है।",
   "DEFAULT_TITLE": "pin"
 }

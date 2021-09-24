@@ -1,5 +1,5 @@
 {
-  "NAME": "Email",
-  "DESC": "Generates a random email address. Currently this just generates them out of random lorem ipsum words.",
-  "DEFAULT_TITLE": "email"
+  "NAME": "ईमेल",
+  "DESC": "एक यादृच्छिक ईमेल पता उत्पन्न करता है। वर्तमान में यह उन्हें यादृच्छिक लोरेम इप्सम शब्दों से उत्पन्न करता है।",
+  "DEFAULT_TITLE": "ईमेल"
 }
