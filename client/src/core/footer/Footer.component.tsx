@@ -49,6 +49,7 @@ const allLocaleOptions = [
 	{ value: 'fr', label: 'Français' },
 	{ value: 'nl', label: 'Nederlands' },
 	{ value: 'ja', label: '日本人' },
+	{ value: 'hi', label: 'हिंदी' },
 	{ value: 'ta', label: 'தமிழ்' },
 	{ value: 'zh', label: '中文' }
 ];
