@@ -86,8 +86,14 @@ div.selectLocale {
 	display: inline-block;
 }
 
-.selectedLocale span {
-	font-weight: bold;
+div.selectedLocale {
+	background-color: $primary-pale-bg;
+	&:hover {
+		background-color: $primary-pale-bg;
+	}
+	span {
+		font-weight: bold;
+	}
 }
 
 .scriptVersion a {
