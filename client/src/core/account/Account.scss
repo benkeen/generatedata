@@ -3,6 +3,7 @@
 .hidden {
 	opacity: 0;
 }
+
 .shown {
 	opacity: 1;
 	transition: opacity 200ms ease-in-out;
@@ -27,5 +28,16 @@
 	& > div {
 		margin-bottom: 15px;
 		font-size: 32px;
+	}
+}
+
+.yourAccountRightCol {
+	flex: 1;
+	margin-left: 20px;
+}
+
+@media (max-width: 600px) {
+	.yourAccountRightCol {
+		display: none;
 	}
 }

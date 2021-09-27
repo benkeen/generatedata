@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
 import { GDCustomHeaderLink, GDHeaderLink } from '~types/general';
@@ -25,7 +27,67 @@ const getClassName = (path: string, currentPage: string): string => {
 	return currentPage === pathWithSlash ? styles.selected : '';
 };
 
-const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
+
+export const MobileLinks = ({ currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
+	const links: any = [];
+	const generatorPath = getGeneratorRoute();
+
+	headerLinks.forEach((headerLink, index) => {
+		if (typeof headerLink === 'object' && headerLink.path) {
+			const link = headerLink as GDCustomHeaderLink;
+			links.push(
+				<MenuItem key={link.path} component={Link} className={getClassName(link.path, currentPage)} to={link.path}>
+					{i18n[link.labelI18nKey]}
+				</MenuItem>
+			);
+		} else if (headerLink === 'generator') {
+			links.push(
+				<MenuItem key="generator" component={Link} className={getClassName(generatorPath, currentPage)} to={generatorPath}>
+					{i18n.generator}
+				</MenuItem>
+			);
+		} else if (headerLink === 'dataSets') {
+			links.push(
+				<MenuItem key="dataSets" component={Link} className={getClassName('datasets', currentPage)} to="/datasets">
+					{i18n.dataSets}
+				</MenuItem>
+			);
+		} else if (headerLink === 'userAccount') {
+			const classes = `${styles.userAccount} ${getClassName('account', currentPage)}`;
+			links.push(
+				<MenuItem key="account" component={Link} className={classes} to="/account">
+					{i18n.yourAccount}
+				</MenuItem>
+			);
+		} else if (headerLink === 'accounts') {
+			links.push(
+				<MenuItem key="accounts" component={Link} className={getClassName('accounts', currentPage)} to="/accounts">
+					{i18n.accounts}
+				</MenuItem>
+			);
+		} else if (headerLink === 'logout') {
+			links.push(
+				<MenuItem key="logout" className={styles.logoutLink} onClick={onLogout}>
+					{i18n.logout}
+				</MenuItem>
+			);
+		} else if (headerLink === 'register') {
+			links.push(
+				<MenuItem key="register" component={Link} className={getClassName('register', currentPage)} to="/register">
+					{i18n.register}
+				</MenuItem>
+			);
+		} else if (headerLink === 'loginDialog') {
+			links.push(<MenuItem key="loginDialog" onClick={showLoginDialog}>{i18n.login}</MenuItem>);
+		}
+	});
+
+	return (
+		<>{links}</>
+	);
+};
+
+export const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
 	const links: any = [];
 	const generatorPath = getGeneratorRoute();
 

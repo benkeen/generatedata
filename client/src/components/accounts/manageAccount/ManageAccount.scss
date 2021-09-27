@@ -23,3 +23,16 @@
 		font-size: 32px;
 	}
 }
+
+@media (max-width: 600px) {
+	.root {
+		flex-direction: column;
+	}
+
+	.rightCol {
+		margin-top: 20px;
+		margin-left: 0;
+		border-left: 0;
+		padding-left: 0;
+	}
+}

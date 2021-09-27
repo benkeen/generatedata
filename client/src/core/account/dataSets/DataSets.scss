@@ -59,7 +59,7 @@
 
 .numRowsGenerated {
 	flex: 1;
-		color: #666666;
+	color: #666666;
 }
 
 .status {
@@ -85,5 +85,11 @@
 		svg {
 			fill: #990000;
 		}
+	}
+}
+
+@media (max-width: 600px) {
+	.status, .lastModified, .numRowsGenerated {
+		display: none;
 	}
 }

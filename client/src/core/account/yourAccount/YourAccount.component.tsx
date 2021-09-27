@@ -55,7 +55,7 @@ const YourAccount = ({
 				submitButtonLabel={i18n.save}
 				showRequiredFieldError={true}
 			/>
-			<div style={{ flex: 1, marginLeft: 20 }}>
+			<div className={styles.yourAccountRightCol}>
 				<div className={styles.rightCol}>
 					<div className={styles.rightBlock}>
 						<label>{i18n.totalNumGeneratedRows}</label>

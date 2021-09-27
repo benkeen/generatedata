@@ -72,3 +72,13 @@
 		}
 	}
 }
+
+@media (max-width: 600px) {
+	.status, .lastLoggedIn, .expiryDate {
+		display: none;
+	}
+
+	.paginationRow nav {
+		border-bottom: 0;
+	}
+}

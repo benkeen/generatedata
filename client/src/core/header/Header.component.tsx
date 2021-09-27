@@ -2,14 +2,13 @@ import React from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import LoginDialog from '../dialogs/login/Login.container';
 import PasswordResetDialog from '../dialogs/passwordReset/PasswordReset.container';
 import GeneratorControls from './GeneratorControls.container';
 import { GeneratorPanel, GDLocale } from '~types/general';
 import C from '../constants';
-import HeaderLinks from './HeaderLinks.component';
+import HeaderLinks, { MobileLinks } from './HeaderLinks.component';
 import { getHeaderLinks } from '~utils/routeUtils';
 import { AccountType } from '~types/account';
 import sharedStyles from '../../styles/shared.scss';
@@ -47,48 +46,33 @@ const Header = ({
 		setAnchorEl(null);
 	};
 
-	/*
-	<Menu
-		id="nav-menu"
-		anchorEl={anchorEl}
-		keepMounted
-		open={Boolean(anchorEl)}
-		onClose={handleClose}
-	>
-		<MenuItem onClick={((): void => {
-			handleClose();
-			setShowClearDialog(true);
-		})}>Clear grid</MenuItem>
-		<MenuItem onClick={(): void => {
-			handleClose();
-			onChangeSmallScreenVisiblePanel();
-		}}>{togglePanelLabel}</MenuItem>
-	</Menu>
-	*/
-
 	const getNav = (): React.ReactNode => {
+		const headerLinks = getHeaderLinks(isLoggedIn, accountType);
+
 		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
-			const togglePanelLabel = smallScreenVisiblePanel === 'grid' ? i18n.showPreview : i18n.showGrid;
 			return (
 				<>
 					<Button aria-controls="nav-menu" aria-haspopup="true" onClick={handleClick}>
 						<MenuIcon fontSize="large" />
 					</Button>
-					<Menu
-						id="nav-menu"
-						anchorEl={anchorEl}
-						keepMounted
-						open={Boolean(anchorEl)}
-						onClose={handleClose}
-					>
-						<MenuItem onClick={((): void => {
-							handleClose();
-						})}>Clear grid</MenuItem>
-						<MenuItem onClick={(): void => {
-							handleClose();
-							onChangeSmallScreenVisiblePanel();
-						}}>{togglePanelLabel}</MenuItem>
-					</Menu>
+					{isOnloadAuthDetermined && (
+						<Menu
+							id="nav-menu"
+							anchorEl={anchorEl}
+							keepMounted
+							open={Boolean(anchorEl)}
+							onClose={handleClose}
+						>
+							<MobileLinks
+								profileImage={profileImage}
+								currentPage={currentPage}
+								headerLinks={headerLinks}
+								showLoginDialog={showLoginDialog}
+								onLogout={onLogout}
+								i18n={i18n}
+							/>
+						</Menu>
+					)}
 				</>
 			);
 		}
@@ -99,7 +83,7 @@ const Header = ({
 					<HeaderLinks
 						profileImage={profileImage}
 						currentPage={currentPage}
-						headerLinks={getHeaderLinks(isLoggedIn, accountType)}
+						headerLinks={headerLinks}
 						showLoginDialog={showLoginDialog}
 						onLogout={onLogout}
 						i18n={i18n}

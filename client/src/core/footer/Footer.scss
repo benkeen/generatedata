@@ -196,3 +196,9 @@ button.saveBtnArrow {
 		opacity: 1;
 	}
 }
+
+@media (max-width: 600px) {
+	.footerControls {
+		padding-right: 0;
+	}
+}

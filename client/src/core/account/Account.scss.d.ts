@@ -5,6 +5,7 @@ declare namespace AccountScssNamespace {
     rightCol: string;
     shown: string;
     yourAccountPage: string;
+    yourAccountRightCol: string;
   }
 }
 
