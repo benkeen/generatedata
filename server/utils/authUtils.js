@@ -54,7 +54,7 @@ const accountExpired = (expiryDate) => {
 
 	const now = new Date();
 	const nowMs = now.getTime();
-	const expiryDateMs = expiryDate ? expiryDate.getTime() * 1000 : 0;
+	const expiryDateMs = expiryDate ? expiryDate.getTime() : 0;
 
 	return expiryDateMs < nowMs;
 };

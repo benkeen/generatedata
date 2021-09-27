@@ -36,6 +36,10 @@ const login = async (root, { email, password }, { res }) => {
 
 	const accountExpired = authUtils.accountExpired(expiryDate);
 	if (accountExpired) {
+		await user.update({
+			accountStatus: 'expired'
+		});
+
 		return {
 			success: false,
 			error: 'accountExpired'

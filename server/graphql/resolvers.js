@@ -51,28 +51,47 @@ const resolvers = {
 				WHERE created_by = ${accountId} ${filterClause}
 			`, { raw: true, type: db.sequelize.QueryTypes.SELECT });
 
+			const updatedResults = results.map(async (row) => {
+				const accountId = row.account_id;
+
+				// not great, but info is needed. May be a better idea to denormalize the DB and store this on the
+				// account row
+				const numRowsGenerated = await authResolvers.getAccountNumRowsGenerated(accountId);
+				let accountStatus = row.account_status;
+
+				if (row.account_status !== 'expired') {
+					const accountExpired = authUtils.accountExpired(new Date(row.date_expires));
+					if (accountExpired) {
+						await db.sequelize.query(`
+							UPDATE accounts
+							SET account_status = 'expired'
+							WHERE account_id = ${accountId}
+						`, { raw: true, type: db.sequelize.QueryTypes.UPDATE });
+
+						accountStatus = 'expired';
+					}
+				}
+
+				return {
+					accountId,
+					dateCreated: row.date_created,
+					lastUpdated: row.last_updated,
+					lastLoggedIn: row.last_logged_in,
+					expiryDate: row.date_expires,
+					accountType: row.account_type,
+					accountStatus,
+					firstName: row.first_name,
+					lastName: row.last_name,
+					email: row.email,
+					country: row.country,
+					region: row.region,
+					numRowsGenerated
+				}
+			});
+
 			return {
 				totalCount: totalCountQuery.c,
-				results: results.map(async (row) => {
-					// not great, but info is needed. May be a better idea to denormalize the DB and store this on the
-					// account row
-					const numRowsGenerated = await authResolvers.getAccountNumRowsGenerated(row.account_id);
-					return {
-						accountId: row.account_id,
-						dateCreated: row.date_created,
-						lastUpdated: row.last_updated,
-						lastLoggedIn: row.last_logged_in,
-						expiryDate: row.date_expires,
-						accountType: row.account_type,
-						accountStatus: row.account_status,
-						firstName: row.first_name,
-						lastName: row.last_name,
-						email: row.email,
-						country: row.country,
-						region: row.region,
-						numRowsGenerated
-					}
-				})
+				results: updatedResults
 			};
 		},
 
