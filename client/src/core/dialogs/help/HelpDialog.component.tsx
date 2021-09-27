@@ -66,7 +66,16 @@ const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n,
 	}
 
 	return (
-		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
+		<Dialog
+			onClose={onClose}
+			aria-labelledby="customized-dialog-title"
+			open={visible}
+			className={styles.helpDialog}
+			TransitionProps={{
+				onExited: (): void => {
+					setFilterString('');
+				}
+			}}>
 			<div className={`${styles.dialog} tour-helpDialog`}>
 				<DialogTitle onClose={onClose}>{i18n.NAME}</DialogTitle>
 				<DialogContent dividers className={styles.contentPanel}>

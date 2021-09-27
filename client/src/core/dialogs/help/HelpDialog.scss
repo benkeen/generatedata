@@ -1,9 +1,18 @@
 @import "../../../styles/variables";
 
+.helpDialog {
+	height: 100%;
+
+	:global(.MuiDialog-paper) {
+		height: 100%;
+	}
+}
+
 .contentPanel {
 	display: flex;
 	overflow: hidden !important;
 }
+
 .dataTypeList {
 	flex: 0 0 200px;
 	margin-right: 15px;
@@ -62,6 +71,7 @@
 
 .dialog {
 	width: 800px;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;

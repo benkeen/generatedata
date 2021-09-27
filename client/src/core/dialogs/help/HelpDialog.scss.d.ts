@@ -5,6 +5,7 @@ declare namespace HelpDialogScssNamespace {
     dialog: string;
     fadeOut: string;
     helpContent: string;
+    helpDialog: string;
     list: string;
     spinner: string;
   }

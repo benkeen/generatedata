@@ -6,7 +6,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import LoginDialog from '../dialogs/login/Login.container';
 import PasswordResetDialog from '../dialogs/passwordReset/PasswordReset.container';
 import GeneratorControls from './GeneratorControls.container';
-import { GeneratorPanel, GDLocale } from '~types/general';
+import { GDLocale } from '~types/general';
 import C from '../constants';
 import HeaderLinks, { MobileLinks } from './HeaderLinks.component';
 import { getHeaderLinks } from '~utils/routeUtils';
@@ -16,10 +16,8 @@ import styles from './Header.scss';
 
 export type HeaderProps = {
 	currentPage: string;
-	onChangeSmallScreenVisiblePanel: () => void;
 	isLoggedIn: boolean;
 	accountType: AccountType;
-	smallScreenVisiblePanel: GeneratorPanel;
 	showLoginDialog: () => void;
 	locale: GDLocale;
 	i18n: any;
@@ -30,12 +28,9 @@ export type HeaderProps = {
 };
 
 const Header = ({
-	smallScreenVisiblePanel, i18n, showLoginDialog, onChangeSmallScreenVisiblePanel, profileImage,
-	isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
+	i18n, showLoginDialog, profileImage, isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-	// TODO put in the top-level app. Here's not appropriate
 	const windowSize = useWindowSize();
 
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
