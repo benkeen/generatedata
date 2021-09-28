@@ -1,5 +1,10 @@
 ## Changelog
 
+- `4.0.4` - Sept 27, 2021
+    - Hindi locale added
+    - Improvements for small screens
+    - Misc bug fixes
+    - https://github.com/benkeen/generatedata/milestone/30?closed=1 
 - `4.0.3` - Sept 22, 2021
     - Bug fix for CSV Export Type.
     - https://github.com/benkeen/generatedata/milestone/29?closed=1 
