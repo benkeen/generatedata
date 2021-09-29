@@ -2,7 +2,6 @@
   "NAME": "फ्रेंच SIRET",
   "DESC": "यह डेटा प्रकार एक यादृच्छिक SIRET/SIREN फ़्रेंच व्यवसाय पहचान संख्या उत्पन्न करता है।",
   "DEFAULT_TITLE": "siret",
-  "helpLink": "http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements",
   "incompleteFields": "SIRET डेटा प्रकार को विकल्प टेक्स्ट फ़ील्ड में प्रारूप दर्ज करने की आवश्यकता है। कृपया निम्न पंक्तियों को ठीक करें:",
   "exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
   "exampleSIREN": "508102811 (SIREN)",

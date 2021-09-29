@@ -18,7 +18,6 @@
   "countryRow": "Country Row",
   "rowDesc": "Auf diese Weise können Sie ein bestimmtes Länderfeld in Ihrem Datensatz bestimmen, dessen Quelle Länder-Plugins sind. Es werden Regionen generiert, die dem Wert in diesem Feld zugeordnet sind.",
   "row": "Reihe",
-
   "anyRegionFromCountry": "Jede Region aus 1 Land",
-  "anyRegionFromCountries": "Jede Region aus XXX Ländern"
+  "anyRegionFromCountries": "Jede Region aus %1 Ländern"
 }

@@ -2,7 +2,6 @@
   "NAME": "SIRET",
   "DESC": "Dit datatype genereert een willekeurig SIRET nummer volgens het opgegeven formaat.",
   "DEFAULT_TITLE": "siret",
-  "helpLink": "http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements",
   "incompleteFields": "De SIRET gegevenstype moet hebben het formaat in de Opties tekst veld. Verbeter de volgende rijen:",
   "exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
   "exampleSIREN": "508102811 (SIREN)",

@@ -2,7 +2,6 @@
   "NAME": "SIRET",
   "DESC": "Ce type de données produit aléatoirement des SIRET selon le format que vous spécifiez.",
   "DEFAULT_TITLE": "siret",
-  "helpLink": "http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements",
   "incompleteFields": "Le type de données SIRET a besoin du format dans le champ texte d'Options. S'il vous plaît corrigez les colonnes suivantes :",
   "exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
   "exampleSIREN": "508102811 (SIREN)",

@@ -52,11 +52,7 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</div>
 
 		<p>
-			{i18n.moreInfo} <a href={i18n.helpLink} target="_blank" rel="noopener noreferrer">Wikipedia - SIRET</a>
+			{i18n.moreInfo} <a href="http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements" target="_blank" rel="noopener noreferrer">Wikipedia - SIRET</a>
 		</p>
 	</>
 );
-
-// var _exampleChange = function (msg) {
-// 	$("input[name='dtOption_" + msg.rowID + "'][value='" + msg.value + "']").prop('checked', true);
-// };
