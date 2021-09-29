@@ -44,55 +44,77 @@ module.exports = function (grunt) {
 	const exportTypesFolder = 'src/plugins/exportTypes';
 	const countriesFolder = 'src/plugins/countries';
 
-	const validateStringsWithPlaceholders = () => {
-		const en = getPluginLocaleFiles(grunt, 'en', dataTypesFolder);
+	const checkPlugin = (pluginType) => {
+		const folderMap = {
+			dataType: dataTypesFolder,
+			exportType: exportTypesFolder,
+			countries: countriesFolder
+		};
+
+		const en = getPluginLocaleFiles(grunt, 'en', folderMap[pluginType]);
 
 		const propsWithI18n = {};
-		Object.keys(en).forEach((dataType) => {
-			Object.keys(en[dataType]).forEach((prop) => {
-				const matches = en[dataType][prop].match(/%\d/g);
+		Object.keys(en).forEach((plugin) => {
+			Object.keys(en[plugin]).forEach((prop) => {
+				const matches = en[plugin][prop].match(/%\d/g);
 				if (!matches) {
 					return;
 				}
 
-				if (!propsWithI18n[dataType]) {
-					propsWithI18n[dataType] = [];
+				if (!propsWithI18n[plugin]) {
+					propsWithI18n[plugin] = [];
 				}
-				propsWithI18n[dataType].push({ prop, count: matches.length });
+				propsWithI18n[plugin].push({ prop, count: matches.length });
 			});
 		});
 
-		const invalidDataTypes = [];
+		const invalidPlugins = [];
 		locales.forEach((locale) => {
 			if (locale === 'en') {
 				return;
 			}
-			const currLangStrings = getPluginLocaleFiles(grunt, locale, dataTypesFolder);
-			// const etImports = getPluginLocaleFiles(grunt, locale, exportTypesFolder);
-			// const countryImports = getPluginLocaleFiles(grunt, locale, countriesFolder);
+			const currLangStrings = getPluginLocaleFiles(grunt, locale, folderMap[pluginType]);
 
-			// console.log(currLangStrings);
-
-			Object.keys(propsWithI18n).forEach((dataType) => {
-				propsWithI18n[dataType].forEach(({ prop, count }) => {
+			Object.keys(propsWithI18n).forEach((plugin) => {
+				propsWithI18n[plugin].forEach(({ prop, count }) => {
 
 					// now loop through each of the placeholders and confirm that the
 					let isValid = true;
 					for (let i=1; i<=count; i++) {
 						const re = new RegExp(`%${i}`);
-						if (!re.test(currLangStrings[dataType][prop])) {
+						if (!re.test(currLangStrings[plugin][prop])) {
 							isValid = false;
 						}
 					}
 
 					if (!isValid) {
-						invalidDataTypes.push(`Invalid: "${prop}", lang "${locale}", DT: "${dataType}": ${currLangStrings[dataType][prop]}`);
+						invalidPlugins.push(`Invalid: "${prop}", lang "${locale}", DT: "${plugin}": ${currLangStrings[plugin][prop]}`);
 					}
 				});
 			});
 		});
 
-		console.log(invalidDataTypes);
+		return invalidPlugins;
+	};
+
+	const validateStringsWithPlaceholders = () => {
+		let errors = '';
+		const dtErrors = checkPlugin('dataType');
+		if (dtErrors.length) {
+			errors += '\n\nData Type placeholder errors:\n\n' + dtErrors.join('\n');
+		}
+
+		const etErrors = checkPlugin('exportType');
+		if (etErrors.length) {
+			errors += 'Export Type placeholder errors:\n\n' + etErrors.join('\n');
+		}
+
+		const countriesErrors = checkPlugin('countries');
+		if (countriesErrors.length) {
+			errors += 'Export Type placeholder errors:\n\n' + countriesErrors.join('\n');
+		}
+
+		return errors;
 	};
 
 	const generateI18nBundles = () => {
@@ -422,7 +444,7 @@ window.gd.localeLoaded(i18n);
 			errors += i18n.validateExportTypeI18n(baseLocale);
 		}
 
-		validateStringsWithPlaceholders();
+		errors += validateStringsWithPlaceholders();
 
 		if (errors) {
 			grunt.fail.fatal(errors);
