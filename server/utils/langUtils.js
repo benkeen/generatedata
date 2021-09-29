@@ -6,11 +6,12 @@ const fr = require('../../client/src/i18n/fr.json');
 const hi = require('../../client/src/i18n/hi.json');
 const ja = require('../../client/src/i18n/ja.json');
 const nl = require('../../client/src/i18n/nl.json');
+const pt = require('../../client/src/i18n/pt.json');
 const ta = require('../../client/src/i18n/ta.json');
 const zh = require('../../client/src/i18n/zh.json');
 
 const getStrings = (locale) => {
-	const map = { ar, de, en, es, fr, hi, ja, nl, ta, zh };
+	const map = { ar, de, en, es, fr, hi, ja, nl, pt, ta, zh };
 	return map[locale];
 };
 

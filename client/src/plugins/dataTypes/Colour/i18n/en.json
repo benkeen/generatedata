@@ -21,6 +21,6 @@
   "format": "Format",
   "alpha": "Alpha",
   "refresh": "Refresh",
-  "helpDesc1": "This Data Type generates random colours in different hues, formats (Hex, rbg, rbga) and luminosities. With rgba you can choose the alpha value to provide faded colours.",
+  "helpDesc1": "This Data Type generates random colours in different hues, formats (Hex, rgb, rbga) and luminosities. With rgba you can choose the alpha value to provide faded colours.",
   "helpDesc2": "To see all the settings, just click on the button in the Options column."
 }

@@ -1,0 +1,11 @@
+{
+  "NAME": "Incremento automático",
+  "DESC": "Fornece muitas variações em um campo de incremento automático padrão: valor inicial personalizado, tamanhos de etapa personalizáveis, inclusão de string arbitrária, incremento ou decremento e muito mais.",
+  "DEFAULT_TITLE": "incremento",
+  "helpIntro": "Gera uma coluna que contém um número exclusivo em cada linha, incrementando por qualquer valor que você inserir. Esta opção pode ser útil para inserir os dados em um campo de banco de dados com uma chave primária de incremento automático.",
+  "helpPara2": "A string de espaço reservado opcional permite incorporar o valor de incremento gerado em uma string, por meio do marcador de posição <b>{{INCR}}</b>. Por exemplo:",
+  "increment": "Incremento:",
+  "placeholderStr": "String de espaço reservado:",
+  "startAt": "Começa ás:",
+  "incompleteFields": "Insira os campos Iniciar em e Incremento para todas as linhas de incremento automático:"
+}

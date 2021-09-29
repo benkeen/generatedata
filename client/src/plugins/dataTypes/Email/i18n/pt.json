@@ -1,0 +1,5 @@
+{
+  "NAME": "O email",
+  "DESC": "Gera um endereço de e-mail aleatório. Atualmente, isso apenas os gera a partir de palavras lorem ipsum aleatórias.",
+  "DEFAULT_TITLE": "email"
+}

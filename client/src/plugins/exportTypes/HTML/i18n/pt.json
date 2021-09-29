@@ -1,0 +1,6 @@
+{
+  "EXPORT_TYPE_NAME": "HTML",
+  "COL_TITLE": "Título da Coluna",
+  "dataFormat": "Formato de dados",
+  "batchVars": "Booleanos para definir se o lote atual de resultados sendo gerado é o primeiro ou o último. Isso só é usado para usuários que geram os dados na página, o que gera os resultados em blocos. Para todas as outras situações, ambos são sempre verdadeiros."
+}

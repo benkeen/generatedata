@@ -1,0 +1,7 @@
+{
+  "NAME": "Latitude ou Longitude",
+  "DESC": "Este tipo de dados gera uma latitude e / ou longitude aleatória. Se ambos forem selecionados, serão exibidos ambos separados por uma vírgula.",
+  "DEFAULT_TITLE": "latlng",
+  "latitude": "Latitude",
+  "longitude": "Longitude"
+}

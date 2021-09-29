@@ -1,0 +1,7 @@
+{
+  "NAME": "Número de contas bancárias (IBAN)",
+  "DESC": "Gera números de contas bancárias internacionais (IBAN).",
+  "DEFAULT_TITLE": "iban",
+  "help1": "O IBAN gerado tem uma soma de verificação válida, código de país e comprimento e o BIC está no lugar certo.",
+  "help2": "No entanto, é altamente improvável que o número seja realmente <i>válido</i>, uma vez que geralmente há um monte de verificações para fazer que são específicas de cada país."
+}

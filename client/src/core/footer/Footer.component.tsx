@@ -48,6 +48,7 @@ const allLocaleOptions = [
 	{ value: 'es', label: 'Español' },
 	{ value: 'fr', label: 'Français' },
 	{ value: 'nl', label: 'Nederlands' },
+	{ value: 'pt', label: 'Português' },
 	{ value: 'ja', label: '日本人' },
 	{ value: 'hi', label: 'हिंदी' },
 	{ value: 'ta', label: 'தமிழ்' },

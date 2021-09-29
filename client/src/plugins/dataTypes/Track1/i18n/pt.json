@@ -1,0 +1,14 @@
+{
+  "NAME": "Track1",
+  "DESC": "Track1 é um formato de dados usado para armazenar informações em tarjas magnéticas de cartões. Ele contém o nome do titular do cartão, bem como o número da conta e outros dados discricionários. O cartão de crédito pode ser de qualquer tipo (Visa, Mastercard, etc).",
+  "DEFAULT_TITLE": "track1",
+  "dialogTitle": "Fonte de dados Track1",
+  "dialogDesc": "Isso permite que você direcione outros campos para criar valores Track1 mais realistas. Por padrão, ele gera strings arbitrárias para o PAN e as partes do nome, portanto, o fornecimento de linhas reais que geram esses dados garante um valor Track1 válido e consistente.",
+  "panSource": "Fonte PAN",
+  "randomString": "String aleatória",
+  "panRow": "Linha PAN",
+  "nameRow": "Linha de nome",
+  "row": "Linha",
+  "nameSource": "Fonte do nome",
+  "customizeSource": "Personalizar fonte"
+}

@@ -1,0 +1,15 @@
+{
+  "NAME": "Telefone / Fax",
+  "DESC": "Gera um número de telefone / fax aleatório em uma variedade de formatos para diferentes países / regiões.",
+  "DEFAULT_TITLE": "telefone",
+  "differentFormats": "Formatos diferentes",
+  "northAmerica": "América do Norte",
+  "helpText1": "Qualquer texto inserido no campo de texto de opções será usado para gerar números de telefone. <b>X</b> em maiúsculas serão convertidos em um número aleatório entre 1 e 9; <b>x</b> minúsculos serão convertidos em um número aleatório entre 0 e 9.",
+  "helpText2": "Selecione um dos valores no menu suspenso de exemplo para algumas ideias. Lembre-se: quaisquer outros caracteres além de <b>X</b> e <b>x</b> não serão convertidos.",
+  "incompleteFields": "O tipo de dados Telefone / Fax precisa ter o formato inserido no campo de texto Opções. Corrija as seguintes linhas:",
+  "uk": "Reino Unido",
+  "france": "França",
+  "germany": "Alemanha",
+  "australia": "Austrália",
+  "japan": "Japão"
+}

@@ -1,0 +1,14 @@
+{
+  "NAME": "Constante",
+  "DESC": "Gera uma coluna de dados que possui valores repetidos para várias linhas. Você pode fazer com que todas as linhas tenham o mesmo valor ou atribuir o mesmo valor a grupos delas.",
+  "DEFAULT_TITLE": "constante",
+  "help1": "Este tipo de dados permite gerar uma coluna de dados com valores repetidos de uma linha para outra. Aqui estão alguns exemplos para dar uma ideia de como isso funciona.",
+  "help2": "Se desejar fornecer o valor \"1\" para cada linha, você pode inserir \"1\" no campo Valor (es) e qualquer valor (> 0) no campo Contagem de loop.",
+  "help3": "Se você gostaria de ter 100 linhas da string \"Masculino\" seguidas por 100 linhas da string \"Fêmea\" e repetir, você pode inserir \"100\" no campo Contagem de Loop e \"Masculino\", \"Feminino\" no Valor (s) campo. Para adicionar vários valores no campo Valor (es), basta inserir uma string e clicar em inserir.",
+  "help4": "Se desejar 5 linhas de 1 a 10, insira \"5\" para o campo Contagem de loops e \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\" , \"8\", \"9\" e \"10\" no campo Valor (es).",
+  "help5": "Experimente mexer nele. Você vai pegar a ideia.",
+  "loopCount": "Contagem de loops:",
+  "values": "Valor (es):",
+  "invalidLoopCounts": "Insira números para os campos de contagem de loop constante. Corrija a (s) seguinte (s) linha (s):",
+  "incompleteFields": "O tipo de dados Constante precisa ter constantes a serem inseridas no campo de valor (es). Corrija as seguintes linhas:"
+}

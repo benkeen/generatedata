@@ -1,0 +1,21 @@
+{
+  "NAME": "Computada",
+  "DESC": "O tipo de dados Computado permite combinar os dados de qualquer outra linha ou linhas e alterá-los / combinar as informações e muito mais. Ele usa o underscorejs como mecanismo de modelagem.",
+  "DEFAULT_TITLE": "computada",
+  "compositeDivision": "divisão",
+  "compositeHelp3": "Aqui estão alguns exemplos:",
+  "compositeHelp4": "Exibir um valor da linha 6: <b>{{ROW6}}</b>",
+  "compositeHelp5": "Supondo que as linhas 1 e 2 contenham números aleatórios, os seguintes são exemplos de matemática simples:",
+  "compositeHelp6": "Se a linha 1 for par, exiba \"par\"; caso contrário, exiba os valores da linha 2.",
+  "compositeMultiplication": "multiplicação",
+  "compositeNa": "N / D",
+  "compositeSubtraction": "subtração",
+  "rowPlaceholder": "Exibe o valor de qualquer outra linha na grade",
+  "rowNumPlaceholder": "Exibe o número da linha atual do conjunto de dados gerado. Portanto, se estiver na linha 10.000, terá um valor de 10.000.",
+  "additionalInfo": "Contém informações adicionais sobre cada linha.",
+  "colIndex": "o índice da coluna",
+  "randomUniqueId": "um ID único aleatório para a linha",
+  "dataType": "o tipo de dados",
+  "generatedDataObj": "os dados gerados. Este é um objeto com uma propriedade `display`, e talvez metadados adicionais sobre ele.",
+  "objExpl": "Para examinar todo o conteúdo deste objeto, use:"
+}

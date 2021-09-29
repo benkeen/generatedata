@@ -1,0 +1,6 @@
+{
+  "NAME": "Boleano",
+  "DESC": "Gera um valor booleano no formato que você precisa.",
+  "DEFAULT_TITLE": "boleano",
+  "helpIntro": "A lista suspensa Exemplos contém vários valores booleanos de exemplo (todos em inglês ou universais). Para criar outros valores, basta digitar o texto no campo Opções e clicar em &lt;inserir&gt;."
+}

@@ -44,6 +44,57 @@ module.exports = function (grunt) {
 	const exportTypesFolder = 'src/plugins/exportTypes';
 	const countriesFolder = 'src/plugins/countries';
 
+	const validateStringsWithPlaceholders = () => {
+		const en = getPluginLocaleFiles(grunt, 'en', dataTypesFolder);
+
+		const propsWithI18n = {};
+		Object.keys(en).forEach((dataType) => {
+			Object.keys(en[dataType]).forEach((prop) => {
+				const matches = en[dataType][prop].match(/%\d/g);
+				if (!matches) {
+					return;
+				}
+
+				if (!propsWithI18n[dataType]) {
+					propsWithI18n[dataType] = [];
+				}
+				propsWithI18n[dataType].push({ prop, count: matches.length });
+			});
+		});
+
+		const invalidDataTypes = [];
+		locales.forEach((locale) => {
+			if (locale === 'en') {
+				return;
+			}
+			const currLangStrings = getPluginLocaleFiles(grunt, locale, dataTypesFolder);
+			// const etImports = getPluginLocaleFiles(grunt, locale, exportTypesFolder);
+			// const countryImports = getPluginLocaleFiles(grunt, locale, countriesFolder);
+
+			// console.log(currLangStrings);
+
+			Object.keys(propsWithI18n).forEach((dataType) => {
+				propsWithI18n[dataType].forEach(({ prop, count }) => {
+
+					// now loop through each of the placeholders and confirm that the
+					let isValid = true;
+					for (let i=1; i<=count; i++) {
+						const re = new RegExp(`%${i}`);
+						if (!re.test(currLangStrings[dataType][prop])) {
+							isValid = false;
+						}
+					}
+
+					if (!isValid) {
+						invalidDataTypes.push(`Invalid: "${prop}", lang "${locale}", DT: "${dataType}": ${currLangStrings[dataType][prop]}`);
+					}
+				});
+			});
+		});
+
+		console.log(invalidDataTypes);
+	};
+
 	const generateI18nBundles = () => {
 		const fileHashMap = locales.reduce((acc, locale) => {
 			const coreLocaleStrings = JSON.parse(fs.readFileSync(`src/i18n/${locale}.json`, 'utf8'));
@@ -371,6 +422,8 @@ window.gd.localeLoaded(i18n);
 			errors += i18n.validateExportTypeI18n(baseLocale);
 		}
 
+		validateStringsWithPlaceholders();
+
 		if (errors) {
 			grunt.fail.fatal(errors);
 		}
@@ -399,6 +452,7 @@ window.gd.localeLoaded(i18n);
 		}
 		i18n.removeKeyFromI18nFiles(grunt.option('key'));
 	});
+
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');

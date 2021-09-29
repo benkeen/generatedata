@@ -1,0 +1,23 @@
+{
+  "NAME": "Região",
+  "DESC": "Gera províncias, estados, territórios ou condados canadenses aleatórios, com base nas opções selecionadas.",
+  "DEFAULT_TITLE": "região",
+  "helpText": "As subopções <b>Nome completo</b> e <b>Abreviação</b> determinam se a saída conterá a string completa (por exemplo, \"British Columbia\") ou sua abreviação (por exemplo, \"BC\"). Para condados do Reino Unido, a abreviatura é o código Chapman padrão de 3 caracteres.",
+  "explanation": "Isso controla quais nomes de região serão gerados por este campo.",
+  "full": "Cheia",
+  "short": "Baixa",
+  "noCountriesSelected": "Nenhum país selecionado.",
+  "countries": "Países",
+  "country": "País",
+  "anyRegion": "Qualquer região",
+  "source": "Fonte",
+  "format": "Formato",
+  "selectRegions": "Selecione as regiões",
+  "anyDesc": "Gera qualquer nome de região.",
+  "countriesDesc": "Gera regiões para qualquer um dos países especificados.",
+  "countryRow": "Country Row",
+  "rowDesc": "Isso permite que você localize um campo de país específico em seu conjunto de dados que tem Plug-ins de país como sua fonte. Ele gera regiões que mapeiam para o valor naquele campo.",
+  "row": "Linha",
+  "anyRegionFromCountry": "Qualquer região de 1 país",
+  "anyRegionFromCountries": "Qualquer região de %1 países"
+}
