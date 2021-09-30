@@ -2,7 +2,7 @@ import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { getLocale, getStrings } from '~utils/langUtils';
-import { arDZ, de, enUS, es, fr, ja, hi, nl, ta, zhCN } from 'date-fns/locale';
+import { arDZ, de, enUS, es, fr, ja, hi, nl, pt, ta, zhCN } from 'date-fns/locale';
 
 // localized wrapper for the date picker provider
 export const LocalizedDatePicker = (props: any): JSX.Element => {
@@ -29,6 +29,7 @@ export const LocalizedDatePickerProvider = ({ children }: any): JSX.Element => {
 		ja,
 		hi,
 		nl,
+		pt,
 		ta,
 		zh: zhCN
 	};

@@ -1,15 +1,15 @@
 import { LocaleFileMap } from '~types/general';
 
 export const localeFileMap: LocaleFileMap = {
-	"ar": "ar-c38fe6c5.js",
-	"de": "de-4c96fff1.js",
-	"en": "en-35a6515d.js",
-	"es": "es-b5ae6f51.js",
-	"fr": "fr-34e69e6e.js",
-	"hi": "hi-ec7dfc60.js",
-	"ja": "ja-6e2cae91.js",
-	"nl": "nl-25097477.js",
-	"pt": "pt-6c634cfa.js",
-	"ta": "ta-51996d0e.js",
-	"zh": "zh-a691c0d3.js"
+	"ar": "ar-9ceb781b.js",
+	"de": "de-de3b4f91.js",
+	"en": "en-e01b0f19.js",
+	"es": "es-1aaf44f7.js",
+	"fr": "fr-9cc57f1a.js",
+	"hi": "hi-8dfde4ef.js",
+	"ja": "ja-c9829147.js",
+	"nl": "nl-d08887d6.js",
+	"pt": "pt-9675428f.js",
+	"ta": "ta-11299321.js",
+	"zh": "zh-9a740a20.js"
 };

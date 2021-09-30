@@ -28,7 +28,7 @@ export const enum AuthMethod {
 	google = 'google'
 }
 
-export type GDLocale = 'ar' | 'en' | 'fr' | 'de' | 'es' | 'ja' | 'hi' | 'nl' | 'ta' | 'zh';
+export type GDLocale = 'ar' | 'en' | 'fr' | 'de' | 'es' | 'ja' | 'hi' | 'nl' | 'pt' | 'ta' | 'zh';
 
 export type LocaleFileMap = {
 	[locale in GDLocale]: string;
