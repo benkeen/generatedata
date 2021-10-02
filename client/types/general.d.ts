@@ -34,8 +34,6 @@ export type LocaleFileMap = {
 	[locale in GDLocale]: string;
 };
 
-export type GenEnvironment = 'API' | 'UI';
-
 // these have special semantic meaning within the script. When the navigation includes them, things like the label
 // and action are preset within the core script
 export type GDPresetHeaderLinks = 'generator' | 'register' | 'separator' | 'dataSets' | 'userAccount' | 'loginDialog' |
@@ -53,11 +51,6 @@ export type GDRoute = {
 	path: string;
 	component: any;
 }
-
-export type GenerationSettings = {
-	env: GenEnvironment;
-	stripWhitespace: boolean;
-};
 
 export type GDAction = {
 	type: string;

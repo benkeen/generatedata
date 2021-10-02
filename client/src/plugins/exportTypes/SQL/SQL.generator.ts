@@ -224,7 +224,7 @@ export const generateSQLite = (generationData: ETMessageData): string => {
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
-			content += `DROP TABLE ${backquote}${sqlSettings.tableName}${backquote};\n\n`;
+			content += `DROP TABLE IF EXISTS ${backquote}${sqlSettings.tableName}${backquote};\n\n`;
 		}
 		if (sqlSettings.createTable) {
 			content += `CREATE TABLE ${backquote}${sqlSettings.tableName}${backquote} (\n`;
