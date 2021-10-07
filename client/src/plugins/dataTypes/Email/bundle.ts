@@ -1,18 +1,11 @@
-import { DTBundle, DTMetadata } from '~types/dataTypes';
-
-export const getMetadata = (): DTMetadata => ({
-	general: {
-		dataType: 'string'
-	},
-	sql: {
-		field: 'varchar(255) default NULL',
-		field_Oracle: 'varchar2(255) default NULL',
-		field_MSSQL: 'VARCHAR(255) NULL'
-	}
-});
+import { DTBundle } from '~types/dataTypes';
+import { initialState, Options, getMetadata } from './Email';
 
 const bundle: DTBundle = {
+	initialState,
+	Options,
 	getMetadata
 };
 
 export default bundle;
+

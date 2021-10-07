@@ -1,15 +1,22 @@
 import React from 'react';
-import CopyToClipboard from './copyToClipboard/CopyToClipboard';
-import styles from './Email.'
+import CopyToClipboard from '../copyToClipboard/CopyToClipboard';
+import styles from './Email.scss';
 
-const Email = ({ email }) => {
+export type EmailProps = {
+	email: string;
+	i18n: any;
+	text?: string;
+};
+
+const Email = ({ email, text = '', i18n }: EmailProps): JSX.Element => {
+	const textString = text || email;
 
 	return (
 		<>
-			<a href={`mailto:${email}`}>{email}</a>
+			<a href={`mailto:${email}`} target="_blank" rel="noreferrer">{textString}</a>
 			<CopyToClipboard
-				className={styles.copyToClipboard}
-				content={env.adminEmail}
+				className={styles.copy}
+				content={email}
 				message={i18n.emailCopiedToClipboard}
 				tooltip={i18n.copiedToClipboard}
 			/>
