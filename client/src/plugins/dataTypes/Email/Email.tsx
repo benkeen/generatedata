@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { countryList } from '../../../../_plugins';
+import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import { RadioPillRow } from '~components/radioPills/RadioPill';
-import { DTOptionsProps } from '~types/dataTypes';
+import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import * as styles from "./Email.scss";
 
 export const enum StringSource {
 	random = 'random',
@@ -12,17 +12,17 @@ export const enum StringSource {
 
 export type EmailState = {
 	source: StringSource;
-	nameRow1Id: string;
-	nameRow2Id: string;
+	fieldId1: string;
+	fieldId2: string;
 }
 
 export const initialState: EmailState = {
 	source: StringSource.random,
-	nameRow1Id: '',
-	nameRow2Id: ''
+	fieldId1: '',
+	fieldId2: ''
 };
 
-const EmailDialog = ({ visible, data, id, onClose, coreI18n, i18n }: any): JSX.Element => {
+const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdateSource, i18n }: any): JSX.Element => {
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
@@ -30,7 +30,9 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, i18n }: any): JSX.E
 				<DialogContent dividers>
 					<div>
 						By default this Data Type generates random email addresses using lorem ipsum text,
-						but you can choose to base the source data on other fields such as name fields below.
+						but if you'd like to generate more realistic-looking email addresses, target one or
+						more fields (Name fields are best!) in your data set to use those strings as the basis of the
+						email address.
 					</div>
 
 					<h3>{i18n.source}</h3>
@@ -40,14 +42,15 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, i18n }: any): JSX.E
 							label="Random strings"
 							onClick={(): void => onUpdateSource('plugins')}
 							name={`${id}-source`}
-							checked={data.source === Names}
+							checked={data.source === StringSource.random}
 							tooltip={i18n.countryPluginsDesc}
+							style={{ marginRight: 10 }}
 						/>
 						<RadioPill
 							label="Fields"
 							onClick={(): void => onUpdateSource('all')}
 							name={`${id}-source`}
-							checked={data.source === 'all'}
+							checked={data.source === StringSource.random}
 						/>
 					</RadioPillRow>
 
@@ -64,13 +67,18 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, i18n }: any): JSX.E
 	);
 };
 
-export const Options = ({ i18n, coreI18n, id, data }: DTOptionsProps): JSX.Element => {
+export const Options = ({ i18n, coreI18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
+
+	// awkward workaround for earlier version of the component where there was no state.
+	const safeData = data ? data : {
+		source: StringSource.random,
+		fieldId1: '',
+		fieldId2: ''
+	};
+
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
-	let label = '';
-	if (data.source === 'random') {
-	} else {
-	}
+	const label = 'Customize';
 
 	return (
 		<div className={styles.buttonLabel}>
@@ -83,10 +91,11 @@ export const Options = ({ i18n, coreI18n, id, data }: DTOptionsProps): JSX.Eleme
 			</Button>
 			<EmailDialog
 				visible={dialogVisible}
-				data={data}
+				data={safeData}
 				id={id}
 				coreI18n={coreI18n}
 				i18n={i18n}
+				onUpdateSource={(source: StringSource) => onUpdate({ ...safeData, source })}
 				onClose={(): void => setDialogVisibility(false)}
 			/>
 		</div>
