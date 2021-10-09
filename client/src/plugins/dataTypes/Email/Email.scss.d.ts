@@ -1,6 +1,7 @@
 declare namespace EmailScssNamespace {
   export interface IEmailScss {
     buttonLabel: string;
+    fieldRow: string;
   }
 }
 
