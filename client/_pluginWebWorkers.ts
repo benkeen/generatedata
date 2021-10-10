@@ -16,7 +16,7 @@ export default {
 		"Country": "DT-Country.generator-21a2011f365e57de5b97b167d4906f3b.js",
 		"Currency": "DT-Currency.generator-a5a862ac03206548ee1458fcf6a958a2.js",
 		"Date": "DT-Date.generator-8e93dda517d7d5151878ed926d99b65c.js",
-		"Email": "DT-Email.generator-573875ba35cf6ef3067ccc4dd2da1779.js",
+		"Email": "DT-Email.generator-44cd173d1cba5f8044b49eb7304dbbd6.js",
 		"GUID": "DT-GUID.generator-54966dabad4987a193e4cf4a467d4d93.js",
 		"IBAN": "DT-IBAN.generator-b92eaa02e83c98a15767dfd6866d8bd1.js",
 		"LatLng": "DT-LatLng.generator-e54a6ba6fdf1679297e01d8729131379.js",

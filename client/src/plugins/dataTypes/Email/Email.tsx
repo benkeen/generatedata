@@ -1,10 +1,13 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import Dropdown from '~components/dropdown/Dropdown';
+import TextField from '~components/TextField';
 import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import * as styles from './Email.scss';
+import { Tooltip } from '~components/tooltips';
 
 export const enum StringSource {
 	random = 'random',
@@ -15,57 +18,70 @@ export type EmailState = {
 	source: StringSource;
 	fieldId1: string;
 	fieldId2: string;
+	domains: string;
+	domainSuffixes: string;
 }
+
+const unsupportedDataTypes = ['Computed'];
 
 const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, sortedRows, i18n }: any): JSX.Element => {
 	const rowOptions = sortedRows
-		.filter(({ id: currentId }: any) => currentId !== id)
-		.map(({ id: currentId, title }: any, index: number) => ({ value: currentId, label: `${i18n.row} #${index + 1}: ${title}` }));
+		.map(({ id: currentId, title, dataType }: any, index: number) => ({
+			value: currentId,
+			label: `${i18n.row} #${index + 1}: ${title}`,
+			extra: { currentId, dataType }
+		}))
+		.filter(({ extra }: any) => {
+			return extra.currentId !== id && unsupportedDataTypes.indexOf(extra.dataType) === -1;
+		});
 
-	const getFieldsBlock = (): JSX.Element | null => {
+	const getFieldsRow = (): JSX.Element | null => {
 		if (data.source === StringSource.random) {
 			return null;
 		}
 
 		return (
-			<>
-				<div className={styles.fieldRow}>
-					<label>Source data, field 1</label>
+			<div className={styles.fieldsRow}>
+				<div className={styles.fieldRow} style={{ marginRight: 10 }}>
+					<label>{i18n.sourceDataField1}</label>
 					<Dropdown
 						value={data.fieldId1}
 						onChange={(item: any): any => onUpdate('fieldId1', item.value)}
-						options={rowOptions}
+						options={[
+							{ value: '', label: coreI18n.pleaseSelect },
+							...rowOptions
+						]}
 					/>
 				</div>
 				<div className={styles.fieldRow}>
-					<label>Source data, field 2 (optional)</label>
+					<label>{i18n.sourceDataField2}</label>
 					<Dropdown
 						value={data.fieldId2}
 						onChange={(item: any): any => onUpdate('fieldId2', item.value)}
-						options={rowOptions}
+						options={[
+							{ value: '', label: i18n.optional },
+							...rowOptions
+						]}
 					/>
 				</div>
-			</>
+			</div>
 		);
 	};
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
-				<DialogTitle onClose={onClose}>Select source</DialogTitle>
+				<DialogTitle onClose={onClose}>{i18n.selectSource}</DialogTitle>
 				<DialogContent dividers>
 					<div>
-						By default this Data Type generates random email addresses using lorem ipsum text,
-						but if you'd like to generate more realistic-looking email addresses, target one or
-						more fields (Name fields are best!) in your data set to use those strings as the basis of the
-						email address.
+						{i18n.emailDesc}
 					</div>
 
 					<h3>{i18n.source}</h3>
 
 					<RadioPillRow>
 						<RadioPill
-							label="Random strings"
+							label={i18n.randomStringsLabel}
 							onClick={(): void => onUpdate('source', StringSource.random)}
 							name={`${id}-source`}
 							checked={data.source === StringSource.random}
@@ -73,14 +89,32 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, sortedRow
 							style={{ marginRight: 10 }}
 						/>
 						<RadioPill
-							label="Fields"
+							label={i18n.fieldsLabel}
 							onClick={(): void => onUpdate('source', StringSource.fields)}
 							name={`${id}-source`}
-							checked={data.source === StringSource.fields }
+							checked={data.source === StringSource.fields}
 						/>
 					</RadioPillRow>
-
-					{getFieldsBlock()}
+					{getFieldsRow()}
+					<div className={styles.fieldRow}>
+						<label>{i18n.domains}</label>
+						<TextField
+							value={data.domains}
+							onChange={(e: any): void => onUpdate('domains', e.target.value)}
+						/>
+					</div>
+					<div className={styles.fieldRow}>
+						<label>
+							{i18n.domainSuffixes}
+							<Tooltip title="......" arrow>
+								<InfoIcon />
+							</Tooltip>
+						</label>
+						<TextField
+							value={data.domainSuffixes}
+							onChange={(e: any): void => onUpdate('domainSuffixes', e.target.value)}
+						/>
+					</div>
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
@@ -93,12 +127,14 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, sortedRow
 export const initialState: EmailState = {
 	source: StringSource.random,
 	fieldId1: '',
-	fieldId2: ''
+	fieldId2: '',
+	domains: 'google,hotmail,aol,icloud,outlook,yahoo,protonmail',
+	domainSuffixes:  'edu,com,org,ca,net,co.uk'
 };
 
 export const Options = ({ i18n, coreI18n, id, data, onUpdate, sortedRows }: DTOptionsProps): JSX.Element => {
 
-	// awkward workaround for earlier version of the component where there was no state.
+	// workaround for earlier version of the DT where there was no state.
 	const safeData = data ? data : {
 		source: StringSource.random,
 		fieldId1: '',
@@ -107,7 +143,10 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate, sortedRows }: DTOp
 
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
-	const label = 'Customize';
+	let label = `${i18n.source} ${i18n.random}`;
+	if (data.source === StringSource.fields) {
+		label = `${i18n.source} ${i18n.fields}`;
+	}
 
 	return (
 		<div className={styles.buttonLabel}>

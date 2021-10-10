@@ -2,5 +2,17 @@
   "NAME": "Email",
   "DESC": "Generates a random email address. Currently this just generates them out of random lorem ipsum words.",
   "DEFAULT_TITLE": "email",
-  "row": "Row"
+  "row": "Row",
+  "source": "Source:",
+  "random": "random",
+  "fields": "fields",
+  "emailDesc": "By default this Data Type generates random email addresses using lorem ipsum text, but if you'd like to generate more realistic-looking email addresses, target one or more fields (Name fields are best!) in your data set to use those strings as the basis of the email address.",
+  "randomStringsLabel": "Random strings",
+  "fieldsLabel": "Fields",
+  "sourceDataField1": "Source data, field 1",
+  "sourceDataField2": "Source data, field 2 (optional)",
+  "optional": "Optional",
+  "selectSource": "Select source",
+  "domains": "Domains",
+  "domainSuffixes": "Domain suffixes"
 }
