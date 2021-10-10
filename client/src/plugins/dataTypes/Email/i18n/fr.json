@@ -1,5 +1,20 @@
 {
-  "NAME": "Email",
-  "DESC": "Génère une adresse e-mail aléatoire .",
-  "DEFAULT_TITLE": "email"
+  "NAME": "E-mail",
+  "DESC": "Génère une adresse e-mail aléatoire. Actuellement, cela les génère simplement à partir de mots lorem ipsum aléatoires.",
+  "DEFAULT_TITLE": "e-mail",
+  "row": "Ligne",
+  "source": "La source:",
+  "random": "aléatoire",
+  "fields": "contributions",
+  "emailDesc": "Par défaut, ce type de données génère des adresses e-mail aléatoires en utilisant le texte lorem ipsum, mais si vous souhaitez générer des adresses e-mail plus réalistes, ciblez un ou plusieurs champs (les champs de nom sont les meilleurs !) la base de l'adresse e-mail.",
+  "randomStringsLabel": "Chaînes aléatoires",
+  "fieldsLabel": "Contributions",
+  "sourceDataField1": "Données sources, contribution 1",
+  "sourceDataField2": "Données sources, contribution 2 (facultatif)",
+  "optional": "Optionnelle",
+  "selectSource": "Sélectionner la source",
+  "domains": "Domaines",
+  "domainSuffixes": "Suffixes de domaine",
+  "domainSuffixDesc": "Saisissez les suffixes de domaine que vous souhaitez (.com, .org) séparés par des virgules.",
+  "domainsDesc": "Saisissez ici les domaines que vous souhaitez voir apparaître dans les adresses e-mail, séparés par des virgules. Tous les domaines que vous entrez ici et qui incluent un suffixe (.com, .org) apparaîtront toujours tels quels, c'est-à-dire qu'ils n'apparaîtront pas avec d'autres suffixes de domaine."
 }

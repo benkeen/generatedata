@@ -1,5 +1,20 @@
 {
   "NAME": "O email",
   "DESC": "Gera um endereço de e-mail aleatório. Atualmente, isso apenas os gera a partir de palavras lorem ipsum aleatórias.",
-  "DEFAULT_TITLE": "email"
+  "DEFAULT_TITLE": "oemail",
+  "row": "Linha",
+  "source": "Fonte:",
+  "random": "aleatória",
+  "fields": "Campos",
+  "emailDesc": "Por padrão, este tipo de dados gera endereços de e-mail aleatórios usando texto lorem ipsum, mas se você gostaria de gerar endereços de e-mail com aparência mais realista, direcione um ou mais campos (campos de nome são melhores!) Em seu conjunto de dados para usar essas strings como com base no endereço de e-mail.",
+  "randomStringsLabel": "Strings aleatórias",
+  "fieldsLabel": "Campos",
+  "sourceDataField1": "Dados de origem, campo 1",
+  "sourceDataField2": "Dados de origem, campo 2 (opcional)",
+  "optional": "Opcional",
+  "selectSource": "Selecione a fonte",
+  "domains": "Domínios",
+  "domainSuffixes": "Sufixos de domínio",
+  "domainSuffixDesc": "Insira qualquer domínio suficiente que você deseja (.com, .org) separados por vírgulas.",
+  "domainsDesc": "Insira quaisquer domínios que você deseja que apareçam nos endereços de e-mail aqui, separados por vírgulas. Qualquer domínio inserido aqui que inclua um sufixo (.com, .org) sempre aparecerá no estado em que se encontra - ou seja, não aparecerá com outros sufixos de domínio."
 }

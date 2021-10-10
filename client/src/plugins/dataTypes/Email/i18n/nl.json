@@ -1,5 +1,20 @@
 {
   "NAME": "E-mail",
-  "DESC": "Genereert een willekeurig e-mailadres.",
-  "DEFAULT_TITLE": "email"
+  "DESC": "Genereert een willekeurig e-mailadres. Momenteel genereert dit ze gewoon uit willekeurige lorem ipsum-woorden.",
+  "DEFAULT_TITLE": "e-mail",
+  "row": "Rij",
+  "source": "Bron:",
+  "random": "willekeurig",
+  "fields": "velden",
+  "emailDesc": "Standaard genereert dit gegevenstype willekeurige e-mailadressen met behulp van lorem ipsum-tekst, maar als u meer realistisch ogende e-mailadressen wilt genereren, target dan een of meer velden (naamvelden zijn het beste!) in uw gegevensset om die tekenreeksen te gebruiken als de basis van het e-mailadres.",
+  "randomStringsLabel": "Willekeurige tekenreeksen",
+  "fieldsLabel": "Velden",
+  "sourceDataField1": "Brongegevens, veld 1",
+  "sourceDataField2": "Brongegevens, veld 2 (optioneel)",
+  "optional": "Optioneel",
+  "selectSource": "Selecteer bron",
+  "domains": "Domeinen",
+  "domainSuffixes": "Domeinachtervoegsels",
+  "domainSuffixDesc": "Voer elk domein in dat u wilt (.com, .org) gescheiden door komma's.",
+  "domainsDesc": "Voer hier de domeinen in die u in de e-mailadressen wilt weergeven, gescheiden door komma's. Alle domeinen die u hier invoert en die een achtervoegsel (.com, .org) bevatten, worden altijd weergegeven zoals ze zijn, d.w.z. ze verschijnen niet met andere domeinachtervoegsels."
 }

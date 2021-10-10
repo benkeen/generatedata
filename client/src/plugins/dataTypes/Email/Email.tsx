@@ -97,7 +97,12 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, sortedRow
 					</RadioPillRow>
 					{getFieldsRow()}
 					<div className={styles.fieldRow}>
-						<label>{i18n.domains}</label>
+						<label>
+							{i18n.domains}
+							<Tooltip title={i18n.domainsDesc} arrow>
+								<InfoIcon />
+							</Tooltip>
+						</label>
 						<TextField
 							value={data.domains}
 							onChange={(e: any): void => onUpdate('domains', e.target.value)}
@@ -106,7 +111,7 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, sortedRow
 					<div className={styles.fieldRow}>
 						<label>
 							{i18n.domainSuffixes}
-							<Tooltip title="......" arrow>
+							<Tooltip title={i18n.domainSuffixDesc} arrow>
 								<InfoIcon />
 							</Tooltip>
 						</label>
@@ -124,21 +129,26 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, sortedRow
 	);
 };
 
+const defaultDomains = 'google,hotmail,aol,icloud,outlook,yahoo,protonmail';
+const defaultDomainSuffixes = 'com,org,ca,net,co.uk,edu';
+
 export const initialState: EmailState = {
 	source: StringSource.random,
 	fieldId1: '',
 	fieldId2: '',
-	domains: 'google,hotmail,aol,icloud,outlook,yahoo,protonmail',
-	domainSuffixes:  'edu,com,org,ca,net,co.uk'
+	domains: defaultDomains,
+	domainSuffixes: defaultDomainSuffixes
 };
 
 export const Options = ({ i18n, coreI18n, id, data, onUpdate, sortedRows }: DTOptionsProps): JSX.Element => {
 
-	// workaround for earlier version of the DT where there was no state.
-	const safeData = data ? data : {
+	// earlier version of this DT didn't have any state whatsoever
+	const safeData: EmailState = data ? data : {
 		source: StringSource.random,
 		fieldId1: '',
-		fieldId2: ''
+		fieldId2: '',
+		domains: defaultDomains,
+		domainSuffixes: defaultDomainSuffixes
 	};
 
 	const [dialogVisible, setDialogVisibility] = React.useState(false);

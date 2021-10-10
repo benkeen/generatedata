@@ -1,5 +1,20 @@
 {
-  "NAME": "E-mail",
-  "DESC": "Erzeugt eine zufällige E-Mail Adresse .",
-  "DEFAULT_TITLE": "email"
+  "NAME": "Email",
+  "DESC": "Erzeugt eine zufällige E-Mail-Adresse. Derzeit werden sie nur aus zufälligen Lorem-Ipsum-Wörtern generiert.",
+  "DEFAULT_TITLE": "email",
+  "row": "Reihe",
+  "source": "Quelle:",
+  "random": "willkürlich",
+  "fields": "Felder",
+  "emailDesc": "Standardmäßig generiert dieser Datentyp zufällige E-Mail-Adressen mit Lorem ipsum-Text, aber wenn Sie realistischer aussehende E-Mail-Adressen generieren möchten, richten Sie ein oder mehrere Felder (Namensfelder sind am besten!) die Grundlage der E-Mail-Adresse.",
+  "randomStringsLabel": "Zufällige Zeichenfolgen",
+  "fieldsLabel": "Felder",
+  "sourceDataField1": "Quelldaten, Feld 1",
+  "sourceDataField2": "Quelldaten, Feld 2 (optional)",
+  "optional": "Optional",
+  "selectSource": "Quelle auswählen",
+  "domains": "Domänen",
+  "domainSuffixes": "Domain-Suffixe",
+  "domainSuffixDesc": "Geben Sie eine beliebige Domain (.com, .org) durch Kommas getrennt ein.",
+  "domainsDesc": "Geben Sie hier alle Domains ein, die in den E-Mail-Adressen erscheinen sollen, getrennt durch Kommas. Alle hier eingegebenen Domains mit einem Suffix (.com, .org) werden immer unverändert angezeigt, d. h. sie werden nicht mit anderen Domain-Suffixen angezeigt."
 }

@@ -1,5 +1,20 @@
 {
   "NAME": "电子邮件",
-  "DESC": "生成一个随机的电子邮件地址。",
-  "DEFAULT_TITLE": "电子邮件"
+  "DESC": "生成随机电子邮件地址。 目前，这只是从随机 lorem ipsum 单词中生成它们。",
+  "DEFAULT_TITLE": "电子邮件",
+  "row": "排",
+  "source": "来源：",
+  "random": "随机的",
+  "fields": "领域",
+  "emailDesc": "默认情况下，此数据类型使用 lorem ipsum 文本生成随机电子邮件地址，但如果您想生成看起来更逼真的电子邮件地址，请在数据集中定位一个或多个字段（名称字段最好！）以使用这些字符串作为 电子邮件地址的基础。",
+  "randomStringsLabel": "随机字符串",
+  "fieldsLabel": "字段",
+  "sourceDataField1": "源数据，字段 1",
+  "sourceDataField2": "源数据，字段 2（可选）",
+  "optional": "可选的",
+  "selectSource": "选择来源",
+  "domains": "域",
+  "domainSuffixes": "域后缀",
+  "domainSuffixDesc": "输入您想要的任何域名（.com、.org），以逗号分隔。",
+  "domainsDesc": "在此处输入您希望出现在电子邮件地址中的任何域，以逗号分隔。 您在此处输入的任何包含后缀（.com、.org）的域将始终按原样显示 - 即它们不会与其他域后缀一起出现。"
 }
