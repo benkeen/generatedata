@@ -15,6 +15,6 @@
   "selectSource": "Select source",
   "domains": "Domains",
   "domainSuffixes": "Domain suffixes",
-  "domainSuffixDesc": "Enter any domain suffices you want (.com, .org) separated by commas.",
+  "domainSuffixDesc": "Enter any domain suffixes you want (.com, .org) separated by commas.",
   "domainsDesc": "Enter any domains you want to appear in the email addresses here, separated by commas. Any domains you enter here that include a suffix (.com, .org) will always appear as-is - i.e. they won't appear with other domain suffixes."
 }
