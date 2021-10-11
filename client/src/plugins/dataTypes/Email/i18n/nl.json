@@ -6,7 +6,6 @@
   "source": "Bron:",
   "random": "willekeurig",
   "fields": "velden",
-  "emailDesc": "Standaard genereert dit gegevenstype willekeurige e-mailadressen met behulp van lorem ipsum-tekst, maar als u meer realistisch ogende e-mailadressen wilt genereren, target dan een of meer velden (naamvelden zijn het beste!) in uw gegevensset om die tekenreeksen te gebruiken als de basis van het e-mailadres.",
   "randomStringsLabel": "Willekeurige tekenreeksen",
   "fieldsLabel": "Velden",
   "sourceDataField1": "Brongegevens, veld 1",
@@ -16,5 +15,11 @@
   "domains": "Domeinen",
   "domainSuffixes": "Domeinachtervoegsels",
   "domainSuffixDesc": "Voer elk domein in dat u wilt (.com, .org) gescheiden door komma's.",
-  "domainsDesc": "Voer hier de domeinen in die u in de e-mailadressen wilt weergeven, gescheiden door komma's. Alle domeinen die u hier invoert en die een achtervoegsel (.com, .org) bevatten, worden altijd weergegeven zoals ze zijn, d.w.z. ze verschijnen niet met andere domeinachtervoegsels."
+  "domainsDesc": "Voer hier de domeinen in die u in de e-mailadressen wilt weergeven, gescheiden door komma's. Alle domeinen die u hier invoert en die een achtervoegsel (.com, .org) bevatten, worden altijd weergegeven zoals ze zijn, d.w.z. ze verschijnen niet met andere domeinachtervoegsels.",
+  "sourceTitle": "Bron",
+  "emailDesc": "Standaard genereert dit gegevenstype willekeurige e-mailadressen met behulp van lorem ipsum-tekst, maar als u meer realistisch ogende e-mailadressen wilt genereren, target dan een of twee naamvelden in uw gegevensset om die tekenreeksen als basis van het e-mailadres te gebruiken .",
+  "emailHelp1": "Dit gegevenstype genereert willekeurige e-mailadressen. Vanaf versie 4.0.6 zijn er een paar opties om de inhoud van het e-mailadres aan te passen om het er realistischer uit te laten zien.",
+  "emailHelp2": "Hier heb je twee opties: Willekeurige tekenreeksen of velden. Deze instelling regelt het bronmateriaal voor het lokale deel - het deel dat vóór het \"@\"-teken in het e-mailadres verschijnt. De standaardoptie Willekeurige tekenreeksen gebruikt lorem ipsum-woorden (plaatsaanduidingstekst) als het bronmateriaal, terwijl u met de optie Velden andere naamvelden in uw gegevensset kunt targeten. Hiermee kunt u e-mailadressen genereren die er realistischer uitzien.",
+  "emailHelp3": "Een door komma's gescheiden lijst van te gebruiken domeinnamen. Als u wilt dat een domein altijd een specifiek achtervoegsel heeft (bijvoorbeeld mijndomein.com), voert u hier die volledige tekenreeks in. Anders kiest het script willekeurig een van de domeinachtervoegsels die in het volgende veld zijn opgegeven.",
+  "emailHelp4": "Een door komma's gescheiden lijst met domeinachtervoegsels (.com, .ca enz.)."
 }

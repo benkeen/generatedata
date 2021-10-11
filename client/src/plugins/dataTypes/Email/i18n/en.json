@@ -1,12 +1,11 @@
 {
   "NAME": "Email",
-  "DESC": "Generates a random email address. Currently this just generates them out of random lorem ipsum words.",
+  "DESC": "Generates a random email address.",
   "DEFAULT_TITLE": "email",
   "row": "Row",
   "source": "Source:",
   "random": "random",
   "fields": "fields",
-  "emailDesc": "By default this Data Type generates random email addresses using lorem ipsum text, but if you'd like to generate more realistic-looking email addresses, target one or more fields (Name fields are best!) in your data set to use those strings as the basis of the email address.",
   "randomStringsLabel": "Random strings",
   "fieldsLabel": "Fields",
   "sourceDataField1": "Source data, field 1",
@@ -16,5 +15,11 @@
   "domains": "Domains",
   "domainSuffixes": "Domain suffixes",
   "domainSuffixDesc": "Enter any domain suffixes you want (.com, .org) separated by commas.",
-  "domainsDesc": "Enter any domains you want to appear in the email addresses here, separated by commas. Any domains you enter here that include a suffix (.com, .org) will always appear as-is - i.e. they won't appear with other domain suffixes."
+  "domainsDesc": "Enter any domains you want to appear in the email addresses here, separated by commas. Any domains you enter here that include a suffix (.com, .org) will always appear as-is - i.e. they won't appear with other domain suffixes.",
+  "sourceTitle": "Source",
+  "emailDesc": "By default this Data Type generates random email addresses using lorem ipsum text, but if you'd like to generate more realistic-looking email addresses, target one or two Name fields in your data set to use those strings as the basis of the email address.",
+  "emailHelp1": "This Data Type generates random email addresses. As of version 4.0.6, there are a few options for customizing the content of the email address to make it look more realistic.",
+  "emailHelp2": "Here you have two options: Random Strings or Fields. This setting controls the source material for the local part - the part that appears before the \"@\" character in the email address. The default Random Strings option uses lorem ipsum words (placeholder text) as the source material, whereas the Fields option lets you target other Name fields in your data set. This allows you to generate email addresses that look more realistic.",
+  "emailHelp3": "A comma-delimited list of domain names to use. If you want a domain to always have a specific suffix (e.g. mydomain.com), just enter that full string here. Otherwise, the script will randomly choose one of the domain suffixes specified in the next field.",
+  "emailHelp4": "A comma-delimited list of domain suffixes (.com, .ca etc.)."
 }

@@ -6,7 +6,6 @@
   "source": "La source:",
   "random": "aléatoire",
   "fields": "contributions",
-  "emailDesc": "Par défaut, ce type de données génère des adresses e-mail aléatoires en utilisant le texte lorem ipsum, mais si vous souhaitez générer des adresses e-mail plus réalistes, ciblez un ou plusieurs champs (les champs de nom sont les meilleurs !) la base de l'adresse e-mail.",
   "randomStringsLabel": "Chaînes aléatoires",
   "fieldsLabel": "Contributions",
   "sourceDataField1": "Données sources, contribution 1",
@@ -16,5 +15,11 @@
   "domains": "Domaines",
   "domainSuffixes": "Suffixes de domaine",
   "domainSuffixDesc": "Saisissez les suffixes de domaine que vous souhaitez (.com, .org) séparés par des virgules.",
-  "domainsDesc": "Saisissez ici les domaines que vous souhaitez voir apparaître dans les adresses e-mail, séparés par des virgules. Tous les domaines que vous entrez ici et qui incluent un suffixe (.com, .org) apparaîtront toujours tels quels, c'est-à-dire qu'ils n'apparaîtront pas avec d'autres suffixes de domaine."
+  "domainsDesc": "Saisissez ici les domaines que vous souhaitez voir apparaître dans les adresses e-mail, séparés par des virgules. Tous les domaines que vous entrez ici et qui incluent un suffixe (.com, .org) apparaîtront toujours tels quels, c'est-à-dire qu'ils n'apparaîtront pas avec d'autres suffixes de domaine.",
+  "sourceTitle": "La source",
+  "emailDesc": "Par défaut, ce type de données génère des adresses e-mail aléatoires en utilisant le texte lorem ipsum, mais si vous souhaitez générer des adresses e-mail plus réalistes, ciblez un ou deux champs Nom dans votre ensemble de données pour utiliser ces chaînes comme base de l'adresse e-mail .",
+  "emailHelp1": "Ce type de données génère des adresses e-mail aléatoires. Depuis la version 4.0.6, il existe quelques options pour personnaliser le contenu de l'adresse e-mail afin de la rendre plus réaliste.",
+  "emailHelp2": "Ici, vous avez deux options : Chaînes aléatoires ou Champs. Ce paramètre contrôle le matériel source pour la partie locale - la partie qui apparaît avant le caractère \"@\" dans l'adresse e-mail. L'option Chaînes aléatoires par défaut utilise des mots lorem ipsum (texte d'espace réservé) comme matériau source, tandis que l'option Champs vous permet de cibler d'autres champs Nom dans votre ensemble de données. Cela vous permet de générer des adresses e-mail plus réalistes.",
+  "emailHelp3": "Une liste délimitée par des virgules de noms de domaine à utiliser. Si vous voulez qu'un domaine ait toujours un suffixe spécifique (par exemple mondomaine.com), entrez simplement cette chaîne complète ici. Sinon, le script choisira au hasard l'un des suffixes de domaine spécifiés dans le champ suivant.",
+  "emailHelp4": "Une liste délimitée par des virgules de suffixes de domaine (.com, .ca, etc.)."
 }

@@ -1,9 +1,10 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options, getMetadata, rowStateReducer } from './Email';
+import { initialState, Help, Options, getMetadata, rowStateReducer } from './Email';
 import { customProps } from './Email.store';
 
 const bundle: DTBundle = {
 	initialState,
+	Help,
 	Options,
 	getMetadata,
 	customProps,

@@ -6,7 +6,6 @@
   "source": "Quelle:",
   "random": "willkürlich",
   "fields": "Felder",
-  "emailDesc": "Standardmäßig generiert dieser Datentyp zufällige E-Mail-Adressen mit Lorem ipsum-Text, aber wenn Sie realistischer aussehende E-Mail-Adressen generieren möchten, richten Sie ein oder mehrere Felder (Namensfelder sind am besten!) die Grundlage der E-Mail-Adresse.",
   "randomStringsLabel": "Zufällige Zeichenfolgen",
   "fieldsLabel": "Felder",
   "sourceDataField1": "Quelldaten, Feld 1",
@@ -16,5 +15,11 @@
   "domains": "Domänen",
   "domainSuffixes": "Domain-Suffixe",
   "domainSuffixDesc": "Geben Sie eine beliebige Domain (.com, .org) durch Kommas getrennt ein.",
-  "domainsDesc": "Geben Sie hier alle Domains ein, die in den E-Mail-Adressen erscheinen sollen, getrennt durch Kommas. Alle hier eingegebenen Domains mit einem Suffix (.com, .org) werden immer unverändert angezeigt, d. h. sie werden nicht mit anderen Domain-Suffixen angezeigt."
+  "domainsDesc": "Geben Sie hier alle Domains ein, die in den E-Mail-Adressen erscheinen sollen, getrennt durch Kommas. Alle hier eingegebenen Domains mit einem Suffix (.com, .org) werden immer unverändert angezeigt, d. h. sie werden nicht mit anderen Domain-Suffixen angezeigt.",
+  "sourceTitle": "Quelle",
+  "emailDesc": "Standardmäßig generiert dieser Datentyp zufällige E-Mail-Adressen mit Lorem ipsum-Text. Wenn Sie jedoch realistischer aussehende E-Mail-Adressen generieren möchten, verwenden Sie ein oder zwei Namensfelder in Ihrem Datensatz, um diese Zeichenfolgen als Grundlage der E-Mail-Adresse zu verwenden .",
+  "emailHelp1": "Dieser Datentyp generiert zufällige E-Mail-Adressen. Ab Version 4.0.6 gibt es einige Möglichkeiten, den Inhalt der E-Mail-Adresse so anzupassen, dass er realistischer aussieht.",
+  "emailHelp2": "Hier haben Sie zwei Möglichkeiten: Zufällige Zeichenfolgen oder Felder. Diese Einstellung steuert das Quellmaterial für den lokalen Teil - den Teil, der vor dem \"@\"-Zeichen in der E-Mail-Adresse erscheint. Die Standardoption Random Strings verwendet Lorem-Ipsum-Wörter (Platzhaltertext) als Quellmaterial, während Sie mit der Option Fields auf andere Namensfelder in Ihrem Datensatz abzielen können. Auf diese Weise können Sie E-Mail-Adressen generieren, die realistischer aussehen.",
+  "emailHelp3": "Eine durch Kommas getrennte Liste von zu verwendenden Domänennamen. Wenn Sie möchten, dass eine Domain immer ein bestimmtes Suffix hat (z. B. mydomain.com), geben Sie hier einfach diese vollständige Zeichenfolge ein. Andernfalls wählt das Skript zufällig eines der im nächsten Feld angegebenen Domänensuffixe aus.",
+  "emailHelp4": "Eine durch Kommas getrennte Liste von Domain-Suffixen (.com, .ca usw.)."
 }

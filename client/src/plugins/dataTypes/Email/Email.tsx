@@ -5,7 +5,7 @@ import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
-import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import * as styles from './Email.scss';
 import { Tooltip } from '~components/tooltips';
 
@@ -22,18 +22,12 @@ export type EmailState = {
 	domainSuffixes: string;
 }
 
-const unsupportedDataTypes = ['Computed'];
-
-const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, sortedRows, i18n }: any): JSX.Element => {
-	const rowOptions = sortedRows
-		.map(({ id: currentId, title, dataType }: any, index: number) => ({
+const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, nameRows, i18n }: any): JSX.Element => {
+	const rowOptions = nameRows
+		.map(({ id: currentId, title }: any, index: number) => ({
 			value: currentId,
-			label: `${i18n.row} #${index + 1}: ${title}`,
-			extra: { currentId, dataType }
-		}))
-		.filter(({ extra }: any) => {
-			return extra.currentId !== id && unsupportedDataTypes.indexOf(extra.dataType) === -1;
-		});
+			label: `${i18n.row} #${index + 1}: ${title}`
+		}));
 
 	const getFieldsRow = (): JSX.Element | null => {
 		if (data.source === StringSource.random) {
@@ -142,7 +136,7 @@ export const initialState: EmailState = {
 	domainSuffixes: defaultDomainSuffixes
 };
 
-export const Options = ({ i18n, coreI18n, id, data, onUpdate, sortedRows }: DTOptionsProps): JSX.Element => {
+export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOptionsProps): JSX.Element => {
 
 	// earlier version of this DT didn't have any state whatsoever
 	const safeData: EmailState = data ? data : {
@@ -176,12 +170,35 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate, sortedRows }: DTOp
 				coreI18n={coreI18n}
 				i18n={i18n}
 				onUpdate={(field: string, value: any): void => onUpdate({ ...safeData, [field]: value })}
-				sortedRows={sortedRows}
+				nameRows={nameRows}
 				onClose={(): void => setDialogVisibility(false)}
 			/>
 		</div>
 	);
 };
+
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
+	<>
+		<p>
+			{i18n.emailHelp1}
+		</p>
+
+		<h3>{i18n.sourceTitle}</h3>
+		<p>
+			{i18n.emailHelp2}
+		</p>
+
+		<h3>{i18n.domains}</h3>
+		<p>
+			{i18n.emailHelp3}
+		</p>
+
+		<h3>{i18n.domainSuffixes}</h3>
+		<p>
+			{i18n.emailHelp4}
+		</p>
+	</>
+);
 
 export const getMetadata = (): DTMetadata => ({
 	general: {

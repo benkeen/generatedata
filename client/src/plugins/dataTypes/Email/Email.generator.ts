@@ -104,7 +104,6 @@ export const onmessage = (e: DTOnMessage) => {
 	const { source, fieldId1, fieldId2, domains, domainSuffixes } = e.data.rowState;
 	const { existingRowData } = e.data;
 
-	console.log({ domains, domainSuffixes });
 	if (!domains.length || !domainSuffixes.length) {
 		postMessage({ display: '' });
 		return;
