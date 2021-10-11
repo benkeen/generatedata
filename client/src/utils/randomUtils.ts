@@ -66,7 +66,7 @@ export const generateRandomAlphanumericStr = (str: string, placeholders: any = d
 	return newStr.trim();
 };
 
-// Returns a random subset of an array. The result may be empty, or the same set.
+// Returns a random subset of an array of a particular size. The result may be empty, or the same set.
 export const getRandomSubset = <T> (arr: T[], size: number): T[] => {
 	const shuffled = arr.slice(0);
 	let i = arr.length;

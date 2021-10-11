@@ -106,6 +106,7 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, sortedRow
 						<TextField
 							value={data.domains}
 							onChange={(e: any): void => onUpdate('domains', e.target.value)}
+							error={data.domains ? '' : coreI18n.requiredField}
 						/>
 					</div>
 					<div className={styles.fieldRow}>
@@ -118,6 +119,7 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, sortedRow
 						<TextField
 							value={data.domainSuffixes}
 							onChange={(e: any): void => onUpdate('domainSuffixes', e.target.value)}
+							error={data.domainSuffixes ? '' : coreI18n.requiredField}
 						/>
 					</div>
 				</DialogContent>
@@ -190,4 +192,10 @@ export const getMetadata = (): DTMetadata => ({
 		field_Oracle: 'varchar2(255) default NULL',
 		field_MSSQL: 'VARCHAR(255) NULL'
 	}
+});
+
+export const rowStateReducer = (state: EmailState): any => ({
+	...state,
+	domains: state.domains.split(',').filter((i) => !!i).map((i) => i.replace(/[^0-9a-zA-Z]/g, '')),
+	domainSuffixes: state.domainSuffixes.split(',').filter((i) => !!i).map((i) => i.replace(/[^0-9a-zA-Z]/g, ''))
 });

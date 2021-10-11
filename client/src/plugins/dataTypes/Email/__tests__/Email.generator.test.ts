@@ -3,7 +3,7 @@ import * as generation from '../Email.generator';
 import utils from '../../../../utils';
 
 const words = ['one', 'two', 'three', 'four', 'five', 'six'];
-describe('getRandomEmail', () => {
+describe('getRandomEmailPrefix', () => {
     afterEach(function () {
         sinon.restore();
     });
@@ -13,7 +13,7 @@ describe('getRandomEmail', () => {
             .onCall(0).returns(1)  // number of prefixed words
             .onCall(1).returns(0); // prefix word offset
 
-        expect(generation.getRandomEmail(words, ['domain'], ['co'])).toEqual('one@domain.co');
+        expect(generation.getRandomEmailPrefix(words)).toEqual('one');
     });
 
     it('gets a specific single prefix word', () => {
@@ -21,7 +21,7 @@ describe('getRandomEmail', () => {
             .onCall(0).returns(1)  // number of prefixed words
             .onCall(1).returns(4); // prefix word offset
 
-        expect(generation.getRandomEmail(words, ['domain'], ['co'])).toEqual('five@domain.co');
+        expect(generation.getRandomEmailPrefix(words)).toEqual('five');
     });
 
     it('multiple prefix words are separated by dots #1', () => {
@@ -29,7 +29,7 @@ describe('getRandomEmail', () => {
             .onCall(0).returns(2)  // number of prefixed words
             .onCall(1).returns(3); // prefix word offset
 
-        expect(generation.getRandomEmail(words, ['domain'], ['co'])).toEqual('four.five@domain.co');
+        expect(generation.getRandomEmailPrefix(words)).toEqual('four.five');
     });
 
     it('multiple prefix words are separated by dots #3', () => {
@@ -37,7 +37,7 @@ describe('getRandomEmail', () => {
             .onCall(0).returns(3)  // number of prefixed words
             .onCall(1).returns(2); // prefix word offset
 
-        expect(generation.getRandomEmail(words, ['domain'], ['co'])).toEqual('three.four.five@domain.co');
+        expect(generation.getRandomEmailPrefix(words)).toEqual('three.four.five');
     });
 
     it('punctuation in words (.,;:) are removed', () => {
@@ -45,7 +45,7 @@ describe('getRandomEmail', () => {
             .onCall(0).returns(4)  // number of prefixed words
             .onCall(1).returns(0); // prefix word offset
 
-        expect(generation.getRandomEmail(['one.', 'two:', 'th,ree', 'four;'], ['domain'], ['co'])).toEqual('one.two.three.four@domain.co');
+        expect(generation.getRandomEmailPrefix(['one.', 'two:', 'th,ree', 'four;'])).toEqual('one.two.three.four');
     });
 
     it('picks a random suffix', () => {
@@ -55,7 +55,7 @@ describe('getRandomEmail', () => {
             .onCall(2).returns(1) // number of domain words
 			.onCall(3).returns(2); // domain word offset
 
-        expect(generation.getRandomEmail(words, ['domain'], ['co', 'ca', 'com'])).toEqual('one@domain.ca');
+        expect(generation.getRandomEmailPrefix(words)).toEqual('one');
     });
 
     // it('truncates the email if it is over 254 chars', () => {
@@ -68,32 +68,6 @@ describe('getRandomEmail', () => {
 	//
 	// 	sinon.stub(utils.randomUtils, 'getRandomArrayValue').returns('ca'); // suffix
 	//
-    //     expect(generation.getRandomEmail(words, ['b'.repeat(150)], ['ca'])).toEqual(`${'a'.repeat(75)}@${'b'.repeat(75)}.ca`);
+    //     expect(generation.getRandomEmailPrefix(words, ['b'.repeat(150)], ['ca'])).toEqual(`${'a'.repeat(75)}@${'b'.repeat(75)}.ca`);
     // });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

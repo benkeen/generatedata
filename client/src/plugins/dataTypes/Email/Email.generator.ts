@@ -9,51 +9,90 @@ const getWords = () => {
 	return words;
 };
 
-export const cleanChars = (arr: string[]): string[] => arr.map((i: string) => i.replace(/[^0-9a-zA-Z]/g, ''));
+export const cleanChars = (str: string): string => str.replace(/[^0-9a-zA-Z]/g, '').toLowerCase();
+export const cleanArray = (arr: string[]): string[] => arr.map(cleanChars);
 
-export const getEmail = (domains: string[], domainSuffixes: string[], data = null): string => {
+const getOneNameField = (name: string) => {
+	const parts = cleanArray(name.split(/\s+/));
+	const delim = utils.randomUtils.getRandomArrayValue(['.', '_', '-', '']);
+	const randomSize = utils.randomUtils.getRandomNum(1, parts.length);
 
-	/*
-	[field1].[field2]
-	[field2].[field1]
-	[field1][field2]
-	[field2][field1]
-	[field1][field2][random num 1-4 chars]
-	[field2][field1][random num 1-4 chars]
-	[field1 [one char][field2]
-	[field2 [one char]][field1]
-	[field1 [one char]][field2][random num 1-4 chars]
-	[field2 [one char]][field1][random num 1-4 chars]
-	*/
+	let email = utils.randomUtils.getRandomSubset(parts, randomSize).join(delim); // 5 is arbitrary - names should probably only ever have 2 or 3
 
-	return '';
-};
-
-export const getRandomEmail = (wordsArr: string[], domains: string[], domainSuffixes: string[]): string => {
-	// random emails
-	const numWords = wordsArr.length;
-	const numPrefixWords = utils.randomUtils.getRandomNum(1, 3);
-	const offset = utils.randomUtils.getRandomNum(0, numWords - (numPrefixWords + 1));
-	const selectedWords = cleanChars(wordsArr.slice(offset, offset + numPrefixWords));
-	const prefix = selectedWords.join('.');
-
-	// domain
-	let domainStr = utils.randomUtils.getRandomArrayValue(domains);
-	if (domainStr.indexOf('.') === -1) {
-		domainStr += `.${utils.randomUtils.getRandomArrayValue(domainSuffixes)}`;
-	}
-
-	// if the email exceeded 254 chars (the max valid number of chars), truncate it. This could be way
-	// more elegant, but it's SUCH a fringe case I don't much mind
-	let email = `${prefix}@${domainStr}`.toLowerCase();
-	const length = email.length;
-	if (length > MAX_EMAIL_LENGTH) {
-		const prefixChunk = prefix.slice(0, Math.ceil(prefix.length / 2));
-		email = `${prefixChunk}@${domainStr}`.toLowerCase();
+	if (utils.randomUtils.getRandomBool()) {
+		email += utils.randomUtils.getRandomNum(1, 9999);
 	}
 
 	return email;
 };
+
+const getTwoNameField = (data: string[]): string => {
+	const pattern = utils.randomUtils.getRandomNum(0, 3);
+	const delim = utils.randomUtils.getRandomArrayValue(['.', '_', '-', '']);
+
+	let email = '';
+	switch (pattern) {
+		case 0:
+			email = `${data[0]}${delim}${data[1]}`;
+			break;
+		case 1:
+			email = `${data[1]}${delim}${data[0]}`;
+			break;
+		case 2:
+			email = `${data[0].substring(0, 1)}${delim}${data[1]}`;
+			break;
+		case 3:
+			email = `${data[1].substring(0, 1)}${delim}${data[0]}`;
+			break;
+	}
+
+	if (utils.randomUtils.getRandomBool()) {
+		email += utils.randomUtils.getRandomNum(1, 9999);
+	}
+
+	return email;
+};
+
+export const getEmailPrefix = (fieldData: string[]): string => {
+	let prefix = '';
+	if (fieldData.length === 1) {
+		prefix = getOneNameField(fieldData[0]);
+	} else if (fieldData.length === 2) {
+		prefix = getTwoNameField(fieldData);
+	}
+	return prefix;
+};
+
+export const getRandomEmailPrefix = (wordsArr: string[]): string => {
+	const numWords = wordsArr.length;
+	const numPrefixWords = utils.randomUtils.getRandomNum(1, 3);
+	const offset = utils.randomUtils.getRandomNum(0, numWords - (numPrefixWords + 1));
+	const selectedWords = cleanArray(wordsArr.slice(offset, offset + numPrefixWords));
+	return selectedWords.join('.');
+};
+
+export const getDomain = (domains: string[], domainSuffixes: string[]) => {
+	let domainStr = utils.randomUtils.getRandomArrayValue(domains);
+	if (domainStr.indexOf('.') === -1) {
+		domainStr += `.${utils.randomUtils.getRandomArrayValue(domainSuffixes)}`;
+	}
+	return domainStr;
+};
+
+const getFinalEmail = (prefix: string, domain: string) => {
+	// if the email exceeded 254 chars (the max valid number of chars), truncate it. This could be way
+	// more elegant, but it's SUCH a fringe case I don't much mind
+	let email = `${prefix}@${domain}`.toLowerCase();
+
+	const length = email.length;
+	if (length > MAX_EMAIL_LENGTH) {
+		const prefixChunk = prefix.slice(0, Math.ceil(prefix.length / 2));
+		email = `${prefixChunk}@${domain}`.toLowerCase();
+	}
+
+	return email;
+};
+
 
 let utilsLoaded = false;
 export const onmessage = (e: DTOnMessage) => {
@@ -65,39 +104,30 @@ export const onmessage = (e: DTOnMessage) => {
 	const { source, fieldId1, fieldId2, domains, domainSuffixes } = e.data.rowState;
 	const { existingRowData } = e.data;
 
-	let email = '';
-	if (!source || source === StringSource.random) {
-		const words = getWords();
-		email = getRandomEmail(words, domains, domainSuffixes);
-	} else {
-		const dataMap: any = {};
-		existingRowData.forEach(({ id, data }) => {
-			if (id === fieldId1 || id === fieldId2) {
-				dataMap[id] = data.display;
-			}
-		});
-		email = getEmail(domains, domainSuffixes, dataMap);
+	console.log({ domains, domainSuffixes });
+	if (!domains.length || !domainSuffixes.length) {
+		postMessage({ display: '' });
+		return;
 	}
 
+	let prefix = '';
+	if (!source || source === StringSource.random) {
+		const words = getWords();
+		prefix = getRandomEmailPrefix(words);
+	} else {
+		const fieldData: any[] = [];
+		existingRowData.forEach(({ id, data }) => {
+			if (id === fieldId1 || id === fieldId2) {
+				fieldData.push(cleanChars(data.display as string));
+			}
+		});
+
+		prefix = getEmailPrefix(fieldData);
+	}
+
+	const domain = getDomain(domains, domainSuffixes);
+
 	postMessage({
-		display: email
+		display: getFinalEmail(prefix, domain)
 	});
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
