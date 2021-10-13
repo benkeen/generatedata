@@ -16,6 +16,12 @@ export type CountryDataType = {
 	extendedData: ExtendedData;
 };
 
+export type CountryNames = {
+	femaleNames: string[];
+	maleNames: string[];
+	lastNames: string[];
+}
+
 export type CountryMap = {
 	[country in CountryType]?: string;
 }
