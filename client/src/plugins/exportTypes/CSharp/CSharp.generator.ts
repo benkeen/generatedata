@@ -1,4 +1,7 @@
 import { ETMessageData, ETOnMessage } from '~types/exportTypes';
+
+declare var utils: any;
+
 const context: Worker = self as any;
 
 let workerUtilsLoaded = false;
@@ -34,9 +37,18 @@ export const generate = (data: ETMessageData, stripWhitespace: boolean): string 
 		content += `${tab}new {${newline}${tab}${tab}`;
 		const pairs: string[] = [];
 
-		data.columns.forEach(({ title }, colIndex) => {
-			const currValue = row[colIndex];
-			pairs.push(`${title} = "${currValue}"`);
+		data.columns.forEach(({ title, metadata }, colIndex) => {
+			let value = row[colIndex];
+
+			// if a DT has explicitly said it's a number, use a number
+			if (metadata && metadata.general && metadata.general.dataType && metadata.general.dataType === 'number'
+				&& utils.numberUtils.isNumeric(value)) {
+				// do nothin'!
+			} else {
+				value = `"${value}"`;
+			}
+
+			pairs.push(`${title} = ${value}`);
 
 			// 		if (isNumeric(currValue) || isBoolean(currValue)) {
 			// 		    pairs.push(`${propName} = ${data.rowData[i][j]}`);
@@ -44,7 +56,6 @@ export const generate = (data: ETMessageData, stripWhitespace: boolean): string 
 			// 		//     pairs.push(`{$propName} = DateTime.ParseExact(\"{$data["rowData"][$i][$j]}\", \"{$this->sharpDateFormats[$this->dateFormats[$j]]}\", CultureInfo.InvariantCulture)`);
 			// 		} else {
 			// 		    pairs.push(`${propName} = "${data.rowData[i][j]}"`);
-
 		});
 		content += pairs.join(`,${newline}${tab}${tab}`);
 

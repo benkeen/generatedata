@@ -20,4 +20,3 @@ export const nameFiles = {
 };
 
 export type CountryNameFiles = keyof typeof nameFiles;
-

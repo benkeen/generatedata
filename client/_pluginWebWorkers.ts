@@ -42,7 +42,7 @@ export default {
 	},
 	"exportTypes": {
 		"CSV": "ET-CSV.generator-c61c1e933e515f5e3595c77960bf254f.js",
-		"CSharp": "ET-CSharp.generator-9de02b5943dc66a8d455628417606f2d.js",
+		"CSharp": "ET-CSharp.generator-4b6df1f0f071efc777e1cdf2c02027bd.js",
 		"HTML": "ET-HTML.generator-1f2109aec7e9cd759773fc7f28fd0966.js",
 		"JSON": "ET-JSON.generator-ae538f823c70436397059a1d05560b46.js",
 		"Javascript": "ET-Javascript.generator-83c5458f47c507470be2af21ca5ca1bd.js",
