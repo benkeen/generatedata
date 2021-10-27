@@ -156,19 +156,27 @@ const createDatabaseInitFile = async () => {
 };
 
 const generateNamesFile = () => {
-	getNamesFiles();
+	const namePlugins = helpers.getNamePlugins();
+
+	let content = banner + '\n\n';
+	namePlugins.forEach((folder) => {
+		content += `import ${folder} from './src/plugins/countries/${folder}/names';\n`;
+	});
+
+	content += `\nexport const nameFiles = {\n\t${namePlugins.join(',\n\t')}\n};\n`;
+	content += '\nexport type CountryNameFiles = keyof typeof nameFiles;\n';
+
+	const file = path.join(__dirname, '..', '_namePlugins.ts');
+	if (fs.existsSync(file)) {
+		fs.unlinkSync(file);
+	}
+	fs.writeFileSync(file, content);
 };
 
-const getNamesFiles = () => {
-	const exportTypes = helpers.getNamePlugins();
-	console.log(exportTypes);
-	return [];
-};
 
-
-// generateEnvFile('_env.ts', JSON.stringify(envFile, null, '\t'));
+generateEnvFile('_env.ts', JSON.stringify(envFile, null, '\t'));
 generateNamesFile();
 
-// createDatabaseInitFile();
-// createPluginsListFile();
-// createImportFile();
+createDatabaseInitFile();
+createPluginsListFile();
+createImportFile();
