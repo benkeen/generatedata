@@ -20,6 +20,17 @@ const getPlugins = (pluginType, blacklist, checkConfigFileExistence = true) => {
 	});
 };
 
+const getNamePlugins = () => {
+	const baseFolder = path.join(__dirname, '..', `/src/plugins/countries`);
+
+	const folders = fs.readdirSync(baseFolder);
+
+	return folders.filter((folder) => {
+		const nameFile = `${baseFolder}/${folder}/names.ts`;
+		return fs.existsSync(nameFile);
+	});
+};
+
 const getHashFilename = (target) => `__hash-${path.basename(target, path.extname(target))}`;
 
 const generateWorkerHashfile = (src, folder) => {
@@ -75,6 +86,7 @@ const arrayDiff = (arr1, arr2) => arr1.filter((a) => arr2.indexOf(a) === -1);
 
 module.exports = {
 	getPlugins,
+	getNamePlugins,
 	getHashFilename,
 	generateWorkerHashfile,
 	getScopedWorkerFilename,

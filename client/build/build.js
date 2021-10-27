@@ -155,8 +155,20 @@ const createDatabaseInitFile = async () => {
 	fs.writeFileSync(path.join(__dirname, '../../server/database/_dbStructure.sql'), newFile);
 };
 
-generateEnvFile('_env.ts', JSON.stringify(envFile, null, '\t'));
+const generateNamesFile = () => {
+	getNamesFiles();
+};
 
-createDatabaseInitFile();
-createPluginsListFile();
-createImportFile();
+const getNamesFiles = () => {
+	const exportTypes = helpers.getNamePlugins();
+	console.log(exportTypes);
+	return [];
+};
+
+
+// generateEnvFile('_env.ts', JSON.stringify(envFile, null, '\t'));
+generateNamesFile();
+
+// createDatabaseInitFile();
+// createPluginsListFile();
+// createImportFile();
