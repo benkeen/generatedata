@@ -4,6 +4,8 @@ declare namespace NamesScssNamespace {
     col2: string;
     copy: string;
     copyCol: string;
+    optionsBtn: string;
+    pillField: string;
     row: string;
   }
 }

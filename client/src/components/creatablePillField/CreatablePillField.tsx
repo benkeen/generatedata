@@ -74,9 +74,10 @@ export type CreatablePillFieldProps = {
 	error: string;
 	placeholder: string;
 	onValidateNewItem?: (value: string) => boolean;
+	className?: string;
 }
 
-const CreatablePillField = ({ onChange, onValidateNewItem, value, error, placeholder }: CreatablePillFieldProps): JSX.Element => {
+const CreatablePillField = ({ onChange, onValidateNewItem, value, error, placeholder, className }: CreatablePillFieldProps): JSX.Element => {
 	const [tempValue, setTempValue] = React.useState('');
 	const options = value.map(createOption);
 
@@ -106,12 +107,18 @@ const CreatablePillField = ({ onChange, onValidateNewItem, value, error, placeho
 		onChange(sortedOptions.map((i: DropdownOption) => i.value));
 	};
 
-	const classes = (error) ? styles.errorField : '';
+	const classes: string[] = [];
+	if (className) {
+		classes.push(className);
+	}
+	if (error) {
+		classes.push(styles.errorField);
+	}
 
 	return (
 		<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
 			<SortableCreatableSelect
-				className={classes}
+				className={classes.join(' ')}
 				styles={selectStyles}
 				components={customComponents}
 				inputValue={tempValue}
