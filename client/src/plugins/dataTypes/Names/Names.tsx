@@ -12,6 +12,7 @@ import CreatablePillField from '~components/creatablePillField/CreatablePillFiel
 import styles from './Names.scss';
 import { countryList } from '../../../../_plugins';
 import { CountryType } from '~types/countries';
+import { requestCountryNamesBundle } from '~utils/countryUtils';
 
 export const enum NamesSource {
 	any = 'any',
@@ -75,12 +76,6 @@ const NamesDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, 
 		onUpdateSelectedCountries(countries ? countries.map(({ value }: DropdownOption) => value) : []);
 	};
 
-	console.log({
-		countries: data.selectedCountries,
-		action: onSelectCountries,
-		countryPluginOptions
-	});
-
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
@@ -95,14 +90,14 @@ const NamesDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, 
 
 					<RadioPillRow>
 						<RadioPill
-							label="Mostly western names"
+							label="Western names"
 							onClick={(): void => onUpdateSource(NamesSource.any)}
 							name={`${id}-source`}
 							checked={data.source === NamesSource.any}
-							tooltip="..."
+							tooltip="By default this plugin generates mostly western names"
 						/>
 						<RadioPill
-							label="Country names"
+							label="Countries"
 							onClick={(): void => onUpdateSource(NamesSource.countries)}
 							name={`${id}-source`}
 							checked={data.source === NamesSource.countries}
@@ -138,6 +133,10 @@ export const Options = ({ data, id, onUpdate, i18n, coreI18n, countryI18n }: DTO
 	};
 
 	const onUpdateSource = (source: NamesSource): void => {
+		if (source === NamesSource.countries) {
+			requestCountryNamesBundle()
+		}
+
 		onUpdate({
 			...safeData,
 			source

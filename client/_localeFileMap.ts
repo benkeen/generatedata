@@ -3,7 +3,7 @@ import { LocaleFileMap } from '~types/general';
 export const localeFileMap: LocaleFileMap = {
 	"ar": "ar-4320ec0b.js",
 	"de": "de-8d69dd2d.js",
-	"en": "en-a50c8688.js",
+	"en": "en-9158b190.js",
 	"es": "es-c697bca8.js",
 	"fr": "fr-974d9aa1.js",
 	"hi": "hi-2fc1ad8d.js",
