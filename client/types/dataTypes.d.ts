@@ -64,16 +64,22 @@ export type Dimensions = {
 	height: number;
 };
 
+export type DTOptionsMetadata = {
+	useCountryNames?: boolean;
+};
+
 // Data Type <Options /> props
 export type DTOptionsProps = {
-	coreI18n: any;
-	countryI18n: any;
-	i18n: any;
 	data: any;
 	id: string;
 	gridPanelDimensions: Dimensions;
-	onUpdate: (data: AnyObject) => void;
-	throttle?: boolean;
+	onUpdate: (data: AnyObject, metadata?: DTOptionsMetadata) => void;
+	isCountryNamesLoading: boolean;
+	isCountryNamesLoaded: boolean;
+	coreI18n: any;
+	countryI18n: any;
+	i18n: any;
+	throttle?: boolean; // added for testing so we can disable the default throttle behaviour
 
 	// for custom props. See DTCustomProps
 	[propName: string]: any;
@@ -85,16 +91,6 @@ export type DTExampleProps = {
 	id: string;
 	gridPanelDimensions: Dimensions;
     onUpdate: (data: AnyObject) => void;
-	coreI18n: any;
-	countryI18n: any;
-	i18n: any;
-};
-
-// Data Type <Settings /> props
-export type DTSettingsProps = {
-	data: any;
-	id: string;
-	onUpdate: (data: AnyObject) => void;
 	coreI18n: any;
 	countryI18n: any;
 	i18n: any;

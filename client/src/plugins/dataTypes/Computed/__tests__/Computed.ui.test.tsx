@@ -8,7 +8,9 @@ const defaultProps = {
 	countryI18n: {},
 	i18n,
 	id: 'id',
-	gridPanelDimensions: { width: 100, height: 100 }
+	gridPanelDimensions: { width: 100, height: 100 },
+	isCountryNamesLoading: false,
+	isCountryNamesLoaded: false
 };
 
 describe('Options', () => {

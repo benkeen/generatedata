@@ -1,9 +1,9 @@
 import { Store } from 'redux';
-import { getRows } from './store/generator/generator.selectors';
+import { getRows } from '~store/generator/generator.selectors';
+import { DataRow } from '~store/generator/generator.reducer';
+import { onConfigureDataType } from '~store/generator/generator.actions';
 import { DataTypeFolder } from '../../_plugins';
-import { DataRow } from './store/generator/generator.reducer';
 import { DTActionInterceptors, DTInterceptorSingleAction } from '~types/dataTypes';
-import { onConfigureDataType } from './store/generator/generator.actions';
 
 // TODO what if onload, a user interacts with a pre-saved config prior to the data type loading and the interceptor
 // isn't registered yet? Other than defensively coding the Data Type generation I'm not sure how to handle that... I
@@ -38,7 +38,10 @@ const actionInterceptor = (store: Store) => (next: any): any => (action: any): a
 				if (row.dataType === dataType) {
 					const result = interceptor(rowId, row.data, action.payload);
 					if (result) {
-						store.dispatch(onConfigureDataType(rowId, result, true));
+						// TODO note: interceptors don't currently support options metadata. e.g. the Names DataType
+						// onUpdate() returns both the new row state, but also some metadata that tells the core
+						// script to load the country names. Hence the `undefined` 3rd param here.
+						store.dispatch(onConfigureDataType(rowId, result, undefined, true));
 					}
 				}
 			});

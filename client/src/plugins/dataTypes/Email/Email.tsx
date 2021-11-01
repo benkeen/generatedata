@@ -24,7 +24,7 @@ export type EmailState = {
 
 const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, nameRows, i18n }: any): JSX.Element => {
 	const rowOptions = nameRows
-		.map(({ id: currentId, title }: any, index: number) => ({
+		.map(({ id: currentId, title, index }: any) => ({
 			value: currentId,
 			label: `${i18n.row} #${index + 1}: ${title}`
 		}));

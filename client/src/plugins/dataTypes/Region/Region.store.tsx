@@ -4,8 +4,9 @@ import { getSortedRowsArray } from '~store/generator/generator.selectors';
 import { RegionState } from './Region';
 import { REMOVE_ROW, CONFIGURE_DATA_TYPE, SELECT_DATA_TYPE } from '~store/generator/generator.actions';
 
-// this defines a custom selector that extracts information about the country fields, needed by this component. The
-// core script handles processing this and passing it back via a `countryRows` prop to our Options component
+// custom selector that extracts information about the country fields, needed by this component. The
+// core script handles processing this and passing it back via a `countryRows` prop to our Options component, as defined
+// in the `customProps` bit below
 const getCountryRows = createSelector(
 	getSortedRowsArray,
 	(rows) => rows.map((row, index) => ({ ...row, index })).filter(({ dataType, data }) => (

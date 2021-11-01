@@ -12,7 +12,9 @@ const defaultProps = {
 	i18n,
 	id: 'id',
 	gridPanelDimensions: { width: 100, height: 100 },
-	onUpdate: () => {}
+	onUpdate: () => {},
+	isCountryNamesLoading: false,
+	isCountryNamesLoaded: false
 };
 
 

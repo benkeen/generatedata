@@ -38,7 +38,9 @@ function initStore(state: any): any {
 			'isGenerating',
 			'numGeneratedRows',
 			'dataTypePreviewData',
-			'bulkActionPending'
+			'bulkActionPending',
+			'isCountryNamesLoading',
+			'isCountryNamesLoaded'
 		]
 	};
 

@@ -45,6 +45,8 @@ export const shouldStripWhitespace = (state: Store): boolean => state.generator.
 export const getCurrentDataSetId = (state: Store): number | null => state.generator.currentDataSet.dataSetId;
 export const getCurrentDataSet = (state: Store): CurrentDataSet => state.generator.currentDataSet;
 export const hasBulkActionPending = (state: Store): boolean => state.generator.bulkActionPending;
+export const isCountryNamesLoading = (state: Store): boolean => state.generator.isCountryNamesLoading;
+export const isCountryNamesLoaded = (state: Store): boolean => state.generator.isCountryNamesLoaded;
 
 export const getNumRows = createSelector(
 	getSortedRows,

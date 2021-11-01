@@ -70,6 +70,8 @@ export type StashedGeneratorState = {
 		historyId: number | null;
 		isLatest: boolean;
 	};
+	isCountryNamesLoading: boolean;
+	isCountryNamesLoaded: boolean;
 };
 
 const stashProps = [
@@ -131,6 +133,8 @@ export type GeneratorState = {
 	numRowsToGenerate: number;
 	currentDataSet: CurrentDataSet;
 	selectedDataSetHistory: SelectedDataSetHistoryItem;
+	isCountryNamesLoading: boolean;
+	isCountryNamesLoaded: boolean;
 	stashedState: StashedGeneratorState | null;
 };
 
@@ -174,6 +178,8 @@ export const getInitialState = (): GeneratorState => ({
 		historyId: null,
 		isLatest: false
 	},
+	isCountryNamesLoading: false,
+	isCountryNamesLoaded: false,
 	stashedState: null
 });
 

@@ -42,16 +42,15 @@ export const requestCountryNamesBundle = (): any => {
 			/* webpackMode: "lazy" */
 			`../../_namePlugins`
 		)
-		.then((resp: any) => {
-			console.log(resp.default);
-			// loadedDataTypes[dataType] = definition.default;
-			namesPlugins = resp.default;
-			resolve(resp.default);
-		})
-		.catch((e) => {
-			reject(e);
-		});
+			.then((resp: any) => {
+				console.log(resp.default);
+				namesPlugins = resp.default;
+				resolve(resp.default);
+			})
+			.catch((e) => {
+				reject(e);
+			});
 	});
 };
 
-export const isCountryNamesLoaded = () => namesPlugins !== null;
+export const isCountryNamesLoaded = (): boolean => namesPlugins !== null;

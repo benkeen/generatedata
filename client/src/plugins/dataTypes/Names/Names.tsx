@@ -12,7 +12,6 @@ import CreatablePillField from '~components/creatablePillField/CreatablePillFiel
 import styles from './Names.scss';
 import { countryList } from '../../../../_plugins';
 import { CountryType } from '~types/countries';
-import { requestCountryNamesBundle } from '~utils/countryUtils';
 
 export const enum NamesSource {
 	any = 'any',
@@ -82,8 +81,8 @@ const NamesDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, 
 				<DialogTitle onClose={onClose}>Customize names source</DialogTitle>
 				<DialogContent dividers>
 					<div>
-						By default this data type generates mostly Western names, but if you want to generate names more
-						appropriate to a particular region, select those countries below.
+						This data type generates mostly Western names, but if you want to generate names more appropriate
+						to a particular region, select the countries you would like below.
 					</div>
 
 					<h3>{i18n.source}</h3>
@@ -94,7 +93,7 @@ const NamesDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, 
 							onClick={(): void => onUpdateSource(NamesSource.any)}
 							name={`${id}-source`}
 							checked={data.source === NamesSource.any}
-							tooltip="By default this plugin generates mostly western names"
+							tooltip="The default setting for this plugin is to generate mostly Western names"
 						/>
 						<RadioPill
 							label="Countries"
@@ -133,13 +132,11 @@ export const Options = ({ data, id, onUpdate, i18n, coreI18n, countryI18n }: DTO
 	};
 
 	const onUpdateSource = (source: NamesSource): void => {
-		if (source === NamesSource.countries) {
-			requestCountryNamesBundle()
-		}
-
 		onUpdate({
 			...safeData,
 			source
+		}, {
+			useCountryNames: source === NamesSource.countries
 		});
 	};
 

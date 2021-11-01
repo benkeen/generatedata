@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import * as selectors from './generator.selectors';
-import { getCurrentDataSet } from './generator.selectors';
+import { getCurrentDataSet, isCountryNamesLoaded, isCountryNamesLoading } from './generator.selectors';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import { registerInterceptors } from '../../actionInterceptor';
@@ -10,7 +10,7 @@ import { getStrings } from '~utils/langUtils';
 import { getUniqueString } from '~utils/stringUtils';
 import { getExportTypeInitialState, loadExportTypeBundle } from '~utils/exportTypeUtils';
 import { addToast } from '~utils/generalUtils';
-import { DTBundle } from '~types/dataTypes';
+import { DTBundle, DTOptionsMetadata } from '~types/dataTypes';
 import { GDAction } from '~types/general';
 import C from '../../constants';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
@@ -106,8 +106,17 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
-export const onConfigureDataType = (id: string, data: any, triggeredByInterceptor = false): any => {
-	return (dispatch: any): any => {
+export const onConfigureDataType = (id: string, data: any, metadata?: DTOptionsMetadata, triggeredByInterceptor = false): any => {
+	return (dispatch: any, getState: any): any => {
+		console.log("!!", metadata);
+
+		if (metadata && metadata.useCountryNames) {
+			const state = getState();
+			if (!isCountryNamesLoaded(state) && !isCountryNamesLoading(state)) {
+				console.log("REQUEST country names!");
+			}
+		}
+
 		const configureDataType = (disp: any): any => new Promise((resolve: any) => {
 			disp({
 				type: CONFIGURE_DATA_TYPE,

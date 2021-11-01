@@ -11,6 +11,7 @@ import * as sharedStyles from '../../../styles/shared.scss';
 import TextField from '~components/TextField';
 import { SmallSpinner } from '~components/loaders/loaders';
 import { SmallScreenSettingsIcon } from './SmallScreenSettingsIcon';
+import { DTOptionsMetadata } from '~types/dataTypes';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {
@@ -34,7 +35,7 @@ export type GridRowProps = {
 	selectedDataTypeI18n: any;
 	isDataTypeLoaded: boolean;
 	onChangeTitle: (id: string, value: string) => void;
-	onConfigureDataType: (id: string, value: string) => void;
+	onConfigureDataType: (id: string, data: any, metadata?: DTOptionsMetadata) => void;
 	onSelectDataType: (dataType: DataTypeFolder, id: string) => void;
 	onRemove: (id: string) => void;
 	dtCustomProps: { [propName: string]: any };
@@ -44,6 +45,8 @@ export type GridRowProps = {
 		height: number;
 	};
 	showHelpDialog: (dataType: DataTypeFolder) => void;
+	isCountryNamesLoading: boolean;
+	isCountryNamesLoaded: boolean;
 };
 
 const NoExample = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>;
@@ -51,7 +54,8 @@ const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => <div classN
 
 export const GridRow = ({
 	row, index, Example, Options, onRemove, onChangeTitle, onConfigureDataType, onSelectDataType, dtDropdownOptions,
-	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, gridPanelDimensions, showHelpDialog, isDataTypeLoaded
+	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, gridPanelDimensions, showHelpDialog, isDataTypeLoaded,
+	isCountryNamesLoading, isCountryNamesLoaded
 }: GridRowProps): JSX.Element => {
 	let example: any = null;
 	let options: any = null;
@@ -82,9 +86,11 @@ export const GridRow = ({
 					i18n={selectedDataTypeI18n}
 					id={row.id}
 					data={row.data}
-					onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+					onUpdate={(data: any, metadata?: DTOptionsMetadata): void => onConfigureDataType(row.id, data, metadata)}
 					gridPanelDimensions={gridPanelDimensions}
 					emptyColClass={sharedStyles.emptyCol}
+					isCountryNamesLoading={isCountryNamesLoading}
+					isCountryNamesLoaded={isCountryNamesLoaded}
 					{...dtCustomProps}
 				/>
 			);

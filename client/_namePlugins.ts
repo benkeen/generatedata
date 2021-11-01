@@ -7,6 +7,7 @@ import Australia from './src/plugins/countries/Australia/names';
 import Austria from './src/plugins/countries/Austria/names';
 import Belgium from './src/plugins/countries/Belgium/names';
 import Brazil from './src/plugins/countries/Brazil/names';
+import Canada from './src/plugins/countries/Canada/names';
 import Nigeria from './src/plugins/countries/Nigeria/names';
 import US from './src/plugins/countries/US/names';
 
@@ -15,6 +16,7 @@ export const nameFiles = {
 	Austria,
 	Belgium,
 	Brazil,
+	Canada,
 	Nigeria,
 	US
 };
