@@ -31,26 +31,3 @@ const convert = (data: string): DropdownOption[] => {
 
 export const countryDropdownOptions = convert(countryRawData);
 export const canadianProvinceOptions = convert(regionRawData);
-
-
-let namesPlugins: any = null;
-
-export const requestCountryNamesBundle = (): any => {
-	return new Promise((resolve, reject) => {
-		import(
-			/* webpackChunkName: "countryNames-[request]" */
-			/* webpackMode: "lazy" */
-			`../../_namePlugins`
-		)
-			.then((resp: any) => {
-				console.log(resp.default);
-				namesPlugins = resp.default;
-				resolve(resp.default);
-			})
-			.catch((e) => {
-				reject(e);
-			});
-	});
-};
-
-export const isCountryNamesLoaded = (): boolean => namesPlugins !== null;

@@ -86,3 +86,23 @@ export const performTask = (workerName: string, worker: any, postMessagePayload:
 export const easeInOutSine = (t: any, b: any, c: any, d: any): number => {
 	return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
 };
+
+// stored temporarily in memory
+let namesPlugins: any = null;
+
+export const getCountryNamesBundle = (): any => {
+	return new Promise((resolve, reject) => {
+		import(
+			/* webpackChunkName: "countryNames" */
+			/* webpackMode: "lazy" */
+			`../../_namePlugins`
+			)
+			.then((resp: any) => {
+				namesPlugins = resp.default;
+				resolve(resp.default);
+			})
+			.catch((e) => {
+				reject(e);
+			});
+	});
+};

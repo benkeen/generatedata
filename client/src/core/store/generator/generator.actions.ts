@@ -17,6 +17,7 @@ import { getUnchangedData } from '../../generationPanel/generation.helpers';
 import * as accountActions from '~store/account/account.actions';
 import { DataSetListItem } from '~types/dataSets';
 import { getUnique } from '~utils/arrayUtils';
+import { getCountryNamesBundle } from '~utils/coreUtils';
 import { getCountryData } from '~utils/countryUtils';
 
 export const ADD_ROWS = 'ADD_ROWS';
@@ -104,16 +105,24 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 		});
 };
 
+export const REQUEST_COUNTRY_NAMES = 'REQUEST_COUNTRY_NAMES';
+export const COUNTRY_NAMES_LOADED = 'COUNTRY_NAMES_LOADED';
+export const requestCountryNames = () => (dispatch: any) => {
+	dispatch({ type: REQUEST_COUNTRY_NAMES });
+
+	getCountryNamesBundle()
+		.then((a: any) => {
+			console.log("loaded.", a);
+		});
+};
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
 export const onConfigureDataType = (id: string, data: any, metadata?: DTOptionsMetadata, triggeredByInterceptor = false): any => {
 	return (dispatch: any, getState: any): any => {
-		console.log("!!", metadata);
-
 		if (metadata && metadata.useCountryNames) {
 			const state = getState();
 			if (!isCountryNamesLoaded(state) && !isCountryNamesLoading(state)) {
-				console.log("REQUEST country names!");
+				dispatch(requestCountryNames());
 			}
 		}
 

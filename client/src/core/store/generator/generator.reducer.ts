@@ -519,6 +519,15 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 				isLatest: action.payload.isLatest
 			};
 			break;
+
+		case actions.REQUEST_COUNTRY_NAMES:
+			draft.isCountryNamesLoading = true;
+			break;
+
+		case actions.COUNTRY_NAMES_LOADED:
+			draft.isCountryNamesLoading = false;
+			draft.isCountryNamesLoaded = true;
+			break;
 	}
 }, getInitialState());
 
