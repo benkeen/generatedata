@@ -10,9 +10,9 @@ import WorldIcon from '@material-ui/icons/Public';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
-import styles from './Names.scss';
 import { countryList } from '../../../../_plugins';
 import { CountryType } from '~types/countries';
+import styles from './Names.scss';
 
 export const enum NamesSource {
 	any = 'any',
@@ -70,11 +70,18 @@ const NamesDialog = ({
 	visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, isCountryNamesLoaded,
 	isCountryNamesLoading, countryNamesMap, coreI18n, i18n
 }: any): JSX.Element => {
+	const [countryPluginOptions, setCountryPluginOptions] = React.useState<DropdownOption[]>([]);
 
-	const countryPluginOptions = countryList.map((countryName: CountryType) => ({
-		value: countryName,
-		label: countryI18n[countryName]?.countryName
-	}));
+	React.useEffect(() => {
+		const countryPluginsWithNames = Object.keys(countryNamesMap);
+		const options = countryList.filter((countryName: CountryType) => countryPluginsWithNames.indexOf(countryName) !== -1)
+			.map((countryName: CountryType) => ({
+				value: countryName,
+				label: countryI18n[countryName]?.countryName
+			}));
+		setCountryPluginOptions(options);
+	}, [isCountryNamesLoaded]);
+
 
 	const onSelectCountries = (countries: any): void => {
 		onUpdateSelectedCountries(countries ? countries.map(({ value }: DropdownOption) => value) : []);
@@ -166,6 +173,13 @@ export const Options = ({
 		});
 	};
 
+	let iconClasses = styles.anyNamesIcon;
+	let iconTooltip = 'Western names';
+	if (data.source === NamesSource.countries) {
+		iconClasses = styles.regionalNamesIcon;
+		iconTooltip = 'Regional names';
+	}
+
 	return (
 		<div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
 			<div className={styles.pillField}>
@@ -174,9 +188,9 @@ export const Options = ({
 					onChange={(options: any): void => onUpdate({ ...safeData, options })}
 				/>
 			</div>
-			<Tooltip title="Customize regional names" placement="bottom" arrow>
+			<Tooltip title={iconTooltip} placement="bottom" arrow>
 				<span>
-					<IconButton size="small" onClick={(): void => setDialogVisibility(true)}>
+					<IconButton size="small" onClick={(): void => setDialogVisibility(true)} className={iconClasses}>
 						<WorldIcon fontSize="small" />
 					</IconButton>
 				</span>

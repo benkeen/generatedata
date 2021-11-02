@@ -107,7 +107,7 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 
 export const REQUEST_COUNTRY_NAMES = 'REQUEST_COUNTRY_NAMES';
 export const COUNTRY_NAMES_LOADED = 'COUNTRY_NAMES_LOADED';
-export const requestCountryNames = () => (dispatch: any) => {
+export const requestCountryNames = (): any => (dispatch: any): any => {
 	dispatch({ type: REQUEST_COUNTRY_NAMES });
 
 	getCountryNamesBundle()

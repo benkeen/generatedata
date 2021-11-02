@@ -1,11 +1,13 @@
 declare namespace NamesScssNamespace {
   export interface INamesScss {
+    anyNamesIcon: string;
     col1: string;
     col2: string;
     copy: string;
     copyCol: string;
     optionsBtn: string;
     pillField: string;
+    regionalNamesIcon: string;
     row: string;
   }
 }

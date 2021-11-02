@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .row {
 	display: flex;
 	height: 30px;
@@ -32,4 +34,12 @@
 
 .optionsBtn {
 	margin-right: 4px;
+}
+
+.regionalNamesIcon {
+	color: $primary-submit-hover;
+}
+
+.anyNamesIcon {
+	color: #cccccc;
 }
