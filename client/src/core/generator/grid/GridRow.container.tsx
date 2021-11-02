@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { GridRow, GridRowProps } from './GridRow.component';
 import { getCustomProps, getDataType, getSortedGroupedDataTypes } from '~utils/dataTypeUtils';
+import { getCountryNames } from '~utils/coreUtils';
 import { Store } from '~types/general';
 import { DataRow } from '~store/generator/generator.reducer';
 import * as actions from '~store/generator/generator.actions';
@@ -36,6 +37,7 @@ const mapStateToProps = (state: Store, ownProps: OwnProps): Partial<GridRowProps
 		isDataTypeLoaded: isLoaded,
 		isCountryNamesLoading: selectors.isCountryNamesLoading(state),
 		isCountryNamesLoaded: selectors.isCountryNamesLoaded(state),
+		countryNamesMap: getCountryNames(),
 		dtCustomProps,
 		...ownProps
 	};

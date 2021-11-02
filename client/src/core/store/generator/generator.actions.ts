@@ -111,8 +111,8 @@ export const requestCountryNames = () => (dispatch: any) => {
 	dispatch({ type: REQUEST_COUNTRY_NAMES });
 
 	getCountryNamesBundle()
-		.then((a: any) => {
-			console.log("loaded.", a);
+		.then(() => {
+			dispatch({ type: COUNTRY_NAMES_LOADED });
 		});
 };
 

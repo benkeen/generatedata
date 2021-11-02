@@ -16,7 +16,8 @@ const optionsProps = {
 	id: 'id',
 	gridPanelDimensions: { width: 100, height: 100 },
 	isCountryNamesLoaded: false,
-	isCountryNamesLoading: false
+	isCountryNamesLoading: false,
+	countryNamesMap: null
 };
 
 describe('Help', () => {

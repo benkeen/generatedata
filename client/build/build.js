@@ -163,7 +163,8 @@ const generateNamesFile = () => {
 		content += `import ${folder} from './src/plugins/countries/${folder}/names';\n`;
 	});
 
-	content += `\nexport const nameFiles = {\n\t${namePlugins.join(',\n\t')}\n};\n`;
+	content += `\nconst nameFiles = {\n\t${namePlugins.join(',\n\t')}\n};`;
+	content += `\nexport default nameFiles;\n`;
 	content += '\nexport type CountryNameFiles = keyof typeof nameFiles;\n';
 
 	const file = path.join(__dirname, '..', '_namePlugins.ts');

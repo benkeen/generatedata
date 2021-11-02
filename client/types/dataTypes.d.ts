@@ -1,7 +1,7 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { AnyObject } from './general';
 import { DataTypeFolder } from '../_plugins';
-import { CountryType } from '~types/countries';
+import { CountryNamesMap, CountryType } from '~types/countries';
 
 export type DataTypeMap = {
 	[dataType in DataTypeFolder]?: string;
@@ -76,6 +76,7 @@ export type DTOptionsProps = {
 	onUpdate: (data: AnyObject, metadata?: DTOptionsMetadata) => void;
 	isCountryNamesLoading: boolean;
 	isCountryNamesLoaded: boolean;
+	countryNamesMap: CountryNamesMap | null;
 	coreI18n: any;
 	countryI18n: any;
 	i18n: any;

@@ -11,7 +11,7 @@ import Canada from './src/plugins/countries/Canada/names';
 import Nigeria from './src/plugins/countries/Nigeria/names';
 import US from './src/plugins/countries/US/names';
 
-export const nameFiles = {
+const nameFiles = {
 	Australia,
 	Austria,
 	Belgium,
@@ -20,5 +20,6 @@ export const nameFiles = {
 	Nigeria,
 	US
 };
+export default nameFiles;
 
 export type CountryNameFiles = keyof typeof nameFiles;

@@ -14,7 +14,8 @@ const defaultProps = {
 	gridPanelDimensions: { width: 100, height: 100 },
 	onUpdate: () => {},
 	isCountryNamesLoading: false,
-	isCountryNamesLoaded: false
+	isCountryNamesLoaded: false,
+	countryNamesMap: null
 };
 
 

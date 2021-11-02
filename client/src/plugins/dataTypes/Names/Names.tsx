@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import { SmallSpinner } from '~components/loaders/loaders';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { Tooltip } from '~components/tooltips';
@@ -65,7 +66,14 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	);
 };
 
-const NamesDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, coreI18n, i18n }: any): JSX.Element => {
+const NamesDialog = ({
+	visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, isCountryNamesLoaded,
+	isCountryNamesLoading, countryNamesMap, coreI18n, i18n
+}: any): JSX.Element => {
+
+
+	console.log({ countryNamesMap });
+
 	const countryPluginOptions = countryList.map((countryName: CountryType) => ({
 		value: countryName,
 		label: countryI18n[countryName]?.countryName
@@ -75,13 +83,34 @@ const NamesDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, 
 		onUpdateSelectedCountries(countries ? countries.map(({ value }: DropdownOption) => value) : []);
 	};
 
+	const getCountryContent = () => {
+		if (data.source !== NamesSource.countries) {
+			return null;
+		}
+
+		if (isCountryNamesLoading) {
+			return null;
+		}
+
+		return (
+			<Dropdown
+				isMulti
+				closeMenuOnSelect={false}
+				isClearable={true}
+				value={data.selectedCountries}
+				onChange={onSelectCountries}
+				options={countryPluginOptions}
+			/>
+		);
+	};
+
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
 				<DialogTitle onClose={onClose}>Customize names source</DialogTitle>
 				<DialogContent dividers>
 					<div>
-						This data type generates mostly Western names, but if you want to generate names more appropriate
+						This Data Type generates mostly Western names but if you want to generate names more appropriate
 						to a particular region, select the countries you would like below.
 					</div>
 
@@ -93,26 +122,17 @@ const NamesDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, 
 							onClick={(): void => onUpdateSource(NamesSource.any)}
 							name={`${id}-source`}
 							checked={data.source === NamesSource.any}
-							tooltip="The default setting for this plugin is to generate mostly Western names"
+							tooltip="By default this Data Type generates mostly Western names"
 						/>
 						<RadioPill
-							label="Countries"
+							label="Names by Country"
 							onClick={(): void => onUpdateSource(NamesSource.countries)}
 							name={`${id}-source`}
 							checked={data.source === NamesSource.countries}
 						/>
+						{isCountryNamesLoading && data.source === NamesSource.countries && <SmallSpinner />}
 					</RadioPillRow>
-
-					{data.source === NamesSource.countries && (
-						<Dropdown
-							isMulti
-							closeMenuOnSelect={false}
-							isClearable={true}
-							value={data.selectedCountries}
-							onChange={onSelectCountries}
-							options={countryPluginOptions}
-						/>
-					)}
+					{getCountryContent()}
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
@@ -122,7 +142,9 @@ const NamesDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, 
 	);
 };
 
-export const Options = ({ data, id, onUpdate, i18n, coreI18n, countryI18n }: DTOptionsProps): JSX.Element => {
+export const Options = ({
+	data, id, onUpdate, i18n, coreI18n, countryI18n, isCountryNamesLoaded, isCountryNamesLoading, countryNamesMap
+}: DTOptionsProps): JSX.Element => {
 	const [visible, setDialogVisibility] = React.useState(false);
 
 	const safeData = {
@@ -166,6 +188,9 @@ export const Options = ({ data, id, onUpdate, i18n, coreI18n, countryI18n }: DTO
 				visible={visible}
 				data={safeData}
 				id={id}
+				isCountryNamesLoaded={isCountryNamesLoaded}
+				isCountryNamesLoading={isCountryNamesLoading}
+				countryNamesMap={countryNamesMap}
 				onClose={() => setDialogVisibility(false)}
 				onUpdateSource={onUpdateSource}
 				onUpdateSelectedCountries={onUpdateSelectedCountries}

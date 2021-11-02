@@ -22,6 +22,10 @@ export type CountryNames = {
 	lastNames: string[];
 }
 
+export type CountryNamesMap = {
+	[country in CountryType]?: CountryNames;
+}
+
 export type CountryMap = {
 	[country in CountryType]?: string;
 }

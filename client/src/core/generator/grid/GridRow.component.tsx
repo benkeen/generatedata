@@ -12,6 +12,7 @@ import TextField from '~components/TextField';
 import { SmallSpinner } from '~components/loaders/loaders';
 import { SmallScreenSettingsIcon } from './SmallScreenSettingsIcon';
 import { DTOptionsMetadata } from '~types/dataTypes';
+import { CountryNamesMap } from '~types/countries';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {
@@ -47,6 +48,7 @@ export type GridRowProps = {
 	showHelpDialog: (dataType: DataTypeFolder) => void;
 	isCountryNamesLoading: boolean;
 	isCountryNamesLoaded: boolean;
+	countryNamesMap: CountryNamesMap | null;
 };
 
 const NoExample = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>;
@@ -55,7 +57,7 @@ const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => <div classN
 export const GridRow = ({
 	row, index, Example, Options, onRemove, onChangeTitle, onConfigureDataType, onSelectDataType, dtDropdownOptions,
 	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, gridPanelDimensions, showHelpDialog, isDataTypeLoaded,
-	isCountryNamesLoading, isCountryNamesLoaded
+	isCountryNamesLoading, isCountryNamesLoaded, countryNamesMap
 }: GridRowProps): JSX.Element => {
 	let example: any = null;
 	let options: any = null;
@@ -91,6 +93,7 @@ export const GridRow = ({
 					emptyColClass={sharedStyles.emptyCol}
 					isCountryNamesLoading={isCountryNamesLoading}
 					isCountryNamesLoaded={isCountryNamesLoaded}
+					countryNamesMap={countryNamesMap}
 					{...dtCustomProps}
 				/>
 			);
