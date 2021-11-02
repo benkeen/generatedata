@@ -71,9 +71,6 @@ const NamesDialog = ({
 	isCountryNamesLoading, countryNamesMap, coreI18n, i18n
 }: any): JSX.Element => {
 
-
-	console.log({ countryNamesMap });
-
 	const countryPluginOptions = countryList.map((countryName: CountryType) => ({
 		value: countryName,
 		label: countryI18n[countryName]?.countryName

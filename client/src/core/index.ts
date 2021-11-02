@@ -5,6 +5,7 @@ import * as actions from './store/generator/generator.actions';
 import * as mainActions from './store/main/main.actions';
 import * as selectors from './store/generator/generator.selectors';
 import * as mainSelectors from './store/main/main.selectors';
+import { requestCountryNames } from '~store/generator/generator.actions';
 import { DataTypeFolder } from '../../_plugins';
 import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
 import { initAuthVendors } from '~utils/authUtils';
@@ -29,6 +30,11 @@ export const init = (): void => {
 
 	store.dispatch(mainActions.selectLocale(locale));
 	store.dispatch(actions.onSelectExportType(exportType, false));
+
+	const loadCountryNames = selectors.currentDataSetNeedsCountryNames(state);
+	if (loadCountryNames) {
+		store.dispatch(requestCountryNames());
+	}
 
 	// if there's a live session, verify the JWT is still valid
 	if (isLoggedIn) {

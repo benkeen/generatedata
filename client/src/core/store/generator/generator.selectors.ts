@@ -345,3 +345,10 @@ export const getDataSetSavePackage = createSelector(
 		sortedRows
 	})
 );
+
+export const currentDataSetNeedsCountryNames = createSelector(
+	getSortedRowsArray,
+	(rows) => rows.reduce((needsCountryNames, { metadata }) => {
+		return needsCountryNames ? true : !!metadata?.useCountryNames;
+	}, false)
+);

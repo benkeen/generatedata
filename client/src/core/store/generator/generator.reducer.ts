@@ -11,6 +11,7 @@ import { GeneratorLayout } from '../../generator/Generator.component';
 import env from '../../../../_env';
 import C from '../../constants';
 import { GeneratorPanel } from '~types/general';
+import { DTOptionsMetadata } from '~types/dataTypes';
 
 export type DataRow = {
 	id: string;
@@ -22,6 +23,7 @@ export type DataRow = {
 	titleError: string | null;
 	dataType: DataTypeFolder | null;
 	data: any;
+	metadata?: DTOptionsMetadata;
 };
 
 export type DataRows = {
@@ -321,6 +323,9 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 		case actions.CONFIGURE_DATA_TYPE:
 			draft.rows[action.payload.id].data = action.payload.data;
+			if (action.payload.metadata) {
+				draft.rows[action.payload.id].metadata = action.payload.metadata;
+			}
 			break;
 
 		case actions.CONFIGURE_EXPORT_TYPE:

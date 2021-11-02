@@ -1,5 +1,5 @@
 import { countryList, countryMethods } from '../../_plugins';
-import { CountryDataType, CountryMap, CountryNamesMap, CountryType } from '~types/countries';
+import { CountryDataType, CountryMap, CountryType } from '~types/countries';
 import { DropdownOption } from '~components/dropdown/Dropdown';
 import { getStrings } from '~utils/langUtils';
 

@@ -131,7 +131,7 @@ export const onConfigureDataType = (id: string, data: any, metadata?: DTOptionsM
 				type: CONFIGURE_DATA_TYPE,
 				triggeredByInterceptor,
 				payload: {
-					id, data
+					id, data, metadata
 				}
 			});
 			resolve();
