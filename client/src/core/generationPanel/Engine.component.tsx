@@ -3,17 +3,19 @@ import * as coreUtils from '~utils/coreUtils';
 import C from '~core/constants';
 import useDidUpdate from '../../hooks/useDidUpdate';
 import { DataPacket } from '~store/packets/packets.reducer';
+import { CountryNamesMap } from '~types/countries';
 
 export type EngineProps = {
 	fullI18n: any;
 	packet: DataPacket | null;
 	workerResources: any;
 	logDataBatch: (numGeneratedRows: number, data: any) => void;
+	countryNames: CountryNamesMap | null;
 };
 
 // this component does the actual work of generating the data and populating the store. It doesn't have a DOM presence,
 // it's just done this way to utilize the lifecycle methods
-const Engine = ({ packet, workerResources, logDataBatch, fullI18n }: EngineProps): any => {
+const Engine = ({ packet, workerResources, logDataBatch, fullI18n, countryNames }: EngineProps): any => {
 	if (packet === null || fullI18n === null) {
 		return null;
 	}
@@ -38,6 +40,7 @@ const Engine = ({ packet, workerResources, logDataBatch, fullI18n }: EngineProps
 			columns,
 			i18n: fullI18n,
 			template,
+			countryNames,
 			workerResources
 		});
 

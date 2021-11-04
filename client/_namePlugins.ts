@@ -10,6 +10,7 @@ import Brazil from './src/plugins/countries/Brazil/names';
 import Canada from './src/plugins/countries/Canada/names';
 import Nigeria from './src/plugins/countries/Nigeria/names';
 import US from './src/plugins/countries/US/names';
+import Vietnam from './src/plugins/countries/Vietnam/names';
 
 const nameFiles = {
 	Australia,
@@ -18,7 +19,8 @@ const nameFiles = {
 	Brazil,
 	Canada,
 	Nigeria,
-	US
+	US,
+	Vietnam
 };
 export default nameFiles;
 

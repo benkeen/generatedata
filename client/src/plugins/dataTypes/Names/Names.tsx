@@ -33,7 +33,11 @@ export const initialState: NamesState = {
 	selectedCountries: []
 };
 
-export const rowStateReducer = (state: NamesState): string[] => state.options;
+export const rowStateReducer = ({ options, source, selectedCountries }: NamesState): Partial<NamesState> => ({
+	options,
+	source,
+	selectedCountries
+});
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (selected: DropdownOption): void => {
@@ -87,7 +91,7 @@ const NamesDialog = ({
 		onUpdateSelectedCountries(countries ? countries.map(({ value }: DropdownOption) => value) : []);
 	};
 
-	const getCountryContent = () => {
+	const getCountryContent = (): JSX.Element | null => {
 		if (data.source !== NamesSource.countries) {
 			return null;
 		}
@@ -122,14 +126,14 @@ const NamesDialog = ({
 
 					<RadioPillRow>
 						<RadioPill
-							label="Western names"
+							label={i18n.westernNames}
 							onClick={(): void => onUpdateSource(NamesSource.any)}
 							name={`${id}-source`}
 							checked={data.source === NamesSource.any}
 							tooltip="By default this Data Type generates mostly Western names"
 						/>
 						<RadioPill
-							label="Names by Country"
+							label={i18n.regionalNames}
 							onClick={(): void => onUpdateSource(NamesSource.countries)}
 							name={`${id}-source`}
 							checked={data.source === NamesSource.countries}
@@ -174,10 +178,10 @@ export const Options = ({
 	};
 
 	let iconClasses = styles.anyNamesIcon;
-	let iconTooltip = 'Western names';
+	let iconTooltip = i18n.westernNames;
 	if (data.source === NamesSource.countries) {
 		iconClasses = styles.regionalNamesIcon;
-		iconTooltip = 'Regional names';
+		iconTooltip = i18n.regionalNames;
 	}
 
 	return (
@@ -202,7 +206,7 @@ export const Options = ({
 				isCountryNamesLoaded={isCountryNamesLoaded}
 				isCountryNamesLoading={isCountryNamesLoading}
 				countryNamesMap={countryNamesMap}
-				onClose={() => setDialogVisibility(false)}
+				onClose={(): void => setDialogVisibility(false)}
 				onUpdateSource={onUpdateSource}
 				onUpdateSelectedCountries={onUpdateSelectedCountries}
 				i18n={i18n}

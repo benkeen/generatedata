@@ -139,7 +139,7 @@ const lastNames = [
 	"Morton", "Moses", "Mosley", "Moss", "Mueller", "Mullen", "Mullins", "Munoz", "Murphy", "Murray", "Myers", "Nash",
 	"Navarro", "Neal", "Nelson", "Newman", "Newton", "Nguyen", "Nichols", "Nicholson", "Nielsen", "Nieves", "Nixon",
 	"Noble", "Noel", "Nolan", "Norman", "Norris", "Norton", "Nunez", "O'brien", "Ochoa", "O'connor", "Odom", "O'donnell",
-	"Oliver", "Olsen", "Olson", "Oneal", "Oneil", "O'neill", "Orr", "Ortega", "Ortiz", "Osborn", "Osborne", "Owen",
+	"Oliver", "Olsen", "Olson", "Oneal", "Oneil", "O'Neill", "Orr", "Ortega", "Ortiz", "Osborn", "Osborne", "Owen",
 	"Owens", "Pace", "Pacheco", "Padilla", "Page", "Palmer", "Park", "Parker", "Parks", "Parrish", "Parsons", "Pate",
 	"Patel", "Patrick", "Patterson", "Patton", "Paul", "Payne", "Pearson", "Peck", "Pena", "Pennington", "Perez", "Perkins",
 	"Perry", "Peters", "Petersen", "Peterson", "Petty", "Phelps", "Phillips", "Pickett", "Pierce", "Pittman", "Pitts",
@@ -175,11 +175,14 @@ let workerUtilsLoaded = false;
 
 export const getRandomGender = () => utils.randomUtils.getRandomBool() ? genders[0] : genders[1];
 
-export const generate = (formats: string[]) => {
+export const generate = (data: any) => {
+	const { rowState, countryNames } = data;
+	const { options, source, selectedCountries } = rowState;
+
 	// in case the user entered multiple | separated formats, pick one first
-	let chosenFormat = formats.length ? formats[0] : '';
-	if (formats.length > 1) {
-		chosenFormat = utils.randomUtils.getRandomArrayValue(formats);
+	let chosenFormat = options.length ? options[0] : '';
+	if (options.length > 1) {
+		chosenFormat = utils.randomUtils.getRandomArrayValue(options);
 	}
 
 	// the placeholder string with all the placeholders removed
@@ -189,26 +192,36 @@ export const generate = (formats: string[]) => {
 	// based on what we find. In case we find multiple genders, we return "unknown"
 	const foundGenders = [];
 
+	let maleNamesSource = maleNames;
+	let femaleNamesSource = femaleNames;
+	let lastNamesSource = lastNames;
+	if (source === 'countries') {
+		const randomCountry: string = utils.randomUtils.getRandomArrayValue(selectedCountries);
+		maleNamesSource = countryNames[randomCountry].maleNames;
+		femaleNamesSource = countryNames[randomCountry].femaleNames;
+		lastNamesSource = countryNames[randomCountry].lastNames;
+	}
+
 	while (/MaleName/.test(output)) {
 		foundGenders.push('male');
-		output = output.replace(/MaleName/, utils.randomUtils.getRandomArrayValue(maleNames));
+		output = output.replace(/MaleName/, utils.randomUtils.getRandomArrayValue(maleNamesSource));
 	}
 
 	while (/FemaleName/.test(output)) {
 		foundGenders.push('female');
-		output = output.replace(/FemaleName/, utils.randomUtils.getRandomArrayValue(femaleNames));
+		output = output.replace(/FemaleName/, utils.randomUtils.getRandomArrayValue(femaleNamesSource));
 	}
 
 	while (/Name/.test(output)) {
 		const gender = getRandomGender();
 		foundGenders.push(gender);
 
-		var source = (gender === 'male') ? maleNames : femaleNames;
-		output = output.replace(/Name/, utils.randomUtils.getRandomArrayValue(source));
+		const selectedSource = (gender === 'male') ? maleNames : femaleNames;
+		output = output.replace(/Name/, utils.randomUtils.getRandomArrayValue(selectedSource));
 	}
 
 	while (/Surname/.test(output)) {
-		output = output.replace(/Surname/, utils.randomUtils.getRandomArrayValue(lastNames));
+		output = output.replace(/Surname/, utils.randomUtils.getRandomArrayValue(lastNamesSource));
 	}
 	while (/Initial/.test(output)) {
 		output = output.replace(/Initial/, utils.randomUtils.getRandomCharInString(letters));
@@ -236,5 +249,5 @@ export const onmessage = (e: DTOnMessage) => {
 		workerUtilsLoaded = true;
 	}
 
-	postMessage(generate(e.data.rowState));
+	postMessage(generate(e.data));
 };

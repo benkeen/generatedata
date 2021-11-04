@@ -194,6 +194,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 			columns,
 			i18n,
 			template,
+			countryNames: coreUtils.getCountryNames(),
 			workerResources: {
 				workerUtils: coreUtils.getWorkerUtils(),
 				dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),

@@ -16,7 +16,8 @@ const mapStateToProps = (state: any): Partial<EngineProps> & { packetId: any } =
 		packetId,
 		fullI18n: selectors.getI18n(state),
 		packet,
-		workerResources: {}
+		workerResources: {},
+		countryNames: coreUtils.getCountryNames()
 	};
 
 	if (packet !== null) {

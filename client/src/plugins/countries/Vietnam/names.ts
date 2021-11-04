@@ -23,7 +23,7 @@ const maleNames = [
 	'Wade', 'Williams'
 ];
 
-let lastNames = [
+const lastNames = [
 	'An', 'Bao', 'Biên', 'Biện', 'Bành', 'Bạch', 'Cao', 'Chiêm', 'Chu', 'Chung', 'Chân', 'Châu', 'Cung', 'Cung', 'Cái',
 	'Cát', 'Cảnh', 'Cảnh', 'Cổ', 'Củng', 'Cừu', 'Diệp', 'Doãn', 'Dung', 'Dũ', 'Dư', 'Dịch', 'Dữu', 'Gia Cát', 'Giang',
 	'Giả', 'Giản', 'Hoa', 'Hoạn', 'Hoắc', 'Hy', 'Hà', 'Hàn', 'Hác', 'Hình', 'Hướng', 'Hạ', 'Hầu', 'Hậ', 'Hồng', 'Hứa',

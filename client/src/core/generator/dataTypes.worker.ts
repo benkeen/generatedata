@@ -70,7 +70,8 @@ const generateNextBatch = (data: any, numBatches: number, batchSize: number, bat
 			i18n: data.i18n,
 			firstRow,
 			lastRow,
-			batchNum
+			batchNum,
+			countryNames: data.countryNames
 		})
 			.then(() => {
 				if (batchNum === numBatches) {
@@ -98,14 +99,14 @@ const getBatchInfo = (numResults: number, numBatches: number, batchSize: number,
 
 
 // this resolve the promise for every batch of data generated
-const generateBatch = ({ template, unchanged, numResults, i18n, firstRow, lastRow, batchNum }: any): Promise<any> => new Promise((resolve) => {
+const generateBatch = ({ template, unchanged, numResults, i18n, firstRow, lastRow, batchNum, countryNames }: any): Promise<any> => new Promise((resolve) => {
 	const rowPromises: any = [];
 
 	// rows are independent! The only necessarily synchronous bit is between process batches. So here we just run
 	// them all in a loop
 	for (let rowNum=firstRow; rowNum<=lastRow; rowNum++) {
 		let currRowData: any[] = [];
-		rowPromises.push(processBatchSequence(template, rowNum, i18n, currRowData, unchanged));
+		rowPromises.push(processBatchSequence(template, rowNum, i18n, currRowData, unchanged, countryNames));
 	}
 
 	Promise.all(rowPromises)
@@ -120,7 +121,7 @@ const generateBatch = ({ template, unchanged, numResults, i18n, firstRow, lastRo
 		});
 });
 
-const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any, currRowData: any[], unchanged: any): any => {
+const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any, currRowData: any[], unchanged: any, countryNames: any): any => {
 	const processBatches = Object.keys(generationTemplate);
 
 	return new Promise((resolveAll): any => {
@@ -135,7 +136,7 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 
 			// yup. We're mutating the currRowData param on each loop. We don't care hhahaha!!! Up yours, linter!
 			sequence = sequence
-				.then(() => processDataTypeBatch(currBatch, rowNum, i18n, currRowData, unchanged))
+				.then(() => processDataTypeBatch(currBatch, rowNum, i18n, currRowData, unchanged, countryNames))
 				.then((promises) => {
 
 					// this bit's sneaky. It ensures that the CURRENT batch within the row being generated is fully processed
@@ -165,7 +166,7 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 	});
 };
 
-const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowData: any, unchanged: any): Promise<any>[] => {
+const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowData: any, unchanged: any, countryNames: any): Promise<any>[] => {
 	return cells.map((currCell: any) => {
 		let dataType = currCell.dataType;
 
@@ -180,6 +181,7 @@ const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowDa
 					rowState: currCell.rowState,
 					existingRowData: currRowData,
 					countryData,
+					countryNames,
 					workerResources: {
 						workerUtils: workerResources.workerUtils
 					}
