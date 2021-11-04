@@ -8,7 +8,9 @@ import Austria from './src/plugins/countries/Austria/names';
 import Belgium from './src/plugins/countries/Belgium/names';
 import Brazil from './src/plugins/countries/Brazil/names';
 import Canada from './src/plugins/countries/Canada/names';
+import India from './src/plugins/countries/India/names';
 import Nigeria from './src/plugins/countries/Nigeria/names';
+import Spain from './src/plugins/countries/Spain/names';
 import US from './src/plugins/countries/US/names';
 import Vietnam from './src/plugins/countries/Vietnam/names';
 
@@ -18,7 +20,9 @@ const nameFiles = {
 	Belgium,
 	Brazil,
 	Canada,
+	India,
 	Nigeria,
+	Spain,
 	US,
 	Vietnam
 };
