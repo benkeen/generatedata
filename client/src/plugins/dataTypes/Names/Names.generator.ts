@@ -179,6 +179,12 @@ export const generate = (data: any) => {
 	const { rowState, countryNames } = data;
 	const { options, source, selectedCountries } = rowState;
 
+	if (source === 'countries' && !selectedCountries.length) {
+		return {
+			display: ''
+		};
+	}
+
 	// in case the user entered multiple | separated formats, pick one first
 	let chosenFormat = options.length ? options[0] : '';
 	if (options.length > 1) {

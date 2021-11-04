@@ -1,6 +1,6 @@
 {
   "NAME": "Noms",
-  "DESC": "Ce type de données génère aléatoirement des noms de personnes (principalement occidentaux) en fonction du format que vous spécifiez.",
+  "DESC": "Ce type de données génère des noms humains dans n'importe quel format dont vous avez besoin.",
   "DEFAULT_TITLE": "nom",
   "example_FemaleName": "Jane (prénom féminin)",
   "example_FemaleName_Surname": "Jane Smith (nom complet féminin)",
@@ -19,5 +19,14 @@
   "type_Initial": "Une lettre majuscule, AZ.",
   "type_MaleName": "Un prénom masculin.",
   "type_Name": "Un prénom masculin ou féminin.",
-  "type_Surname": "Un nom aléatoire."
+  "type_Surname": "Un nom aléatoire.",
+
+  "source": "La source",
+  "westernNames": "Noms occidentaux",
+  "regionalNames": "Noms régionaux",
+  "namesSource": "Source des noms",
+  "namesSourceDesc": "Par défaut, ce type de données génère principalement des noms occidentaux. Pour cibler des noms communs à un ou plusieurs pays en particulier, dans la grille de données principale, cliquez sur la petite icône « Monde » à droite du champ d'options. Cela ouvrira une boîte de dialogue dans laquelle vous pourrez personnaliser la source.",
+  "defaultWesternNames": "Par défaut, ce type de données génère principalement des noms occidentaux",
+  "customizeSourceDesc": "Ce type de données génère principalement des noms occidentaux, mais si vous souhaitez générer des noms plus appropriés à une région particulière, sélectionnez les pays que vous souhaitez ci-dessous.",
+  "customizeSource": "Personnaliser la source des noms"
 }

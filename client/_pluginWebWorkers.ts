@@ -1,6 +1,6 @@
 export default {
 	"coreWorker": "",
-	"coreDataTypeWorker": "dataTypes.worker-0d36bbe533bde14cbe95f53a9822272a.js",
+	"coreDataTypeWorker": "dataTypes.worker-66b442524f84509e3a98b84cffeafdb8.js",
 	"coreExportTypeWorker": "exportTypes.worker-9b546d7c7909e02146fafee124180d37.js",
 	"workerUtils": "workerUtils-7e067ef2cb3f56fc12e52d7836d6394e.js",
 	"dataTypes": {
@@ -21,7 +21,7 @@ export default {
 		"IBAN": "DT-IBAN.generator-b92eaa02e83c98a15767dfd6866d8bd1.js",
 		"LatLng": "DT-LatLng.generator-9780ae71b1edd2fc39de95ce7613248f.js",
 		"List": "DT-List.generator-70ac2ead7106361629b6e4e3953c87e1.js",
-		"Names": "DT-Names.generator-d94065937db3168142f24b6fb3184197.js",
+		"Names": "DT-Names.generator-c4d7786f24d2b0b5f311bb611713b2e2.js",
 		"NormalDistribution": "DT-NormalDistribution.generator-adbc977198013088e21d0c3ad5a62e7e.js",
 		"NumberRange": "DT-NumberRange.generator-057ed424452f4e991ebc399c615ae34c.js",
 		"OrganizationNumber": "DT-OrganizationNumber.generator-68b329da9893e34099c7d8ad5cb9c940.js",

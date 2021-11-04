@@ -1,6 +1,6 @@
 {
   "NAME": "Namen",
-  "DESC": "Genereerd (voornamelijk westerse) menselijke namen in elk gewenst formaat.",
+  "DESC": "Dit gegevenstype genereert menselijke namen in elk gewenst formaat.",
   "DEFAULT_TITLE": "naam",
   "help_intro": "U kunt meerdere formaten specificeren door op enter te klikken. De volgende strings worden geconverteerd naar hun equivalent voor willekeurige naam:",
   "name": "Naam",
@@ -19,5 +19,15 @@
   "type_Initial": "Een hoofdletter, A-Z.",
   "type_MaleName": "Een mannen voornaam.",
   "type_Name": "Een voornaam, willekeurig mannelijk of vrouwelijk.",
-  "type_Surname": "Een willekeurige achternaam"
+  "type_Surname": "Een willekeurige achternaam",
+
+  "source": "Bron",
+  "westernNames": "Westerse namen",
+  "regionalNames": "Regionale namen",
+  "namesSource": "Namen bron",
+  "namesSourceDesc": "Standaard genereert dit gegevenstype voornamelijk westerse namen. Als u namen wilt targeten die gebruikelijk zijn voor een bepaald land of bepaalde landen, klikt u in het hoofdgegevensraster op het kleine 'Wereld'-pictogram rechts van het optieveld. Dat opent een dialoogvenster waarin u de bron kunt aanpassen.",
+  "defaultWesternNames": "Standaard genereert dit gegevenstype voornamelijk westerse namen",
+  "customizeSourceDesc": "Dit gegevenstype genereert voornamelijk westerse namen, maar als u namen wilt genereren die beter passen bij een bepaalde regio, selecteert u hieronder de gewenste landen.",
+  "customizeSource": "Namenbron aanpassen"
+
 }

@@ -97,7 +97,6 @@ const getBatchInfo = (numResults: number, numBatches: number, batchSize: number,
 	};
 };
 
-
 // this resolve the promise for every batch of data generated
 const generateBatch = ({ template, unchanged, numResults, i18n, firstRow, lastRow, batchNum, countryNames }: any): Promise<any> => new Promise((resolve) => {
 	const rowPromises: any = [];

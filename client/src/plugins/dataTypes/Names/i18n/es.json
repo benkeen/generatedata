@@ -1,6 +1,6 @@
 {
   "NAME": "Nombres",
-  "DESC": "Este tipo de dato genera aleatoriamente nombres de persona (mayoritariamente occidentales) de acuerdo al formato que especifiques.",
+  "DESC": "Este tipo de datos genera nombres humanos en cualquier formato que necesite.",
   "DEFAULT_TITLE": "nombre",
   "help_intro": "Puede especificar varios formatos haciendo clic en Intro. Las siguientes cadenas se convertirán a su equivalente de nombre aleatorio:",
   "name": "Nombre",
@@ -19,5 +19,15 @@
   "type_Initial": "Una letra mayúscula, A-Z.",
   "type_MaleName": "Un nombre de hombre.",
   "type_Name": "Un nombre, de hombre o mujer.",
-  "type_Surname": "Un apellido aleatorio."
+  "type_Surname": "Un apellido aleatorio.",
+
+  "source": "Fuente",
+  "westernNames": "Nombres occidentales",
+  "regionalNames": "Nombres regionales",
+  "namesSource": "Fuente de nombres",
+  "namesSourceDesc": "De forma predeterminada, este tipo de datos genera principalmente nombres occidentales. Para orientar nombres que son comunes para un país o países en particular, en la cuadrícula de datos principal, haga clic en el pequeño icono \"Mundo\" a la derecha del campo de opciones. Eso abrirá un cuadro de diálogo donde puede personalizar la fuente.",
+  "defaultWesternNames": "De forma predeterminada, este tipo de datos genera principalmente nombres occidentales",
+  "customizeSourceDesc": "Este tipo de datos genera principalmente nombres occidentales, pero si desea generar nombres más apropiados para una región en particular, seleccione los países que desea a continuación.",
+  "customizeSource": "Personalizar la fuente de nombres"
+
 }

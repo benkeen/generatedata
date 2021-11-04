@@ -1,6 +1,6 @@
 {
   "NAME": "Namen",
-  "DESC": "Dieser Datentyp zufällig generiert menschlichen Namen (meist Western) nach dem Format, das Sie angeben.",
+  "DESC": "This Data Type generates human names in any format you need.",
   "DEFAULT_TITLE": "name",
   "example_FemaleName": "Jane (Weiblicher Name)",
   "example_FemaleName_Surname": "Jane Smith",
@@ -19,5 +19,15 @@
   "type_Initial": "Ein Großbuchstaben, AZ.",
   "type_MaleName": "Ein männlicher Vorname.",
   "type_Name": "Ein Vorname, männlich oder weiblich.",
-  "type_Surname": "Eine zufällige Nachnamen."
+  "type_Surname": "Eine zufällige Nachnamen.",
+
+  "source": "Source",
+  "westernNames": "Western names",
+  "regionalNames": "Regional names",
+  "namesSource": "Names source",
+  "namesSourceDesc": "By default this Data Type generates mostly Western names. To target names that are common for a particular country or countries, in the main data grid, click the little \"World\" icon to the right of the options field. That will open a dialog where you can customize the source.",
+  "defaultWesternNames": "By default this Data Type generates mostly Western names",
+  "customizeSourceDesc": "This Data Type generates mostly Western names but if you want to generate names more appropriate to a particular region, select the countries you would like below.",
+  "customizeSource": "Customize names source"
+
 }

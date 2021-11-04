@@ -86,7 +86,6 @@ const NamesDialog = ({
 		setCountryPluginOptions(options);
 	}, [isCountryNamesLoaded]);
 
-
 	const onSelectCountries = (countries: any): void => {
 		onUpdateSelectedCountries(countries ? countries.map(({ value }: DropdownOption) => value) : []);
 	};
@@ -115,11 +114,10 @@ const NamesDialog = ({
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
-				<DialogTitle onClose={onClose}>Customize names source</DialogTitle>
+				<DialogTitle onClose={onClose}>{i18n.customizeSource}</DialogTitle>
 				<DialogContent dividers>
 					<div>
-						This Data Type generates mostly Western names but if you want to generate names more appropriate
-						to a particular region, select the countries you would like below.
+						{i18n.customizeSourceDesc}
 					</div>
 
 					<h3>{i18n.source}</h3>
@@ -130,7 +128,7 @@ const NamesDialog = ({
 							onClick={(): void => onUpdateSource(NamesSource.any)}
 							name={`${id}-source`}
 							checked={data.source === NamesSource.any}
-							tooltip="By default this Data Type generates mostly Western names"
+							tooltip={i18n.defaultWesternNames}
 						/>
 						<RadioPill
 							label={i18n.regionalNames}
@@ -278,6 +276,12 @@ export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 			</div>
 			<div className={styles.col2}>{i18n.type_Surname}</div>
 		</div>
+
+		<h3>{i18n.namesSource}</h3>
+
+		<p>
+			{i18n.namesSourceDesc}
+		</p>
 	</>
 );
 

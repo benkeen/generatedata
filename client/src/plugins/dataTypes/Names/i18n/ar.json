@@ -1,6 +1,6 @@
 {
   "NAME": "الأسماء",
-  "DESC": "يولد أسماء بشرية (غالبًا غربية) بأي تنسيق تريده.",
+  "DESC": "This Data Type generates human names in any format you need.",
   "DEFAULT_TITLE": "اسم",
   "help_intro": "يمكنك تحديد تنسيقات متعددة بالنقر فوق إدخال. سيتم تحويل السلاسل التالية إلى ما يعادل اسمها العشوائي:",
   "name": "اسم",
