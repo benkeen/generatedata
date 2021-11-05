@@ -1,5 +1,6 @@
 import utils from '../../../utils';
 import { DTOnMessage } from '~types/dataTypes';
+import { NamesSource } from './Names';
 
 const maleNames = [
 	"Aaron", "Abbot", "Abdul", "Abel", "Abraham", "Acton", "Adam", "Addison", "Adrian", "Ahmed", "Aidan", "Akeem",
@@ -179,7 +180,7 @@ export const generate = (data: any) => {
 	const { rowState, countryNames } = data;
 	const { options, source, selectedCountries } = rowState;
 
-	if (source === 'countries' && !selectedCountries.length) {
+	if (source === NamesSource.countries && !selectedCountries.length) {
 		return {
 			display: ''
 		};
@@ -201,7 +202,7 @@ export const generate = (data: any) => {
 	let maleNamesSource = maleNames;
 	let femaleNamesSource = femaleNames;
 	let lastNamesSource = lastNames;
-	if (source === 'countries') {
+	if (source === NamesSource.countries) {
 		const randomCountry: string = utils.randomUtils.getRandomArrayValue(selectedCountries);
 		maleNamesSource = countryNames[randomCountry].maleNames;
 		femaleNamesSource = countryNames[randomCountry].femaleNames;
