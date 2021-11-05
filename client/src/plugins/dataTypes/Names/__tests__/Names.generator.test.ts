@@ -115,4 +115,14 @@ describe('generate method converts all placeholders', () => {
 		});
 	});
 
+	it('is backward-compatible for old (pre 4.0.6) saved Names fields that just contains an array of options', () => {
+		sinon.stub(utils.randomUtils, 'getRandomArrayValue').returns('Jim');
+		expect(generate({
+			rowState: ['MaleName']
+		})).toEqual({
+			display: 'Jim',
+			gender: 'male'
+		});
+	});
+
 });

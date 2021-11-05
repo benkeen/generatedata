@@ -178,7 +178,18 @@ export const getRandomGender = () => utils.randomUtils.getRandomBool() ? genders
 
 export const generate = (data: any) => {
 	const { rowState, countryNames } = data;
-	const { options, source, selectedCountries } = rowState;
+
+	// for backward compatibility. Prior to 4.0.6, rowState would just be an array of options
+	let options = [];
+	let source = NamesSource.any;
+	let selectedCountries = [];
+	if (rowState.hasOwnProperty('source')) {
+		options = rowState.options;
+		source = rowState.source;
+		selectedCountries = rowState.selectedCountries;
+	} else {
+		options = rowState;
+	}
 
 	if (source === NamesSource.countries && !selectedCountries.length) {
 		return {
