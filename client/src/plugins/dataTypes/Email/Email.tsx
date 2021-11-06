@@ -136,21 +136,23 @@ export const initialState: EmailState = {
 	domainSuffixes: defaultDomainSuffixes
 };
 
-export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOptionsProps): JSX.Element => {
-
-	// earlier version of this DT didn't have any state whatsoever
-	const safeData: EmailState = data ? data : {
+// earlier version of this DT didn't have any state whatsoever
+const getSafeState = (data: EmailState | undefined): EmailState => {
+	return data ? data : {
 		source: StringSource.random,
 		fieldId1: '',
 		fieldId2: '',
 		domains: defaultDomains,
 		domainSuffixes: defaultDomainSuffixes
 	};
+};
 
+export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOptionsProps): JSX.Element => {
+	const safeData = getSafeState(data);
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
 	let label = `${i18n.source} ${i18n.random}`;
-	if (data.source === StringSource.fields) {
+	if (safeData.source === StringSource.fields) {
 		label = `${i18n.source} ${i18n.fields}`;
 	}
 
@@ -211,8 +213,11 @@ export const getMetadata = (): DTMetadata => ({
 	}
 });
 
-export const rowStateReducer = (state: EmailState): any => ({
-	...state,
-	domains: state.domains.split(',').filter((i) => !!i).map((i) => i.replace(/[^0-9a-zA-Z]/g, '')),
-	domainSuffixes: state.domainSuffixes.split(',').filter((i) => !!i).map((i) => i.replace(/[^0-9a-zA-Z]/g, ''))
-});
+export const rowStateReducer = (state: EmailState): any => {
+	const safeData = getSafeState(state);
+	return {
+		...safeData,
+		domains: safeData.domains.split(',').filter((i) => !!i).map((i) => i.replace(/[^0-9a-zA-Z]/g, '')),
+		domainSuffixes: safeData.domainSuffixes.split(',').filter((i) => !!i).map((i) => i.replace(/[^0-9a-zA-Z]/g, ''))
+	};
+};

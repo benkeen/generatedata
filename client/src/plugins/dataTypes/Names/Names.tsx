@@ -77,6 +77,10 @@ const NamesDialog = ({
 	const [countryPluginOptions, setCountryPluginOptions] = React.useState<DropdownOption[]>([]);
 
 	React.useEffect(() => {
+		if (!isCountryNamesLoaded) {
+			return;
+		}
+
 		const countryPluginsWithNames = Object.keys(countryNamesMap);
 		const options = countryList.filter((countryName: CountryType) => countryPluginsWithNames.indexOf(countryName) !== -1)
 			.map((countryName: CountryType) => ({
