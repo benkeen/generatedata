@@ -22,13 +22,7 @@ export type EmailState = {
 	domainSuffixes: string;
 }
 
-const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, nameRows, i18n }: any): JSX.Element => {
-	const rowOptions = nameRows
-		.map(({ id: currentId, title, index }: any) => ({
-			value: currentId,
-			label: `${i18n.row} #${index + 1}: ${title}`
-		}));
-
+const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOptions, i18n }: any): JSX.Element => {
 	const getFieldsRow = (): JSX.Element | null => {
 		if (data.source === StringSource.random) {
 			return null;
@@ -87,6 +81,8 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, nameRows,
 							onClick={(): void => onUpdate('source', StringSource.fields)}
 							name={`${id}-source`}
 							checked={data.source === StringSource.fields}
+							disabled={rowOptions.length === 0}
+							tooltip={rowOptions.length === 0 ? 'disabled.' : ''}
 						/>
 					</RadioPillRow>
 					{getFieldsRow()}
@@ -153,8 +149,23 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOpti
 
 	let label = `${i18n.source} ${i18n.random}`;
 	if (safeData.source === StringSource.fields) {
-		label = `${i18n.source} ${i18n.fields}`;
+		label = `${i18n.source} ${i18n.fieldsLabel}`;
 	}
+
+	const rowOptions = nameRows
+		.map(({ id: currentId, title, index }: any) => ({
+			value: currentId,
+			label: `${i18n.row} #${index + 1}: ${title}`
+		}));
+
+	React.useEffect(() => {
+		if (!nameRows.length && data.source === StringSource.fields) {
+			onUpdate({
+				...safeData,
+				source: StringSource.random
+			});
+		}
+	}, [nameRows]);
 
 	return (
 		<div className={styles.buttonLabel}>
@@ -172,7 +183,7 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOpti
 				coreI18n={coreI18n}
 				i18n={i18n}
 				onUpdate={(field: string, value: any): void => onUpdate({ ...safeData, [field]: value })}
-				nameRows={nameRows}
+				rowOptions={rowOptions}
 				onClose={(): void => setDialogVisibility(false)}
 			/>
 		</div>
