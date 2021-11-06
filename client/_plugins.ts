@@ -119,6 +119,7 @@ import CountryBelgium from './src/plugins/countries/Belgium/bundle';
 import CountryBrazil from './src/plugins/countries/Brazil/bundle';
 import CountryCanada from './src/plugins/countries/Canada/bundle';
 import CountryChile from './src/plugins/countries/Chile/bundle';
+import CountryChina from './src/plugins/countries/China/bundle';
 import CountryColombia from './src/plugins/countries/Colombia/bundle';
 import CountryCostaRica from './src/plugins/countries/CostaRica/bundle';
 import CountryFrance from './src/plugins/countries/France/bundle';
@@ -143,8 +144,8 @@ import CountryUK from './src/plugins/countries/UK/bundle';
 import CountryUS from './src/plugins/countries/US/bundle';
 import CountryVietnam from './src/plugins/countries/Vietnam/bundle';
 
-export const countryList = ['Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile', 'Colombia', 'CostaRica', 'France', 'Germany', 'India', 'Indonesia', 'Ireland', 'Italy', 'Mexico', 'Netherlands', 'NewZealand', 'Nigeria', 'Pakistan', 'Peru', 'Poland', 'Russia', 'SouthKorea', 'Spain', 'Sweden', 'Turkey', 'UK', 'US', 'Vietnam'];
-export const countries = ['Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile', 'Colombia', 'CostaRica', 'France', 'Germany', 'India', 'Indonesia', 'Ireland', 'Italy', 'Mexico', 'Netherlands', 'NewZealand', 'Nigeria', 'Pakistan', 'Peru', 'Poland', 'Russia', 'SouthKorea', 'Spain', 'Sweden', 'Turkey', 'UK', 'US', 'Vietnam'] as const;
+export const countryList = ['Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile', 'China', 'Colombia', 'CostaRica', 'France', 'Germany', 'India', 'Indonesia', 'Ireland', 'Italy', 'Mexico', 'Netherlands', 'NewZealand', 'Nigeria', 'Pakistan', 'Peru', 'Poland', 'Russia', 'SouthKorea', 'Spain', 'Sweden', 'Turkey', 'UK', 'US', 'Vietnam'];
+export const countries = ['Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile', 'China', 'Colombia', 'CostaRica', 'France', 'Germany', 'India', 'Indonesia', 'Ireland', 'Italy', 'Mexico', 'Netherlands', 'NewZealand', 'Nigeria', 'Pakistan', 'Peru', 'Poland', 'Russia', 'SouthKorea', 'Spain', 'Sweden', 'Turkey', 'UK', 'US', 'Vietnam'] as const;
 export const countryMethods = {
 	Australia: CountryAustralia,
 	Austria: CountryAustria,
@@ -152,6 +153,7 @@ export const countryMethods = {
 	Brazil: CountryBrazil,
 	Canada: CountryCanada,
 	Chile: CountryChile,
+	China: CountryChina,
 	Colombia: CountryColombia,
 	CostaRica: CountryCostaRica,
 	France: CountryFrance,
