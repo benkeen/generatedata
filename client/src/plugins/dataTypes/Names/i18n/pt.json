@@ -20,7 +20,6 @@
   "type_MaleName": "Um nome próprio masculino.",
   "type_Name": "Um primeiro nome, masculino ou feminino.",
   "type_Surname": "Um sobrenome aleatório..",
-
   "source": "Fonte",
   "westernNames": "Nomes ocidentais",
   "regionalNames": "Nomes regionais",
@@ -29,5 +28,4 @@
   "defaultWesternNames": "Por padrão, este tipo de dados gera principalmente nomes ocidentais",
   "customizeSourceDesc": "Este tipo de dados gera principalmente nomes ocidentais, mas se você deseja gerar nomes mais apropriados para uma determinada região, selecione os países que deseja abaixo.",
   "customizeSource": "Personalize a fonte de nomes"
-
 }

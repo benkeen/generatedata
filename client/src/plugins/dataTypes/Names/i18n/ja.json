@@ -20,7 +20,6 @@
   "type_MaleName": "男性の名。",
   "type_Name": "男性または女性の名。",
   "type_Surname": "ランダムな姓。",
-
   "source": "ソース",
   "westernNames": "西洋の名前",
   "regionalNames": "地域名",
@@ -29,5 +28,4 @@
   "defaultWesternNames": "デフォルトでは、このデータ型は主に西洋の名前を生成します",
   "customizeSourceDesc": "このデータ型は主に西洋の名前を生成しますが、特定の地域により適した名前を生成する場合は、以下で希望する国を選択してください。",
   "customizeSource": "名前のソースをカスタマイズする"
-
 }

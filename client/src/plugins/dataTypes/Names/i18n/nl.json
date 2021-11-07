@@ -20,7 +20,6 @@
   "type_MaleName": "Een mannen voornaam.",
   "type_Name": "Een voornaam, willekeurig mannelijk of vrouwelijk.",
   "type_Surname": "Een willekeurige achternaam",
-
   "source": "Bron",
   "westernNames": "Westerse namen",
   "regionalNames": "Regionale namen",
@@ -29,5 +28,4 @@
   "defaultWesternNames": "Standaard genereert dit gegevenstype voornamelijk westerse namen",
   "customizeSourceDesc": "Dit gegevenstype genereert voornamelijk westerse namen, maar als u namen wilt genereren die beter passen bij een bepaalde regio, selecteert u hieronder de gewenste landen.",
   "customizeSource": "Namenbron aanpassen"
-
 }

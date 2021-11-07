@@ -20,14 +20,12 @@
   "type_MaleName": "Ein männlicher Vorname.",
   "type_Name": "Ein Vorname, männlich oder weiblich.",
   "type_Surname": "Eine zufällige Nachnamen.",
-
-  "source": "Source",
-  "westernNames": "Western names",
-  "regionalNames": "Regional names",
-  "namesSource": "Names source",
-  "namesSourceDesc": "By default this Data Type generates mostly Western names. To target names that are common for a particular country or countries, in the main data grid, click the little \"World\" icon to the right of the options field. That will open a dialog where you can customize the source.",
-  "defaultWesternNames": "By default this Data Type generates mostly Western names",
-  "customizeSourceDesc": "This Data Type generates mostly Western names but if you want to generate names more appropriate to a particular region, select the countries you would like below.",
-  "customizeSource": "Customize names source"
-
+  "source": "Quelle",
+  "westernNames": "Westliche Namen",
+  "regionalNames": "Regionale Namen",
+  "namesSource": "Namensquelle",
+  "namesSourceDesc": "Standardmäßig generiert dieser Datentyp hauptsächlich westliche Namen. Um auf Namen abzuzielen, die für ein oder mehrere bestimmte Länder gebräuchlich sind, klicken Sie im Hauptdatenraster auf das kleine \"Welt\"-Symbol rechts neben dem Optionsfeld. Dadurch wird ein Dialogfeld geöffnet, in dem Sie die Quelle anpassen können.",
+  "defaultWesternNames": "Standardmäßig generiert dieser Datentyp hauptsächlich westliche Namen",
+  "customizeSourceDesc": "Dieser Datentyp generiert hauptsächlich westliche Namen. Wenn Sie jedoch Namen generieren möchten, die für eine bestimmte Region besser geeignet sind, wählen Sie unten die gewünschten Länder aus.",
+  "customizeSource": "Namensquelle anpassen"
 }

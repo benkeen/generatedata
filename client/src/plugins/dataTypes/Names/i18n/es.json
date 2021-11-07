@@ -20,7 +20,6 @@
   "type_MaleName": "Un nombre de hombre.",
   "type_Name": "Un nombre, de hombre o mujer.",
   "type_Surname": "Un apellido aleatorio.",
-
   "source": "Fuente",
   "westernNames": "Nombres occidentales",
   "regionalNames": "Nombres regionales",
@@ -29,5 +28,4 @@
   "defaultWesternNames": "De forma predeterminada, este tipo de datos genera principalmente nombres occidentales",
   "customizeSourceDesc": "Este tipo de datos genera principalmente nombres occidentales, pero si desea generar nombres más apropiados para una región en particular, seleccione los países que desea a continuación.",
   "customizeSource": "Personalizar la fuente de nombres"
-
 }
