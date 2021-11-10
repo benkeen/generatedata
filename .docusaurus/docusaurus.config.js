@@ -71,19 +71,6 @@ export default {
               "href": "https://twitter.com/docusaurus"
             }
           ]
-        },
-        {
-          "title": "More",
-          "items": [
-            {
-              "label": "Blog",
-              "to": "/blog"
-            },
-            {
-              "label": "GitHub",
-              "href": "https://github.com/facebook/docusaurus"
-            }
-          ]
         }
       ],
       "copyright": "Copyright © 2021 My Project, Inc. Built with Docusaurus."
