@@ -7,7 +7,7 @@
   "source": "@site/docs/intro.md",
   "sourceDirName": ".",
   "slug": "/intro",
-  "permalink": "/docs/intro",
+  "permalink": "/generatedata/docs/intro",
   "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs/intro.md",
   "tags": [],
   "version": "current",
@@ -18,6 +18,6 @@
   "sidebar": "tutorialSidebar",
   "next": {
     "title": "Test 123",
-    "permalink": "/docs/tutorial-basics/congratulations"
+    "permalink": "/generatedata/docs/tutorial-basics/congratulations"
   }
 }

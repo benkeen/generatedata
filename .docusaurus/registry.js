@@ -5,8 +5,8 @@ export default {
   '1f391b9e': [() => import(/* webpackChunkName: '1f391b9e' */ "@theme/MDXPage"), "@theme/MDXPage", require.resolveWeak("@theme/MDXPage")],
   '393be207': [() => import(/* webpackChunkName: '393be207' */ "@site/src/pages/markdown-page.md"), "@site/src/pages/markdown-page.md", require.resolveWeak("@site/src/pages/markdown-page.md")],
   '5e9f5e1a': [() => import(/* webpackChunkName: '5e9f5e1a' */ "@generated/docusaurus.config"), "@generated/docusaurus.config", require.resolveWeak("@generated/docusaurus.config")],
+  '6f73fa8e': [() => import(/* webpackChunkName: '6f73fa8e' */ "~blog/default/generatedata-blog-archive-41e.json"), "~blog/default/generatedata-blog-archive-41e.json", require.resolveWeak("~blog/default/generatedata-blog-archive-41e.json")],
   '822bd8ab': [() => import(/* webpackChunkName: '822bd8ab' */ "@site/docs/tutorial-basics/congratulations.md"), "@site/docs/tutorial-basics/congratulations.md", require.resolveWeak("@site/docs/tutorial-basics/congratulations.md")],
   '935f2afb': [() => import(/* webpackChunkName: '935f2afb' */ "~docs/default/version-current-metadata-prop-751.json"), "~docs/default/version-current-metadata-prop-751.json", require.resolveWeak("~docs/default/version-current-metadata-prop-751.json")],
   '9e4087bc': [() => import(/* webpackChunkName: '9e4087bc' */ "@theme/BlogArchivePage"), "@theme/BlogArchivePage", require.resolveWeak("@theme/BlogArchivePage")],
-  'b2f554cd': [() => import(/* webpackChunkName: 'b2f554cd' */ "~blog/default/blog-archive-80c.json"), "~blog/default/blog-archive-80c.json", require.resolveWeak("~blog/default/blog-archive-80c.json")],
   'c4f5d8e4': [() => import(/* webpackChunkName: 'c4f5d8e4' */ "@site/src/pages/index.js"), "@site/src/pages/index.js", require.resolveWeak("@site/src/pages/index.js")],};

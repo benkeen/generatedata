@@ -1,25 +1,25 @@
 {
-  "/blog/archive-f4c": {
+  "/generatedata/blog/archive-2a5": {
     "component": "9e4087bc",
-    "archive": "b2f554cd"
+    "archive": "6f73fa8e"
   },
-  "/markdown-page-be1": {
+  "/generatedata/markdown-page-9db": {
     "component": "1f391b9e",
     "content": "393be207"
   },
-  "/docs-809": {
+  "/generatedata/docs-192": {
     "component": "1be78505",
     "versionMetadata": "935f2afb"
   },
-  "/docs/intro-aed": {
+  "/generatedata/docs/intro-007": {
     "component": "17896441",
     "content": "0e384e19"
   },
-  "/docs/tutorial-basics/congratulations-793": {
+  "/generatedata/docs/tutorial-basics/congratulations-f05": {
     "component": "17896441",
     "content": "822bd8ab"
   },
-  "/-deb": {
+  "/generatedata/-c70": {
     "component": "c4f5d8e4",
     "config": "5e9f5e1a"
   }

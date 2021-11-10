@@ -8,13 +8,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
 	title: 'generatedata.com',
 	tagline: 'Documentation',
-	url: 'https://your-docusaurus-test-site.com',
-	baseUrl: '/',
+	url: 'https://benkeen.github.io',
+	baseUrl: '/generatedata/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
-	organizationName: 'facebook', // Usually your GitHub org/user name.
-	projectName: 'docusaurus', // Usually your repo name.
+	organizationName: 'benkeen',
+	projectName: 'generatedata',
 
 	presets: [
 		[

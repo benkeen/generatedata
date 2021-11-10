@@ -7,7 +7,7 @@
   "source": "@site/docs/tutorial-basics/congratulations.md",
   "sourceDirName": "tutorial-basics",
   "slug": "/tutorial-basics/congratulations",
-  "permalink": "/docs/tutorial-basics/congratulations",
+  "permalink": "/generatedata/docs/tutorial-basics/congratulations",
   "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs/tutorial-basics/congratulations.md",
   "tags": [],
   "version": "current",
@@ -18,6 +18,6 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Installation",
-    "permalink": "/docs/intro"
+    "permalink": "/generatedata/docs/intro"
   }
 }

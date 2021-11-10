@@ -1,13 +1,13 @@
 export default {
   "title": "generatedata.com",
   "tagline": "Documentation",
-  "url": "https://your-docusaurus-test-site.com",
-  "baseUrl": "/",
+  "url": "https://benkeen.github.io",
+  "baseUrl": "/generatedata/",
   "onBrokenLinks": "throw",
   "onBrokenMarkdownLinks": "warn",
   "favicon": "img/favicon.ico",
-  "organizationName": "facebook",
-  "projectName": "docusaurus",
+  "organizationName": "benkeen",
+  "projectName": "generatedata",
   "presets": [
     [
       "@docusaurus/preset-classic",
