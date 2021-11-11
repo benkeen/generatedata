@@ -469,10 +469,12 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 		}
 
 		case actions.POP_STASHED_STATE: {
-			stashProps.map((prop: string) => {
-				// @ts-ignore-line
-				draft[prop] = draft.stashedState[prop];
-			});
+			if (draft.stashedState) {
+				stashProps.map((prop: string) => {
+					// @ts-ignore-line
+					draft[prop] = draft.stashedState[prop];
+				});
+			}
 			draft.stashedState = null;
 			break;
 		}

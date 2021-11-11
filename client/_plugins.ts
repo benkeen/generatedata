@@ -79,7 +79,7 @@ export const dataTypes = {
 
 export type DataTypeFolder = keyof typeof dataTypes;
 
-export const blacklistedDataTypeFolders = ['_NamesRegional','_PhoneRegional','OrganizationNumber','PersonalNumber','SIRET'];
+export const blacklistedDataTypeFolders = ['_PhoneRegional','OrganizationNumber','PersonalNumber','SIRET'];
 
 import CSV from './src/plugins/exportTypes/CSV/config';
 import CSharp from './src/plugins/exportTypes/CSharp/config';
