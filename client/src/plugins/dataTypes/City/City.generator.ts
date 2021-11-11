@@ -20,6 +20,11 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 		country = utils.randomUtils.getRandomArrayValue(list) as CountryType;
 	}
 
+	// this can occur if the user hasn't configured the region DT properly
+	if (!country) {
+		return { display: '' };
+	}
+
 	const countryData = data.countryData[country];
 
 	let selectedRegion;

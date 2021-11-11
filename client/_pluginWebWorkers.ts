@@ -8,7 +8,7 @@ export default {
 		"AutoIncrement": "DT-AutoIncrement.generator-eccb050ece38a91e2a849d125e417298.js",
 		"Boolean": "DT-Boolean.generator-7f17cf17c450482e71f66b8ccec1530a.js",
 		"CVV": "DT-CVV.generator-c21d2fbc402d72056955f30db7831267.js",
-		"City": "DT-City.generator-266b4d3fd098d3cea29163bb51586179.js",
+		"City": "DT-City.generator-8c95b315c929bd2b78af7f2700e5c215.js",
 		"Colour": "DT-Colour.generator-db77c6f8b622fcac974e40561e905414.js",
 		"Company": "DT-Company.generator-b7bd7c08c48f94fb2c88412cc82fcef4.js",
 		"Computed": "DT-Computed.generator-51452612f3dcfd6bae1a695081e53a36.js",
