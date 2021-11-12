@@ -7,7 +7,12 @@ import { countryList, DataTypeFolder } from '../../../../_plugins';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './PostalZip.scss';
 
-export type PostalZipSource = 'any' | 'countries' | 'countryRow' | 'regionRow';
+export const enum PostalZipSource {
+	any = 'any',
+	countries = 'countries',
+	countryRow = 'countryRow',
+	regionRow = 'regionRow'
+}
 
 export type PostalZipState = {
 	source: PostalZipSource;
@@ -16,7 +21,7 @@ export type PostalZipState = {
 };
 
 export const initialState: PostalZipState = {
-	source: 'any',
+	source: PostalZipSource.any,
 	selectedCountries: [],
 	targetRowId: ''
 };
@@ -32,10 +37,10 @@ const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, on
 			...data,
 			source
 		};
-		if (source === 'countryRow') {
+		if (source === PostalZipSource.countryRow) {
 			newValues.targetRowId = countryPluginRows[0].value;
 		}
-		if (source === 'regionRow') {
+		if (source === PostalZipSource.regionRow) {
 			newValues.targetRowId = regionPluginRows[0].value;
 		}
 		onUpdate(newValues);
@@ -56,7 +61,7 @@ const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, on
 	};
 
 	const getRegionRowDropdown = (): React.ReactNode => {
-		if (data.source !== 'regionRow') {
+		if (data.source !== PostalZipSource.regionRow) {
 			return null;
 		}
 
@@ -119,21 +124,21 @@ const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, on
 					<RadioPillRow>
 						<RadioPill
 							label={i18n.anyFormat}
-							onClick={(): void => onUpdateSource('any')}
+							onClick={(): void => onUpdateSource(PostalZipSource.any)}
 							name={`${id}-source`}
 							checked={data.source === 'any'}
 							tooltip={i18n.anyFormatDesc}
 						/>
 						<RadioPill
 							label={i18n.countries}
-							onClick={(): void => onUpdateSource('countries')}
+							onClick={(): void => onUpdateSource(PostalZipSource.countries)}
 							name={`${id}-source`}
 							checked={data.source === 'countries'}
 							tooltip={i18n.countriesDesc}
 						/>
 						<RadioPill
 							label={i18n.countryRow}
-							onClick={(): void => onUpdateSource('countryRow')}
+							onClick={(): void => onUpdateSource(PostalZipSource.countryRow)}
 							name={`${id}-source`}
 							checked={data.source === 'countryRow'}
 							disabled={!countryPluginRowsExist}
@@ -141,7 +146,7 @@ const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, on
 						/>
 						<RadioPill
 							label={i18n.regionRow}
-							onClick={(): void => onUpdateSource('regionRow')}
+							onClick={(): void => onUpdateSource(PostalZipSource.regionRow)}
 							name={`${id}-source`}
 							checked={data.source === 'regionRow'}
 							disabled={!regionPluginRowsExist}

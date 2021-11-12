@@ -29,7 +29,7 @@ export default {
 		"PIN": "DT-PIN.generator-4148c7f0f2190e7ee7e83a06e0143247.js",
 		"PersonalNumber": "DT-PersonalNumber.generator-68b329da9893e34099c7d8ad5cb9c940.js",
 		"Phone": "DT-Phone.generator-ca7bb8282784726ece5e8ced1ccfd964.js",
-		"PostalZip": "DT-PostalZip.generator-b7cd5bb410930c1fb9c772190244ff6b.js",
+		"PostalZip": "DT-PostalZip.generator-cb358d5ab424dd19fde4b694e4e591c4.js",
 		"Region": "DT-Region.generator-7e9a4db9e0ddf46fcc4af38909ee6d88.js",
 		"Rut": "DT-Rut.generator-9b365251acec194f57b64031c112bfbc.js",
 		"SIRET": "DT-SIRET.generator-853bfefc8d3f8a2a9d055de5f7c6a1f7.js",

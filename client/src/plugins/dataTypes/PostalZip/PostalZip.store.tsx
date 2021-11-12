@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { DTCustomProps } from '~types/dataTypes';
 import { getSortedRowsArray } from '~store/generator/generator.selectors';
-import { PostalZipState } from './PostalZip';
+import { PostalZipState, PostalZipSource } from './PostalZip';
 import { REMOVE_ROW, SELECT_DATA_TYPE } from '~store/generator/generator.actions';
 
 
@@ -31,7 +31,7 @@ export const actionInterceptors = {
 		if (actionPayload.id === rowState.targetRowId) {
 			return {
 				...rowState,
-				source: 'any',
+				source: PostalZipSource.any,
 				targetRowId: ''
 			};
 		}
@@ -44,7 +44,7 @@ export const actionInterceptors = {
 				(rowState.source === 'countryRow' && actionPayload.value !== 'Country')) {
 				return {
 					...rowState,
-					source: 'any',
+					source: PostalZipSource.any,
 					targetRowId: ''
 				};
 			}

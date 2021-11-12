@@ -1,6 +1,7 @@
 import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 import { CountryDataType, CountryType, Region } from '~types/countries';
 import utils from '../../../utils';
+import { PostalZipSource } from './PostalZip';
 
 let workerUtilsLoaded = false;
 
@@ -13,27 +14,31 @@ export const onmessage = (e: DTOnMessage) => {
 	postMessage(generate(e.data));
 };
 
-
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { rowState, countryData, existingRowData } = data;
 	const { source, selectedCountries } = rowState;
 
 	const countryList = utils.countryUtils.getCountryList();
-
 	let country: CountryType;
 	let regionRow: any;
 
-	if (source === 'any') {
+	if (source === PostalZipSource.any) {
 		country = utils.randomUtils.getRandomArrayValue(countryList as CountryType[]);
-	} else if (source === 'countries') {
+	} else if (source === PostalZipSource.countries) {
 		const list = selectedCountries.length ? selectedCountries : countryList;
 		country = utils.randomUtils.getRandomArrayValue(list);
-	} else if (source === 'countryRow') {
+	} else if (source === PostalZipSource.countryRow) {
 		const countryRow = existingRowData.find(({ id }) => id === rowState.targetRowId);
 		country = countryRow!.data.countryDataType;
 	} else {
 		regionRow = existingRowData.find(({ id }) => id === rowState.targetRowId);
 		country = regionRow!.data.countryDataType;
+	}
+
+	if (!country) {
+		return {
+			display: ''
+		};
 	}
 
 	const selectedCountry = countryData[country];
