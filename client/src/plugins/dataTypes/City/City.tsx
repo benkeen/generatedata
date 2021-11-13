@@ -9,7 +9,11 @@ import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/d
 import { countryList } from '../../../../_plugins';
 import styles from './City.scss';
 
-export type RegionSource = 'any' | 'countries' | 'regionRow';
+export const enum RegionSource {
+	any = 'any',
+	countries = 'countries',
+	regionRow = 'regionRow'
+}
 
 export type CityState = {
 	source: RegionSource;
@@ -18,7 +22,7 @@ export type CityState = {
 };
 
 export const initialState: CityState = {
-	source: 'any',
+	source: RegionSource.any,
 	selectedCountries: [],
 	targetRowId: ''
 };
@@ -34,7 +38,7 @@ const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, o
 			...data,
 			source
 		};
-		if (source === 'regionRow') {
+		if (source === RegionSource.regionRow) {
 			newValues.targetRowId = regionPluginRows[0].value;
 		}
 		onUpdate(newValues);
@@ -55,7 +59,7 @@ const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, o
 	};
 
 	const getRegionRow = (): React.ReactNode => {
-		if (data.source !== 'regionRow') {
+		if (data.source !== RegionSource.regionRow) {
 			return null;
 		}
 
@@ -69,7 +73,7 @@ const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, o
 	};
 
 	const getCountryPluginsList = (): React.ReactNode => {
-		if (data.source !== 'countries') {
+		if (data.source !== RegionSource.countries) {
 			return null;
 		}
 		const countryPluginOptions = countryList.map((countryName) => ({
@@ -103,23 +107,23 @@ const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, o
 					<RadioPillRow>
 						<RadioPill
 							label={i18n.anyCity}
-							onClick={(): void => onUpdateSource('any')}
+							onClick={(): void => onUpdateSource(RegionSource.any)}
 							name={`${id}-source`}
-							checked={data.source === 'any'}
+							checked={data.source === RegionSource.any}
 							tooltip={i18n.anyDesc}
 						/>
 						<RadioPill
 							label={i18n.countries}
-							onClick={(): void => onUpdateSource('countries')}
+							onClick={(): void => onUpdateSource(RegionSource.countries)}
 							name={`${id}-source`}
-							checked={data.source === 'countries'}
+							checked={data.source === RegionSource.countries}
 							tooltip={i18n.countriesDesc}
 						/>
 						<RadioPill
 							label={i18n.regionRow}
-							onClick={(): void => onUpdateSource('regionRow')}
+							onClick={(): void => onUpdateSource(RegionSource.regionRow)}
 							name={`${id}-source`}
-							checked={data.source === 'regionRow'}
+							checked={data.source === RegionSource.regionRow}
 							tooltip={i18n.rowDesc}
 							disabled={!regionPluginRowsExist}
 						/>
@@ -141,15 +145,15 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regio
 	const numSelected = data.selectedCountries.length;
 
 	let label = '';
-	if (data.source === 'any') {
+	if (data.source === RegionSource.any) {
 		label = i18n.anyCity;
-	} else if (data.source === 'countries') {
+	} else if (data.source === RegionSource.countries) {
 		if (numSelected === 1) {
 			label = i18n.anyCityFrom1Country;
 		} else {
 			label = getI18nString(i18n.anyCityFromNCountries, [`<b>${numSelected}</b>`]);
 		}
-	} else if (data.source === 'regionRow') {
+	} else if (data.source === RegionSource.regionRow) {
 		const row = regionRows.find((row: any) => row.id === data.targetRowId);
 		const rowNum = row.index + 1;
 		label = `${i18n.regionRow} #${rowNum}`;

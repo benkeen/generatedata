@@ -27,9 +27,19 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 		};
 	}
 
+	if (!rowState.formats.length) {
+		return {
+			display: '',
+			displayFormat: '',
+			countryDataType: country
+		};
+	}
+
+	const displayFormat = getRandomArrayValue(rowState.formats) as RegionFormat;
 	if (countryRegions[country]) {
 		return {
-			display: getDisplayValue(countryRegions[country], rowState.formats),
+			display: getRandomArrayValue(countryRegions[country][displayFormat]),
+			displayFormat,
 			countryDataType: country
 		};
 	} else {
@@ -41,19 +51,11 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 		};
 
 		return {
-			display: getDisplayValue(countryRegions[country], rowState.formats),
+			display: getRandomArrayValue(countryRegions[country][displayFormat]),
+			displayFormat,
 			countryDataType: country
 		};
 	}
-};
-
-export const getDisplayValue = (countryData: any, formats: RegionFormat[]): string => {
-	if (!formats.length) {
-		return '';
-	}
-
-	const format = getRandomArrayValue(formats);
-	return getRandomArrayValue(countryData[format]);
 };
 
 let utilsLoaded = false;
