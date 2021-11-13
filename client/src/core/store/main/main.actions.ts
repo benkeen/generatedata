@@ -293,7 +293,7 @@ export const updateRefreshToken = () => async (dispatch: Dispatch): Promise<any>
 		dispatch(setAuthenticationData(response.data.refreshToken));
 		dispatch(setAuthToken(token));
 	} else {
-		console.log('token NOT refreshed -- user logged out');
+		// console.log('token NOT refreshed -- user logged out');
 	}
 
 	dispatch(setAuthenticated(success));

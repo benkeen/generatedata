@@ -84,6 +84,7 @@ export const saveYourAccount = (): any => async (dispatch: Dispatch, getState: a
 export const saveAccount = (data: any): any => async (dispatch: Dispatch): Promise<any> => {
 	const i18n = getStrings();
 	const { accountId, firstName, lastName, email, country, region, disabled, expiryDate } = data;
+
 	const accountStatus = getAccountStatus(disabled, expiryDate);
 
 	let cleanExpiryDate = null;
@@ -291,8 +292,10 @@ export const getAccountStatus = (disabled: boolean, expiryDate: number): Account
 	} else {
 		// check the expiry date hasn't already passed
 		if (expiryDate) {
-			const now = Number(format(new Date(), 't'));
-			if (expiryDate < now) {
+			const now = Number(format(new Date(), 'T'));
+			const expiryDateNum = parseInt(expiryDate.toString()); // ensure it's a number
+
+			if (expiryDateNum < now) {
 				accountStatus = AccountStatus.expired;
 			}
 		}
