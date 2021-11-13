@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
-import { AuthMethod, GDAction, GDLocale } from '~types/general';
+import { AccountStatusFilter, AuthMethod, GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
 import { getStrings } from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
@@ -382,3 +382,6 @@ export const setAccountsCurrentPage = (page: number): any => ({ type: SET_ACCOUN
 
 export const SET_ACCOUNTS_FILTER_STRING = 'SET_ACCOUNTS_FILTER_STRING';
 export const setAccountsFilterString = (filter: string): any => ({ type: SET_ACCOUNTS_FILTER_STRING, payload: { filter } });
+
+export const SET_ACCOUNT_STATUS_FILTER = 'SET_ACCOUNT_STATUS_FILTER';
+export const setAccountStatusFilter = (status: AccountStatusFilter): any => ({ type: SET_ACCOUNT_STATUS_FILTER, payload: { status } });

@@ -73,6 +73,25 @@
 	}
 }
 
+.filtersRow {
+	display: flex;
+	margin-bottom: 15px;
+	align-items: center;
+
+	h4 {
+		margin-left: auto;
+	}
+}
+
+.searchFilter {
+	display: flex;
+	margin-right: 8px;
+}
+
+.accountsFilter {
+	width: 130px;
+}
+
 @media (max-width: 600px) {
 	.status, .lastLoggedIn, .expiryDate {
 		display: none;

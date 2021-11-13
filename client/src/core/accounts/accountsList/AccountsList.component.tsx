@@ -4,27 +4,31 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { format, fromUnixTime } from 'date-fns';
 import { useMutation, useQuery } from '@apollo/client';
 import { addToast } from '~utils/generalUtils';
-import * as styles from './AccountsList.scss';
-import * as sharedStyles from '../../../styles/shared.scss';
 import Pagination from '~components/Pagination';
 import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
-import * as queries from '~core/queries';
+import { SmallSpinner } from '~components/loaders/loaders';
 import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
 import DeleteAccountDialog from '~core/dialogs/deleteAccount/DeleteAccount.component';
 import SearchFilter from "./SearchFilter.component";
 import C from '~core/constants';
-
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import { AccountStatusFilter } from '~types/general';
+import * as queries from '~core/queries';
+import * as styles from './AccountsList.scss';
+import * as sharedStyles from '../../../styles/shared.scss';
 
 export type AccountsListProps = {
 	accountsCurrentPage: number;
 	accountsSortCol: string;
 	accountsSortDir: ColSortDir;
 	accountsFilterStr: string;
+	accountStatusFilter: AccountStatusFilter;
 	onEditAccount: (accountId: number) => void;
 	setAccountsSortDir: (sortDir: ColSortDir) => void;
 	setAccountsSortCol: (sortCol: string) => void;
 	setAccountsCurrentPage: (page: number) => void;
 	setAccountsFilterString: (filter: string) => void;
+	setAccountStatusFilter: (status: AccountStatusFilter) => void;
 	i18n: any;
 };
 
@@ -61,8 +65,8 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastL
 
 const NUM_PER_PAGE = 10;
 const AccountsList = ({
-	accountsCurrentPage, accountsSortCol, accountsSortDir, accountsFilterStr, onEditAccount, setAccountsSortDir,
-	setAccountsSortCol, setAccountsCurrentPage, setAccountsFilterString, i18n
+	accountsCurrentPage, accountsSortCol, accountsSortDir, accountsFilterStr, accountStatusFilter, onEditAccount,
+	setAccountsSortDir, setAccountsSortCol, setAccountsCurrentPage, setAccountsFilterString, setAccountStatusFilter, i18n
 }: AccountsListProps): JSX.Element | null => {
 	const [dialogVisible, setDialogVisible] = useState(false);
 	const [deleteAccountInfo, setDeleteAccountInfo] = useState<any>(null);
@@ -75,7 +79,8 @@ const AccountsList = ({
 			limit: NUM_PER_PAGE,
 			sortCol: accountsSortCol,
 			sortDir: accountsSortDir,
-			filterStr: accountsFilterStr
+			filterStr: accountsFilterStr,
+			status: accountStatusFilter
 		}
 	});
 
@@ -101,7 +106,8 @@ const AccountsList = ({
 					limit: NUM_PER_PAGE,
 					sortCol: accountsSortCol,
 					sortDir: accountsSortDir,
-					filterStr: accountsFilterStr
+					filterStr: accountsFilterStr,
+					status: accountStatusFilter
 				}
 			}
 		],
@@ -208,12 +214,24 @@ const AccountsList = ({
 
 	return (
 		<>
-			<div>
+			<div className={styles.filtersRow}>
 				<SearchFilter
 					value={accountsFilterStr}
 					onChange={setAccountsFilterString}
-					loading={loading}
 				/>
+				<Dropdown
+					className={styles.accountsFilter}
+					value={accountStatusFilter}
+					onChange={(selected: DropdownOption) => setAccountStatusFilter(selected.value as AccountStatusFilter)}
+					options={[
+						{ value: AccountStatusFilter.all, label: "Any status" },
+						{ value: AccountStatusFilter.live, label: i18n.live },
+						{ value: AccountStatusFilter.expired, label: i18n.expired },
+						{ value: AccountStatusFilter.disabled, label: i18n.disabled }
+					]}
+				/>
+				{loading && <SmallSpinner />}
+				<h4>{totalCount} result(s)</h4>
 			</div>
 			{content}
 

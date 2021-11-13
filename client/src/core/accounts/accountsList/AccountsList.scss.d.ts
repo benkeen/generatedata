@@ -1,16 +1,19 @@
 declare namespace AccountsListScssNamespace {
   export interface IAccountsListScss {
+    accountsFilter: string;
     accountsListTable: string;
     body: string;
     del: string;
     edit: string;
     expiryDate: string;
+    filtersRow: string;
     firstName: string;
     lastLoggedIn: string;
     lastName: string;
     page: string;
     paginationRow: string;
     row: string;
+    searchFilter: string;
     status: string;
   }
 }

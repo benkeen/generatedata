@@ -43,7 +43,9 @@ const updateAccount = async (root, args, { token, user }) => {
 	}
 
 	let validatedAccountStatus = accountStatus;
-	if (expiryDate) {
+
+	// "disabled" trumps "expired", otherwise the UI looks weird (you disable something but it never appears that way)
+	if (expiryDate && validatedAccountStatus !== 'disabled') {
 		const now = Number(dateFns.format(new Date(), 't'));
 
 		if (expiryDate < now) {

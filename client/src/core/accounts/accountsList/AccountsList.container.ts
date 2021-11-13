@@ -5,7 +5,7 @@ import * as selectors from '~store/generator/generator.selectors';
 import * as accountActions from '~store/account/account.actions';
 import * as mainActions from '~store/main/main.actions';
 import AccountsList, { AccountsListProps } from './AccountsList.component';
-import { Store } from '~types/general';
+import { AccountStatusFilter, Store } from '~types/general';
 import { ColSortDir } from '~components/tables/TableHeader.component';
 
 const mapStateToProps = (state: Store): Partial<AccountsListProps> => ({
@@ -13,6 +13,7 @@ const mapStateToProps = (state: Store): Partial<AccountsListProps> => ({
 	accountsSortCol: mainSelectors.getAccountsSortCol(state),
 	accountsSortDir: mainSelectors.getAccountsSortDir(state),
 	accountsFilterStr: mainSelectors.getAccountsFilterStr(state),
+	accountStatusFilter: mainSelectors.getAccountStatusFilter(state),
 	i18n: selectors.getCoreI18n(state)
 });
 
@@ -21,7 +22,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountsListProps> => (
 	setAccountsSortDir: (sortDir: ColSortDir): void => dispatch(mainActions.setAccountsSortDir(sortDir)),
 	setAccountsSortCol: (sortCol: string): void => dispatch(mainActions.setAccountsSortCol(sortCol)),
 	setAccountsCurrentPage: (page: number): void => dispatch(mainActions.setAccountsCurrentPage(page)),
-	setAccountsFilterString: (filter: string): void => dispatch(mainActions.setAccountsFilterString(filter))
+	setAccountsFilterString: (filter: string): void => dispatch(mainActions.setAccountsFilterString(filter)),
+	setAccountStatusFilter: (status: AccountStatusFilter) => dispatch(mainActions.setAccountStatusFilter(status))
 });
 
 const container: any = connect(

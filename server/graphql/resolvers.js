@@ -17,7 +17,7 @@ const resolvers = {
 				};
 			}
 
-			const { limit, offset, sortCol, sortDir, filterStr } = args;
+			const { limit, offset, sortCol, sortDir, filterStr, status } = args;
 			const { accountId } = user;
 
 			const sortColMap = {
@@ -36,10 +36,16 @@ const resolvers = {
 				filterClause = `AND (${clauses.join(' OR ')})`;
 			}
 
+			let statusClause = '';
+			if (status !== 'all') {
+				const cleanStatus = status.replace(/[^a-zA-Z'\s]/g, '');
+				statusClause = `AND account_status = '${cleanStatus}'`;
+			}
+
 			const [results] = await db.sequelize.query(`
 				SELECT *
 				FROM accounts
-				WHERE created_by = ${accountId} ${filterClause}
+				WHERE created_by = ${accountId} ${filterClause} ${statusClause}
 				ORDER BY ${sortColMap[sortCol]} ${sortDir}
 				LIMIT ${limit}
 				OFFSET ${offset} 
@@ -48,7 +54,7 @@ const resolvers = {
 			const [totalCountQuery] = await db.sequelize.query(`
 				SELECT count(*) as c
 				FROM accounts
-				WHERE created_by = ${accountId} ${filterClause}
+				WHERE created_by = ${accountId} ${filterClause} ${statusClause}
 			`, { raw: true, type: db.sequelize.QueryTypes.SELECT });
 
 			const updatedResults = results.map(async (row) => {
@@ -59,7 +65,7 @@ const resolvers = {
 				const numRowsGenerated = await authResolvers.getAccountNumRowsGenerated(accountId);
 				let accountStatus = row.account_status;
 
-				if (row.account_status !== 'expired') {
+				if (row.account_status !== 'expired' && row.account_status !== 'disabled') {
 					const accountExpired = authUtils.accountExpired(new Date(row.date_expires));
 					if (accountExpired) {
 						await db.sequelize.query(`

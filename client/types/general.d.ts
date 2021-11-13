@@ -107,3 +107,10 @@ export const enum LoadTimeGraphDuration {
 	s30 = '30seconds',
 	m1 = '1minute'
 }
+
+export const enum AccountStatusFilter {
+	all = 'all',
+	live = 'live',
+	expired = 'expired',
+	disabled = 'disabled'
+}

@@ -3,7 +3,7 @@ import produce from 'immer';
 import * as actions from './main.actions';
 import C from '../../constants';
 import env from '../../../../_env';
-import { AuthMethod, GDLocale } from '~types/general';
+import { AccountStatusFilter, AuthMethod, GDLocale } from '~types/general';
 import { ColSortDir } from '~components/tables/TableHeader.component';
 
 export type MainState = {
@@ -27,6 +27,7 @@ export type MainState = {
 	accountsSortCol: string;
 	accountsSortDir: ColSortDir;
 	accountsFilterStr: string;
+	accountStatusFilter: AccountStatusFilter;
 };
 
 export const initialState: MainState = {
@@ -49,7 +50,8 @@ export const initialState: MainState = {
 	accountsCurrentPage: 1,
 	accountsSortCol: 'lastName',
 	accountsSortDir: ColSortDir.asc,
-	accountsFilterStr: ''
+	accountsFilterStr: '',
+	accountStatusFilter: AccountStatusFilter.all
 };
 
 export const reducer = produce((draft: MainState, action: AnyAction) => {
@@ -161,6 +163,11 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 		case actions.SET_ACCOUNTS_FILTER_STRING:
 			draft.accountsCurrentPage = 1;
 			draft.accountsFilterStr = action.payload.filter;
+			break;
+
+		case actions.SET_ACCOUNT_STATUS_FILTER:
+			draft.accountsCurrentPage = 1;
+			draft.accountStatusFilter = action.payload.status;
 			break;
 	}
 

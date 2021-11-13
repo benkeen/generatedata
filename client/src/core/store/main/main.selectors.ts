@@ -1,4 +1,4 @@
-import { AuthMethod, GDLocale, Store } from '~types/general';
+import { AccountStatusFilter, AuthMethod, GDLocale, Store } from '~types/general';
 import { ColSortDir } from '~components/tables/TableHeader.component';
 
 export const getAppStateVersion = (state: Store): number => state.main.appStateVersion;
@@ -20,3 +20,6 @@ export const getAccountsCurrentPage = (state: Store): number => state.main.accou
 export const getAccountsSortCol = (state: Store): string => state.main.accountsSortCol;
 export const getAccountsSortDir = (state: Store): ColSortDir => state.main.accountsSortDir;
 export const getAccountsFilterStr = (state: Store): string => state.main.accountsFilterStr;
+export const getAccountStatusFilter = (state: Store): AccountStatusFilter => state.main.accountStatusFilter;
+
+
