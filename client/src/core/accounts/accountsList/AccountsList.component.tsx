@@ -222,7 +222,7 @@ const AccountsList = ({
 				<Dropdown
 					className={styles.accountsFilter}
 					value={accountStatusFilter}
-					onChange={(selected: DropdownOption) => setAccountStatusFilter(selected.value as AccountStatusFilter)}
+					onChange={(selected: DropdownOption): void => setAccountStatusFilter(selected.value as AccountStatusFilter)}
 					options={[
 						{ value: AccountStatusFilter.all, label: "Any status" },
 						{ value: AccountStatusFilter.live, label: i18n.live },

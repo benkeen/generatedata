@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountsListProps> => (
 	setAccountsSortCol: (sortCol: string): void => dispatch(mainActions.setAccountsSortCol(sortCol)),
 	setAccountsCurrentPage: (page: number): void => dispatch(mainActions.setAccountsCurrentPage(page)),
 	setAccountsFilterString: (filter: string): void => dispatch(mainActions.setAccountsFilterString(filter)),
-	setAccountStatusFilter: (status: AccountStatusFilter) => dispatch(mainActions.setAccountStatusFilter(status))
+	setAccountStatusFilter: (status: AccountStatusFilter): void => dispatch(mainActions.setAccountStatusFilter(status))
 });
 
 const container: any = connect(
