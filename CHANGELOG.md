@@ -1,5 +1,24 @@
 ## Changelog
 
+- `4.0.8` - Nov 13, 2021
+    - additional bug fix for regions, cities and postal code Data Types throwing errors
+    - Chilean country names added
+    - Admin: status filter and total count added to accounts page
+    - https://github.com/benkeen/generatedata/milestone/30?closed=1
+- `4.0.7` - Nov 11, 2021
+    - bug fix for regions, cities and postal code Data Types throwing errors (didn't fully work)
+    - Fix for error thrown when closing Export Type overlay
+    - https://github.com/benkeen/generatedata/milestone/33?closed=1
+- `4.0.6` - Nov 6, 2021
+    - Regional names added 
+    - Email Data Type now lets you target other fields for more realistic data
+    - China country data added
+    - C# now handles auto-increment numeric values better
+    - https://github.com/benkeen/generatedata/milestone/32?closed=1
+- `4.0.5` - Oct 5, 2021
+    - Portuguese translation added
+    - Misc code improvements
+    - https://github.com/benkeen/generatedata/milestone/31?closed=1
 - `4.0.4` - Sept 27, 2021
     - Hindi locale added
     - Improvements for small screens
