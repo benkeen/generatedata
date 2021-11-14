@@ -4,7 +4,7 @@
     - additional bug fix for regions, cities and postal code Data Types throwing errors
     - Chilean country names added
     - Admin: status filter and total count added to accounts page
-    - https://github.com/benkeen/generatedata/milestone/30?closed=1
+    - https://github.com/benkeen/generatedata/milestone/34?closed=1
 - `4.0.7` - Nov 11, 2021
     - bug fix for regions, cities and postal code Data Types throwing errors (didn't fully work)
     - Fix for error thrown when closing Export Type overlay
