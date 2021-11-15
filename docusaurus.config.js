@@ -15,6 +15,7 @@ const config = {
 	favicon: 'img/favicon.ico',
 	organizationName: 'benkeen',
 	projectName: 'generatedata',
+	deploymentBranch: 'gh-pages',
 
 	presets: [
 		[

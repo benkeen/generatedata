@@ -3,3 +3,7 @@ cache*
 settings.php
 .idea*
 node_modules*
+.env
+client
+data
+server
