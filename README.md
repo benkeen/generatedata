@@ -9,8 +9,8 @@ This is the repo for the downloadable version of [generatedata.com](https://gene
 script is essentially an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
 so *Data Types* (types of data it generates), 8 *Export Types* (formats for the data), plus around 30 data sets for
 specific countries (city names, regions etc). But more importantly it can be extended in any way you want. Check out
-the [developer documentation](http://benkeen.github.io/generatedata/developer.html) for more information on that. If
-you need to generate random data programmatically rather than manually via the UI, you can use the [REST API](http://benkeen.github.io/generatedata/api.html).
+the [developer documentation](http://benkeen.github.io/generatedata3/developer.html) for more information on that. If
+you need to generate random data programmatically rather than manually via the UI, you can use the [REST API](http://benkeen.github.io/generatedata3/api.html).
 
 The master branch now contains the ongoing v4 rewrite, so if you're downloading the script, get the most recent 
 3.x tag: https://github.com/benkeen/generatedata/releases
@@ -24,24 +24,11 @@ The master branch now contains the ongoing v4 rewrite, so if you're downloading 
 ## How to Install / Documentation
 
 For installation instructions, user and developer documentation, check out:
-http://benkeen.github.io/generatedata/
+http://benkeen.github.io/generatedata3/
 
 Installation is really, really simple. I deliberately wrote the script to be as self-contained as possible and not 
 require additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later. See 
 the documentation for more info.
-
-## `master` = v4 rewrite
-
-The master branch of this repo now contains the ongoing work for the v4 rewrite, temporarily found here:
-http://generatedata4.com
-
-The generatedata.com site, the documentation and everything else is for up to the v3 branch. You can find that code in the `v3` branch. 
-
-Although I'm no longer working on that branch, PRs and bug fixes are very welcome! Just branch off `v3` and put 
-your PRs in against that.
-
-v4 is dropping PHP and MySQL and re-writing the entire script in node. This script will eventually become available as a node package which you can use in your own packages to generate your own code programmatically, but it will continue to offer the REST API and UI for constructing and generating the data sets. 
-
 
 ## Pre-packaged solutions
 
