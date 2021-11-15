@@ -50,7 +50,7 @@ export default [
   },
   {
     path: '/generatedata/docs',
-    component: ComponentCreator('/generatedata/docs','192'),
+    component: ComponentCreator('/generatedata/docs','c45'),
     routes: [
       {
         path: '/generatedata/docs/intro',
@@ -61,6 +61,18 @@ export default [
       {
         path: '/generatedata/docs/tutorial-basics/congratulations',
         component: ComponentCreator('/generatedata/docs/tutorial-basics/congratulations','f05'),
+        exact: true,
+        'sidebar': "tutorialSidebar"
+      },
+      {
+        path: '/generatedata/docs/v3',
+        component: ComponentCreator('/generatedata/docs/v3','72e'),
+        exact: true,
+        'sidebar': "tutorialSidebar"
+      },
+      {
+        path: '/generatedata/docs/version-comparison',
+        component: ComponentCreator('/generatedata/docs/version-comparison','f96'),
         exact: true,
         'sidebar': "tutorialSidebar"
       }

@@ -24,14 +24,11 @@ const config = {
 			({
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
-					// Please change this to your repo.
-					editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
+					editUrl: 'https://github.com/benkeen/generatedata/tree/docs/',
 				},
 				blog: {
-					showReadingTime: true,
-					// Please change this to your repo.
-					editUrl:
-						'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+					showReadingTime: false,
+					editUrl: 'https://github.com/benkeen/generatedata',
 				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
@@ -47,7 +44,7 @@ const config = {
 				title: 'generatedata.com',
 				logo: {
 					alt: 'generatedata.com',
-					src: 'img/logo.svg',
+					src: 'img/dice180x180.png',
 				},
 				items: [
 					{
@@ -55,6 +52,12 @@ const config = {
 						docId: 'intro',
 						position: 'left',
 						label: 'Installation',
+					},
+					{
+						type: 'doc',
+						docId: 'v3',
+						position: 'left',
+						label: '3.x doc',
 					}
 				],
 			},
@@ -62,33 +65,25 @@ const config = {
 				style: 'dark',
 				links: [
 					{
-						title: 'Docs',
+						title: 'Links',
 						items: [
 							{
-								label: 'Tutorial',
-								to: '/docs/intro',
+								label: 'public site',
+								to: 'https://generatedata.com',
 							},
+							{
+								label: 'github',
+								to: 'https://github.com/benkeen/generatedata',
+							},
+							{
+								label: 'Report a bug / feature suggestion',
+								to: 'https://github.com/benkeen/generatedata/issues',
+							},
+
 						],
-					},
-					{
-						title: 'Community',
-						items: [
-							{
-								label: 'Stack Overflow',
-								href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-							},
-							{
-								label: 'Discord',
-								href: 'https://discordapp.com/invite/docusaurus',
-							},
-							{
-								label: 'Twitter',
-								href: 'https://twitter.com/docusaurus',
-							},
-						],
-					},
+					}
 				],
-				copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+				copyright: `Copyright © ${new Date().getFullYear()} generatedata.com, built with Docusaurus.`,
 			},
 			prism: {
 				theme: lightCodeTheme,

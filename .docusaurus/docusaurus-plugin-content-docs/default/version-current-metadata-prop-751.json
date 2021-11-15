@@ -14,6 +14,16 @@
         "href": "/generatedata/docs/intro"
       },
       {
+        "type": "link",
+        "label": "3.x doc",
+        "href": "/generatedata/docs/v3"
+      },
+      {
+        "type": "link",
+        "label": "Comparison of v3 and v4",
+        "href": "/generatedata/docs/version-comparison"
+      },
+      {
         "type": "category",
         "label": "Install",
         "collapsible": true,

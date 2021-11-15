@@ -7,8 +7,8 @@
           "versionLabel": "Next",
           "versionPath": "/generatedata/docs",
           "tagsPath": "/generatedata/docs/tags",
-          "versionEditUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs",
-          "versionEditUrlLocalized": "https://github.com/facebook/docusaurus/edit/main/website/i18n/en/docusaurus-plugin-content-docs/current",
+          "versionEditUrl": "https://github.com/benkeen/generatedata/tree/docs/docs",
+          "versionEditUrlLocalized": "https://github.com/benkeen/generatedata/tree/docs/i18n/en/docusaurus-plugin-content-docs/current",
           "versionBanner": null,
           "versionBadge": false,
           "versionClassName": "docs-version-current",
@@ -29,7 +29,7 @@
               "sourceDirName": ".",
               "slug": "/intro",
               "permalink": "/generatedata/docs/intro",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs/intro.md",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/intro.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -38,8 +38,8 @@
               },
               "sidebar": "tutorialSidebar",
               "next": {
-                "title": "Test 123",
-                "permalink": "/generatedata/docs/tutorial-basics/congratulations"
+                "title": "3.x doc",
+                "permalink": "/generatedata/docs/v3"
               }
             },
             {
@@ -52,7 +52,7 @@
               "sourceDirName": "tutorial-basics",
               "slug": "/tutorial-basics/congratulations",
               "permalink": "/generatedata/docs/tutorial-basics/congratulations",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs/tutorial-basics/congratulations.md",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/tutorial-basics/congratulations.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -61,9 +61,51 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Installation",
-                "permalink": "/generatedata/docs/intro"
+                "title": "Comparison of v3 and v4",
+                "permalink": "/generatedata/docs/version-comparison"
               }
+            },
+            {
+              "unversionedId": "v3",
+              "id": "v3",
+              "isDocsHomePage": false,
+              "title": "3.x doc",
+              "description": "Since Sept 2021, the 3.x version of generatedata.com - written in PHP and MySQL - has been archived and replaced",
+              "source": "@site/docs/v3.md",
+              "sourceDirName": ".",
+              "slug": "/v3",
+              "permalink": "/generatedata/docs/v3",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/v3.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1,
+                "pagination_prev": null,
+                "pagination_next": null
+              },
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "unversionedId": "version-comparison",
+              "id": "version-comparison",
+              "isDocsHomePage": false,
+              "title": "Comparison of v3 and v4",
+              "description": "...",
+              "source": "@site/docs/version-comparison.md",
+              "sourceDirName": ".",
+              "slug": "/version-comparison",
+              "permalink": "/generatedata/docs/version-comparison",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/version-comparison.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1,
+                "pagination_prev": null,
+                "pagination_next": null
+              },
+              "sidebar": "tutorialSidebar"
             }
           ],
           "sidebars": {
@@ -71,6 +113,14 @@
               {
                 "type": "doc",
                 "id": "intro"
+              },
+              {
+                "type": "doc",
+                "id": "v3"
+              },
+              {
+                "type": "doc",
+                "id": "version-comparison"
               },
               {
                 "type": "category",

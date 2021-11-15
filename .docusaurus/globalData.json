@@ -19,6 +19,16 @@
               "id": "tutorial-basics/congratulations",
               "path": "/generatedata/docs/tutorial-basics/congratulations",
               "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "v3",
+              "path": "/generatedata/docs/v3",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "version-comparison",
+              "path": "/generatedata/docs/version-comparison",
+              "sidebar": "tutorialSidebar"
             }
           ]
         }

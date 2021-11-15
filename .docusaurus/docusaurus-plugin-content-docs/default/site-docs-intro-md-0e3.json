@@ -8,7 +8,7 @@
   "sourceDirName": ".",
   "slug": "/intro",
   "permalink": "/generatedata/docs/intro",
-  "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs/intro.md",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/intro.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
@@ -17,7 +17,7 @@
   },
   "sidebar": "tutorialSidebar",
   "next": {
-    "title": "Test 123",
-    "permalink": "/generatedata/docs/tutorial-basics/congratulations"
+    "title": "3.x doc",
+    "permalink": "/generatedata/docs/v3"
   }
 }

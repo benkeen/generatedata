@@ -8,17 +8,18 @@ export default {
   "favicon": "img/favicon.ico",
   "organizationName": "benkeen",
   "projectName": "generatedata",
+  "deploymentBranch": "gh-pages",
   "presets": [
     [
       "@docusaurus/preset-classic",
       {
         "docs": {
           "sidebarPath": "/Users/benkeen/generatedata/sidebars.js",
-          "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/"
+          "editUrl": "https://github.com/benkeen/generatedata/tree/docs/"
         },
         "blog": {
-          "showReadingTime": true,
-          "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/blog/"
+          "showReadingTime": false,
+          "editUrl": "https://github.com/benkeen/generatedata"
         },
         "theme": {
           "customCss": "/Users/benkeen/generatedata/src/css/custom.css"
@@ -31,7 +32,7 @@ export default {
       "title": "generatedata.com",
       "logo": {
         "alt": "generatedata.com",
-        "src": "img/logo.svg"
+        "src": "img/dice180x180.png"
       },
       "items": [
         {
@@ -39,6 +40,12 @@ export default {
           "docId": "intro",
           "position": "left",
           "label": "Installation"
+        },
+        {
+          "type": "doc",
+          "docId": "v3",
+          "position": "left",
+          "label": "3.x doc"
         }
       ],
       "hideOnScroll": false
@@ -47,33 +54,24 @@ export default {
       "style": "dark",
       "links": [
         {
-          "title": "Docs",
+          "title": "Links",
           "items": [
             {
-              "label": "Tutorial",
-              "to": "/docs/intro"
-            }
-          ]
-        },
-        {
-          "title": "Community",
-          "items": [
-            {
-              "label": "Stack Overflow",
-              "href": "https://stackoverflow.com/questions/tagged/docusaurus"
+              "label": "public site",
+              "to": "https://generatedata.com"
             },
             {
-              "label": "Discord",
-              "href": "https://discordapp.com/invite/docusaurus"
+              "label": "github",
+              "to": "https://github.com/benkeen/generatedata"
             },
             {
-              "label": "Twitter",
-              "href": "https://twitter.com/docusaurus"
+              "label": "Report a bug / feature suggestion",
+              "to": "https://github.com/benkeen/generatedata/issues"
             }
           ]
         }
       ],
-      "copyright": "Copyright © 2021 My Project, Inc. Built with Docusaurus."
+      "copyright": "Copyright © 2021 generatedata.com, built with Docusaurus."
     },
     "prism": {
       "theme": {

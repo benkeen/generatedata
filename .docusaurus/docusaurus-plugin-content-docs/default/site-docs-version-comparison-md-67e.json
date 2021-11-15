@@ -1,0 +1,21 @@
+{
+  "unversionedId": "version-comparison",
+  "id": "version-comparison",
+  "isDocsHomePage": false,
+  "title": "Comparison of v3 and v4",
+  "description": "...",
+  "source": "@site/docs/version-comparison.md",
+  "sourceDirName": ".",
+  "slug": "/version-comparison",
+  "permalink": "/generatedata/docs/version-comparison",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/version-comparison.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "pagination_prev": null,
+    "pagination_next": null
+  },
+  "sidebar": "tutorialSidebar"
+}
