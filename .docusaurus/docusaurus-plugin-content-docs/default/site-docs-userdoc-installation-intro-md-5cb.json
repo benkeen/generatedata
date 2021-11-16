@@ -1,0 +1,23 @@
+{
+  "unversionedId": "userdoc/installation/intro",
+  "id": "userdoc/installation/intro",
+  "isDocsHomePage": false,
+  "title": "Intro",
+  "description": "Alrighty! Let's get this sucker installed.",
+  "source": "@site/docs/userdoc/installation/intro.md",
+  "sourceDirName": "userdoc/installation",
+  "slug": "/userdoc/installation/intro",
+  "permalink": "/generatedata/userdoc/installation/intro",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/intro.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "userdoc",
+  "previous": {
+    "title": "History",
+    "permalink": "/generatedata/userdoc/history"
+  }
+}

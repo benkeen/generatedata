@@ -44,44 +44,56 @@ export default [
     exact: true
   },
   {
+    path: '/generatedata/index---old',
+    component: ComponentCreator('/generatedata/index---old','f4c'),
+    exact: true
+  },
+  {
     path: '/generatedata/markdown-page',
     component: ComponentCreator('/generatedata/markdown-page','9db'),
     exact: true
   },
   {
-    path: '/generatedata/docs',
-    component: ComponentCreator('/generatedata/docs','c45'),
+    path: '/generatedata/',
+    component: ComponentCreator('/generatedata/','1d0'),
     routes: [
       {
-        path: '/generatedata/docs/intro',
-        component: ComponentCreator('/generatedata/docs/intro','007'),
+        path: '/generatedata/',
+        component: ComponentCreator('/generatedata/','e1f'),
         exact: true,
-        'sidebar': "tutorialSidebar"
+        'sidebar': "userdoc"
       },
       {
-        path: '/generatedata/docs/tutorial-basics/congratulations',
-        component: ComponentCreator('/generatedata/docs/tutorial-basics/congratulations','f05'),
+        path: '/generatedata/developerdoc/intro',
+        component: ComponentCreator('/generatedata/developerdoc/intro','823'),
         exact: true,
-        'sidebar': "tutorialSidebar"
+        'sidebar': "developerdoc"
       },
       {
-        path: '/generatedata/docs/v3',
-        component: ComponentCreator('/generatedata/docs/v3','72e'),
+        path: '/generatedata/userdoc/history',
+        component: ComponentCreator('/generatedata/userdoc/history','c4c'),
         exact: true,
-        'sidebar': "tutorialSidebar"
+        'sidebar': "userdoc"
       },
       {
-        path: '/generatedata/docs/version-comparison',
-        component: ComponentCreator('/generatedata/docs/version-comparison','f96'),
+        path: '/generatedata/userdoc/installation/intro',
+        component: ComponentCreator('/generatedata/userdoc/installation/intro','e42'),
         exact: true,
-        'sidebar': "tutorialSidebar"
+        'sidebar': "userdoc"
+      },
+      {
+        path: '/generatedata/userdoc/v3',
+        component: ComponentCreator('/generatedata/userdoc/v3','86d'),
+        exact: true,
+        'sidebar': "userdoc"
+      },
+      {
+        path: '/generatedata/userdoc/version-comparison',
+        component: ComponentCreator('/generatedata/userdoc/version-comparison','d7f'),
+        exact: true,
+        'sidebar': "userdoc"
       }
     ]
-  },
-  {
-    path: '/generatedata/',
-    component: ComponentCreator('/generatedata/','c70'),
-    exact: true
   },
   {
     path: '*',

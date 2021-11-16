@@ -5,8 +5,8 @@
         {
           "versionName": "current",
           "versionLabel": "Next",
-          "versionPath": "/generatedata/docs",
-          "tagsPath": "/generatedata/docs/tags",
+          "versionPath": "/generatedata/",
+          "tagsPath": "/generatedata/tags",
           "versionEditUrl": "https://github.com/benkeen/generatedata/tree/docs/docs",
           "versionEditUrlLocalized": "https://github.com/benkeen/generatedata/tree/docs/i18n/en/docusaurus-plugin-content-docs/current",
           "versionBanner": null,
@@ -17,122 +17,175 @@
           "sidebarFilePath": "/Users/benkeen/generatedata/sidebars.js",
           "contentPath": "/Users/benkeen/generatedata/docs",
           "contentPathLocalized": "/Users/benkeen/generatedata/i18n/en/docusaurus-plugin-content-docs/current",
-          "mainDocId": "intro",
+          "mainDocId": "userdoc/welcome",
           "docs": [
             {
-              "unversionedId": "intro",
-              "id": "intro",
+              "unversionedId": "developerdoc/intro",
+              "id": "developerdoc/intro",
               "isDocsHomePage": false,
-              "title": "Installation",
+              "title": "Developer doc",
+              "description": "Coming soon too. Just figurin' out Docusaurus!",
+              "source": "@site/docs/developerdoc/index.md",
+              "sourceDirName": "developerdoc",
+              "slug": "/developerdoc/intro",
+              "permalink": "/generatedata/developerdoc/intro",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/developerdoc/index.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1,
+                "id": "intro"
+              },
+              "sidebar": "developerdoc"
+            },
+            {
+              "unversionedId": "userdoc/history",
+              "id": "userdoc/history",
+              "isDocsHomePage": false,
+              "title": "History",
+              "description": ".",
+              "source": "@site/docs/userdoc/history.md",
+              "sourceDirName": "userdoc",
+              "slug": "/userdoc/history",
+              "permalink": "/generatedata/userdoc/history",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/history.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "sidebar_position": 4,
+                "pagination_prev": null,
+                "pagination_next": null
+              },
+              "sidebar": "userdoc"
+            },
+            {
+              "unversionedId": "userdoc/installation/intro",
+              "id": "userdoc/installation/intro",
+              "isDocsHomePage": false,
+              "title": "Intro",
               "description": "Alrighty! Let's get this sucker installed.",
-              "source": "@site/docs/intro.md",
-              "sourceDirName": ".",
-              "slug": "/intro",
-              "permalink": "/generatedata/docs/intro",
-              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/intro.md",
+              "source": "@site/docs/userdoc/installation/intro.md",
+              "sourceDirName": "userdoc/installation",
+              "slug": "/userdoc/installation/intro",
+              "permalink": "/generatedata/userdoc/installation/intro",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/intro.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 1,
+              "sidebarPosition": 3,
               "frontMatter": {
-                "sidebar_position": 1
+                "sidebar_position": 3
               },
-              "sidebar": "tutorialSidebar",
-              "next": {
-                "title": "3.x doc",
-                "permalink": "/generatedata/docs/v3"
-              }
-            },
-            {
-              "unversionedId": "tutorial-basics/congratulations",
-              "id": "tutorial-basics/congratulations",
-              "isDocsHomePage": false,
-              "title": "Test 123",
-              "description": "What's next?",
-              "source": "@site/docs/tutorial-basics/congratulations.md",
-              "sourceDirName": "tutorial-basics",
-              "slug": "/tutorial-basics/congratulations",
-              "permalink": "/generatedata/docs/tutorial-basics/congratulations",
-              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/tutorial-basics/congratulations.md",
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 1,
-              "frontMatter": {
-                "sidebar_position": 1
-              },
-              "sidebar": "tutorialSidebar",
+              "sidebar": "userdoc",
               "previous": {
-                "title": "Comparison of v3 and v4",
-                "permalink": "/generatedata/docs/version-comparison"
+                "title": "History",
+                "permalink": "/generatedata/userdoc/history"
               }
             },
             {
-              "unversionedId": "v3",
-              "id": "v3",
+              "unversionedId": "userdoc/v3",
+              "id": "userdoc/v3",
               "isDocsHomePage": false,
               "title": "3.x doc",
               "description": "Since Sept 2021, the 3.x version of generatedata.com - written in PHP and MySQL - has been archived and replaced",
-              "source": "@site/docs/v3.md",
-              "sourceDirName": ".",
-              "slug": "/v3",
-              "permalink": "/generatedata/docs/v3",
-              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/v3.md",
+              "source": "@site/docs/userdoc/v3.md",
+              "sourceDirName": "userdoc",
+              "slug": "/userdoc/v3",
+              "permalink": "/generatedata/userdoc/v3",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/v3.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 1,
+              "sidebarPosition": 3,
               "frontMatter": {
-                "sidebar_position": 1,
+                "sidebar_position": 3,
                 "pagination_prev": null,
                 "pagination_next": null
               },
-              "sidebar": "tutorialSidebar"
+              "sidebar": "userdoc"
             },
             {
-              "unversionedId": "version-comparison",
-              "id": "version-comparison",
+              "unversionedId": "userdoc/version-comparison",
+              "id": "userdoc/version-comparison",
               "isDocsHomePage": false,
               "title": "Comparison of v3 and v4",
               "description": "...",
-              "source": "@site/docs/version-comparison.md",
-              "sourceDirName": ".",
-              "slug": "/version-comparison",
-              "permalink": "/generatedata/docs/version-comparison",
-              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/version-comparison.md",
+              "source": "@site/docs/userdoc/version-comparison.md",
+              "sourceDirName": "userdoc",
+              "slug": "/userdoc/version-comparison",
+              "permalink": "/generatedata/userdoc/version-comparison",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/version-comparison.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "sidebar_position": 2,
+                "pagination_prev": null,
+                "pagination_next": null
+              },
+              "sidebar": "userdoc"
+            },
+            {
+              "unversionedId": "userdoc/welcome",
+              "id": "userdoc/welcome",
+              "isDocsHomePage": false,
+              "title": "Welcome",
+              "description": "Welcome to the generatedata.com documentation! As you can see, this is very much a work in progress so stay tuned for",
+              "source": "@site/docs/userdoc/welcome.md",
+              "sourceDirName": "userdoc",
+              "slug": "/",
+              "permalink": "/generatedata/",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/welcome.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
               "frontMatter": {
                 "sidebar_position": 1,
-                "pagination_prev": null,
-                "pagination_next": null
+                "slug": "/",
+                "id": "welcome"
               },
-              "sidebar": "tutorialSidebar"
+              "sidebar": "userdoc",
+              "next": {
+                "title": "Comparison of v3 and v4",
+                "permalink": "/generatedata/userdoc/version-comparison"
+              }
             }
           ],
           "sidebars": {
-            "tutorialSidebar": [
+            "userdoc": [
               {
                 "type": "doc",
-                "id": "intro"
+                "id": "userdoc/welcome"
               },
               {
                 "type": "doc",
-                "id": "v3"
+                "id": "userdoc/version-comparison"
               },
               {
                 "type": "doc",
-                "id": "version-comparison"
+                "id": "userdoc/v3"
+              },
+              {
+                "type": "doc",
+                "id": "userdoc/history"
               },
               {
                 "type": "category",
-                "label": "Install",
+                "label": "installation",
                 "collapsible": true,
                 "collapsed": true,
                 "items": [
                   {
                     "type": "doc",
-                    "id": "tutorial-basics/congratulations"
+                    "id": "userdoc/installation/intro"
                   }
                 ]
+              }
+            ],
+            "developerdoc": [
+              {
+                "type": "doc",
+                "id": "developerdoc/intro"
               }
             ]
           }
@@ -153,8 +206,8 @@
     "default": [
       {
         "type": "jsx",
-        "permalink": "/generatedata/",
-        "source": "@site/src/pages/index.js"
+        "permalink": "/generatedata/index---old",
+        "source": "@site/src/pages/index---old.js"
       },
       {
         "type": "mdx",

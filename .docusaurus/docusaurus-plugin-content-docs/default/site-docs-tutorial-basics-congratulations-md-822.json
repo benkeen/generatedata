@@ -7,7 +7,7 @@
   "source": "@site/docs/tutorial-basics/congratulations.md",
   "sourceDirName": "tutorial-basics",
   "slug": "/tutorial-basics/congratulations",
-  "permalink": "/generatedata/docs/tutorial-basics/congratulations",
+  "permalink": "/generatedata/tutorial-basics/congratulations",
   "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/tutorial-basics/congratulations.md",
   "tags": [],
   "version": "current",
@@ -18,6 +18,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Comparison of v3 and v4",
-    "permalink": "/generatedata/docs/version-comparison"
+    "permalink": "/generatedata/version-comparison"
+  },
+  "next": {
+    "title": "Welcome",
+    "permalink": "/generatedata/installation/intro"
   }
 }

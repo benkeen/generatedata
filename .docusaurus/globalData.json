@@ -1,34 +1,44 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/generatedata/docs",
+      "path": "/generatedata/",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/generatedata/docs",
-          "mainDocId": "intro",
+          "path": "/generatedata/",
+          "mainDocId": "userdoc/welcome",
           "docs": [
             {
-              "id": "intro",
-              "path": "/generatedata/docs/intro",
-              "sidebar": "tutorialSidebar"
+              "id": "developerdoc/intro",
+              "path": "/generatedata/developerdoc/intro",
+              "sidebar": "developerdoc"
             },
             {
-              "id": "tutorial-basics/congratulations",
-              "path": "/generatedata/docs/tutorial-basics/congratulations",
-              "sidebar": "tutorialSidebar"
+              "id": "userdoc/history",
+              "path": "/generatedata/userdoc/history",
+              "sidebar": "userdoc"
             },
             {
-              "id": "v3",
-              "path": "/generatedata/docs/v3",
-              "sidebar": "tutorialSidebar"
+              "id": "userdoc/installation/intro",
+              "path": "/generatedata/userdoc/installation/intro",
+              "sidebar": "userdoc"
             },
             {
-              "id": "version-comparison",
-              "path": "/generatedata/docs/version-comparison",
-              "sidebar": "tutorialSidebar"
+              "id": "userdoc/v3",
+              "path": "/generatedata/userdoc/v3",
+              "sidebar": "userdoc"
+            },
+            {
+              "id": "userdoc/version-comparison",
+              "path": "/generatedata/userdoc/version-comparison",
+              "sidebar": "userdoc"
+            },
+            {
+              "id": "userdoc/welcome",
+              "path": "/generatedata/",
+              "sidebar": "userdoc"
             }
           ]
         }

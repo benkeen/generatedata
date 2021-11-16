@@ -7,34 +7,46 @@
   "className": "docs-version-current",
   "isLast": true,
   "docsSidebars": {
-    "tutorialSidebar": [
+    "userdoc": [
       {
         "type": "link",
-        "label": "Installation",
-        "href": "/generatedata/docs/intro"
-      },
-      {
-        "type": "link",
-        "label": "3.x doc",
-        "href": "/generatedata/docs/v3"
+        "label": "Welcome",
+        "href": "/generatedata/"
       },
       {
         "type": "link",
         "label": "Comparison of v3 and v4",
-        "href": "/generatedata/docs/version-comparison"
+        "href": "/generatedata/userdoc/version-comparison"
+      },
+      {
+        "type": "link",
+        "label": "3.x doc",
+        "href": "/generatedata/userdoc/v3"
+      },
+      {
+        "type": "link",
+        "label": "History",
+        "href": "/generatedata/userdoc/history"
       },
       {
         "type": "category",
-        "label": "Install",
+        "label": "installation",
         "collapsible": true,
         "collapsed": true,
         "items": [
           {
             "type": "link",
-            "label": "Test 123",
-            "href": "/generatedata/docs/tutorial-basics/congratulations"
+            "label": "Intro",
+            "href": "/generatedata/userdoc/installation/intro"
           }
         ]
+      }
+    ],
+    "developerdoc": [
+      {
+        "type": "link",
+        "label": "Developer doc",
+        "href": "/generatedata/developerdoc/intro"
       }
     ]
   }

@@ -25,32 +25,40 @@
     "component": "component---theme-blog-archive-page-9-e-4-1d8",
     "archive": "archive---generatedata-blog-archive-6-f-7-523"
   },
+  "/generatedata/index---old-f4c": {
+    "component": "component---site-src-pages-index-old-jsb-26-b60",
+    "config": "config---generatedata-index-old-5-e-9-b15"
+  },
   "/generatedata/markdown-page-9db": {
     "component": "component---theme-mdx-page-1-f-3-b90",
     "content": "content---generatedata-markdown-page-393-e3e"
   },
-  "/generatedata/docs-c45": {
+  "/generatedata/-1d0": {
     "component": "component---theme-doc-page-1-be-9be",
-    "versionMetadata": "versionMetadata---generatedata-docs-935-5da"
+    "versionMetadata": "versionMetadata---generatedata-935-704"
   },
-  "/generatedata/docs/intro-007": {
+  "/generatedata/-e1f": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---generatedata-docs-intro-0-e-3-d33"
+    "content": "content---generatedata-eec-c9b"
   },
-  "/generatedata/docs/tutorial-basics/congratulations-f05": {
+  "/generatedata/developerdoc/intro-823": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---generatedata-docs-tutorial-basics-congratulations-822-9d7"
+    "content": "content---generatedata-developerdoc-intro-661-4c5"
   },
-  "/generatedata/docs/v3-72e": {
+  "/generatedata/userdoc/history-c4c": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---generatedata-docs-v-31-fa-be8"
+    "content": "content---generatedata-userdoc-history-5-eb-65a"
   },
-  "/generatedata/docs/version-comparison-f96": {
+  "/generatedata/userdoc/installation/intro-e42": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---generatedata-docs-version-comparison-67-e-2fa"
+    "content": "content---generatedata-userdoc-installation-intro-5-cb-d1b"
   },
-  "/generatedata/-c70": {
-    "component": "component---site-src-pages-index-jsc-4-f-f99",
-    "config": "config---generatedata-5-e-9-606"
+  "/generatedata/userdoc/v3-86d": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---generatedata-userdoc-v-3-fed-f4c"
+  },
+  "/generatedata/userdoc/version-comparison-d7f": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---generatedata-userdoc-version-comparison-0-d-0-093"
   }
 }

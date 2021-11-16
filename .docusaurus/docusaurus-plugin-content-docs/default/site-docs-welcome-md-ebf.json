@@ -1,24 +1,25 @@
 {
-  "unversionedId": "intro",
-  "id": "intro",
+  "unversionedId": "welcome",
+  "id": "welcome",
   "isDocsHomePage": false,
   "title": "Welcome",
   "description": "Welcome to the generatedata.com documentation! As you can see, this is very much a work in progress so stay tuned for",
-  "source": "@site/docs/intro.md",
+  "source": "@site/docs/welcome.md",
   "sourceDirName": ".",
   "slug": "/",
   "permalink": "/generatedata/",
-  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/intro.md",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/welcome.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
   "frontMatter": {
     "sidebar_position": 1,
-    "slug": "/"
+    "slug": "/",
+    "id": "welcome"
   },
-  "sidebar": "tutorialSidebar",
+  "sidebar": "userdoc",
   "next": {
-    "title": "3.x doc",
-    "permalink": "/generatedata/v3"
+    "title": "index",
+    "permalink": "/generatedata/developerdoc/index"
   }
 }

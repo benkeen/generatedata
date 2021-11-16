@@ -1,0 +1,20 @@
+{
+  "unversionedId": "developerdoc/intro",
+  "id": "developerdoc/intro",
+  "isDocsHomePage": false,
+  "title": "Developer doc",
+  "description": "Coming soon too. Just figurin' out Docusaurus!",
+  "source": "@site/docs/developerdoc/index.md",
+  "sourceDirName": "developerdoc",
+  "slug": "/developerdoc/intro",
+  "permalink": "/generatedata/developerdoc/intro",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/developerdoc/index.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "id": "intro"
+  },
+  "sidebar": "developerdoc"
+}

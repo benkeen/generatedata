@@ -7,15 +7,15 @@
   "source": "@site/docs/version-comparison.md",
   "sourceDirName": ".",
   "slug": "/version-comparison",
-  "permalink": "/generatedata/docs/version-comparison",
+  "permalink": "/generatedata/version-comparison",
   "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/version-comparison.md",
   "tags": [],
   "version": "current",
-  "sidebarPosition": 1,
+  "sidebarPosition": 2,
   "frontMatter": {
-    "sidebar_position": 1,
+    "sidebar_position": 2,
     "pagination_prev": null,
     "pagination_next": null
   },
-  "sidebar": "tutorialSidebar"
+  "sidebar": "userdoc"
 }

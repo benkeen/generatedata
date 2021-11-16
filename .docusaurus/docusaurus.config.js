@@ -15,7 +15,8 @@ export default {
       {
         "docs": {
           "sidebarPath": "/Users/benkeen/generatedata/sidebars.js",
-          "editUrl": "https://github.com/benkeen/generatedata/tree/docs/"
+          "editUrl": "https://github.com/benkeen/generatedata/tree/docs/",
+          "routeBasePath": "/"
         },
         "blog": {
           "showReadingTime": false,
@@ -28,6 +29,17 @@ export default {
     ]
   ],
   "themeConfig": {
+    "colorMode": {
+      "defaultMode": "light",
+      "disableSwitch": false,
+      "respectPrefersColorScheme": false,
+      "switchConfig": {
+        "darkIcon": "🌜",
+        "darkIconStyle": {},
+        "lightIcon": "🌞",
+        "lightIconStyle": {}
+      }
+    },
     "navbar": {
       "title": "generatedata.com",
       "logo": {
@@ -37,15 +49,15 @@ export default {
       "items": [
         {
           "type": "doc",
-          "docId": "intro",
+          "docId": "userdoc/welcome",
           "position": "left",
-          "label": "Installation"
+          "label": "User Doc"
         },
         {
           "type": "doc",
-          "docId": "v3",
+          "docId": "developerdoc/intro",
           "position": "left",
-          "label": "3.x doc"
+          "label": "Developer Doc"
         }
       ],
       "hideOnScroll": false
@@ -57,7 +69,7 @@ export default {
           "title": "Links",
           "items": [
             {
-              "label": "public site",
+              "label": "website",
               "to": "https://generatedata.com"
             },
             {
@@ -69,9 +81,17 @@ export default {
               "to": "https://github.com/benkeen/generatedata/issues"
             }
           ]
+        },
+        {
+          "title": "3.x",
+          "items": [
+            {
+              "label": "3.x documentation",
+              "to": "userdoc/v3"
+            }
+          ]
         }
-      ],
-      "copyright": "Copyright © 2021 generatedata.com, built with Docusaurus."
+      ]
     },
     "prism": {
       "theme": {
@@ -266,17 +286,6 @@ export default {
         ]
       },
       "additionalLanguages": []
-    },
-    "colorMode": {
-      "defaultMode": "light",
-      "disableSwitch": false,
-      "respectPrefersColorScheme": false,
-      "switchConfig": {
-        "darkIcon": "🌜",
-        "darkIconStyle": {},
-        "lightIcon": "🌞",
-        "lightIconStyle": {}
-      }
     },
     "docs": {
       "versionPersistence": "localStorage"

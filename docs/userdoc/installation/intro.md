@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# Installation
+# Intro
 
 Alrighty! Let's get this sucker installed. 
 

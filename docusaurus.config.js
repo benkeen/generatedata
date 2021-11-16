@@ -25,6 +25,7 @@ const config = {
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
 					editUrl: 'https://github.com/benkeen/generatedata/tree/docs/',
+					routeBasePath: '/'
 				},
 				blog: {
 					showReadingTime: false,
@@ -40,6 +41,9 @@ const config = {
 	themeConfig:
 	/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
 		({
+			colorMode: {
+				// disableSwitch: true
+			},
 			navbar: {
 				title: 'generatedata.com',
 				logo: {
@@ -49,15 +53,15 @@ const config = {
 				items: [
 					{
 						type: 'doc',
-						docId: 'intro',
+						docId: 'userdoc/welcome',
 						position: 'left',
-						label: 'Installation',
+						label: 'User Doc',
 					},
 					{
 						type: 'doc',
-						docId: 'v3',
+						docId: 'developerdoc/intro',
 						position: 'left',
-						label: '3.x doc',
+						label: 'Developer Doc',
 					}
 				],
 			},
@@ -68,7 +72,7 @@ const config = {
 						title: 'Links',
 						items: [
 							{
-								label: 'public site',
+								label: 'website',
 								to: 'https://generatedata.com',
 							},
 							{
@@ -79,11 +83,18 @@ const config = {
 								label: 'Report a bug / feature suggestion',
 								to: 'https://github.com/benkeen/generatedata/issues',
 							},
-
 						],
+					},
+					{
+						title: '3.x',
+						items: [
+							{
+								label: '3.x documentation',
+								to: 'userdoc/v3',
+							}
+						]
 					}
-				],
-				copyright: `Copyright © ${new Date().getFullYear()} generatedata.com, built with Docusaurus.`,
+				]
 			},
 			prism: {
 				theme: lightCodeTheme,
