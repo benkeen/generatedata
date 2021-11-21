@@ -1,4 +1,4 @@
-FROM node:12-alpine AS alpine
+FROM node:14-alpine AS alpine
 
 ENV HOME=/home/app/generatedata
 

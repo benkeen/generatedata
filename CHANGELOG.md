@@ -1,5 +1,9 @@
 ## Changelog
 
+- `4.0.9` - Nov 20, 2021
+    - Node updated to 14
+    - German name data - thanks @ntauch!
+    - https://github.com/benkeen/generatedata/milestone/35?closed=1
 - `4.0.8` - Nov 13, 2021
     - additional bug fix for regions, cities and postal code Data Types throwing errors
     - Chilean country names added
