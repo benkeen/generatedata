@@ -12,17 +12,14 @@ import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
 import AboutDialog from '~core/dialogs/about/About.component';
-import { GDLocale } from '~types/general';
 import useOnClickOutside from 'use-onclickoutside';
 import styles from './Footer.scss';
 import { useWindowSize } from 'react-hooks-window-size';
 import C from '~core/constants';
 
 export type FooterProps = {
-	locale: GDLocale;
 	i18n: any;
 	scriptVersion: string;
-	onChangeLocale: (a: any) => void;
 	onGenerate: () => void;
 	onSave: () => void;
 	onSaveNewDataSet: () => void;
@@ -35,7 +32,7 @@ export type FooterProps = {
 };
 
 const Footer = ({
-	i18n, locale, actionButtonsEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage,
+	i18n, actionButtonsEnabled, scriptVersion, onSave, onGenerate, currentPage,
 	currentDataSetId, onSaveNewDataSet, onSaveAs, showTourDialog, customFooterLinks
 }: FooterProps): JSX.Element => {
 	const saveAsButtonRef = React.useRef(null);

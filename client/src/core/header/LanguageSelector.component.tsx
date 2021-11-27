@@ -6,6 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import LanguageIcon from '@material-ui/icons/Language';
 import { Dialog, DialogContent, DialogTitle } from '~components/dialogs';
 import { Tooltip } from '~components/tooltips';
+import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import { GDLocale } from '~types/general';
 import env from '../../../_env';
 import * as styles from '~core/header/Header.scss';
@@ -25,8 +26,6 @@ export type SelectorDialogProps = {
 }
 
 const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, i18n }: SelectorDialogProps): JSX.Element => {
-	// className={currentLocale === currLocale.value ? styles.selectedLocale : ''}
-
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 400 }}>
@@ -40,6 +39,7 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, i18n }: Sel
 							<ListItem
 								button
 								key={currLocale.value}
+								className={currentLocale === currLocale.value ? styles.selectedLocale : ''}
 								onClick={(): void => onSelect(currLocale.value)}>
 								<ListItemText primary={currLocale.label} />
 							</ListItem>
@@ -47,6 +47,7 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, i18n }: Sel
 					</List>
 				</DialogContent>
 			</div>
+			<DialogLoadingSpinner visible={true} />
 		</Dialog>
 	);
 };
@@ -57,7 +58,7 @@ export type LanguageSelectorProps = {
 	availableLocales: GDLocale[];
 }
 
-const LanguageSelector = ({ locale, availableLocales, i18n }: LanguageSelectorProps) => {
+const LanguageSelector = ({ locale, availableLocales, i18n }: LanguageSelectorProps): JSX.Element | null => {
 	const [dialogVisible, setSelectorDialogVisible] = React.useState(false);
 
 	const onShowSelector = useCallback(() => setSelectorDialogVisible(true), []);

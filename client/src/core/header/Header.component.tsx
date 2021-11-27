@@ -6,7 +6,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import LoginDialog from '../dialogs/login/Login.container';
 import PasswordResetDialog from '../dialogs/passwordReset/PasswordReset.container';
 import GeneratorControls from './GeneratorControls.container';
-import { GDLocale } from '~types/general';
 import C from '../constants';
 import HeaderLinks, { MobileLinks } from './HeaderLinks.component';
 import { getHeaderLinks } from '~utils/routeUtils';

@@ -10,6 +10,7 @@ declare namespace HeaderScssNamespace {
     localeSelector: string;
     logoutLink: string;
     selected: string;
+    selectedLocale: string;
     title: string;
     userAccount: string;
   }

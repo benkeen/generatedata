@@ -12,8 +12,6 @@ declare namespace FooterScssNamespace {
     saveButtonAs: string;
     saveButtonAsMainBtn: string;
     scriptVersion: string;
-    selectLocale: string;
-    selectedLocale: string;
     showTourLink: string;
     tourBtn: string;
     visible: string;

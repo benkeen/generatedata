@@ -72,21 +72,6 @@
 	}
 }
 
-div.selectLocale {
-	width: 130px;
-	display: inline-block;
-}
-
-div.selectedLocale {
-	background-color: $primary-pale-bg;
-	&:hover {
-		background-color: $primary-pale-bg;
-	}
-	span {
-		font-weight: bold;
-	}
-}
-
 .scriptVersion a {
 	margin-right: 30px;
 	color: #333333;

@@ -22,7 +22,11 @@ export const MediumSpinner = (props: any): any => (
 
 export const DefaultSpinner = (): JSX.Element => <CircularProgress />;
 
-export const DialogLoadingSpinner = ({ visible }: any): JSX.Element | null => {
+export type DialogLoadingSpinnerProps = {
+	visible: boolean;
+};
+
+export const DialogLoadingSpinner = ({ visible }: DialogLoadingSpinnerProps): JSX.Element | null => {
 	if (!visible) {
 		return null;
 	}
