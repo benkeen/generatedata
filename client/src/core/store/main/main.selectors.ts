@@ -4,6 +4,7 @@ import { ColSortDir } from '~components/tables/TableHeader.component';
 export const getAppStateVersion = (state: Store): number => state.main.appStateVersion;
 export const getAuthMethod = (state: Store): AuthMethod => state.main.authMethod;
 export const getLocale = (state: Store): GDLocale => state.main.locale;
+export const isLocaleFileLoading = (state: Store): boolean => state.main.localeFileLoading;
 export const localeFileLoaded = (state: Store): boolean => state.main.localeFileLoaded;
 export const shouldShowLoginDialog = (state: Store): boolean => state.main.showLoginDialog;
 export const shouldShowPasswordResetDialog = (state: Store): boolean => state.main.showPasswordResetDialog;

@@ -10,11 +10,11 @@ import * as mainActions from '../store/main/main.actions';
 const mapStateToProps = (state: any): Partial<LanguageSelectorProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	locale: mainSelectors.getLocale(state),
-	availableLocales: env.availableLocales
+	availableLocales: env.availableLocales,
+	isLocaleFileLoading: mainSelectors.isLocaleFileLoading(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<LanguageSelectorProps> => ({
-	// @ts-ignore-line
 	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
 });
 

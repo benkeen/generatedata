@@ -22,12 +22,14 @@ export type SelectorDialogProps = {
 	currentLocale: GDLocale;
 	onSelect: (locale: GDLocale) => void;
 	onClose: () => void;
+	loading: boolean;
+	onExited: () => void;
 	i18n: any;
 }
 
-const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, i18n }: SelectorDialogProps): JSX.Element => {
+const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, loading, i18n }: SelectorDialogProps): JSX.Element => {
 	return (
-		<Dialog onClose={onClose} open={visible}>
+		<Dialog onClose={onClose} open={visible} TransitionProps={{ onExited }}>
 			<div style={{ width: 400 }}>
 				<DialogTitle onClose={onClose} className={styles.title}>
 					{i18n.selectLanguage}
@@ -47,7 +49,7 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, i18n }: Sel
 					</List>
 				</DialogContent>
 			</div>
-			<DialogLoadingSpinner visible={true} />
+			<DialogLoadingSpinner visible={loading} />
 		</Dialog>
 	);
 };
@@ -56,17 +58,28 @@ export type LanguageSelectorProps = {
 	i18n: any;
 	locale: GDLocale;
 	availableLocales: GDLocale[];
+	onChangeLocale: (locale: GDLocale) => void;
+	isLocaleFileLoading: boolean;
 }
 
-const LanguageSelector = ({ locale, availableLocales, i18n }: LanguageSelectorProps): JSX.Element | null => {
+const LanguageSelector = ({ locale, availableLocales, onChangeLocale, isLocaleFileLoading, i18n }: LanguageSelectorProps): JSX.Element | null => {
 	const [dialogVisible, setSelectorDialogVisible] = React.useState(false);
+	const [lastI18n, setLastI18n] = React.useState(i18n);
 
 	const onShowSelector = useCallback(() => setSelectorDialogVisible(true), []);
 	const onHideSelector = useCallback(() => setSelectorDialogVisible(false), []);
+	const updateLastI18n = useCallback(() => setLastI18n(i18n), []);
 
 	if (availableLocales.length < 1) {
 		return null;
 	}
+
+	// note: this actually runs on render as well, but it makes no difference
+	React.useEffect(() => {
+		if (!isLocaleFileLoading) {
+			onHideSelector();
+		}
+	}, [isLocaleFileLoading]);
 
 	return (
 		<li className={styles.localeSelector} key="languageSelector">
@@ -80,9 +93,11 @@ const LanguageSelector = ({ locale, availableLocales, i18n }: LanguageSelectorPr
 			<SelectorDialog
 				visible={dialogVisible}
 				currentLocale={locale}
-				onSelect={onShowSelector}
+				onSelect={onChangeLocale}
 				onClose={onHideSelector}
-				i18n={i18n}
+				i18n={lastI18n}
+				loading={isLocaleFileLoading}
+				onExited={updateLastI18n}
 			/>
 		</li>
 	);

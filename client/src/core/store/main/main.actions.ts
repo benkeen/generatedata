@@ -27,18 +27,22 @@ export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
 	}
 });
 
+export const LOCALE_FILE_LOADING = 'LOCALE_FILE_LOADING';
+export const setLocaleFileLoading = (): GDAction => ({ type: LOCALE_FILE_LOADING });
+
 export const selectLocale = (locale: GDLocale): any => (dispatch: Dispatch): any => {
+	dispatch(setLocaleFileLoading());
+
 	window.gd = {};
 	window.gd.localeLoaded = (strings: any): void => {
 		langUtils.setLocale(locale, strings);
 		dispatch(setLocaleFileLoaded(locale));
+		Cookies.set('lang', locale);
 	};
 	const s = document.createElement('script');
 	const filename = localeFileMap[locale];
 	s.src = `./${filename}`;
 	document.body.appendChild(s);
-
-	Cookies.set('lang', locale);
 };
 
 export const RESET_STORE = 'RESET_STORE';

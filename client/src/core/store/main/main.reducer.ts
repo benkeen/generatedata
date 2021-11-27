@@ -9,6 +9,7 @@ import { ColSortDir } from '~components/tables/TableHeader.component';
 export type MainState = {
 	appStateVersion: number;
 	authMethod: AuthMethod;
+	localeFileLoading: boolean;
 	localeFileLoaded: boolean;
 	locale: GDLocale;
 	showLoginDialog: boolean;
@@ -33,6 +34,7 @@ export type MainState = {
 export const initialState: MainState = {
 	appStateVersion: C.APP_STATE_VERSION,
 	authMethod: AuthMethod.default,
+	localeFileLoading: false,
 	localeFileLoaded: false,
 	locale: env.defaultLocale,
 	showLoginDialog: false,
@@ -63,9 +65,14 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			});
 			break;
 
+		case actions.LOCALE_FILE_LOADING:
+			draft.localeFileLoading = true;
+			break;
+
 		case actions.LOCALE_FILE_LOADED:
 			draft.locale = action.payload.locale;
 			draft.localeFileLoaded = true;
+			draft.localeFileLoading = false;
 			break;
 
 		case actions.SET_LOGIN_DIALOG_VISIBILITY:
