@@ -1,18 +1,13 @@
-import React, { useCallback, useState } from 'react';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Grow from '@material-ui/core/Grow';
 import Popper from '@material-ui/core/Popper';
-import LanguageIcon from '@material-ui/icons/Language';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import SaveIcon from '@material-ui/icons/Save';
 import GearIcon from '@material-ui/icons/Settings';
 import Person from '@material-ui/icons/EmojiPeople';
-import { HtmlTooltip, Tooltip } from '~components/tooltips';
+import { Tooltip } from '~components/tooltips';
 import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
@@ -35,99 +30,24 @@ export type FooterProps = {
 	actionButtonsEnabled: boolean;
 	currentPage: string;
 	currentDataSetId: number | null;
-	availableLocales: GDLocale[];
 	showTourDialog: (history: any) => void;
 	customFooterLinks: JSX.Element[];
 };
 
-// TODO move
-const allLocaleOptions = [
-	{ value: 'ar', label: 'عربى' },
-	{ value: 'de', label: 'Deutsch' },
-	{ value: 'en', label: 'English' },
-	{ value: 'es', label: 'Español' },
-	{ value: 'fr', label: 'Français' },
-	{ value: 'nl', label: 'Nederlands' },
-	{ value: 'pt', label: 'Português' },
-	{ value: 'ja', label: '日本人' },
-	{ value: 'hi', label: 'हिंदी' },
-	{ value: 'ta', label: 'தமிழ்' },
-	{ value: 'zh', label: '中文' }
-];
-
-const useListStyles = makeStyles(() =>
-	createStyles({
-		root: {
-			width: 130
-		}
-	})
-);
-
 const Footer = ({
-	i18n, locale, actionButtonsEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales,
+	i18n, locale, actionButtonsEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage,
 	currentDataSetId, onSaveNewDataSet, onSaveAs, showTourDialog, customFooterLinks
 }: FooterProps): JSX.Element => {
-	const popoverRef = React.useRef(null);
 	const saveAsButtonRef = React.useRef(null);
 	const anchorRef = React.useRef<HTMLDivElement>(null);
 	const [saveAsMenuOpen, setSaveAsMenuOpen] = useState(false);
 	const [showAboutDialog, setAboutDialogVisibility] = useState(false);
-	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
-	const listClasses = useListStyles();
 
 	const windowSize = useWindowSize();
-
-	useOnClickOutside(popoverRef, () => {
-		setLocaleTooltipVisibility(false);
-	});
 
 	useOnClickOutside(saveAsButtonRef, () => {
 		setSaveAsMenuOpen(false);
 	});
-
-	const onClickLang = useCallback(() => {
-		setLocaleTooltipVisibility(true);
-	}, []);
-
-	const getLocaleSelector = (): JSX.Element | null => {
-		if (availableLocales.length < 1) {
-			return null;
-		}
-
-		return (
-			<li className={styles.langIconEl}>
-				<HtmlTooltip
-					arrow
-					open={localeTooltipVisible}
-					placement="top"
-					disableFocusListener
-					disableHoverListener
-					disableTouchListener
-					interactive
-					title={
-						<div className={listClasses.root} ref={popoverRef}>
-							<List disablePadding>
-								{allLocaleOptions.map((currLocale: any): JSX.Element => (
-									<ListItem
-										button
-										key={currLocale.value}
-										className={locale === currLocale.value ? styles.selectedLocale : ''}
-										onClick={(): void => onChangeLocale(currLocale.value)}>
-										<ListItemText primary={currLocale.label} />
-									</ListItem>
-								))}
-							</List>
-						</div>
-					}
-				>
-					<LanguageIcon
-						fontSize="large"
-						onClick={onClickLang}
-					/>
-				</HtmlTooltip>
-			</li>
-		);
-	};
 
 	// we always show the login button. It'll show a "you must login in" dialog if they're not logged in/registered
 	const getSaveButton = (): JSX.Element | null => {
@@ -221,7 +141,6 @@ const Footer = ({
 								</span>
 							</Tooltip>
 						</li>
-						{getLocaleSelector()}
 						<li className={styles.showTourLink}>
 							<Button className={styles.tourBtn} onClick={showTourDialog}>
 								<Person />

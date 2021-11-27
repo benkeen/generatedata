@@ -22,13 +22,18 @@ const envSettings = {
 	defaultExportType: process.env.GD_DEFAULT_EXPORT_TYPE,
 	apiEnabled: process.env.GD_REST_API_ENABLED === "true",
 	availableLocales: process.env.GD_LOCALES.split(','),
+	allSupportedLocales: process.env.GD_ALL_SUPPORTED_LOCALES.split('|').reduce((acc, localeInfo) => {
+		const [shortCode, label] = localeInfo.split(',');
+		acc[shortCode] = label;
+		return acc;
+	}, {}),
 	googleAuthClientId: process.env.GD_GOOGLE_AUTH_CLIENT_ID,
 	jwtDurationMins: parseInt(process.env.GD_JWT_LIFESPAN_MINS)
 };
 
 const envSettingsFile = `${banner}
 
-import { GDLocale } from '~types/general';
+import { GDLocale, GDLocaleList } from '~types/general';
 import { ExportTypeFolder } from './_plugins';
 
 export type AppType = 'login' | 'open' | 'closed' | 'prod';
@@ -43,6 +48,7 @@ export type EnvSettings = {
 	defaultExportType: ExportTypeFolder;
 	apiEnabled: boolean;
 	availableLocales: GDLocale[];
+	allSupportedLocales: GDLocaleList;
 	googleAuthClientId: string;
 	jwtDurationMins: number;
 };

@@ -124,11 +124,35 @@
 	color: $primary-color;
 }
 
-div ul li.logoutLink {
-	margin-right: 0;
+div ul {
+	li.logoutLink {
+		margin-right: 0;
 
-	button {
-		font-size: 22px;
+		button {
+			font-size: 22px;
+		}
+	}
+	li.localeSelector {
+		button {
+			font-size: 22px;
+		}
+	}
+}
+
+.title {
+	h5 {
+		display: flex;
+		align-items: center;
+	}
+
+	.flags {
+		background-image: url("./images/flags.png");
+		background-size: contain;
+		width: 122px;
+		height: 22px;
+		display: inline-block;
+		margin-left: 15px;
+		margin-top: 2px;
 	}
 }
 

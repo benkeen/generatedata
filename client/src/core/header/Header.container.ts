@@ -10,7 +10,6 @@ import * as mainActions from '../store/main/main.actions';
 const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	currentPage: mainSelectors.getCurrentPage(state),
-	locale: mainSelectors.getLocale(state),
 	isLoggedIn: mainSelectors.isLoggedIn(state),
 	accountType: accountSelectors.getAccountType(state),
 	isOnloadAuthDetermined: mainSelectors.isOnloadAuthDetermined(state),

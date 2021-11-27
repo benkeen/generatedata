@@ -19,7 +19,6 @@ export type HeaderProps = {
 	isLoggedIn: boolean;
 	accountType: AccountType;
 	showLoginDialog: () => void;
-	locale: GDLocale;
 	i18n: any;
 	onLogout: () => void;
 	isAuth: boolean;

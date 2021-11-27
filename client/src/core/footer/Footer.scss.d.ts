@@ -6,7 +6,6 @@ declare namespace FooterScssNamespace {
     footer: string;
     footerControls: string;
     generateButton: string;
-    langIconEl: string;
     saveAsRow: string;
     saveBtnArrow: string;
     saveButton: string;

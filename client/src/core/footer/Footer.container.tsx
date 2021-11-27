@@ -1,6 +1,5 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import env from '../../../_env';
 import Footer, { FooterProps } from './Footer.component';
 import { GDLocale } from '~types/general';
 import * as selectors from '../store/generator/generator.selectors';
@@ -24,7 +23,6 @@ const mapStateToProps = (state: any): Partial<FooterProps> => {
 		actionButtonsEnabled: selectors.hasData(state) && isExportTypeValid(exportType, exportTypeSettings),
 		currentPage: mainSelectors.getCurrentPage(state),
 		currentDataSetId: selectors.getCurrentDataSetId(state),
-		availableLocales: env.availableLocales,
 		customFooterLinks: getCustomFooterLinks()
 	};
 };

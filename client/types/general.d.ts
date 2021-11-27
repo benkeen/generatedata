@@ -30,6 +30,11 @@ export const enum AuthMethod {
 
 export type GDLocale = 'ar' | 'en' | 'fr' | 'de' | 'es' | 'ja' | 'hi' | 'nl' | 'pt' | 'ta' | 'zh';
 
+// TODO rename and combine
+export type GDLocaleList = {
+	[locale in GDLocale]: string;
+}
+
 export type LocaleFileMap = {
 	[locale in GDLocale]: string;
 };

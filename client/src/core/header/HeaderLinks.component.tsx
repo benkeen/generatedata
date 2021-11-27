@@ -6,6 +6,7 @@ import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
 import { GDCustomHeaderLink, GDHeaderLink } from '~types/general';
 import { getGeneratorRoute } from '~utils/routeUtils';
 import { Tooltip } from '~components/tooltips';
+import LanguageSelector from './LanguageSelector.container';
 import * as styles from './Header.scss';
 
 export type HeaderLinksProps = {
@@ -82,7 +83,10 @@ export const MobileLinks = ({ currentPage, headerLinks, showLoginDialog, onLogou
 	});
 
 	return (
-		<>{links}</>
+		<>
+			{links}
+			<LanguageSelector />
+		</>
 	);
 };
 
@@ -157,7 +161,10 @@ export const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profile
 	});
 
 	return (
-		<>{links}</>
+		<>
+			{links}
+			<LanguageSelector />
+		</>
 	);
 };
 

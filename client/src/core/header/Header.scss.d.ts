@@ -4,10 +4,13 @@ declare namespace HeaderScssNamespace {
     current: string;
     divider: string;
     fadein: string;
+    flags: string;
     header: string;
     headerLinks: string;
+    localeSelector: string;
     logoutLink: string;
     selected: string;
+    title: string;
     userAccount: string;
   }
 }
