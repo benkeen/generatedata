@@ -20,6 +20,7 @@ module.exports = (env, argv) => {
 
 		output: {
 			path: path.join(__dirname, 'dist'),
+			publicPath: '/',
 			chunkFilename: mode === 'development' ? '[name].js' : '[name]-[hash].js',
 			filename: mode === 'development' ? '[name].js' : '[name]-[hash].js'
 		},
@@ -72,9 +73,7 @@ module.exports = (env, argv) => {
 			new HtmlWebpackPlugin({
 				template: path.join(__dirname, 'src/index.html')
 			}),
-			new Dotenv({
-
-			})
+			new Dotenv({})
 		],
 
 		resolve: {
@@ -94,10 +93,6 @@ module.exports = (env, argv) => {
 			}
 		},
 
-		// node: {
-		// 	fs: 'empty'
-		// },
-
 		devtool: (mode === 'development') ? 'source-map' : false
 	};
 
@@ -108,7 +103,6 @@ module.exports = (env, argv) => {
 			// publicPath: 'http://localhost:9000',
 			port: process.env.GD_WEB_SERVER_PORT,
 			open: true
-			// host: '0.0.0.0', // needed when running within docker container
 		};
 
 		// just uncomment this & the include above to auto-generate the bundle analyzer treemap. It'll show up when

@@ -37,6 +37,7 @@ const checkState = async (state: any): Promise<any> => {
 	}
 };
 
+
 const App = withRouter(({ history }: any) => {
 	useEffect(() => {
 		initRouteListener(history);
@@ -47,9 +48,29 @@ const App = withRouter(({ history }: any) => {
 	return (
 		<ErrorBoundary>
 			<Page>
-				<Switch>
-					{routes.map(({ path, component: Component }, index) => <Route key={index} path={path}><Component /></Route>)}
-				</Switch>
+				<Route path="/:lang?"
+					children={((args) => {
+						const lang = args.match?.params?.lang;
+						let localizedRoutes = routes;
+
+						if (lang && lang) {
+							console.log("lang: ", lang, routes);
+							localizedRoutes = routes.map((route) => ({
+								...route,
+								path: `/${lang}${route.path}`
+							}));
+						}
+
+						console.log(localizedRoutes);
+
+						return (
+							<Switch>
+								{localizedRoutes.map(({ path, component: Component }, index) => (
+									<Route key={index} path={path}><Component /></Route>
+								))}
+							</Switch>
+						);
+					})} />
 				<Toast />
 				<SaveDataSetDialog />
 			</Page>
