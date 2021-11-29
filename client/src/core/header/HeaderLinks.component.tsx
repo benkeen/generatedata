@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
-import { GDCustomHeaderLink, GDHeaderLink } from '~types/general';
+import { GDCustomHeaderLink, GDHeaderLink, GDLocale } from '~types/general';
 import { getGeneratorRoute } from '~utils/routeUtils';
 import { Tooltip } from '~components/tooltips';
 import LanguageSelector from './LanguageSelector.container';
 import * as styles from './Header.scss';
 
 export type HeaderLinksProps = {
+	locale: GDLocale;
 	currentPage: string;
 	headerLinks: GDHeaderLink[];
 	showLoginDialog: () => void;
@@ -28,7 +29,7 @@ const getClassName = (path: string, currentPage: string): string => {
 };
 
 
-export const MobileLinks = ({ currentPage, headerLinks, showLoginDialog, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
+export const MobileLinks = ({ locale, currentPage, headerLinks, showLoginDialog, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
 	const links: any = [];
 	const generatorPath = getGeneratorRoute();
 
@@ -90,22 +91,24 @@ export const MobileLinks = ({ currentPage, headerLinks, showLoginDialog, onLogou
 	);
 };
 
-export const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
+export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
 	const links: any = [];
 	const generatorPath = getGeneratorRoute();
+
+	const getLink = (link: string) => (locale === 'en') ? link : `/${locale}${link}`;
 
 	headerLinks.forEach((headerLink, index) => {
 		if (typeof headerLink === 'object' && headerLink.path) {
 			const link = headerLink as GDCustomHeaderLink;
 			links.push(
 				<li key={link.path} className={getClassName(link.path, currentPage)}>
-					<Link to={link.path}>{i18n[link.labelI18nKey]}</Link>
+					<Link to={getLink(link.path)}>{i18n[link.labelI18nKey]}</Link>
 				</li>
 			);
 		} else if (headerLink === 'generator') {
 			links.push(
 				<li key="generator" className={getClassName(generatorPath, currentPage)}>
-					<Link to={generatorPath}>{i18n.generator}</Link>
+					<Link to={getLink(generatorPath)}>{i18n.generator}</Link>
 				</li>
 			);
 		} else if (headerLink === 'separator') {
@@ -113,7 +116,7 @@ export const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profile
 		} else if (headerLink === 'dataSets') {
 			links.push(
 				<li key="dataSets" className={getClassName('datasets', currentPage)}>
-					<Link to="/datasets">{i18n.dataSets}</Link>
+					<Link to={getLink('/datasets')}>{i18n.dataSets}</Link>
 				</li>
 			);
 		} else if (headerLink === 'userAccount') {
@@ -122,13 +125,13 @@ export const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profile
 
 			links.push(
 				<li key="account" className={classes}>
-					{userImage} <Link to="/account">{i18n.yourAccount}</Link>
+					{userImage} <Link to={getLink('/account')}>{i18n.yourAccount}</Link>
 				</li>
 			);
 		} else if (headerLink === 'accounts') {
 			links.push(
 				<li key="accounts" className={getClassName('accounts', currentPage)}>
-					<Link to="/accounts">{i18n.accounts}</Link>
+					<Link to={getLink('/accounts')}>{i18n.accounts}</Link>
 				</li>
 			);
 		} else if (headerLink === 'logout') {
@@ -146,7 +149,7 @@ export const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profile
 		} else if (headerLink === 'register') {
 			links.push(
 				<li key="register" className={getClassName('register', currentPage)}>
-					<Link to="/register">{i18n.register}</Link>
+					<Link to={getLink('/register')}>{i18n.register}</Link>
 				</li>
 			);
 		} else if (headerLink === 'loginDialog') {
@@ -154,7 +157,7 @@ export const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profile
 		} else if (headerLink === 'loginPage') {
 			links.push(
 				<li key="loginPage" className={getClassName('loginPage', currentPage)}>
-					<Link to='/login'>{i18n.login}</Link>
+					<Link to={getLink('/login')}>{i18n.login}</Link>
 				</li>
 			);
 		}

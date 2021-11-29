@@ -1,4 +1,5 @@
 import { GDLocale } from '~types/general';
+import env from '../../_env';
 
 // standalone location for the selected locale. Keeping this out of redux lets us just import it wherever
 let currentLocale: GDLocale;
@@ -39,3 +40,26 @@ export const getI18n = (i18nString: string, placeholders: any[]): any => {
 
 // use this getting a string
 export const getI18nString = (i18nString: string, placeholders: any[]): string => getI18n(i18nString, placeholders).join('');
+
+// looks at the current URL and figures out what locale is being used
+export const getCurrentPageLocale = (): GDLocale => {
+	const availableLocaleMap = getLocaleMap();
+	const path = window.location.pathname.replace(/^\//, '').split('/');
+
+	let locale = 'en';
+	if (path.length > 0 && availableLocaleMap[path[0]]) {
+		locale = path[0];
+	}
+
+	return locale as GDLocale;
+};
+
+
+const localeMap = env.availableLocales.reduce((map: any, locale) => {
+	map[locale] = true;
+	return map;
+}, {});
+
+
+// just for O(1) lookup
+export const getLocaleMap = (): any => localeMap;

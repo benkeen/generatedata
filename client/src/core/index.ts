@@ -9,6 +9,7 @@ import { requestCountryNames } from '~store/generator/generator.actions';
 import { DataTypeFolder } from '../../_plugins';
 import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
 import { initAuthVendors } from '~utils/authUtils';
+import { getCurrentPageLocale } from '~utils/langUtils';
 import '../../_imports';
 import { AuthMethod } from '~types/general';
 
@@ -20,15 +21,17 @@ export const init = (): void => {
 
 	const state = store.getState();
 
+	const pageLocale = getCurrentPageLocale();
+
 	// initialize any external vendors (Google, Github, Facebook) that are set up for login
 	initAuthVendors();
 
 	const isLoggedIn = mainSelectors.isLoggedIn(state);
-	const locale = mainSelectors.getLocale(state);
+	// const locale = mainSelectors.getLocale(state);
 	const exportType = selectors.getExportType(state);
 	const numRows = selectors.getNumRows(state);
 
-	store.dispatch(mainActions.selectLocale(locale));
+	store.dispatch(mainActions.selectLocale(pageLocale));
 	store.dispatch(actions.onSelectExportType(exportType, false));
 
 	const loadCountryNames = selectors.currentDataSetNeedsCountryNames(state);

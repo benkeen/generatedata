@@ -37,6 +37,9 @@ export const selectLocale = (locale: GDLocale): any => (dispatch: Dispatch): any
 	window.gd.localeLoaded = (strings: any): void => {
 		langUtils.setLocale(locale, strings);
 		dispatch(setLocaleFileLoaded(locale));
+
+		// 
+
 		Cookies.set('lang', locale);
 	};
 	const s = document.createElement('script');

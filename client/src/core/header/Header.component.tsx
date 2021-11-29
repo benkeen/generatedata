@@ -12,8 +12,10 @@ import { getHeaderLinks } from '~utils/routeUtils';
 import { AccountType } from '~types/account';
 import sharedStyles from '../../styles/shared.scss';
 import styles from './Header.scss';
+import { GDLocale } from '~types/general';
 
 export type HeaderProps = {
+	locale: GDLocale;
 	currentPage: string;
 	isLoggedIn: boolean;
 	accountType: AccountType;
@@ -26,7 +28,7 @@ export type HeaderProps = {
 };
 
 const Header = ({
-	i18n, showLoginDialog, profileImage, isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
+	i18n, locale, showLoginDialog, profileImage, isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const windowSize = useWindowSize();
@@ -57,6 +59,7 @@ const Header = ({
 							onClose={handleClose}
 						>
 							<MobileLinks
+								locale={locale}
 								profileImage={profileImage}
 								currentPage={currentPage}
 								headerLinks={headerLinks}
@@ -74,6 +77,7 @@ const Header = ({
 			<ul className={styles.headerLinks}>
 				{isOnloadAuthDetermined ?
 					<HeaderLinks
+						locale={locale}
 						profileImage={profileImage}
 						currentPage={currentPage}
 						headerLinks={headerLinks}
