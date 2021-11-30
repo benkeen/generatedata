@@ -25,7 +25,7 @@ export type FooterProps = {
 	onSaveNewDataSet: () => void;
 	onSaveAs: () => void;
 	actionButtonsEnabled: boolean;
-	currentPage: string;
+	currentPage: string; // isGeneratorPage?
 	currentDataSetId: number | null;
 	showTourDialog: (history: any) => void;
 	customFooterLinks: JSX.Element[];

@@ -88,12 +88,15 @@ export const HIDE_ACTIVITY_PANEL = 'HIDE_ACTIVITY_PANEL';
 export const hideActivityPanel = (): GDAction => ({ type: HIDE_ACTIVITY_PANEL });
 
 export const SHOW_ACTIVITY_PANEL = 'SHOW_ACTIVITY_PANEL';
-export const showActivityPanel = (packetId: string, history: any): GDAction => {
-	history.push(getGeneratorRoute());
-	return {
+export const showActivityPanel = (packetId: string, history: any) => (dispatch: Dispatch, getState: any): void => {
+	const state = getState();
+	const locale = mainSelectors.getLocale(state);
+
+	history.push(getGeneratorRoute(locale));
+	dispatch({
 		type: SHOW_ACTIVITY_PANEL,
 		payload: { packetId }
-	};
+	});
 };
 
 export const CHANGE_SPEED = 'CHANGE_SPEED';

@@ -13,6 +13,7 @@ import { formatUnixTime } from '~utils/dateUtils';
 import { getGeneratorRoute } from '~utils/routeUtils';
 import { useHistory } from 'react-router';
 import { getFormattedNum } from '~utils/numberUtils';
+import { GDLocale } from '~types/general';
 
 const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 	<div className={styles.row}>
@@ -32,6 +33,7 @@ const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 );
 
 export type DataSetsProps = {
+	locale: GDLocale;
 	onLoadDataSet: (dataSet: DataSetListItem) => void;
 	className: string;
 	i18n: any;
@@ -40,7 +42,7 @@ export type DataSetsProps = {
 // to be moved to a user setting at some point
 const NUM_PER_PAGE = 10;
 
-const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.Element | null => {
+const DataSets = ({ onLoadDataSet, locale, i18n, className = '' }: DataSetsProps): JSX.Element | null => {
 	const history = useHistory();
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [currentPage, setCurrentPage] = useState(1);
@@ -60,7 +62,7 @@ const DataSets = ({ onLoadDataSet, i18n, className = '' }: DataSetsProps): JSX.E
 
 	const loadDataSet = (dataSet: DataSetListItem): void => {
 		onLoadDataSet(dataSet);
-		history.push(getGeneratorRoute());
+		history.push(getGeneratorRoute(locale));
 	};
 
 	const numItemsOnPage = data?.dataSets?.results?.length || 0;

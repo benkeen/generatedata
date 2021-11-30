@@ -3,7 +3,7 @@ import AccountPage from '~core/account/Account.container';
 import DataSetsPage from '~core/account/dataSets/DataSets.container';
 import LoginPage from '~core/auth/loginPage/LoginPage.container';
 import AccountsPage from '~core/accounts/Accounts.container';
-import { GDHeaderLink, GDRoute } from '~types/general';
+import { GDHeaderLink, GDLocale, GDRoute } from '~types/general';
 import { AccountType } from '~types/account';
 import { PAGE_CHANGE } from '~store/main/main.actions';
 import C from '../core/constants';
@@ -57,7 +57,14 @@ export const getRoutes = (): GDRoute[] => {
 	return routes;
 };
 
-export const getGeneratorRoute = (): string => process.env.GD_GENERATOR_PATH || '';
+export const getGeneratorRoute = (locale: GDLocale): string => {
+	let path = process.env.GD_GENERATOR_PATH || '';
+	if (locale !== 'en') {
+		path = `/${locale}${path}`;
+	}
+
+	return path;
+};
 
 export interface CustomHeaderLinkGetter {
 	(isLoggedIn: boolean, accountType: AccountType): GDHeaderLink[];
@@ -123,6 +130,8 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 
 export const updateBodyClass = (store: any, pathname: string): void => {
 	let pageId = pathname.replace('/', '');
+
+	// TODO or pageId === any available locale
 	if (pageId === '') {
 		const generatorPath = process.env.GD_GENERATOR_PATH;
 		pageId = generatorPath === '/generator' ? 'home' : 'generator';
@@ -137,4 +146,11 @@ export const updateBodyClass = (store: any, pathname: string): void => {
 			page: location.pathname
 		}
 	});
+};
+
+// TODO
+export const isGeneratorPage = (): boolean => { // page: string, locale: GDLocale
+	//process.env.GD_GENERATOR_PATH
+
+	return false;
 };

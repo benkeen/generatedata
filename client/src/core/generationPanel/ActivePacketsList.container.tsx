@@ -1,4 +1,4 @@
-import { Action, Dispatch } from 'redux';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../store/packets/packets.actions';
 import * as selectors from '../store/packets/packets.selectors';
@@ -9,7 +9,8 @@ const mapStateToProps = (state: any): Partial<ActivePacketsListProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<ActivePacketsListProps> => ({
-	openPacket: (packetId: string, history: any): Action => dispatch(actions.showActivityPanel(packetId, history))
+	// @ts-ignore-line
+	openPacket: (packetId: string, history: any): any => dispatch(actions.showActivityPanel(packetId, history))
 });
 
 export default connect(

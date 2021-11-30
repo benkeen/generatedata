@@ -10,6 +10,7 @@ import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import { GDLocale } from '~types/general';
 import env from '../../../_env';
 import * as styles from '~core/header/Header.scss';
+import { useHistory } from 'react-router';
 
 
 const allLocaleOptions = Object.keys(env.allSupportedLocales).map((shortCode) => ({
@@ -20,7 +21,7 @@ const allLocaleOptions = Object.keys(env.allSupportedLocales).map((shortCode) =>
 export type SelectorDialogProps = {
 	visible: boolean;
 	currentLocale: GDLocale;
-	onSelect: (locale: GDLocale) => void;
+	onSelect: (locale: GDLocale, history: any) => void;
 	onClose: () => void;
 	loading: boolean;
 	onExited: () => void;
@@ -28,6 +29,8 @@ export type SelectorDialogProps = {
 }
 
 const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, loading, i18n }: SelectorDialogProps): JSX.Element => {
+	const history = useHistory();
+
 	return (
 		<Dialog onClose={onClose} open={visible} TransitionProps={{ onExited }}>
 			<div style={{ width: 400 }}>
@@ -42,7 +45,7 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, l
 								button
 								key={currLocale.value}
 								className={currentLocale === currLocale.value ? styles.selectedLocale : ''}
-								onClick={(): void => onSelect(currLocale.value)}>
+								onClick={(): void => onSelect(currLocale.value, history)}>
 								<ListItemText primary={currLocale.label} />
 							</ListItem>
 						))}
@@ -58,7 +61,7 @@ export type LanguageSelectorProps = {
 	i18n: any;
 	locale: GDLocale;
 	availableLocales: GDLocale[];
-	onChangeLocale: (locale: GDLocale) => void;
+	onChangeLocale: (locale: GDLocale, history: any) => void;
 	isLocaleFileLoading: boolean;
 }
 
@@ -68,7 +71,7 @@ const LanguageSelector = ({ locale, availableLocales, onChangeLocale, isLocaleFi
 
 	const onShowSelector = useCallback(() => setSelectorDialogVisible(true), []);
 	const onHideSelector = useCallback(() => setSelectorDialogVisible(false), []);
-	const updateLastI18n = useCallback(() => setLastI18n(i18n), []);
+	const updateLastI18n = (): void => setLastI18n(i18n);
 
 	if (availableLocales.length < 1) {
 		return null;
@@ -83,7 +86,7 @@ const LanguageSelector = ({ locale, availableLocales, onChangeLocale, isLocaleFi
 
 	return (
 		<li className={styles.localeSelector} key="languageSelector">
-			<Tooltip title={i18n.selectLanguage} placement="bottom" arrow>
+			<Tooltip title={lastI18n.selectLanguage} placement="bottom" arrow>
 				<span>
 					<IconButton aria-label="close" size="small" onClick={onShowSelector}>
 						<LanguageIcon fontSize="inherit" />
@@ -102,6 +105,5 @@ const LanguageSelector = ({ locale, availableLocales, onChangeLocale, isLocaleFi
 		</li>
 	);
 };
-
 
 export default LanguageSelector;

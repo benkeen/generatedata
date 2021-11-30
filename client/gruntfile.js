@@ -137,9 +137,9 @@ module.exports = function (grunt) {
 
 	const generateI18nHashMap = (content) => {
 		const filename = `./_localeFileMap.ts`;
-		const tsContent = `import { LocaleFileMap } from '~types/general';
+		const tsContent = `import { GDLocaleMap } from '~types/general';
 
-export const localeFileMap: LocaleFileMap = ${JSON.stringify(content, null, '\t')};`;
+export const localeFileMap: GDLocaleMap = ${JSON.stringify(content, null, '\t')};`;
 		fs.writeFileSync(filename, tsContent);
 	};
 

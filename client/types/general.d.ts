@@ -30,14 +30,9 @@ export const enum AuthMethod {
 
 export type GDLocale = 'ar' | 'en' | 'fr' | 'de' | 'es' | 'ja' | 'hi' | 'nl' | 'pt' | 'ta' | 'zh';
 
-// TODO rename and combine
-export type GDLocaleList = {
+export type GDLocaleMap = {
 	[locale in GDLocale]: string;
 }
-
-export type LocaleFileMap = {
-	[locale in GDLocale]: string;
-};
 
 // these have special semantic meaning within the script. When the navigation includes them, things like the label
 // and action are preset within the core script

@@ -33,7 +33,7 @@ const envSettings = {
 
 const envSettingsFile = `${banner}
 
-import { GDLocale, GDLocaleList } from '~types/general';
+import { GDLocale, GDLocaleMap } from '~types/general';
 import { ExportTypeFolder } from './_plugins';
 
 export type AppType = 'login' | 'open' | 'closed' | 'prod';
@@ -48,7 +48,7 @@ export type EnvSettings = {
 	defaultExportType: ExportTypeFolder;
 	apiEnabled: boolean;
 	availableLocales: GDLocale[];
-	allSupportedLocales: GDLocaleList;
+	allSupportedLocales: GDLocaleMap;
 	googleAuthClientId: string;
 	jwtDurationMins: number;
 };

@@ -15,7 +15,7 @@ const mapStateToProps = (state: any): Partial<LanguageSelectorProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<LanguageSelectorProps> => ({
-	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
+	onChangeLocale: (locale: GDLocale, history: any): any => dispatch(mainActions.selectLocale(locale, history)),
 });
 
 export default connect(

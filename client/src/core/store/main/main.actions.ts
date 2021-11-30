@@ -3,9 +3,9 @@ import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
 import { AccountStatusFilter, AuthMethod, GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
-import { getStrings } from '~utils/langUtils';
+import { getStrings, getCurrentLocalizedPath } from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
-import { getAuthMethod, getCurrentPage } from '~store/main/main.selectors';
+import { getAuthMethod, getCurrentPage, getLocale } from '~store/main/main.selectors';
 import { logoutVendor, setAuthTokenRefresh } from '~utils/authUtils';
 import { AccountStatus, AccountType, SelectedAccountTab } from '~types/account';
 import store from '~core/store';
@@ -30,17 +30,18 @@ export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
 export const LOCALE_FILE_LOADING = 'LOCALE_FILE_LOADING';
 export const setLocaleFileLoading = (): GDAction => ({ type: LOCALE_FILE_LOADING });
 
-export const selectLocale = (locale: GDLocale): any => (dispatch: Dispatch): any => {
+export const selectLocale = (locale: GDLocale, history?: any): any => (dispatch: Dispatch): any => {
 	dispatch(setLocaleFileLoading());
 
 	window.gd = {};
 	window.gd.localeLoaded = (strings: any): void => {
 		langUtils.setLocale(locale, strings);
 		dispatch(setLocaleFileLoaded(locale));
-
-		// 
-
 		Cookies.set('lang', locale);
+
+		if (history) {
+			history.push(getCurrentLocalizedPath(locale));
+		}
 	};
 	const s = document.createElement('script');
 	const filename = localeFileMap[locale];
@@ -312,9 +313,13 @@ export const setOnloadAuthDetermined = (): GDAction => ({ type: ONLOAD_AUTH_DETE
 
 export const SHOW_TOUR_INTRO_DIALOG = 'SHOW_TOUR_INTRO_DIALOG';
 export const showTourIntroDialog = (history?: any) => (dispatch: Dispatch, getState: any): any => {
+	const state = getState();
+	const locale = getLocale(state);
+	const generatorRoute = getGeneratorRoute(locale);
+
 	// the tour is specific to the generator page, so always redirect there when showing/hiding it
-	if (history && getCurrentPage(getState()) !== getGeneratorRoute()) {
-		history.push(getGeneratorRoute());
+	if (history && getCurrentPage(state) !== generatorRoute) {
+		history.push(generatorRoute);
 	}
 
 	dispatch({ type: SHOW_TOUR_INTRO_DIALOG });

@@ -1,6 +1,6 @@
-import { LocaleFileMap } from '~types/general';
+import { GDLocaleMap } from '~types/general';
 
-export const localeFileMap: LocaleFileMap = {
+export const localeFileMap: GDLocaleMap = {
 	"ar": "ar-df086e29.js",
 	"de": "de-b92aee41.js",
 	"en": "en-d2a31a5b.js",

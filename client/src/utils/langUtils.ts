@@ -61,5 +61,35 @@ const localeMap = env.availableLocales.reduce((map: any, locale) => {
 }, {});
 
 
-// just for O(1) lookup
+// just for O(1) lookup of our list of locale shortcodes
 export const getLocaleMap = (): any => localeMap;
+
+// returns the localized version of the current page. Note: this strips out any query strings right now.
+export const getCurrentLocalizedPath = (targetLocale: GDLocale): string => {
+	const availableLocaleMap = getLocaleMap();
+
+	// first, if the target locale being passed isn't valid, just return the current URL
+	const targetLocaleIsValid = !!availableLocaleMap[targetLocale];
+	if (!targetLocaleIsValid) {
+		return window.location.pathname;
+	}
+
+	const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '').split('/').filter((path) => !!path);
+
+	const currentPathHasLocale = !!availableLocaleMap[path[0]];
+	if (path.length > 0 && currentPathHasLocale) {
+		path.shift();
+	}
+
+	let newPath = '';
+	if (targetLocale === 'en') {
+		newPath = `/${path.join('/')}`;
+	} else {
+		newPath = `/${targetLocale}`;
+		if (path.length > 0) {
+			newPath += `/${path.join('/')}`;
+		}
+	}
+
+	return newPath;
+};

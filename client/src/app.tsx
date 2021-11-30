@@ -41,7 +41,7 @@ const checkState = async (state: any): Promise<any> => {
 const routes = getRoutes();
 
 // there's probably a cleaner way to do this, but this seems performant and not too complicated
-const LocalizationWrapper = (args: any) => {
+const LocalizationWrapper = (args: any): JSX.Element => {
 	const availableLocalesMap = getLocaleMap();
 	const lang = args.match?.params?.lang;
 	let localizedRoutes = routes;
