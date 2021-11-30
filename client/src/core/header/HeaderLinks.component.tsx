@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
 import { GDCustomHeaderLink, GDHeaderLink, GDLocale } from '~types/general';
-import { getGeneratorRoute } from '~utils/routeUtils';
+import { getUnlocalizedGeneratorRoute } from '~utils/routeUtils';
 import { Tooltip } from '~components/tooltips';
 import LanguageSelector from './LanguageSelector.container';
 import * as styles from './Header.scss';
@@ -19,6 +19,7 @@ export type HeaderLinksProps = {
 	i18n: any;
 };
 
+// TODO need to factor in locale
 const getClassName = (path: string, currentPage: string): string => {
 	const pathWithSlash = path.charAt(0) === '/' ? path : `/${path}`;
 
@@ -32,7 +33,7 @@ const getLink = (link: string, locale: GDLocale): string => (locale === 'en') ? 
 
 export const MobileLinks = ({ locale, currentPage, headerLinks, showLoginDialog, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
 	const links: any = [];
-	const generatorPath = getGeneratorRoute(locale);
+	const generatorPath = getUnlocalizedGeneratorRoute();
 
 	headerLinks.forEach((headerLink) => {
 		if (typeof headerLink === 'object' && headerLink.path) {
@@ -94,7 +95,7 @@ export const MobileLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
 
 export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
 	const links: any = [];
-	const generatorPath = getGeneratorRoute(locale);
+	const generatorPath = getUnlocalizedGeneratorRoute();
 
 	headerLinks.forEach((headerLink, index) => {
 		if (typeof headerLink === 'object' && headerLink.path) {

@@ -16,9 +16,12 @@ import useOnClickOutside from 'use-onclickoutside';
 import styles from './Footer.scss';
 import { useWindowSize } from 'react-hooks-window-size';
 import C from '~core/constants';
+import { getGeneratorRoute } from '~utils/routeUtils';
+import { GDLocale } from '~types/general';
 
 export type FooterProps = {
 	i18n: any;
+	locale: GDLocale;
 	scriptVersion: string;
 	onGenerate: () => void;
 	onSave: () => void;
@@ -32,7 +35,7 @@ export type FooterProps = {
 };
 
 const Footer = ({
-	i18n, actionButtonsEnabled, scriptVersion, onSave, onGenerate, currentPage,
+	i18n, locale, actionButtonsEnabled, scriptVersion, onSave, onGenerate, currentPage,
 	currentDataSetId, onSaveNewDataSet, onSaveAs, showTourDialog, customFooterLinks
 }: FooterProps): JSX.Element => {
 	const saveAsButtonRef = React.useRef(null);
@@ -117,7 +120,7 @@ const Footer = ({
 	};
 
 	let footerControlsClasses = styles.footerControls;
-	if (currentPage === process.env.GD_GENERATOR_PATH) {
+	if (getGeneratorRoute(locale) === currentPage) {
 		footerControlsClasses += ` ${styles.visible}`;
 	}
 

@@ -21,6 +21,8 @@ export type MainState = {
 	isOnloadAuthDetermined: boolean;
 	isRefreshingToken: boolean;
 	dialogProcessing: boolean;
+
+	// not 100% sure why this is stored in state - but possibly just to allow components to re-render when it changes
 	currentPage: string;
 	tourIntroDialogVisible: boolean;
 	tourBundleLoaded: boolean;

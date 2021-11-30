@@ -6,6 +6,7 @@ import AccountsPage from '~core/accounts/Accounts.container';
 import { GDHeaderLink, GDLocale, GDRoute } from '~types/general';
 import { AccountType } from '~types/account';
 import { PAGE_CHANGE } from '~store/main/main.actions';
+import env from '../../_env';
 import C from '../core/constants';
 
 // TODO move this under `extensionUtils`
@@ -57,8 +58,10 @@ export const getRoutes = (): GDRoute[] => {
 	return routes;
 };
 
+export const getUnlocalizedGeneratorRoute = (): string => process.env.GD_GENERATOR_PATH || '';
+
 export const getGeneratorRoute = (locale: GDLocale): string => {
-	let path = process.env.GD_GENERATOR_PATH || '';
+	let path = getUnlocalizedGeneratorRoute();
 	if (locale !== 'en') {
 		path = `/${locale}${path}`;
 	}
@@ -131,10 +134,9 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 export const updateBodyClass = (store: any, pathname: string): void => {
 	let pageId = pathname.replace('/', '');
 
-	// TODO or pageId === any available locale
-	if (pageId === '') {
-		const generatorPath = process.env.GD_GENERATOR_PATH;
-		pageId = generatorPath === '/generator' ? 'home' : 'generator';
+	const rootLocale = env.availableLocales.indexOf(pageId as GDLocale);
+	if (pageId === '' || rootLocale !== -1) {
+		pageId = process.env.GD_GENERATOR_PATH === '/generator' ? 'home' : 'generator';
 	}
 
 	// bit aggressive, but we're not appending any other body classes right now so this is fine
@@ -146,11 +148,4 @@ export const updateBodyClass = (store: any, pathname: string): void => {
 			page: location.pathname
 		}
 	});
-};
-
-// TODO
-export const isGeneratorPage = (): boolean => { // page: string, locale: GDLocale
-	//process.env.GD_GENERATOR_PATH
-
-	return false;
 };

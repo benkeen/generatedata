@@ -18,6 +18,7 @@ const mapStateToProps = (state: any): Partial<FooterProps> => {
 
 	return {
 		i18n: selectors.getCoreI18n(state),
+		locale: mainSelectors.getLocale(state),
 		scriptVersion: coreUtils.getScriptVersion(),
 		actionButtonsEnabled: selectors.hasData(state) && isExportTypeValid(exportType, exportTypeSettings),
 		currentPage: mainSelectors.getCurrentPage(state),

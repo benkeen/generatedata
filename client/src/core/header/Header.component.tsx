@@ -8,7 +8,7 @@ import PasswordResetDialog from '../dialogs/passwordReset/PasswordReset.containe
 import GeneratorControls from './GeneratorControls.container';
 import C from '../constants';
 import HeaderLinks, { MobileLinks } from './HeaderLinks.component';
-import { getHeaderLinks } from '~utils/routeUtils';
+import { getHeaderLinks, getGeneratorRoute } from '~utils/routeUtils';
 import { AccountType } from '~types/account';
 import sharedStyles from '../../styles/shared.scss';
 import styles from './Header.scss';
@@ -93,7 +93,7 @@ const Header = ({
 	let generatorControlsClasses = `${sharedStyles.generatorControls} ${styles.controls}`;
 	let generatorControlsDisabled = true;
 	let logoClasses = sharedStyles.mainLogo;
-	if (currentPage === process.env.GD_GENERATOR_PATH) {
+	if (currentPage === getGeneratorRoute(locale)) {
 		generatorControlsClasses += ` ${sharedStyles.visible}`;
 		generatorControlsDisabled = false;
 	} else {
