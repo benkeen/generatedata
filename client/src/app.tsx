@@ -91,7 +91,6 @@ const AppWrapper = (): JSX.Element => (
 			<ThemeProvider theme={theme}>
 				<PersistGate loading={null} persistor={persistor} onBeforeLift={(): Promise<any> => checkState(store)}>
 					{(bootstrapped): JSX.Element => {
-
 						// PersistGate handles repopulating the redux store; core.init() re-initializes everything else we
 						// need, including checking auth and loading the appropriate locale file
 						if (bootstrapped) {

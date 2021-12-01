@@ -39,6 +39,11 @@ export const selectLocale = (locale: GDLocale, history?: any): any => (dispatch:
 		dispatch(setLocaleFileLoaded(locale));
 		Cookies.set('lang', locale);
 
+		const htmlTag = document.querySelector('html');
+		if (htmlTag) {
+			htmlTag.setAttribute('lang', locale);
+		}
+
 		if (history) {
 			history.push(getCurrentLocalizedPath(locale));
 		}

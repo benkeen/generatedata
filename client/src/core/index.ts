@@ -20,14 +20,12 @@ export const init = (): void => {
 	createExportTypeWorker('preview');
 
 	const state = store.getState();
-
 	const pageLocale = getCurrentPageLocale();
 
 	// initialize any external vendors (Google, Github, Facebook) that are set up for login
 	initAuthVendors();
 
 	const isLoggedIn = mainSelectors.isLoggedIn(state);
-	// const locale = mainSelectors.getLocale(state);
 	const exportType = selectors.getExportType(state);
 	const numRows = selectors.getNumRows(state);
 
