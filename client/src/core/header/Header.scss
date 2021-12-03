@@ -143,11 +143,14 @@ div ul {
 	h5 {
 		display: flex;
 		align-items: center;
+		max-width: calc(100% - 40px);
 	}
 
 	.flags {
 		background-image: url("./images/flags.png");
-		background-size: contain;
+		background-repeat: no-repeat;
+		background-size: 120px;
+		flex: 1;
 		width: 122px;
 		height: 22px;
 		display: inline-block;

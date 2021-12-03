@@ -124,7 +124,8 @@ const resolvers = {
 
 			const sortColMap = {
 				dataSetName: 'd.dataset_name',
-				lastUpdated: 'dsh.date_created'
+				lastUpdated: 'dsh.date_created',
+				numRowsGenerated: 'numRowsGenerated'
 			};
 
 			const { accountId } = user;

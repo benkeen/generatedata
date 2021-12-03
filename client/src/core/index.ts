@@ -10,8 +10,8 @@ import { DataTypeFolder } from '../../_plugins';
 import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
 import { initAuthVendors } from '~utils/authUtils';
 import { getCurrentPageLocale } from '~utils/langUtils';
-import '../../_imports';
 import { AuthMethod } from '~types/general';
+import '../../_imports';
 
 export const init = (): void => {
 

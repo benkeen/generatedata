@@ -20,9 +20,6 @@ const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 		<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
 		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
 		<div className={styles.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated)}</div>
-		<div className={styles.status}>
-			{dataSet.status === 'public' ? i18n.public : i18n.private}
-		</div>
 		<div className={styles.open}>
 			<Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>{i18n.open}</Button>
 		</div>
@@ -134,12 +131,6 @@ const DataSets = ({ onLoadDataSet, locale, i18n, className = '' }: DataSetsProps
 			label: i18n.rowsGenerated,
 			className: styles.numRowsGenerated,
 			field: 'numRowsGenerated',
-			sortable: true
-		},
-		{
-			label: i18n.status,
-			className: styles.status,
-			field: 'status',
 			sortable: true
 		},
 		{ label: i18n.open, className: styles.open },
