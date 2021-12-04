@@ -149,3 +149,9 @@ export const updateBodyClass = (store: any, pathname: string): void => {
 		}
 	});
 };
+
+export const removeLocale = (path: string): string => {
+	const regexStr = `^/?(${env.availableLocales.join('|')})`;
+	const regex = new RegExp(regexStr);
+	return path.replace(regex, '');
+};

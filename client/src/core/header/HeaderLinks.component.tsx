@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
 import { GDCustomHeaderLink, GDHeaderLink, GDLocale } from '~types/general';
-import { getUnlocalizedGeneratorRoute } from '~utils/routeUtils';
+import { getUnlocalizedGeneratorRoute, removeLocale } from '~utils/routeUtils';
 import { Tooltip } from '~components/tooltips';
 import LanguageSelector from './LanguageSelector.container';
 import * as styles from './Header.scss';
@@ -19,14 +19,15 @@ export type HeaderLinksProps = {
 	i18n: any;
 };
 
-// TODO need to factor in locale
 const getClassName = (path: string, currentPage: string): string => {
+	const currentPageWithoutLocale = removeLocale(currentPage);
 	const pathWithSlash = path.charAt(0) === '/' ? path : `/${path}`;
 
 	if (pathWithSlash === '/' && currentPage === '/') {
 		return styles.selected;
 	}
-	return currentPage === pathWithSlash ? styles.selected : '';
+
+	return currentPageWithoutLocale === pathWithSlash ? styles.selected : '';
 };
 
 const getLink = (link: string, locale: GDLocale): string => (locale === 'en') ? link : `/${locale}${link}`;
