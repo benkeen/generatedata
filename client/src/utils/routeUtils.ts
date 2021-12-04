@@ -132,14 +132,15 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 };
 
 export const updateBodyClass = (store: any, pathname: string): void => {
-	let pageId = pathname.replace('/', '');
+	let pageId = pathname.replace(/\//g, '');
 
 	const rootLocale = env.availableLocales.indexOf(pageId as GDLocale);
 	if (pageId === '' || rootLocale !== -1) {
 		pageId = process.env.GD_GENERATOR_PATH === '/generator' ? 'home' : 'generator';
 	}
 
-	// bit aggressive, but we're not appending any other body classes right now so this is fine
+	// bit aggressive, but we're not appending any other body classes right now so this is fine. Also, this'll now
+	// include sub-pages since we're removing all the slashes
 	document.body.className = `page-${pageId}`;
 
 	store.dispatch({
