@@ -1,5 +1,10 @@
 ## Changelog
 
+- `4.0.10` - Dec 6, 2021
+    - Language selection overhauled
+    - Bug fixes
+    - Turkey name data - thanks @alicanipek!
+    - https://github.com/benkeen/generatedata/milestone/36?closed=1
 - `4.0.9` - Nov 20, 2021
     - Node updated to 14
     - German name data - thanks @ntauch!
