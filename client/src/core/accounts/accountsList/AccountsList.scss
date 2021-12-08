@@ -92,12 +92,18 @@
 	width: 130px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
 	.status, .lastLoggedIn, .expiryDate {
 		display: none;
 	}
 
 	.paginationRow nav {
 		border-bottom: 0;
+	}
+}
+
+@media (max-width: 900px) {
+	.lastLoggedIn {
+		display: none;
 	}
 }
