@@ -14,7 +14,11 @@ const mapStateToProps = (state: any): Partial<LanguageSelectorProps> => ({
 	isLocaleFileLoading: mainSelectors.isLocaleFileLoading(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<LanguageSelectorProps> => ({
+interface DispatchProps {
+	(dispatch: Dispatch, ownProps: any): Partial<LanguageSelectorProps>;
+}
+
+const mapDispatchToProps: DispatchProps = (dispatch) => ({
 	onChangeLocale: (locale: GDLocale, history: any): any => dispatch(mainActions.selectLocale(locale, history)),
 });
 

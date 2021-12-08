@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import LanguageIcon from '@material-ui/icons/Language';
 import { Dialog, DialogContent, DialogTitle } from '~components/dialogs';
@@ -60,12 +61,13 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, l
 export type LanguageSelectorProps = {
 	i18n: any;
 	locale: GDLocale;
+	isMobile: boolean;
 	availableLocales: GDLocale[];
 	onChangeLocale: (locale: GDLocale, history: any) => void;
 	isLocaleFileLoading: boolean;
 }
 
-const LanguageSelector = ({ locale, availableLocales, onChangeLocale, isLocaleFileLoading, i18n }: LanguageSelectorProps): JSX.Element | null => {
+const LanguageSelector = ({ locale, isMobile = false, availableLocales, onChangeLocale, isLocaleFileLoading, i18n }: LanguageSelectorProps): JSX.Element | null => {
 	const [dialogVisible, setSelectorDialogVisible] = React.useState(false);
 	const [lastI18n, setLastI18n] = React.useState(i18n);
 
@@ -84,7 +86,9 @@ const LanguageSelector = ({ locale, availableLocales, onChangeLocale, isLocaleFi
 		}
 	}, [isLocaleFileLoading]);
 
-	return (
+	const trigger = isMobile ? (
+		<MenuItem onClick={onShowSelector}>{lastI18n.selectLanguage}</MenuItem>
+	) : (
 		<li className={styles.localeSelector} key="languageSelector">
 			<Tooltip title={lastI18n.selectLanguage} placement="bottom" arrow>
 				<span>
@@ -93,6 +97,12 @@ const LanguageSelector = ({ locale, availableLocales, onChangeLocale, isLocaleFi
 					</IconButton>
 				</span>
 			</Tooltip>
+		</li>
+	);
+
+	return (
+		<>
+			{trigger}
 			<SelectorDialog
 				visible={dialogVisible}
 				currentLocale={locale}
@@ -102,7 +112,7 @@ const LanguageSelector = ({ locale, availableLocales, onChangeLocale, isLocaleFi
 				loading={isLocaleFileLoading}
 				onExited={updateLastI18n}
 			/>
-		</li>
+		</>
 	);
 };
 

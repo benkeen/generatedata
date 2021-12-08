@@ -89,7 +89,7 @@ export const MobileLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
 	return (
 		<>
 			{links}
-			<LanguageSelector />
+			<LanguageSelector isMobile={true} />
 		</>
 	);
 };
