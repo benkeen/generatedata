@@ -12,6 +12,7 @@ import Chile from './src/plugins/countries/Chile/names';
 import China from './src/plugins/countries/China/names';
 import Germany from './src/plugins/countries/Germany/names';
 import India from './src/plugins/countries/India/names';
+import Netherlands from './src/plugins/countries/Netherlands/names';
 import Nigeria from './src/plugins/countries/Nigeria/names';
 import Spain from './src/plugins/countries/Spain/names';
 import Turkey from './src/plugins/countries/Turkey/names';
@@ -28,6 +29,7 @@ const nameFiles = {
 	China,
 	Germany,
 	India,
+	Netherlands,
 	Nigeria,
 	Spain,
 	Turkey,

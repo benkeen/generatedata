@@ -9,7 +9,7 @@ const femaleNames = [
 	'Isha', 'Ishani', 'Ishita', 'Jaswinder', 'Jaya', 'Jayashri', 'Jyoti', 'Jyotsna', 'Kajal', 'Kala', 'Kali', 'Kalpana',
 	'Kalyani', 'Kamakshi', 'Kamala', 'Kamani', 'Kanchana', 'Kanta', 'Kanti', 'Karishma', 'Kashi', 'Kaur', 'Kavita',
 	'Khurshid', 'Khushi', 'Kiran', 'Kirtida', 'Laboni', 'Lakshmi', 'Lalita', 'Lata', 'Lavanya', 'Lila', 'Lilavati',
-	'Lina', 'Madhu', 'Madhur', 'Madhuri', 'Mala', 'Malati—', 'Malani', 'Mandeep', 'Manjeet', 'Manju', 'Manjula',
+	'Lina', 'Madhu', 'Madhur', 'Madhuri', 'Mala', 'Malati', 'Malani', 'Mandeep', 'Manjeet', 'Manju', 'Manjula',
 	'Manjusha', 'Maya', 'Mina', 'Minali', 'Mira', 'Mitra', 'Mohini', 'Mridula', 'Mukta', 'Nalini', 'Namrata', 'Nandita',
 	'Nasim', 'Nasrin', 'Navdeep', 'Navneet', 'Neha', 'Nida', 'Nikita', 'Nila', 'Nirupama', 'Nisha', 'Nishat', 'Nitika',
 	'Nitya', 'Nur', 'Padma', 'Padmini', 'Parvati', 'Prachi', 'Pratibha', 'Pratima', 'Pritha', 'Priti', 'Priya',
