@@ -1,8 +1,8 @@
 ## Changelog
 
 - `4.0.11` - Dec 8, 2021
+    - Dutch name data - thanks @rvanraamsdonk!
     - Misc bug fixes
-    - Dutch name data - thanks @alicanipek!
     - https://github.com/benkeen/generatedata/milestone/37?closed=1
 - `4.0.10` - Dec 6, 2021
     - Language selection overhauled
