@@ -4,7 +4,7 @@ import TextField from '~components/TextField';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { getLipsumWords } from '~utils/stringUtils';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import styles from './TextRandom.scss';
 
 type TextSource = 'lipsum' | 'custom';

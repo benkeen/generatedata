@@ -1,0 +1,10 @@
+{
+  "NAME": "Bitcoin Address",
+  "DESC": "This generates a random Bitcoin address in any of the three formats: P2PKH/Legacy, P2SH/Compatibility and P2WPKH/Bech32.",
+  "DEFAULT_TITLE": "bitcoin",
+  "weight": "Weight",
+  "weightDesc": "The weight field determines how likely the format will be generated relative to the other selected formats. So if you select 2 formats and enter weights of 9 and 1, the first format will be 9 times more likely to appear than the second.",
+  "format": "Format",
+  "formats": "Formats",
+  "bitcoinSettings": "Bitcoin Settings"
+}

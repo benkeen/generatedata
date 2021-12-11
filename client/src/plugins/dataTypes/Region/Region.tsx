@@ -5,7 +5,7 @@ import { countryList, DataTypeFolder } from '../../../../_plugins';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './Region.scss';
-import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { removeItem } from '~utils/arrayUtils';
 import { getI18nString } from '~utils/langUtils';
 

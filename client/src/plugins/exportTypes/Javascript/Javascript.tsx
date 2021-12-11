@@ -1,5 +1,5 @@
 import * as React from 'react';
-import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import etShared from '../../../styles/etShared.scss';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 

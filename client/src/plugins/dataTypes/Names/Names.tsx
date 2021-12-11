@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { SmallSpinner } from '~components/loaders/loaders';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';

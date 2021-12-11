@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import fullCountryList from './fullCountryList';

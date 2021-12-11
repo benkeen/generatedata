@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Tooltip } from '../tooltips';
-import styles from './RadioPill.scss';
+import styles from './BasePill.scss';
 
-export const RadioPillRow = ({ className, children }: any): JSX.Element => {
+export const PillRow = ({ className, children }: any): JSX.Element => {
 	let classes = styles.row;
 	if (className) {
 		classes += ` ${className}`;
@@ -13,7 +13,13 @@ export const RadioPillRow = ({ className, children }: any): JSX.Element => {
 	);
 };
 
-type RadioPillProps = {
+export const enum PillType {
+	radio = 'radio',
+	checkbox = 'checkbox'
+}
+
+type PillProps = {
+	type: PillType;
 	label: string;
 	onClick: () => void;
 	name: string;
@@ -23,11 +29,11 @@ type RadioPillProps = {
 	style?: any;
 };
 
-const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: RadioPillProps): JSX.Element => {
+const BasePill = ({ type, label, onClick, name, checked, disabled, tooltip, style }: PillProps): JSX.Element => {
 	const button = (
 		<Button onClick={onClick} size="small" color="primary" variant="outlined" style={style} disabled={disabled}>
 			<input
-				type="radio"
+				type={type}
 				name={name}
 				checked={checked}
 				disabled={disabled}
@@ -53,9 +59,9 @@ const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: 
 	return button;
 };
 
-RadioPill.defaultProps = {
+BasePill.defaultProps = {
 	disabled: false,
 	style: {}
 };
 
-export default RadioPill;
+export default BasePill;

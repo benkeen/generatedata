@@ -4,7 +4,7 @@ import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { CountryType } from '~types/countries';
 import { getI18nString } from '~utils/langUtils';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
-import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { countryList } from '../../../../_plugins';
 import styles from './City.scss';

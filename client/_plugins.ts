@@ -5,6 +5,7 @@
 
 import Alphanumeric from './src/plugins/dataTypes/Alphanumeric/config';
 import AutoIncrement from './src/plugins/dataTypes/AutoIncrement/config';
+import BitcoinAddress from './src/plugins/dataTypes/BitcoinAddress/config';
 import Boolean from './src/plugins/dataTypes/Boolean/config';
 import CVV from './src/plugins/dataTypes/CVV/config';
 import City from './src/plugins/dataTypes/City/config';
@@ -42,6 +43,7 @@ import Track2 from './src/plugins/dataTypes/Track2/config';
 export const dataTypes = {
 	Alphanumeric,
 	AutoIncrement,
+	BitcoinAddress,
 	Boolean,
 	CVV,
 	City,

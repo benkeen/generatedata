@@ -5,7 +5,7 @@ import rc from 'randomcolor';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { Tooltip } from '~components/tooltips';
 import styles from './Colour.scss';
 

@@ -6,6 +6,7 @@ export default {
 	"dataTypes": {
 		"Alphanumeric": "DT-Alphanumeric.generator-0185a235eabc5b0a7ba6afdbb2af8676.js",
 		"AutoIncrement": "DT-AutoIncrement.generator-eccb050ece38a91e2a849d125e417298.js",
+		"BitcoinAddress": "DT-BitcoinAddress.generator-af56eb486ffa035594b95bfe6932f8f9.js",
 		"Boolean": "DT-Boolean.generator-7f17cf17c450482e71f66b8ccec1530a.js",
 		"CVV": "DT-CVV.generator-c21d2fbc402d72056955f30db7831267.js",
 		"City": "DT-City.generator-169323d47645d9e1ab6254eff6ba6b7a.js",

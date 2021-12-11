@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 import etShared from '../../../styles/etShared.scss';
-import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 
 export type DataStructureFormat = 'simple' | 'complex';
 export interface JSONSettings extends ETState {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import styles from './Track1.scss';
 

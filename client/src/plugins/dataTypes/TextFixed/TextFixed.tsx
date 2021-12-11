@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 import { getLipsumWords } from '~utils/stringUtils';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './TextFixed.scss';
 

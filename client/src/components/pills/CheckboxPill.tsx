@@ -1,9 +1,9 @@
 import React from 'react';
 import BasePill, { PillType } from './BasePill';
 
-export { PillRow as RadioPillRow } from './BasePill';
+export { PillRow as CheckboxPillRow } from './BasePill';
 
-type RadioPillProps = {
+type CheckboxPillProps = {
 	label: string;
 	onClick: () => void;
 	name: string;
@@ -13,9 +13,9 @@ type RadioPillProps = {
 	style?: any;
 };
 
-const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: RadioPillProps): JSX.Element => (
+const CheckboxPill = ({ label, onClick, name, checked, disabled, tooltip, style }: CheckboxPillProps): JSX.Element => (
 	<BasePill
-		type={PillType.radio}
+		type={PillType.checkbox}
 		label={label}
 		onClick={onClick}
 		name={name}
@@ -26,4 +26,4 @@ const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: 
 	/>
 );
 
-export default RadioPill;
+export default CheckboxPill;

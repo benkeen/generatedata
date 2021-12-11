@@ -1,12 +1,12 @@
-declare namespace RadioPillScssNamespace {
-  export interface IRadioPillScss {
+declare namespace BasePillScssNamespace {
+  export interface IBasePillScss {
     row: string;
   }
 }
 
-declare const RadioPillScssModule: RadioPillScssNamespace.IRadioPillScss & {
+declare const BasePillScssModule: BasePillScssNamespace.IBasePillScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: RadioPillScssNamespace.IRadioPillScss;
+  locals: BasePillScssNamespace.IBasePillScss;
 };
 
-export = RadioPillScssModule;
+export = BasePillScssModule;
