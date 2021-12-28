@@ -14,6 +14,16 @@ const TextField = React.forwardRef(({
 	const [innerValue, setInnerValue] = React.useState(value || '');
 	const [lastEvent, setChangeEvent] = useThrottle(null, 2); // second param is frames per second...
 
+	const cleanProps = { ...props };
+	if (props.type === 'intOnly') {
+		cleanProps.type = 'number';
+		cleanProps.onKeyDown = (e: any): void => {
+			if (e.key === '.') {
+				e.preventDefault();
+			}
+		};
+	}
+
 	React.useEffect(() => {
 		if (lastEvent === null || !throttle) {
 			return;
@@ -44,7 +54,7 @@ const TextField = React.forwardRef(({
 			placement={tooltipPlacement}
 		>
 			<input
-				{...props}
+				{...cleanProps}
 				value={throttle ? innerValue : value}
 				onChange={controlledOnChange}
 				className={classes}

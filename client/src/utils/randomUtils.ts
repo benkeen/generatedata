@@ -69,14 +69,14 @@ export const generateRandomAlphanumericStr = (str: string, placeholders: any = d
 // Returns a random subset of an array of a particular size. The result may be empty, or the same set.
 export const getRandomSubset = <T> (arr: T[], size: number): T[] => {
 	const shuffled = arr.slice(0);
-	let i = arr.length;
-	const min = i - size;
+	let totalArrSize = arr.length;
+	const min = totalArrSize - size;
 
-	while (i-- > min) {
-		const index = Math.floor((i + 1) * Math.random());
+	while (totalArrSize-- > min) {
+		const index = Math.floor((totalArrSize + 1) * Math.random());
 		const temp = shuffled[index];
-		shuffled[index] = shuffled[i];
-		shuffled[i] = temp;
+		shuffled[index] = shuffled[totalArrSize];
+		shuffled[totalArrSize] = temp;
 	}
 	return shuffled.slice(min);
 };

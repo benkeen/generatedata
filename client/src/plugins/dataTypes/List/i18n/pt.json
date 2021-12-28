@@ -28,13 +28,20 @@
   "drugNames": "Hydrocodone/APAP|LevothyroxineSodium|Lipitor|Simvastatin|Plavix|Singulair|Azithromycin|Crestor|Nexium|Metoprolol Tartrate|Synthroid|Lexapro|Proair HFA|Ibuprofen (Rx)|Trazodone HCl|Amoxicillin|Omeprazole (Rx)|Advair Diskus|Cymbalta|Tramadol HCl|Sulfamethoxazole/Trimethoprim|Amlodipine Besylate|Fluticasone Propionate|Hydrochlorothiazide|Ventolin HFA|Diovan|Warfarin Sodium|Sertraline HCl|Alprazolam|Pravastatin Sodium|Metoprolol Succinate|Seroquel|Promethazine HCl|Amoxicillin Trihydrate/Potassium Clavulanate|Oxycodone/APAP|Zolpidem Tartrate|Metformin HCl|Prednisone|Fluconazole|Clonazepam|Actos|Gabapentin|Lantus|Vitamin D (Rx)|Fluoxetine HCl|Furosemide|Citalopram HBr|Ciprofloxacin HCl|Atenolol|Meloxicam|Lorazepam|Celebrex|Venlafaxine HCl ER|Lyrica|Nasonex|Spiriva Handihaler|Cyclobenzaprin HCl|Cephalexin|Abilify|Citalopram HBR|Carvedilol|Potassium Chloride|Viagra||Vyvanse|Zetia|Albuterol|Namenda|Januvia|Tricor|Lisinopril|Loestrin 24 Fe|Allopurinol|Cialis|Alendronate Sodium|Losartan Potassium|Amitriptyline HCl|Oxycodone HCl|Suboxone|Oxycontin|Niaspan|Doxycycline Hyclate|Digoxin|Vytorin|Lantus Solostar|APAP/Codeine|Triamcinolone Acetonide|Premarin|Paroxetine HCl|Metoprolol Succinatee|Flovent HFA|Carisoprodol|Klor-Con M20|Benicar|Lovastatin|Amphetamine Salts|Risperidone|Levoxyl|Naproxen|Lovaza|Bystolic|Penicillin VK|Famotidine|Methylprednisolone|Nuvaring|Glyburide|Clindamycin HCl|Folic Acid|Enalapril Maleate|Tamsulosin HCl|Cheratussin AC|Benicar HCT|Levaquin|TriNessa|Ranitidine HCl|Levothyroxine Sodium|Glipizide|Tri-Sprintec|Symbicort|Lidoderm|Pantoprazole Sodium|Zyprexa|Endocet|Gianvi|Diazepam",
   "foodTypes": "massas|tortas|saladas|sanduíches|sopas|guisados|cereais|frutos do mar|sobremesas|macarrão",
   "carBrands": "Toyota|Volkswagen|BMW|Mercedes-Benz|Ford|Nissan|Honda|Porsche|Hyundai Motors|Renault|Peugeot|Chevrolet|Fiat|Audi|Kia Motors|Suzuki|General Motors|Citroën|Daimler|GMC|JLR|Ferrari|Tata Motors|Mazda|Subaru|Lexus|Volvo|MINI|Vauxhall|Isuzu|Dongfeng Motor|Mitsubishi Motors|Mahindra and Mahindra|Daihatsu|Jeep|Kenworth|Dodge|Cadillac|Chrysler|Skoda|Acura|Infiniti|Buick|Lincoln|RAM Trucks|Maruti Suzuki|Smart|Dacia|FAW|Seat",
-  "source": "Fonte",
-  "sourceDesc": "Esta configuração controla o número de itens gerados a partir de sua lista. Você pode escolher um número exato ou um número aleatório de itens até uma contagem específica.",
+  "numItemsLabel": "Núm itens",
+  "numItemsLabelDesc": "Esta configuração controla o número de itens gerados a partir de sua lista. Você pode escolher um número exato de itens a serem gerados ou um número entre um intervalo de sua escolha.",
   "exactly1Item": "Exatamente %1 item da lista",
   "exactlyNItems": "Exatamente %1 itens da lista",
   "atMost1Item": "No máximo %1 item da lista",
   "atMostNItems": "No máximo %1 itens da lista",
   "customize": "Customizar",
   "listSettings": "Configurações da lista",
-  "delimChars": "Configurações da lista"
+  "delimChars": "Configurações da lista",
+  "betweenNumItems": "Entre %1 e %2 itens",
+  "atLeast1Item": "Pelo menos %1 item da lista",
+  "atLeastNItems": "Pelo menos %1 itens da lista",
+  "noRangeEntered": "Nenhum intervalo inserido",
+  "between": "Entre",
+  "and": "e",
+  "items": "Itens"
 }

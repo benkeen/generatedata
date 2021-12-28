@@ -29,13 +29,20 @@
   "foodTypes": "பாஸ்தா|துண்டுகள்|சாலடுகள்|சாண்ட்விச்கள்|சூப்கள்|குண்டுகள்|தானியங்கள்|கடல் உணவுகள்|இனிப்புகள்|நூடுல்ஸ்",
   "carBrands": "Toyota|Volkswagen|BMW|Mercedes-Benz|Ford|Nissan|Honda|Porsche|Hyundai Motors|Renault|Peugeot|Chevrolet|Fiat|Audi|Kia Motors|Suzuki|General Motors|Citroën|Daimler|GMC|JLR|Ferrari|Tata Motors|Mazda|Subaru|Lexus|Volvo|MINI|Vauxhall|Isuzu|Dongfeng Motor|Mitsubishi Motors|Mahindra and Mahindra|Daihatsu|Jeep|Kenworth|Dodge|Cadillac|Chrysler|Skoda|Acura|Infiniti|Buick|Lincoln|RAM Trucks|Maruti Suzuki|Smart|Dacia|FAW|Seat",
 
-  "source": "மூல",
-  "sourceDesc": "இந்த அமைப்பு உங்கள் பட்டியலிலிருந்து உருவாக்கப்படும் பொருட்களின் எண்ணிக்கையைக் கட்டுப்படுத்துகிறது. ஒரு குறிப்பிட்ட எண்ணிக்கை வரை ஒரு சரியான எண் அல்லது சீரற்ற எண்ணிக்கையிலான உருப்படிகளை நீங்கள் தேர்வு செய்யலாம்.",
+  "numItemsLabel": "பொருட்களின் எண்ணிக்கை",
+  "numItemsLabelDesc": "இந்த அமைப்பு உங்கள் பட்டியலில் இருந்து உருவாக்கப்பட்ட உருப்படிகளின் எண்ணிக்கையைக் கட்டுப்படுத்துகிறது. உருவாக்க வேண்டிய உருப்படிகளின் சரியான எண்ணிக்கையையோ அல்லது நீங்கள் தேர்ந்தெடுக்கும் வரம்பிற்கு இடையே உள்ள எண்ணையோ தேர்வு செய்யலாம்.",
   "exactly1Item": "பட்டியலிலிருந்து சரியாக %1 உருப்படி",
   "exactlyNItems": "பட்டியலில் இருந்து சரியாக %1 உருப்படிகள்",
   "atMost1Item": "பட்டியலிலிருந்து அதிகபட்சம் %1 உருப்படி",
   "atMostNItems": "பட்டியலிலிருந்து அதிகபட்சம் %1 உருப்படிகள்",
   "customize": "தனிப்பயனாக்கலாம்",
   "listSettings": "பட்டியல் அமைப்புகள்",
-  "delimChars": "டிலிமிட்டர் கரி (கள்)"
+  "delimChars": "டிலிமிட்டர் கரி (கள்)",
+  "betweenNumItems": "%1 மற்றும் %2 உருப்படிகளுக்கு இடையில்",
+  "atLeast1Item": "பட்டியலில் இருந்து குறைந்தது %1 உருப்படி",
+  "atLeastNItems": "பட்டியலில் இருந்து குறைந்தது %1 உருப்படிகள்",
+  "noRangeEntered": "வரம்பு இல்லை",
+  "between": "இடையில்",
+  "and": "மற்றும்",
+  "items": "பொருட்களை"
 }

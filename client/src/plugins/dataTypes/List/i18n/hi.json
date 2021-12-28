@@ -28,13 +28,20 @@
   "drugNames": "Hydrocodone/APAP|LevothyroxineSodium|Lipitor|Simvastatin|Plavix|Singulair|Azithromycin|Crestor|Nexium|Metoprolol Tartrate|Synthroid|Lexapro|Proair HFA|Ibuprofen (Rx)|Trazodone HCl|Amoxicillin|Omeprazole (Rx)|Advair Diskus|Cymbalta|Tramadol HCl|Sulfamethoxazole/Trimethoprim|Amlodipine Besylate|Fluticasone Propionate|Hydrochlorothiazide|Ventolin HFA|Diovan|Warfarin Sodium|Sertraline HCl|Alprazolam|Pravastatin Sodium|Metoprolol Succinate|Seroquel|Promethazine HCl|Amoxicillin Trihydrate/Potassium Clavulanate|Oxycodone/APAP|Zolpidem Tartrate|Metformin HCl|Prednisone|Fluconazole|Clonazepam|Actos|Gabapentin|Lantus|Vitamin D (Rx)|Fluoxetine HCl|Furosemide|Citalopram HBr|Ciprofloxacin HCl|Atenolol|Meloxicam|Lorazepam|Celebrex|Venlafaxine HCl ER|Lyrica|Nasonex|Spiriva Handihaler|Cyclobenzaprin HCl|Cephalexin|Abilify|Citalopram HBR|Carvedilol|Potassium Chloride|Viagra||Vyvanse|Zetia|Albuterol|Namenda|Januvia|Tricor|Lisinopril|Loestrin 24 Fe|Allopurinol|Cialis|Alendronate Sodium|Losartan Potassium|Amitriptyline HCl|Oxycodone HCl|Suboxone|Oxycontin|Niaspan|Doxycycline Hyclate|Digoxin|Vytorin|Lantus Solostar|APAP/Codeine|Triamcinolone Acetonide|Premarin|Paroxetine HCl|Metoprolol Succinatee|Flovent HFA|Carisoprodol|Klor-Con M20|Benicar|Lovastatin|Amphetamine Salts|Risperidone|Levoxyl|Naproxen|Lovaza|Bystolic|Penicillin VK|Famotidine|Methylprednisolone|Nuvaring|Glyburide|Clindamycin HCl|Folic Acid|Enalapril Maleate|Tamsulosin HCl|Cheratussin AC|Benicar HCT|Levaquin|TriNessa|Ranitidine HCl|Levothyroxine Sodium|Glipizide|Tri-Sprintec|Symbicort|Lidoderm|Pantoprazole Sodium|Zyprexa|Endocet|Gianvi|Diazepam",
   "foodTypes": "पास्ता|पाई|सलाद|सैंडविच|सूप|स्टू|अनाज|समुद्री भोजन|डेसर्ट|नूडल्स",
   "carBrands": "Toyota|Volkswagen|BMW|Mercedes-Benz|Ford|Nissan|Honda|Porsche|Hyundai Motors|Renault|Peugeot|Chevrolet|Fiat|Audi|Kia Motors|Suzuki|General Motors|Citroën|Daimler|GMC|JLR|Ferrari|Tata Motors|Mazda|Subaru|Lexus|Volvo|MINI|Vauxhall|Isuzu|Dongfeng Motor|Mitsubishi Motors|Mahindra and Mahindra|Daihatsu|Jeep|Kenworth|Dodge|Cadillac|Chrysler|Skoda|Acura|Infiniti|Buick|Lincoln|RAM Trucks|Maruti Suzuki|Smart|Dacia|FAW|Seat",
-  "source": "स्रोत",
-  "sourceDesc": "यह सेटिंग आपकी सूची से उत्पन्न आइटम की संख्या को नियंत्रित करती है। आप किसी विशेष संख्या तक सटीक संख्या या यादृच्छिक संख्या में आइटम चुन सकते हैं।",
+  "numItemsLabel": "संख्या आइटम",
+  "numItemsLabelDesc": "यह सेटिंग आपकी सूची से उत्पन्न वस्तुओं की संख्या को नियंत्रित करती है। आप उत्पन्न करने के लिए वस्तुओं की एक सटीक संख्या चुन सकते हैं, या अपने चयन की एक सीमा के बीच एक संख्या चुन सकते हैं।",
   "exactly1Item": "सूची से ठीक %1आइटम",
   "exactlyNItems": "सूची से ठीक %1 आइटम",
   "atMost1Item": "सूची से अधिकतम %1आइटम",
   "atMostNItems": "सूची से अधिकतम %1 आइटम",
   "customize": "अनुकूलित करें",
   "listSettings": "सूची सेटिंग्स",
-  "delimChars": "सीमांकक चार(रों)"
+  "delimChars": "सीमांकक चार(रों)",
+  "betweenNumItems": "%1 और %2 मदों के बीच",
+  "atLeast1Item": "सूची से कम से कम %1 आइटम",
+  "atLeastNItems": "सूची से कम से कम %1 आइटम",
+  "noRangeEntered": "कोई सीमा दर्ज नहीं की गई",
+  "between": "बीच में",
+  "and": "तथा",
+  "items": "आइटम"
 }

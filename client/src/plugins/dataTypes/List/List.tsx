@@ -12,14 +12,15 @@ import * as styles from './List.scss';
 
 export const enum ListType {
 	exactly = 'exactly',
-	atMost = 'atMost'
+	between = 'between'
 }
 
 export type ListState = {
 	example: string;
 	listType: ListType;
 	exactly: string;
-	atMost: string;
+	betweenLow: string;
+	betweenHigh: string;
 	values: string[];
 	delimiter: string;
 };
@@ -28,7 +29,8 @@ export const initialState: ListState = {
 	example: '1|3|5|7|9|11|13|15|17|19',
 	listType: ListType.exactly,
 	exactly: '1',
-	atMost: '1',
+	betweenLow: '',
+	betweenHigh: '',
 	values: ['1', '3', '5', '7', '9', '11', '13', '15', '17', '19'],
 	delimiter: ', '
 };
@@ -69,7 +71,7 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 
 const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: any): JSX.Element => {
 	const exactlyField = React.useRef<any>();
-	const atMostField = React.useRef<any>();
+	const dtListBetweenLow = React.useRef<any>();
 
 	const onChange = (field: string, value: any): void => {
 		onUpdate({
@@ -86,7 +88,6 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
 	};
 
 	const exactlyError = data.exactly ? '' : coreI18n.requiredField;
-	const atMostError = data.atMost ? '' : coreI18n.requiredField;
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
@@ -94,65 +95,90 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
 				<DialogTitle onClose={onClose}>{i18n.listSettings}</DialogTitle>
 				<DialogContent dividers>
 					<div className={styles.row}>
-						<div className={styles.colLabel}>{i18n.source}</div>
-						<div className={styles.content}>
-							<input
-								type="radio"
-								id={`listType1-${id}`}
-								value={ListType.exactly}
-								checked={data.listType === ListType.exactly}
-								onChange={(): void => {
-									onChange('listType', ListType.exactly);
-									exactlyField.current.focus();
-								}}
-							/>
-							<label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
-							<TextField
-								error={exactlyError}
-								ref={exactlyField}
-								type="number"
-								min={1}
-								id={`dtListExactly_${id}`}
-								value={data.exactly}
-								style={{ margin: '0 6px 0 4px', width: 50 }}
-								onChange={(e: any): void => {
-									onUpdate({
-										...data,
-										exactly: e.target.value,
-										listType: ListType.exactly
-									});
-								}}
-							/>
-							<input
-								type="radio"
-								id={`listType2-${id}`}
-								value={ListType.atMost}
-								checked={data.listType === ListType.atMost}
-								onChange={(): void => {
-									onChange('listType', ListType.atMost);
-									atMostField.current.focus();
-								}}
-							/>
-							<label htmlFor={`listType2-${id}`}>{i18n.atMost}</label>
-							<TextField
-								error={atMostError}
-								ref={atMostField}
-								type="number"
-								min={1}
-								id={`dtListAtMost_${id}`}
-								value={data.atMost}
-								style={{ margin: '0 6px 0 4px', width: 50 }}
-								onChange={(e: any): void => {
-									onUpdate({
-										...data,
-										atMost: e.target.value,
-										listType: ListType.atMost
-									});
-								}}
-							/>
-							<Tooltip title={i18n.sourceDesc} arrow>
+						<div className={styles.colLabel}>
+							{i18n.numItemsLabel}
+							<Tooltip title={i18n.numItemsLabelDesc} arrow>
 								<InfoIcon />
 							</Tooltip>
+						</div>
+						<div className={styles.content}>
+							<ul>
+								<li>
+									<input
+										type="radio"
+										id={`listType1-${id}`}
+										value={ListType.exactly}
+										checked={data.listType === ListType.exactly}
+										onChange={(): void => {
+											onChange('listType', ListType.exactly);
+											exactlyField.current.focus();
+										}}
+									/>
+									<label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
+									<TextField
+										error={exactlyError}
+										ref={exactlyField}
+										type="intOnly"
+										min={1}
+										id={`dtListExactly_${id}`}
+										value={data.exactly}
+										style={{ margin: '0 6px 0 4px', width: 50 }}
+										onChange={(e: any): void => {
+											onUpdate({
+												...data,
+												exactly: e.target.value,
+												listType: ListType.exactly
+											});
+										}}
+									/>
+								</li>
+								<li>
+									<input
+										type="radio"
+										id={`listType2-${id}`}
+										value={ListType.between}
+										checked={data.listType !== ListType.exactly}
+										onChange={(): void => {
+											onChange('listType', ListType.between);
+											dtListBetweenLow.current.focus();
+										}}
+									/>
+									<label htmlFor={`listType2-${id}`}>{i18n.between}</label>
+									<TextField
+										ref={dtListBetweenLow}
+										type="intOnly"
+										min={0}
+										placeholder="-"
+										id={`dtListAtMost_${id}`}
+										value={data.betweenLow}
+										style={{ margin: '0 6px 0 4px', width: 50 }}
+										onChange={(e: any): void => {
+											onUpdate({
+												...data,
+												betweenLow: e.target.value,
+												listType: ListType.between
+											});
+										}}
+									/>
+									{i18n.and}
+									<TextField
+										type="intOnly"
+										min={0}
+										placeholder="-"
+										id={`dtListBetweenHigh_${id}`}
+										value={data.betweenHigh}
+										style={{ margin: '0 6px 0 4px', width: 50 }}
+										onChange={(e: any): void => {
+											onUpdate({
+												...data,
+												betweenHigh: e.target.value,
+												listType: ListType.between
+											});
+										}}
+									/>
+									{i18n.items}
+								</li>
+							</ul>
 						</div>
 					</div>
 					<div className={styles.row}>
@@ -188,11 +214,21 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 		} else {
 			label = langUtils.getI18nString(i18n.exactlyNItems, [`<b>${data.exactly}</b>`]);
 		}
+	} else if (!data.betweenLow && !data.betweenHigh) {
+		label = i18n.noRangeEntered;
+	} else if (data.betweenLow && data.betweenHigh) {
+		label = langUtils.getI18nString(i18n.betweenNumItems, [`<b>${data.betweenLow}</b>`, `<b>${data.betweenHigh}</b>`]);
+	} else if (data.betweenLow) {
+		if (data.betweenLow === '1') {
+			label = langUtils.getI18nString(i18n.atLeast1Item, [`<b>1</b>`]);
+		} else {
+			label = langUtils.getI18nString(i18n.atLeastNItems, [`<b>${data.betweenLow}</b>`]);
+		}
 	} else {
-		if (data.atMost === '1') {
+		if (data.betweenHigh === '1') {
 			label = langUtils.getI18nString(i18n.atMost1Item, [`<b>1</b>`]);
 		} else {
-			label = langUtils.getI18nString(i18n.atMostNItems, [`<b>${data.atMost}</b>`]);
+			label = langUtils.getI18nString(i18n.atMostNItems, [`<b>${data.betweenHigh}</b>`]);
 		}
 	}
 
@@ -241,15 +277,40 @@ export const getMetadata = (): DTMetadata => ({
 	}
 });
 
-export const rowStateReducer = ({ example, listType, exactly, atMost, values }: ListState): any => {
-	const cleanExactly = (listType === 'exactly' && listType.trim() === '') ? 1 : parseInt(exactly, 10);
-	const cleanAtMost = (listType === 'atMost' && listType.trim() === '') ? 1 : parseInt(atMost, 10);
+export const rowStateReducer = ({ example, delimiter, listType, exactly, betweenLow, betweenHigh, values }: ListState): any => {
+	let cleanExactly: any = '';
+	let cleanBetweenLow: any = '';
+	let cleanBetweenHigh: any = '';
+	if (listType === ListType.exactly) {
+		if (exactly.trim() !== '') {
+			cleanExactly = parseInt(exactly.trim(), 10);
+		}
+	} else {
+		if (betweenLow.trim() !== '') {
+			cleanBetweenLow = parseInt(betweenLow.trim(), 10);
+		}
+		if (betweenHigh.trim() !== '') {
+			cleanBetweenHigh = parseInt(betweenHigh.trim(), 10);
+		}
+
+		// ensure that the number are sorted low to high - makes the generation code have to do less work on every
+		// iteration
+		if (cleanBetweenLow !== '' && cleanBetweenHigh !== '') {
+			if (cleanBetweenLow > cleanBetweenHigh) {
+				const oldLow = cleanBetweenLow;
+				cleanBetweenLow = cleanBetweenHigh;
+				cleanBetweenHigh = oldLow;
+			}
+		}
+	}
 
 	return {
 		example,
 		listType,
 		exactly: cleanExactly,
-		atMost: cleanAtMost,
-		values
+		betweenLow: cleanBetweenLow,
+		betweenHigh: cleanBetweenHigh,
+		values,
+		delimiter: delimiter ? delimiter : ', '
 	};
 };

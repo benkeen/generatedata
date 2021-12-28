@@ -3,22 +3,26 @@ import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataType
 import { ListType } from './List';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const { listType, values, exactly, atMost, delimiter } = data.rowState;
+	const { listType, values, exactly, betweenLow, betweenHigh, delimiter } = data.rowState;
 
-	const delim = delimiter ? delimiter : ', ';
-	let val = '';
-	let items;
+	let items: any = [];
 	if (listType === ListType.exactly) {
 		items = utils.randomUtils.getRandomSubset(values, exactly);
-		val = items.join(delim);
-	} else {
-		const numItems = utils.randomUtils.getRandomNum(0, atMost);
+	} else if (betweenLow && betweenHigh) {
+		const numItems = utils.randomUtils.getRandomNum(betweenLow, betweenHigh);
 		items = utils.randomUtils.getRandomSubset(values, numItems);
-		val = items.join(delim);
+	} else if (betweenLow) {
+		if (betweenLow <= values.length) {
+			const numItems = utils.randomUtils.getRandomNum(betweenLow, values.length);
+			items = utils.randomUtils.getRandomSubset(values, numItems);
+		}
+	} else {
+		const numItems = utils.randomUtils.getRandomNum(0, betweenHigh);
+		items = utils.randomUtils.getRandomSubset(values, numItems);
 	}
 
 	return {
-		display: val
+		display: items.join(delimiter)
 	};
 };
 
