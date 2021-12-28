@@ -18,7 +18,7 @@ export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Eleme
 	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
-			[field]: parseInt(value, 10)
+			[field]: value ? parseInt(value, 10) : ''
 		});
 	};
 
