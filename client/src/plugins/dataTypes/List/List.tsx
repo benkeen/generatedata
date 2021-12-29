@@ -207,28 +207,45 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
 export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
+	const safeData = {
+		...data
+	};
+
+	if (safeData.atMost) {
+		console.log("had at most: ", safeData);
+		safeData.betweenHigh = safeData.atMost;
+		delete safeData.atMost;
+	}
+
+	if (!safeData.betweenLow) {
+		safeData.betweenLow = '';
+	}
+	if (!safeData.betweenHigh) {
+		safeData.betweenHigh = '';
+	}
+
 	let label;
-	if (data.listType === ListType.exactly) {
-		if (data.exactly === '1') {
+	if (safeData.listType === ListType.exactly) {
+		if (safeData.exactly === '1') {
 			label = langUtils.getI18nString(i18n.exactly1Item, [`<b>1</b>`]);
 		} else {
-			label = langUtils.getI18nString(i18n.exactlyNItems, [`<b>${data.exactly}</b>`]);
+			label = langUtils.getI18nString(i18n.exactlyNItems, [`<b>${safeData.exactly}</b>`]);
 		}
-	} else if (!data.betweenLow && !data.betweenHigh) {
+	} else if (!safeData.betweenLow && !safeData.betweenHigh) {
 		label = i18n.noRangeEntered;
-	} else if (data.betweenLow && data.betweenHigh) {
-		label = langUtils.getI18nString(i18n.betweenNumItems, [`<b>${data.betweenLow}</b>`, `<b>${data.betweenHigh}</b>`]);
-	} else if (data.betweenLow) {
-		if (data.betweenLow === '1') {
+	} else if (safeData.betweenLow && safeData.betweenHigh) {
+		label = langUtils.getI18nString(i18n.betweenNumItems, [`<b>${safeData.betweenLow}</b>`, `<b>${safeData.betweenHigh}</b>`]);
+	} else if (safeData.betweenLow) {
+		if (safeData.betweenLow === '1') {
 			label = langUtils.getI18nString(i18n.atLeast1Item, [`<b>1</b>`]);
 		} else {
-			label = langUtils.getI18nString(i18n.atLeastNItems, [`<b>${data.betweenLow}</b>`]);
+			label = langUtils.getI18nString(i18n.atLeastNItems, [`<b>${safeData.betweenLow}</b>`]);
 		}
 	} else {
-		if (data.betweenHigh === '1') {
+		if (safeData.betweenHigh === '1') {
 			label = langUtils.getI18nString(i18n.atMost1Item, [`<b>1</b>`]);
 		} else {
-			label = langUtils.getI18nString(i18n.atMostNItems, [`<b>${data.betweenHigh}</b>`]);
+			label = langUtils.getI18nString(i18n.atMostNItems, [`<b>${safeData.betweenHigh}</b>`]);
 		}
 	}
 
@@ -247,13 +264,13 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 			</div>
 			<div>
 				<CreatablePillField
-					value={data.values}
-					onChange={(values: any): void => onUpdate({ ...data, values })}
+					value={safeData.values}
+					onChange={(values: any): void => onUpdate({ ...safeData, values })}
 				/>
 			</div>
 			<ListDialog
 				visible={dialogVisible}
-				data={data}
+				data={safeData}
 				id={id}
 				coreI18n={coreI18n}
 				i18n={i18n}
@@ -277,10 +294,16 @@ export const getMetadata = (): DTMetadata => ({
 	}
 });
 
-export const rowStateReducer = ({ example, delimiter, listType, exactly, betweenLow, betweenHigh, values }: ListState): any => {
+// @ts-ignore-line
+export const rowStateReducer = ({ example, delimiter, listType, exactly, betweenLow = '', atMost, betweenHigh = '', values }: ListState): any => {
 	let cleanExactly: any = '';
 	let cleanBetweenLow: any = '';
 	let cleanBetweenHigh: any = '';
+
+	if (atMost) {
+		betweenHigh = atMost;
+	}
+
 	if (listType === ListType.exactly) {
 		if (exactly.trim() !== '') {
 			cleanExactly = parseInt(exactly.trim(), 10);

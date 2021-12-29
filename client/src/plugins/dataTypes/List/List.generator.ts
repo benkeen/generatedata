@@ -16,7 +16,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 			const numItems = utils.randomUtils.getRandomNum(betweenLow, values.length);
 			items = utils.randomUtils.getRandomSubset(values, numItems);
 		}
-	} else {
+	} else if (betweenHigh !== '') {
 		const numItems = utils.randomUtils.getRandomNum(0, betweenHigh);
 		items = utils.randomUtils.getRandomSubset(values, numItems);
 	}
