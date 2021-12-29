@@ -212,7 +212,6 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 	};
 
 	if (safeData.atMost) {
-		console.log("had at most: ", safeData);
 		safeData.betweenHigh = safeData.atMost;
 		delete safeData.atMost;
 	}
