@@ -1,0 +1,5 @@
+{
+  "NAME": "URLs",
+  "DESC": "Generates random URLs.",
+  "DEFAULT_TITLE": "url"
+}

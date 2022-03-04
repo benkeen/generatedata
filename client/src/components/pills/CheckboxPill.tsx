@@ -1,8 +1,6 @@
 import React from 'react';
 import BasePill, { PillType } from './BasePill';
 
-export { PillRow as CheckboxPillRow } from './BasePill';
-
 type CheckboxPillProps = {
 	label: string;
 	onClick: () => void;
