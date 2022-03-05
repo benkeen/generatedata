@@ -4,7 +4,7 @@ const SouthAfrica: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
 	countrySlug: 'southafrica',
 	regionNames: i18n.regionNames,
-	continent: 'asia',
+	continent: 'africa',
 	extendedData: {
 		zipFormat: {
 			format: 'xxxx-xxxx',
