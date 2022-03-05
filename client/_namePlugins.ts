@@ -14,6 +14,7 @@ import Germany from './src/plugins/countries/Germany/names';
 import India from './src/plugins/countries/India/names';
 import Netherlands from './src/plugins/countries/Netherlands/names';
 import Nigeria from './src/plugins/countries/Nigeria/names';
+import Singapore from './src/plugins/countries/Singapore/names';
 import Spain from './src/plugins/countries/Spain/names';
 import Turkey from './src/plugins/countries/Turkey/names';
 import US from './src/plugins/countries/US/names';
@@ -31,6 +32,7 @@ const nameFiles = {
 	India,
 	Netherlands,
 	Nigeria,
+	Singapore,
 	Spain,
 	Turkey,
 	US,
