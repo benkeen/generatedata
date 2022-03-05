@@ -1,5 +1,10 @@
 {
   "NAME": "URLs",
-  "DESC": "Generates random URLs.",
-  "DEFAULT_TITLE": "url"
+  "DESC": "Este tipo de dados gera URLs aleatórios, permitindo que você gere um URL completo com protocolo, nome de host, nome de caminho e parâmetros de consulta. Como alternativa, você pode gerar qualquer subconjunto dessas opções.",
+  "DEFAULT_TITLE": "URL",
+  "optionsDesc": "Use os campos abaixo para personalizar o formato das URLs geradas por este campo. Os campos de texto contêm opções delimitadas por vírgulas que serão usadas para essa seção da URL.",
+  "protocol": "Protocolo",
+  "hostname": "Nome de anfitrião",
+  "path": "Caminho",
+  "queryParams": "Parâmetros de consulta"
 }

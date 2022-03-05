@@ -1,5 +1,10 @@
 {
-  "NAME": "URLs",
-  "DESC": "Generates random URLs.",
-  "DEFAULT_TITLE": "url"
+  "NAME": "URL's",
+  "DESC": "Dit gegevenstype genereert willekeurige URL's, zodat u een volledige URL kunt genereren met protocol-, hostnaam, padnaam en queryparameters. Als alternatief kunt u een subset van die opties genereren.",
+  "DEFAULT_TITLE": "url",
+  "optionsDesc": "Gebruik de onderstaande velden om de indeling aan te passen van de URL's die door dit veld worden gegenereerd. De tekstvelden bevatten door komma's gescheiden opties die voor dat gedeelte van de URL worden gebruikt.",
+  "protocol": "Protocol",
+  "hostname": "Hostnaam",
+  "path": "Pad",
+  "queryParams": "Queryparameters"
 }

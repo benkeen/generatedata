@@ -1,3 +1,4 @@
+import utils from '../../../utils';
 import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 
 let utilsLoaded = false;
@@ -10,9 +11,23 @@ export const onmessage = (e: DTOnMessage) => {
 };
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const { panSource, targetPanRowId } = data.rowState;
+	const { protocolEnabled, protocolOptions, hostnameEnabled, hostnameOptions, pathEnabled, pathOptions, queryParamsEnabled, queryParamsOptions } = data.rowState;
+
+	let url = '';
+	if (protocolEnabled) {
+		url += utils.randomUtils.getRandomArrayValue(protocolOptions);
+	}
+	if (hostnameEnabled) {
+		url += utils.randomUtils.getRandomArrayValue(hostnameOptions);
+	}
+	if (pathEnabled) {
+		url += '/' + utils.randomUtils.getRandomArrayValue(pathOptions);
+	}
+	if (queryParamsEnabled) {
+		url += '?' + utils.randomUtils.getRandomArrayValue(queryParamsOptions);
+	}
 
 	return {
-		display: `%B${panWithoutSpaces}=${date}${serviceCode}${dataItem}?${lrc}`
+		display: url
 	};
 };

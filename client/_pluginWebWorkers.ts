@@ -40,7 +40,7 @@ export default {
 		"Time": "DT-Time.generator-629cb5166754c653025699463e18f511.js",
 		"Track1": "DT-Track1.generator-b7067c479e2399d9bb686057045e21e7.js",
 		"Track2": "DT-Track2.generator-d6f9fd9a693fdcb128fab9bbc7ddacdf.js",
-		"URLs": "DT-URLs.generator-d6f9fd9a693fdcb128fab9bbc7ddacdf.js"
+		"URLs": "DT-URLs.generator-b20bf78f3c4fec66a953652a53e6628f.js"
 	},
 	"exportTypes": {
 		"CSV": "ET-CSV.generator-f087a7889f4df9de0ebb22a238c8fb8b.js",
