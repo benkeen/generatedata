@@ -65,7 +65,8 @@ const resolvers = {
 				const numRowsGenerated = await authResolvers.getAccountNumRowsGenerated(accountId);
 				let accountStatus = row.account_status;
 
-				if (row.account_status !== 'expired' && row.account_status !== 'disabled') {
+				// update any accounts that have an expiry date set and are now expired
+				if (row.date_expires && row.account_status !== 'expired' && row.account_status !== 'disabled') {
 					const accountExpired = authUtils.accountExpired(new Date(row.date_expires));
 					if (accountExpired) {
 						await db.sequelize.query(`
