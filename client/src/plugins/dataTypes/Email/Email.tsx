@@ -159,7 +159,7 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOpti
 		}));
 
 	React.useEffect(() => {
-		if (!nameRows.length && data.source === StringSource.fields) {
+		if (!nameRows.length && safeData.source === StringSource.fields) {
 			onUpdate({
 				...safeData,
 				source: StringSource.random
