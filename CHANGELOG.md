@@ -1,5 +1,16 @@
 ## Changelog
 
+- `4.0.14` - Mar 5, 2022
+    - URLs Data Type added
+    - Ukrainian, Singapore and South Africa country data added
+    - https://github.com/benkeen/generatedata/milestone/40?closed=1
+- `4.0.13` - Mar 3, 2022
+    - Philippines country data added
+    - https://github.com/benkeen/generatedata/milestone/39?closed=1
+- `4.0.12` - Dec 28, 2021
+    - List Data Type now offers a "between" option
+    - Norwegian country data added. Thanks @maddingo!
+    - https://github.com/benkeen/generatedata/milestone/38?closed=1
 - `4.0.11` - Dec 8, 2021
     - Dutch name data - thanks @rvanraamsdonk!
     - Misc bug fixes
