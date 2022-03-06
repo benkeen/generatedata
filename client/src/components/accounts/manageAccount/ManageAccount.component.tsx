@@ -31,6 +31,7 @@ export type ManageAccountState = {
 	expiry: ExpiryOption;
 	expiryDate: null | number;
 	numRowsGenerated: number;
+	isAddingUser: boolean;
 }
 
 const yearFromNow = Number(format(add(new Date(), { years: 1 }), 't'));
@@ -111,6 +112,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 					showRequiredFieldError={showErrors}
 					onCancel={onClickCancel}
 					onSave={(): void => onSave(data)}
+					isAddingUser={data.isAddingUser}
 				/>
 			</div>
 			<div className={styles.rightCol}>

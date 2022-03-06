@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 import Dropdown from '~components/dropdown/Dropdown';
@@ -16,13 +16,25 @@ export type MainFieldsProps = {
 	onSave: () => void;
 	onCancel: () => void;
 	showRequiredFieldError: boolean;
+	isAddingUser: boolean;
 	className?: string;
 };
 
 const MainFields = ({
 	data, accountHasChanges, updateAccount, onSave, onCancel, submitButtonLabel, i18n, showRequiredFieldError,
-	className = ''
+	isAddingUser, className = ''
 }: MainFieldsProps): JSX.Element => {
+	const emailFieldRef = useRef(null);
+
+	// very fussy indeed!
+	const [emailFieldHasFocus, setEmailFieldHasFocus] = useState(false);
+	const [emailFieldHasHadFocus, setEmailFieldHasHadFocus] = useState(false);
+
+	const onBlurEmail = (): void => {
+		setEmailFieldHasFocus(false);
+		setEmailFieldHasHadFocus(true);
+	};
+
 	const update = (fieldName: string, value: string): void => {
 		updateAccount({
 			...data,
@@ -42,8 +54,13 @@ const MainFields = ({
 			emailError = i18n.requiredField;
 		}
 	} else if (!isValidEmail(data.email)) {
-		emailError = i18n.validationInvalidEmail;
-		fieldsValid = false;
+		// subtle. We only want to show the email field is in an invalid state when
+		// (a) adding an email and the user's moved off the field & left it in an invalid state
+		// (b) is editing the email
+		if (!isAddingUser || (emailFieldHasHadFocus && !emailFieldHasFocus)) {
+			emailError = i18n.validationInvalidEmail;
+			fieldsValid = false;
+		}
 	}
 
 	const saveButtonEnabled = accountHasChanges && fieldsValid;
@@ -118,7 +135,10 @@ const MainFields = ({
 						value={data.email}
 						name="email"
 						onChange={(e: any): void => update('email', e.target.value)}
+						onFocus={(): void => setEmailFieldHasFocus(true)}
+						onBlur={onBlurEmail}
 						style={{ width: '100%' }}
+						ref={emailFieldRef}
 					/>
 				</div>
 

@@ -14,7 +14,8 @@ const initialState: ManageAccountState = {
 	disabled: false,
 	expiry: ExpiryOption.none,
 	expiryDate: null,
-	numRowsGenerated: 0
+	numRowsGenerated: 0,
+	isAddingUser: true
 };
 
 const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {

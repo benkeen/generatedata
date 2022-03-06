@@ -54,6 +54,7 @@ const YourAccount = ({
 				i18n={i18n}
 				submitButtonLabel={i18n.save}
 				showRequiredFieldError={true}
+				isAddingUser={false}
 			/>
 			<div className={styles.yourAccountRightCol}>
 				<div className={styles.rightCol}>

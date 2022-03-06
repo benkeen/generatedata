@@ -18,7 +18,8 @@ const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {
 	return {
 		initialState: {
 			...initialState,
-			expiry: initialState.expiryDate ? ExpiryOption.date : ExpiryOption.none
+			expiry: initialState.expiryDate ? ExpiryOption.date : ExpiryOption.none,
+			isAddingUser: false
 		} as ManageAccountState,
 		i18n,
 		submitButtonLabel: i18n.updateAccount
