@@ -2,7 +2,7 @@ import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
 	fieldGroup: 'financial',
-	fieldGroupOrder: 10,
+	fieldGroupOrder: 30,
 	schema: {
 		properties: {
 			brand: {

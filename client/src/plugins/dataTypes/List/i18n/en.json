@@ -43,5 +43,7 @@
   "noRangeEntered": "No range entered",
   "between": "Between",
   "and": "and",
-  "items": "items"
+  "items": "items",
+  "currencyCode": "Currency code",
+  "currencyName": "Currency name"
 }

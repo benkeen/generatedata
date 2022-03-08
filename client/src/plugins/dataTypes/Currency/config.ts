@@ -1,8 +1,8 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	fieldGroup: 'numeric',
-	fieldGroupOrder: 60,
+	fieldGroup: 'financial',
+	fieldGroupOrder: 10,
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

@@ -2,7 +2,7 @@ import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
 	fieldGroup: 'financial',
-	fieldGroupOrder: 5
+	fieldGroupOrder: 25
 };
 
 export default definition;

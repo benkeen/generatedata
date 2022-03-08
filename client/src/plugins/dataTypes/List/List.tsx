@@ -57,7 +57,10 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 		{ value: i18n.companies, label: i18n.example9 },
 		{ value: i18n.drugNames, label: i18n.example10 },
 		{ value: i18n.foodTypes, label: i18n.example11 },
-		{ value: i18n.carBrands, label: i18n.example12 }
+		{ value: i18n.carBrands, label: i18n.example12 },
+		{ value: 'ALL|DZD|AOA|ARS|AMD|AUD|EUR|AZN|BHD|BBD|BYN|EUR|BMD|BOB|BAM|BWP|BRL|BGN|CVE|KHR|XAF|CAD|KYD|XAF|CLP|CNY|COP|CDF|XAF|CRC|HRK|EUR|\'CZK|DKK|DOP|USD|EGP|USD|XAF|EUR|FJD|EUR|EUR|XAF|GEL|EUR|GHS|GIP|\'EUR|DKK|GTQ|GBP|GYD|HNL|HKD|HUF|ISK|INR|IDR|IQD|EUR|IMP|ILS|EUR|\'XOF|JMD|JPY|GBP|JOD|KZT|KES|KRW|EUR|KWD|KGS|LAK|EUR|LBP|LYD|CHF|\'EUR|EUR|MOP|MGA|MWK|MYR|MVR|EUR|MRU|MUR|MXN|MDL|MNT|EUR|MAD|MZN|\'MMK|NAD|EUR|NZD|NIO|NGN|MKD|NOK|OMR|PKR|PGK|PYG|PEN|PHP|PLN|EUR|USD|QAR|RON|RUB|RWF|XCD|SAR|XOF|RSD|SGD|EUR|EUR|ZAR|EUR|LKR|SZL|SEK|CHF|TWD|TJS|TZS|THB|USD|TTD|TND|TRY|TMT|UGX|UAH|AED|GBP|USD|UYU|UZS|VEF|VND|ZMW|ZWD', label: i18n.currencyCode },
+		{ value: 'lek|dinar|kwanza|peso|dram|dollar|euro|manat|rouble|boliviano|konvertibilna marka|pula|real|lev|escudo|riel|yuan|franc|colon|kuna|koruna|kroner|pound|lari|cedi|Danish krone|quetzal|lempira|forint|krona|rupee|rupiah|shekel|yen|tenge|shilling|won|som|kip|pound|pataca|ariary|kwacha|ringgit|rufiyaa|ouguiya|leu|tugrik|dirham|metical|kyat|cordoba oro|naira|denar|rial|kina|guarani|nuevo sol|zloty|riyal|ruble|rand|lilangeni|somoni|baht|lira|hryvnia|sterling|sum|bolivar|dong', label: i18n.currencyName }
+
 	];
 
 	return (
