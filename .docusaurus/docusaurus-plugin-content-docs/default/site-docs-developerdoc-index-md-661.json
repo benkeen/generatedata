@@ -3,7 +3,7 @@
   "id": "developerdoc/intro",
   "isDocsHomePage": false,
   "title": "Developer doc",
-  "description": "Coming soon too. Just figurin' out Docusaurus!",
+  "description": "This is a work in progress. When it's been completed this comment will be gone.",
   "source": "@site/docs/developerdoc/index.md",
   "sourceDirName": "developerdoc",
   "slug": "/developerdoc/intro",

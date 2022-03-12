@@ -1,9 +1,9 @@
 {
-  "unversionedId": "userdoc/welcome",
-  "id": "userdoc/welcome",
+  "unversionedId": "userdoc/intro",
+  "id": "userdoc/intro",
   "isDocsHomePage": false,
   "title": "Introduction",
-  "description": "Welcome to the generatedata.com user documentation! The purpose of this section is to explain what the application does,",
+  "description": "This is a work in progress. When it's been completed this comment will be gone.",
   "source": "@site/docs/userdoc/welcome.md",
   "sourceDirName": "userdoc",
   "slug": "/",
@@ -16,11 +16,11 @@
     "sidebar_position": 1,
     "slug": "/",
     "title": "Introduction",
-    "id": "welcome"
+    "id": "intro"
   },
   "sidebar": "userdoc",
   "next": {
-    "title": "Intro",
-    "permalink": "/generatedata/userdoc/installation/intro"
+    "title": "Purpose",
+    "permalink": "/generatedata/userdoc/about/purpose"
   }
 }

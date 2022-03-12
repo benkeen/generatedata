@@ -1,13 +1,13 @@
 {
-  "unversionedId": "userdoc/about/version-comparison",
-  "id": "userdoc/about/version-comparison",
+  "unversionedId": "userdoc/about/versionComparison",
+  "id": "userdoc/about/versionComparison",
   "isDocsHomePage": false,
   "title": "Comparison of v3 and v4",
   "description": "v4 of generatedata.com was a complete rewrite of the application. It shares a lot of the similar UI aspects with the",
   "source": "@site/docs/userdoc/about/version-comparison.md",
   "sourceDirName": "userdoc/about",
-  "slug": "/userdoc/about/version-comparison",
-  "permalink": "/generatedata/userdoc/about/version-comparison",
+  "slug": "/userdoc/about/versionComparison",
+  "permalink": "/generatedata/userdoc/about/versionComparison",
   "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/version-comparison.md",
   "tags": [],
   "version": "current",
@@ -15,7 +15,8 @@
   "frontMatter": {
     "sidebar_position": 2,
     "pagination_prev": null,
-    "pagination_next": null
+    "pagination_next": null,
+    "id": "versionComparison"
   },
   "sidebar": "userdoc"
 }

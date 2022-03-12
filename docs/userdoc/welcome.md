@@ -2,10 +2,16 @@
 sidebar_position: 1
 slug: /
 title: Introduction
-id: welcome
+id: intro
 ---
 
 # User documentation
+
+:::info
+
+This is a work in progress. When it's been completed this comment will be gone. 
+
+:::
 
 Welcome to the generatedata.com user documentation! The purpose of this section is to explain what the application does, 
 how to install it, and provide a little history on the script. But this doesn't cover everything!  

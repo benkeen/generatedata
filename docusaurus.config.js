@@ -53,7 +53,7 @@ const config = {
 				items: [
 					{
 						type: 'doc',
-						docId: 'userdoc/welcome',
+						docId: 'userdoc/intro',
 						position: 'left',
 						label: 'User Doc',
 					},
@@ -90,7 +90,7 @@ const config = {
 						items: [
 							{
 								label: '3.x documentation',
-								to: 'userdoc/v3',
+								to: 'userdoc/about/v3',
 							}
 						]
 					}

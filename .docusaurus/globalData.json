@@ -8,7 +8,7 @@
           "label": "Next",
           "isLast": true,
           "path": "/generatedata/",
-          "mainDocId": "userdoc/welcome",
+          "mainDocId": "userdoc/intro",
           "docs": [
             {
               "id": "developerdoc/intro",
@@ -17,17 +17,16 @@
             },
             {
               "id": "userdoc/about/history",
-              "path": "/generatedata/userdoc/about/history",
+              "path": "/generatedata/userdoc/about/history"
+            },
+            {
+              "id": "userdoc/about/purpose",
+              "path": "/generatedata/userdoc/about/purpose",
               "sidebar": "userdoc"
             },
             {
-              "id": "userdoc/about/v3",
-              "path": "/generatedata/userdoc/about/v3",
-              "sidebar": "userdoc"
-            },
-            {
-              "id": "userdoc/about/version-comparison",
-              "path": "/generatedata/userdoc/about/version-comparison",
+              "id": "userdoc/about/versionComparison",
+              "path": "/generatedata/userdoc/about/versionComparison",
               "sidebar": "userdoc"
             },
             {
@@ -41,8 +40,13 @@
               "sidebar": "userdoc"
             },
             {
-              "id": "userdoc/welcome",
+              "id": "userdoc/intro",
               "path": "/generatedata/",
+              "sidebar": "userdoc"
+            },
+            {
+              "id": "userdoc/v3",
+              "path": "/generatedata/userdoc/v3",
               "sidebar": "userdoc"
             }
           ]

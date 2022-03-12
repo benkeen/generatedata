@@ -1,0 +1,28 @@
+{
+  "unversionedId": "userdoc/about/purpose",
+  "id": "userdoc/about/purpose",
+  "isDocsHomePage": false,
+  "title": "Purpose",
+  "description": "Generating test data can be a pain. For developers, some things can be easily scripted: random numbers,",
+  "source": "@site/docs/userdoc/about/purpose.md",
+  "sourceDirName": "userdoc/about",
+  "slug": "/userdoc/about/purpose",
+  "permalink": "/generatedata/userdoc/about/purpose",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/purpose.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "id": "purpose"
+  },
+  "sidebar": "userdoc",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/generatedata/"
+  },
+  "next": {
+    "title": "Comparison of v3 and v4",
+    "permalink": "/generatedata/userdoc/about/versionComparison"
+  }
+}

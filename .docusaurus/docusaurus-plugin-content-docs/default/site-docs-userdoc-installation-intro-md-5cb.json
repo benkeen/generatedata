@@ -17,11 +17,11 @@
   },
   "sidebar": "userdoc",
   "previous": {
-    "title": "Introduction",
-    "permalink": "/generatedata/"
+    "title": "The website",
+    "permalink": "/generatedata/userdoc/about/website"
   },
   "next": {
-    "title": "Comparison of v3 and v4",
-    "permalink": "/generatedata/userdoc/about/version-comparison"
+    "title": "3.x doc",
+    "permalink": "/generatedata/userdoc/v3"
   }
 }

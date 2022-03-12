@@ -15,7 +15,8 @@
   "frontMatter": {
     "sidebar_position": 3,
     "pagination_prev": null,
-    "pagination_next": null
+    "pagination_next": null,
+    "id": "v3"
   },
   "sidebar": "userdoc"
 }

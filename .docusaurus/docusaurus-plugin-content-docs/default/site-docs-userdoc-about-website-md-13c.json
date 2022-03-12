@@ -3,7 +3,7 @@
   "id": "userdoc/about/website",
   "isDocsHomePage": false,
   "title": "The website",
-  "description": ".",
+  "description": "The generatedata.com website has been around since 2005 to provide an online version of",
   "source": "@site/docs/userdoc/about/website.md",
   "sourceDirName": "userdoc/about",
   "slug": "/userdoc/about/website",
@@ -15,7 +15,8 @@
   "frontMatter": {
     "sidebar_position": 4,
     "pagination_prev": null,
-    "pagination_next": null
+    "pagination_next": null,
+    "id": "website"
   },
   "sidebar": "userdoc"
 }

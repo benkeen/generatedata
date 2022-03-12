@@ -2,6 +2,7 @@
 sidebar_position: 2
 pagination_prev: null
 pagination_next: null
+id: versionComparison
 ---
 
 # Comparison of v3 and v4
@@ -21,9 +22,7 @@ previous version, but behind the scenes is completely different.
 
 ### Functional differences 
 
-| Feature | Version 3.x | Version 4.x |
-| --------- | ------------| ------------ |
-| Backend languages | PHP, MySQL | Node, GraphQL |
+...
 
 ### Other notes 
 

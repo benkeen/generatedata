@@ -5,4 +5,8 @@ id: intro
 
 # Developer doc
 
-Coming soon too. Just figurin' out Docusaurus!
+:::info
+
+This is a work in progress. When it's been completed this comment will be gone. 
+
+:::

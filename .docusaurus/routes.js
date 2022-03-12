@@ -55,7 +55,7 @@ export default [
   },
   {
     path: '/generatedata/',
-    component: ComponentCreator('/generatedata/','5d9'),
+    component: ComponentCreator('/generatedata/','cb3'),
     routes: [
       {
         path: '/generatedata/',
@@ -71,19 +71,18 @@ export default [
       },
       {
         path: '/generatedata/userdoc/about/history',
-        component: ComponentCreator('/generatedata/userdoc/about/history','96e'),
+        component: ComponentCreator('/generatedata/userdoc/about/history','050'),
+        exact: true
+      },
+      {
+        path: '/generatedata/userdoc/about/purpose',
+        component: ComponentCreator('/generatedata/userdoc/about/purpose','18c'),
         exact: true,
         'sidebar': "userdoc"
       },
       {
-        path: '/generatedata/userdoc/about/v3',
-        component: ComponentCreator('/generatedata/userdoc/about/v3','3ea'),
-        exact: true,
-        'sidebar': "userdoc"
-      },
-      {
-        path: '/generatedata/userdoc/about/version-comparison',
-        component: ComponentCreator('/generatedata/userdoc/about/version-comparison','5a3'),
+        path: '/generatedata/userdoc/about/versionComparison',
+        component: ComponentCreator('/generatedata/userdoc/about/versionComparison','610'),
         exact: true,
         'sidebar': "userdoc"
       },
@@ -96,6 +95,12 @@ export default [
       {
         path: '/generatedata/userdoc/installation/intro',
         component: ComponentCreator('/generatedata/userdoc/installation/intro','e42'),
+        exact: true,
+        'sidebar': "userdoc"
+      },
+      {
+        path: '/generatedata/userdoc/v3',
+        component: ComponentCreator('/generatedata/userdoc/v3','86d'),
         exact: true,
         'sidebar': "userdoc"
       }
