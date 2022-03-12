@@ -69,7 +69,7 @@ const config = {
 				style: 'dark',
 				links: [
 					{
-						title: 'Links',
+						title: ' ',
 						items: [
 							{
 								label: 'website',
@@ -86,7 +86,7 @@ const config = {
 						],
 					},
 					{
-						title: '3.x',
+						title: ' ',
 						items: [
 							{
 								label: '3.x documentation',

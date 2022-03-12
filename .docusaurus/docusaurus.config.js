@@ -66,7 +66,7 @@ export default {
       "style": "dark",
       "links": [
         {
-          "title": "Links",
+          "title": " ",
           "items": [
             {
               "label": "website",
@@ -83,7 +83,7 @@ export default {
           ]
         },
         {
-          "title": "3.x",
+          "title": " ",
           "items": [
             {
               "label": "3.x documentation",

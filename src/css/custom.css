@@ -4,7 +4,8 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 :root {
     --ifm-color-primary: #25c2a0;
     --ifm-color-primary-dark: rgb(33, 175, 144);
@@ -14,6 +15,8 @@
     --ifm-color-primary-lighter: rgb(102, 212, 189);
     --ifm-color-primary-lightest: rgb(146, 224, 208);
     --ifm-code-font-size: 95%;
+
+    --ifm-footer-padding-vertical: 25px;
 }
 
 .docusaurus-highlight-code-line {
@@ -26,3 +29,29 @@
 html[data-theme='dark'] .docusaurus-highlight-code-line {
     background-color: rgba(0, 0, 0, 0.3);
 }
+
+* {
+    font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+p, li, a, th, td {
+    font-size: 15px;
+}
+
+
+/* footer overrides */
+.footer__title {
+    display: none;
+}
+.footer__links {
+    margin-bottom: 0;
+}
+
+.footer__item a {
+    font-size: 13px;
+}
+

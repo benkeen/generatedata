@@ -1,0 +1,21 @@
+{
+  "unversionedId": "userdoc/about/history",
+  "id": "userdoc/about/history",
+  "isDocsHomePage": false,
+  "title": "History",
+  "description": ".",
+  "source": "@site/docs/userdoc/about/history.md",
+  "sourceDirName": "userdoc/about",
+  "slug": "/userdoc/about/history",
+  "permalink": "/generatedata/userdoc/about/history",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/history.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "pagination_prev": null,
+    "pagination_next": null
+  },
+  "sidebar": "userdoc"
+}

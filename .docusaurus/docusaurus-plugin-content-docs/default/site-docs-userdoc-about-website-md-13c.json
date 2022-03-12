@@ -1,0 +1,21 @@
+{
+  "unversionedId": "userdoc/about/website",
+  "id": "userdoc/about/website",
+  "isDocsHomePage": false,
+  "title": "The website",
+  "description": ".",
+  "source": "@site/docs/userdoc/about/website.md",
+  "sourceDirName": "userdoc/about",
+  "slug": "/userdoc/about/website",
+  "permalink": "/generatedata/userdoc/about/website",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/website.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "pagination_prev": null,
+    "pagination_next": null
+  },
+  "sidebar": "userdoc"
+}

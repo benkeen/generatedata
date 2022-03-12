@@ -40,16 +40,79 @@
               "sidebar": "developerdoc"
             },
             {
-              "unversionedId": "userdoc/history",
-              "id": "userdoc/history",
+              "unversionedId": "userdoc/about/history",
+              "id": "userdoc/about/history",
               "isDocsHomePage": false,
               "title": "History",
               "description": ".",
-              "source": "@site/docs/userdoc/history.md",
-              "sourceDirName": "userdoc",
-              "slug": "/userdoc/history",
-              "permalink": "/generatedata/userdoc/history",
-              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/history.md",
+              "source": "@site/docs/userdoc/about/history.md",
+              "sourceDirName": "userdoc/about",
+              "slug": "/userdoc/about/history",
+              "permalink": "/generatedata/userdoc/about/history",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/history.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "sidebar_position": 4,
+                "pagination_prev": null,
+                "pagination_next": null
+              },
+              "sidebar": "userdoc"
+            },
+            {
+              "unversionedId": "userdoc/about/v3",
+              "id": "userdoc/about/v3",
+              "isDocsHomePage": false,
+              "title": "3.x doc",
+              "description": "Since Sept 2021, the 3.x version of generatedata.com - written in PHP and MySQL - has been archived and replaced",
+              "source": "@site/docs/userdoc/about/v3.md",
+              "sourceDirName": "userdoc/about",
+              "slug": "/userdoc/about/v3",
+              "permalink": "/generatedata/userdoc/about/v3",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/v3.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "sidebar_position": 3,
+                "pagination_prev": null,
+                "pagination_next": null
+              },
+              "sidebar": "userdoc"
+            },
+            {
+              "unversionedId": "userdoc/about/version-comparison",
+              "id": "userdoc/about/version-comparison",
+              "isDocsHomePage": false,
+              "title": "Comparison of v3 and v4",
+              "description": "v4 of generatedata.com was a complete rewrite of the application. It shares a lot of the similar UI aspects with the",
+              "source": "@site/docs/userdoc/about/version-comparison.md",
+              "sourceDirName": "userdoc/about",
+              "slug": "/userdoc/about/version-comparison",
+              "permalink": "/generatedata/userdoc/about/version-comparison",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/version-comparison.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "sidebar_position": 2,
+                "pagination_prev": null,
+                "pagination_next": null
+              },
+              "sidebar": "userdoc"
+            },
+            {
+              "unversionedId": "userdoc/about/website",
+              "id": "userdoc/about/website",
+              "isDocsHomePage": false,
+              "title": "The website",
+              "description": ".",
+              "source": "@site/docs/userdoc/about/website.md",
+              "sourceDirName": "userdoc/about",
+              "slug": "/userdoc/about/website",
+              "permalink": "/generatedata/userdoc/about/website",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/website.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 4,
@@ -79,58 +142,20 @@
               },
               "sidebar": "userdoc",
               "previous": {
-                "title": "History",
-                "permalink": "/generatedata/userdoc/history"
+                "title": "Introduction",
+                "permalink": "/generatedata/"
+              },
+              "next": {
+                "title": "Comparison of v3 and v4",
+                "permalink": "/generatedata/userdoc/about/version-comparison"
               }
-            },
-            {
-              "unversionedId": "userdoc/v3",
-              "id": "userdoc/v3",
-              "isDocsHomePage": false,
-              "title": "3.x doc",
-              "description": "Since Sept 2021, the 3.x version of generatedata.com - written in PHP and MySQL - has been archived and replaced",
-              "source": "@site/docs/userdoc/v3.md",
-              "sourceDirName": "userdoc",
-              "slug": "/userdoc/v3",
-              "permalink": "/generatedata/userdoc/v3",
-              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/v3.md",
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 3,
-              "frontMatter": {
-                "sidebar_position": 3,
-                "pagination_prev": null,
-                "pagination_next": null
-              },
-              "sidebar": "userdoc"
-            },
-            {
-              "unversionedId": "userdoc/version-comparison",
-              "id": "userdoc/version-comparison",
-              "isDocsHomePage": false,
-              "title": "Comparison of v3 and v4",
-              "description": "...",
-              "source": "@site/docs/userdoc/version-comparison.md",
-              "sourceDirName": "userdoc",
-              "slug": "/userdoc/version-comparison",
-              "permalink": "/generatedata/userdoc/version-comparison",
-              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/version-comparison.md",
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 2,
-              "frontMatter": {
-                "sidebar_position": 2,
-                "pagination_prev": null,
-                "pagination_next": null
-              },
-              "sidebar": "userdoc"
             },
             {
               "unversionedId": "userdoc/welcome",
               "id": "userdoc/welcome",
               "isDocsHomePage": false,
-              "title": "Welcome",
-              "description": "Welcome to the generatedata.com documentation! As you can see, this is very much a work in progress so stay tuned for",
+              "title": "Introduction",
+              "description": "Welcome to the generatedata.com user documentation! The purpose of this section is to explain what the application does,",
               "source": "@site/docs/userdoc/welcome.md",
               "sourceDirName": "userdoc",
               "slug": "/",
@@ -142,12 +167,13 @@
               "frontMatter": {
                 "sidebar_position": 1,
                 "slug": "/",
+                "title": "Introduction",
                 "id": "welcome"
               },
               "sidebar": "userdoc",
               "next": {
-                "title": "Comparison of v3 and v4",
-                "permalink": "/generatedata/userdoc/version-comparison"
+                "title": "Intro",
+                "permalink": "/generatedata/userdoc/installation/intro"
               }
             }
           ],
@@ -158,18 +184,6 @@
                 "id": "userdoc/welcome"
               },
               {
-                "type": "doc",
-                "id": "userdoc/version-comparison"
-              },
-              {
-                "type": "doc",
-                "id": "userdoc/v3"
-              },
-              {
-                "type": "doc",
-                "id": "userdoc/history"
-              },
-              {
                 "type": "category",
                 "label": "installation",
                 "collapsible": true,
@@ -178,6 +192,30 @@
                   {
                     "type": "doc",
                     "id": "userdoc/installation/intro"
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "label": "about",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "userdoc/about/version-comparison"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "userdoc/about/v3"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "userdoc/about/history"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "userdoc/about/website"
                   }
                 ]
               }

@@ -2,8 +2,8 @@
   "unversionedId": "userdoc/welcome",
   "id": "userdoc/welcome",
   "isDocsHomePage": false,
-  "title": "Welcome",
-  "description": "Welcome to the generatedata.com documentation! As you can see, this is very much a work in progress so stay tuned for",
+  "title": "Introduction",
+  "description": "Welcome to the generatedata.com user documentation! The purpose of this section is to explain what the application does,",
   "source": "@site/docs/userdoc/welcome.md",
   "sourceDirName": "userdoc",
   "slug": "/",
@@ -15,11 +15,12 @@
   "frontMatter": {
     "sidebar_position": 1,
     "slug": "/",
+    "title": "Introduction",
     "id": "welcome"
   },
   "sidebar": "userdoc",
   "next": {
-    "title": "Comparison of v3 and v4",
-    "permalink": "/generatedata/userdoc/version-comparison"
+    "title": "Intro",
+    "permalink": "/generatedata/userdoc/installation/intro"
   }
 }

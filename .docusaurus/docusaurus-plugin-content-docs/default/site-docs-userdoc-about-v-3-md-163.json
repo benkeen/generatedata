@@ -1,0 +1,21 @@
+{
+  "unversionedId": "userdoc/about/v3",
+  "id": "userdoc/about/v3",
+  "isDocsHomePage": false,
+  "title": "3.x doc",
+  "description": "Since Sept 2021, the 3.x version of generatedata.com - written in PHP and MySQL - has been archived and replaced",
+  "source": "@site/docs/userdoc/about/v3.md",
+  "sourceDirName": "userdoc/about",
+  "slug": "/userdoc/about/v3",
+  "permalink": "/generatedata/userdoc/about/v3",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/v3.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "pagination_prev": null,
+    "pagination_next": null
+  },
+  "sidebar": "userdoc"
+}

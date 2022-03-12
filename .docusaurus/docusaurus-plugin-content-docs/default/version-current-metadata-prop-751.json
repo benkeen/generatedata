@@ -10,23 +10,8 @@
     "userdoc": [
       {
         "type": "link",
-        "label": "Welcome",
+        "label": "Introduction",
         "href": "/generatedata/"
-      },
-      {
-        "type": "link",
-        "label": "Comparison of v3 and v4",
-        "href": "/generatedata/userdoc/version-comparison"
-      },
-      {
-        "type": "link",
-        "label": "3.x doc",
-        "href": "/generatedata/userdoc/v3"
-      },
-      {
-        "type": "link",
-        "label": "History",
-        "href": "/generatedata/userdoc/history"
       },
       {
         "type": "category",
@@ -38,6 +23,34 @@
             "type": "link",
             "label": "Intro",
             "href": "/generatedata/userdoc/installation/intro"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "about",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Comparison of v3 and v4",
+            "href": "/generatedata/userdoc/about/version-comparison"
+          },
+          {
+            "type": "link",
+            "label": "3.x doc",
+            "href": "/generatedata/userdoc/about/v3"
+          },
+          {
+            "type": "link",
+            "label": "History",
+            "href": "/generatedata/userdoc/about/history"
+          },
+          {
+            "type": "link",
+            "label": "The website",
+            "href": "/generatedata/userdoc/about/website"
           }
         ]
       }
