@@ -155,6 +155,54 @@
                 "permalink": "/generatedata/userdoc/about/website"
               },
               "next": {
+                "title": "Prerequisites",
+                "permalink": "/generatedata/userdoc/installation/prereqs"
+              }
+            },
+            {
+              "unversionedId": "userdoc/installation/prereqs",
+              "id": "userdoc/installation/prereqs",
+              "isDocsHomePage": false,
+              "title": "Prerequisites",
+              "description": "1. You'll need at least 10-15GB free. Docker is a real hog.",
+              "source": "@site/docs/userdoc/installation/prereqs.md",
+              "sourceDirName": "userdoc/installation",
+              "slug": "/userdoc/installation/prereqs",
+              "permalink": "/generatedata/userdoc/installation/prereqs",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/prereqs.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "userdoc",
+              "previous": {
+                "title": "Intro",
+                "permalink": "/generatedata/userdoc/installation/intro"
+              },
+              "next": {
+                "title": "Running",
+                "permalink": "/generatedata/userdoc/installation/running"
+              }
+            },
+            {
+              "unversionedId": "userdoc/installation/running",
+              "id": "userdoc/installation/running",
+              "isDocsHomePage": false,
+              "title": "Running",
+              "description": "1. Make a copy the .env.default file and call it .env.",
+              "source": "@site/docs/userdoc/installation/running.md",
+              "sourceDirName": "userdoc/installation",
+              "slug": "/userdoc/installation/running",
+              "permalink": "/generatedata/userdoc/installation/running",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/running.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "userdoc",
+              "previous": {
+                "title": "Prerequisites",
+                "permalink": "/generatedata/userdoc/installation/prereqs"
+              },
+              "next": {
                 "title": "3.x doc",
                 "permalink": "/generatedata/userdoc/v3"
               }
@@ -241,6 +289,14 @@
                   {
                     "type": "doc",
                     "id": "userdoc/installation/intro"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "userdoc/installation/prereqs"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "userdoc/installation/running"
                   }
                 ],
                 "collapsible": true,

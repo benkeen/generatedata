@@ -1,0 +1,24 @@
+{
+  "unversionedId": "userdoc/installation/running",
+  "id": "userdoc/installation/running",
+  "isDocsHomePage": false,
+  "title": "Running",
+  "description": "1. Make a copy the .env.default file and call it .env.",
+  "source": "@site/docs/userdoc/installation/running.md",
+  "sourceDirName": "userdoc/installation",
+  "slug": "/userdoc/installation/running",
+  "permalink": "/generatedata/userdoc/installation/running",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/running.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "userdoc",
+  "previous": {
+    "title": "Prerequisites",
+    "permalink": "/generatedata/userdoc/installation/prereqs"
+  },
+  "next": {
+    "title": "3.x doc",
+    "permalink": "/generatedata/userdoc/v3"
+  }
+}

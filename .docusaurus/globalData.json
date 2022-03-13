@@ -40,6 +40,16 @@
               "sidebar": "userdoc"
             },
             {
+              "id": "userdoc/installation/prereqs",
+              "path": "/generatedata/userdoc/installation/prereqs",
+              "sidebar": "userdoc"
+            },
+            {
+              "id": "userdoc/installation/running",
+              "path": "/generatedata/userdoc/installation/running",
+              "sidebar": "userdoc"
+            },
+            {
               "id": "userdoc/intro",
               "path": "/generatedata/",
               "sidebar": "userdoc"

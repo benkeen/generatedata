@@ -1,0 +1,24 @@
+{
+  "unversionedId": "userdoc/installation/prereqs",
+  "id": "userdoc/installation/prereqs",
+  "isDocsHomePage": false,
+  "title": "Prerequisites",
+  "description": "1. You'll need at least 10-15GB free. Docker is a real hog.",
+  "source": "@site/docs/userdoc/installation/prereqs.md",
+  "sourceDirName": "userdoc/installation",
+  "slug": "/userdoc/installation/prereqs",
+  "permalink": "/generatedata/userdoc/installation/prereqs",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/prereqs.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "userdoc",
+  "previous": {
+    "title": "Intro",
+    "permalink": "/generatedata/userdoc/installation/intro"
+  },
+  "next": {
+    "title": "Running",
+    "permalink": "/generatedata/userdoc/installation/running"
+  }
+}

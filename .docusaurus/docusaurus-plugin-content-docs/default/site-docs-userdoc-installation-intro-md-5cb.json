@@ -21,7 +21,7 @@
     "permalink": "/generatedata/userdoc/about/website"
   },
   "next": {
-    "title": "3.x doc",
-    "permalink": "/generatedata/userdoc/v3"
+    "title": "Prerequisites",
+    "permalink": "/generatedata/userdoc/installation/prereqs"
   }
 }

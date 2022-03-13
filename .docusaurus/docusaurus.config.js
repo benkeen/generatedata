@@ -87,7 +87,7 @@ export default {
           "items": [
             {
               "label": "3.x documentation",
-              "to": "userdoc/about/v3"
+              "to": "userdoc/v3"
             }
           ]
         }

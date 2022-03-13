@@ -4,6 +4,41 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
+    path: '/generatedata/__docusaurus/debug',
+    component: ComponentCreator('/generatedata/__docusaurus/debug','f11'),
+    exact: true
+  },
+  {
+    path: '/generatedata/__docusaurus/debug/config',
+    component: ComponentCreator('/generatedata/__docusaurus/debug/config','6a4'),
+    exact: true
+  },
+  {
+    path: '/generatedata/__docusaurus/debug/content',
+    component: ComponentCreator('/generatedata/__docusaurus/debug/content','5b4'),
+    exact: true
+  },
+  {
+    path: '/generatedata/__docusaurus/debug/globalData',
+    component: ComponentCreator('/generatedata/__docusaurus/debug/globalData','bc0'),
+    exact: true
+  },
+  {
+    path: '/generatedata/__docusaurus/debug/metadata',
+    component: ComponentCreator('/generatedata/__docusaurus/debug/metadata','030'),
+    exact: true
+  },
+  {
+    path: '/generatedata/__docusaurus/debug/registry',
+    component: ComponentCreator('/generatedata/__docusaurus/debug/registry','322'),
+    exact: true
+  },
+  {
+    path: '/generatedata/__docusaurus/debug/routes',
+    component: ComponentCreator('/generatedata/__docusaurus/debug/routes','99d'),
+    exact: true
+  },
+  {
     path: '/generatedata/blog/archive',
     component: ComponentCreator('/generatedata/blog/archive','2a5'),
     exact: true
@@ -20,7 +55,7 @@ export default [
   },
   {
     path: '/generatedata/',
-    component: ComponentCreator('/generatedata/','cb3'),
+    component: ComponentCreator('/generatedata/','1cb'),
     routes: [
       {
         path: '/generatedata/',
@@ -60,6 +95,18 @@ export default [
       {
         path: '/generatedata/userdoc/installation/intro',
         component: ComponentCreator('/generatedata/userdoc/installation/intro','e42'),
+        exact: true,
+        'sidebar': "userdoc"
+      },
+      {
+        path: '/generatedata/userdoc/installation/prereqs',
+        component: ComponentCreator('/generatedata/userdoc/installation/prereqs','45c'),
+        exact: true,
+        'sidebar': "userdoc"
+      },
+      {
+        path: '/generatedata/userdoc/installation/running',
+        component: ComponentCreator('/generatedata/userdoc/installation/running','000'),
         exact: true,
         'sidebar': "userdoc"
       },
