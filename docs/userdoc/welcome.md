@@ -10,7 +10,7 @@ Welcome to the generatedata.com user documentation! The purpose of this section 
 how to install it, and provide a little history on the script.   
 
 Also note that the production website for this script ([generatedata.com](https://generatedata.com)) is a private
-fork of this repo. It contains a few additions that you won't see in this script. See the [website doc](./about/website)
+fork of this repo. It contains a few additions that you won't see in this script. See the [website doc](./about/website.md)
 page for more info on that.
 
 :::tip
