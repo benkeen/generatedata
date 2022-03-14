@@ -54,6 +54,11 @@
             "type": "link",
             "label": "Running",
             "href": "/generatedata/userdoc/installation/running"
+          },
+          {
+            "type": "link",
+            "label": "Settings",
+            "href": "/generatedata/userdoc/installation/settings"
           }
         ],
         "collapsible": true,

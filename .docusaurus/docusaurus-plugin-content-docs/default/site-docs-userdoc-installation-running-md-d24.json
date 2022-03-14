@@ -3,7 +3,7 @@
   "id": "userdoc/installation/running",
   "isDocsHomePage": false,
   "title": "Running",
-  "description": "1. Make a copy the .env.default file and call it .env.",
+  "description": "1. Make a copy the .env.default file in the root folder and call it .env. This file defines all of your settings",
   "source": "@site/docs/userdoc/installation/running.md",
   "sourceDirName": "userdoc/installation",
   "slug": "/userdoc/installation/running",
@@ -11,14 +11,16 @@
   "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/running.md",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "id": "running"
+  },
   "sidebar": "userdoc",
   "previous": {
     "title": "Prerequisites",
     "permalink": "/generatedata/userdoc/installation/prereqs"
   },
   "next": {
-    "title": "3.x doc",
-    "permalink": "/generatedata/userdoc/v3"
+    "title": "Settings",
+    "permalink": "/generatedata/userdoc/installation/settings"
   }
 }

@@ -3,7 +3,7 @@
   "id": "userdoc/v3",
   "isDocsHomePage": false,
   "title": "3.x doc",
-  "description": "Since Sept 2021, the 3.x version of generatedata.com - written in PHP and MySQL - has been archived and replaced",
+  "description": "In Sept 2021 we released the new version 4.x of the script. In case you want to use this older PHP/MySQL version",
   "source": "@site/docs/userdoc/v3.md",
   "sourceDirName": "userdoc",
   "slug": "/userdoc/v3",

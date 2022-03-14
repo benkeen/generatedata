@@ -1,0 +1,27 @@
+{
+  "unversionedId": "userdoc/installation/settings",
+  "id": "userdoc/installation/settings",
+  "isDocsHomePage": false,
+  "title": "Settings",
+  "description": "To customize your application installation you'll need to edit the .env file in the root folder. By default this",
+  "source": "@site/docs/userdoc/installation/settings.md",
+  "sourceDirName": "userdoc/installation",
+  "slug": "/userdoc/installation/settings",
+  "permalink": "/generatedata/userdoc/installation/settings",
+  "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/settings.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "settings",
+    "title": "Settings"
+  },
+  "sidebar": "userdoc",
+  "previous": {
+    "title": "Running",
+    "permalink": "/generatedata/userdoc/installation/running"
+  },
+  "next": {
+    "title": "3.x doc",
+    "permalink": "/generatedata/userdoc/v3"
+  }
+}

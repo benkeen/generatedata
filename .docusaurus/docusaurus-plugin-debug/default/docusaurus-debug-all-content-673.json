@@ -93,7 +93,7 @@
               "id": "userdoc/about/versionComparison",
               "isDocsHomePage": false,
               "title": "Comparison of v3 and v4",
-              "description": "v4 of generatedata.com was a complete rewrite of the application. It shares a lot of the similar UI aspects with the",
+              "description": "v4 of generatedata.com is a complete rewrite of the application. It shares a lot of the similar UI aspects with the",
               "source": "@site/docs/userdoc/about/version-comparison.md",
               "sourceDirName": "userdoc/about",
               "slug": "/userdoc/about/versionComparison",
@@ -101,21 +101,25 @@
               "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/version-comparison.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 2,
               "frontMatter": {
-                "sidebar_position": 2,
-                "pagination_prev": null,
-                "pagination_next": null,
                 "id": "versionComparison"
               },
-              "sidebar": "userdoc"
+              "sidebar": "userdoc",
+              "previous": {
+                "title": "Purpose",
+                "permalink": "/generatedata/userdoc/about/purpose"
+              },
+              "next": {
+                "title": "The website",
+                "permalink": "/generatedata/userdoc/about/website"
+              }
             },
             {
               "unversionedId": "userdoc/about/website",
               "id": "userdoc/about/website",
               "isDocsHomePage": false,
               "title": "The website",
-              "description": "The generatedata.com website has been around since 2005 to provide an online version of",
+              "description": "The generatedata.com public site has been around since 2005 to provide an online version of",
               "source": "@site/docs/userdoc/about/website.md",
               "sourceDirName": "userdoc/about",
               "slug": "/userdoc/about/website",
@@ -123,14 +127,18 @@
               "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/about/website.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 4,
               "frontMatter": {
-                "sidebar_position": 4,
-                "pagination_prev": null,
-                "pagination_next": null,
                 "id": "website"
               },
-              "sidebar": "userdoc"
+              "sidebar": "userdoc",
+              "previous": {
+                "title": "Comparison of v3 and v4",
+                "permalink": "/generatedata/userdoc/about/versionComparison"
+              },
+              "next": {
+                "title": "Intro",
+                "permalink": "/generatedata/userdoc/installation/intro"
+              }
             },
             {
               "unversionedId": "userdoc/installation/intro",
@@ -147,7 +155,8 @@
               "version": "current",
               "sidebarPosition": 3,
               "frontMatter": {
-                "sidebar_position": 3
+                "sidebar_position": 3,
+                "title": "Intro"
               },
               "sidebar": "userdoc",
               "previous": {
@@ -164,7 +173,7 @@
               "id": "userdoc/installation/prereqs",
               "isDocsHomePage": false,
               "title": "Prerequisites",
-              "description": "1. You'll need at least 10-15GB free. Docker is a real hog.",
+              "description": "1. You'll need at least 10-15GB free. I know. Docker is a real hog.",
               "source": "@site/docs/userdoc/installation/prereqs.md",
               "sourceDirName": "userdoc/installation",
               "slug": "/userdoc/installation/prereqs",
@@ -172,7 +181,9 @@
               "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/prereqs.md",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "id": "prereqs"
+              },
               "sidebar": "userdoc",
               "previous": {
                 "title": "Intro",
@@ -188,7 +199,7 @@
               "id": "userdoc/installation/running",
               "isDocsHomePage": false,
               "title": "Running",
-              "description": "1. Make a copy the .env.default file and call it .env.",
+              "description": "1. Make a copy the .env.default file in the root folder and call it .env. This file defines all of your settings",
               "source": "@site/docs/userdoc/installation/running.md",
               "sourceDirName": "userdoc/installation",
               "slug": "/userdoc/installation/running",
@@ -196,11 +207,40 @@
               "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/running.md",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "id": "running"
+              },
               "sidebar": "userdoc",
               "previous": {
                 "title": "Prerequisites",
                 "permalink": "/generatedata/userdoc/installation/prereqs"
+              },
+              "next": {
+                "title": "Settings",
+                "permalink": "/generatedata/userdoc/installation/settings"
+              }
+            },
+            {
+              "unversionedId": "userdoc/installation/settings",
+              "id": "userdoc/installation/settings",
+              "isDocsHomePage": false,
+              "title": "Settings",
+              "description": "To customize your application installation you'll need to edit the .env file in the root folder. By default this",
+              "source": "@site/docs/userdoc/installation/settings.md",
+              "sourceDirName": "userdoc/installation",
+              "slug": "/userdoc/installation/settings",
+              "permalink": "/generatedata/userdoc/installation/settings",
+              "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/settings.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "settings",
+                "title": "Settings"
+              },
+              "sidebar": "userdoc",
+              "previous": {
+                "title": "Running",
+                "permalink": "/generatedata/userdoc/installation/running"
               },
               "next": {
                 "title": "3.x doc",
@@ -212,7 +252,7 @@
               "id": "userdoc/intro",
               "isDocsHomePage": false,
               "title": "Introduction",
-              "description": "This is a work in progress. When it's been completed this comment will be gone.",
+              "description": "Welcome to the generatedata.com user documentation! The purpose of this section is to explain what the application does,",
               "source": "@site/docs/userdoc/welcome.md",
               "sourceDirName": "userdoc",
               "slug": "/",
@@ -220,9 +260,7 @@
               "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/welcome.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 1,
               "frontMatter": {
-                "sidebar_position": 1,
                 "slug": "/",
                 "title": "Introduction",
                 "id": "intro"
@@ -238,7 +276,7 @@
               "id": "userdoc/v3",
               "isDocsHomePage": false,
               "title": "3.x doc",
-              "description": "Since Sept 2021, the 3.x version of generatedata.com - written in PHP and MySQL - has been archived and replaced",
+              "description": "In Sept 2021 we released the new version 4.x of the script. In case you want to use this older PHP/MySQL version",
               "source": "@site/docs/userdoc/v3.md",
               "sourceDirName": "userdoc",
               "slug": "/userdoc/v3",
@@ -297,6 +335,10 @@
                   {
                     "type": "doc",
                     "id": "userdoc/installation/running"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "userdoc/installation/settings"
                   }
                 ],
                 "collapsible": true,

@@ -3,7 +3,7 @@
   "id": "userdoc/intro",
   "isDocsHomePage": false,
   "title": "Introduction",
-  "description": "This is a work in progress. When it's been completed this comment will be gone.",
+  "description": "Welcome to the generatedata.com user documentation! The purpose of this section is to explain what the application does,",
   "source": "@site/docs/userdoc/welcome.md",
   "sourceDirName": "userdoc",
   "slug": "/",
@@ -11,9 +11,7 @@
   "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/welcome.md",
   "tags": [],
   "version": "current",
-  "sidebarPosition": 1,
   "frontMatter": {
-    "sidebar_position": 1,
     "slug": "/",
     "title": "Introduction",
     "id": "intro"

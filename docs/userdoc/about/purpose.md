@@ -6,13 +6,12 @@ id: purpose
 # Purpose
 
 Generating test data can be a pain. For developers, some things can be easily scripted: random numbers, 
-random strings, pulling values from arbitrary lists. But not everyone's a developer, and even if you ARE some things are
-far harder and require data sources. What seems like a quick task rapidly descends into a time-consuming nuisance.  
+random strings, pulling values from arbitrary lists. But not everyone's a developer and even if you *are* some things are
+hard to create and require data sources. What seems like a quick task rapidly descends into a time-consuming nuisance.  
 
-This script was created to simplify the whole thing. It was designed as an _engine_ for random 
-data generation that's actually separate from the generated data and format itself: in other words, **it was designed
-to be
-extended**. Developers can write whatever plugins they want to generate different types of data or formats for that data. 
+This script was created to simplify the whole thing. It's an _engine_ for random data generation that's separate 
+from the generated data and format itself: in other words, **it was designed to be extended**. Developers can write
+whatever plugins they want to generate different types of data or formats for that data. 
 If that's something you're interested in, great! Visit our [Developer Doc](../../developerdoc/intro) section.  
 
 We have well over 30 very flexible Data Types (types of data you can generate like names, phone numbers and so on),

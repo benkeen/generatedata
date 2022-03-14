@@ -33,7 +33,7 @@
     "component": "component---theme-mdx-page-1-f-3-b90",
     "content": "content---generatedata-markdown-page-393-e3e"
   },
-  "/generatedata/-1cb": {
+  "/generatedata/-34b": {
     "component": "component---theme-doc-page-1-be-9be",
     "versionMetadata": "versionMetadata---generatedata-935-704"
   },
@@ -72,6 +72,10 @@
   "/generatedata/userdoc/installation/running-000": {
     "component": "component---theme-doc-item-178-a40",
     "content": "content---generatedata-userdoc-installation-runningd-24-c0a"
+  },
+  "/generatedata/userdoc/installation/settings-f26": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---generatedata-userdoc-installation-settings-71-e-3f5"
   },
   "/generatedata/userdoc/v3-86d": {
     "component": "component---theme-doc-item-178-a40",

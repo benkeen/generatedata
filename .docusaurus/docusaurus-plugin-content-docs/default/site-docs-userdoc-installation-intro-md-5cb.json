@@ -13,7 +13,8 @@
   "version": "current",
   "sidebarPosition": 3,
   "frontMatter": {
-    "sidebar_position": 3
+    "sidebar_position": 3,
+    "title": "Intro"
   },
   "sidebar": "userdoc",
   "previous": {

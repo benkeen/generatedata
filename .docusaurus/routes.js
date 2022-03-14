@@ -55,7 +55,7 @@ export default [
   },
   {
     path: '/generatedata/',
-    component: ComponentCreator('/generatedata/','1cb'),
+    component: ComponentCreator('/generatedata/','34b'),
     routes: [
       {
         path: '/generatedata/',
@@ -107,6 +107,12 @@ export default [
       {
         path: '/generatedata/userdoc/installation/running',
         component: ComponentCreator('/generatedata/userdoc/installation/running','000'),
+        exact: true,
+        'sidebar': "userdoc"
+      },
+      {
+        path: '/generatedata/userdoc/installation/settings',
+        component: ComponentCreator('/generatedata/userdoc/installation/settings','f26'),
         exact: true,
         'sidebar': "userdoc"
       },

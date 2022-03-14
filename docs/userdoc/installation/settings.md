@@ -1,0 +1,88 @@
+---
+id: settings
+title: Settings
+---
+
+# Settings
+
+To customize your application installation you'll need to edit the `.env` file in the root folder. By default this 
+file doesn't exist: you'll need to make a copy of it from the `.env.default` file, also in that folder.
+
+This page outlines every available setting, but some settings MUST be set. They've been flagged with "**must set**" in the 
+comments, but here's the full list:
+
+- `GD_MYSQL_ROOT_PASSWORD`
+
+
+### Database settings
+
+| Setting | Default value | Desc |
+| --------- | ---------- | -------------- |
+| `GD_MYSQL_ROOT_USER` | | |
+| `GD_MYSQL_ROOT_PASSWORD` | `` | **Must set** |
+| `GD_DB_NAME` | `generatedata` | |
+| `GD_DB_PORT` | `3306` | |
+
+
+### API server
+
+| Setting | Default value | Desc |
+| --------- | ---------- | -------------- |
+| `GD_API_SERVER_PORT` | `3001` | |
+
+
+### Web server settings
+
+| Setting | Default value | Desc |
+| --------- | ---------- | -------------- |
+| `GD_WEB_DOMAIN` | `localhost` | |
+| `GD_WEB_SERVER_PORT` | `9000` | |
+| `GD_WEB_USE_HTTPS` | `false` | |
+
+### Admin account
+
+| Setting | Default value | Desc |
+| --------- | ---------- | -------------- |
+| `GD_DEFAULT_ADMIN_FIRST_NAME` | `Your` | |
+| `GD_DEFAULT_ADMIN_LAST_NAME` | `Name` | |
+| `GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME` | `admin123` | |
+| `GD_DEFAULT_ADMIN_EMAIL` | `admin@generatedata.com` | |
+| `GD_DEFAULT_ADMIN_PASSWORD` | `admin123` | |
+
+
+### Authentication
+
+# (Required) JWT secret. This is used for the JWT generation code. It should be changed to any string you like
+GD_JWT_SECRET=sahdflkajhflakdi7yhdfkjgpgnjaaff0
+GD_JWT_LIFESPAN_MINS=15
+GD_JWT_REFRESH_TOKEN_SECRET=sdflkjdkfiuro23udlfkjskf
+GD_JWT_REFRESH_TOKEN_LIFESPAN_MINS=1440
+
+# (optional) Sign-in with Google - oath2
+GD_GOOGLE_AUTH_CLIENT_ID=707804813649-6ota5oqbbt4gf6k2osicuclji6tjkt44.apps.googleusercontent.com
+GD_GOOGLE_AUTH_CLIENT_SECRET=BNrEpTH3RHI8favkICSvqZou
+
+
+### Email OAUTH info
+
+GD_EMAIL_OAUTH_SERVICE_CLIENT_ID=110440607716603463780
+GD_EMAIL_OAUTH_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC9lrAOK2jXtgme\nRFLiitoU0Fxq6NMR9XXzagi5LfCxUkkzjNmHQ4/U2kJKxujVXDCyUgvMD0NmT7nR\nHKIbDBCsQk9IpJpzbWBscSPhLUb8PbTckamEb4YzrAElpyZVfFUaSJNkb1D3mUEG\n7bXI3ltX95CGPHNEoJ4/tdAMT2QNz0Xc7E4AeSYNizVW7tbWJCj3P7OUo2dqpEgL\njq6Au5Y/J0oO1jpcFVAYTq/mGX3BKJ++RGQovL+/jqC2To0xu495k5zX6LARe9Fp\nBDeuT2gZlzc70fJrg9eD7DrioCraM7urT/vvGUkfw5DghwAOyjK07M0TTi+AXX5p\ndwChXNG/AgMBAAECggEAAN2OeYRv9ClzkVR3C4bRaUBQDvveLHF0c7jN8LgpOIzf\nrTmSlToY3Q3XonDStL6uX83INR9CAlxWffkZ2/0H/+N5G/IGcHi5PPFZjyOer2yf\nNKmwOM9FQz0ogcI+IxpLOdesFvnCJdVShIYFPNBGbbsntH/906HotPShJYI6TjXl\nRjFUf2HNJAXs1fQf9J5221b5ppC5ukfflyByfh94t4NsJ62iHbudYfFoMqBVQv+I\nWll2UjYqb/dPMcBVRKbAVmPwUsMcKg43pBVWHSyiYr1mqmnbfMvvBVYBuTMNGVxm\na/i01gc1bkSJ6aa9hQ78/YkotPxX61wjS471ApQ7WQKBgQD8TQ69mMvclvWXPoOJ\nICjE9meiHBZRLnnYItJrV6f5hE21pvaotIuVQ1k+miItrjjY+Uh7+BgZv/x3tw4W\nOS4sF5trRzuIVFTEO/USbi2ZaSjRbhcuCfpXebxWTzjj5fusvg/HChhMJQLHrR7z\nhnELIazIuOLW+0IOQdNsn/f29wKBgQDAXkGnabYchKCCkfO8A2QEnp4cQ2mYsESk\nKC+hE4iWZUBbKfS27SzvAqG8RIpY5WxeKHBEV06JzvuM/IkRFJzUnxY2QCWQkPqd\nDb1l+jxJpmu8OMm51HB709oM+Ddo3pxcbVR0fmcIY/mOQGxOkDgIS+SRDBb8Dmhw\na3TNqzbheQKBgDCwEiMmZFjaTOR17N4+dX+k6VTQRMI/zMWX2rFaRhERpgljAgCG\nbtVMHOHGzsev8kp0uLcrpkL52JelnLNPL4jUuWpXYbaqR31i8KUw293Z/EWGEDUT\nOds9o8moGhtom0u3lcXcPdob3lB4KRvnmtMCGZzWiPfhntqve0RgDnL7AoGBAKXo\nJOOIDmImGHDEA9vhaL97NY3Wrhnb3Ddf2UQonqJnDMwTMVUa1KgGMws2acMliwLi\nCYFHcxrzgowjuOscRe4yjmuXg05dW2dcVD7BRIGYoE4jBAfbKnABVIve/5rYcy5b\ntH0MDzxzTOXctgxD4a92FNjr/l7A5l4erww6YAixAoGBAKZFOVljWKZwJ2lv69Gy\nsIlFQisCykzUx6bXR5OkLp5RVS03594NXtS02Zdqwn9Or8sDFJRABvW7w2wDloc1\nQpYwIs9KczU48ICNJy6UZqEZf7y9cM7WNJe1p2pqVzoPE75gUkkLkzRs4TmVLpvL\nB0UXRWnt1IDk2u1lV5wRVSmd\n-----END PRIVATE KEY-----\n
+
+### Application settings
+
+
+| Setting | Default value | Desc |
+| --------- | ---------- | -------------- |
+| `GD_APP_TYPE` | `login` | This setting controls the overall type of the installation. The options are:<br />`login` - allows anonymous access but without logging in they can't save their data sets or generate more than `GD_MAX_DEMO_MODE_ROWS` at a time. Only the admin account can create new accounts.<br />`single` - there's only ever a single account and that user is logged in by default`open` - anyone that has access to the URL can use the application anonymously or create an account<br />`closed` - no-one can access it without logging in first. |
+| `GD_GENERATOR_PATH` | `/` | This allows easy extension for the prod site. On the prod site, the homepage is a splash info page to the tool. For other distributions, that isn't necessary and we want the generator itself to be the homepage. |
+| `GD_DEFAULT_LOCALE` | `en` | The default locale. | 
+| `GD_DEFAULT_EXPORT_TYPE` | `JSON` | The default Export Type to show in the preview panel. | 
+| `GD_LOCALES` | `ar,de,en,es,fr,`<br/>`hi,ja,nl,pt,ta,zh` | All the available locales that show up in the UI. If you only enter 1, the icon to switch locales won't appear. |
+| `GD_DEFAULT_NUM_ROWS` | `100` | The default value for the number of rows to generate. |
+| `GD_MAX_DEMO_MODE_ROWS` | `1000` | For `login` appType, this controls how many rows can be generated by anonymous (non-logged in) users. |
+| `GD_MAX_DATASET_HISTORY_SIZE` | `200` | Any time a user saves a dataset, that change is stored in the database to allow the user to backtrack and see earlier versions of the dataset. This governs the max number of history items. |
+| `GD_DATA_TYPE_BLACKLIST` | `_PhoneRegional, OrganizationNumber, PersonalNumber, SIRET` | This omits specific Data Types from the application. Comma-delimited (no spaces!). It omits them from appearing in the UI, but it also prevents them from being built as well. So incomplete Data Types won't throw an error and cause the build to fail. |
+| `GD_EXPORT_TYPE_BLACKLIST` | &#8212; | Omits specific Export Types from the application; comma-delimited (no spaces!). |
+| `GD_COUNTRY_BLACKLIST` | &#8212; | Omits specific Country plugins from appearing in the application; comma-delimited (no spaces!)
+| `GD_IMPORT_FILES` | &#8212; | Used for extension purposes. See the developer doc. |
+| `GD_REST_API_ENABLED` | `false` | Unavailable just now. This enables/disables the REST API to allow users to generate data via a REST interface. |

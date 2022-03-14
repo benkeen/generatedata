@@ -50,6 +50,11 @@
               "sidebar": "userdoc"
             },
             {
+              "id": "userdoc/installation/settings",
+              "path": "/generatedata/userdoc/installation/settings",
+              "sidebar": "userdoc"
+            },
+            {
               "id": "userdoc/intro",
               "path": "/generatedata/",
               "sidebar": "userdoc"
