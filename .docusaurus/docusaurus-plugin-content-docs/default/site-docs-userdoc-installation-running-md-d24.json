@@ -2,7 +2,7 @@
   "unversionedId": "userdoc/installation/running",
   "id": "userdoc/installation/running",
   "isDocsHomePage": false,
-  "title": "Running",
+  "title": "3. Run the app",
   "description": "1. Make a copy the .env.default file in the root folder and call it .env. This file defines all of your settings",
   "source": "@site/docs/userdoc/installation/running.md",
   "sourceDirName": "userdoc/installation",
@@ -11,16 +11,19 @@
   "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/running.md",
   "tags": [],
   "version": "current",
+  "sidebarPosition": 4,
   "frontMatter": {
-    "id": "running"
+    "sidebar_position": 4,
+    "id": "running",
+    "title": "3. Run the app"
   },
   "sidebar": "userdoc",
   "previous": {
-    "title": "Prerequisites",
-    "permalink": "/generatedata/userdoc/installation/prereqs"
+    "title": "2. Customize settings",
+    "permalink": "/generatedata/userdoc/installation/settings"
   },
   "next": {
-    "title": "Settings",
-    "permalink": "/generatedata/userdoc/installation/settings"
+    "title": "3.x doc",
+    "permalink": "/generatedata/userdoc/v3"
   }
 }

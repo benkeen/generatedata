@@ -11,9 +11,9 @@
   "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/intro.md",
   "tags": [],
   "version": "current",
-  "sidebarPosition": 3,
+  "sidebarPosition": 1,
   "frontMatter": {
-    "sidebar_position": 3,
+    "sidebar_position": 1,
     "title": "Intro"
   },
   "sidebar": "userdoc",
@@ -22,7 +22,7 @@
     "permalink": "/generatedata/userdoc/about/website"
   },
   "next": {
-    "title": "Prerequisites",
+    "title": "1. Install Pre-reqs",
     "permalink": "/generatedata/userdoc/installation/prereqs"
   }
 }

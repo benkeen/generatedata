@@ -2,8 +2,8 @@
   "unversionedId": "userdoc/installation/prereqs",
   "id": "userdoc/installation/prereqs",
   "isDocsHomePage": false,
-  "title": "Prerequisites",
-  "description": "1. You'll need at least 10-15GB free. I know. Docker is a real hog.",
+  "title": "1. Install Pre-reqs",
+  "description": "Even though we're using Docker, the script isn't fully dockerized yet. So the installation process does require installing",
   "source": "@site/docs/userdoc/installation/prereqs.md",
   "sourceDirName": "userdoc/installation",
   "slug": "/userdoc/installation/prereqs",
@@ -11,8 +11,11 @@
   "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/prereqs.md",
   "tags": [],
   "version": "current",
+  "sidebarPosition": 2,
   "frontMatter": {
-    "id": "prereqs"
+    "sidebar_position": 2,
+    "id": "prereqs",
+    "title": "1. Install Pre-reqs"
   },
   "sidebar": "userdoc",
   "previous": {
@@ -20,7 +23,7 @@
     "permalink": "/generatedata/userdoc/installation/intro"
   },
   "next": {
-    "title": "Running",
-    "permalink": "/generatedata/userdoc/installation/running"
+    "title": "2. Customize settings",
+    "permalink": "/generatedata/userdoc/installation/settings"
   }
 }

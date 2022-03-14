@@ -1,5 +1,7 @@
 ---
+sidebar_position: 4
 id: running
+title: 3. Run the app
 ---
 
 # Running

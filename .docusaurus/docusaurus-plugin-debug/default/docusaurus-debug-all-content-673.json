@@ -153,9 +153,9 @@
               "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/intro.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 3,
+              "sidebarPosition": 1,
               "frontMatter": {
-                "sidebar_position": 3,
+                "sidebar_position": 1,
                 "title": "Intro"
               },
               "sidebar": "userdoc",
@@ -164,7 +164,7 @@
                 "permalink": "/generatedata/userdoc/about/website"
               },
               "next": {
-                "title": "Prerequisites",
+                "title": "1. Install Pre-reqs",
                 "permalink": "/generatedata/userdoc/installation/prereqs"
               }
             },
@@ -172,8 +172,8 @@
               "unversionedId": "userdoc/installation/prereqs",
               "id": "userdoc/installation/prereqs",
               "isDocsHomePage": false,
-              "title": "Prerequisites",
-              "description": "1. You'll need at least 10-15GB free. I know. Docker is a real hog.",
+              "title": "1. Install Pre-reqs",
+              "description": "Even though we're using Docker, the script isn't fully dockerized yet. So the installation process does require installing",
               "source": "@site/docs/userdoc/installation/prereqs.md",
               "sourceDirName": "userdoc/installation",
               "slug": "/userdoc/installation/prereqs",
@@ -181,8 +181,11 @@
               "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/prereqs.md",
               "tags": [],
               "version": "current",
+              "sidebarPosition": 2,
               "frontMatter": {
-                "id": "prereqs"
+                "sidebar_position": 2,
+                "id": "prereqs",
+                "title": "1. Install Pre-reqs"
               },
               "sidebar": "userdoc",
               "previous": {
@@ -190,15 +193,15 @@
                 "permalink": "/generatedata/userdoc/installation/intro"
               },
               "next": {
-                "title": "Running",
-                "permalink": "/generatedata/userdoc/installation/running"
+                "title": "2. Customize settings",
+                "permalink": "/generatedata/userdoc/installation/settings"
               }
             },
             {
               "unversionedId": "userdoc/installation/running",
               "id": "userdoc/installation/running",
               "isDocsHomePage": false,
-              "title": "Running",
+              "title": "3. Run the app",
               "description": "1. Make a copy the .env.default file in the root folder and call it .env. This file defines all of your settings",
               "source": "@site/docs/userdoc/installation/running.md",
               "sourceDirName": "userdoc/installation",
@@ -207,25 +210,28 @@
               "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/running.md",
               "tags": [],
               "version": "current",
+              "sidebarPosition": 4,
               "frontMatter": {
-                "id": "running"
+                "sidebar_position": 4,
+                "id": "running",
+                "title": "3. Run the app"
               },
               "sidebar": "userdoc",
               "previous": {
-                "title": "Prerequisites",
-                "permalink": "/generatedata/userdoc/installation/prereqs"
+                "title": "2. Customize settings",
+                "permalink": "/generatedata/userdoc/installation/settings"
               },
               "next": {
-                "title": "Settings",
-                "permalink": "/generatedata/userdoc/installation/settings"
+                "title": "3.x doc",
+                "permalink": "/generatedata/userdoc/v3"
               }
             },
             {
               "unversionedId": "userdoc/installation/settings",
               "id": "userdoc/installation/settings",
               "isDocsHomePage": false,
-              "title": "Settings",
-              "description": "To customize your application installation you'll need to edit the .env file in the root folder. By default this",
+              "title": "2. Customize settings",
+              "description": "To customize your application installation you'll need to edit the .env file in the root folder. As mentioned on the",
               "source": "@site/docs/userdoc/installation/settings.md",
               "sourceDirName": "userdoc/installation",
               "slug": "/userdoc/installation/settings",
@@ -233,18 +239,20 @@
               "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/settings.md",
               "tags": [],
               "version": "current",
+              "sidebarPosition": 3,
               "frontMatter": {
+                "sidebar_position": 3,
                 "id": "settings",
-                "title": "Settings"
+                "title": "2. Customize settings"
               },
               "sidebar": "userdoc",
               "previous": {
-                "title": "Running",
-                "permalink": "/generatedata/userdoc/installation/running"
+                "title": "1. Install Pre-reqs",
+                "permalink": "/generatedata/userdoc/installation/prereqs"
               },
               "next": {
-                "title": "3.x doc",
-                "permalink": "/generatedata/userdoc/v3"
+                "title": "3. Run the app",
+                "permalink": "/generatedata/userdoc/installation/running"
               }
             },
             {
@@ -334,11 +342,11 @@
                   },
                   {
                     "type": "doc",
-                    "id": "userdoc/installation/running"
+                    "id": "userdoc/installation/settings"
                   },
                   {
                     "type": "doc",
-                    "id": "userdoc/installation/settings"
+                    "id": "userdoc/installation/running"
                   }
                 ],
                 "collapsible": true,

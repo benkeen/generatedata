@@ -2,8 +2,8 @@
   "unversionedId": "userdoc/installation/settings",
   "id": "userdoc/installation/settings",
   "isDocsHomePage": false,
-  "title": "Settings",
-  "description": "To customize your application installation you'll need to edit the .env file in the root folder. By default this",
+  "title": "2. Customize settings",
+  "description": "To customize your application installation you'll need to edit the .env file in the root folder. As mentioned on the",
   "source": "@site/docs/userdoc/installation/settings.md",
   "sourceDirName": "userdoc/installation",
   "slug": "/userdoc/installation/settings",
@@ -11,17 +11,19 @@
   "editUrl": "https://github.com/benkeen/generatedata/tree/docs/docs/userdoc/installation/settings.md",
   "tags": [],
   "version": "current",
+  "sidebarPosition": 3,
   "frontMatter": {
+    "sidebar_position": 3,
     "id": "settings",
-    "title": "Settings"
+    "title": "2. Customize settings"
   },
   "sidebar": "userdoc",
   "previous": {
-    "title": "Running",
-    "permalink": "/generatedata/userdoc/installation/running"
+    "title": "1. Install Pre-reqs",
+    "permalink": "/generatedata/userdoc/installation/prereqs"
   },
   "next": {
-    "title": "3.x doc",
-    "permalink": "/generatedata/userdoc/v3"
+    "title": "3. Run the app",
+    "permalink": "/generatedata/userdoc/installation/running"
   }
 }

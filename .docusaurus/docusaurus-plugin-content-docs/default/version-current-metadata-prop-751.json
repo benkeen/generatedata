@@ -47,18 +47,18 @@
           },
           {
             "type": "link",
-            "label": "Prerequisites",
+            "label": "1. Install Pre-reqs",
             "href": "/generatedata/userdoc/installation/prereqs"
           },
           {
             "type": "link",
-            "label": "Running",
-            "href": "/generatedata/userdoc/installation/running"
+            "label": "2. Customize settings",
+            "href": "/generatedata/userdoc/installation/settings"
           },
           {
             "type": "link",
-            "label": "Settings",
-            "href": "/generatedata/userdoc/installation/settings"
+            "label": "3. Run the app",
+            "href": "/generatedata/userdoc/installation/running"
           }
         ],
         "collapsible": true,

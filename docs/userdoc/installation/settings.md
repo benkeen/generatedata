@@ -1,45 +1,62 @@
 ---
+sidebar_position: 3
 id: settings
-title: Settings
+title: 2. Customize settings
 ---
 
 # Settings
 
-To customize your application installation you'll need to edit the `.env` file in the root folder. By default this 
-file doesn't exist: you'll need to make a copy of it from the `.env.default` file, also in that folder.
+To customize your application installation you'll need to edit the `.env` file in the root folder. As mentioned on the 
+previous page, this file doesn't exist by default: you'll need to make a copy of the `.env.default` file and name it 
+`.env`.
 
 This page outlines every available setting, but some settings MUST be set. They've been flagged with "**must set**" in the 
 comments, but here's the full list:
 
 - `GD_MYSQL_ROOT_PASSWORD`
+- `GD_DEFAULT_ADMIN_FIRST_NAME`
+- `GD_DEFAULT_ADMIN_LAST_NAME`
+- `GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME`
+- `GD_DEFAULT_ADMIN_EMAIL`
+- `GD_DEFAULT_ADMIN_FIRST_NAME`
+- `GD_JWT_SECRET`
+
+Also note that with the default settings the application will run at `http://localhost:9000`. If you want to change
+that, check out the Web Server settings below.
 
 
 ### Database settings
 
+The first time you install the script it will use these values to set up the database. So if you start the application 
+then change these later on, they won't work. 
+
 | Setting | Default value | Desc |
 | --------- | ---------- | -------------- |
-| `GD_MYSQL_ROOT_USER` | | |
-| `GD_MYSQL_ROOT_PASSWORD` | `` | **Must set** |
-| `GD_DB_NAME` | `generatedata` | |
-| `GD_DB_PORT` | `3306` | |
+| `GD_MYSQL_ROOT_USER` | `root` | The main root user for the MySQL database. Defaults to `root` but you can enter any name you like |
+| `GD_MYSQL_ROOT_PASSWORD` | &#8212; | **Must set.** The password for the MySQL database user. Better stick to alphanumeric characters just in case MySQL doesn't like certain chars. |
+| `GD_DB_NAME` | `generatedata` | The name of the database. |
+| `GD_DB_PORT` | `3306` | The port of the database so it can be accessed within the Docker setup. |
 
 
 ### API server
 
 | Setting | Default value | Desc |
 | --------- | ---------- | -------------- |
-| `GD_API_SERVER_PORT` | `3001` | |
+| `GD_API_SERVER_PORT` | `3001` | This is the server port for the server API for graphQL. You shouldn't need to change this - it should only be used internally within the Docker configuration.  |
 
 
 ### Web server settings
 
+These settings control how you access the application in your web browser.
+
 | Setting | Default value | Desc |
 | --------- | ---------- | -------------- |
-| `GD_WEB_DOMAIN` | `localhost` | |
-| `GD_WEB_SERVER_PORT` | `9000` | |
-| `GD_WEB_USE_HTTPS` | `false` | |
+| `GD_WEB_DOMAIN` | `localhost` | localhost is the typical way to access local servers, but you can enter whatever you want. If you DO change this you'll need to update your `hosts` file to link your custom domain to your local IP. For that you'll need to google it, sorry! |
+| `GD_WEB_SERVER_PORT` | `9000` | The port that it runs on. |
+| `GD_WEB_USE_HTTPS` | `false` | Whether or not to use https. This can be activated (`true`) but you'll need handle setting up the security certs yourself. |
 
 ### Admin account
+
 
 | Setting | Default value | Desc |
 | --------- | ---------- | -------------- |
@@ -47,7 +64,7 @@ comments, but here's the full list:
 | `GD_DEFAULT_ADMIN_LAST_NAME` | `Name` | |
 | `GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME` | `admin123` | |
 | `GD_DEFAULT_ADMIN_EMAIL` | `admin@generatedata.com` | |
-| `GD_DEFAULT_ADMIN_PASSWORD` | `admin123` | |
+| `GD_DEFAULT_ADMIN_PASSWORD` | `admin123` | Just use a temporary value here! It's not a great idea to la|
 
 
 ### Authentication
