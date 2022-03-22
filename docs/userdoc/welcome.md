@@ -6,6 +6,10 @@ id: intro
 
 # User documentation
 
+:::caution
+**Work in progress!** Come back soon - user documentation almost complete. 
+:::
+
 Welcome to the generatedata.com user documentation! The purpose of this section is to explain what the application does, 
 how to install it, and provide a little history on the script.   
 
