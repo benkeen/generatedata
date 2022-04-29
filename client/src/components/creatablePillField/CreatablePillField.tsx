@@ -65,7 +65,7 @@ export const createOption = (label: string): DropdownOption => ({
 	value: label,
 });
 
-const SortableCreatableSelect = SortableContainer(CreatableSelect);
+const SortableCreatableSelect: any = SortableContainer(CreatableSelect);
 
 
 export type CreatablePillFieldProps = {
@@ -124,12 +124,12 @@ const CreatablePillField = ({ onChange, onValidateNewItem, value, error, placeho
 				inputValue={tempValue}
 				axis="xy"
 				distance={4}
-				getHelperDimensions={({ node }): any => node.getBoundingClientRect()}
+				getHelperDimensions={({ node }: any): any => node.getBoundingClientRect()}
 				isClearable
 				isMulti
 				onSortEnd={onSortEnd}
 				menuIsOpen={false}
-				onChange={(options): void => {
+				onChange={(options: any): void => {
 					const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
 					onChange(newValues);
 				}}

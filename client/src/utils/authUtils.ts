@@ -25,7 +25,7 @@ export const hasVendorLogin = (): boolean => {
 };
 
 export const getVendorLoginButtons = (): React.ReactNode[] => {
-	const buttons = [];
+	const buttons: any[] = [];
 
 	if (env.googleAuthClientId) {
 		buttons.push(SignInWithGoogleButton);

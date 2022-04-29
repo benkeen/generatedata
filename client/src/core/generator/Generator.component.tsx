@@ -73,7 +73,9 @@ const Builder = ({
 		}
 
 		if (isGridVisible && isPreviewVisible) {
+
 			return (
+				/* @ts-ignore-line */
 				<SplitPane
 					className="gdGridPanel"
 					split={generatorLayout}

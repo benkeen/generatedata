@@ -32,7 +32,7 @@ export const initialState: SQLSettings = {
 	quotes: 'single'
 };
 
-export const Settings: React.ReactNode = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings) => {
+export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): any => {
 	const onChange = (field: string, value: any): void => {
 		onUpdate({
 			...data,
