@@ -352,3 +352,23 @@ export const currentDataSetNeedsCountryNames = createSelector(
 		return needsCountryNames ? true : !!metadata?.useCountryNames;
 	}, false)
 );
+
+// generates a schema of all the data needed to recreate the current data set
+export const getDataSetSchema = createSelector(
+	getRows,
+	getSortedRows,
+	shouldStripWhitespace,
+	(rows, sortedRows, stripWhitespace) => {
+		const nonEmptyRows = sortedRows.filter((id) => !!rows[id].dataType);
+		return {
+			data: nonEmptyRows.map((rowId) => {
+				const {id, title, dataType, data} = rows[rowId];
+				return {id, title, dataType, data};
+			}),
+			exportType: "...",
+			exportTypeSettings: {},
+			stripWhitespace,
+			numRows: 1
+		};
+	}
+);
