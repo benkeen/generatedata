@@ -1,58 +1,34 @@
 # generatedata.com
 
 [![Build Status](https://travis-ci.com/benkeen/generatedata.svg?branch=master)](https://travis-ci.com/benkeen/generatedata)
-[![Coverage Status](https://coveralls.io/repos/github/benkeen/generatedata/badge.svg?branch=master)](https://coveralls.io/github/benkeen/generatedata?branch=master)
 
-> Form Tools 4 is now live! https://generatedata.com - I've been a big backlogged, but I'll start working on documentation and creating an downloadable version of the script soon. The README doc below is for the old v3 script. That'll be updated soon, stay tuned.
+This is the repo for the downloadable version of [generatedata.com](https://generatedata.com). The script is essentially
+an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
+so *Data Types* (types of data it generates), 12 *Export Types* (formats for the data, like CSV, SQL, JSON), plus
+around 32 data sets for specific countries (city names, regions etc). But more importantly it can be extended in any
+way you want. Check out the [developer documentation](https://benkeen.github.io/generatedata/developerdoc/intro/) for more
+information on that.
 
-This is the repo for the downloadable version of [generatedata.com](https://generatedata.com). The 
-script is essentially an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
-so *Data Types* (types of data it generates), 8 *Export Types* (formats for the data), plus around 30 data sets for
-specific countries (city names, regions etc). But more importantly it can be extended in any way you want. Check out
-the [developer documentation](http://benkeen.github.io/generatedata3/developer.html) for more information on that. If
-you need to generate random data programmatically rather than manually via the UI, you can use the [REST API](http://benkeen.github.io/generatedata3/api.html).
+### Programmatic generation
 
-The master branch now contains the ongoing v4 rewrite, so if you're downloading the script, get the most recent 
-3.x tag: https://github.com/benkeen/generatedata/releases
-
-*This README file still contains information about the v3 code. It will stay that way until v4 is released.*
+The current major version of the script is 4.x, which was a big change over earlier releases. Earlier versions were written
+in PHP and MYSQL and 3.x offered a REST API to let you generate the data programmatically rather than via an API. While this is
+still planned for 4.x it's not currently offered, and the plan it to tackle that _after_ making the script available
+as an npm package - which we feel will be a more convenient way to programmatically generate data over the more agnostic
+REST  approach.
 
 ## Requirements
-- PHP 5.3 or any later version of PHP 5.
-- MySQL 4.1.3 or later
+
+- Docker
+- node
+- nvm 
+
+See the [Installation instructions](https://benkeen.github.io/generatedata/userdoc/installation/intro) for full details.
 
 ## How to Install / Documentation
 
 For installation instructions, user and developer documentation, check out:
-http://benkeen.github.io/generatedata3/
-
-Installation is really, really simple. I deliberately wrote the script to be as self-contained as possible and not 
-require additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later. See 
-the documentation for more info.
-
-## Pre-packaged solutions
-
-### Docker
-
-- Check out [Maxime Visonneau's repo](https://github.com/mvisonneau/docker-generatedata) for a Docker packaged version 
-of this script.
-- Also: [@LaiNathaniel's repo](https://github.com/LaiNathaniel/docker-generatedata)
-- And [Andy Shinn's instructions](https://github.com/benkeen/generatedata/pull/269)
-
-### Kubernetes Helm Chart
-
-Dmitry Rubtsov has put up a Helm chart here:
-https://github.com/dmirubtsov/generatedata-helm
-
-### Vagrant 
-
-There's also a pre-packaged Vagrant solution [found here](https://github.com/benkeen/generatedata-vagrant),
-courtesy of Daragh Courtney.
-
-## To-Do
-
-Please see the issues tagges as [feature requests](https://github.com/benkeen/generatedata/issues?labels=Feature+Request%21&page=1&state=open)
-for a list of things that are still left to complete on this project. Help is always welcome!
+https://benkeen.github.io/generatedata/
 
 ## License
 
