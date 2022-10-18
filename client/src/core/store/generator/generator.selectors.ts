@@ -362,8 +362,8 @@ export const getDataSetSchema = createSelector(
 		const nonEmptyRows = sortedRows.filter((id) => !!rows[id].dataType);
 		return {
 			data: nonEmptyRows.map((rowId) => {
-				const {id, title, dataType, data} = rows[rowId];
-				return {id, title, dataType, data};
+				const { id, title, dataType, data } = rows[rowId];
+				return { id, title, dataType, data };
 			}),
 			exportType: "...",
 			exportTypeSettings: {},

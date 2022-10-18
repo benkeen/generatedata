@@ -1,4 +1,4 @@
-FROM node:14-alpine AS alpine
+FROM --platform=linux/amd64 node:14 AS alpine
 
 ENV HOME=/home/app/generatedata
 
