@@ -6,39 +6,23 @@ title: 1. Install Pre-reqs
 
 # Prerequisites
 
-:::caution
-Even though we're using Docker, the script isn't fully dockerized yet. So the installation process *does* require installing
-a number of additional scripts on your machine besides just Docker. If anyone's interested in helping improve this I'd love to
-hear from you! Working with Docker makes me want to stick my head in the toilet and flush. Chime in on github issues 
-or reach out to me at ben.keen@gmail.com.  
-:::
+Before we get to the installation, make sure you have the following pre-requisites installed.
 
-1. You'll need at least 10-15GB free. I know. Docker is a real hog.  
+1. You'll need at least 10-15GB free. I know. Docker is a real hog.
 2. [Download and install Docker Desktop](https://docs.docker.com/desktop).
 
-:::info
-**What is Docker?**
+> **What is Docker?**
 Docker is a popular platform for shipping and running self-contained applications. Rather than requiring you to install
 numerous different tools and applications on your own machine and keep them up to date, Docker "containerizes" them and
-lets you forget about the details of an application. 
-:::
-
-3. Download the [latest version of generatedata](https://github.com/benkeen/generatedata/releases). 
-4. [Install node](https://nodejs.org/en). 
-5. [Install nvm](https://github.com/nvm-sh/nvm).
-
-:::info
-NVM stands for **Node Version Manager**. It lets you run any version of node you want. In the generatedata repo there's a
-file that specifies the right node version. You can run a single command with nvm so that it's using the right versino.    
-:::
- 
-- Open up `Terminal`.
-- Follow the instructions here.
-
-6. Install yarn.
-```
-npm install --global yarn
-```
+lets you forget about the details of an application. In our case, we've dockerized a fair amount of the application, but 
+not all - hence the need to install the. 
 
 
-And that's it! Now let's install it.
+3. Download the latest version of generatedata. For this, if you're a developer you can either `git clone` the repo and
+check out the current master branch, or download the [latest official version](https://github.com/benkeen/generatedata/releases). 
+Master is generally stable, but it's not guaranteed - so downloading the latest zip/tar is probably your best bet. 
+5. [Install node](https://nodejs.org/en).
+6. [Install nvm](https://github.com/nvm-sh/nvm).
+6. Install yarn: `npm install --global yarn`
+
+And that's it! Now let's customize the app to work exactly how you want.

@@ -4,7 +4,7 @@ id: versionComparison
 
 # Comparison of v3 and v4
 
-v4 of generatedata.com is a complete rewrite of the application. It shares a lot of the similar UI aspects with the 
+v4 was a complete rewrite of the application. It shares a lot of the similar UI aspects with the 
 previous version but behind the scenes is completely different.
 
 ### Technical differences
@@ -38,8 +38,9 @@ way.
 
 #### v4 advantages
  
-- Live preview panel. This is a big improvement: now you can visually see what you're generating as you're configuring your fields.
-- "Take a tour" feature to demo aspects of the script.
+- **Live preview panel**. This was a big improvement: now you can visually see what you're generating as you're configuring
+your fields.
+- "Take a tour" feature to demo aspects of the script and give users a quick introduction to what it does and how it works. 
 - New Data Types: Colour, Time. Plus numerous improvements and expansions on the existing Data Types.
 - New Export Types: Typescript, Python. 
 - Much faster data generation with an improved visual display of how the generation is going.  
@@ -49,8 +50,9 @@ way.
 There were several goals with the v4 rewrite.
 
 1. First, be able to **generate the data in your browser instead of the server**. Hosting costs for the production site 
-were exorbitant due to the popularity of the script so by offloading the actual data generation to the client 
-it made it more scalable, andoverall reduced generation time.
-2. Secondly, like mentioned beforeL: **show a live preview panel** so you could see what data you were going to get, while you built it.
-3. Move to node and offer a version of it as a free, downloadable npm package. This will be worked on this year (2022).
+were exorbitant due to the popularity of the script, so by offloading the actual data generation to the client 
+it made it more scalable and made it far quicker to do the actual data generation.
+2. Secondly, like mentioned adobe: **show a live preview panel** so you could see what data you were going to get,
+while you built it.
+4. Move to node and offer a version of it as a free, downloadable npm package. This is next up for development.
 

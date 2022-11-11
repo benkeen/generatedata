@@ -6,12 +6,13 @@ title: 2. Customize settings
 
 # Settings
 
-To customize your application installation you'll need to edit the `.env` file in the root folder. As mentioned on the 
-previous page, this file doesn't exist by default: you'll need to make a copy of the `.env.default` file and name it 
-`.env`.
+The application uses an `.env` dotfile to store your application settings. With a refresh download/checkout of the 
+generatedata source, this file doesn't exist by default. Make a copy of the `.env.default` file and name it 
+`.env`. You're going to make your changes to that file. 
 
-This page outlines every available setting, but some settings MUST be set. They've been flagged with "**must set**" in the 
-comments, but here's the full list:
+This page outlines every available setting. Defaults are provided for some settings but not all - the ones you MUST 
+provide a value for have been flagged with "**must set**" in the comments, but this is the full list if you want to 
+skip the details:
 
 - `GD_MYSQL_ROOT_PASSWORD`
 - `GD_DEFAULT_ADMIN_FIRST_NAME`
@@ -30,12 +31,12 @@ that, check out the Web Server settings below.
 The first time you install the script it will use these values to set up the database. So if you start the application 
 then change these later on, they won't work. 
 
-| Setting | Default value | Desc |
-| --------- | ---------- | -------------- |
-| `GD_MYSQL_ROOT_USER` | `root` | The main root user for the MySQL database. Defaults to `root` but you can enter any name you like |
-| `GD_MYSQL_ROOT_PASSWORD` | &#8212; | **Must set.** The password for the MySQL database user. Better stick to alphanumeric characters just in case MySQL doesn't like certain chars. |
-| `GD_DB_NAME` | `generatedata` | The name of the database. |
-| `GD_DB_PORT` | `3306` | The port of the database so it can be accessed within the Docker setup. |
+| Setting | Default value | Desc                                                                                                                                                  |
+| --------- | ---------- |-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `GD_MYSQL_ROOT_USER` | `root` | The main root user for the MySQL database. Defaults to `root` but you can enter any value you like.                                                   |
+| `GD_MYSQL_ROOT_PASSWORD` | &#8212; | **Must set.** The password for the MySQL database user. I'd suggest sticking to alphanumeric characters just in case MySQL doesn't like certain chars. |
+| `GD_DB_NAME` | `generatedata` | The name of the database. You can change this to whatever you want.                                                                                   |
+| `GD_DB_PORT` | `3306` | The port of the database so it can be accessed within the Docker setup. Again, this is customizable.                                                  |
 
 
 ### API server
@@ -57,19 +58,29 @@ These settings control how you access the application in your web browser.
 
 ### Admin account
 
+The application has a single administrator account used for all management options in the UI. This account is initially 
+defined here in your `.env` file settings here so that when the database is first created, it has a single admin user setup.
+After the application is running in your browser and you're able to log in, I'd suggest re-editing the .env file to remove 
+these values. Special note: use a temporary password here! You definitely don't want to be storing a real password in a
+file on your computer.
 
-| Setting | Default value | Desc |
-| --------- | ---------- | -------------- |
-| `GD_DEFAULT_ADMIN_FIRST_NAME` | `Your` | |
-| `GD_DEFAULT_ADMIN_LAST_NAME` | `Name` | |
-| `GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME` | `admin123` | |
-| `GD_DEFAULT_ADMIN_EMAIL` | `admin@generatedata.com` | |
-| `GD_DEFAULT_ADMIN_PASSWORD` | `admin123` | Just use a temporary value here! It's not a great idea to la|
+| Setting | Default value | Desc                             |
+| --------- | ---------- |----------------------------------|
+| `GD_DEFAULT_ADMIN_FIRST_NAME` | `Your` |                                  |
+| `GD_DEFAULT_ADMIN_LAST_NAME` | `Name` |                                  |
+| `GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME` | `admin123` |                                  |
+| `GD_DEFAULT_ADMIN_EMAIL` | `admin@generatedata.com` |                                  |
+| `GD_DEFAULT_ADMIN_PASSWORD` | `admin123` | Just use a temporary value here! |
 
 
 ### Authentication
 
-# (Required) JWT secret. This is used for the JWT generation code. It should be changed to any string you like
+This stuff is a bit dense and annoying, but bear with me.
+
+#### JWT 
+
+JWT stands for "Javascript Web Token".
+
 GD_JWT_SECRET=sahdflkajhflakdi7yhdfkjgpgnjaaff0
 GD_JWT_LIFESPAN_MINS=15
 GD_JWT_REFRESH_TOKEN_SECRET=sdflkjdkfiuro23udlfkjskf

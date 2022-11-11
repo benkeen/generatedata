@@ -5,10 +5,8 @@ title: Intro
 
 # Installation
 
-Alrighty! Let's get this sucker installed. 
-
-This section outlines how to install and configure the script on your local computer. And yup, if you want it running
-on your local intranet or what have you, that's no problem either. Steps:
+Alrighty! Let's get this thing installed. This section outlines how to install and configure the script on your local
+computer. If you want it running on your local intranet, that's no problem either. Steps:
 
 1. Install pre-requisites.
 2. Customize settings

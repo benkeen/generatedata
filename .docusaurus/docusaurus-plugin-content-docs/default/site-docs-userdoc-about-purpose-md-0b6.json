@@ -3,7 +3,7 @@
   "id": "userdoc/about/purpose",
   "isDocsHomePage": false,
   "title": "Purpose",
-  "description": "Generating test data can be a pain. For developers, some things can be easily scripted: random numbers,",
+  "description": "Generating test data can be a pain. If you're a developer, you know some data types can be easily easily scripted: random numbers,",
   "source": "@site/docs/userdoc/about/purpose.md",
   "sourceDirName": "userdoc/about",
   "slug": "/userdoc/about/purpose",

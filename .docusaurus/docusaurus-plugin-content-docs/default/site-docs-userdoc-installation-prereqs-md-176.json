@@ -3,7 +3,7 @@
   "id": "userdoc/installation/prereqs",
   "isDocsHomePage": false,
   "title": "1. Install Pre-reqs",
-  "description": "Even though we're using Docker, the script isn't fully dockerized yet. So the installation process does require installing",
+  "description": "Before we get to the installation, make sure you have the following pre-requisites installed.",
   "source": "@site/docs/userdoc/installation/prereqs.md",
   "sourceDirName": "userdoc/installation",
   "slug": "/userdoc/installation/prereqs",

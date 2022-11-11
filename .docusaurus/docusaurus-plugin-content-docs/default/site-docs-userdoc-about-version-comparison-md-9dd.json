@@ -3,7 +3,7 @@
   "id": "userdoc/about/versionComparison",
   "isDocsHomePage": false,
   "title": "Comparison of v3 and v4",
-  "description": "v4 of generatedata.com is a complete rewrite of the application. It shares a lot of the similar UI aspects with the",
+  "description": "v4 was a complete rewrite of the application. It shares a lot of the similar UI aspects with the",
   "source": "@site/docs/userdoc/about/version-comparison.md",
   "sourceDirName": "userdoc/about",
   "slug": "/userdoc/about/versionComparison",

@@ -14,7 +14,7 @@ export default {
       "@docusaurus/preset-classic",
       {
         "docs": {
-          "sidebarPath": "/Users/benkeen/generatedata/sidebars.js",
+          "sidebarPath": "/Users/benkeen/dev/generatedata/sidebars.js",
           "editUrl": "https://github.com/benkeen/generatedata/tree/docs/",
           "routeBasePath": "/"
         },
@@ -23,7 +23,7 @@ export default {
           "editUrl": "https://github.com/benkeen/generatedata"
         },
         "theme": {
-          "customCss": "/Users/benkeen/generatedata/src/css/custom.css"
+          "customCss": "/Users/benkeen/dev/generatedata/src/css/custom.css"
         }
       }
     ]

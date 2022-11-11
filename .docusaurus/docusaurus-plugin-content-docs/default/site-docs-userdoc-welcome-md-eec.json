@@ -3,7 +3,7 @@
   "id": "userdoc/intro",
   "isDocsHomePage": false,
   "title": "Introduction",
-  "description": "Work in progress! Come back soon - user documentation almost complete.",
+  "description": "Welcome to the generatedata.com user documentation! The purpose of this section is to explain what the application does,",
   "source": "@site/docs/userdoc/welcome.md",
   "sourceDirName": "userdoc",
   "slug": "/",
