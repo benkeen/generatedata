@@ -15,8 +15,7 @@ Before we get to the installation, make sure you have the following pre-requisit
 Docker is a popular platform for shipping and running self-contained applications. Rather than requiring you to install
 numerous different tools and applications on your own machine and keep them up to date, Docker "containerizes" them and
 lets you forget about the details of an application. In our case, we've dockerized a fair amount of the application, but 
-not all - hence the need to install the. 
-
+not all - hence the need to install the things here.
 
 3. Download the latest version of generatedata. For this, if you're a developer you can either `git clone` the repo and
 check out the current master branch, or download the [latest official version](https://github.com/benkeen/generatedata/releases). 
