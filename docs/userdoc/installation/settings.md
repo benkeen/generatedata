@@ -75,42 +75,63 @@ file on your computer.
 
 ### Authentication
 
-This stuff is a bit dense and annoying, but bear with me.
+Setting all this auth-related stuff up is a pain. I do miss the old days of "WAMP/LAMP/WAMP" where it would provide a
+preconfigured system with everything you needed, sigh... ah, "progress".
 
 #### JWT 
 
-JWT stands for "Javascript Web Token".
+`JWT` stands for Javascript Web Tokens. It's used by the application to create a secure way to interact with the server
+and keep track of authentication and who's logged in.
 
-GD_JWT_SECRET=sahdflkajhflakdi7yhdfkjgpgnjaaff0
-GD_JWT_LIFESPAN_MINS=15
-GD_JWT_REFRESH_TOKEN_SECRET=sdflkjdkfiuro23udlfkjskf
-GD_JWT_REFRESH_TOKEN_LIFESPAN_MINS=1440
+| Setting | Default value | Desc                                                                                                      |
+| --------- |----|-----------------------------------------------------------------------------------------------------------|
+| `GD_JWT_SECRET` | (random string) | **must set.** Just enter a random string value here - maybe 30 or 40 chars or so.                         |
+| `GD_JWT_LIFESPAN_MINS` | 15 | How long the auth is valid on the front end before it requests a refresh token to keep the session alive. |
+| `GD_JWT_REFRESH_TOKEN_SECRET` | (random string) |                                                                                                           |
+| `GD_JWT_REFRESH_TOKEN_LIFESPAN_MINS` | 1440 |                                                                                                           |
 
-# (optional) Sign-in with Google - oath2
-GD_GOOGLE_AUTH_CLIENT_ID=707804813649-6ota5oqbbt4gf6k2osicuclji6tjkt44.apps.googleusercontent.com
-GD_GOOGLE_AUTH_CLIENT_SECRET=BNrEpTH3RHI8favkICSvqZou
+#### Sign in with Google
+
+If these values are set, the interface will show a "Sign in with Google" option in the login panel, allowing users to 
+authenticate with Google and sign in with their Google email address, assuming there's an account already created 
+in the system with that email address. 
+
+In order to get these values, you'll need to set up an account with Google for your locally installed application. See
+their [documentation](https://developers.google.com/identity/protocols/oauth2) for more information on that. 
+
+| Setting | Default value | Desc                                                                              |
+| --------- |----|-----------------------------------------------------------------------------------|
+| `GD_GOOGLE_AUTH_CLIENT_ID` | - | **must set.** Just enter a random string value here - maybe 30 or 40 chars or so. |
+| `GD_GOOGLE_AUTH_CLIENT_SECRET` | -  | Provided by Google.                                                               |
 
 
-### Email OAUTH info
+#### Emails 
 
-GD_EMAIL_OAUTH_SERVICE_CLIENT_ID=110440607716603463780
-GD_EMAIL_OAUTH_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC9lrAOK2jXtgme\nRFLiitoU0Fxq6NMR9XXzagi5LfCxUkkzjNmHQ4/U2kJKxujVXDCyUgvMD0NmT7nR\nHKIbDBCsQk9IpJpzbWBscSPhLUb8PbTckamEb4YzrAElpyZVfFUaSJNkb1D3mUEG\n7bXI3ltX95CGPHNEoJ4/tdAMT2QNz0Xc7E4AeSYNizVW7tbWJCj3P7OUo2dqpEgL\njq6Au5Y/J0oO1jpcFVAYTq/mGX3BKJ++RGQovL+/jqC2To0xu495k5zX6LARe9Fp\nBDeuT2gZlzc70fJrg9eD7DrioCraM7urT/vvGUkfw5DghwAOyjK07M0TTi+AXX5p\ndwChXNG/AgMBAAECggEAAN2OeYRv9ClzkVR3C4bRaUBQDvveLHF0c7jN8LgpOIzf\nrTmSlToY3Q3XonDStL6uX83INR9CAlxWffkZ2/0H/+N5G/IGcHi5PPFZjyOer2yf\nNKmwOM9FQz0ogcI+IxpLOdesFvnCJdVShIYFPNBGbbsntH/906HotPShJYI6TjXl\nRjFUf2HNJAXs1fQf9J5221b5ppC5ukfflyByfh94t4NsJ62iHbudYfFoMqBVQv+I\nWll2UjYqb/dPMcBVRKbAVmPwUsMcKg43pBVWHSyiYr1mqmnbfMvvBVYBuTMNGVxm\na/i01gc1bkSJ6aa9hQ78/YkotPxX61wjS471ApQ7WQKBgQD8TQ69mMvclvWXPoOJ\nICjE9meiHBZRLnnYItJrV6f5hE21pvaotIuVQ1k+miItrjjY+Uh7+BgZv/x3tw4W\nOS4sF5trRzuIVFTEO/USbi2ZaSjRbhcuCfpXebxWTzjj5fusvg/HChhMJQLHrR7z\nhnELIazIuOLW+0IOQdNsn/f29wKBgQDAXkGnabYchKCCkfO8A2QEnp4cQ2mYsESk\nKC+hE4iWZUBbKfS27SzvAqG8RIpY5WxeKHBEV06JzvuM/IkRFJzUnxY2QCWQkPqd\nDb1l+jxJpmu8OMm51HB709oM+Ddo3pxcbVR0fmcIY/mOQGxOkDgIS+SRDBb8Dmhw\na3TNqzbheQKBgDCwEiMmZFjaTOR17N4+dX+k6VTQRMI/zMWX2rFaRhERpgljAgCG\nbtVMHOHGzsev8kp0uLcrpkL52JelnLNPL4jUuWpXYbaqR31i8KUw293Z/EWGEDUT\nOds9o8moGhtom0u3lcXcPdob3lB4KRvnmtMCGZzWiPfhntqve0RgDnL7AoGBAKXo\nJOOIDmImGHDEA9vhaL97NY3Wrhnb3Ddf2UQonqJnDMwTMVUa1KgGMws2acMliwLi\nCYFHcxrzgowjuOscRe4yjmuXg05dW2dcVD7BRIGYoE4jBAfbKnABVIve/5rYcy5b\ntH0MDzxzTOXctgxD4a92FNjr/l7A5l4erww6YAixAoGBAKZFOVljWKZwJ2lv69Gy\nsIlFQisCykzUx6bXR5OkLp5RVS03594NXtS02Zdqwn9Or8sDFJRABvW7w2wDloc1\nQpYwIs9KczU48ICNJy6UZqEZf7y9cM7WNJe1p2pqVzoPE75gUkkLkzRs4TmVLpvL\nB0UXRWnt1IDk2u1lV5wRVSmd\n-----END PRIVATE KEY-----\n
+If you want the option to send emails, you'll need to define these settings below. This is quite flexible and will work
+with any OAUTH email service. For the main website, we use Google, but you can use whatever you have available.
+
+| Setting | Default value | Desc |
+| --------- |---|--|
+| `GD_EMAIL_OAUTH_SERVICE_CLIENT_ID` | - | Provided by your email Auth service. |
+| `GD_EMAIL_OAUTH_PRIVATE_KEY` | - | Provided by your email Auth service. |
 
 ### Application settings
 
+This section contains the main settings for your application. Give each one a read through - the first `GD_APP_TYPE` 
+setting is particularly important.
 
-| Setting | Default value | Desc |
-| --------- | ---------- | -------------- |
-| `GD_APP_TYPE` | `login` | This setting controls the overall type of the installation. The options are:<br />`login` - allows anonymous access but without logging in they can't save their data sets or generate more than `GD_MAX_DEMO_MODE_ROWS` at a time. Only the admin account can create new accounts.<br />`single` - there's only ever a single account and that user is logged in by default`open` - anyone that has access to the URL can use the application anonymously or create an account<br />`closed` - no-one can access it without logging in first. |
-| `GD_GENERATOR_PATH` | `/` | This allows easy extension for the prod site. On the prod site, the homepage is a splash info page to the tool. For other distributions, that isn't necessary and we want the generator itself to be the homepage. |
-| `GD_DEFAULT_LOCALE` | `en` | The default locale. | 
-| `GD_DEFAULT_EXPORT_TYPE` | `JSON` | The default Export Type to show in the preview panel. | 
-| `GD_LOCALES` | `ar,de,en,es,fr,`<br/>`hi,ja,nl,pt,ta,zh` | All the available locales that show up in the UI. If you only enter 1, the icon to switch locales won't appear. |
-| `GD_DEFAULT_NUM_ROWS` | `100` | The default value for the number of rows to generate. |
-| `GD_MAX_DEMO_MODE_ROWS` | `1000` | For `login` appType, this controls how many rows can be generated by anonymous (non-logged in) users. |
-| `GD_MAX_DATASET_HISTORY_SIZE` | `200` | Any time a user saves a dataset, that change is stored in the database to allow the user to backtrack and see earlier versions of the dataset. This governs the max number of history items. |
-| `GD_DATA_TYPE_BLACKLIST` | `_PhoneRegional, OrganizationNumber, PersonalNumber, SIRET` | This omits specific Data Types from the application. Comma-delimited (no spaces!). It omits them from appearing in the UI, but it also prevents them from being built as well. So incomplete Data Types won't throw an error and cause the build to fail. |
-| `GD_EXPORT_TYPE_BLACKLIST` | &#8212; | Omits specific Export Types from the application; comma-delimited (no spaces!). |
-| `GD_COUNTRY_BLACKLIST` | &#8212; | Omits specific Country plugins from appearing in the application; comma-delimited (no spaces!)
-| `GD_IMPORT_FILES` | &#8212; | Used for extension purposes. See the developer doc. |
-| `GD_REST_API_ENABLED` | `false` | Unavailable just now. This enables/disables the REST API to allow users to generate data via a REST interface. |
+| Setting | Default value                                               | Desc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| --------- |-------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `GD_APP_TYPE` | `login`                                                     | This setting controls the overall type of the installation. The options are:<br />`login` - allows anonymous access but without logging in they can't save their data sets or generate more than `GD_MAX_DEMO_MODE_ROWS` at a time. Only the admin account can create new accounts.<br />`single` - there's only ever a single account and that user is logged in by default<br />`open` - anyone that has access to the URL can use the application anonymously or create an account<br />`closed` - no-one can access it without logging in first. |
+| `GD_GENERATOR_PATH` | `/`                                                         | This allows easy extension for the prod site. On the prod site, the homepage is a splash info page to the tool. For other distributions, that isn't necessary and we want the generator itself to be the homepage.                                                                                                                                                                                                                                                                                                                                   |
+| `GD_DEFAULT_LOCALE` | `en`                                                        | The default locale.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
+| `GD_DEFAULT_EXPORT_TYPE` | `JSON`                                                      | The default Export Type to show in the preview panel.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | 
+| `GD_LOCALES` | `ar`,`de`,`en`,`es`,`fr`,<br/>`hi`,`ja`,`nl`,`pt`,`ta`,`zh` | All the available locales that show up in the UI. You have to enter 1 value at least. If you only enter 1, the icon to switch locales won't appear.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `GD_DEFAULT_NUM_ROWS` | `100`                                                       | The default value for the number of rows to generate.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `GD_MAX_DEMO_MODE_ROWS` | `1000`                                                      | For `login` appType, this controls how many rows can be generated by anonymous (non-logged in) users.                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `GD_MAX_DATASET_HISTORY_SIZE` | `200`                                                       | Any time a user saves a dataset, that change is stored in the database to allow the user to backtrack and see earlier versions of the dataset. This governs the max number of history items.                                                                                                                                                                                                                                                                                                                                                         |
+| `GD_DATA_TYPE_BLACKLIST` | `_PhoneRegional, OrganizationNumber, PersonalNumber, SIRET` | This omits specific Data Types from the application. Comma-delimited (no spaces!). It omits them from appearing in the UI, but it also prevents them from being built as well. So incomplete Data Types won't throw an error and cause the build to fail. I wouldn't touch this value.                                                                                                                                                                                                                                                               |
+| `GD_EXPORT_TYPE_BLACKLIST` | &#8212;                                                     | Omits specific Export Types from the application; comma-delimited (no spaces!).                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `GD_COUNTRY_BLACKLIST` | &#8212;                                                     | Omits specific Country plugins from appearing in the application; comma-delimited (no spaces!)                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+| `GD_IMPORT_FILES` | &#8212;                                                     | Used for extension purposes. See the developer doc.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `GD_REST_API_ENABLED` | `false`                                                     | Unavailable just now. This enables/disables the REST API to allow users to generate data via a REST interface.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
