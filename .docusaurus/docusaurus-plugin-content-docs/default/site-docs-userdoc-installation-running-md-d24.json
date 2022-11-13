@@ -3,7 +3,7 @@
   "id": "userdoc/installation/running",
   "isDocsHomePage": false,
   "title": "3. Run the app",
-  "description": "1. Make a copy the .env.default file in the root folder and call it .env. This file defines all of your settings",
+  "description": "Okay, now you've set up your .env configuration file, as described in the settings page, let's",
   "source": "@site/docs/userdoc/installation/running.md",
   "sourceDirName": "userdoc/installation",
   "slug": "/userdoc/installation/running",

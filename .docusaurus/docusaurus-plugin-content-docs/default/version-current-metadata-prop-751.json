@@ -47,7 +47,7 @@
           },
           {
             "type": "link",
-            "label": "1. Install Pre-reqs",
+            "label": "1. Install prerequisites",
             "href": "/generatedata/userdoc/installation/prereqs"
           },
           {

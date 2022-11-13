@@ -2,8 +2,8 @@
   "unversionedId": "userdoc/installation/prereqs",
   "id": "userdoc/installation/prereqs",
   "isDocsHomePage": false,
-  "title": "1. Install Pre-reqs",
-  "description": "Before we get to the installation, make sure you have the following pre-requisites installed.",
+  "title": "1. Install prerequisites",
+  "description": "Before we get to the installation, make sure you have the following prerequisites installed.",
   "source": "@site/docs/userdoc/installation/prereqs.md",
   "sourceDirName": "userdoc/installation",
   "slug": "/userdoc/installation/prereqs",
@@ -15,7 +15,7 @@
   "frontMatter": {
     "sidebar_position": 2,
     "id": "prereqs",
-    "title": "1. Install Pre-reqs"
+    "title": "1. Install prerequisites"
   },
   "sidebar": "userdoc",
   "previous": {

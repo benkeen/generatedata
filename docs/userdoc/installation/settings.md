@@ -19,7 +19,6 @@ skip the details:
 - `GD_DEFAULT_ADMIN_LAST_NAME`
 - `GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME`
 - `GD_DEFAULT_ADMIN_EMAIL`
-- `GD_DEFAULT_ADMIN_FIRST_NAME`
 - `GD_JWT_SECRET`
 
 Also note that with the default settings the application will run at `http://localhost:9000`. If you want to change
@@ -58,25 +57,24 @@ These settings control how you access the application in your web browser.
 
 ### Admin account
 
-The application has a single administrator account used for all management options in the UI. This account is initially 
-defined here in your `.env` file settings here so that when the database is first created, it has a single admin user setup.
-After the application is running in your browser and you're able to log in, I'd suggest re-editing the .env file to remove 
-these values. Special note: use a temporary password here! You definitely don't want to be storing a real password in a
-file on your computer.
+The application has a single administrator account. This account details are initially defined here in your `.env` file settings
+here so that it creates the user along with the database when it's first booted up. After the application is running in your
+browser and you're able to log in, I'd suggest removing these values from your `.env` file. Special note: use a 
+temporary password here! Under no circumstances do you want to be storing a real password in a file on your computer.
 
-| Setting | Default value | Desc                             |
-| --------- | ---------- |----------------------------------|
-| `GD_DEFAULT_ADMIN_FIRST_NAME` | `Your` |                                  |
-| `GD_DEFAULT_ADMIN_LAST_NAME` | `Name` |                                  |
-| `GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME` | `admin123` |                                  |
-| `GD_DEFAULT_ADMIN_EMAIL` | `admin@generatedata.com` |                                  |
-| `GD_DEFAULT_ADMIN_PASSWORD` | `admin123` | Just use a temporary value here! |
+| Setting | Default value | Desc                                                                                                                                                                             |
+| --------- | ---------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `GD_DEFAULT_ADMIN_FIRST_NAME` | `Your` | **Must set.** The administrator's first name.                                                                                                                                    |
+| `GD_DEFAULT_ADMIN_LAST_NAME` | `Name` | **Must set.** The administrator's last name.                                                                                                                                     |
+| `GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME` | `admin123` | **Must set.** The "sender" name in any emails sent out by the system. Note however, to use emails you'll need to configure the email auth settings below (kind of a pain, sorry) |
+| `GD_DEFAULT_ADMIN_EMAIL` | `admin@generatedata.com` | **Must set.** The administrator's email address.                                                                                                                                 |
+| `GD_DEFAULT_ADMIN_PASSWORD` | `admin123` | **Must set.** Just use a temporary value here!                                                                                                                                   |
 
 
 ### Authentication
 
 Setting all this auth-related stuff up is a pain. I do miss the old days of "WAMP/LAMP/WAMP" where it would provide a
-preconfigured system with everything you needed, sigh... ah, "progress".
+preconfigured system with everything you needed, sigh... ain't "progress" great. 
 
 #### JWT 
 

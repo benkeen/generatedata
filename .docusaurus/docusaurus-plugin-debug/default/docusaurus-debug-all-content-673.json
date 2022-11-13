@@ -145,7 +145,7 @@
               "id": "userdoc/installation/intro",
               "isDocsHomePage": false,
               "title": "Intro",
-              "description": "Alrighty! Let's get this thing installed. This section outlines how to install and configure the script on your local",
+              "description": "These instructions are for Mac/Linux. It should run in a similar way on Windows but if you have any problems I'd",
               "source": "@site/docs/userdoc/installation/intro.md",
               "sourceDirName": "userdoc/installation",
               "slug": "/userdoc/installation/intro",
@@ -164,7 +164,7 @@
                 "permalink": "/generatedata/userdoc/about/website"
               },
               "next": {
-                "title": "1. Install Pre-reqs",
+                "title": "1. Install prerequisites",
                 "permalink": "/generatedata/userdoc/installation/prereqs"
               }
             },
@@ -172,8 +172,8 @@
               "unversionedId": "userdoc/installation/prereqs",
               "id": "userdoc/installation/prereqs",
               "isDocsHomePage": false,
-              "title": "1. Install Pre-reqs",
-              "description": "Before we get to the installation, make sure you have the following pre-requisites installed.",
+              "title": "1. Install prerequisites",
+              "description": "Before we get to the installation, make sure you have the following prerequisites installed.",
               "source": "@site/docs/userdoc/installation/prereqs.md",
               "sourceDirName": "userdoc/installation",
               "slug": "/userdoc/installation/prereqs",
@@ -185,7 +185,7 @@
               "frontMatter": {
                 "sidebar_position": 2,
                 "id": "prereqs",
-                "title": "1. Install Pre-reqs"
+                "title": "1. Install prerequisites"
               },
               "sidebar": "userdoc",
               "previous": {
@@ -202,7 +202,7 @@
               "id": "userdoc/installation/running",
               "isDocsHomePage": false,
               "title": "3. Run the app",
-              "description": "1. Make a copy the .env.default file in the root folder and call it .env. This file defines all of your settings",
+              "description": "Okay, now you've set up your .env configuration file, as described in the settings page, let's",
               "source": "@site/docs/userdoc/installation/running.md",
               "sourceDirName": "userdoc/installation",
               "slug": "/userdoc/installation/running",
@@ -247,7 +247,7 @@
               },
               "sidebar": "userdoc",
               "previous": {
-                "title": "1. Install Pre-reqs",
+                "title": "1. Install prerequisites",
                 "permalink": "/generatedata/userdoc/installation/prereqs"
               },
               "next": {
