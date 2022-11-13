@@ -34,15 +34,14 @@ users, running the `yarn cleanApp` command won't clear that out. This is just a 
 downloaded images and generally free up memory.
 :::
 
+
 ### Starting afresh
 
 As noted in the [Settings](./settings) page, some of the settings are only used once when the application is first
-created. So if you've found you've misconfigured something and want to set it all up again, just do the following:
+created. So if you've found you've misconfigured something and want to set it all up again, do the following:
 
 1. Shut down the application as described in the section above. 
-2. Delete the contents of the `...` folder, leaving only the `nodelete.txt` file. That folder is created when it's first
-installed and houses the database. 
-3. Make whatever edits to your `.env` file.
-4. Run `yarn startApp`.
-
-
+2. Delete the contents of the `./data/db` folder, leaving only the `nodelete.txt` file. That folder is created when it's
+first installed and houses the database. 
+4. Make whatever edits to your `.env` file.
+5. Run `yarn startApp` again.
