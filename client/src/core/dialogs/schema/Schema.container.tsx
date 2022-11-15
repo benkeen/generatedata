@@ -7,7 +7,8 @@ import * as actions from '~store/generator/generator.actions';
 const mapStateToProps = (state: any): Partial<SchemaDialogProps> => ({
 	visible: selectors.isSchemaDialogVisible(state),
 	i18n: selectors.getCoreI18n(state),
-	schema: selectors.getSchema(state)
+	schema: selectors.getDataSetSchema(state),
+	theme: selectors.getTheme(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<SchemaDialogProps> => ({

@@ -43,6 +43,8 @@ const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
 		}
 	}, [generatorLayout]);
 
+	console.log(codeMirrorMode, theme);
+
 	return (
 		<CodeMirror
 			value={code}

@@ -358,23 +358,20 @@ export const currentDataSetNeedsCountryNames = createSelector(
 export const getDataSetSchema = createSelector(
 	getRows,
 	getSortedRows,
+	getExportType,
+	getCurrentExportTypeSettings,
 	shouldStripWhitespace,
-	(rows, sortedRows, stripWhitespace) => {
+	(rows, sortedRows, exportType, exportTypeSettings, stripWhitespace) => {
 		const nonEmptyRows = sortedRows.filter((id) => !!rows[id].dataType);
-		return {
-			data: nonEmptyRows.map((rowId) => {
-				const { id, title, dataType, data } = rows[rowId];
-				return { id, title, dataType, data };
+		return JSON.stringify({
+			rows: nonEmptyRows.map((rowId) => {
+				const { title, dataType, data } = rows[rowId];
+				return { title, dataType, data };
 			}),
-			exportType: "...",
-			exportTypeSettings: {},
+			exportType,
+			exportTypeSettings,
 			stripWhitespace,
 			numRows: 1
-		};
+		}, null, '   ');
 	}
-);
-
-export const getSchema = createSelector(
-	getColumns,
-	(col) => JSON.stringify(col, null, '\n')
 );
