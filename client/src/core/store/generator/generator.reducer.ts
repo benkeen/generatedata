@@ -55,6 +55,7 @@ export type StashedGeneratorState = {
 	showDataSetHistory: boolean;
 	bulkActionPending: boolean;
 	showHelpDialog: boolean;
+	showSchemaDialog: boolean;
 	showClearPageDialog: boolean;
 	helpDialogSection: DataTypeFolder | null;
 	showLineNumbers: boolean;
@@ -120,6 +121,7 @@ export type GeneratorState = {
 	showDataSetHistory: boolean;
 	bulkActionPending: boolean;
 	showHelpDialog: boolean;
+	showSchemaDialog: boolean;
 	showClearPageDialog: boolean;
 	helpDialogSection: DataTypeFolder | null;
 	showLineNumbers: boolean;
@@ -165,6 +167,7 @@ export const getInitialState = (): GeneratorState => ({
 	showDataSetHistory: false,
 	bulkActionPending: true, // for brand new page loads we assume there's a bulk action to re-load
 	showHelpDialog: false,
+	showSchemaDialog: false,
 	showClearPageDialog: false,
 	helpDialogSection: null,
 	numRowsToGenerate: env.defaultNumRows,
@@ -534,6 +537,14 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 		case actions.COUNTRY_NAMES_LOADED:
 			draft.isCountryNamesLoading = false;
 			draft.isCountryNamesLoaded = true;
+			break;
+
+		case actions.SHOW_SCHEMA_DIALOG:
+			draft.showSchemaDialog = true;
+			break;
+
+		case actions.HIDE_SCHEMA_DIALOG:
+			draft.showSchemaDialog = false;
 			break;
 	}
 }, getInitialState());

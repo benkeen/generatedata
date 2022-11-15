@@ -5,7 +5,7 @@
 Version 4 of generatedata uses Docker to simplify packaging up the app for development and distribution. Docker
 wasn't quite the wonder that I hoped it would be, but the benefits overall are undeniable.
 
-I experimented with getting the dev environment running _entirely_ within Docker containers so you'd wouldn't require
+I experimented with getting the dev environment running _entirely_ within Docker containers so you wouldn't require
 to install anything locally, but I found it was simply too slow to be of practical use as a dev env. So instead, the 
 local dev env just uses docker containers for the _server and database_; the FE code is still ran locally. I know that's
 a pain for non-frontend developers especially who aren't so familiar with setting up NVM, Grunt etc., but it's a

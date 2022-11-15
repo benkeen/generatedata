@@ -3,6 +3,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Measure from 'react-measure';
 import { useWindowSize } from 'react-hooks-window-size';
 import CloseIcon from '@material-ui/icons/Close';
+import CodeIcon from '@material-ui/icons/Code';
 import IconButton from '@material-ui/core/IconButton';
 import * as styles from './Grid.scss';
 import { Tooltip } from '~components/tooltips';
@@ -21,12 +22,12 @@ export type GridProps = {
 	columnTitle: string;
 	changeSmallScreenVisiblePanel: () => void;
 	showHelpDialog: (section: DataTypeFolder) => void;
+	showSchemaDialog: () => void;
 };
-
 
 const Grid = ({
 	rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel,
-	showHelpDialog
+	showHelpDialog, showSchemaDialog
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
@@ -62,16 +63,29 @@ const Grid = ({
 
 	return (
 		<>
-			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={onClose}>
-				<Tooltip
-					title={<span dangerouslySetInnerHTML={{ __html: i18n.closePanel }}/>}
-					placement="bottom"
-					arrow
-				>
-					<IconButton size="small" aria-label={i18n.closePanel}>
-						<CloseIcon fontSize="large" />
-					</IconButton>
-				</Tooltip>
+			<div style={{ position: 'fixed', right: 0, padding: 10 }}>
+				<span onClick={showSchemaDialog}>
+					<Tooltip
+						title={<span dangerouslySetInnerHTML={{ __html: 'View schema' }}/>}
+						placement="bottom"
+						arrow
+					>
+						<IconButton size="small" aria-label="View schema">
+							<CodeIcon fontSize="large" />
+						</IconButton>
+					</Tooltip>
+				</span>
+				<span onClick={onClose}>
+					<Tooltip
+						title={<span dangerouslySetInnerHTML={{ __html: i18n.closePanel }}/>}
+						placement="bottom"
+						arrow
+					>
+						<IconButton size="small" aria-label={i18n.closePanel}>
+							<CloseIcon fontSize="large" />
+						</IconButton>
+					</Tooltip>
+				</span>
 			</div>
 
 			<Measure

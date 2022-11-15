@@ -149,17 +149,24 @@ const GenerationSettingsPanel = ({
 						</div>
 					</DialogContent>
 					<DialogActions>
-						{cancelButton}
-						<Button
-							type="submit"
-							onClick={actionButtonClick}
-							color="primary"
-							disabled={actionButtonDisabled}
-							disableElevation
-							variant="contained"
-						>
-							{buttonLabel}
-						</Button>
+						<div style={{ display: 'flex', width: '100%' }}>
+							<div style={{ flex: 1, alignSelf: 'center', paddingLeft: 10, color: '#cccccc' }}>
+								<span>View Schema</span>
+							</div>
+							<div>
+								{cancelButton}
+								<Button
+									type="submit"
+									onClick={actionButtonClick}
+									color="primary"
+									disabled={actionButtonDisabled}
+									disableElevation
+									variant="contained"
+								>
+									{buttonLabel}
+								</Button>
+							</div>
+						</div>
 					</DialogActions>
 				</div>
 			</Dialog>

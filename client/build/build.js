@@ -180,7 +180,6 @@ const generateNamesFile = () => {
 	fs.writeFileSync(file, content);
 };
 
-
 generateEnvFile('_env.ts', JSON.stringify(envFile, null, '\t'));
 generateNamesFile();
 
