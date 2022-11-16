@@ -61,20 +61,29 @@ const Grid = ({
 		dimensions.width
 	]);
 
+
+	const getSchemaIcon = () => {
+		return null;
+
+		// return (
+		// 	<span onClick={showSchemaDialog}>
+		// 		<Tooltip
+		// 			title={<span dangerouslySetInnerHTML={{ __html: 'View schema' }}/>}
+		// 			placement="bottom"
+		// 			arrow
+		// 		>
+		// 			<IconButton size="small" aria-label="View schema">
+		// 				<CodeIcon fontSize="large" />
+		// 			</IconButton>
+		// 		</Tooltip>
+		// 	</span>
+		// );
+	};
+
 	return (
 		<>
 			<div style={{ position: 'fixed', right: 0, padding: 10 }}>
-				<span onClick={showSchemaDialog}>
-					<Tooltip
-						title={<span dangerouslySetInnerHTML={{ __html: 'View schema' }}/>}
-						placement="bottom"
-						arrow
-					>
-						<IconButton size="small" aria-label="View schema">
-							<CodeIcon fontSize="large" />
-						</IconButton>
-					</Tooltip>
-				</span>
+				{getSchemaIcon()}
 				<span onClick={onClose}>
 					<Tooltip
 						title={<span dangerouslySetInnerHTML={{ __html: i18n.closePanel }}/>}
