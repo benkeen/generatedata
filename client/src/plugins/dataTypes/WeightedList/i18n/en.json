@@ -1,0 +1,29 @@
+{
+  "NAME": "Weighted List",
+  "DESC": "Generates one or more weighted random values from an arbitrary list of items.",
+  "DEFAULT_TITLE": "weightedlist",
+  "weightedListSettings": "Weighted List Settings",
+
+
+  "atMost": "At Most",
+  "exactly": "Exactly",
+  "help": "Enter a number of items by entering text then clicking enter. Then select whether you want <b>Exactly</b> X number of items, or <b>At most</b> X items from the list. Multiple items are returned in a comma-delimited list in the results.",
+  "incompleteFields": "The Custom List Data Type needs to have the format entered in the Options text field. Please fix the following rows:",
+  "invalidIntFields": "Please only enter numbers in the \"Exactly\" and \"At Most\" fields for the Custom List Data Type. Please fix the following rows:",
+
+  "numItemsLabel": "Num items",
+  "numItemsLabelDesc": "This setting controls the number of items generated from your list. You can choose an exact number of items to generate, or a number between a range of your choosing.",
+  "exactly1Item": "Exactly %1 item from list",
+  "exactlyNItems": "Exactly %1 items from list",
+  "atMost1Item": "At most %1 item from list",
+  "atMostNItems": "At most %1 items from list",
+  "customize": "Customize",
+  "delimChars": "Delimiter char(s)",
+  "betweenNumItems": "Between %1 and %2 items",
+  "atLeast1Item": "At least %1 item from list",
+  "atLeastNItems": "At least %1 items from list",
+  "noRangeEntered": "No range entered",
+  "between": "Between",
+  "and": "and",
+  "items": "items"
+}

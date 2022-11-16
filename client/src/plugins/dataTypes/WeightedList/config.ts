@@ -1,0 +1,32 @@
+import { DTDefinition } from '~types/dataTypes';
+
+const definition: DTDefinition = {
+	fieldGroup: 'other',
+	fieldGroupOrder: 45,
+	schema: {
+		type: 'object',
+		properties: {
+			listType: {
+				enum: [
+					'exactly',
+					'atMost'
+				]
+			},
+			exactly: {
+				type: 'number'
+			},
+			atMost: {
+				type: 'number'
+			},
+			list: {
+				type: 'string'
+			}
+		},
+		required: [
+			'listType',
+			'list'
+		]
+	}
+};
+
+export default definition;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Controlled as CodeMirror } from 'react-codemirror2';
-import { PrimaryButton } from '~components/Buttons.component';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
-import styles from './Schema.scss';
+// import React from 'react';
+// import { Controlled as CodeMirror } from 'react-codemirror2';
+// import { PrimaryButton } from '~components/Buttons.component';
+// import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+// import styles from './Schema.scss';
 
 export type SchemaDialogProps = {
 	visible: boolean;
@@ -12,7 +12,9 @@ export type SchemaDialogProps = {
 	i18n: any;
 };
 
-const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogProps): JSX.Element | null => {
+const SchemaDialog = ({
+	// visible, onClose, schema, theme, i18n
+}: SchemaDialogProps): JSX.Element | null => {
 	return null;
 
 	// const [code, setCode] = React.useState(schema);

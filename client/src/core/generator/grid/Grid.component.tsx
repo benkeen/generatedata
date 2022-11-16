@@ -3,7 +3,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Measure from 'react-measure';
 import { useWindowSize } from 'react-hooks-window-size';
 import CloseIcon from '@material-ui/icons/Close';
-import CodeIcon from '@material-ui/icons/Code';
+// import CodeIcon from '@material-ui/icons/Code';
 import IconButton from '@material-ui/core/IconButton';
 import * as styles from './Grid.scss';
 import { Tooltip } from '~components/tooltips';
@@ -27,11 +27,10 @@ export type GridProps = {
 
 const Grid = ({
 	rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel,
-	showHelpDialog, showSchemaDialog
+	showHelpDialog // showSchemaDialog
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
-
 	const windowSize = useWindowSize();
 
 	let gridSizeClass = '';
@@ -62,7 +61,7 @@ const Grid = ({
 	]);
 
 
-	const getSchemaIcon = () => {
+	const getSchemaIcon = (): JSX.Element | null => {
 		return null;
 
 		// return (

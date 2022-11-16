@@ -40,6 +40,7 @@ import Time from './src/plugins/dataTypes/Time/config';
 import Track1 from './src/plugins/dataTypes/Track1/config';
 import Track2 from './src/plugins/dataTypes/Track2/config';
 import URLs from './src/plugins/dataTypes/URLs/config';
+import WeightedList from './src/plugins/dataTypes/WeightedList/config';
 
 export const dataTypes = {
 	Alphanumeric,
@@ -78,7 +79,8 @@ export const dataTypes = {
 	Time,
 	Track1,
 	Track2,
-	URLs
+	URLs,
+	WeightedList
 };
 
 export type DataTypeFolder = keyof typeof dataTypes;
