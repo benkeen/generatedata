@@ -4,6 +4,9 @@ declare namespace WeightedListScssNamespace {
     content: string;
     delCol: string;
     listTable: string;
+    listTableBody: string;
+    listTableHeader: string;
+    orderCol: string;
     row: string;
     valueCol: string;
     weightCol: string;

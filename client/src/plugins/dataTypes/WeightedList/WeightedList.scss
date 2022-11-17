@@ -33,10 +33,10 @@
 .listTable {
 	li {
 		display: flex;
-		width: 250px;
+		width: 100%;
 		padding: 2px;
 
-		&:nth-child(even) {
+		&:nth-child(odd) {
 			background: #efefef;
 		}
 	}
@@ -44,7 +44,7 @@
 		width: 100%;
 	}
 	.valueCol {
-		width: 160px;
+		width: 100%;
 		margin-right: 4px;
 	}
 	.weightCol {
@@ -62,4 +62,21 @@
 			}
 		}
 	}
+	.orderCol {
+		width: 25px;
+		font-weight: bold;
+		text-align: center;
+		align-self: center;
+	}
+}
+
+ul.listTableHeader {
+	li:nth-child(odd) {
+		background: transparent;
+	}
+}
+
+.listTableBody {
+	max-height: 200px;
+	overflow: scroll;
 }

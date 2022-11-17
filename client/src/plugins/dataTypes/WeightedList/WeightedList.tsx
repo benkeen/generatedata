@@ -76,14 +76,20 @@ type ListTypeProps = {
 const ListTable = ({ values, onChange, onAdd, onRemove }: ListTypeProps): JSX.Element => {
 	return (
 		<>
-			<ul className={styles.listTable}>
+			<ul className={`${styles.listTable} ${styles.listTableHeader}`}>
 				<li>
+					<div className={styles.orderCol} />
 					<div className={styles.valueCol}>Value</div>
 					<div className={styles.weightCol}>Weight</div>
 					<div className={styles.delCol} />
 				</li>
-				{values.map(({ value, weight, id }) => (
+			</ul>
+			<ul className={`${styles.listTable} ${styles.listTableBody}`}>
+				{values.map(({ value, weight, id }, index) => (
 					<li key={id}>
+						<div className={styles.orderCol}>
+							{index+1}
+						</div>
 						<div className={styles.valueCol}>
 							<input type="text" value={value} />
 						</div>
