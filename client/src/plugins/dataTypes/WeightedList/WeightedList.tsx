@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
+import CreatablePillField from "~components/creatablePillField/CreatablePillField";
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { Tooltip } from '~components/tooltips';
 import * as langUtils from '~utils/langUtils';
@@ -63,53 +63,6 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 			onChange={(i: any): void => onChange(i.value)}
 			options={options}
 		/>
-	);
-};
-
-type ListTypeProps = {
-	values: WeightedListItem[];
-	onChange: (id: string, field: '', value: string) => void;
-	onAdd: () => void;
-	onRemove: (id: string) => void;
-}
-
-const ListTable = ({ values, onChange, onAdd, onRemove }: ListTypeProps): JSX.Element => {
-	return (
-		<>
-			<ul className={`${styles.listTable} ${styles.listTableHeader}`}>
-				<li>
-					<div className={styles.orderCol} />
-					<div className={styles.valueCol}>Value</div>
-					<div className={styles.weightCol}>Weight</div>
-					<div className={styles.delCol} />
-				</li>
-			</ul>
-			<ul className={`${styles.listTable} ${styles.listTableBody}`}>
-				{values.map(({ value, weight, id }, index) => (
-					<li key={id}>
-						<div className={styles.orderCol}>
-							{index+1}
-						</div>
-						<div className={styles.valueCol}>
-							<input type="text" value={value} />
-						</div>
-						<div className={styles.weightCol}>
-							<input type="number" value={weight} />
-						</div>
-						<div className={styles.delCol} onClick={() => onRemove(id)}>
-							<HighlightOffIcon />
-						</div>
-					</li>
-				))}
-			</ul>
-			<Button
-				onClick={onAdd}
-				variant="outlined"
-				color="primary"
-				size="small">
-				Add Row &raquo;
-			</Button>
-		</>
 	);
 };
 
@@ -261,12 +214,25 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 							Items
 						</div>
 						<div className={styles.content}>
-							<ListTable
-								values={data.values}
-								onAdd={onAdd}
-								onRemove={onRemove}
-								onChange={onChange}
-							/>
+							<div>
+								<TextField value="" placeholder="" style={{ width: 150 }}/>
+								<TextField type="number" value="" placeholder="" style={{ width: 50 }}/>
+								<Button
+									onClick={onAdd}
+									variant="outlined"
+									color="primary">
+									Add &raquo;
+								</Button>
+							</div>
+							<div>
+								<CreatablePillField
+									onChange={() => {}}
+									value={[
+										'One: 1',
+										'Two: 4'
+									]}
+								/>
+							</div>
 						</div>
 					</div>
 				</DialogContent>

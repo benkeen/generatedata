@@ -75,9 +75,18 @@ export type CreatablePillFieldProps = {
 	placeholder: string;
 	onValidateNewItem?: (value: string) => boolean;
 	className?: string;
+	isClearable?: boolean;
 }
 
-const CreatablePillField = ({ onChange, onValidateNewItem, value, error, placeholder, className }: CreatablePillFieldProps): JSX.Element => {
+const CreatablePillField = ({
+	onChange,
+	onValidateNewItem,
+	value,
+	error,
+	placeholder,
+	className,
+	isClearable = true
+}: CreatablePillFieldProps): JSX.Element => {
 	const [tempValue, setTempValue] = React.useState('');
 	const options = value.map(createOption);
 
@@ -125,7 +134,7 @@ const CreatablePillField = ({ onChange, onValidateNewItem, value, error, placeho
 				axis="xy"
 				distance={4}
 				getHelperDimensions={({ node }: any): any => node.getBoundingClientRect()}
-				isClearable
+				isClearable={isClearable}
 				isMulti
 				onSortEnd={onSortEnd}
 				menuIsOpen={false}
