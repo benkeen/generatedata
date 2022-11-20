@@ -8,7 +8,7 @@ import CreatablePillField from "~components/creatablePillField/CreatablePillFiel
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { Tooltip } from '~components/tooltips';
 import * as langUtils from '~utils/langUtils';
-import * as randomUtils from '~utils/randomUtils';
+import { WeightedOptions } from "~utils/randomUtils";
 import * as styles from './WeightedList.scss';
 
 export const enum WeightedListType {
@@ -17,9 +17,8 @@ export const enum WeightedListType {
 }
 
 export type WeightedListItem = {
-	id: string;
 	value: string;
-	weight: number | string;
+	weight: string;
 }
 
 export type WeightedListState = {
@@ -42,7 +41,21 @@ export const initialState: WeightedListState = {
 	delimiter: ', '
 };
 
-export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element => {
+export const getWeightedListItems = (values: string[]): WeightedListItem[] => (
+	values.map((value) => {
+		const match = value.match(/^(.*):\s(\d+)$/) as string[];
+		return {
+			value: match[1],
+			weight: match[2]
+		};
+	})
+);
+
+export const getWeightedListLabels = (values: WeightedListItem[]): string[] => (
+	values.map(({ value, weight }) => `${value}: ${weight}`)
+);
+
+export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => { // i18n
 	const onChange = (example: any): void => {
 		onUpdate({
 			...data,
@@ -69,6 +82,17 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: any): JSX.Element => {
 	const exactlyField = React.useRef<any>();
 	const dtListBetweenLow = React.useRef<any>();
+	const [showErrors, setShowErrors] = React.useState(false);
+	const [value, setValue] = React.useState('');
+	const [weight, setWeight] = React.useState('');
+	const [displayStrings, setDisplayStrings] = React.useState<string[]>([]);
+
+	const onChangeValue = (e: any): void => setValue(e.target.value);
+	const onChangeWeight = (e: any): void => setWeight(e.target.value);
+
+	React.useEffect(() => {
+		setDisplayStrings(getWeightedListLabels(data.values));
+	}, [data.values]);
 
 	const onChange = (field: string, value: any): void => {
 		onUpdate({
@@ -77,22 +101,20 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 		});
 	};
 
-	const onAdd = () => {
-		const guid = randomUtils.generateRandomAlphanumericStr('HHHHHHHH-HHHH-HHHH-HHHH-HHHHHHHHHHHH');
-		onUpdate({
-			...data,
-			values: [
-				...data.values,
-				{ id: guid, value: '', weight: '' }
-			]
-		});
-	};
-
-	const onRemove = (id: string) => {
-		onUpdate({
-			...data,
-			values: data.values.filter((row: WeightedListItem) => row.id !== id)
-		});
+	const onAdd = (): void => {
+		setShowErrors(true);
+		if (value && weight !== undefined) {
+			onUpdate({
+				...data,
+				values: [
+					...data.values,
+					{ value, weight }
+				]
+			});
+			setShowErrors(false);
+			setValue('');
+			setWeight('');
+		}
 	};
 
 	const updateDelimiter = (e: any): void => {
@@ -101,8 +123,14 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 			delimiter: e.target.value
 		});
 	};
-
 	const exactlyError = data.exactly ? '' : coreI18n.requiredField;
+
+	const onChangeList = (newValues: string[]): void => {
+		onUpdate({
+			...data,
+			values: getWeightedListItems(newValues)
+		});
+	};
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
@@ -199,6 +227,9 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 					<div className={styles.row}>
 						<div className={styles.colLabel}>
 							{i18n.delimChars}
+							<Tooltip title="" arrow>
+								<InfoIcon />
+							</Tooltip>
 						</div>
 						<div className={styles.content}>
 							<input
@@ -214,24 +245,49 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 							Items
 						</div>
 						<div className={styles.content}>
+							<form onSubmit={(e): void => e.preventDefault()}>
+								<div className={styles.addValueRow}>
+									<div>
+										<label>Value</label>
+										<TextField
+											value={value}
+											throttle={false}
+											style={{ width: 150 }}
+											error={showErrors ? coreI18n.requiredField : ''}
+											onChange={onChangeValue}
+										/>
+									</div>
+									<div>
+										<label>Weight</label>
+										<TextField
+											type="number"
+											value={weight}
+											throttle={false}
+											style={{ width: 60 }}
+											error={showErrors ? coreI18n.requiredField : ''}
+											onChange={onChangeWeight}
+										/>
+									</div>
+									<div>
+										<label />
+										<Button
+											type="submit"
+											onClick={onAdd}
+											variant="outlined"
+											color="primary"
+											size="small">
+											Add &raquo;
+										</Button>
+									</div>
+								</div>
+							</form>
 							<div>
-								<TextField value="" placeholder="" style={{ width: 150 }}/>
-								<TextField type="number" value="" placeholder="" style={{ width: 50 }}/>
-								<Button
-									onClick={onAdd}
-									variant="outlined"
-									color="primary">
-									Add &raquo;
-								</Button>
-							</div>
-							<div>
-								<CreatablePillField
-									onChange={() => {}}
-									value={[
-										'One: 1',
-										'Two: 4'
-									]}
-								/>
+								{displayStrings.length ? (
+									<CreatablePillField
+										onChange={onChangeList}
+										value={displayStrings}
+									/>
+								) : <p>Please enter some items.</p>}
 							</div>
 						</div>
 					</div>
@@ -329,7 +385,7 @@ export const getMetadata = (): DTMetadata => ({
 });
 
 // @ts-ignore-line
-export const rowStateReducer = ({ example, delimiter, listType, exactly, betweenLow = '', atMost, betweenHigh = '', values }: ListState): any => {
+export const rowStateReducer = ({ example, delimiter, listType, exactly, betweenLow = '', atMost, betweenHigh = '', values }: WeightedListState): any => {
 	let cleanExactly: any = '';
 	let cleanBetweenLow: any = '';
 	let cleanBetweenHigh: any = '';
@@ -361,13 +417,18 @@ export const rowStateReducer = ({ example, delimiter, listType, exactly, between
 		}
 	}
 
+	const valuesObj: WeightedOptions = {};
+	values.forEach(({ value, weight }: WeightedListItem) => {
+		valuesObj[value] = parseInt(weight, 10);
+	});
+
 	return {
 		example,
 		listType,
 		exactly: cleanExactly,
 		betweenLow: cleanBetweenLow,
 		betweenHigh: cleanBetweenHigh,
-		values,
+		values: valuesObj,
 		delimiter: delimiter ? delimiter : ', '
 	};
 };

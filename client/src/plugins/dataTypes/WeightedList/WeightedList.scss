@@ -1,6 +1,6 @@
 .colLabel {
 	display: flex;
-	flex: 0 0 120px;
+	flex: 0 0 140px;
 	align-items: center;
 	margin-top: 5px;
 
@@ -79,4 +79,21 @@ ul.listTableHeader {
 .listTableBody {
 	max-height: 200px;
 	overflow: scroll;
+}
+
+.addValueRow {
+	display: flex;
+	margin: 5px 0 10px;
+
+	label {
+		color: #999999;
+		display: block;
+		height: 20px;
+	}
+	input {
+		margin-right: 4px;
+	}
+	button {
+		padding: 5px 6px;
+	}
 }

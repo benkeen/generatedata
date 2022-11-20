@@ -81,6 +81,22 @@ export const getRandomSubset = <T> (arr: T[], size: number): T[] => {
 	return shuffled.slice(min);
 };
 
+export const getRandomWeightedSubset = (options: WeightedOptions, size: number): string[] => {
+	const subset: string[] = [];
+	let totalArrSize = Object.keys(options).length;
+
+	if (!totalArrSize) {
+		return subset;
+	}
+	const min = totalArrSize - size;
+
+	while (totalArrSize-- > min) {
+		subset.push(getRandomWeightedValue(options));
+	}
+
+	return subset;
+};
+
 /**
  * Generates a string of words from a source array of strings.
  */

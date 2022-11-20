@@ -1,44 +1,10 @@
-## List Data Type
+## Weighted List Data Type
 
-This Data Type generates a item from a random list. 
+This Data Type generates random item or items from a weighted list. A weighted list is just a list of items where each
+item has a corresponding weight, for example:
 
+A: 5
+B: 10
+C: 5
 
-### Example API Usage
-
-```javascript
-{
-    "numRows": 10,
-    "rows": [
-        {
-            "type": "List",
-            "title": "Colour",
-            "settings": {
-                "listType": "exactly", 
-                "exactly": 1,
-                "list": "red|orange|yellow|green|blue|indigo|violet"
-            }
-        },
-        {
-            "type": "List",
-            "title": "Numbers",
-            "settings": {
-                "listType": "atMost", 
-                "atMost": 3,
-                "list": "1|2|3|4|5"
-            }
-        }
-    ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "complex"
-        }
-    }
-}
-```
- 
-### API help
-
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
+In this instance, B is twice as likely to appear in the results as either A or C.

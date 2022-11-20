@@ -4,21 +4,22 @@ import { WeightedListType } from './WeightedList';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { listType, values, exactly, betweenLow, betweenHigh, delimiter } = data.rowState;
+	const numValues = Object.keys(values).length;
 
 	let items: any = [];
 	if (listType === WeightedListType.exactly) {
-		items = utils.randomUtils.getRandomSubset(values, exactly);
+		items = utils.randomUtils.getRandomWeightedSubset(values, exactly);
 	} else if (betweenLow && betweenHigh) {
 		const numItems = utils.randomUtils.getRandomNum(betweenLow, betweenHigh);
-		items = utils.randomUtils.getRandomSubset(values, numItems);
+		items = utils.randomUtils.getRandomWeightedSubset(values, numItems);
 	} else if (betweenLow) {
-		if (betweenLow <= values.length) {
-			const numItems = utils.randomUtils.getRandomNum(betweenLow, values.length);
-			items = utils.randomUtils.getRandomSubset(values, numItems);
+		if (betweenLow <= numValues) {
+			const numItems = utils.randomUtils.getRandomNum(betweenLow, numValues);
+			items = utils.randomUtils.getRandomWeightedSubset(values, numItems);
 		}
 	} else if (betweenHigh !== '') {
 		const numItems = utils.randomUtils.getRandomNum(0, betweenHigh);
-		items = utils.randomUtils.getRandomSubset(values, numItems);
+		items = utils.randomUtils.getRandomWeightedSubset(values, numItems);
 	}
 
 	return {

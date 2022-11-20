@@ -91,7 +91,6 @@ const CreatablePillField = ({
 	const options = value.map(createOption);
 
 	const handleInputChange = (newTempValue: string): void => setTempValue(newTempValue);
-
 	const handleKeyDown = (e: any): void => {
 		if (!tempValue) {
 			return;
