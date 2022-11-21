@@ -1,6 +1,7 @@
 declare namespace WeightedListScssNamespace {
   export interface IWeightedListScss {
     addValueRow: string;
+    allowDuplicatesCheckbox: string;
     colLabel: string;
     content: string;
     delCol: string;

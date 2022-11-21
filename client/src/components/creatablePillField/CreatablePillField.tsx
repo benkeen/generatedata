@@ -67,7 +67,6 @@ export const createOption = (label: string): DropdownOption => ({
 
 const SortableCreatableSelect: any = SortableContainer(CreatableSelect);
 
-
 export type CreatablePillFieldProps = {
 	onChange: (newValues: string[]) => void;
 	value: string[];
@@ -123,6 +122,7 @@ const CreatablePillField = ({
 		classes.push(styles.errorField);
 	}
 
+	// onCreateOption={(a: any) => console.log(a)}
 	return (
 		<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
 			<SortableCreatableSelect

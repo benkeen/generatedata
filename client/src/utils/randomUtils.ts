@@ -81,9 +81,12 @@ export const getRandomSubset = <T> (arr: T[], size: number): T[] => {
 	return shuffled.slice(min);
 };
 
-export const getRandomWeightedSubset = (options: WeightedOptions, size: number): string[] => {
+export const getRandomWeightedSubset = (options: WeightedOptions, size: number, allowDuplicates: boolean): string[] => {
 	const subset: string[] = [];
-	let totalArrSize = Object.keys(options).length;
+	const weightedOptions = {
+		...options
+	};
+	let totalArrSize = Object.keys(weightedOptions).length;
 
 	if (!totalArrSize) {
 		return subset;
@@ -91,7 +94,12 @@ export const getRandomWeightedSubset = (options: WeightedOptions, size: number):
 	const min = totalArrSize - size;
 
 	while (totalArrSize-- > min) {
-		subset.push(getRandomWeightedValue(options));
+		const value = getRandomWeightedValue(weightedOptions);
+		subset.push(value);
+		if (!allowDuplicates) {
+			delete weightedOptions[value];
+			totalArrSize = totalArrSize-1;
+		}
 	}
 
 	return subset;

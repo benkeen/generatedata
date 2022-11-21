@@ -18,7 +18,7 @@ export const enum WeightedListType {
 
 export type WeightedListItem = {
 	value: string;
-	weight: string;
+	weight: string; // for convenience this is stored as a string, but when passed to
 }
 
 export type WeightedListState = {
@@ -27,6 +27,7 @@ export type WeightedListState = {
 	exactly: string;
 	betweenLow: string;
 	betweenHigh: string;
+	allowDuplicates: boolean;
 	delimiter: string;
 	values: WeightedListItem[];
 };
@@ -38,7 +39,8 @@ export const initialState: WeightedListState = {
 	betweenLow: '',
 	betweenHigh: '',
 	values: [],
-	delimiter: ', '
+	delimiter: ', ',
+	allowDuplicates: true
 };
 
 export const getWeightedListItems = (values: string[]): WeightedListItem[] => (
@@ -57,17 +59,57 @@ export const getWeightedListLabels = (values: WeightedListItem[]): string[] => (
 
 export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => { // i18n
 	const onChange = (example: any): void => {
+		let values: WeightedListItem[] = [];
+		if (example === 'even-odd') {
+			values = [
+				{ value: '1', weight: '1' },
+				{ value: '2', weight: '2' },
+				{ value: '3', weight: '1' },
+				{ value: '4', weight: '2' },
+				{ value: '5', weight: '1' },
+				{ value: '6', weight: '2' },
+				{ value: '7', weight: '1' },
+				{ value: '8', weight: '2' },
+				{ value: '9', weight: '1' },
+				{ value: '10', weight: '2' }
+			];
+		} else if (example === 'professions') {
+			values = [
+				{ value: 'Astronaut', weight: '1' },
+				{ value: 'Banker', weight: '5000' },
+				{ value: 'Brain surgeon', weight: '1' },
+				{ value: 'Cook', weight: '8000' },
+				{ value: 'Fast food/counter worker', weight: '90000' },
+				{ value: 'Musician', weight: '5000' },
+				{ value: 'Retail salesperson', weight: '100000' },
+				{ value: 'Software Developer', weight: '10000' },
+				{ value: 'Surgeon', weight: '200' },
+			];
+		} else if (example === 'household-pets') {
+			values = [
+				{ value: 'Dog', weight: '50000' },
+				{ value: 'Cat', weight: '35000' },
+				{ value: 'Fish', weight: '10000' },
+				{ value: 'Reptile', weight: '3700' },
+				{ value: 'Bird', weight: '3500' },
+				{ value: 'Rabbit', weight: '1500' },
+				{ value: 'Capybara', weight: '1' },
+				{ value: 'Sugar glider', weight: '1' },
+				{ value: 'Prairie dog', weight: '1' },
+				{ value: 'Pot-bellied pig', weight: '1' },
+			];
+		}
 		onUpdate({
 			...data,
 			example: example,
-			values: example.split('|')
+			values
 		});
 	};
 
 	const options = [
-		{ value: '1|3|5|7|9|11|13|15|17|19', label: 'Example 1' },
-		{ value: '2|4|6|8|10|12|14|16|18|20', label: 'Example 2' },
-		{ value: '1|2|3|4|5|6|7|8|9|10', label: '1-10' },
+		{ value: 'even-odd', label: 'Mostly even numbers' },
+		{ value: 'professions', label: 'Professions' },
+		{ value: 'household-pets', label: 'Household pets' },
 	];
 
 	return (
@@ -86,6 +128,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 	const [value, setValue] = React.useState('');
 	const [weight, setWeight] = React.useState('');
 	const [displayStrings, setDisplayStrings] = React.useState<string[]>([]);
+	const [allowDuplicates, setAllowDuplicates] = React.useState(data.allowDuplicates);
 
 	const onChangeValue = (e: any): void => setValue(e.target.value);
 	const onChangeWeight = (e: any): void => setWeight(e.target.value);
@@ -123,13 +166,23 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 			delimiter: e.target.value
 		});
 	};
-	const exactlyError = data.exactly ? '' : coreI18n.requiredField;
+
+	let exactlyError = '';
+	if (!data.exactly) {
+		exactlyError = coreI18n.requiredField;
+	} else if (displayStrings.length < parseInt(data.exactly, 10)) {
+		exactlyError = 'Make sure you\'ve entered enough items in your list, otherwise it won\'t generate the number of items specified here.';
+	}
 
 	const onChangeList = (newValues: string[]): void => {
 		onUpdate({
 			...data,
 			values: getWeightedListItems(newValues)
 		});
+	};
+
+	const updateAllowDuplicates = (e: any): void => {
+		setAllowDuplicates(e.target.checked);
 	};
 
 	return (
@@ -192,7 +245,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 										type="intOnly"
 										min={0}
 										placeholder="-"
-										id={`dtListAtMost_${id}`}
+										id={`dtListBetweenLow${id}`}
 										value={data.betweenLow}
 										style={{ margin: '0 6px 0 4px', width: 50 }}
 										onChange={(e: any): void => {
@@ -222,6 +275,23 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 									{i18n.items}
 								</li>
 							</ul>
+						</div>
+					</div>
+					<div className={styles.row}>
+						<div className={styles.colLabel}>
+							Allow duplicates
+							<Tooltip title="" arrow>
+								<InfoIcon />
+							</Tooltip>
+						</div>
+						<div className={styles.content}>
+							<input
+								type="checkbox"
+								value={data.allowDuplicates}
+								checked={allowDuplicates}
+								onChange={updateAllowDuplicates}
+								className={styles.allowDuplicatesCheckbox}
+							/>
 						</div>
 					</div>
 					<div className={styles.row}>
@@ -262,8 +332,9 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 										<TextField
 											type="number"
 											value={weight}
+											min={1}
 											throttle={false}
-											style={{ width: 60 }}
+											style={{ width: 80 }}
 											error={showErrors ? coreI18n.requiredField : ''}
 											onChange={onChangeWeight}
 										/>
@@ -371,7 +442,35 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 	);
 };
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.help }} />;
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
+	<>
+		<p>
+			The <b>Weighted List</b> Data Type generates randomly chosen item or items from a custom-defined list, factoring in
+			whatever weight you want to apply to each item. The weight field lets you increase the probability of each item
+			appearing so you can create more realistic-looking data. For example, say you wanted to generate a list of
+			professions, but wanted "Brain surgeon" and "Astronaut" to appear very infrequently because they're not common.
+			For that, you could just bump up the weights of the others:
+		</p>
+
+		<ul>
+			<li><b>(value, weight)</b></li>
+			<li>Brain surgeon, 1</li>
+			<li>Astronaut, 1</li>
+			<li>Banker, 800</li>
+			<li>Software Developer, 1000</li>
+			<li>etc.</li>
+		</ul>
+
+		<p>
+			The Data Type also provides the following options:
+		</p>
+		<ul>
+			<li>lets you generate either a specific number of items from the list, or a random subset of a certain size.</li>
+			<li>Choose whatever delimiter character(s) are used for multiple items.</li>
+			<li>Choose whether you want to eliminate duplicates when a single row generates more than one item.</li>
+		</ul>
+	</>
+);
 
 export const getMetadata = (): DTMetadata => ({
 	general: {
@@ -384,15 +483,16 @@ export const getMetadata = (): DTMetadata => ({
 	}
 });
 
-// @ts-ignore-line
-export const rowStateReducer = ({ example, delimiter, listType, exactly, betweenLow = '', atMost, betweenHigh = '', values }: WeightedListState): any => {
+export const rowStateReducer = ({
+	example, delimiter, listType, exactly, betweenLow = '', betweenHigh = '', values, allowDuplicates // atMost
+}: WeightedListState): any => {
 	let cleanExactly: any = '';
 	let cleanBetweenLow: any = '';
 	let cleanBetweenHigh: any = '';
 
-	if (atMost) {
-		betweenHigh = atMost;
-	}
+	// if (atMost) {
+	// 	betweenHigh = atMost;
+	// }
 
 	if (listType === WeightedListType.exactly) {
 		if (exactly.trim() !== '') {
@@ -429,6 +529,7 @@ export const rowStateReducer = ({ example, delimiter, listType, exactly, between
 		betweenLow: cleanBetweenLow,
 		betweenHigh: cleanBetweenHigh,
 		values: valuesObj,
-		delimiter: delimiter ? delimiter : ', '
+		delimiter: delimiter ? delimiter : ', ',
+		allowDuplicates
 	};
 };
