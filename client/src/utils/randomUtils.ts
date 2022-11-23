@@ -98,7 +98,6 @@ export const getRandomWeightedSubset = (options: WeightedOptions, size: number, 
 		subset.push(value);
 		if (!allowDuplicates) {
 			delete weightedOptions[value];
-			totalArrSize = totalArrSize-1;
 		}
 	}
 

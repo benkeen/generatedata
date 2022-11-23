@@ -57,7 +57,7 @@ export const getWeightedListLabels = (values: WeightedListItem[]): string[] => (
 	values.map(({ value, weight }) => `${value}: ${weight}`)
 );
 
-export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => { // i18n
+export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element => {
 	const onChange = (example: any): void => {
 		let values: WeightedListItem[] = [];
 		if (example === 'even-odd') {
@@ -107,9 +107,9 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => { //
 	};
 
 	const options = [
-		{ value: 'even-odd', label: 'Mostly even numbers' },
-		{ value: 'professions', label: 'Professions' },
-		{ value: 'household-pets', label: 'Household pets' },
+		{ value: 'even-odd', label: i18n.mostlyEvenNumbers },
+		{ value: 'professions', label: i18n.professions },
+		{ value: 'household-pets', label: i18n.householdPets },
 	];
 
 	return (
@@ -128,7 +128,6 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 	const [value, setValue] = React.useState('');
 	const [weight, setWeight] = React.useState('');
 	const [displayStrings, setDisplayStrings] = React.useState<string[]>([]);
-	const [allowDuplicates, setAllowDuplicates] = React.useState(data.allowDuplicates);
 
 	const onChangeValue = (e: any): void => setValue(e.target.value);
 	const onChangeWeight = (e: any): void => setWeight(e.target.value);
@@ -171,7 +170,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 	if (!data.exactly) {
 		exactlyError = coreI18n.requiredField;
 	} else if (displayStrings.length < parseInt(data.exactly, 10)) {
-		exactlyError = 'Make sure you\'ve entered enough items in your list, otherwise it won\'t generate the number of items specified here.';
+		exactlyError = i18n.listTooShort;
 	}
 
 	const onChangeList = (newValues: string[]): void => {
@@ -182,7 +181,10 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 	};
 
 	const updateAllowDuplicates = (e: any): void => {
-		setAllowDuplicates(e.target.checked);
+		onUpdate({
+			...data,
+			allowDuplicates: e.target.checked
+		});
 	};
 
 	return (
@@ -279,7 +281,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 					</div>
 					<div className={styles.row}>
 						<div className={styles.colLabel}>
-							Allow duplicates
+							{i18n.allowDuplicates}
 							<Tooltip title="" arrow>
 								<InfoIcon />
 							</Tooltip>
@@ -287,8 +289,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 						<div className={styles.content}>
 							<input
 								type="checkbox"
-								value={data.allowDuplicates}
-								checked={allowDuplicates}
+								checked={data.allowDuplicates}
 								onChange={updateAllowDuplicates}
 								className={styles.allowDuplicatesCheckbox}
 							/>
@@ -312,13 +313,13 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 					</div>
 					<div className={styles.row}>
 						<div className={styles.colLabel}>
-							Items
+							{i18n.items}
 						</div>
 						<div className={styles.content}>
 							<form onSubmit={(e): void => e.preventDefault()}>
 								<div className={styles.addValueRow}>
 									<div>
-										<label>Value</label>
+										<label>{i18n.value}</label>
 										<TextField
 											value={value}
 											throttle={false}
@@ -328,7 +329,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 										/>
 									</div>
 									<div>
-										<label>Weight</label>
+										<label>{i18n.weight}</label>
 										<TextField
 											type="number"
 											value={weight}
@@ -346,9 +347,8 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 											onClick={onAdd}
 											variant="outlined"
 											color="primary"
-											size="small">
-											Add &raquo;
-										</Button>
+											size="small"
+											dangerouslySetInnerHTML={{ __html: i18n.addBtnLabel }} />
 									</div>
 								</div>
 							</form>
@@ -358,7 +358,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 										onChange={onChangeList}
 										value={displayStrings}
 									/>
-								) : <p>Please enter some items.</p>}
+								) : <p>{i18n.pleaseAddItems}</p>}
 							</div>
 						</div>
 					</div>
@@ -444,30 +444,23 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
-		<p>
-			The <b>Weighted List</b> Data Type generates randomly chosen item or items from a custom-defined list, factoring in
-			whatever weight you want to apply to each item. The weight field lets you increase the probability of each item
-			appearing so you can create more realistic-looking data. For example, say you wanted to generate a list of
-			professions, but wanted "Brain surgeon" and "Astronaut" to appear very infrequently because they're not common.
-			For that, you could just bump up the weights of the others:
-		</p>
+		<p dangerouslySetInnerHTML={{ __html: i18n.helpIntro }} />
 
 		<ul>
-			<li><b>(value, weight)</b></li>
-			<li>Brain surgeon, 1</li>
-			<li>Astronaut, 1</li>
-			<li>Banker, 800</li>
-			<li>Software Developer, 1000</li>
-			<li>etc.</li>
+			<li><b>{i18n.helpValueWeight}</b></li>
+			<li>{i18n.helpBrainSurgeon}</li>
+			<li>{i18n.helpAstronaut}</li>
+			<li>{i18n.helpBanker}</li>
+			<li>{i18n.helpSoftwareDeveloper}</li>
+			<li>{i18n.helpEtc}</li>
 		</ul>
-
 		<p>
-			The Data Type also provides the following options:
+			{i18n.helpOtherOptions}
 		</p>
 		<ul>
-			<li>lets you generate either a specific number of items from the list, or a random subset of a certain size.</li>
-			<li>Choose whatever delimiter character(s) are used for multiple items.</li>
-			<li>Choose whether you want to eliminate duplicates when a single row generates more than one item.</li>
+			<li>{i18n.helpOption1}</li>
+			<li>{i18n.helpOption2}</li>
+			<li>{i18n.helpOption3}</li>
 		</ul>
 	</>
 );

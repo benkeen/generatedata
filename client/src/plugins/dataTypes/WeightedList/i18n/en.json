@@ -1,10 +1,8 @@
 {
   "NAME": "Weighted List",
-  "DESC": "Generates one or more weighted random values from an arbitrary list of items.",
+  "DESC": "Generates one or more weighted random values from a list of items.",
   "DEFAULT_TITLE": "weightedlist",
   "weightedListSettings": "Weighted List Settings",
-
-
   "atMost": "At Most",
   "exactly": "Exactly",
   "help": "Enter a number of items by entering text then clicking enter. Then select whether you want <b>Exactly</b> X number of items, or <b>At most</b> X items from the list. Multiple items are returned in a comma-delimited list in the results.",
@@ -25,5 +23,28 @@
   "noRangeEntered": "No range entered",
   "between": "Between",
   "and": "and",
-  "items": "items"
+  "items": "items",
+
+  "mostlyEvenNumbers": "Mostly even numbers",
+  "professions": "Professions",
+  "householdPets": "Household pets",
+  "listTooShort": "Make sure you've entered enough items in your list, or it won't generate the number of items specified here.",
+  "allowDuplicates": "Allow duplicates",
+  "value": "Value",
+  "weight": "Weight",
+  "addBtnLabel": "Add &raquo;",
+  "pleaseAddItems": "Please add some items.",
+  "helpIntro": "The <b>Weighted List</b> Data Type generates randomly chosen item or items from a custom-defined list, factoring in whatever weight you want to apply to each item. The weight field lets you change the probability of each item appearing so you can create more realistic-looking data. For example, say you wanted to generate a list of professions, but wanted 'Brain surgeon' and 'Astronaut' to appear very infrequently because they're not common. For that, you could just bump up the weights of the others:",
+  "helpValueWeight": "(value, weight)",
+  "helpBrainSurgeon": "Brain surgeon, 1",
+  "helpAstronaut": "Astronaut, 1",
+  "helpBanker": "Banker, 800",
+  "helpSoftwareDeveloper": "Software Developer, 1000",
+  "helpEtc": "Help etc.",
+
+  "helpOtherOptions": "The Data Type also provides the following options:",
+  "helpOption1": "It lets you generate either a specific number of items from the list, or a random subset of a certain size.",
+  "helpOption2": "Choose whatever delimiter character(s) are used for multiple items.",
+  "helpOption3": "Choose whether you want to eliminate duplicates when a single row generates more than one item.",
+
 }
