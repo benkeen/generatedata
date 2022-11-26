@@ -264,7 +264,7 @@
   "safariExplanation": "Este site requer um navegador da web atualizado que implemente padrões da web modernos. Infelizmente, o Safari ficou para trás em relação aos outros navegadores e não executa este script. Até descobrirmos como acomodá-lo, use um dos seguintes navegadores. Tudo grátis para download.",
   "save": "Salvar",
   "saveAs": "Salvar como",
-  "saveButtonDesc": "Se você tiver uma conta de usuário no site, este botão salvará seu conjunto de dados. Se você não estiver conectado, clicar nele solicitará que você faça o login primeiro. O sistema mantém um histórico das últimas alterações% 1 em um conjunto de dados, para que você possa sempre voltar e ver as versões anteriores.",
+  "saveButtonDesc": "Se você tiver uma conta de usuário no site, este botão salvará seu conjunto de dados. Se você não estiver conectado, clicar nele solicitará que você faça o login primeiro. O sistema mantém um histórico das últimas alterações %1 em um conjunto de dados, para que você possa sempre voltar e ver as versões anteriores.",
   "saveDataSetNewName": "Salvar conjunto de dados com um novo nome",
   "seconds": "Segundas",
   "seeHelpDialog": "Veja a caixa de diálogo de ajuda.",
