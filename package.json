@@ -22,7 +22,8 @@
     "startDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up",
     "startAndBuildDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up --build",
     "stopDevServer": "docker-compose down",
-    "dockerCleanup": "docker system prune -a && docker volume rm $(docker volume ls -qf dangling=true)"
+    "dockerCleanup": "docker system prune -a && docker volume rm $(docker volume ls -qf dangling=true)",
+    "webWorkers": "cd client && grunt && grunt webWorkers"
   },
   "repository": {
     "type": "git",

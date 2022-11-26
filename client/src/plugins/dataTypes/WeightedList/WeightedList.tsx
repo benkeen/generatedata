@@ -347,8 +347,9 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 											onClick={onAdd}
 											variant="outlined"
 											color="primary"
-											size="small"
-											dangerouslySetInnerHTML={{ __html: i18n.addBtnLabel }} />
+											size="small">
+											<span dangerouslySetInnerHTML={{ __html: i18n.addBtnLabel }} />
+										</Button>
 									</div>
 								</div>
 							</form>
