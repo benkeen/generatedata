@@ -91,13 +91,13 @@ export const getRandomWeightedSubset = (options: WeightedOptions, size: number, 
 	if (!totalArrSize) {
 		return subset;
 	}
-	const min = totalArrSize - size;
 
-	while (totalArrSize-- > min) {
+	while (subset.length < size && totalArrSize > 0) {
 		const value = getRandomWeightedValue(weightedOptions);
 		subset.push(value);
 		if (!allowDuplicates) {
 			delete weightedOptions[value];
+			totalArrSize = totalArrSize-1;
 		}
 	}
 
@@ -155,6 +155,10 @@ export const getRandomWeightedValue = (options: WeightedOptions): string => {
 		runningTotal += relativeValue;
 		return cv;
 	});
+
+	if (keys.length === 0) {
+		return '';
+	}
 
 	const r = Math.random();
 	return cumulativeValues.find(({ value }) => r <= value)!.key;

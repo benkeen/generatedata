@@ -11,6 +11,50 @@ import * as langUtils from '~utils/langUtils';
 import { WeightedOptions } from "~utils/randomUtils";
 import * as styles from './WeightedList.scss';
 
+const presets = {
+	evenOdd: {
+		values: [
+			{ value: '1', weight: '1' },
+			{ value: '2', weight: '2' },
+			{ value: '3', weight: '1' },
+			{ value: '4', weight: '2' },
+			{ value: '5', weight: '1' },
+			{ value: '6', weight: '2' },
+			{ value: '7', weight: '1' },
+			{ value: '8', weight: '2' },
+			{ value: '9', weight: '1' },
+			{ value: '10', weight: '2' }
+		]
+	},
+	professions: {
+		values: [
+			{ value: 'Astronaut', weight: '1' },
+			{ value: 'Banker', weight: '5000' },
+			{ value: 'Brain surgeon', weight: '1' },
+			{ value: 'Cook', weight: '8000' },
+			{ value: 'Fast food/counter worker', weight: '90000' },
+			{ value: 'Musician', weight: '5000' },
+			{ value: 'Retail salesperson', weight: '100000' },
+			{ value: 'Software Developer', weight: '10000' },
+			{ value: 'Surgeon', weight: '200' }
+		]
+	},
+	householdPets: {
+		values: [
+			{ value: 'Dog', weight: '50000' },
+			{ value: 'Cat', weight: '35000' },
+			{ value: 'Fish', weight: '10000' },
+			{ value: 'Reptile', weight: '3700' },
+			{ value: 'Bird', weight: '3500' },
+			{ value: 'Rabbit', weight: '1500' },
+			{ value: 'Capybara', weight: '1' },
+			{ value: 'Sugar glider', weight: '1' },
+			{ value: 'Prairie dog', weight: '1' },
+			{ value: 'Pot-bellied pig', weight: '1' },
+		]
+	}
+};
+
 export const enum WeightedListType {
 	exactly = 'exactly',
 	between = 'between'
@@ -33,12 +77,12 @@ export type WeightedListState = {
 };
 
 export const initialState: WeightedListState = {
-	example: '1|3|5|7|9|11|13|15|17|19',
+	example: 'even-odd',
 	listType: WeightedListType.exactly,
 	exactly: '1',
 	betweenLow: '',
 	betweenHigh: '',
-	values: [],
+	values: presets.evenOdd.values,
 	delimiter: ', ',
 	allowDuplicates: true
 };
@@ -61,43 +105,11 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 	const onChange = (example: any): void => {
 		let values: WeightedListItem[] = [];
 		if (example === 'even-odd') {
-			values = [
-				{ value: '1', weight: '1' },
-				{ value: '2', weight: '2' },
-				{ value: '3', weight: '1' },
-				{ value: '4', weight: '2' },
-				{ value: '5', weight: '1' },
-				{ value: '6', weight: '2' },
-				{ value: '7', weight: '1' },
-				{ value: '8', weight: '2' },
-				{ value: '9', weight: '1' },
-				{ value: '10', weight: '2' }
-			];
+			values = presets.evenOdd.values;
 		} else if (example === 'professions') {
-			values = [
-				{ value: 'Astronaut', weight: '1' },
-				{ value: 'Banker', weight: '5000' },
-				{ value: 'Brain surgeon', weight: '1' },
-				{ value: 'Cook', weight: '8000' },
-				{ value: 'Fast food/counter worker', weight: '90000' },
-				{ value: 'Musician', weight: '5000' },
-				{ value: 'Retail salesperson', weight: '100000' },
-				{ value: 'Software Developer', weight: '10000' },
-				{ value: 'Surgeon', weight: '200' },
-			];
+			values = presets.professions.values;
 		} else if (example === 'household-pets') {
-			values = [
-				{ value: 'Dog', weight: '50000' },
-				{ value: 'Cat', weight: '35000' },
-				{ value: 'Fish', weight: '10000' },
-				{ value: 'Reptile', weight: '3700' },
-				{ value: 'Bird', weight: '3500' },
-				{ value: 'Rabbit', weight: '1500' },
-				{ value: 'Capybara', weight: '1' },
-				{ value: 'Sugar glider', weight: '1' },
-				{ value: 'Prairie dog', weight: '1' },
-				{ value: 'Pot-bellied pig', weight: '1' },
-			];
+			values = presets.householdPets.values;
 		}
 		onUpdate({
 			...data,
@@ -109,7 +121,7 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 	const options = [
 		{ value: 'even-odd', label: i18n.mostlyEvenNumbers },
 		{ value: 'professions', label: i18n.professions },
-		{ value: 'household-pets', label: i18n.householdPets },
+		{ value: 'household-pets', label: i18n.householdPets }
 	];
 
 	return (
@@ -145,7 +157,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 
 	const onAdd = (): void => {
 		setShowErrors(true);
-		if (value && weight !== undefined) {
+		if (value && weight) {
 			onUpdate({
 				...data,
 				values: [
@@ -167,10 +179,25 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 	};
 
 	let exactlyError = '';
-	if (!data.exactly) {
-		exactlyError = coreI18n.requiredField;
-	} else if (displayStrings.length < parseInt(data.exactly, 10)) {
-		exactlyError = i18n.listTooShort;
+	let betweenLowError = '';
+	let betweenHighError = '';
+	if (data.listType === WeightedListType.exactly) {
+		if (!data.exactly) {
+			exactlyError = coreI18n.requiredField;
+		} else if (displayStrings.length < parseInt(data.exactly, 10)) {
+			exactlyError = i18n.listTooShort;
+		}
+	} else {
+		if (!data.betweenLow) {
+			betweenLowError = coreI18n.requiredField;
+		} else if (displayStrings.length < parseInt(data.betweenLow, 10)) {
+			betweenLowError = i18n.listTooShort;
+		}
+		if (!data.betweenHigh) {
+			betweenHighError = coreI18n.requiredField;
+		} else if (displayStrings.length < parseInt(data.betweenHigh, 10)) {
+			betweenHighError = i18n.listTooShort;
+		}
 	}
 
 	const onChangeList = (newValues: string[]): void => {
@@ -244,6 +271,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 									<label htmlFor={`listType2-${id}`}>{i18n.between}</label>
 									<TextField
 										ref={dtListBetweenLow}
+										error={betweenLowError}
 										type="intOnly"
 										min={0}
 										placeholder="-"
@@ -261,6 +289,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 									{i18n.and}
 									<TextField
 										type="intOnly"
+										error={betweenHighError}
 										min={0}
 										placeholder="-"
 										id={`dtListBetweenHigh_${id}`}
@@ -282,7 +311,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 					<div className={styles.row}>
 						<div className={styles.colLabel}>
 							{i18n.allowDuplicates}
-							<Tooltip title="" arrow>
+							<Tooltip title={i18n.allowDuplicatesDesc} arrow>
 								<InfoIcon />
 							</Tooltip>
 						</div>
@@ -298,7 +327,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 					<div className={styles.row}>
 						<div className={styles.colLabel}>
 							{i18n.delimChars}
-							<Tooltip title="" arrow>
+							<Tooltip title={i18n.delimCharsDesc} arrow>
 								<InfoIcon />
 							</Tooltip>
 						</div>
@@ -313,7 +342,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
 					</div>
 					<div className={styles.row}>
 						<div className={styles.colLabel}>
-							{i18n.items}
+							{i18n.itemsTitle}
 						</div>
 						<div className={styles.content}>
 							<form onSubmit={(e): void => e.preventDefault()}>
