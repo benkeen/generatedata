@@ -11,8 +11,8 @@
   "rowLabel": "Tabellenspalte",
   "rowLabelPlural": "Tabellenspalten",
   "statementType": "Anweisungstyp",
-  "validationInvalidColName": "Bitte geben Sie eine gültige Datenbank Spaltennamen für jede Zeile (aZ und Unterstrich). Bitte beheben Sie die folgenden Zeilen:",
-  "validationInvalidTableName": "Bitte geben Sie eine gültige Datenbank-Tabelle Name (AZ und Unterstrichen).",
+  "validationInvalidColName": "Bitte geben Sie einen gültigen Datenbankspaltennamen ein (nur a-Z und Unterstriche).",
+  "validationInvalidTableName": "Bitte geben Sie einen gültigen Datenbanktabellennamen ein (nur a-Z und Unterstriche).",
   "batchSizeDesc": "Anzahl der Zeilen, die pro Abfrage einfügen (1 - 300)",
   "addDefaultAutoIncrementPrimaryKey": "Fügen Sie die Standard-Primärschlüsselspalte für die automatische Inkrementierung hinzu",
   "batchSize": "Chargengröße"

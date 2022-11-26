@@ -11,8 +11,8 @@
   "rowLabel": "Tabelkolom",
   "rowLabelPlural": "Tabel Kolommen",
   "statementType": "Statement Type",
-  "validationInvalidColName": "Geef een geldige databank kolomnaam in voor elke rij (aZ en onderstrepingstekens). Pas de volgende rij(en) aan:",
-  "validationInvalidTableName": "Geef een geldige database tabel naam (az en onderstrepingstekens alleen) in.",
+  "validationInvalidColName": "Voer een geldige databasekolomnaam in (alleen a-Z en onderstrepingstekens).",
+  "validationInvalidTableName": "Voer een geldige databasetabelnaam in (alleen a-Z en onderstrepingstekens).",
   "batchSizeDesc": "Aantal rijen dat per query moet worden ingevoegd (1-300)",
   "addDefaultAutoIncrementPrimaryKey": "Standaard automatisch verhogen primaire sleutelkolom toevoegen",
   "batchSize": "seriegrootte"

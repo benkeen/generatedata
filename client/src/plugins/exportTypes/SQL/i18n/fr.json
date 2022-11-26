@@ -11,8 +11,8 @@
   "rowLabel": "Colonne",
   "rowLabelPlural": "Colonnes",
   "statementType": "Type de requêtes",
-  "validationInvalidColName": "Entrez des noms valides pours les noms de colonnes pour chaque ligne (aZ et _). Corrigez les lignes suivantes:",
-  "validationInvalidTableName": "Entrer un nom de table de base de données valide (aZ et _).",
+  "validationInvalidColName": "Veuillez saisir un nom de colonne de base de données valide (a-Z et caractères de soulignement uniquement).",
+  "validationInvalidTableName": "Veuillez saisir un nom de table de base de données valide (a-Z et caractères de soulignement uniquement).",
   "batchSizeDesc": "Nombre de lignes à insérer par une requête (1 - 300)",
   "addDefaultAutoIncrementPrimaryKey": "Ajouter une colonne de clé primaire à incrémentation automatique par défaut",
   "batchSize": "taille du lot"

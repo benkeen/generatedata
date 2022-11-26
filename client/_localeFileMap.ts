@@ -3,7 +3,7 @@ import { GDLocaleMap } from '~types/general';
 export const localeFileMap: GDLocaleMap = {
 	"ar": "ar-e6bb3201.js",
 	"de": "de-e6bec895.js",
-	"en": "en-4d0faf64.js",
+	"en": "en-4975262c.js",
 	"es": "es-35afd3f2.js",
 	"fr": "fr-7d2076bc.js",
 	"hi": "hi-d99e8d62.js",
