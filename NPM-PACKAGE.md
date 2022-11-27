@@ -18,13 +18,15 @@ cmd: `node generate-data-please.js`
 // generate-data-please.js
 const generate = require('@generatedata/runtime'); // package name TBD
 
-const rows = 100000;
 const config = {}; // best exported from generatedata.com, but could be manually built
 
 // Async? Seems best. We'll want to use some sort of npm package for showing a visual display of how it's progressing
 // like: https://www.npmjs.com/package/cli-progress
 (async () => {
-    const results = await generate(rows, config);
+    const settings = {
+        rows: 100000
+    };
+    const results = await generate(settings, dataConfig);
     
     // do whatever you want with results
 })();
@@ -32,12 +34,28 @@ const config = {}; // best exported from generatedata.com, but could be manually
 // or.... instead of returning the data, this could offer the the same UI (cmd-line progress indicator) but actually be 
 // generating the data onto the file system 
 (async () => {
-    const generationOptions = {
+    const settings = {
+        rows: X,
         folder: '',
         filename: '',
     };
-    await generate(rows, config, generationSettings);
+    await generate(settings, config);
 })();
+```
+
+```typescript
+
+// params
+type GenerationSettings = {
+    rows: number; // default: 100. The number of rows to be generated
+    stripWhitespace?: boolean; // default: false
+    generationType: 'returnValue' | 'file'; // default: returnValue. 
+    filename?: string; // the filename to generated.
+    folder?: string; // the folder where the data is generated
+}
+type Data = {
+	// exposed from core + plugins. Contains the actual data configuration 
+}
 ```
 
 ### Questions/considerations:
@@ -47,3 +65,4 @@ const config = {}; // best exported from generatedata.com, but could be manually
 too much memory, so it would have to store the generated data temporarily in files, then combine them at the end. Seems like
 they could both do the same thing: generate temporary files to keep memory light
 - any reason we wouldn't want the cli-progress output?
+- should we offer a binary?
