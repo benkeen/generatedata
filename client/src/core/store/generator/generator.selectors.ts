@@ -355,13 +355,13 @@ export const currentDataSetNeedsCountryNames = createSelector(
 );
 
 // generates a schema of all the data needed to recreate the current data set
-export const getDataSetSchema = createSelector(
+export const getGenerationSchema = createSelector(
 	getRows,
 	getSortedRows,
 	getExportType,
 	getCurrentExportTypeSettings,
 	shouldStripWhitespace,
-	(rows, sortedRows, exportType, exportTypeSettings, stripWhitespace) => {
+	(rows, sortedRows, exportType, exportTypeSettings, stripWhitespace): GenerationSchema => {
 		const nonEmptyRows = sortedRows.filter((id) => !!rows[id].dataType);
 		return JSON.stringify({
 			rows: nonEmptyRows.map((rowId) => {
@@ -370,8 +370,9 @@ export const getDataSetSchema = createSelector(
 			}),
 			exportType,
 			exportTypeSettings,
-			stripWhitespace,
-			numRows: 1
+			// nope. These are settings specific to the particular generation, not the data itself. Separate them
+			// stripWhitespace,
+			// numRows: 1
 		}, null, '   ');
 	}
 );
