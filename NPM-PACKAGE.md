@@ -4,7 +4,7 @@ The long-time purpose of this script was to offer a version as an npm package wh
 offer a programmatic way to generate data. The idea is that the existing UI will offer an "export JSON" option for 
 whatever data set is constructed via the UI, which could be used in conjunction with the command line tool. All the 
 plugins + core already have their data pretty well-defined, so it's just a question of exposing the appropriate
-structure for the various options (and exposed via typescript types!) so developers can construct what they want as JSON. 
+structure for the various options (and exposed via typescript types!) so developers can construct what they want as JSON.
 
 ### General idea
 
@@ -46,8 +46,8 @@ const dataConfig = { // best exported from generatedata.com, but could be manual
 
 ```typescript
 type GenerationSettings = {
-	// required
-    rows: number; // default: 100. The number of rows to be generated
+    // required
+    rows: number; // The number of rows to be generated
     
     // optional
     stripWhitespace?: boolean; // default: false
@@ -62,9 +62,6 @@ type DataConfig = {
 
 ### Questions/considerations:
 
-- package name?
-- The second option below may be useful for the first. Generating 100TB of data is obviously going to take time and require 
-too much memory, so it would have to store the generated data temporarily in files, then combine them at the end. Seems like
-they could both do the same thing: generate temporary files to keep memory light
+- package name? How about just `generatedata`.
 - any reason we wouldn't want the cli-progress output?
-- should we offer a binary?
+- offering a supplementary binary would be nice.
