@@ -1,5 +1,9 @@
 ## Changelog
 
+- `4.0.15` - Nov 26, 2022
+    - Weighted List Data Type added
+    - Misc bug fixes.
+    - https://github.com/benkeen/generatedata/milestone/41?closed=1
 - `4.0.14` - Mar 5, 2022
     - URLs Data Type added
     - Ukrainian, Singapore and South Africa country data added
