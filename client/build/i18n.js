@@ -2,7 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const helpers = require('./helpers');
 
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+const result = require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+if (result.error) {
+	return;
+}
 
 const locales = process.env.GD_LOCALES.split(',');
 

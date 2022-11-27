@@ -4,7 +4,11 @@ const crypto = require('crypto');
 const helpers = require('./build/helpers');
 const i18n = require('./build/i18n');
 
-require('dotenv').config();
+const result = require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+if (result.error) {
+	console.error("\nMissing .env file.... Please see the documentation about setting up your environment.\n", result);
+	return;
+}
 
 const locales = process.env.GD_LOCALES.split(',');
 
@@ -474,7 +478,6 @@ window.gd.localeLoaded(i18n);
 		}
 		i18n.removeKeyFromI18nFiles(grunt.option('key'));
 	});
-
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
