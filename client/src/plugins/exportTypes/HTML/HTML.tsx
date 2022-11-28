@@ -5,9 +5,11 @@ import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from 
 
 type ExportFormat = 'table' | 'ul' | 'dl';
 
-export interface HTMLSettings extends ETState {
+export type GenerationOptionsType = {
 	exportFormat: ExportFormat;
 }
+
+export interface HTMLSettings extends ETState, GenerationOptionsType {}
 
 export const initialState: HTMLSettings = {
 	exportFormat: 'table',

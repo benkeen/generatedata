@@ -4,9 +4,12 @@ import etShared from '../../../styles/etShared.scss';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 
 export type DataStructureFormat = 'simple' | 'complex';
-export interface JSONSettings extends ETState {
+
+export interface GenerationOptionsType {
 	dataStructureFormat: DataStructureFormat;
 }
+
+export interface JSONSettings extends ETState, GenerationOptionsType {}
 
 export const initialState: JSONSettings = {
 	dataStructureFormat: 'simple',

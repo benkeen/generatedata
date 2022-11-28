@@ -5,8 +5,7 @@ import TextField from '~components/TextField';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 import styles from './SQL.scss';
 
-
-export interface SQLSettings extends ETState {
+export type GenerationOptionsType = {
 	tableName: string;
 	databaseType: 'MySQL' | 'Postgres' | 'SQLite' | 'Oracle' | 'MSSQL';
 	createTable: boolean;
@@ -18,6 +17,8 @@ export interface SQLSettings extends ETState {
 	isValid: boolean;
 	quotes: 'single' | 'double';
 }
+
+export interface SQLSettings extends ETState, GenerationOptionsType {}
 
 export const initialState: SQLSettings = {
 	tableName: 'myTable',

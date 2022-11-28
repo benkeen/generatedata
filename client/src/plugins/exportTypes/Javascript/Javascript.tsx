@@ -4,9 +4,12 @@ import etShared from '../../../styles/etShared.scss';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 
 export type JavascriptExportFormat = 'variable' | 'es6' | 'commonJs';
-export interface ProgrammingLanguageState extends ETState {
+
+export type GenerationOptionsType = {
 	jsExportFormat: JavascriptExportFormat;
 }
+
+export interface ProgrammingLanguageState extends ETState, GenerationOptionsType {}
 
 export const initialState: ProgrammingLanguageState = {
 	jsExportFormat: 'variable',

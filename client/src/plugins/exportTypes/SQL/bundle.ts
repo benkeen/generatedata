@@ -2,6 +2,8 @@ import { ETBundle } from '~types/exportTypes';
 import { Settings, initialState, getCodeMirrorMode, getExportTypeLabel, validateTitleField, getDownloadFileInfo,
 	isValid } from './SQL';
 
+export { GenerationOptionsType } from './SQL';
+
 const bundle: ETBundle = {
 	Settings,
 	initialState,

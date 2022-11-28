@@ -1,6 +1,8 @@
 import { ETBundle } from '~types/exportTypes';
 import { Settings, initialState, getCodeMirrorMode, getDownloadFileInfo, validateTitleField } from './XML';
 
+export { GenerationOptionsType } from './XML';
+
 const bundle: ETBundle = {
 	Settings,
 	initialState,

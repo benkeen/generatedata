@@ -22,6 +22,8 @@ export type ETBundle = {
 	isValid?: (data: any) => boolean;
 };
 
+// oddity, but this is used to let the main application know when the Export Type is in an invalid state. This prevents
+// it from attempting to generate anything until it's resolved
 export interface ETState {
 	isValid: boolean;
 }

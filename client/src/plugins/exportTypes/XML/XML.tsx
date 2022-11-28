@@ -9,12 +9,14 @@ import {
 } from '~types/exportTypes';
 import TextField from '~components/TextField';
 
-export interface XMLSettings extends ETState {
+export type GenerationOptionsType = {
 	rootNodeName: string;
 	recordNodeName: string;
 	useCustomExportFormat: boolean;
 	customFormat: string;
 }
+
+export interface XMLSettings extends ETState, GenerationOptionsType {}
 
 export const initialState: XMLSettings = {
 	rootNodeName: 'records',

@@ -3,11 +3,12 @@ import TextField from '~components/TextField';
 import styles from './Typescript.scss';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 
-export interface TypescriptSettings extends ETState {
+export type GenerationOptionsType = {
 	typeName: string;
 	varName: string;
-	isValid: boolean;
 }
+
+export interface TypescriptSettings extends ETState, GenerationOptionsType {}
 
 export const initialState: TypescriptSettings = {
 	typeName: 'RandomData',
