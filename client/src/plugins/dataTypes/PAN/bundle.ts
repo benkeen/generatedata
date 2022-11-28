@@ -1,6 +1,7 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Example, Options, Help } from './PAN';
-import { rowStateReducer, getMetadata } from './PAN.generator';
+import { initialState, Example, Options, Help, rowStateReducer, getMetadata } from './PAN';
+
+export { GenerationOptionsType } from './PAN';
 
 const bundle: DTBundle = {
 	initialState,

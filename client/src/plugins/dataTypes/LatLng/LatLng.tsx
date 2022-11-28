@@ -33,8 +33,6 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
 
-export const rowStateReducer = (state: LatLngState): LatLngState => state;
-
 export const getMetadata = (): DTMetadata => ({
 	general: {
 		dataType: 'string'

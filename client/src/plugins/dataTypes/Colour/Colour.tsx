@@ -30,6 +30,8 @@ export type ColourState = {
 	alpha: number;
 };
 
+export type GenerationOptionsType = Omit<ColourState, 'example'>
+
 export const initialState: ColourState = {
 	example: 'any',
 	value: 'any',
@@ -261,3 +263,6 @@ export const getMetadata = (): DTMetadata => ({
 		field_MSSQL: 'VARCHAR(12) NULL'
 	}
 });
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const rowStateReducer = ({ example, ...other }: ColourState): GenerationOptionsType => other;

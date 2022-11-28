@@ -18,7 +18,7 @@ export type URLsState = {
 	queryParamsOptions: string;
 }
 
-export type CleanURLsState = {
+export type GenerationOptionsType = {
 	protocolEnabled: boolean;
 	protocolOptions: string[];
 	hostnameEnabled: boolean;
@@ -229,7 +229,7 @@ export const cleanListWithBackup = (listStr: string, backup: string): string[] =
 };
 
 // clean up the UI data so the generator script doesn't have to worry about it on every call
-export const rowStateReducer = (state: URLsState): CleanURLsState => ({
+export const rowStateReducer = (state: URLsState): GenerationOptionsType => ({
 	protocolEnabled: state.protocolEnabled,
 	protocolOptions: cleanListWithBackup(state.protocolOptions, initialState.protocolOptions),
 	hostnameEnabled: state.hostnameEnabled,

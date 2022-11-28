@@ -3,6 +3,8 @@ import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/
 import Dropdown from '~components/dropdown/Dropdown';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 
+export type GenerationOptionsType = string[];
+
 export type BooleanState = {
 	example: string;
 	values: string[];
@@ -66,4 +68,4 @@ export const getMetadata = (): DTMetadata => ({
 	}
 });
 
-export const rowStateReducer = (state: BooleanState): string[] => state.values;
+export const rowStateReducer = (state: BooleanState): GenerationOptionsType => state.values;

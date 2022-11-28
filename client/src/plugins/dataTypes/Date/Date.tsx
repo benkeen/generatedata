@@ -21,6 +21,8 @@ export type DateState = {
 	format: string;
 };
 
+export type GenerationOptionsType = Omit<DateState, 'example'>;
+
 export const initialState: DateState = {
 	fromDate: parseInt(format(subYears(new Date(), 1), 't'), 10),
 	toDate: parseInt(format(addYears(new Date(), 1), 't'), 10),
@@ -28,7 +30,7 @@ export const initialState: DateState = {
 	format: 'MMM d, y'
 };
 
-export const rowStateReducer = ({ fromDate, toDate, format }: DateState): Partial<DateState> => ({
+export const rowStateReducer = ({ fromDate, toDate, format }: DateState): GenerationOptionsType => ({
 	fromDate, toDate, format
 });
 

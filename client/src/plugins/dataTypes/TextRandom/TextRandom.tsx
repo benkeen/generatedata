@@ -17,6 +17,13 @@ type TextRandomState = {
 	customText: string;
 };
 
+export type GenerationOptionsType = {
+	fromStart: boolean;
+	minWords: number;
+	maxWords: number;
+	words: string[];
+}
+
 export const initialState: TextRandomState = {
 	fromStart: false,
 	minWords: 1,
@@ -174,7 +181,7 @@ export const getMetadata = (): DTMetadata => ({
 	}
 });
 
-export const rowStateReducer = ({ fromStart, customText, textSource, minWords, maxWords }: TextRandomState): any => {
+export const rowStateReducer = ({ fromStart, customText, textSource, minWords, maxWords }: TextRandomState): GenerationOptionsType => {
 	const { words } = getLipsumWords();
 	return {
 		fromStart,

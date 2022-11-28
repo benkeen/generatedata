@@ -132,6 +132,14 @@ export const initialState: EmailState = {
 	domainSuffixes: defaultDomainSuffixes
 };
 
+export type GenerationOptionsType = {
+	source: StringSource;
+	fieldId1: string;
+	fieldId2: string;
+	domains: string[];
+	domainSuffixes: string[];
+};
+
 // earlier version of this DT didn't have any state whatsoever
 const getSafeState = (data: EmailState | undefined): EmailState => {
 	return data ? data : {
@@ -224,7 +232,7 @@ export const getMetadata = (): DTMetadata => ({
 	}
 });
 
-export const rowStateReducer = (state: EmailState): any => {
+export const rowStateReducer = (state: EmailState): GenerationOptionsType => {
 	const safeData = getSafeState(state);
 	return {
 		...safeData,

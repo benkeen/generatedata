@@ -15,6 +15,11 @@ export type TextFixedState = {
 	customText: string;
 };
 
+export type GenerationOptionsType = {
+	words: string[];
+	numWordsToGenerate: number;
+}
+
 export const initialState: TextFixedState = {
 	numWords: 10,
 	textSource: 'lipsum',
@@ -146,7 +151,7 @@ export const getMetadata = (): DTMetadata => ({
 	}
 });
 
-export const rowStateReducer = ({ customText, textSource, numWords }: TextFixedState): any => {
+export const rowStateReducer = ({ customText, textSource, numWords }: TextFixedState): GenerationOptionsType => {
 	const { words } = getLipsumWords();
 	return {
 		words: textSource === 'lipsum' ? words : customText.split(/\s+/),

@@ -1,11 +1,6 @@
-import { DTMetadata, DTGenerateResult, DTOnMessage, DTGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTOnMessage, DTGenerationData } from '~types/dataTypes';
 import utils from '../../../utils';
-import { PanState } from './PAN';
 
-export const rowStateReducer = ({ cardFormats, example }: PanState): any => ({
-	cardFormats,
-	ccCard: example
-});
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const cards = Object.keys(data.rowState.cardFormats);
@@ -83,14 +78,3 @@ const generatePAN = (prefix: number, format: string): string => {
 
 	return finalPan;
 };
-
-export const getMetadata = (): DTMetadata => ({
-	general: {
-		dataType: 'string',
-	},
-	sql: {
-		field: 'varchar(255)',
-		field_Oracle: 'varchar2(255)',
-		field_MSSQL: 'VARCHAR(255) NULL'
-	}
-});

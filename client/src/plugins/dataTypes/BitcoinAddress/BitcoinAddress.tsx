@@ -29,6 +29,8 @@ export type BitcoinAddressState = {
 	};
 }
 
+export type GenerationOptionsType = BitcoinAddressState;
+
 export const initialState: BitcoinAddressState = {
 	[BitcoinAddressFormat.Legacy]: {
 		enabled: true,

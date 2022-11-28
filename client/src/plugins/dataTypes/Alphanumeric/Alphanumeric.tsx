@@ -6,6 +6,8 @@ import { DTExampleProps, DTOptionsProps, DTHelpProps, DTMetadata } from '~types/
 import styles from './Alphanumeric.scss';
 import sharedStyles from '../../../styles/shared.scss';
 
+export type GenerationOptionsType = string;
+
 export type AlphanumericState = {
 	example: string;
 	value: string;
@@ -171,7 +173,7 @@ export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 	</>
 );
 
-export const rowStateReducer = (state: AlphanumericState): string => state.value;
+export const rowStateReducer = (state: AlphanumericState): GenerationOptionsType => state.value;
 
 export const getMetadata = (): DTMetadata => ({
 	sql: {

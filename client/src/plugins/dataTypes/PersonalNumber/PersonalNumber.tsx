@@ -12,7 +12,6 @@ export const initialState = {
 };
 
 export const Example = ({ coreI18n, i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
-
 	const onChange = (value: any): void => {
 		onUpdate({
 			example: value,

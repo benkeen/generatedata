@@ -76,6 +76,16 @@ export type WeightedListState = {
 	values: WeightedListItem[];
 };
 
+export type GenerationOptionsType = {
+	listType: WeightedListType;
+	exactly: string;
+	betweenLow: string;
+	betweenHigh: string;
+	allowDuplicates: boolean;
+	delimiter: string;
+	values: WeightedOptions;
+}
+
 export const initialState: WeightedListState = {
 	example: 'even-odd',
 	listType: WeightedListType.exactly,
@@ -507,15 +517,11 @@ export const getMetadata = (): DTMetadata => ({
 });
 
 export const rowStateReducer = ({
-	example, delimiter, listType, exactly, betweenLow = '', betweenHigh = '', values, allowDuplicates // atMost
-}: WeightedListState): any => {
+	delimiter, listType, exactly, betweenLow = '', betweenHigh = '', values, allowDuplicates
+}: WeightedListState): GenerationOptionsType => {
 	let cleanExactly: any = '';
 	let cleanBetweenLow: any = '';
 	let cleanBetweenHigh: any = '';
-
-	// if (atMost) {
-	// 	betweenHigh = atMost;
-	// }
 
 	if (listType === WeightedListType.exactly) {
 		if (exactly.trim() !== '') {
@@ -546,7 +552,6 @@ export const rowStateReducer = ({
 	});
 
 	return {
-		example,
 		listType,
 		exactly: cleanExactly,
 		betweenLow: cleanBetweenLow,

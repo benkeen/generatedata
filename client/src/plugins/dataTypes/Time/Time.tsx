@@ -18,6 +18,8 @@ export type DateState = {
 	format: string;
 };
 
+export type GenerationOptionsType = Omit<DateState, 'example'>;
+
 export const initialState: DateState = {
 	fromTime: parseInt(format(startOfDay(new Date()), 't'), 10),
 	toTime: parseInt(format(endOfDay(new Date()), 't'), 10),
@@ -26,13 +28,11 @@ export const initialState: DateState = {
 };
 
 const SECS_IN_DAY = 86400;
-export const rowStateReducer = ({ fromTime, toTime, format }: DateState): Partial<DateState> => {
-	return {
-		fromTime,
-		toTime: fromTime > toTime ? toTime + SECS_IN_DAY : toTime,
-		format
-	};
-};
+export const rowStateReducer = ({ fromTime, toTime, format }: DateState): GenerationOptionsType => ({
+	fromTime,
+	toTime: fromTime > toTime ? toTime + SECS_IN_DAY : toTime,
+	format
+});
 
 export const getMetadata = (): DTMetadata => ({
 	general: {

@@ -7,16 +7,31 @@ import TextField from '~components/TextField';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './Currency.scss';
 
+export enum PrefixLocation {
+	prefix = 'prefix',
+	suffix = 'suffix'
+}
+
 export const initialState = {
 	example: '0.00|100.00|$|prefix|true|,|.',
 	from: '0.00',
 	to: '100.00',
 	currencySymbol: '$',
-	currencySymbolLocation: 'prefix',
+	currencySymbolLocation: PrefixLocation.prefix,
 	includeCents: true,
 	thousandsSeparator: ',',
 	centsSeparator: '.'
 };
+
+export type GenerationOptionsType = {
+	from: number;
+	to: number;
+	currencySymbol: string;
+	currencySymbolLocation: PrefixLocation;
+	includeCents: boolean;
+	thousandsSeparator: string;
+	centsSeparator: string;
+}
 
 export const Example = ({ i18n, data, onUpdate }: any): JSX.Element => {
 	const onChange = (i: any): void => {
@@ -107,17 +122,17 @@ const CurrencySettingsDialog = ({ id, visible, data, onUpdate, onClose, coreI18n
 							/>
 							<input
 								type="radio"
-								checked={data.currencySymbolLocation === 'prefix'}
+								checked={data.currencySymbolLocation === PrefixLocation.prefix}
 								name={`${id}-currencySymbolLocation`}
 								id={`${id}-currencySymbolLocation1`}
-								onChange={(): void => onChange('currencySymbolLocation', 'prefix')} />
+								onChange={(): void => onChange('currencySymbolLocation', PrefixLocation.prefix)} />
 							<label htmlFor={`${id}-currencySymbolLocation1`}>Prefix</label>
 							<input
 								type="radio"
-								checked={data.currencySymbolLocation === 'suffix'}
+								checked={data.currencySymbolLocation === PrefixLocation.suffix}
 								name={`${id}-currencySymbolLocation`}
 								id={`${id}-currencySymbolLocation2`}
-								onChange={(): void => onChange('currencySymbolLocation', 'suffix')} />
+								onChange={(): void => onChange('currencySymbolLocation', PrefixLocation.suffix)} />
 							<label htmlFor={`${id}-currencySymbolLocation2`}>Suffix</label>
 						</div>
 					</div>

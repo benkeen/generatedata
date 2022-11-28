@@ -67,10 +67,11 @@ type DataConfig = {
 - offering a supplementary binary would be nice.
 - split up what we have and create it as a separate package? Sure be nice for it not to contain all the unnecessary junk of the main app.
 Maybe moving this to a monorepo might be simplest.
-- schema validation will be easy with TS. How about JS/binary usages?
+- schema validation will be easy with TS. How about JS/binary usages? We have the old leftover JSON schema being half-defined
+in the plugin's `config.ts` files. That should be removed.
 
 
-### Schema Definition
+## Schema Definition
 
 Above you can see the second param is a mysterious `DataConfig` type. This has to be a well-defined type for all plugins 
 in the application. We have something _close_ to this right now, but not quite. 
@@ -106,3 +107,7 @@ settings. Not sure if we want to bother with creating an equivalent of a `rowSta
 At this point we should be able to create this without too much fuss. We'll probably need to construct is in _plugins or 
 one of the build steps... maybe there'd be a runtime option, but maybe not. I kinda like the generated files - they're
 easy to read & haven't caused any fuss.
+
+At this point remove/update the JSON schemas defined in the Data Type's config.ts files. That was a leftover from 
+v3 of generate data and isn't used. But keep in mind we'll want a runtime validation of the schema for non-TS usages of
+the npm package.

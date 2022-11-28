@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import styles from './NormalDistribution.scss';
 
-type NormalDistributionState = {
+export type NormalDistributionState = {
 	mean: number;
 	sigma: number;
 	precision: number;

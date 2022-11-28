@@ -1,6 +1,8 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, rowStateReducer, Help, Options, getMetadata } from './NumberRange';
 
+export { NumberRangeState as GenerationOptionsType } from './NumberRange';
+
 const bundle: DTBundle = {
 	initialState,
 	Options,

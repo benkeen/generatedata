@@ -26,6 +26,8 @@ export type NamesState = {
 	selectedCountries: string[];
 };
 
+export type GenerationOptionsType = Omit<NamesState, 'example'>;
+
 export const initialState: NamesState = {
 	example: 'Name Surname',
 	options: ['Name Surname'],
@@ -33,7 +35,7 @@ export const initialState: NamesState = {
 	selectedCountries: []
 };
 
-export const rowStateReducer = ({ options, source, selectedCountries }: NamesState): Partial<NamesState> => ({
+export const rowStateReducer = ({ options, source, selectedCountries }: NamesState): GenerationOptionsType => ({
 	options,
 	source,
 	selectedCountries

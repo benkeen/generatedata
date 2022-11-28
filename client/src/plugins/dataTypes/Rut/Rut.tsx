@@ -10,6 +10,8 @@ type RutState = {
 	uppercaseDigit: boolean;
 };
 
+export type GenerationOptionsType = Omit<RutState, 'example'>;
+
 export const initialState: RutState = {
 	example: '',
 	formatCode: '12345678-9',

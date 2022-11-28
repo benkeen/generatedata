@@ -21,6 +21,8 @@ export type CityState = {
 	targetRowId: string;
 };
 
+export type GenerationOptionsType = CityState;
+
 export const initialState: CityState = {
 	source: RegionSource.any,
 	selectedCountries: [],

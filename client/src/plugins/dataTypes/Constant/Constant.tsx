@@ -7,7 +7,7 @@ import { isNumeric } from '~utils/numberUtils';
 import styles from './Constant.scss';
 import sharedStyles from '../../../styles/shared.scss';
 
-type CleanedRowState = {
+export type GenerationOptionsType = {
 	loopCount: number;
 	values: any[];
 }
@@ -78,7 +78,7 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 );
 
 // this assumes validation has already been performed. Perhaps a `valid` flag should be set in the state?
-export const rowStateReducer = ({ loopCount, values }: ConstantState): CleanedRowState => ({ loopCount, values });
+export const rowStateReducer = ({ loopCount, values }: ConstantState): GenerationOptionsType => ({ loopCount, values });
 
 export const getMetadata = (rowData: ConstantState): DTMetadata => {
 	let dataType: DTMetadataType = 'string';

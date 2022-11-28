@@ -8,12 +8,14 @@ export type PhoneState = {
 	option: string[];
 };
 
+export type GenerationOptionsType = string[];
+
 export const initialState: PhoneState = {
 	example: '1-Xxx-Xxx-xxxx|(Xxx) Xxx-xxxx',
 	option: ['1-Xxx-Xxx-xxxx', '(Xxx) Xxx-xxxx']
 };
 
-export const rowStateReducer = (state: PhoneState): string[] => state.option;
+export const rowStateReducer = (state: PhoneState): GenerationOptionsType => state.option;
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {

@@ -360,8 +360,7 @@ export const getGenerationSchema = createSelector(
 	getSortedRows,
 	getExportType,
 	getCurrentExportTypeSettings,
-	shouldStripWhitespace,
-	(rows, sortedRows, exportType, exportTypeSettings, stripWhitespace): GenerationSchema => {
+	(rows, sortedRows, exportType, exportTypeSettings): any => {
 		const nonEmptyRows = sortedRows.filter((id) => !!rows[id].dataType);
 		return JSON.stringify({
 			rows: nonEmptyRows.map((rowId) => {

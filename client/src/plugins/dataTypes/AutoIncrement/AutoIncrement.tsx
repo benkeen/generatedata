@@ -5,6 +5,12 @@ import { isNumeric } from '~utils/numberUtils';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '~types/dataTypes';
 import styles from './AutoIncrement.scss';
 
+export type GenerationOptionsType = {
+	incrementStart: number;
+	incrementValue: number;
+	incrementPlaceholder: string;
+}
+
 export type AutoIncrementState = {
 	example: string;
 	incrementStart: string;
@@ -130,7 +136,7 @@ export const getMetadata = (rowData: AutoIncrementState): DTMetadata => {
 	};
 };
 
-export const rowStateReducer = (state: AutoIncrementState): any => {
+export const rowStateReducer = (state: AutoIncrementState): GenerationOptionsType => {
 	const incrementStart = (state.incrementStart) ? parseFloat(state.incrementStart) : 0;
 	const incrementValue = (state.incrementValue) ? parseFloat(state.incrementValue) : 0;
 

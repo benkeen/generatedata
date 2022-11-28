@@ -7,6 +7,8 @@ type SiretState = {
 	option: string;
 };
 
+export type GenerationOptions = string;
+
 export const initialState: SiretState = {
 	example: '',
 	option: ''

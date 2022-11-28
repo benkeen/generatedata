@@ -25,6 +25,15 @@ export type ListState = {
 	delimiter: string;
 };
 
+export type GenerationOptionsType = {
+	listType: ListType;
+	exactly: number;
+	betweenLow: number;
+	betweenHigh: number;
+	values: string[];
+	delimiter: string;
+}
+
 export const initialState: ListState = {
 	example: '1|3|5|7|9|11|13|15|17|19',
 	listType: ListType.exactly,
@@ -296,15 +305,10 @@ export const getMetadata = (): DTMetadata => ({
 	}
 });
 
-// @ts-ignore-line
-export const rowStateReducer = ({ example, delimiter, listType, exactly, betweenLow = '', atMost, betweenHigh = '', values }: ListState): any => {
+export const rowStateReducer = ({ delimiter, listType, exactly, betweenLow = '', betweenHigh = '', values }: ListState): GenerationOptionsType => {
 	let cleanExactly: any = '';
 	let cleanBetweenLow: any = '';
 	let cleanBetweenHigh: any = '';
-
-	if (atMost) {
-		betweenHigh = atMost;
-	}
 
 	if (listType === ListType.exactly) {
 		if (exactly.trim() !== '') {
@@ -330,7 +334,6 @@ export const rowStateReducer = ({ example, delimiter, listType, exactly, between
 	}
 
 	return {
-		example,
 		listType,
 		exactly: cleanExactly,
 		betweenLow: cleanBetweenLow,

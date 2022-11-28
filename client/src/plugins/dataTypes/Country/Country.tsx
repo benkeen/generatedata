@@ -14,6 +14,7 @@ export type CountryState = {
 	source: CountrySource;
 	selectedCountries: string[];
 }
+export type GenerationOptionsType = CountryState;
 
 export const initialState: CountryState = {
 	source: 'plugins',

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
@@ -15,6 +15,11 @@ export type PanState = {
 	cardTypes: CreditCardType[];
 	cardFormats: CreditCardFormatType;
 };
+
+export type GenerationOptionsType = {
+	cardFormats: CreditCardFormatType;
+	ccCard: CreditCardType | 'any';
+}
 
 export const initialState: PanState = {
 	example: 'any',
@@ -280,40 +285,19 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	</>
 );
 
+export const rowStateReducer = ({ cardFormats, example }: PanState): GenerationOptionsType => ({
+	cardFormats,
+	ccCard: example as CreditCardType
+});
 
-// var _validate = function(rows) {
-// 	var cardTypeProblemVisibleRows = [];
-// 	var cardTypeProblemFields      = [];
-// 	var cardFormatProblemVisibleRows = [];
-// 	var cardFormatProblemFields      = [];
-// 	var randCardSelectProblemVisibleRows = [];
-// 	var randCardSelectProblemFields      = [];
-//
-// 	for (var i=0; i<rows.length; i++) {
-//
-// 		// check if the examples dropdown (card type) isn't blank
-// 		var $exampleField = $("#dtExample_" + rows[i]);
-// 		if ($exampleField.val() === "") {
-// 			cardTypeProblemVisibleRows.push(generator.getVisibleRowOrderByRowNum(rows[i]));
-// 			cardTypeProblemFields.push($exampleField);
-// 		}
-//
-// 		// check if card format is proper
-// 		var format = $("#dtOption_" + rows[i]).val();
-// 		if (format.match(/[^X\s]/g)) {
-// 			cardFormatProblemVisibleRows.push(generator.getVisibleRowOrderByRowNum(rows[i]));
-// 			cardFormatProblemFields.push($("#dtOption_" + rows[i]));
-// 		}
-//
-// 		// check if random card is selected then at least one type should be selected
-// 		if ($exampleField.val() === "rand_card") {
-// 			var selected = $("#dtOptionPAN_randomCardFormat_" + rows[i]).val();
-// 			if (selected === null) {
-// 				randCardSelectProblemVisibleRows.push(generator.getVisibleRowOrderByRowNum(rows[i]));
-// 				randCardSelectProblemFields.push($("#dtOptionPAN_randomCardFormat_" + rows[i]));
-// 			}
-// 		}
-// 	}
-//
-// 	return errors;
-// };
+export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'string',
+	},
+	sql: {
+		field: 'varchar(255)',
+		field_Oracle: 'varchar2(255)',
+		field_MSSQL: 'VARCHAR(255) NULL'
+	}
+});
+

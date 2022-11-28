@@ -1,6 +1,8 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Options, Help } from './SIRET';
 
+export { GenerationOptions } from './SIRET';
+
 const bundle: DTBundle = {
 	initialState,
 	Options,
