@@ -80,15 +80,17 @@ const generateEnvFile = (filename, content) => {
 const createPluginsListFile = () => {
 	let content = banner + '\n\n';
 
+	const blacklistedDataTypes = process.env.GD_DATA_TYPE_BLACKLIST.split(',');
 	const dataTypes = helpers.getPlugins('dataTypes', []);
 	dataTypes.forEach((folder) => {
 		content += `import ${folder} from './src/plugins/dataTypes/${folder}/config';\n`;
 	});
 	content += `\nexport const dataTypes = {\n\t${dataTypes.join(',\n\t')}\n};\n`;
 	content += '\nexport type DataTypeFolder = keyof typeof dataTypes;\n';
-	content += '\nexport const blacklistedDataTypeFolders = [\'' + process.env.GD_DATA_TYPE_BLACKLIST.split(',').join('\',\'') + '\'];\n\n';
+	content += '\nexport const blacklistedDataTypeFolders = [\'' + blacklistedDataTypes.join('\',\'') + '\'];\n\n';
 
-	const exportTypes = helpers.getPlugins('exportTypes', process.env.GD_EXPORT_TYPE_BLACKLIST.split(','));
+	const blacklistedExportTypes = process.env.GD_EXPORT_TYPE_BLACKLIST.split(',');
+	const exportTypes = helpers.getPlugins('exportTypes', blacklistedExportTypes);
 	exportTypes.forEach((folder) => {
 		content += `import ${folder} from './src/plugins/exportTypes/${folder}/config';\n`;
 	});
@@ -104,7 +106,48 @@ const createPluginsListFile = () => {
 	});
 	content += `\nexport const countryList = ['${countries.join('\', \'')}'];\n`;
 	content += `export const countries = ['${countries.join('\', \'')}'] as const;\n`;
-	content += `export const countryMethods = {\n${Object.keys(map).map((key) => '\t' + map[key] + ': ' + key + '').join(',\n')}\n};`;
+	content += `export const countryMethods = {\n${Object.keys(map).map((key) => '\t' + map[key] + ': ' + key + '').join(',\n')}\n};\n\n`;
+
+	const dtList = dataTypes.filter((dt) => blacklistedDataTypes.indexOf(dt) === -1);
+	const dataTypeEnums = dtList.map((dt) => `\t${dt} = '${dt}'`);
+	content += `enum DataTypeEnum {\n${dataTypeEnums.join(',\n')}\n}\n\n`;
+
+	dtList.forEach((dt) => {
+		content += `import { GenerationOptionsType as ${dt}GenerationOptions } from './src/plugins/dataTypes/${dt}/bundle';\n`;
+	});
+
+	const dataTypeOptionsMap = dtList.map((dt) => `\t[DataTypeEnum.${dt}]: ${dt}GenerationOptions;`);
+	content += `\ninterface DataTypeOptionsMap {\n${dataTypeOptionsMap.join('\n')}\n}\n\n`;
+
+	content += `export type DataTypeGenerationOptions = {
+	[K in DataTypeEnum]: {
+		plugin: K;
+		settings: DataTypeOptionsMap[K];
+	}
+}[DataTypeEnum];\n\n`;
+
+	const etList = exportTypes.filter((et) => blacklistedExportTypes.indexOf(et) === -1);
+	const exportTypeEnums = etList.map((et) => `\t${et} = '${et}'`);
+	content += `enum ExportTypeEnum {\n${exportTypeEnums.join(',\n')}\n}\n\n`;
+
+	etList.forEach((et) => {
+		content += `import { GenerationOptionsType as ${et}GenerationOptions } from './src/plugins/exportTypes/${et}/bundle';\n`;
+	});
+
+	const exportTypeOptionsMap = etList.map((et) => `\t[ExportTypeEnum.${et}]: ${et}GenerationOptions;`);
+	content += `\ninterface ExportTypeOptionsMap {\n${exportTypeOptionsMap.join('\n')}\n}\n\n`;
+
+	content += `export type ExportTypeGenerationOptions = {
+	[K in ExportTypeEnum]: {
+		plugin: K;
+		settings: ExportTypeOptionsMap[K];
+	}
+}[ExportTypeEnum];\n\n`;
+
+	content += `export type DataConfig = {
+	rows: DataTypeGenerationOptions[];
+	exportType: ExportTypeGenerationOptions;
+}`;
 
 	const file = path.join(__dirname, '..', '_plugins.ts');
 	if (fs.existsSync(file)) {

@@ -194,3 +194,177 @@ export const countryMethods = {
 	Ukraine: CountryUkraine,
 	Vietnam: CountryVietnam
 };
+
+enum DataTypeEnum {
+	Alphanumeric = 'Alphanumeric',
+	AutoIncrement = 'AutoIncrement',
+	Boolean = 'Boolean',
+	CVV = 'CVV',
+	City = 'City',
+	Colour = 'Colour',
+	Company = 'Company',
+	Computed = 'Computed',
+	Constant = 'Constant',
+	Country = 'Country',
+	Currency = 'Currency',
+	Date = 'Date',
+	Email = 'Email',
+	GUID = 'GUID',
+	IBAN = 'IBAN',
+	LatLng = 'LatLng',
+	List = 'List',
+	Names = 'Names',
+	NormalDistribution = 'NormalDistribution',
+	NumberRange = 'NumberRange',
+	PAN = 'PAN',
+	PIN = 'PIN',
+	Phone = 'Phone',
+	PostalZip = 'PostalZip',
+	Region = 'Region',
+	Rut = 'Rut',
+	StreetAddress = 'StreetAddress',
+	TextFixed = 'TextFixed',
+	TextRandom = 'TextRandom',
+	Time = 'Time',
+	Track1 = 'Track1',
+	Track2 = 'Track2',
+	URLs = 'URLs',
+	WeightedList = 'WeightedList'
+}
+
+import { GenerationOptionsType as AlphanumericGenerationOptions } from './src/plugins/dataTypes/Alphanumeric/bundle';
+import { GenerationOptionsType as AutoIncrementGenerationOptions } from './src/plugins/dataTypes/AutoIncrement/bundle';
+import { GenerationOptionsType as BooleanGenerationOptions } from './src/plugins/dataTypes/Boolean/bundle';
+import { GenerationOptionsType as CVVGenerationOptions } from './src/plugins/dataTypes/CVV/bundle';
+import { GenerationOptionsType as CityGenerationOptions } from './src/plugins/dataTypes/City/bundle';
+import { GenerationOptionsType as ColourGenerationOptions } from './src/plugins/dataTypes/Colour/bundle';
+import { GenerationOptionsType as CompanyGenerationOptions } from './src/plugins/dataTypes/Company/bundle';
+import { GenerationOptionsType as ComputedGenerationOptions } from './src/plugins/dataTypes/Computed/bundle';
+import { GenerationOptionsType as ConstantGenerationOptions } from './src/plugins/dataTypes/Constant/bundle';
+import { GenerationOptionsType as CountryGenerationOptions } from './src/plugins/dataTypes/Country/bundle';
+import { GenerationOptionsType as CurrencyGenerationOptions } from './src/plugins/dataTypes/Currency/bundle';
+import { GenerationOptionsType as DateGenerationOptions } from './src/plugins/dataTypes/Date/bundle';
+import { GenerationOptionsType as EmailGenerationOptions } from './src/plugins/dataTypes/Email/bundle';
+import { GenerationOptionsType as GUIDGenerationOptions } from './src/plugins/dataTypes/GUID/bundle';
+import { GenerationOptionsType as IBANGenerationOptions } from './src/plugins/dataTypes/IBAN/bundle';
+import { GenerationOptionsType as LatLngGenerationOptions } from './src/plugins/dataTypes/LatLng/bundle';
+import { GenerationOptionsType as ListGenerationOptions } from './src/plugins/dataTypes/List/bundle';
+import { GenerationOptionsType as NamesGenerationOptions } from './src/plugins/dataTypes/Names/bundle';
+import { GenerationOptionsType as NormalDistributionGenerationOptions } from './src/plugins/dataTypes/NormalDistribution/bundle';
+import { GenerationOptionsType as NumberRangeGenerationOptions } from './src/plugins/dataTypes/NumberRange/bundle';
+import { GenerationOptionsType as PANGenerationOptions } from './src/plugins/dataTypes/PAN/bundle';
+import { GenerationOptionsType as PINGenerationOptions } from './src/plugins/dataTypes/PIN/bundle';
+import { GenerationOptionsType as PhoneGenerationOptions } from './src/plugins/dataTypes/Phone/bundle';
+import { GenerationOptionsType as PostalZipGenerationOptions } from './src/plugins/dataTypes/PostalZip/bundle';
+import { GenerationOptionsType as RegionGenerationOptions } from './src/plugins/dataTypes/Region/bundle';
+import { GenerationOptionsType as RutGenerationOptions } from './src/plugins/dataTypes/Rut/bundle';
+import { GenerationOptionsType as StreetAddressGenerationOptions } from './src/plugins/dataTypes/StreetAddress/bundle';
+import { GenerationOptionsType as TextFixedGenerationOptions } from './src/plugins/dataTypes/TextFixed/bundle';
+import { GenerationOptionsType as TextRandomGenerationOptions } from './src/plugins/dataTypes/TextRandom/bundle';
+import { GenerationOptionsType as TimeGenerationOptions } from './src/plugins/dataTypes/Time/bundle';
+import { GenerationOptionsType as Track1GenerationOptions } from './src/plugins/dataTypes/Track1/bundle';
+import { GenerationOptionsType as Track2GenerationOptions } from './src/plugins/dataTypes/Track2/bundle';
+import { GenerationOptionsType as URLsGenerationOptions } from './src/plugins/dataTypes/URLs/bundle';
+import { GenerationOptionsType as WeightedListGenerationOptions } from './src/plugins/dataTypes/WeightedList/bundle';
+
+interface DataTypeOptionsMap {
+	[DataTypeEnum.Alphanumeric]: AlphanumericGenerationOptions;
+	[DataTypeEnum.AutoIncrement]: AutoIncrementGenerationOptions;
+	[DataTypeEnum.Boolean]: BooleanGenerationOptions;
+	[DataTypeEnum.CVV]: CVVGenerationOptions;
+	[DataTypeEnum.City]: CityGenerationOptions;
+	[DataTypeEnum.Colour]: ColourGenerationOptions;
+	[DataTypeEnum.Company]: CompanyGenerationOptions;
+	[DataTypeEnum.Computed]: ComputedGenerationOptions;
+	[DataTypeEnum.Constant]: ConstantGenerationOptions;
+	[DataTypeEnum.Country]: CountryGenerationOptions;
+	[DataTypeEnum.Currency]: CurrencyGenerationOptions;
+	[DataTypeEnum.Date]: DateGenerationOptions;
+	[DataTypeEnum.Email]: EmailGenerationOptions;
+	[DataTypeEnum.GUID]: GUIDGenerationOptions;
+	[DataTypeEnum.IBAN]: IBANGenerationOptions;
+	[DataTypeEnum.LatLng]: LatLngGenerationOptions;
+	[DataTypeEnum.List]: ListGenerationOptions;
+	[DataTypeEnum.Names]: NamesGenerationOptions;
+	[DataTypeEnum.NormalDistribution]: NormalDistributionGenerationOptions;
+	[DataTypeEnum.NumberRange]: NumberRangeGenerationOptions;
+	[DataTypeEnum.PAN]: PANGenerationOptions;
+	[DataTypeEnum.PIN]: PINGenerationOptions;
+	[DataTypeEnum.Phone]: PhoneGenerationOptions;
+	[DataTypeEnum.PostalZip]: PostalZipGenerationOptions;
+	[DataTypeEnum.Region]: RegionGenerationOptions;
+	[DataTypeEnum.Rut]: RutGenerationOptions;
+	[DataTypeEnum.StreetAddress]: StreetAddressGenerationOptions;
+	[DataTypeEnum.TextFixed]: TextFixedGenerationOptions;
+	[DataTypeEnum.TextRandom]: TextRandomGenerationOptions;
+	[DataTypeEnum.Time]: TimeGenerationOptions;
+	[DataTypeEnum.Track1]: Track1GenerationOptions;
+	[DataTypeEnum.Track2]: Track2GenerationOptions;
+	[DataTypeEnum.URLs]: URLsGenerationOptions;
+	[DataTypeEnum.WeightedList]: WeightedListGenerationOptions;
+}
+
+export type DataTypeGenerationOptions = {
+	[K in DataTypeEnum]: {
+		plugin: K;
+		settings: DataTypeOptionsMap[K];
+	}
+}[DataTypeEnum];
+
+enum ExportTypeEnum {
+	CSV = 'CSV',
+	CSharp = 'CSharp',
+	HTML = 'HTML',
+	JSON = 'JSON',
+	Javascript = 'Javascript',
+	LDIF = 'LDIF',
+	PHP = 'PHP',
+	Perl = 'Perl',
+	Python = 'Python',
+	Ruby = 'Ruby',
+	SQL = 'SQL',
+	Typescript = 'Typescript',
+	XML = 'XML'
+}
+
+import { GenerationOptionsType as CSVGenerationOptions } from './src/plugins/exportTypes/CSV/bundle';
+import { GenerationOptionsType as CSharpGenerationOptions } from './src/plugins/exportTypes/CSharp/bundle';
+import { GenerationOptionsType as HTMLGenerationOptions } from './src/plugins/exportTypes/HTML/bundle';
+import { GenerationOptionsType as JSONGenerationOptions } from './src/plugins/exportTypes/JSON/bundle';
+import { GenerationOptionsType as JavascriptGenerationOptions } from './src/plugins/exportTypes/Javascript/bundle';
+import { GenerationOptionsType as LDIFGenerationOptions } from './src/plugins/exportTypes/LDIF/bundle';
+import { GenerationOptionsType as PHPGenerationOptions } from './src/plugins/exportTypes/PHP/bundle';
+import { GenerationOptionsType as PerlGenerationOptions } from './src/plugins/exportTypes/Perl/bundle';
+import { GenerationOptionsType as PythonGenerationOptions } from './src/plugins/exportTypes/Python/bundle';
+import { GenerationOptionsType as RubyGenerationOptions } from './src/plugins/exportTypes/Ruby/bundle';
+import { GenerationOptionsType as SQLGenerationOptions } from './src/plugins/exportTypes/SQL/bundle';
+import { GenerationOptionsType as TypescriptGenerationOptions } from './src/plugins/exportTypes/Typescript/bundle';
+import { GenerationOptionsType as XMLGenerationOptions } from './src/plugins/exportTypes/XML/bundle';
+
+interface ExportTypeOptionsMap {
+	[ExportTypeEnum.CSV]: CSVGenerationOptions;
+	[ExportTypeEnum.CSharp]: CSharpGenerationOptions;
+	[ExportTypeEnum.HTML]: HTMLGenerationOptions;
+	[ExportTypeEnum.JSON]: JSONGenerationOptions;
+	[ExportTypeEnum.Javascript]: JavascriptGenerationOptions;
+	[ExportTypeEnum.LDIF]: LDIFGenerationOptions;
+	[ExportTypeEnum.PHP]: PHPGenerationOptions;
+	[ExportTypeEnum.Perl]: PerlGenerationOptions;
+	[ExportTypeEnum.Python]: PythonGenerationOptions;
+	[ExportTypeEnum.Ruby]: RubyGenerationOptions;
+	[ExportTypeEnum.SQL]: SQLGenerationOptions;
+	[ExportTypeEnum.Typescript]: TypescriptGenerationOptions;
+	[ExportTypeEnum.XML]: XMLGenerationOptions;
+}
+
+export type ExportTypeGenerationOptions = {
+	[K in ExportTypeEnum]: {
+		plugin: K;
+		settings: ExportTypeOptionsMap[K];
+	}
+}[ExportTypeEnum];
+
+export type DataConfig = {
+	rows: DataTypeGenerationOptions[];
+	exportType: ExportTypeGenerationOptions;
+}
