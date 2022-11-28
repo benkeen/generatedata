@@ -3,12 +3,13 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Measure from 'react-measure';
 import { useWindowSize } from 'react-hooks-window-size';
 import CloseIcon from '@material-ui/icons/Close';
-// import CodeIcon from '@material-ui/icons/Code';
+import CodeIcon from '@material-ui/icons/Code';
 import IconButton from '@material-ui/core/IconButton';
 import * as styles from './Grid.scss';
 import { Tooltip } from '~components/tooltips';
 import { PrimaryButton } from '~components/Buttons.component';
 import { DataRow } from '~store/generator/generator.reducer';
+import FeatureToggles from "~core/featureToggles";
 import { DataTypeFolder } from '../../../../_plugins';
 import GridRow from './GridRow.container';
 import C from '../../constants';
@@ -27,7 +28,7 @@ export type GridProps = {
 
 const Grid = ({
 	rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel,
-	showHelpDialog // showSchemaDialog
+	showHelpDialog, showSchemaDialog
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
@@ -62,21 +63,23 @@ const Grid = ({
 
 
 	const getSchemaIcon = (): JSX.Element | null => {
-		return null;
+		if (!FeatureToggles.SCHEMA_GENERATION_UI) {
+			return null;
+		}
 
-		// return (
-		// 	<span onClick={showSchemaDialog}>
-		// 		<Tooltip
-		// 			title={<span dangerouslySetInnerHTML={{ __html: 'View schema' }}/>}
-		// 			placement="bottom"
-		// 			arrow
-		// 		>
-		// 			<IconButton size="small" aria-label="View schema">
-		// 				<CodeIcon fontSize="large" />
-		// 			</IconButton>
-		// 		</Tooltip>
-		// 	</span>
-		// );
+		return (
+			<span onClick={showSchemaDialog}>
+				<Tooltip
+					title={<span dangerouslySetInnerHTML={{ __html: 'View schema' }}/>}
+					placement="bottom"
+					arrow
+				>
+					<IconButton size="small" aria-label="View schema">
+						<CodeIcon fontSize="large" />
+					</IconButton>
+				</Tooltip>
+			</span>
+		);
 	};
 
 	return (
