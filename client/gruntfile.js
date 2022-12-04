@@ -47,6 +47,7 @@ module.exports = function (grunt) {
 	const dataTypesFolder = 'src/plugins/dataTypes';
 	const exportTypesFolder = 'src/plugins/exportTypes';
 	const countriesFolder = 'src/plugins/countries';
+	const mainTranslationsFolder = 'src/i18n/';
 
 	const checkPlugin = (pluginType) => {
 		const folderMap = {
@@ -477,6 +478,46 @@ window.gd.localeLoaded(i18n);
 			grunt.fail.fatal("Please enter a key to remove. Format: `grunt removeI18nKey --key=word_goodbye");
 		}
 		i18n.removeKeyFromI18nFiles(grunt.option('key'));
+	});
+
+	grunt.registerTask('addLocale', () => {
+		const locale = grunt.option('locale') || null;
+		if (!locale) {
+			grunt.fail.fatal("Please enter a locale to add. Locales should be the ISO-3166 2-char code: `grunt addLocale --locale=xy");
+		}
+
+		const dataTypes = fs.readdirSync(dataTypesFolder);
+		dataTypes.forEach((folder) => {
+			const en = `${dataTypesFolder}/${folder}/i18n/en.json`;
+			const newLocaleFile = `${dataTypesFolder}/${folder}/i18n/${locale}.json`;
+			if (fs.existsSync(en)) {
+				fs.copyFileSync(en, newLocaleFile);
+			}
+		});
+
+		const exportTypes = fs.readdirSync(exportTypesFolder);
+		exportTypes.forEach((folder) => {
+			const en = `${exportTypesFolder}/${folder}/i18n/en.json`;
+			const newLocaleFile = `${exportTypesFolder}/${folder}/i18n/${locale}.json`;
+			if (fs.existsSync(en)) {
+				fs.copyFileSync(en, newLocaleFile);
+			}
+		});
+
+		const countries = fs.readdirSync(countriesFolder);
+		countries.forEach((folder) => {
+			const en = `${countriesFolder}/${folder}/i18n/en.json`;
+			const newLocaleFile = `${countriesFolder}/${folder}/i18n/${locale}.json`;
+			if (fs.existsSync(en)) {
+				fs.copyFileSync(en, newLocaleFile);
+			}
+		});
+
+		// main translation file
+		const mainEn = `${mainTranslationsFolder}/en.json`;
+		if (fs.existsSync(mainEn)) {
+			fs.copyFileSync(mainEn, `${mainTranslationsFolder}/${locale}.json`);
+		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
