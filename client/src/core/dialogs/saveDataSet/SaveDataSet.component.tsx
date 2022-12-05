@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+import { useHistory } from 'react-router';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import TextField from '~components/TextField';
 import { PrimaryButton } from '~components/Buttons.component';
@@ -10,6 +11,7 @@ export type SaveDataSetDialogProps = {
 	visible: boolean;
 	isLoggedIn: boolean;
 	dialogType: SaveDataDialogType;
+	showRegistration: boolean;
 	onRedirectToLogin: () => void;
 	onClose: any;
 	onSave: (dataSetName: string) => void;
@@ -17,8 +19,10 @@ export type SaveDataSetDialogProps = {
 };
 
 const SaveDataSetDialog = ({
-	visible, isLoggedIn, dialogType, onClose, onSave, onRedirectToLogin, i18n
+	visible, isLoggedIn, dialogType, onClose, onSave, showRegistration, onRedirectToLogin, i18n
 }: SaveDataSetDialogProps): JSX.Element => {
+	const history = useHistory();
+
 	const newDataSetNameField = useRef<HTMLInputElement>();
 	const [newDataSetName, setNewDataSetName] = useState('');
 	const [newDataSetNameError, setNewDataSetErrorName] = useState('');
@@ -57,22 +61,28 @@ const SaveDataSetDialog = ({
 		}
 	};
 
+	const gotoRegistration = useCallback(() => {
+		onClose();
+		history.push('/register');
+	}, []);
+
 	let buttons = (
 		<PrimaryButton type="submit">{i18n.save}</PrimaryButton>
 	);
 
 	if (!isLoggedIn) {
 		title = i18n.pleaseLogin;
+		const msg = showRegistration ? i18n.loginOrRegisterToSave : i18n.loginToSave;
 		content = (
 			<div className={styles.notLoggedIn}>
 				<PersonAddIcon />
-				{i18n.loginToSave}
+				{msg}
 			</div>
 		);
 		buttons = (
 			<>
 				<PrimaryButton onClick={onRedirectToLogin}>{i18n.login}</PrimaryButton>
-				<PrimaryButton onClick={onClose}>{i18n.register}</PrimaryButton>
+				{showRegistration && <PrimaryButton onClick={gotoRegistration}>{i18n.register}</PrimaryButton>}
 			</>
 		);
 	}

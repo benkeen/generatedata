@@ -6,12 +6,16 @@ import * as accountSelectors from '~store/account/account.selectors';
 import * as actions from '~store/account/account.actions';
 import * as mainActions from '~store/main/main.actions';
 import * as mainSelectors from '~store/main/main.selectors';
+import env from '../../../../_env';
 
 const mapStateToProps = (state: any): Partial<SaveDataSetDialogProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: accountSelectors.shouldShowSaveDataSetDialog(state),
 	isLoggedIn: mainSelectors.isLoggedIn(state),
-	dialogType: accountSelectors.getSaveDataDialogType(state)
+	dialogType: accountSelectors.getSaveDataDialogType(state),
+
+	// TODO. We should offer an option for users to register themselves and not rely on the admin to do it for them
+	showRegistration: env.appType === 'prod'
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<SaveDataSetDialogProps> => ({
