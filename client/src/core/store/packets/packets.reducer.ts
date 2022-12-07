@@ -15,8 +15,7 @@ type GeneratedDataBatch = {
 };
 
 export type DataPacket = {
-	dataTypeWorkerId: string;
-	exportTypeWorkerId: string;
+	generationWorkerId: string;
 	startTime: number | null;
 	endTime: number | null;
 	totalPauseDuration: number;
@@ -68,15 +67,13 @@ export const initialState: PacketsState = {
 };
 
 export const getNewPacket = ({
-	dataTypeWorkerId, exportTypeWorkerId, stripWhitespace, numRowsToGenerate, template, dataTypes, columns,
-	exportType, exportTypeSettings
+	generationWorkerId, stripWhitespace, numRowsToGenerate, template, dataTypes, columns, exportType, exportTypeSettings
 }: any): DataPacket => {
 	const now = new Date().getTime();
 	const loadTimeGraphDuration = getGraphDuration(numRowsToGenerate);
 
 	return {
-		dataTypeWorkerId,
-		exportTypeWorkerId,
+		generationWorkerId,
 		startTime: now,
 		endTime: null,
 		totalPauseDuration: 0,
@@ -118,15 +115,13 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 
 		case actions.START_GENERATION: {
 			const {
-				dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns,
-				exportType, exportTypeSettings, stripWhitespace
+				generationWorkerId, numRowsToGenerate, template, dataTypes, columns, exportType, exportTypeSettings, stripWhitespace
 			} = action.payload;
 
 			const packetId = nanoid();
 			draft.packetIds.push(packetId);
 			draft.packets[packetId] = getNewPacket({
-				dataTypeWorkerId,
-				exportTypeWorkerId,
+				generationWorkerId,
 				numRowsToGenerate,
 				template,
 				dataTypes,

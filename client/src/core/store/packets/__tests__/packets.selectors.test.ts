@@ -21,8 +21,8 @@ describe('getCurrentPacket', () => {
 		const packets: PacketsState = generalUtils.cloneObj(initialPacketState);
 		packets.currentPacketId = '456';
 		packets.packetIds = ['123', '456'];
-		packets.packets['123'] = getNewPacket({ dataTypeWorkerId: 1 });
-		packets.packets['456'] = getNewPacket({ dataTypeWorkerId: 2 });
+		packets.packets['123'] = getNewPacket({ generationWorkerId: 1 });
+		packets.packets['456'] = getNewPacket({ generationWorkerId: 2 });
 
 		let state: Store = {
 			generator: getInitialState(),
@@ -30,7 +30,7 @@ describe('getCurrentPacket', () => {
 			packets,
 			account: initialAccountState
 		};
-		expect(selectors.getCurrentPacket(state)!.dataTypeWorkerId).toEqual(2);
+		expect(selectors.getCurrentPacket(state)!.generationWorkerId).toEqual(2);
 	});
 
 	it('getActivePacketList', () => {
@@ -38,11 +38,11 @@ describe('getCurrentPacket', () => {
 		packets.currentPacketId = '456';
 		packets.packetIds = ['123', '456'];
 		packets.packets['123'] = getNewPacket({
-			dataTypeWorkerId: 1,
+			generationWorkerId: 1,
 			numRowsToGenerate: 5
 		});
 		packets.packets['456'] = getNewPacket({
-			dataTypeWorkerId: 2,
+			generationWorkerId: 2,
 			numRowsToGenerate: 10
 		});
 

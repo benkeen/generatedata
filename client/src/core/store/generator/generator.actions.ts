@@ -19,6 +19,7 @@ import { DataSetListItem } from '~types/dataSets';
 import { getUnique } from '~utils/arrayUtils';
 import { getCountryNamesBundle } from '~utils/coreUtils';
 import { getCountryData } from '~utils/countryUtils';
+import { GenerationWorkerActionType } from "~core/generator/generation.types";
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -167,7 +168,7 @@ export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 // this re-generates the preview panel data. This doesn't have to be called on boot-up because the preview data is
 // generated on the fly, saved in the store and rehydrated when the app loads
 export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = null): any => {
-	const dataTypeWorker = coreUtils.getDataTypeWorker('preview');
+	const generationWorker = coreUtils.getGenerationWorker('preview');
 
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
@@ -187,7 +188,8 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
 		// That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
 		// far clearer to the end user that way
-		dataTypeWorker.postMessage({
+		generationWorker.postMessage({
+			action: GenerationWorkerActionType.ProcessDataTypesOnly,
 			numResults: C.MAX_PREVIEW_ROWS,
 			batchSize: C.MAX_PREVIEW_ROWS,
 			unchanged,
@@ -202,7 +204,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 			}
 		});
 
-		dataTypeWorker.onmessage = (resp: MessageEvent): void => {
+		generationWorker.onmessage = (resp: MessageEvent): void => {
 			const { data } = resp;
 			const { generatedData } = data;
 

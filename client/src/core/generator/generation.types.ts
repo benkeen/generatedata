@@ -2,6 +2,8 @@ import { GenerationTemplate } from '~types/general';
 
 export enum GenerationWorkerActionType {
 	Generate = 'GENERATE',
+	ProcessDataTypesOnly = 'PROCESS_DATA_TYPES_ONLY',
+	ProcessExportTypesOnly = 'PROCESS_EXPORT_TYPES_ONLY',
 	Pause = 'PAUSE',
 	Abort = 'ABORT',
 	Continue = 'CONTINUE',

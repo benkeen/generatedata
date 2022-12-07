@@ -4,7 +4,7 @@ import C from '~core/constants';
 import useDidUpdate from '../../hooks/useDidUpdate';
 import { DataPacket } from '~store/packets/packets.reducer';
 import { CountryNamesMap } from '~types/countries';
-import { GenerationWorkerActionType } from '~core/generator/generator.types';
+import { GenerationWorkerActionType } from '~core/generator/generation.types';
 
 export type EngineProps = {
 	fullI18n: any;
@@ -21,11 +21,9 @@ const Engine = ({ packet, workerResources, logDataBatch, fullI18n, countryNames 
 		return null;
 	}
 
-	const { isPaused, config, dataTypeWorkerId, exportTypeWorkerId, numGeneratedRows, speed } = packet;
+	const { isPaused, config, generationWorkerId, numGeneratedRows, speed } = packet;
 	const { numRowsToGenerate, columns, template, exportType, exportTypeSettings, stripWhitespace } = config;
-
-	const dataTypeWorker = coreUtils.getDataTypeWorker(dataTypeWorkerId);
-	const exportTypeWorker = coreUtils.getExportTypeWorker(exportTypeWorkerId);
+	const generationWorker = coreUtils.getGenerationWorker(generationWorkerId);
 
 	useEffect(() => {
 		if (numGeneratedRows !== 0) {
@@ -35,7 +33,7 @@ const Engine = ({ packet, workerResources, logDataBatch, fullI18n, countryNames 
 		// TODO move all this to a generatorUtils helper. That'll handle farming out work to both plugin types
 
 		// just fires once at the start of the data generation. This kicks off the whole process.
-		dataTypeWorker.postMessage({
+		generationWorker.postMessage({
 			action: 'generate',
 			numResults: numRowsToGenerate,
 			batchSize: C.GENERATION_BATCH_SIZE,
@@ -47,36 +45,37 @@ const Engine = ({ packet, workerResources, logDataBatch, fullI18n, countryNames 
 			workerResources
 		});
 
-		dataTypeWorker.onmessage = ({ data }: any): void => {
+		generationWorker.onmessage = ({ data }: any): void => {
 			const { completedBatchNum, numGeneratedRows, generatedData } = data;
 			const isLastBatch = numGeneratedRows >= numRowsToGenerate;
 			const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));
 
-			exportTypeWorker.postMessage({
-				rows: displayData,
-				columns,
-				exportType,
-				exportTypeSettings,
-				stripWhitespace,
-				isFirstBatch: completedBatchNum === 1,
-				isLastBatch,
-				workerResources
-			});
-
-			exportTypeWorker.onmessage = (resp: any): void => {
-				logDataBatch(numGeneratedRows, resp.data);
-			};
+			// TODO
+			// exportTypeWorker.postMessage({
+			// 	rows: displayData,
+			// 	columns,
+			// 	exportType,
+			// 	exportTypeSettings,
+			// 	stripWhitespace,
+			// 	isFirstBatch: completedBatchNum === 1,
+			// 	isLastBatch,
+			// 	workerResources
+			// });
+			//
+			// exportTypeWorker.onmessage = (resp: any): void => {
+			// 	logDataBatch(numGeneratedRows, resp.data);
+			// };
 		};
 	}, [numGeneratedRows]);
 
 	useDidUpdate(() => {
-		dataTypeWorker.postMessage({
+		generationWorker.postMessage({
 			action: isPaused ? GenerationWorkerActionType.Pause : GenerationWorkerActionType.Continue
 		});
 	}, [isPaused]);
 
 	useDidUpdate(() => {
-		dataTypeWorker.postMessage({
+		generationWorker.postMessage({
 			action: GenerationWorkerActionType.SetSpeed,
 			speed
 		});

@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
+import { createGenerationWorker } from '~utils/coreUtils';
 import * as selectors from '../generator/generator.selectors';
 import * as packetSelectors from './packets.selectors';
 import { getDownloadFileInfo } from '~utils/exportTypeUtils';
@@ -20,8 +20,7 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 	dispatch({
 		type: START_GENERATION,
 		payload: {
-			dataTypeWorkerId: createDataTypeWorker(),
-			exportTypeWorkerId: createExportTypeWorker(),
+			generationWorkerId: createGenerationWorker(),
 			numRowsToGenerate: selectors.getNumRowsToGenerate(state),
 			stripWhitespace: selectors.shouldStripWhitespace(state),
 			template: selectors.getGenerationTemplate(state),

@@ -17,7 +17,7 @@ import { Tooltip } from '~components/tooltips';
 import { getPercentageLabel } from './generation.helpers';
 import Engine from './Engine.container';
 import { LoadTimeGraphDuration } from '~types/general';
-import { GenerationWorkerActionType } from '~core/generator/generator.types';
+import { GenerationWorkerActionType } from '~core/generator/generation.types';
 
 export type ActivityPanelProps = {
 	visible: boolean;
@@ -49,17 +49,17 @@ const ActivityPanel = ({
 	}
 
 	const coreI18n = fullI18n.core;
-	const { isPaused, config, dataTypeWorkerId, numGeneratedRows, speed } = packet;
+	const { isPaused, config, generationWorkerId, numGeneratedRows, speed } = packet;
 	const { numRowsToGenerate } = config;
 
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
-	const dataTypeWorker = coreUtils.getDataTypeWorker(dataTypeWorkerId);
+	const generationWorker = coreUtils.getGenerationWorker(generationWorkerId);
 
 	const abortPacket = (): void => {
 		onAbort();
-		dataTypeWorker.postMessage({ action: GenerationWorkerActionType.Abort });
-		coreUtils.destroyDataTypeWorker(dataTypeWorkerId);
+		generationWorker.postMessage({ action: GenerationWorkerActionType.Abort });
+		coreUtils.destroyGenerationWorker(generationWorkerId);
 	};
 
 	const percentage = (numGeneratedRows / numRowsToGenerate) * 100;

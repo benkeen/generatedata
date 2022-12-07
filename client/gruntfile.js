@@ -35,9 +35,7 @@ const getFilenameHash = (filename) => {
 // then this object is updated with the change & the final map file is regenerated. For prod it's just done in
 // one go
 const webWorkerMap = {
-	coreWorker: '',
-	coreDataTypeWorker: '',
-	coreExportTypeWorker: '',
+	generationWorker: '',
 	workerUtils: '',
 	dataTypes: {},
 	exportTypes: {}
@@ -226,8 +224,7 @@ window.gd.localeLoaded(i18n);
 	})();
 
 	const webWorkerFileListWithType = [
-		{ file: 'src/core/generator/dataTypes.worker.ts', type: 'core' },
-		{ file: 'src/core/generator/exportTypes.worker.ts', type: 'core' },
+		{ file: 'src/core/generator/generation.worker.ts', type: 'core' },
 		{ file: 'src/utils/workerUtils.ts', type: 'core' }
 	];
 	Object.values(dataTypeWebWorkerMap).forEach((dt) => {
@@ -275,8 +272,7 @@ window.gd.localeLoaded(i18n);
 	//
 	//      Core workers:
 	//          __hash-core.worker
-	//          __hash-dataTypes.worker
-	//          __hash-exportTypes.worker
+	//          __hash-generation.worker
 	//          __hash-workerUtils
 	// we then use that information here to check to see if we need to regenerate or not
 	const getWebWorkerBuildCommandNames = () => {
@@ -318,12 +314,8 @@ window.gd.localeLoaded(i18n);
 		const oldFile = path.basename(oldPath);
 		const newFilename = path.basename(fileChanges[0].newPath);
 
-		if (oldPath === 'dist/workers/core.worker.js') {
-			webWorkerMap.coreWorker = newFilename;
-		} else if (oldPath === 'dist/workers/dataTypes.worker.js') {
-			webWorkerMap.coreDataTypeWorker = newFilename;
-		} else if (oldPath === 'dist/workers/exportTypes.worker.js') {
-			webWorkerMap.coreExportTypeWorker = newFilename;
+		if (oldPath === 'dist/workers/generation.worker.js') {
+			webWorkerMap.generationWorker = newFilename;
 		} else if (oldPath === 'dist/workers/workerUtils.js') {
 			webWorkerMap.workerUtils = newFilename;
 		} else {
