@@ -1,6 +1,6 @@
 ---
 slug: /
-title: Introduction
+title: Introduction/essapp
 id: intro
 ---
 
