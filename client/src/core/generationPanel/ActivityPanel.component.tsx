@@ -13,11 +13,11 @@ import usePrevious from '../../hooks/usePrevious';
 import styles from './ActivityPanel.scss';
 import { DataPacket } from '~store/packets/packets.reducer';
 import * as coreUtils from '~utils/coreUtils';
-import C from '../constants';
 import { Tooltip } from '~components/tooltips';
 import { getPercentageLabel } from './generation.helpers';
 import Engine from './Engine.container';
 import { LoadTimeGraphDuration } from '~types/general';
+import { GenerationWorkerActionType } from '~core/generator/generator.types';
 
 export type ActivityPanelProps = {
 	visible: boolean;
@@ -58,7 +58,7 @@ const ActivityPanel = ({
 
 	const abortPacket = (): void => {
 		onAbort();
-		dataTypeWorker.postMessage({ action: C.ACTIVITY_PANEL_ACTIONS.ABORT });
+		dataTypeWorker.postMessage({ action: GenerationWorkerActionType.Abort });
 		coreUtils.destroyDataTypeWorker(dataTypeWorkerId);
 	};
 

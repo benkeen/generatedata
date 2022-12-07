@@ -1,3 +1,4 @@
+// TODO rename to exportTypePlugins.ts
 import { GeneratorLayout } from '~core/generator/Generator.component';
 import { ColumnData } from '~types/general';
 import { CountryMap } from '~types/countries';

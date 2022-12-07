@@ -311,7 +311,7 @@ export type DataTypeGenerationOptions = {
 	}
 }[DataTypeEnum];
 
-enum ExportTypeEnum {
+export enum ExportType {
 	CSV = 'CSV',
 	CSharp = 'CSharp',
 	HTML = 'HTML',
@@ -342,29 +342,25 @@ import { GenerationOptionsType as TypescriptGenerationOptions } from './src/plug
 import { GenerationOptionsType as XMLGenerationOptions } from './src/plugins/exportTypes/XML/bundle';
 
 interface ExportTypeOptionsMap {
-	[ExportTypeEnum.CSV]: CSVGenerationOptions;
-	[ExportTypeEnum.CSharp]: CSharpGenerationOptions;
-	[ExportTypeEnum.HTML]: HTMLGenerationOptions;
-	[ExportTypeEnum.JSON]: JSONGenerationOptions;
-	[ExportTypeEnum.Javascript]: JavascriptGenerationOptions;
-	[ExportTypeEnum.LDIF]: LDIFGenerationOptions;
-	[ExportTypeEnum.PHP]: PHPGenerationOptions;
-	[ExportTypeEnum.Perl]: PerlGenerationOptions;
-	[ExportTypeEnum.Python]: PythonGenerationOptions;
-	[ExportTypeEnum.Ruby]: RubyGenerationOptions;
-	[ExportTypeEnum.SQL]: SQLGenerationOptions;
-	[ExportTypeEnum.Typescript]: TypescriptGenerationOptions;
-	[ExportTypeEnum.XML]: XMLGenerationOptions;
+	[ExportType.CSV]: CSVGenerationOptions;
+	[ExportType.CSharp]: CSharpGenerationOptions;
+	[ExportType.HTML]: HTMLGenerationOptions;
+	[ExportType.JSON]: JSONGenerationOptions;
+	[ExportType.Javascript]: JavascriptGenerationOptions;
+	[ExportType.LDIF]: LDIFGenerationOptions;
+	[ExportType.PHP]: PHPGenerationOptions;
+	[ExportType.Perl]: PerlGenerationOptions;
+	[ExportType.Python]: PythonGenerationOptions;
+	[ExportType.Ruby]: RubyGenerationOptions;
+	[ExportType.SQL]: SQLGenerationOptions;
+	[ExportType.Typescript]: TypescriptGenerationOptions;
+	[ExportType.XML]: XMLGenerationOptions;
 }
 
 export type ExportTypeGenerationOptions = {
-	[K in ExportTypeEnum]: {
+	[K in ExportType]: {
 		plugin: K;
 		settings: ExportTypeOptionsMap[K];
 	}
-}[ExportTypeEnum];
+}[ExportType];
 
-export type DataConfig = {
-	rows: DataTypeGenerationOptions[];
-	exportType: ExportTypeGenerationOptions;
-}

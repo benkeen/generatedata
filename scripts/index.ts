@@ -1,27 +1,23 @@
+import {DataSetConfig, ExportType, GenerationSettings} from '~types/generator';
 
-type GenerationSettings = {
-    rows: number; // The number of rows to be generated
-
-    // optional
-    stripWhitespace?: boolean; // default: false
-    generationType?: 'returnValue' | 'file'; // default: returnValue
-    filename?: string; // the filename to generate
-    folder?: string; // the folder where the data is generated
-    packetSize?: 100; // the size of the generated packets
-    onError?: (err: any) => void;
-    onPacketComplete?: (result: any) => void;
-}
-
-const generate = async (settings: GenerationSettings, dataConfig: any) => {
+const generate = async (dataConfig: DataSetConfig, settings: GenerationSettings) => {
     // do stuff
 };
 
 (async () => {
-    const settings = {
+    const settings: GenerationSettings = {
         rows: 100
     };
-    const dataConfig: any = {
 
+    const dataConfig: DataSetConfig = {
+        rows: [],
+        exportType: {
+            plugin: ExportType.JSON,
+            settings: {
+                dataStructureFormat: 'simple'
+            }
+        }
     };
-    await generate(settings, dataConfig);
+
+    await generate(dataConfig, settings);
 })();

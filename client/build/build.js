@@ -128,26 +128,21 @@ const createPluginsListFile = () => {
 
 	const etList = exportTypes.filter((et) => blacklistedExportTypes.indexOf(et) === -1);
 	const exportTypeEnums = etList.map((et) => `\t${et} = '${et}'`);
-	content += `enum ExportTypeEnum {\n${exportTypeEnums.join(',\n')}\n}\n\n`;
+	content += `export enum ExportType {\n${exportTypeEnums.join(',\n')}\n}\n\n`;
 
 	etList.forEach((et) => {
 		content += `import { GenerationOptionsType as ${et}GenerationOptions } from './src/plugins/exportTypes/${et}/bundle';\n`;
 	});
 
-	const exportTypeOptionsMap = etList.map((et) => `\t[ExportTypeEnum.${et}]: ${et}GenerationOptions;`);
+	const exportTypeOptionsMap = etList.map((et) => `\t[ExportType.${et}]: ${et}GenerationOptions;`);
 	content += `\ninterface ExportTypeOptionsMap {\n${exportTypeOptionsMap.join('\n')}\n}\n\n`;
 
 	content += `export type ExportTypeGenerationOptions = {
-	[K in ExportTypeEnum]: {
+	[K in ExportType]: {
 		plugin: K;
 		settings: ExportTypeOptionsMap[K];
 	}
-}[ExportTypeEnum];\n\n`;
-
-	content += `export type DataConfig = {
-	rows: DataTypeGenerationOptions[];
-	exportType: ExportTypeGenerationOptions;
-}`;
+}[ExportType];\n\n`;
 
 	const file = path.join(__dirname, '..', '_plugins.ts');
 	if (fs.existsSync(file)) {

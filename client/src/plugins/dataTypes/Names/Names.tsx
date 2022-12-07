@@ -12,6 +12,7 @@ import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { countryList } from '../../../../_plugins';
 import { CountryType } from '~types/countries';
+import { CountryNameFiles } from "../../../../_namePlugins";
 import styles from './Names.scss';
 
 export const enum NamesSource {
@@ -23,7 +24,7 @@ export type NamesState = {
 	example: string;
 	options: string[];
 	source: NamesSource;
-	selectedCountries: string[];
+	selectedCountries: CountryNameFiles[];
 };
 
 export type GenerationOptionsType = Omit<NamesState, 'example'>;

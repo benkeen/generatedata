@@ -4,6 +4,7 @@ import C from '~core/constants';
 import useDidUpdate from '../../hooks/useDidUpdate';
 import { DataPacket } from '~store/packets/packets.reducer';
 import { CountryNamesMap } from '~types/countries';
+import { GenerationWorkerActionType } from '~core/generator/generator.types';
 
 export type EngineProps = {
 	fullI18n: any;
@@ -30,6 +31,8 @@ const Engine = ({ packet, workerResources, logDataBatch, fullI18n, countryNames 
 		if (numGeneratedRows !== 0) {
 			return;
 		}
+
+		// TODO move all this to a generatorUtils helper. That'll handle farming out work to both plugin types
 
 		// just fires once at the start of the data generation. This kicks off the whole process.
 		dataTypeWorker.postMessage({
@@ -68,13 +71,13 @@ const Engine = ({ packet, workerResources, logDataBatch, fullI18n, countryNames 
 
 	useDidUpdate(() => {
 		dataTypeWorker.postMessage({
-			action: isPaused ? C.ACTIVITY_PANEL_ACTIONS.PAUSE : C.ACTIVITY_PANEL_ACTIONS.CONTINUE
+			action: isPaused ? GenerationWorkerActionType.Pause : GenerationWorkerActionType.Continue
 		});
 	}, [isPaused]);
 
 	useDidUpdate(() => {
 		dataTypeWorker.postMessage({
-			action: C.ACTIVITY_PANEL_ACTIONS.CHANGE_SPEED,
+			action: GenerationWorkerActionType.SetSpeed,
 			speed
 		});
 	}, [speed]);

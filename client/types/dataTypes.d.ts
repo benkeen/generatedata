@@ -1,3 +1,4 @@
+// TODO rename to dataTypePlugins.ts
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { AnyObject } from './general';
 import { DataTypeFolder } from '../_plugins';

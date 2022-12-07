@@ -11,9 +11,9 @@ import { ErrorTooltip } from '~components/tooltips';
 import { MediumSpinner } from '~components/loaders/loaders';
 import Engine from './Engine.container';
 import { DataPacket } from '~store/packets/packets.reducer';
-import C from '~core/constants';
 import * as coreUtils from '~utils/coreUtils';
 import CheckIcon from '@material-ui/icons/Check';
+import { GenerationWorkerActionType } from '~core/generator/generator.types';
 
 export type GenerationSettingsProps = {
 	visible: boolean;
@@ -105,7 +105,7 @@ const GenerationSettingsPanel = ({
 
 			onAbort();
 			onClose();
-			dataTypeWorker.postMessage({ action: C.ACTIVITY_PANEL_ACTIONS.ABORT });
+			dataTypeWorker.postMessage({ action: GenerationWorkerActionType.Abort });
 			coreUtils.destroyDataTypeWorker(dataTypeWorkerId);
 		} else {
 			onClose();

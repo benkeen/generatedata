@@ -1,24 +1,34 @@
+/**
+ * This file is going to replace dataTypes.worker.ts and exportTypes.worker.ts
+ */
 import generatorUtils from '~utils/generatorUtils';
+import {
+	GenGenerateAction, GenPauseAction, GenContinueAction, GenAbortAction, GenSetSpeedAction, GenerationWorkerActionType
+} from '~core/generator/generator.types';
 
 const context: Worker = self as any;
 
-context.onmessage = (e: any) => {
-	if (e.data.action === 'PAUSE') {
+type onMessagePayload = GenGenerateAction | GenPauseAction | GenContinueAction | GenAbortAction | GenSetSpeedAction;
+
+context.onmessage = (e: onMessagePayload): void => {
+	if (e.data.action === GenerationWorkerActionType.Pause) {
 		generatorUtils.pause();
 		return;
-	} else if (e.data.action === 'ABORT') {
+	} else if (e.data.action === GenerationWorkerActionType.Abort) {
 		generatorUtils.pause();
 		return;
-	} else if (e.data.action === 'CONTINUE') {
+	} else if (e.data.action === GenerationWorkerActionType.Continue) {
 		generatorUtils.continue();
 		return;
-	} else if (e.data.action === 'CHANGE_SPEED') {
+	} else if (e.data.action === GenerationWorkerActionType.SetSpeed) {
 		generatorUtils.setSpeed(e.data.speed);
 		return;
 	}
 
 	const { batchSize, numResults, speed, workerResources } = e.data;
 	generatorUtils.setSpeed(speed);
+
+	console.log('???...', e.data);
 
 	generatorUtils.generate(e.data, numResults, batchSize, {
 		onBatchComplete: context.postMessage,
@@ -38,44 +48,27 @@ interface GetWorkerInterface {
 	}[];
 }
 
-
-// this standardizes the interface for communication between the workers, allowing generatorUtils to work for both
-// workers + backend code
 const getWorkerInterface: GetWorkerInterface = (dataTypeWorkerMap) => {
-	const dataTypeInterface: any = {};
-	Object.keys(dataTypeWorkerMap).map((dataType) => {
-
+	return Object.keys(dataTypeWorkerMap).map((dataType) => {
 		// @ts-ignore
 		const worker = new Worker(dataTypeWorkerMap[dataType]);
-
-		// TODO check performance on this
-		let onSuccess: any;
-		const onRegisterSuccess = (f: any) => onSuccess = f;
-		worker.onmessage = (resp) => {
-			if (onSuccess) {
-				onSuccess(resp);
-			}
-		};
-		let onError: any;
-		const onRegisterError = (f: any) => onError = f;
-		worker.onerror = (resp) => {
-			if (onError) {
-				onError(resp);
-			}
+		console.log('................');
+		worker.onmessage = () => {
+			// ...
 		};
 
-		const dtInterface = {
+		const k = {
 			send: worker.postMessage,
-			onSuccess: onRegisterSuccess,
-			onError: onRegisterError,
+
+			// these aren't defined!
+			onSuccess: null,
+			onError: () => { }
 		};
 
-		dtInterface.send = dtInterface.send.bind(worker);
+		k.send = k.send.bind(worker);
 
-		dataTypeInterface[dataType] = dtInterface;
+		return k;
 	});
-
-	return dataTypeInterface;
-}
+};
 
 export {};
