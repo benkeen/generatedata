@@ -45,5 +45,4 @@ generation interface. I kinda like this...
 Note that this still means nested web workers. Whoah! https://bugs.webkit.org/show_bug.cgi?id=22723 - maybe
 Safari now supports it.
 
-
 *** Need to reconcile "template" with what we want to pass as the BE code interface.

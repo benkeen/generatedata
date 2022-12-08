@@ -13,8 +13,6 @@ type WorkerMap = {
 	[workerId: string]: Worker;
 }
 
-// const dataTypeWorkers: WorkerMap = {};
-// const exportTypeWorkers: WorkerMap = {};
 const generationWorkers: WorkerMap = {};
 
 export const createGenerationWorker = (customId: string | null = null): string => {
@@ -23,26 +21,7 @@ export const createGenerationWorker = (customId: string | null = null): string =
 	return workerId;
 };
 export const getGenerationWorker = (id: string): Worker => generationWorkers[id];
-
 export const destroyGenerationWorker = (id: string): void => { delete generationWorkers[id]; };
-
-// export const createDataTypeWorker = (customId: string | null = null): string => {
-// 	const workerId = (customId) ? customId : nanoid();
-// 	dataTypeWorkers[workerId] = new Worker(`./workers/${webWorkers.coreDataTypeWorker}`);
-// 	return workerId;
-// };
-//
-// export const getDataTypeWorker = (id: string): Worker => dataTypeWorkers[id];
-//
-// export const destroyDataTypeWorker = (id: string): void => { delete dataTypeWorkers[id]; };
-//
-// export const createExportTypeWorker = (customId: string | null = null): string => {
-// 	const workerId = (customId) ? customId : nanoid();
-// 	exportTypeWorkers[workerId] = new Worker(`./workers/${webWorkers.coreExportTypeWorker}`);
-// 	return workerId;
-// };
-//
-// export const getExportTypeWorker = (id: string): Worker => exportTypeWorkers[id];
 
 export const getDataTypeWorkerMap = (dataTypes: DataTypeFolder[]): DataTypeMap => {
 	const map: DataTypeMap = {};

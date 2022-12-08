@@ -5,6 +5,7 @@ import { ExportTypeFolder } from '../../../../_plugins';
 import { LoadedExportTypes } from '~utils/exportTypeUtils';
 import { getCountryData } from '~utils/countryUtils';
 import { GeneratorLayout } from '~core/generator/Generator.component';
+import { GenerationWorkerActionType } from '~core/generator/generation.types';
 
 export type CodeMirrorWrapperProps = {
 	previewRows: any;
@@ -63,10 +64,11 @@ export default CodeMirrorWrapper;
 
 export const generatePreviewString = (props: any): Promise<any> => {
 	const { previewRows, columns, exportType, exportTypeSettings, loadedExportTypes } = props;
-	const exportTypeWorker = coreUtils.getExportTypeWorker('preview');
+	const generationWorker = coreUtils.getGenerationWorker('preview');
 
 	return new Promise((resolve) => {
-		coreUtils.performTask('exportTypeWorker', exportTypeWorker, {
+		coreUtils.performTask('exportTypeWorker', generationWorker, {
+			action: GenerationWorkerActionType.ProcessExportTypesOnly,
 			rows: previewRows,
 			columns,
 			exportType,

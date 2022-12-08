@@ -19,18 +19,20 @@ let dataTypeInterface: any;
 const workerQueue: any = {};
 
 export interface GenerateDataTypes {
-	(data: any, numResults: number, batchSize: number, settings: any): void;
+	(settings: any): void;
 }
 
-const generate: GenerateDataTypes = (data, numResults, batchSize, settings): void => {
+const generateDataTypes: GenerateDataTypes = ({
+	numResults, batchSize, unchanged, columns, i18n, template, countryNames, ...other
+}): void => {
 	const numBatches = Math.ceil(numResults / batchSize);
 
-	onBatchComplete = settings.onBatchComplete;
-	dataTypeInterface = settings.dataTypeInterface;
-	countryData = settings.countryData;
-	workerUtils = settings.workerUtils;
+	onBatchComplete = other.onBatchComplete;
+	dataTypeInterface = other.dataTypeInterface;
+	countryData = other.countryData;
+	workerUtils = other.workerUtils;
 
-	mainProcess(data, numBatches, batchSize, 1);
+	mainProcess(numResults, numBatches, batchSize, 1, template, unchanged || {}, i18n, countryNames);
 };
 
 const pauseGeneration = (): void => {
@@ -39,8 +41,8 @@ const pauseGeneration = (): void => {
 
 const continueGeneration = (): void => {
 	isPaused = false;
-	const { data, numBatches, batchSize, batchNum } = onContinueData;
-	mainProcess(data, numBatches, batchSize, batchNum);
+	const { numResults, numBatches, batchSize, batchNum, template, unchanged, i18n, countryNames } = onContinueData;
+	mainProcess(numResults, numBatches, batchSize, batchNum, template, unchanged, i18n, countryNames);
 };
 
 const setSpeed = (speed: number): void => {
@@ -49,7 +51,7 @@ const setSpeed = (speed: number): void => {
 
 // our high-level API that this utility file offers
 export default {
-	generate,
+	generateDataTypes,
 	pause: pauseGeneration,
 	continue: continueGeneration,
 	setSpeed
@@ -59,37 +61,44 @@ export default {
 // -------------------------------------------------------------------------------------------------------------------
 // Internal methods
 
-const mainProcess = (data: any, numBatches: number, batchSize: number, batchNum: number): void => {
-	const { firstRow, lastRow } = getBatchInfo(data.numResults, numBatches, batchSize, batchNum);
+const mainProcess = (
+	numResults: number, numBatches: number, batchSize: number, batchNum: number, template: any, unchanged: any,
+	i18n: any, countryNames: any
+): void => {
+	const { firstRow, lastRow } = getBatchInfo(numResults, numBatches, batchSize, batchNum);
 	const lagTime = (100 - currentSpeed) * 50;
 
 	// if the generation has been paused, halt now and keep track of where we were at
 	if (isPaused) {
 		onContinueData = {
-			data,
+			numResults,
 			numBatches,
 			batchSize,
-			batchNum
+			batchNum,
+			template,
+			unchanged,
+			i18n,
+			countryNames
 		};
 		return;
 	}
 
 	setTimeout(() => {
 		generateBatch({
-			template: data.template,
-			numResults: data.numResults,
-			unchanged: data.unchanged || {},
-			i18n: data.i18n,
+			template,
+			numResults,
+			unchanged,
+			i18n,
 			firstRow,
 			lastRow,
 			batchNum,
-			countryNames: data.countryNames
+			countryNames
 		})
 			.then(() => {
 				if (batchNum === numBatches) {
 					return;
 				}
-				mainProcess(data, numBatches, batchSize, batchNum + 1);
+				mainProcess(numResults, numBatches, batchSize, batchNum + 1, template, unchanged, i18n, countryNames);
 			});
 	}, lagTime);
 };
@@ -108,7 +117,6 @@ const getBatchInfo = (numResults: number, numBatches: number, batchSize: number,
 		lastRow
 	};
 };
-
 
 // this resolve the promise for every batch of data generated
 const generateBatch = ({ template, unchanged, numResults, i18n, firstRow, lastRow, batchNum, countryNames }: any): Promise<any> => new Promise((resolve) => {

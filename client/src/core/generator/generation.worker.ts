@@ -3,9 +3,9 @@ import { GenerationWorkerActionType } from '~core/generator/generation.types';
 
 const context: Worker = self as any;
 
+let abortedMessageIds: any = {};
 
 context.onmessage = (e: any) => {
-
 	if (e.data.action === GenerationWorkerActionType.Pause) {
 		generatorUtils.pause();
 	} else if (e.data.action === GenerationWorkerActionType.Abort) {
@@ -18,27 +18,61 @@ context.onmessage = (e: any) => {
 	// used in the preview panel
 	} else if (e.data.action === GenerationWorkerActionType.ProcessDataTypesOnly) {
 
-/*
-	unchanged,
-	columns,
-	i18n,
-	template,
-	countryNames: coreUtils.getCountryNames(),
-	workerResources: {
-		workerUtils: coreUtils.getWorkerUtils(),
-		dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
-		countryData: getCountryData()
-	}
-*/
-		const { batchSize, numResults, workerResources } = e.data;
+		// TODO again rethink this
+		const { batchSize, numResults, workerResources, unchanged, columns, i18n, template, countryNames } = e.data;
 
-		// flatten this
-		generatorUtils.generate(e.data, numResults, batchSize, {
+		generatorUtils.generateDataTypes({
+			numResults,
+			batchSize,
+			unchanged,
+			columns,
+			i18n,
+			template,
+			countryNames,
 			onBatchComplete: context.postMessage,
-			dataTypeInterface: getWorkerInterface(workerResources.dataTypes),
+			dataTypeInterface: getDataTypeWorkerInterface(workerResources.dataTypes),
 			countryData: workerResources.countryData,
 			workerUtils: workerResources.workerUtils
 		});
+	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypesOnly) {
+		const {
+			_action, _messageId, rows, columns, isFirstBatch, isLastBatch, exportType, numResults,
+			exportTypeSettings, stripWhitespace
+		} = e.data;
+
+		if (_action === 'abort') {
+			abortedMessageIds[_messageId] = true;
+		}
+
+		// workerResources = e.data.workerResources;
+		// exportTypeWorkerMap = workerResources.exportTypes;
+
+		// if (!loadedExportTypeWorkers[exportType]) {
+		// 	loadedExportTypeWorkers[exportType] = new Worker(exportTypeWorkerMap[exportType]);
+		// }
+
+		// const worker = loadedExportTypeWorkers[exportType];
+
+		// worker.postMessage({
+		// 	isFirstBatch,
+		// 	isLastBatch,
+		// 	numResults,
+		// 	rows,
+		// 	columns,
+		// 	settings: exportTypeSettings,
+		// 	stripWhitespace,
+		// 	workerResources
+		// });
+		//
+		// worker.onmessage = (e: MessageEvent): void => {
+		// 	if (abortedMessageIds[_messageId]) {
+		// 		console.log("ABORTED");
+		// 	} else {
+		// 		context.postMessage(e.data);
+		// 	}
+		// };
+	} else if (e.data.action === GenerationWorkerActionType.Generate) {
+
 	}
 };
 
@@ -54,7 +88,7 @@ interface GetWorkerInterface {
 
 // this standardizes the interface for communication between the workers, allowing generatorUtils to work for both
 // workers + backend code
-const getWorkerInterface: GetWorkerInterface = (dataTypeWorkerMap) => {
+const getDataTypeWorkerInterface: GetWorkerInterface = (dataTypeWorkerMap) => {
 	const dataTypeInterface: any = {};
 	Object.keys(dataTypeWorkerMap).map((dataType) => {
 

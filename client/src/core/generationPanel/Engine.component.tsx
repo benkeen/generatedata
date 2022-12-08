@@ -30,11 +30,9 @@ const Engine = ({ packet, workerResources, logDataBatch, fullI18n, countryNames 
 			return;
 		}
 
-		// TODO move all this to a generatorUtils helper. That'll handle farming out work to both plugin types
-
 		// just fires once at the start of the data generation. This kicks off the whole process.
 		generationWorker.postMessage({
-			action: 'generate',
+			action: GenerationWorkerActionType.ProcessDataTypesOnly,
 			numResults: numRowsToGenerate,
 			batchSize: C.GENERATION_BATCH_SIZE,
 			speed,
@@ -46,6 +44,8 @@ const Engine = ({ packet, workerResources, logDataBatch, fullI18n, countryNames 
 		});
 
 		generationWorker.onmessage = ({ data }: any): void => {
+			console.log('---> ', data);
+
 			const { completedBatchNum, numGeneratedRows, generatedData } = data;
 			const isLastBatch = numGeneratedRows >= numRowsToGenerate;
 			const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));

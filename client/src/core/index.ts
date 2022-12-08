@@ -7,17 +7,14 @@ import * as selectors from './store/generator/generator.selectors';
 import * as mainSelectors from './store/main/main.selectors';
 import { requestCountryNames } from '~store/generator/generator.actions';
 import { DataTypeFolder } from '../../_plugins';
-import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
+import { createGenerationWorker } from '~utils/coreUtils';
 import { initAuthVendors } from '~utils/authUtils';
 import { getCurrentPageLocale } from '~utils/langUtils';
 import { AuthMethod } from '~types/general';
 import '../../_imports';
 
 export const init = (): void => {
-
-	// create the preview workers. These handle the job of farming out work to the various plugin worker files.
-	createDataTypeWorker('preview');
-	createExportTypeWorker('preview');
+	createGenerationWorker('preview');
 
 	const state = store.getState();
 	const pageLocale = getCurrentPageLocale();
