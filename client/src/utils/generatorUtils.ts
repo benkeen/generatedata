@@ -18,6 +18,7 @@ let dataTypeInterface: any;
 
 const workerQueue: any = {};
 
+// TODO
 export interface GenerateDataTypes {
 	(settings: any): void;
 }
@@ -33,6 +34,29 @@ const generateDataTypes: GenerateDataTypes = ({
 	workerUtils = other.workerUtils;
 
 	mainProcess(numResults, numBatches, batchSize, 1, template, unchanged || {}, i18n, countryNames);
+};
+
+// TODO Think about
+const generateExportTypes = ({ exportTypeInterface, isFirstBatch, isLastBatch, numResults, rows, columns, settings, stripWhitespace, workerResources }: any) => {
+	exportTypeInterface.send({
+		isFirstBatch,
+		isLastBatch,
+		numResults,
+		rows,
+		columns,
+		settings,
+		stripWhitespace,
+		workerResources,
+	});
+
+	// worker.onmessage = (e: MessageEvent): void => {
+	// 	if (abortedMessageIds[_messageId]) {
+	// 		console.log("ABORTED");
+	// 	} else {
+	// 		context.postMessage(e.data);
+	// 	}
+	// };
+
 };
 
 const pauseGeneration = (): void => {
@@ -52,6 +76,7 @@ const setSpeed = (speed: number): void => {
 // our high-level API that this utility file offers
 export default {
 	generateDataTypes,
+	generateExportTypes,
 	pause: pauseGeneration,
 	continue: continueGeneration,
 	setSpeed
