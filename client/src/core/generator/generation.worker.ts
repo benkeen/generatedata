@@ -3,7 +3,6 @@ import { GenerationWorkerActionType } from '~core/generator/generation.types';
 
 const context: Worker = self as any;
 const workerCache: any = {};
-
 const abortedMessageIds: any = {};
 
 context.onmessage = (e: any) => {
@@ -36,7 +35,6 @@ context.onmessage = (e: any) => {
 		});
 
 	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypesOnly) {
-
 		// TODO all this
 		const {
 			_action, _messageId, rows, columns, isFirstBatch, isLastBatch, exportType, numResults,
@@ -58,6 +56,13 @@ context.onmessage = (e: any) => {
 			settings,
 			stripWhitespace,
 			workerResources,
+			onComplete: (data: any) => {
+				if (abortedMessageIds[_messageId]) {
+					console.log("ABORTED");
+				} else {
+					context.postMessage(data);
+				}
+			},
 			exportTypeInterface: getWorkerInterface(workerResources.exportTypes[exportType])
 		});
 	} else if (e.data.action === GenerationWorkerActionType.Generate) {
@@ -110,6 +115,7 @@ const getWorkerInterface = (workerPath: string) => {
 		onError: onRegisterError
 	};
 
+	// bind it to this new worker, not the main generation worker (this file)
 	workerInterface.send = workerInterface.send.bind(worker);
 
 	return workerInterface;

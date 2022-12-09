@@ -36,8 +36,7 @@ const generateDataTypes: GenerateDataTypes = ({
 	mainProcess(numResults, numBatches, batchSize, 1, template, unchanged || {}, i18n, countryNames);
 };
 
-// TODO Think about
-const generateExportTypes = ({ exportTypeInterface, isFirstBatch, isLastBatch, numResults, rows, columns, settings, stripWhitespace, workerResources }: any) => {
+const generateExportTypes = ({ exportTypeInterface, onComplete, isFirstBatch, isLastBatch, numResults, rows, columns, settings, stripWhitespace, workerResources }: any) => {
 	exportTypeInterface.send({
 		isFirstBatch,
 		isLastBatch,
@@ -49,14 +48,9 @@ const generateExportTypes = ({ exportTypeInterface, isFirstBatch, isLastBatch, n
 		workerResources,
 	});
 
-	// worker.onmessage = (e: MessageEvent): void => {
-	// 	if (abortedMessageIds[_messageId]) {
-	// 		console.log("ABORTED");
-	// 	} else {
-	// 		context.postMessage(e.data);
-	// 	}
-	// };
-
+	exportTypeInterface.onSuccess((e: MessageEvent): void => {
+		onComplete(e.data);
+	});
 };
 
 const pauseGeneration = (): void => {
