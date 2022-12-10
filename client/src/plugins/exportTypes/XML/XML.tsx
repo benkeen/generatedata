@@ -80,7 +80,7 @@ export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadP
 });
 
 export const isValidNodeName = (str: string): boolean => {
-	const valid = new RegExp("^[_a-zA-Z][\-\.0-9a-zA-Z_]*$");
+	const valid = new RegExp('^[_a-zA-Z][\-\.0-9a-zA-Z_]*$');
 	return valid.test(str);
 };
 

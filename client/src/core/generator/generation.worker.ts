@@ -23,6 +23,7 @@ context.onmessage = (e: any) => {
 		const { batchSize, numResults, unchanged, i18n, template, countryNames, dataTypes, countryData, workerUtils } = e.data;
 
 		generatorUtils.generateDataTypes({
+			generationContext: 'browser',
 			numResults,
 			batchSize,
 			unchanged,

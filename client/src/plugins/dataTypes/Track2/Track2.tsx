@@ -19,9 +19,8 @@ export const initialState: Track2State = {
 };
 
 const Track2Dialog = ({ visible, data, id, panRows, onClose, onUpdatePANSource, onUpdateRowSource, coreI18n, i18n }: any): JSX.Element => {
-
 	const getPanSourceDropdown = (): JSX.Element | null => {
-		if (data.panSource !== "row") {
+		if (data.panSource !== 'row') {
 			return null;
 		}
 

@@ -4,11 +4,11 @@ import InfoIcon from '@material-ui/icons/InfoOutlined';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
-import CreatablePillField from "~components/creatablePillField/CreatablePillField";
+import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { Tooltip } from '~components/tooltips';
 import * as langUtils from '~utils/langUtils';
-import { WeightedOptions } from "~utils/randomUtils";
+import { WeightedOptions } from '~utils/randomUtils';
 import * as styles from './WeightedList.scss';
 
 const presets = {
@@ -434,7 +434,7 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 	let label;
 	if (safeData.listType === WeightedListType.exactly) {
 		if (safeData.exactly === '1') {
-			label = langUtils.getI18nString(i18n.exactly1Item, [`<b>1</b>`]);
+			label = langUtils.getI18nString(i18n.exactly1Item, ['<b>1</b>']);
 		} else {
 			label = langUtils.getI18nString(i18n.exactlyNItems, [`<b>${safeData.exactly}</b>`]);
 		}
@@ -444,13 +444,13 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 		label = langUtils.getI18nString(i18n.betweenNumItems, [`<b>${safeData.betweenLow}</b>`, `<b>${safeData.betweenHigh}</b>`]);
 	} else if (safeData.betweenLow) {
 		if (safeData.betweenLow === '1') {
-			label = langUtils.getI18nString(i18n.atLeast1Item, [`<b>1</b>`]);
+			label = langUtils.getI18nString(i18n.atLeast1Item, ['<b>1</b>']);
 		} else {
 			label = langUtils.getI18nString(i18n.atLeastNItems, [`<b>${safeData.betweenLow}</b>`]);
 		}
 	} else {
 		if (safeData.betweenHigh === '1') {
-			label = langUtils.getI18nString(i18n.atMost1Item, [`<b>1</b>`]);
+			label = langUtils.getI18nString(i18n.atMost1Item, ['<b>1</b>']);
 		} else {
 			label = langUtils.getI18nString(i18n.atMostNItems, [`<b>${safeData.betweenHigh}</b>`]);
 		}

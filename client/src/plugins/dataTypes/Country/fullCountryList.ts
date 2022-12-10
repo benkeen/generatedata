@@ -7,7 +7,7 @@ export default [
 	'Bouvet Island', 'Brazil', 'British Indian Ocean Territory', 'Brunei', 'Bulgaria', 'Burkina Faso', 'Burundi',
 	'Cambodia', 'Cameroon', 'Canada', 'Cape Verde', 'Cayman Islands', 'Central African Republic', 'Chad', 'Chile',
 	'China', 'Christmas Island', 'Cocos (Keeling) Islands', 'Colombia', 'Comoros', 'Congo (Brazzaville)',
-	'Congo, the Democratic Republic of the', 'Cook Islands', 'Costa Rica', "Côte D'Ivoire (Ivory Coast)", 'Croatia',
+	'Congo, the Democratic Republic of the', 'Cook Islands', 'Costa Rica', 'Côte D\'Ivoire (Ivory Coast)', 'Croatia',
 	'Cuba', 'Curaçao', 'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti', 'Dominica', 'Dominican Republic',
 	'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Ethiopia', 'Falkland Islands',
 	'Faroe Islands', 'Fiji', 'Finland', 'France', 'French Guiana', 'French Polynesia', 'French Southern Territories',

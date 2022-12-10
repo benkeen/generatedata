@@ -52,7 +52,6 @@ const liveMessages: any = {};
 // that it doesn't post back any data from stale requests
 export const performTask = (workerName: string, worker: any, postMessagePayload: any, onMessage: any): void => {
 	if (liveMessages[workerName]) {
-		console.log("trying to abort");
 		worker.postMessage({ _action: 'abort', _messageId: messageIds[workerName] });
 		liveMessages[workerName] = false;
 	}
@@ -83,7 +82,7 @@ export const getCountryNamesBundle = (): any => {
 		import(
 			/* webpackChunkName: "countryNames" */
 			/* webpackMode: "lazy" */
-			`../../_namePlugins`
+			'../../_namePlugins'
 		)
 			.then((resp: any) => {
 				namesPlugins = resp.default;

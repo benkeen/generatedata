@@ -238,7 +238,7 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 	let label;
 	if (safeData.listType === ListType.exactly) {
 		if (safeData.exactly === '1') {
-			label = langUtils.getI18nString(i18n.exactly1Item, [`<b>1</b>`]);
+			label = langUtils.getI18nString(i18n.exactly1Item, ['<b>1</b>']);
 		} else {
 			label = langUtils.getI18nString(i18n.exactlyNItems, [`<b>${safeData.exactly}</b>`]);
 		}
@@ -248,13 +248,13 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps):
 		label = langUtils.getI18nString(i18n.betweenNumItems, [`<b>${safeData.betweenLow}</b>`, `<b>${safeData.betweenHigh}</b>`]);
 	} else if (safeData.betweenLow) {
 		if (safeData.betweenLow === '1') {
-			label = langUtils.getI18nString(i18n.atLeast1Item, [`<b>1</b>`]);
+			label = langUtils.getI18nString(i18n.atLeast1Item, ['<b>1</b>']);
 		} else {
 			label = langUtils.getI18nString(i18n.atLeastNItems, [`<b>${safeData.betweenLow}</b>`]);
 		}
 	} else {
 		if (safeData.betweenHigh === '1') {
-			label = langUtils.getI18nString(i18n.atMost1Item, [`<b>1</b>`]);
+			label = langUtils.getI18nString(i18n.atMost1Item, ['<b>1</b>']);
 		} else {
 			label = langUtils.getI18nString(i18n.atMostNItems, [`<b>${safeData.betweenHigh}</b>`]);
 		}

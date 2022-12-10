@@ -15,7 +15,7 @@ const exportTypesInterface = {
 };
 
 // this'll be the only functional export
-const generate = {
+const generate = () => {
 
 };
 
@@ -34,5 +34,5 @@ const generate = {
         }
     };
 
-    await generateDataTypes(dataConfig, settings);
+    // await generate(dataConfig, settings);
 })();

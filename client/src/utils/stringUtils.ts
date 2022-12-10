@@ -24,7 +24,7 @@ export const getUniqueString = (str: string, existingStrings: string[]): string 
 	return `${str}${currNum}`;
 };
 
-export const reverse = (s: string): string => s.split("").reverse().join("");
+export const reverse = (s: string): string => s.split('').reverse().join('');
 
 export const padString = (val: number | string, length: number): string => {
 	let str = '' + val;
