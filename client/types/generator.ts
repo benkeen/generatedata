@@ -1,4 +1,5 @@
 import { DataTypeGenerationOptions, ExportType, ExportTypeGenerationOptions } from '../_plugins';
+import {GDLocale} from "~types/general";
 
 export { CountryNameFiles } from '../_namePlugins';
 export { DataTypeGenerationOptions, ExportType, ExportTypeGenerationOptions };
@@ -20,6 +21,7 @@ export type GenerationSettings = {
 	rows: number; // The number of rows to be generated
 
 	// optional
+	locale?: GDLocale;
 	stripWhitespace?: boolean; // default: false
 	generationType?: 'returnValue' | 'file'; // default: returnValue
 	filename?: string; // the filename to generate

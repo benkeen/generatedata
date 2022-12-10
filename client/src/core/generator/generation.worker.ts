@@ -17,7 +17,7 @@ context.onmessage = (e: any) => {
 
 	} else if (e.data.action === GenerationWorkerActionType.ProcessDataTypesOnly) {
 
-		// TODO again rethink this
+		// TODO again rethink this.
 		const { batchSize, numResults, workerResources, unchanged, columns, i18n, template, countryNames } = e.data;
 
 		generatorUtils.generateDataTypes({
@@ -57,9 +57,7 @@ context.onmessage = (e: any) => {
 			stripWhitespace,
 			workerResources,
 			onComplete: (data: any) => {
-				if (abortedMessageIds[_messageId]) {
-					console.log("ABORTED");
-				} else {
+				if (!abortedMessageIds[_messageId]) {
 					context.postMessage(data);
 				}
 			},

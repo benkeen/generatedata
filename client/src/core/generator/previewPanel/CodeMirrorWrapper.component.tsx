@@ -67,8 +67,6 @@ export const generatePreviewString = (props: any): Promise<any> => {
 	const generationWorker = coreUtils.getGenerationWorker('preview');
 
 	return new Promise((resolve) => {
-		console.log("doing promisey thing now.");
-
 		coreUtils.performTask('exportTypeWorker', generationWorker, {
 			action: GenerationWorkerActionType.ProcessExportTypesOnly,
 			rows: previewRows,

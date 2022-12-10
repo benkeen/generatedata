@@ -1,8 +1,5 @@
 import {DataSetConfig, ExportType, GenerationSettings} from '~types/generator';
-
-const generate = async (dataConfig: DataSetConfig, settings: GenerationSettings) => {
-    // do stuff
-};
+import { generate } from '../client/src/utils/generatorUtils';
 
 (async () => {
     const settings: GenerationSettings = {

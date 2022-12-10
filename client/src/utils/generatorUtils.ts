@@ -18,9 +18,42 @@ let dataTypeInterface: any;
 
 const workerQueue: any = {};
 
-// TODO
+// top-level function
+const generate = () => {
+
+};
+
+type GenerateDataTypesProps = {
+	numResults: number;
+	batchSize: number;
+	unchanged: any; // TODO
+	columns: any; // TODO
+	i18n: any;
+	template: any; // TODO
+	countryNames: any; // TODO
+
+	onBatchComplete: any;
+};
+
 export interface GenerateDataTypes {
-	(settings: any): void;
+	(settings: GenerateDataTypesProps): void;
+}
+
+type GenerateExportTypesProps = {
+	numResults: number; // TODO needed?
+	exportTypeInterface: any; // TODO
+	onComplete: any; // TODO
+	isFirstBatch: boolean;
+	isLastBatch: boolean;
+	rows: any; // TODO
+	columns: any; // TODO
+	settings: any; // TODO
+	stripWhitespace: boolean,
+	workerResources: any; // TODO
+};
+
+export interface GenerateExportTypes {
+	(settings: GenerateExportTypesProps): void;
 }
 
 const generateDataTypes: GenerateDataTypes = ({
@@ -36,7 +69,7 @@ const generateDataTypes: GenerateDataTypes = ({
 	mainProcess(numResults, numBatches, batchSize, 1, template, unchanged || {}, i18n, countryNames);
 };
 
-const generateExportTypes = ({ exportTypeInterface, onComplete, isFirstBatch, isLastBatch, numResults, rows, columns, settings, stripWhitespace, workerResources }: any) => {
+const generateExportTypes: GenerateExportTypes = ({ exportTypeInterface, onComplete, isFirstBatch, isLastBatch, numResults, rows, columns, settings, stripWhitespace, workerResources }) => {
 	exportTypeInterface.send({
 		isFirstBatch,
 		isLastBatch,
@@ -69,6 +102,7 @@ const setSpeed = (speed: number): void => {
 
 // our high-level API that this utility file offers
 export default {
+	generate,
 	generateDataTypes,
 	generateExportTypes,
 	pause: pauseGeneration,
