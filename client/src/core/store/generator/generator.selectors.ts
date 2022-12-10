@@ -81,7 +81,7 @@ export const getSortedRowsWithDataTypeSelected = createSelector(
 	(rows) => rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
 );
 
-// returns everything in the grid where a data type has been selected
+// returns everything in the grid where a Data Type has been selected
 export const getColumns = createSelector(
 	getSortedRowsWithDataTypeSelected,
 	(rows): (ColumnData & { id: string })[] => {
@@ -151,6 +151,7 @@ export const getGenerationTemplate = createSelector(
 				templateByProcessOrder[processOrder] = [];
 			}
 
+			// TODO type
 			templateByProcessOrder[processOrder].push({
 				id,
 				title,

@@ -83,9 +83,7 @@ export const getBlankDTGeneratorPayload = () => ({
 	countryI18n: {},
 	existingRowData: [],
 	countryData: {},
-	workerResources: {
-		workerUtils: ''
-	}
+	workerUtilsUrl: ''
 });
 
 

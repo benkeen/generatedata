@@ -197,11 +197,9 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 			i18n,
 			template,
 			countryNames: coreUtils.getCountryNames(),
-			workerResources: {
-				workerUtils: coreUtils.getWorkerUtils(),
-				dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
-				countryData: getCountryData()
-			}
+			workerUtils: coreUtils.getWorkerUtils(),
+			dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
+			countryData: getCountryData()
 		});
 
 		generationWorker.onmessage = (resp: MessageEvent): void => {

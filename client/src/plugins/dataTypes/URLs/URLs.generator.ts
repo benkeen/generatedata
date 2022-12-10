@@ -4,7 +4,7 @@ import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataType
 let utilsLoaded = false;
 export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
-		importScripts(e.data.workerResources.workerUtils);
+		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
 	}
 	postMessage(generate(e.data));

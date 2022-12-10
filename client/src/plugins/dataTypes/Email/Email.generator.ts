@@ -97,7 +97,7 @@ const getFinalEmail = (prefix: string, domain: string) => {
 let utilsLoaded = false;
 export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
-		importScripts(e.data.workerResources.workerUtils);
+		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
 	}
 

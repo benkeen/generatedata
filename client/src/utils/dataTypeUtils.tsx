@@ -74,7 +74,7 @@ export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO r
 
 	let Example = null;
 	let Options = null;
-	let Help = null;
+	let Help;
 
 	if (loadedDataTypes[dataType]!.Example) {
 		Example = loadedDataTypes[dataType]!.Example;

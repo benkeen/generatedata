@@ -1,10 +1,12 @@
 import generatorUtils from '~utils/generatorUtils';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
+import {DataTypeWorkerInterface, WorkerInterface} from "~types/generator";
 
 const context: Worker = self as any;
 const workerCache: any = {};
 const abortedMessageIds: any = {};
 
+// TODO type!
 context.onmessage = (e: any) => {
 	if (e.data.action === GenerationWorkerActionType.Pause) {
 		generatorUtils.pause();
@@ -18,20 +20,19 @@ context.onmessage = (e: any) => {
 	} else if (e.data.action === GenerationWorkerActionType.ProcessDataTypesOnly) {
 
 		// TODO again rethink this.
-		const { batchSize, numResults, workerResources, unchanged, columns, i18n, template, countryNames } = e.data;
+		const { batchSize, numResults, unchanged, i18n, template, countryNames, dataTypes, countryData, workerUtils } = e.data;
 
 		generatorUtils.generateDataTypes({
 			numResults,
 			batchSize,
 			unchanged,
-			columns,
 			i18n,
 			template,
 			countryNames,
 			onBatchComplete: context.postMessage, // TODO need to catch errors too? vs. dataTypeInterface.onSuccess
-			dataTypeInterface: getDataTypeWorkerInterface(workerResources.dataTypes),
-			countryData: workerResources.countryData,
-			workerUtils: workerResources.workerUtils
+			dataTypeInterface: getDataTypeWorkerInterface(dataTypes),
+			countryData,
+			workerUtils
 		});
 
 	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypesOnly) {
@@ -71,24 +72,20 @@ context.onmessage = (e: any) => {
 // this standardizes the interface for communication between the workers, allowing generatorUtils to work for both
 // workers + backend code
 interface GetWorkerInterface {
-	(workerMap: string): {
-		send: any;
-		onSuccess: any;
-		onError: any;
-	}[];
+	(workerMap: string): DataTypeWorkerInterface;
 }
 
 // this standardizes the interface for communication between the workers, allowing generatorUtils to work for both
 // workers + backend code
 const getDataTypeWorkerInterface: GetWorkerInterface = (workerMap) => {
-	const workerInterface: any = {};
+	const workerInterface: DataTypeWorkerInterface = {};
 	Object.keys(workerMap).map((plugin) => {
 		workerInterface[plugin] = getWorkerInterface(workerMap[plugin as any]);
 	});
 	return workerInterface;
 };
 
-const getWorkerInterface = (workerPath: string) => {
+const getWorkerInterface = (workerPath: string): WorkerInterface => {
 	const worker = workerCache[workerPath] || new Worker(workerPath);
 
 	// TODO check performance
@@ -107,13 +104,13 @@ const getWorkerInterface = (workerPath: string) => {
 		}
 	};
 
-	const workerInterface = {
+	const workerInterface: WorkerInterface = {
 		send: worker.postMessage,
 		onSuccess: onRegisterSuccess,
 		onError: onRegisterError
 	};
 
-	// bind it to this new worker, not the main generation worker (this file)
+	// bind the method to this new worker, not the main generation worker (i.e. this file)
 	workerInterface.send = workerInterface.send.bind(worker);
 
 	return workerInterface;

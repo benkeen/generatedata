@@ -3,6 +3,7 @@ import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { AnyObject } from './general';
 import { DataTypeFolder } from '../_plugins';
 import { CountryNamesMap, CountryType } from '~types/countries';
+import {WorkerUtils} from "~utils/workerUtils";
 
 export type DataTypeMap = {
 	[dataType in DataTypeFolder]?: string;
@@ -114,9 +115,7 @@ export type DTGenerationData = {
 	countryData: {
 		[key in CountryType]?: any;
 	},
-	workerResources: {
-		workerUtils: string;
-	}
+	workerUtilsUrl: string; // this is the URL of the workerUtils worker file
 }
 
 interface DTOnMessage extends MessageEvent {

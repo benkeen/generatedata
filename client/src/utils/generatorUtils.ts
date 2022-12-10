@@ -1,4 +1,8 @@
 import { DataTypeFolder } from '../../_plugins';
+import {DataTypeBatchGeneratedPayload, DataTypeWorkerInterface, UnchangedGenerationData} from "~types/generator";
+import {CountryDataType, CountryNamesMap} from "~types/countries";
+import {GenerationTemplate} from "~types/general";
+import {WorkerUtils} from "~utils/workerUtils";
 
 /**
  * This utility file contains the guts of the data generation code. It farms out work to the various plugins
@@ -11,7 +15,7 @@ let isPaused = false;
 let onContinueData: any = null;
 let currentSpeed: number; // TODO possible range?
 
-let countryData: any;
+let countryData: CountryDataType;
 let workerUtils: any;
 let onBatchComplete: any;
 let dataTypeInterface: any;
@@ -26,13 +30,16 @@ const generate = () => {
 type GenerateDataTypesProps = {
 	numResults: number;
 	batchSize: number;
-	unchanged: any; // TODO
-	columns: any; // TODO
 	i18n: any;
-	template: any; // TODO
-	countryNames: any; // TODO
+	countryNames: CountryNamesMap;
+	dataTypeInterface: DataTypeWorkerInterface;
+	template: GenerationTemplate; // bear in mind this has been grouped by process order. Check type.
+	onBatchComplete: (payload: DataTypeBatchGeneratedPayload) => void;
+	countryData: CountryDataType;
+	workerUtils: WorkerUtils;
 
-	onBatchComplete: any;
+	// used by the UI only. This allows regeneration of a subset of the data and leaves unchanged rows intact
+	unchanged?: UnchangedGenerationData;
 };
 
 export interface GenerateDataTypes {
@@ -40,7 +47,7 @@ export interface GenerateDataTypes {
 }
 
 type GenerateExportTypesProps = {
-	numResults: number; // TODO needed?
+	numResults: number;
 	exportTypeInterface: any; // TODO
 	onComplete: any; // TODO
 	isFirstBatch: boolean;
@@ -56,8 +63,8 @@ export interface GenerateExportTypes {
 	(settings: GenerateExportTypesProps): void;
 }
 
-const generateDataTypes: GenerateDataTypes = ({
-	numResults, batchSize, unchanged, columns, i18n, template, countryNames, ...other
+export const generateDataTypes: GenerateDataTypes = ({
+	numResults, batchSize, unchanged, i18n, template, countryNames, ...other
 }): void => {
 	const numBatches = Math.ceil(numResults / batchSize);
 
@@ -69,7 +76,8 @@ const generateDataTypes: GenerateDataTypes = ({
 	mainProcess(numResults, numBatches, batchSize, 1, template, unchanged || {}, i18n, countryNames);
 };
 
-const generateExportTypes: GenerateExportTypes = ({ exportTypeInterface, onComplete, isFirstBatch, isLastBatch, numResults, rows, columns, settings, stripWhitespace, workerResources }) => {
+
+export const generateExportTypes: GenerateExportTypes = ({ exportTypeInterface, onComplete, isFirstBatch, isLastBatch, numResults, rows, columns, settings, stripWhitespace, workerResources }) => {
 	exportTypeInterface.send({
 		isFirstBatch,
 		isLastBatch,
@@ -115,7 +123,7 @@ export default {
 // Internal methods
 
 const mainProcess = (
-	numResults: number, numBatches: number, batchSize: number, batchNum: number, template: any, unchanged: any,
+	numResults: number, numBatches: number, batchSize: number, batchNum: number, template: any, unchanged: UnchangedGenerationData,
 	i18n: any, countryNames: any
 ): void => {
 	const { firstRow, lastRow } = getBatchInfo(numResults, numBatches, batchSize, batchNum);
@@ -255,9 +263,7 @@ const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowDa
 					existingRowData: currRowData,
 					countryData,
 					countryNames,
-					workerResources: {
-						workerUtils
-					}
+					workerUtils
 				}, resolve, reject);
 			}
 		});

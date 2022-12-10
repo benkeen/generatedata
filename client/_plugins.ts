@@ -307,7 +307,9 @@ interface DataTypeOptionsMap {
 export type DataTypeGenerationOptions = {
 	[K in DataTypeEnum]: {
 		plugin: K;
+		title: string;
 		settings: DataTypeOptionsMap[K];
+		id?: string | number;
 	}
 }[DataTypeEnum];
 

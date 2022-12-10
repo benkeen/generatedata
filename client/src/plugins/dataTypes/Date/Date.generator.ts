@@ -15,7 +15,7 @@ let workerUtilsLoaded = false;
 
 export const onmessage = (e: DTOnMessage) => {
 	if (!workerUtilsLoaded) {
-		importScripts(e.data.workerResources.workerUtils);
+		importScripts(e.data.workerUtilsUrl);
 		workerUtilsLoaded = true;
 	}
 

@@ -15,9 +15,7 @@ describe('onmessage', () => {
 
 		const payload: any = {
 			data: {
-				workerResources: {
-					workerUtils: ''
-				}
+				workerUtilsUrl: ''
 			}
 		};
 

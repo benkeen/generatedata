@@ -263,7 +263,7 @@ export const generate = (data: any) => {
 
 export const onmessage = (e: DTOnMessage) => {
 	if (!workerUtilsLoaded) {
-		importScripts(e.data.workerResources.workerUtils);
+		importScripts(e.data.workerUtilsUrl);
 		workerUtilsLoaded = true;
 	}
 

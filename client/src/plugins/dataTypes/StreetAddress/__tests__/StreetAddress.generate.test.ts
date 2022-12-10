@@ -12,9 +12,7 @@ describe('generate', () => {
 		countryI18n: {},
 		existingRowData: [],
 		countryData: {},
-		workerResources: {
-			workerUtils: ''
-		}
+		workerUtilsUrl: ''
 	};
 
 	afterEach(() => {
