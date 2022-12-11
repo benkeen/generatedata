@@ -13,7 +13,8 @@ export type EngineProps = {
 	packet: DataPacket | null;
 	logDataBatch: (numGeneratedRows: number, data: any) => void;
 	workerUtilsUrl: string;
-	exportTypes: ExportTypeMap;
+	dataTypeWorkerMap: DataTypeMap;
+	exportTypeWorkerMap: ExportTypeMap;
 	dataTypes: DataTypeMap;
 	countryNames: CountryNamesMap | null;
 	countryData: CountryDataType;
@@ -21,12 +22,12 @@ export type EngineProps = {
 
 // this component does the actual work of generating the data and populating the store. It doesn't have a DOM presence,
 // it's just done this way to utilize the lifecycle methods
-const Engine = ({ packet, fullI18n, logDataBatch, countryNames, exportTypes, workerUtilsUrl }: EngineProps): any => {
+const Engine = ({ packet, fullI18n, logDataBatch, countryNames, dataTypeWorkerMap, exportTypeWorkerMap, workerUtilsUrl }: EngineProps): any => {
 	if (packet === null || fullI18n === null) {
 		return null;
 	}
 	const { isPaused, config, generationWorkerId, numGeneratedRows, speed } = packet;
-	const { numRowsToGenerate, columns, template, dataTypes, exportType, exportTypeSettings, stripWhitespace } = config;
+	const { numRowsToGenerate, columns, template, exportType, exportTypeSettings, stripWhitespace } = config;
 	const generationWorker = coreUtils.getGenerationWorker(generationWorkerId);
 
 	useEffect(() => {
@@ -44,9 +45,8 @@ const Engine = ({ packet, fullI18n, logDataBatch, countryNames, exportTypes, wor
 			template,
 			countryNames,
 			workerUtilsUrl,
-			dataTypes,
-			exportType,
-			exportTypes,
+			dataTypeWorkerMap,
+			exportTypeWorkerUrl: exportTypeWorkerMap[exportType],
 			exportTypeSettings,
 			stripWhitespace
 		});

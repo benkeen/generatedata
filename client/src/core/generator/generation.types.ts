@@ -2,8 +2,6 @@ import { GenerationTemplate } from '~types/general';
 import { UnchangedGenerationData } from '~types/generator';
 import { CountryDataType, CountryNamesMap } from '~types/countries';
 import { DataTypeMap } from '~types/dataTypes';
-import { ExportTypeFolder } from '../../../_plugins';
-import { ExportTypeMap } from '~types/exportTypes';
 
 export enum GenerationWorkerActionType {
 	Generate = 'GENERATE',
@@ -26,7 +24,7 @@ export type ProcessDataTypesOnlyAction = {
 		template: GenerationTemplate;
 		countryNames: CountryNamesMap;
 		workerUtilsUrl: string;
-		dataTypes: DataTypeMap;
+		dataTypeWorkerMap: DataTypeMap;
 		countryData: CountryDataType;
 	};
 };
@@ -38,12 +36,11 @@ export type ProcessExportTypesOnlyAction = {
 		columns: any; // TODO
 		isFirstBatch: boolean;
 		isLastBatch: boolean;
-		exportType: ExportTypeFolder;
 		numResults: number;
 		exportTypeSettings: any;
 		stripWhitespace: boolean;
 		workerUtilsUrl: string;
-		exportTypes: any; // TODO
+		exportTypeWorkerUrl: string;
 	};
 };
 
@@ -59,12 +56,11 @@ export type GenerateAction = {
 		countryData: CountryDataType;
 		countryNames: CountryNamesMap;
 		workerUtilsUrl: string;
-		dataTypes: DataTypeMap;
-		exportType: ExportTypeFolder;
-		exportTypes: ExportTypeMap;
+		exportTypeWorkerUrl: string;
+		dataTypeWorkerMap: DataTypeMap;
 		exportTypeSettings: any;
 		stripWhitespace: boolean;
-		logDataBatch: () => void;
+		logDataBatch: () => void; // TODO
 	};
 };
 

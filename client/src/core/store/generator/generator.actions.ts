@@ -198,7 +198,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 			template,
 			countryNames: coreUtils.getCountryNames(),
 			workerUtilsUrl: coreUtils.getWorkerUtilsUrl(),
-			dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
+			dataTypeWorkerMap: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
 			countryData: getCountryData()
 		});
 

@@ -4,6 +4,7 @@ import { CurrentDataSet, DataRow, DataRows } from './generator.reducer';
 import { GeneratorPanel } from '~types/general';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import * as mainSelectors from '../main/main.selectors';
+import * as coreUtils from '~utils/coreUtils';
 import * as langUtils from '~utils/langUtils';
 import { processBatches, getDataType } from '~utils/dataTypeUtils';
 import {
@@ -48,6 +49,15 @@ export const getCurrentDataSet = (state: Store): CurrentDataSet => state.generat
 export const hasBulkActionPending = (state: Store): boolean => state.generator.bulkActionPending;
 export const isCountryNamesLoading = (state: Store): boolean => state.generator.isCountryNamesLoading;
 export const isCountryNamesLoaded = (state: Store): boolean => state.generator.isCountryNamesLoaded;
+
+export const getCurrentExportTypeWorkerUrl = createSelector(
+	getExportType,
+	getLoadedExportTypes,
+	(exportType, loadedExportTypes) => {
+		const exportTypeWorkerMap = coreUtils.getExportTypeWorkerMap(loadedExportTypes);
+		return exportTypeWorkerMap[exportType] || '';
+	}
+);
 
 export const getNumRows = createSelector(
 	getSortedRows,

@@ -10,9 +10,8 @@ const mapStateToProps = (state: Store): CodeMirrorWrapperProps => ({
 	enableLineWrapping: selectors.shouldEnableLineWrapping(state),
 	theme: selectors.getTheme(state),
 	codeMirrorMode: selectors.getCodeMirrorMode(state),
-	exportType: selectors.getExportType(state),
-	exportTypeSettings: selectors.getExportTypeSettings(state),
-	loadedExportTypes: selectors.getLoadedExportTypes(state),
+	exportTypeWorkerUrl: selectors.getCurrentExportTypeWorkerUrl(state),
+	exportTypeSettings: selectors.getCurrentExportTypeSettings(state),
 	generatorLayout: selectors.getGeneratorLayout(state)
 });
 

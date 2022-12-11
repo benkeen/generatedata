@@ -1,7 +1,7 @@
 import generatorUtils from '~utils/generatorUtils';
-import {GenerationActions, GenerationWorkerActionType} from '~core/generator/generation.types';
-import {DataTypeWorkerInterface, WorkerInterface} from "~types/generator";
-import {DataTypeMap} from "~types/dataTypes";
+import { GenerationActions, GenerationWorkerActionType } from '~core/generator/generation.types';
+import { DataTypeWorkerInterface, WorkerInterface } from '~types/generator';
+import { DataTypeMap } from '~types/dataTypes';
 
 const context: Worker = self as any;
 const workerCache: any = {};
@@ -19,23 +19,25 @@ context.onmessage = (e: GenerationActions) => {
 		generatorUtils.generateDataTypes({
 			...e.data,
 			onBatchComplete: context.postMessage,
-			dataTypeInterface: getDataTypeWorkerInterface(e.data.dataTypes),
+			dataTypeInterface: getDataTypeWorkerInterface(e.data.dataTypeWorkerMap),
 		});
 	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypesOnly) {
 		generatorUtils.generateExportTypes({
 			...e.data,
 			settings: e.data.exportTypeSettings,
-			onComplete: (data: any) => context.postMessage(data),
-			exportTypeInterface: getWorkerInterface(e.data.exportTypes[e.data.exportType])
+			onComplete: (data: any) => context.postMessage(data), // necessary?
+			exportTypeInterface: getWorkerInterface(e.data.exportTypeWorkerUrl)
 		});
+
+	// this worker action combines the two above for easier usage. Used in the generator where it doesn't need such
+	// granular control as with the preview panel
 	} else if (e.data.action === GenerationWorkerActionType.Generate) {
 		const {
 			columns, numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData, stripWhitespace,
-			exportTypeSettings, exportTypes, exportType, dataTypes
+			exportTypeSettings, exportTypeWorkerUrl, dataTypeWorkerMap
 		} = e.data;
 
-		const onBatchComplete = ({ data }: any): void => {
-			const { completedBatchNum, numGeneratedRows, generatedData } = data;
+		const onBatchComplete = ({ completedBatchNum, numGeneratedRows, generatedData }: any): void => {
 			const isLastBatch = numGeneratedRows >= numResults;
 			const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));
 
@@ -48,18 +50,15 @@ context.onmessage = (e: GenerationActions) => {
 				stripWhitespace,
 				settings: exportTypeSettings,
 				workerUtilsUrl,
-				onComplete: (data: any): void => {
-					console.log("...", data);
-					//context.postMessage(data)
-				},
-				exportTypeInterface: getWorkerInterface(exportTypes[exportType] as string)
+				onComplete: context.postMessage,
+				exportTypeInterface: getWorkerInterface(exportTypeWorkerUrl)
 			});
 		};
 
 		generatorUtils.generateDataTypes({
 			numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData,
 			onBatchComplete,
-			dataTypeInterface: getDataTypeWorkerInterface(dataTypes)
+			dataTypeInterface: getDataTypeWorkerInterface(dataTypeWorkerMap)
 		});
 	}
 };
