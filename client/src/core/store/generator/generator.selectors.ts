@@ -276,7 +276,7 @@ export const getCodeMirrorMode = createSelector(
 	getExportTypeSettings,
 	(exportType, loadedExportTypes, exportTypeSettings) => {
 		if (!loadedExportTypes[exportType]) {
-			return "";
+			return '';
 		}
 		return exportTypeUtilsGetCodeMirrorMode(exportType, exportTypeSettings[exportType]);
 	}
@@ -287,7 +287,7 @@ export const getExportTypeTitleValidationFunction = createSelector(
 	getLoadedExportTypes,
 	(exportType, loadedExportTypes) => {
 		if (!loadedExportTypes[exportType]) {
-			return "";
+			return '';
 		}
 		return exportTypeGetExportTypeTitleValidation(exportType);
 	}

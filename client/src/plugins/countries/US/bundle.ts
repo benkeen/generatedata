@@ -2,19 +2,19 @@ import { GetCountryData } from '~types/countries';
 
 const US: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
-	countrySlug: "US",
+	countrySlug: 'US',
 	regionNames: i18n.regionNames,
-	continent: "north_america",
+	continent: 'north_america',
 
 	extendedData: {
 		zipFormat: {
-			format: "Xxxxx"
+			format: 'Xxxxx'
 		},
 		phoneFormat: {
 			displayFormats: [
-				"(AAA} Xxx-xxxx",
-				"1 (AAA} Xxx-xxxx",
-				"1-AAA-Xxx-xxxx"
+				'(AAA} Xxx-xxxx',
+				'1 (AAA} Xxx-xxxx',
+				'1-AAA-Xxx-xxxx'
 			]
 		}
 	},
@@ -26,16 +26,16 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'alabama',
 			weight: 2,
 			cities: [
-				"Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa", "Birmingham", "Montgomery",
-				"Mobile", "Huntsville", "Tuscaloosa"
+				'Birmingham', 'Montgomery', 'Mobile', 'Huntsville', 'Tuscaloosa', 'Birmingham', 'Montgomery',
+				'Mobile', 'Huntsville', 'Tuscaloosa'
 			],
 			extendedData: {
-				"zipFormat": {
-					"format": "ZYxxx",
-					"replacements": {
-						"Z": "3",
-						"Y": "56",
-						"x": "0123456789"
+				'zipFormat': {
+					'format': 'ZYxxx',
+					'replacements': {
+						'Z': '3',
+						'Y': '56',
+						'x': '0123456789'
 					}
 				}
 			}
@@ -46,15 +46,15 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'alaska',
 			weight: 2,
 			cities: [
-				"Anchorage", "Fairbanks", "Juneau", "College", "Anchorage", "Fairbanks", "Juneau", "College", "Ketchikan"
+				'Anchorage', 'Fairbanks', 'Juneau', 'College', 'Anchorage', 'Fairbanks', 'Juneau', 'College', 'Ketchikan'
 			],
 			extendedData: {
-				"zipFormat": {
-					"format": "ZZYxx",
-					"replacements": {
-						"Z": "9",
-						"Y": "56789",
-						"x": "0123456789"
+				'zipFormat': {
+					'format': 'ZZYxx',
+					'replacements': {
+						'Z': '9',
+						'Y': '56789',
+						'x': '0123456789'
 					}
 				}
 			}
@@ -65,15 +65,15 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'arizona',
 			weight: 2,
 			cities: [
-				"Phoenix", "Tucson", "Mesa", "Glendale", "Chandler"
+				'Phoenix', 'Tucson', 'Mesa', 'Glendale', 'Chandler'
 			],
 			extendedData: {
-				"zipFormat": {
-					"format": "ZYxxx",
-					"replacements": {
-						"Z": "8",
-						"Y": "56",
-						"x": "0123456789"
+				'zipFormat': {
+					'format': 'ZYxxx',
+					'replacements': {
+						'Z': '8',
+						'Y': '56',
+						'x': '0123456789'
 					}
 				}
 			}
@@ -84,15 +84,15 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'arkansas',
 			weight: 2,
 			cities: [
-				"Little Rock", "Fort Smith", "Fayetteville", "Springdale", "Jonesboro"
+				'Little Rock', 'Fort Smith', 'Fayetteville', 'Springdale', 'Jonesboro'
 			],
 			extendedData: {
-				"zipFormat": {
-					"format": "ZYxxx",
-					"replacements": {
-						"Z": "7",
-						"Y": "12",
-						"x": "0123456789"
+				'zipFormat': {
+					'format': 'ZYxxx',
+					'replacements': {
+						'Z': '7',
+						'Y': '12',
+						'x': '0123456789'
 					}
 				}
 			}
@@ -103,16 +103,16 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'california',
 			weight: 2,
 			cities: [
-				"Los Angeles", "San Diego", "San Jose", "San Francisco", "Fresno", "Sacramento"
+				'Los Angeles', 'San Diego', 'San Jose', 'San Francisco', 'Fresno', 'Sacramento'
 			],
 			extendedData: {
 				zipFormat: {
-					// "area": "US-CA",
-					format: "ZYxxx",
+					// 'area': 'US-CA',
+					format: 'ZYxxx',
 					replacements: {
-						"Z": "9",
-						"Y": "0123456",
-						"x": "0123456789"
+						'Z': '9',
+						'Y': '0123456',
+						'x': '0123456789'
 					}
 				}
 			}
@@ -123,7 +123,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'colorado',
 			weight: 2,
 			cities: [
-				"Denver", "Colorado Springs", "Aurora", "Lakewood", "Fort Collins"
+				'Denver', 'Colorado Springs', 'Aurora', 'Lakewood', 'Fort Collins'
 			]
 		},
 		{
@@ -132,7 +132,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'connecticut',
 			weight: 2,
 			cities: [
-				"Bridgeport", "New Haven", "Hartford", "Stamford", "Waterbury"
+				'Bridgeport', 'New Haven', 'Hartford', 'Stamford', 'Waterbury'
 			]
 		},
 		{
@@ -141,7 +141,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'delaware',
 			weight: 2,
 			cities: [
-				"Wilmington", "Dover", "Newark", "Pike Creek", "Bear"
+				'Wilmington', 'Dover', 'Newark', 'Pike Creek', 'Bear'
 			]
 		},
 		{
@@ -150,7 +150,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'florida',
 			weight: 2,
 			cities: [
-				"Jacksonville", "Miami", "Tampa", "St. Petersburg", "Orlando", "Tallahassee"
+				'Jacksonville', 'Miami', 'Tampa', 'St. Petersburg', 'Orlando', 'Tallahassee'
 			]
 		},
 		{
@@ -159,7 +159,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'georgia',
 			weight: 2,
 			cities: [
-				"Georgia", "Atlanta", "Augusta", "Columbus", "Savannah", "Athens"
+				'Georgia', 'Atlanta', 'Augusta', 'Columbus', 'Savannah', 'Athens'
 			]
 		},
 		{
@@ -168,7 +168,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'hawaii',
 			weight: 2,
 			cities: [
-				"Honolulu", "Hilo", "Kailua", "Kaneohe", "Kapolei"
+				'Honolulu', 'Hilo', 'Kailua', 'Kaneohe', 'Kapolei'
 			]
 		},
 		{
@@ -177,7 +177,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'idaho',
 			weight: 2,
 			cities: [
-				"Boise", "Nampa", "Meridian", "Pocatello", "Idaho Falls"
+				'Boise', 'Nampa', 'Meridian', 'Pocatello', 'Idaho Falls'
 			]
 		},
 		{
@@ -186,7 +186,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'illinois',
 			weight: 2,
 			cities: [
-				"Chicago", "Aurora", "Rockford", "Joliet", "Naperville", "Springfield"
+				'Chicago', 'Aurora', 'Rockford', 'Joliet', 'Naperville', 'Springfield'
 			]
 		},
 		{
@@ -195,7 +195,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'indiana',
 			weight: 2,
 			cities: [
-				"Indianapolis", "Fort Wayne", "Evansville", "South Bend", "Gary"
+				'Indianapolis', 'Fort Wayne', 'Evansville', 'South Bend', 'Gary'
 			]
 		},
 		{
@@ -204,7 +204,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'iowa',
 			weight: 2,
 			cities: [
-				"Des Moines", "Cedar Rapids", "Davenport", "Sioux City", "Iowa City"
+				'Des Moines', 'Cedar Rapids', 'Davenport', 'Sioux City', 'Iowa City'
 			]
 		},
 		{
@@ -213,7 +213,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'kansas',
 			weight: 2,
 			cities: [
-				"Wichita", "Overland Park", "Kansas City", "Topeka", "Olathe"
+				'Wichita', 'Overland Park', 'Kansas City', 'Topeka', 'Olathe'
 			]
 		},
 		{
@@ -222,7 +222,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'kentucky',
 			weight: 2,
 			cities: [
-				"Louisville", "Lexington", "Owensboro", "Bowling Green", "Covington", "Frankfort"
+				'Louisville', 'Lexington', 'Owensboro', 'Bowling Green', 'Covington', 'Frankfort'
 			]
 		},
 		{
@@ -231,7 +231,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'louisiana',
 			weight: 2,
 			cities: [
-				"New Orleans", "Baton Rouge", "Shreveport", "Metairie", "Lafayette"
+				'New Orleans', 'Baton Rouge', 'Shreveport', 'Metairie', 'Lafayette'
 			]
 		},
 		{
@@ -240,7 +240,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'maine',
 			weight: 2,
 			cities: [
-				"Portland", "Lewiston", "Bangor", "South Portland", "Auburn", "Augusta"
+				'Portland', 'Lewiston', 'Bangor', 'South Portland', 'Auburn', 'Augusta'
 			]
 		},
 		{
@@ -249,7 +249,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'maryland',
 			weight: 2,
 			cities: [
-				"Baltimore", "Rockville", "Frederick", "Gaithersburg", "Columbia", "Annapolis"
+				'Baltimore', 'Rockville', 'Frederick', 'Gaithersburg', 'Columbia', 'Annapolis'
 			]
 		},
 		{
@@ -258,7 +258,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'massachusetts',
 			weight: 2,
 			cities: [
-				"Boston", "Worcester", "Springfield", "Lowell", "Cambridge"
+				'Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge'
 			]
 		},
 		{
@@ -267,7 +267,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'michigan',
 			weight: 2,
 			cities: [
-				"Detroit", "Grand Rapids", "Warren", "Sterling Heights", "Flint", "Lansing"
+				'Detroit', 'Grand Rapids', 'Warren', 'Sterling Heights', 'Flint', 'Lansing'
 			]
 		},
 		{
@@ -276,7 +276,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'minnesota',
 			weight: 2,
 			cities: [
-				"Minneapolis", "Saint Paul", "Rochester", "Duluth", "Bloomington"
+				'Minneapolis', 'Saint Paul', 'Rochester', 'Duluth', 'Bloomington'
 			]
 		},
 		{
@@ -285,7 +285,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'mississippi',
 			weight: 2,
 			cities: [
-				"Jackson", "Gulfport", "Hattiesburg", "Biloxi", "Southaven"
+				'Jackson', 'Gulfport', 'Hattiesburg', 'Biloxi', 'Southaven'
 			]
 		},
 		{
@@ -294,7 +294,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'missouri',
 			weight: 2,
 			cities: [
-				"Kansas City", "Saint Louis", "Springfield", "Independence", "Columbia", "Jefferson City"
+				'Kansas City', 'Saint Louis', 'Springfield', 'Independence', 'Columbia', 'Jefferson City'
 			]
 		},
 		{
@@ -303,7 +303,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'montana',
 			weight: 2,
 			cities: [
-				"Billings", "Missoula", "Great Falls", "Butte", "Bozeman", "Helena"
+				'Billings', 'Missoula', 'Great Falls', 'Butte', 'Bozeman', 'Helena'
 			]
 		},
 		{
@@ -312,7 +312,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'nebraska',
 			weight: 2,
 			cities: [
-				"Omaha", "Lincoln", "Bellevue", "Grand Island", "Kearney"
+				'Omaha', 'Lincoln', 'Bellevue', 'Grand Island', 'Kearney'
 			]
 		},
 		{
@@ -321,7 +321,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'nevada',
 			weight: 2,
 			cities: [
-				"Las Vegas", "Henderson", "North Las Vegas", "Reno", "Paradise", "Carson City"
+				'Las Vegas', 'Henderson', 'North Las Vegas', 'Reno', 'Paradise', 'Carson City'
 			]
 		},
 		{
@@ -330,7 +330,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'ohio',
 			weight: 2,
 			cities: [
-				"Columbus", "Cleveland", "Cincinnati", "Toledo", "Akron"
+				'Columbus', 'Cleveland', 'Cincinnati', 'Toledo', 'Akron'
 			]
 		},
 		{
@@ -339,7 +339,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'oklahoma',
 			weight: 2,
 			cities: [
-				"Oklahoma City", "Tulsa", "Norman", "Lawton", "Broken Arrow"
+				'Oklahoma City', 'Tulsa', 'Norman', 'Lawton', 'Broken Arrow'
 			]
 		},
 		{
@@ -348,7 +348,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'oregon',
 			weight: 2,
 			cities: [
-				"Portland", "Eugene", "Salem", "Gresham", "Hillsboro"
+				'Portland', 'Eugene', 'Salem', 'Gresham', 'Hillsboro'
 			]
 		},
 		{
@@ -357,7 +357,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'pennsylvania',
 			weight: 2,
 			cities: [
-				"Philadelphia", "Pittsburgh", "Allentown", "Erie", "Reading", "Harrisburg"
+				'Philadelphia', 'Pittsburgh', 'Allentown', 'Erie', 'Reading', 'Harrisburg'
 			]
 		},
 		{
@@ -366,7 +366,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'tennessee',
 			weight: 2,
 			cities: [
-				"Memphis", "Nashville", "Knoxville", "Chattanooga", "Clarksville"
+				'Memphis', 'Nashville', 'Knoxville', 'Chattanooga', 'Clarksville'
 			]
 		},
 		{
@@ -375,7 +375,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'texas',
 			weight: 2,
 			cities: [
-				"Houston", "San Antonio", "Dallas", "Austin", "Fort Worth"
+				'Houston', 'San Antonio', 'Dallas', 'Austin', 'Fort Worth'
 			]
 		},
 		{
@@ -384,7 +384,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'utah',
 			weight: 2,
 			cities: [
-				"Salt Lake City", "West Valley City", "Provo", "West Jordan", "Sandy"
+				'Salt Lake City', 'West Valley City', 'Provo', 'West Jordan', 'Sandy'
 			]
 		},
 		{
@@ -393,7 +393,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'vermont',
 			weight: 2,
 			cities: [
-				"Burlington", "Essex", "Rutland", "Colchester", "South Burlington", "Montpelier"
+				'Burlington', 'Essex', 'Rutland', 'Colchester', 'South Burlington', 'Montpelier'
 			]
 		},
 		{
@@ -402,7 +402,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'virginia',
 			weight: 2,
 			cities: [
-				"Virginia Beach", "Norfolk", "Chesapeake", "Richmond", "Newport News"
+				'Virginia Beach', 'Norfolk', 'Chesapeake', 'Richmond', 'Newport News'
 			]
 		},
 		{
@@ -411,7 +411,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'washington',
 			weight: 2,
 			cities: [
-				"Seattle", "Spokane", "Tacoma", "Vancouver", "Bellevue", "Olympia"
+				'Seattle', 'Spokane', 'Tacoma', 'Vancouver', 'Bellevue', 'Olympia'
 			]
 		},
 		{
@@ -420,7 +420,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'wisconsin',
 			weight: 2,
 			cities: [
-				"Milwaukee", "Madison", "Green Bay", "Kenosha", "Racine"
+				'Milwaukee', 'Madison', 'Green Bay', 'Kenosha', 'Racine'
 			]
 		},
 		{
@@ -429,7 +429,7 @@ const US: GetCountryData = (i18n) => ({
 			regionSlug: 'wyoming',
 			weight: 2,
 			cities: [
-				"Wyoming", "Cheyenne", "Casper", "Laramie", "Gillette", "Rock Springs"
+				'Wyoming', 'Cheyenne', 'Casper', 'Laramie', 'Gillette', 'Rock Springs'
 			]
 		}
 	]

@@ -9,7 +9,7 @@ import TableHeader, { ColSortDir } from '~components/tables/TableHeader.componen
 import { SmallSpinner } from '~components/loaders/loaders';
 import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
 import DeleteAccountDialog from '~core/dialogs/deleteAccount/DeleteAccount.component';
-import SearchFilter from "./SearchFilter.component";
+import SearchFilter from './SearchFilter.component';
 import C from '~core/constants';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { AccountStatusFilter } from '~types/general';
@@ -226,7 +226,7 @@ const AccountsList = ({
 					value={accountStatusFilter}
 					onChange={(selected: DropdownOption): void => setAccountStatusFilter(selected.value as AccountStatusFilter)}
 					options={[
-						{ value: AccountStatusFilter.all, label: "Any status" },
+						{ value: AccountStatusFilter.all, label: 'Any status' },
 						{ value: AccountStatusFilter.live, label: i18n.live },
 						{ value: AccountStatusFilter.expired, label: i18n.expired },
 						{ value: AccountStatusFilter.disabled, label: i18n.disabled }

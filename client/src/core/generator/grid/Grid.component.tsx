@@ -9,7 +9,7 @@ import * as styles from './Grid.scss';
 import { Tooltip } from '~components/tooltips';
 import { PrimaryButton } from '~components/Buttons.component';
 import { DataRow } from '~store/generator/generator.reducer';
-import FeatureToggles from "~core/featureToggles";
+import FeatureToggles from '~core/featureToggles';
 import { DataTypeFolder } from '../../../../_plugins';
 import GridRow from './GridRow.container';
 import C from '../../constants';
@@ -107,7 +107,7 @@ const Grid = ({
 					<div className={`${styles.gridWrapper} ${gridSizeClass}`} ref={measureRef}>
 						<div>
 							<div className={styles.gridHeaderWrapper}>
-								<div className={`${styles.gridRow} ${styles.gridHeader} tour-gridHeader`} style={{ flex: `0 0 auto` }}>
+								<div className={`${styles.gridRow} ${styles.gridHeader} tour-gridHeader`} style={{ flex: '0 0 auto' }}>
 									<div className={styles.orderCol}>{rows.length}</div>
 									<div className={styles.dataTypeCol}>
 										{i18n.dataType}

@@ -18,7 +18,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProper
 	const styles: React.CSSProperties = {
 		...draggableStyle,
 		userSelect: 'none',
-		margin: `0 0 0 0`,
+		margin: '0 0 0 0',
 	};
 	if (isDragging) {
 		styles.background = '#e0ebfd';

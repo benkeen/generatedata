@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from '~components/TextField';
-import styles from "./AccountsList.scss";
+import styles from './AccountsList.scss';
 
 export type SearchFilterProps = {
 	value: string;

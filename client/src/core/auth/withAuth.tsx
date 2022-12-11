@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { isOnloadAuthDetermined, isLoggedIn, getLocale } from '~store/main/main.selectors';
 import { DefaultSpinner, Centered } from '~components/loaders/loaders';
 

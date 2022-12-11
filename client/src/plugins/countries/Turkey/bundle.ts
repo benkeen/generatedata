@@ -10,199 +10,199 @@ import { GetCountryData } from '~types/countries';
 
 const Turkey: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
-	countrySlug: "turkey",
+	countrySlug: 'turkey',
 	regionNames: i18n.regionNames,
-	continent: "europe",
+	continent: 'europe',
 
 	extendedData: {
 		zipFormat: {
-			format: "xyyyy",
+			format: 'xyyyy',
 			replacements: {
-				"x": "01234567",
-				"y": "0123456789"
+				'x': '01234567',
+				'y': '0123456789'
 			}
 		}
 	},
 
 	regions: [
 		{
-			regionName: "Istanbul",
-			regionShort: "Istanbul",
-			regionSlug: "istanbul",
+			regionName: 'Istanbul',
+			regionShort: 'Istanbul',
+			regionSlug: 'istanbul',
 			weight: 14,
 			cities: [
-				"Istanbul"
+				'Istanbul'
 			]
 		},
 		{
-			regionName: "Ankara",
-			regionShort: "Ankara",
-			regionSlug: "ankara",
+			regionName: 'Ankara',
+			regionShort: 'Ankara',
+			regionSlug: 'ankara',
 			weight: 5,
 			cities: [
-				"Ankara", "Polatlı", "Beypazarı", "Şereflikoçhisar", "Kızılcahamam"
+				'Ankara', 'Polatlı', 'Beypazarı', 'Şereflikoçhisar', 'Kızılcahamam'
 			]
 		},
 		{
-			regionName: "İzmir",
-			regionShort: "İzmir",
-			regionSlug: "izmir",
+			regionName: 'İzmir',
+			regionShort: 'İzmir',
+			regionSlug: 'izmir',
 			weight: 4,
 			cities: [
-				"Izmir", "Ödemiş", "Bergama", "Tire", "Çeşme"
+				'Izmir', 'Ödemiş', 'Bergama', 'Tire', 'Çeşme'
 			]
 		},
 		{
-			regionName: "Bursa",
-			regionShort: "Bursa",
-			regionSlug: "bursa",
+			regionName: 'Bursa',
+			regionShort: 'Bursa',
+			regionSlug: 'bursa',
 			weight: 3,
 			cities: [
-				"Bursa", "İnegöl", "Mustafakemalpaşa", "Orhangazi", "Karacabey"
+				'Bursa', 'İnegöl', 'Mustafakemalpaşa', 'Orhangazi', 'Karacabey'
 			]
 		},
 		{
-			regionName: "Antalya",
-			regionShort: "Antalya",
-			regionSlug: "antalya",
+			regionName: 'Antalya',
+			regionShort: 'Antalya',
+			regionSlug: 'antalya',
 			weight: 2,
 			cities: [
-				"Antalya", "Alanya", "Manavgat", "Serik", "Kumluca"
+				'Antalya', 'Alanya', 'Manavgat', 'Serik', 'Kumluca'
 			]
 		},
 		{
-			regionName: "Adana",
-			regionShort: "Adana",
-			regionSlug: "adana",
+			regionName: 'Adana',
+			regionShort: 'Adana',
+			regionSlug: 'adana',
 			weight: 2,
 			cities: [
-				"Adana", "Ceyhan", "Kozan", "İmamoğlu", "Pozantı"
+				'Adana', 'Ceyhan', 'Kozan', 'İmamoğlu', 'Pozantı'
 			]
 		},
 		{
-			regionName: "Konya",
-			regionShort: "Konya",
-			regionSlug: "konya",
+			regionName: 'Konya',
+			regionShort: 'Konya',
+			regionSlug: 'konya',
 			weight: 2,
 			cities: [
-				"Konya", "Ereğli", "Akşehir", "Seydişehir", "Karapınar"
+				'Konya', 'Ereğli', 'Akşehir', 'Seydişehir', 'Karapınar'
 			]
 		},
 		{
-			regionName: "Gaziantep",
-			regionShort: "Gaziantep",
-			regionSlug: "gaziantep",
+			regionName: 'Gaziantep',
+			regionShort: 'Gaziantep',
+			regionSlug: 'gaziantep',
 			weight: 2,
 			cities: [
-				"Gaziantep", "Nizip", "İslahiye", "Nurdağı", "Araban"
+				'Gaziantep', 'Nizip', 'İslahiye', 'Nurdağı', 'Araban'
 			]
 		},
 		{
-			regionName: "Şanlıurfa",
-			regionShort: "Şanlıurfa",
-			regionSlug: "sanliurfa",
+			regionName: 'Şanlıurfa',
+			regionShort: 'Şanlıurfa',
+			regionSlug: 'sanliurfa',
 			weight: 2,
 			cities: [
-				"Şanlıurfa", "Siverek", "Viranşehir", "Suruç", "Birecik"
+				'Şanlıurfa', 'Siverek', 'Viranşehir', 'Suruç', 'Birecik'
 			]
 		},
 		{
-			regionName: "Mersin",
-			regionShort: "Mersin",
-			regionSlug: "mersin",
+			regionName: 'Mersin',
+			regionShort: 'Mersin',
+			regionSlug: 'mersin',
 			weight: 2,
 			cities: [
-				"Mersin", "Tarsus", "Silifke", "Erdemli", "Anamur"
+				'Mersin', 'Tarsus', 'Silifke', 'Erdemli', 'Anamur'
 			]
 		},
 		{
-			regionName: "Kocaeli",
-			regionShort: "Kocaeli",
-			regionSlug: "kocaeli",
+			regionName: 'Kocaeli',
+			regionShort: 'Kocaeli',
+			regionSlug: 'kocaeli',
 			weight: 2,
 			cities: [
-				"İzmit", "Gebze", "Darıca", "Gölcük", "Körfez"
+				'İzmit', 'Gebze', 'Darıca', 'Gölcük', 'Körfez'
 			]
 		},
 		{
-			regionName: "Diyarbakır",
-			regionShort: "Diyarbakır",
-			regionSlug: "diyarbakir",
+			regionName: 'Diyarbakır',
+			regionShort: 'Diyarbakır',
+			regionSlug: 'diyarbakir',
 			weight: 2,
 			cities: [
-				"Diyarbakır", "Ergani", "Bismil", "Silvan", "Çermik"
+				'Diyarbakır', 'Ergani', 'Bismil', 'Silvan', 'Çermik'
 			]
 		},
 		{
-			regionName: "Hatay",
-			regionShort: "Hatay",
-			regionSlug: "hatay",
+			regionName: 'Hatay',
+			regionShort: 'Hatay',
+			regionSlug: 'hatay',
 			weight: 2,
 			cities: [
-				"Antakya", "İskenderun", "Dörtyol", "Kırıkhan", "Reyhanlı"
+				'Antakya', 'İskenderun', 'Dörtyol', 'Kırıkhan', 'Reyhanlı'
 			]
 		},
 		{
-			regionName: "Manisa",
-			regionShort: "Manisa",
-			regionSlug: "manisa",
+			regionName: 'Manisa',
+			regionShort: 'Manisa',
+			regionSlug: 'manisa',
 			weight: 1,
 			cities: [
-				"Manisa", "Turgutlu", "Akhisar", "Salihli", "Soma"
+				'Manisa', 'Turgutlu', 'Akhisar', 'Salihli', 'Soma'
 			]
 		},
 		{
-			regionName: "Kayseri",
-			regionShort: "Kayseri",
-			regionSlug: "kayseri",
+			regionName: 'Kayseri',
+			regionShort: 'Kayseri',
+			regionSlug: 'kayseri',
 			weight: 1,
 			cities: [
-				"Kayseri", "Develi", "Yahyalı", "Bünyan", "Pınarbaşı"
+				'Kayseri', 'Develi', 'Yahyalı', 'Bünyan', 'Pınarbaşı'
 			]
 		},
 		{
-			regionName: "Samsun",
-			regionShort: "Samsun",
-			regionSlug: "samsun",
+			regionName: 'Samsun',
+			regionShort: 'Samsun',
+			regionSlug: 'samsun',
 			weight: 1,
 			cities: [
-				"Samsun", "Bafra", "Çarşamba", "Terme", "Vezirköprü"
+				'Samsun', 'Bafra', 'Çarşamba', 'Terme', 'Vezirköprü'
 			]
 		},
 		{
-			regionName: "Balıkesir",
-			regionShort: "Balıkesir",
-			regionSlug: "balikesir",
+			regionName: 'Balıkesir',
+			regionShort: 'Balıkesir',
+			regionSlug: 'balikesir',
 			weight: 1,
 			cities: [
-				"Balıkesir", "Bandırma", "Edremit", "Gönen", "Burhaniye"
+				'Balıkesir', 'Bandırma', 'Edremit', 'Gönen', 'Burhaniye'
 			]
 		},
 		{
-			regionName: "Kahramanmaraş",
-			regionShort: "Kahramanmaraş",
-			regionSlug: "kahramanmaras",
+			regionName: 'Kahramanmaraş',
+			regionShort: 'Kahramanmaraş',
+			regionSlug: 'kahramanmaras',
 			weight: 1,
 			cities: [
-				"Kahramanmaraş", "Elbistan", "Afşin", "Pazarcık", "Göksun"
+				'Kahramanmaraş', 'Elbistan', 'Afşin', 'Pazarcık', 'Göksun'
 			]
 		},
 		{
-			regionName: "Van",
-			regionShort: "Van",
-			regionSlug: "van",
+			regionName: 'Van',
+			regionShort: 'Van',
+			regionSlug: 'van',
 			weight: 1,
 			cities: [
-				"Van", "Erciş", "Bostaniçi", "Muradiye", "Çaldıran"
+				'Van', 'Erciş', 'Bostaniçi', 'Muradiye', 'Çaldıran'
 			]
 		},
 		{
-			regionName: "Aydın",
-			regionShort: "Aydın",
-			regionSlug: "aydin",
+			regionName: 'Aydın',
+			regionShort: 'Aydın',
+			regionSlug: 'aydin',
 			weight: 1,
 			cities: [
-				"Aydın", "Nazilli", "Söke", "Kuşadası", "Didim"
+				'Aydın', 'Nazilli', 'Söke', 'Kuşadası', 'Didim'
 			]
 		}
 	]

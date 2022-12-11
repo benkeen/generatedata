@@ -341,7 +341,7 @@ export const loadTourBundle = (): any => (dispatch: Dispatch): void => {
 	import(
 		/* webpackChunkName: "tour" */
 		/* webpackMode: "lazy" */
-		`../../../tours`
+		'../../../tours'
 	)
 		.then((resp) => {
 			setTourComponents(resp.default);

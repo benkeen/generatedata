@@ -19,7 +19,7 @@ import { DataSetListItem } from '~types/dataSets';
 import { getUnique } from '~utils/arrayUtils';
 import { getCountryNamesBundle } from '~utils/coreUtils';
 import { getCountryData } from '~utils/countryUtils';
-import { GenerationWorkerActionType } from "~core/generator/generation.types";
+import { GenerationWorkerActionType } from '~core/generator/generation.types';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({

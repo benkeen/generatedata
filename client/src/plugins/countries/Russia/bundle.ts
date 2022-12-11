@@ -3,9 +3,9 @@ import { GetCountryData } from '~types/countries';
 
 const Russia: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
-	countrySlug: "RU",
+	countrySlug: 'RU',
 	regionNames: i18n.regionNames,
-	continent: "europe",
+	continent: 'europe',
 
 	// Federal Cities (3} = Moscow, Saint Petersburg, Sevastopol
 	// Oblast (46}= Province or Region
@@ -17,32 +17,32 @@ const Russia: GetCountryData = (i18n) => ({
 		// specific format is desired. To prevent duplicate code, the replacements listed here cover ALL zip formats
 		// for each province
 		zipFormat: {
-			format: "%*****",
+			format: '%*****',
 			replacements: {
-				"%": "123456789",
-				"*": "0123456789",
+				'%': '123456789',
+				'*': '0123456789',
 
 				// used in individual federal subjects
-				"-": "01", // (Kurgan, Ryazan, Tula} Oblast
-				"&": "012", // Moscow City, (Pskov, Tver, Vologda, Orenburg, Penza, Vladimir, Yaroslavl} Oblast
-				"+": "0123",	// (Kirov, Novosibirsk, Saratov} Oblast
-				"U": "01234",	// (Kemerovo, Moscow, Sverdlovsk, Volgograd} Oblast
-				"X": "012345", // Moscow City
-				"P": "123",	// Bryansk Oblast
-				"Z": "23",	// (Oryol, Tambov, Ulyanovsk} Oblast
-				"}": "34",	// (Sakhalin, Murmansk} Oblast
-				"T": "345",	// (Ivanovo, Novgorod} Oblast
-				"^": "3456",	// (Arkhangelsk, Samara} Oblast
-				"Y": "34567", // Nizhny Novgorod Oblast
-				"S": "456",	// (Astrakhan, Smolensk, Omsk, Tomsk} Oblast
-				"R": "4567",	// (Chelyabinsk, Rostov, Voronezh} Oblast
-				"#": "4569",	// Irkutsk Oblast
-				"(": "56",	// (Amur, Magadan} Oblast
-				"Q": "567",	// (Kursk, Tyumen} Oblast
-				"V": "67",	// Kostroma Oblast
-				"?": "678",	// Kalingrad Oblast
-				"W": "78",	// Leningrad Oblast
-				"@": "89",	// (Belgorod, Kaluga, Lipetsk} Oblast
+				'-': '01', // (Kurgan, Ryazan, Tula} Oblast
+				'&': '012', // Moscow City, (Pskov, Tver, Vologda, Orenburg, Penza, Vladimir, Yaroslavl} Oblast
+				'+': '0123',	// (Kirov, Novosibirsk, Saratov} Oblast
+				'U': '01234',	// (Kemerovo, Moscow, Sverdlovsk, Volgograd} Oblast
+				'X': '012345', // Moscow City
+				'P': '123',	// Bryansk Oblast
+				'Z': '23',	// (Oryol, Tambov, Ulyanovsk} Oblast
+				'}': '34',	// (Sakhalin, Murmansk} Oblast
+				'T': '345',	// (Ivanovo, Novgorod} Oblast
+				'^': '3456',	// (Arkhangelsk, Samara} Oblast
+				'Y': '34567', // Nizhny Novgorod Oblast
+				'S': '456',	// (Astrakhan, Smolensk, Omsk, Tomsk} Oblast
+				'R': '4567',	// (Chelyabinsk, Rostov, Voronezh} Oblast
+				'#': '4569',	// Irkutsk Oblast
+				'(': '56',	// (Amur, Magadan} Oblast
+				'Q': '567',	// (Kursk, Tyumen} Oblast
+				'V': '67',	// Kostroma Oblast
+				'?': '678',	// Kalingrad Oblast
+				'W': '78',	// Leningrad Oblast
+				'@': '89',	// (Belgorod, Kaluga, Lipetsk} Oblast
 			}
 		},
 
@@ -154,26 +154,26 @@ const Russia: GetCountryData = (i18n) => ({
 				990, 991, 992, 993, 994, 995, 996, 997, 998, 999,	// Mobile networks
 			],
 			displayFormats: [
-				"(AAA} Xxx-xx-xx",
-				"+7 AAAXxxxxxx",
-				"+7 (AAA} Xxx-xx-xx", // Outside Russia use 7 as Country Calling Code
-				"+7-AAA-Xxx-xx-xx"
+				'(AAA} Xxx-xx-xx',
+				'+7 AAAXxxxxxx',
+				'+7 (AAA} Xxx-xx-xx', // Outside Russia use 7 as Country Calling Code
+				'+7-AAA-Xxx-xx-xx'
 			]
 		}
 	},
 	regions: [
 		// Federal Cities
 		{
-			regionName: "Moscow City",
-			regionShort: "Moscow",
-			regionSlug: "moscow-city",
+			regionName: 'Moscow City',
+			regionShort: 'Moscow',
+			regionSlug: 'moscow-city',
 			weight: 11,
 			cities: [
-				"Moscow"
+				'Moscow'
 			],
 			extendedData: {
 				zipFormat: {
-					format: "1+X***"
+					format: '1+X***'
 				},
 				phoneFormat: {
 					areaCodes: [495, 499]
@@ -181,16 +181,16 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Saint Petersburg City",
-			regionShort: "Saint Petersburg", // ISO 3166 code
-			regionSlug: "saint_petersburg-city",
+			regionName: 'Saint Petersburg City',
+			regionShort: 'Saint Petersburg', // ISO 3166 code
+			regionSlug: 'saint_petersburg-city',
 			weight: 11,
 			cities: [
-				"Saint Petersburg"
+				'Saint Petersburg'
 			],
 			extendedData: {
 				zipFormat: {
-					format: "19****"
+					format: '19****'
 				},
 				phoneFormat: {
 					areaCodes: [812]
@@ -200,16 +200,16 @@ const Russia: GetCountryData = (i18n) => ({
 
 		// TODO: Need zipFormat for Sevastopol City
 		{
-			regionName: "Sevastopol City",
-			regionShort: "Sevastopol", // ISO 3166 code
-			regionSlug: "sevastopol-city",
+			regionName: 'Sevastopol City',
+			regionShort: 'Sevastopol', // ISO 3166 code
+			regionSlug: 'sevastopol-city',
 			weight: 11,
 			cities: [
-				"Sevastopol"
+				'Sevastopol'
 			],
 			extendedData: {
 				zipFormat: {
-					format: "%*****"
+					format: '%*****'
 				},
 				phoneFormat: {
 					areaCodes: [869]
@@ -219,17 +219,17 @@ const Russia: GetCountryData = (i18n) => ({
 
 		// Oblasts
 		{
-			regionName: "Amur Oblast",
-			regionShort: "AMU", // "RU-AMU", // ISO 3166 code
-			regionSlug: "amur-oblast",
+			regionName: 'Amur Oblast',
+			regionShort: 'AMU', // 'RU-AMU', // ISO 3166 code
+			regionSlug: 'amur-oblast',
 			weight: 50,
 			cities: [
-				"Belogorsk", "Blagoveshchensk", "Raychikhinsk", "Shimanovsk", "Skovorodino", "Svobodny", "Tynda", "Zavitinsk",
-				"Zeya"
+				'Belogorsk', 'Blagoveshchensk', 'Raychikhinsk', 'Shimanovsk', 'Skovorodino', 'Svobodny', 'Tynda', 'Zavitinsk',
+				'Zeya'
 			],
 			extendedData: {
 				zipFormat: {
-					format: "67(***"
+					format: '67(***'
 				},
 				phoneFormat: {
 					areaCodes: [416]
@@ -237,17 +237,17 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Arkhangelsk Oblast",
-			regionShort: "ARK", // "RU-ARK", // ISO 3166 code
-			regionSlug: "arkhangelsk-oblast",
+			regionName: 'Arkhangelsk Oblast',
+			regionShort: 'ARK', // 'RU-ARK', // ISO 3166 code
+			regionSlug: 'arkhangelsk-oblast',
 			weight: 50,
 			cities: [
-				"Arkhangelsk", "Brin-Navolok", "Kargopol", "Koryazhma", "Kotlas", "Mezen", "Mirny", "Novodvinsk",
-				"Nyandoma", "Onega", "Severodvinsk", "Shenkursk", "Solvychegodsk", "Velsk"
+				'Arkhangelsk', 'Brin-Navolok', 'Kargopol', 'Koryazhma', 'Kotlas', 'Mezen', 'Mirny', 'Novodvinsk',
+				'Nyandoma', 'Onega', 'Severodvinsk', 'Shenkursk', 'Solvychegodsk', 'Velsk'
 			],
 			extendedData: {
 				zipFormat: {
-					format: "16^***"
+					format: '16^***'
 				},
 				phoneFormat: {
 					areaCodes: [818]
@@ -255,16 +255,16 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Astrakhan Oblast",
-			regionShort: "AST", // "RU-AST", // ISO 3166 code
-			regionSlug: "astrakhan-oblast",
+			regionName: 'Astrakhan Oblast',
+			regionShort: 'AST', // 'RU-AST', // ISO 3166 code
+			regionSlug: 'astrakhan-oblast',
 			weight: 50,
 			cities: [
-				"Astrakhan", "Akhtubinsk", "Kamyzyak", "Kharabali", "Narimanov", "Znamensk"
+				'Astrakhan', 'Akhtubinsk', 'Kamyzyak', 'Kharabali', 'Narimanov', 'Znamensk'
 			],
 			extendedData: {
 				zipFormat: {
-					format: "41S***"
+					format: '41S***'
 				},
 				phoneFormat: {
 					areaCodes: [851]
@@ -272,17 +272,17 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Belgorod Oblast",
-			regionShort: "BEL", // "RU-BEL", // ISO 3166 code
-			regionSlug: "belgorod-oblast",
+			regionName: 'Belgorod Oblast',
+			regionShort: 'BEL', // 'RU-BEL', // ISO 3166 code
+			regionSlug: 'belgorod-oblast',
 			weight: 50,
 			cities: [
-				"Alexeyevka", "Belgorod", "Biryuch", "Borisovka", "Grayvoron", "Gubkin", "Korocha", "Krasnaya Yaruga",
-				"Novy Oskol", "Rakitnoye", "Shebekino", "Stary Oskol", "Stroitel", "Valuyki", "Volokonovka"
+				'Alexeyevka', 'Belgorod', 'Biryuch', 'Borisovka', 'Grayvoron', 'Gubkin', 'Korocha', 'Krasnaya Yaruga',
+				'Novy Oskol', 'Rakitnoye', 'Shebekino', 'Stary Oskol', 'Stroitel', 'Valuyki', 'Volokonovka'
 			],
 			extendedData: {
 				zipFormat: {
-					format: "30@***"
+					format: '30@***'
 				},
 				phoneFormat: {
 					areaCodes: [472]
@@ -290,18 +290,18 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Bryansk Oblast",
-			regionShort: "BRY", // "RU-BRY", // ISO 3166 code
-			regionSlug: "bryansk-oblast",
+			regionName: 'Bryansk Oblast',
+			regionShort: 'BRY', // 'RU-BRY', // ISO 3166 code
+			regionSlug: 'bryansk-oblast',
 			weight: 50,
 			cities: [
-				"Bryansk", "Dyatkovo", "Fokino", "Karachev", "Klintsy", "Mglin", "Novozybkov", "Pochep",
-				"Seltso", "Sevsk", "Starodub", "Surazh", "Trubchevsk", "Unecha", "Vialky", "Zhukovka",
-				"Zlynka"
+				'Bryansk', 'Dyatkovo', 'Fokino', 'Karachev', 'Klintsy', 'Mglin', 'Novozybkov', 'Pochep',
+				'Seltso', 'Sevsk', 'Starodub', 'Surazh', 'Trubchevsk', 'Unecha', 'Vialky', 'Zhukovka',
+				'Zlynka'
 			],
 			extendedData: {
 				zipFormat: {
-					format: "24P***"
+					format: '24P***'
 				},
 				phoneFormat: {
 					areaCodes: [483]
@@ -309,19 +309,19 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Chelyabinsk Oblast",
-			regionShort: "CHE", // "RU-CHE", // ISO 3166 code
-			regionSlug: "chelyabinsk-oblast",
+			regionName: 'Chelyabinsk Oblast',
+			regionShort: 'CHE', // 'RU-CHE', // ISO 3166 code
+			regionSlug: 'chelyabinsk-oblast',
 			weight: 50,
 			cities: [
-				"Asha", "Bakal", "Chelyabinsk", "Karabash", "Kartaly", "Kasli", "Katav-Ivanovsk", "Kopeysk",
-				"Korkino", "Kusa", "Kyshtym", "Magnitogorsk", "Miass", "Minyar", "Nyazepetrovsk", "Ozyorsk",
-				"Plast", "Satka", "Sim", "Snezhinsk", "Troitsk", "Tryokhgorny", "Ust-Katav", "Verkhneuralsk",
-				"Verkhny Ufaley", "Yemanzhelinsk", "Yuryuzan", "Yurzhnouralsk", "Zlatoust"
+				'Asha', 'Bakal', 'Chelyabinsk', 'Karabash', 'Kartaly', 'Kasli', 'Katav-Ivanovsk', 'Kopeysk',
+				'Korkino', 'Kusa', 'Kyshtym', 'Magnitogorsk', 'Miass', 'Minyar', 'Nyazepetrovsk', 'Ozyorsk',
+				'Plast', 'Satka', 'Sim', 'Snezhinsk', 'Troitsk', 'Tryokhgorny', 'Ust-Katav', 'Verkhneuralsk',
+				'Verkhny Ufaley', 'Yemanzhelinsk', 'Yuryuzan', 'Yurzhnouralsk', 'Zlatoust'
 			],
 			extendedData: {
 				zipFormat: {
-					format: "45R***"
+					format: '45R***'
 				},
 				phoneFormat: {
 					areaCodes: [351]
@@ -329,14 +329,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Irkutsk Oblast",
-			regionShort: "IRK", // "RU-IRK", // ISO 3166 code
-			regionSlug: "irkutsk-oblast",
+			regionName: 'Irkutsk Oblast',
+			regionShort: 'IRK', // 'RU-IRK', // ISO 3166 code
+			regionSlug: 'irkutsk-oblast',
 			weight: 50,
-			cities: ["Irkutsk"],
+			cities: ['Irkutsk'],
 			extendedData: {
 				zipFormat: {
-					format: "66#***"
+					format: '66#***'
 				},
 				phoneFormat: {
 					areaCodes: [395]
@@ -344,14 +344,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Ivanovo Oblast",
-			regionShort: "IVA", // "RU-IVA", // ISO 3166 code
-			regionSlug: "ivanovo-oblast",
+			regionName: 'Ivanovo Oblast',
+			regionShort: 'IVA', // 'RU-IVA', // ISO 3166 code
+			regionSlug: 'ivanovo-oblast',
 			weight: 50,
-			cities: ["Ivanovo"],
+			cities: ['Ivanovo'],
 			extendedData: {
 				zipFormat: {
-					format: "15T***"
+					format: '15T***'
 				},
 				phoneFormat: {
 					areaCodes: [493]
@@ -359,14 +359,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Kaliningrad Oblast",
-			regionShort: "KGD", // "RU-KGD", // ISO 3166 code
-			regionSlug: "kaliningrad-oblast",
+			regionName: 'Kaliningrad Oblast',
+			regionShort: 'KGD', // 'RU-KGD', // ISO 3166 code
+			regionSlug: 'kaliningrad-oblast',
 			weight: 50,
-			cities: ["Kaliningrad"],
+			cities: ['Kaliningrad'],
 			extendedData: {
 				zipFormat: {
-					format: "23?***"
+					format: '23?***'
 				},
 				phoneFormat: {
 					areaCodes: [401]
@@ -374,14 +374,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Kaluga Oblast",
-			regionShort: "KLU", // "RU-KLU", // ISO 3166 code
-			regionSlug: "kaluga-oblast",
+			regionName: 'Kaluga Oblast',
+			regionShort: 'KLU', // 'RU-KLU', // ISO 3166 code
+			regionSlug: 'kaluga-oblast',
 			weight: 50,
-			cities: ["Kaluga"],
+			cities: ['Kaluga'],
 			extendedData: {
 				zipFormat: {
-					format: "24@***"
+					format: '24@***'
 				},
 				phoneFormat: {
 					areaCodes: [484]
@@ -389,14 +389,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Kemerovo Oblast",
-			regionShort: "KEM", // "RU-KEM", // ISO 3166 code
-			regionSlug: "kemerovo-oblast",
+			regionName: 'Kemerovo Oblast',
+			regionShort: 'KEM', // 'RU-KEM', // ISO 3166 code
+			regionSlug: 'kemerovo-oblast',
 			weight: 50,
-			cities: ["Kemerovo"],
+			cities: ['Kemerovo'],
 			extendedData: {
 				zipFormat: {
-					format: "65U***"
+					format: '65U***'
 				},
 				phoneFormat: {
 					areaCodes: [384]
@@ -404,14 +404,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Kirov Oblast",
-			regionShort: "KIR", // "RU-KIR", // ISO 3166 code
-			regionSlug: "kirov-oblast",
+			regionName: 'Kirov Oblast',
+			regionShort: 'KIR', // 'RU-KIR', // ISO 3166 code
+			regionSlug: 'kirov-oblast',
 			weight: 50,
-			cities: ["Kirov"],
+			cities: ['Kirov'],
 			extendedData: {
 				zipFormat: {
-					format: "61+***"
+					format: '61+***'
 				},
 				phoneFormat: {
 					areaCodes: [833]
@@ -419,14 +419,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Kostroma Oblast",
-			regionShort: "KOS", // "RU-KOS", // ISO 3166 code
-			regionSlug: "kostroma-oblast",
+			regionName: 'Kostroma Oblast',
+			regionShort: 'KOS', // 'RU-KOS', // ISO 3166 code
+			regionSlug: 'kostroma-oblast',
 			weight: 50,
-			cities: ["Kostroma"],
+			cities: ['Kostroma'],
 			extendedData: {
 				zipFormat: {
-					format: "15V***"
+					format: '15V***'
 				},
 				phoneFormat: {
 					areaCodes: [494]
@@ -434,14 +434,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Kurgan Oblast",
-			regionShort: "KGN", // "RU-KGN", // ISO 3166 code
-			regionSlug: "kurgan-oblast",
+			regionName: 'Kurgan Oblast',
+			regionShort: 'KGN', // 'RU-KGN', // ISO 3166 code
+			regionSlug: 'kurgan-oblast',
 			weight: 50,
-			cities: ["Kurgan"],
+			cities: ['Kurgan'],
 			extendedData: {
 				zipFormat: {
-					format: "64-***"
+					format: '64-***'
 				},
 				phoneFormat: {
 					areaCodes: [352]
@@ -449,14 +449,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Kursk Oblast",
-			regionShort: "KRS", // "RU-KRS", // ISO 3166 code
-			regionSlug: "kursk-oblast",
+			regionName: 'Kursk Oblast',
+			regionShort: 'KRS', // 'RU-KRS', // ISO 3166 code
+			regionSlug: 'kursk-oblast',
 			weight: 50,
-			cities: ["Kursk"],
+			cities: ['Kursk'],
 			extendedData: {
 				zipFormat: {
-					format: "30Q***"
+					format: '30Q***'
 				},
 				phoneFormat: {
 					areaCodes: [471]
@@ -464,14 +464,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Leningrad Oblast",
-			regionShort: "LEN", // "RU-LEN", // ISO 3166 code
-			regionSlug: "leningrad-oblast",
+			regionName: 'Leningrad Oblast',
+			regionShort: 'LEN', // 'RU-LEN', // ISO 3166 code
+			regionSlug: 'leningrad-oblast',
 			weight: 50,
-			cities: ["Gatchina", "Ivangorod"],
+			cities: ['Gatchina', 'Ivangorod'],
 			extendedData: {
 				zipFormat: {
-					format: "18W***"
+					format: '18W***'
 				},
 				phoneFormat: {
 					areaCodes: [813]
@@ -479,14 +479,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Lipetsk Oblast",
-			regionShort: "LIP", // "RU-LIP", // ISO 3166 code
-			regionSlug: "lipetsk-oblast",
+			regionName: 'Lipetsk Oblast',
+			regionShort: 'LIP', // 'RU-LIP', // ISO 3166 code
+			regionSlug: 'lipetsk-oblast',
 			weight: 50,
-			cities: ["Lipetsk"],
+			cities: ['Lipetsk'],
 			extendedData: {
 				zipFormat: {
-					format: "39@***"
+					format: '39@***'
 				},
 				phoneFormat: {
 					areaCodes: [474]
@@ -494,14 +494,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Magadan Oblast",
-			regionShort: "MAG", // "RU-MAG", // ISO 3166 code
-			regionSlug: "magadan-oblast",
+			regionName: 'Magadan Oblast',
+			regionShort: 'MAG', // 'RU-MAG', // ISO 3166 code
+			regionSlug: 'magadan-oblast',
 			weight: 50,
-			cities: ["Magadan"],
+			cities: ['Magadan'],
 			extendedData: {
 				zipFormat: {
-					format: "68(***"
+					format: '68(***'
 				},
 				phoneFormat: {
 					areaCodes: [413]
@@ -509,27 +509,27 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Moscow Oblast",
-			regionShort: "MOS", // "RU-MOS", // ISO 3166 code
-			regionSlug: "moscow-oblast",
+			regionName: 'Moscow Oblast',
+			regionShort: 'MOS', // 'RU-MOS', // ISO 3166 code
+			regionSlug: 'moscow-oblast',
 			weight: 11,
 
 			// https://en.wikipedia.org/wiki/Category:Cities_and_towns_in_Moscow_Oblast
 			cities: [
-				"Aprelevka", "Balashikha", "Bolshevo", "Bronnitsy", "Chekhov", "Chernogolovka", "Dedovsk", "Dmitrov",
-				"Dolgoprudny", "Domodedovo", "Drezna", "Dubna", "Dzerzhinsky", "Elektrogorsk", "Elektrostal", "Elektrougli",
-				"Fryazino", "Golitsyno", "Istra", "Ivanteyevka", "Kalininets", "Kashira", "Khimki", "Khotkovo",
-				"Klimovsk", "Klin", "Kolomna", "Korolyov", "Kotelniki", "Krasnoarmeysk", "Krasnogorsk", "Krasnozavodsk",
-				"Krasnoznamensk", "Kubinka", "Kurovskoye", "Likino-Dulyovo", "Lobnya", "Losino-Petrovsky", "Lukhovitsy", "Lytkarino",
-				"Lyubertsy", "Mozhaysk", "Mytishchi", "Naro-Fominsk", "Noginsk", "Odintsovo", "Orekhovo-Zuyevo", "Ozherelye",
-				"Ozyory", "Pavlovsky Posad", "Peresvet", "Podolsk", "Protvino", "Pushchino", "Pushkino", "Ramenskoye",
-				"Reutov", "Roshal", "Ruza", "Sergiyev Posad", "Serpukhov", "Shatura", "Shchyolkovo", "Solnechnogorsk",
-				"Staraya Kupavna", "Stupino", "Svitino", "Taldom", "Vereya", "Vidnoye", "Volokolamsk", "Voskresensk",
-				"Vysokovsk", "Yakhroma", "Yegoryevsk", "Zaraysk", "Zhukovsky", "Zvenigorod"
+				'Aprelevka', 'Balashikha', 'Bolshevo', 'Bronnitsy', 'Chekhov', 'Chernogolovka', 'Dedovsk', 'Dmitrov',
+				'Dolgoprudny', 'Domodedovo', 'Drezna', 'Dubna', 'Dzerzhinsky', 'Elektrogorsk', 'Elektrostal', 'Elektrougli',
+				'Fryazino', 'Golitsyno', 'Istra', 'Ivanteyevka', 'Kalininets', 'Kashira', 'Khimki', 'Khotkovo',
+				'Klimovsk', 'Klin', 'Kolomna', 'Korolyov', 'Kotelniki', 'Krasnoarmeysk', 'Krasnogorsk', 'Krasnozavodsk',
+				'Krasnoznamensk', 'Kubinka', 'Kurovskoye', 'Likino-Dulyovo', 'Lobnya', 'Losino-Petrovsky', 'Lukhovitsy', 'Lytkarino',
+				'Lyubertsy', 'Mozhaysk', 'Mytishchi', 'Naro-Fominsk', 'Noginsk', 'Odintsovo', 'Orekhovo-Zuyevo', 'Ozherelye',
+				'Ozyory', 'Pavlovsky Posad', 'Peresvet', 'Podolsk', 'Protvino', 'Pushchino', 'Pushkino', 'Ramenskoye',
+				'Reutov', 'Roshal', 'Ruza', 'Sergiyev Posad', 'Serpukhov', 'Shatura', 'Shchyolkovo', 'Solnechnogorsk',
+				'Staraya Kupavna', 'Stupino', 'Svitino', 'Taldom', 'Vereya', 'Vidnoye', 'Volokolamsk', 'Voskresensk',
+				'Vysokovsk', 'Yakhroma', 'Yegoryevsk', 'Zaraysk', 'Zhukovsky', 'Zvenigorod'
 			],
 			extendedData: {
 				zipFormat: {
-					format: "14U***"
+					format: '14U***'
 				},
 				phoneFormat: {
 					areaCodes: [496, 498]
@@ -537,14 +537,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Murmansk Oblast",
-			regionShort: "MUR", // "RU-MUR", // ISO 3166 code
-			regionSlug: "murmansk-oblast",
+			regionName: 'Murmansk Oblast',
+			regionShort: 'MUR', // 'RU-MUR', // ISO 3166 code
+			regionSlug: 'murmansk-oblast',
 			weight: 50,
-			cities: ["Murmansk"],
+			cities: ['Murmansk'],
 			extendedData: {
 				zipFormat: {
-					format: "18}***"
+					format: '18}***'
 				},
 				phoneFormat: {
 					areaCodes: [815]
@@ -552,14 +552,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Nizhny Novgorod Oblast",
-			regionShort: "NIZ", // "RU-NIZ", // ISO 3166 code
-			regionSlug: "nizhny_novgorod-oblast",
+			regionName: 'Nizhny Novgorod Oblast',
+			regionShort: 'NIZ', // 'RU-NIZ', // ISO 3166 code
+			regionSlug: 'nizhny_novgorod-oblast',
 			weight: 50,
-			cities: ["Nizhny"],
+			cities: ['Nizhny'],
 			extendedData: {
 				zipFormat: {
-					format: "60Y***"
+					format: '60Y***'
 				},
 				phoneFormat: {
 					areaCodes: [831]
@@ -567,14 +567,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Novgorod Oblast",
-			regionShort: "NGR", // "RU-NGR", // ISO 3166 code
-			regionSlug: "novgorod-oblast",
+			regionName: 'Novgorod Oblast',
+			regionShort: 'NGR', // 'RU-NGR', // ISO 3166 code
+			regionSlug: 'novgorod-oblast',
 			weight: 50,
-			cities: ["Novgorod"],
+			cities: ['Novgorod'],
 			extendedData: {
 				zipFormat: {
-					format: "17T***"
+					format: '17T***'
 				},
 				phoneFormat: {
 					areaCodes: [816]
@@ -582,14 +582,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Novosibirsk Oblast",
-			regionShort: "NVS", // "RU-NVS", // ISO 3166 code
-			regionSlug: "novosibirsk-oblast",
+			regionName: 'Novosibirsk Oblast',
+			regionShort: 'NVS', // 'RU-NVS', // ISO 3166 code
+			regionSlug: 'novosibirsk-oblast',
 			weight: 50,
-			cities: ["Novosibirsk"],
+			cities: ['Novosibirsk'],
 			extendedData: {
 				zipFormat: {
-					format: "63+***"
+					format: '63+***'
 				},
 				phoneFormat: {
 					areaCodes: [383]
@@ -597,14 +597,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Omsk Oblast",
-			regionShort: "OMS", // "RU-OMS", // ISO 3166 code
-			regionSlug: "omsk-oblast",
+			regionName: 'Omsk Oblast',
+			regionShort: 'OMS', // 'RU-OMS', // ISO 3166 code
+			regionSlug: 'omsk-oblast',
 			weight: 50,
-			cities: ["Omsk"],
+			cities: ['Omsk'],
 			extendedData: {
 				zipFormat: {
-					format: "64S***"
+					format: '64S***'
 				},
 				phoneFormat: {
 					areaCodes: [381]
@@ -612,14 +612,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Orenburg Oblast",
-			regionShort: "ORE", // "RU-ORE", // ISO 3166 code
-			regionSlug: "orenburg-oblast",
+			regionName: 'Orenburg Oblast',
+			regionShort: 'ORE', // 'RU-ORE', // ISO 3166 code
+			regionSlug: 'orenburg-oblast',
 			weight: 50,
-			cities: ["Orenburg"],
+			cities: ['Orenburg'],
 			extendedData: {
 				zipFormat: {
-					format: "46&***"
+					format: '46&***'
 				},
 				phoneFormat: {
 					areaCodes: [353]
@@ -627,14 +627,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Oryol Oblast",
-			regionShort: "ORL", // "RU-ORL", // ISO 3166 code
-			regionSlug: "oryol-oblast",
+			regionName: 'Oryol Oblast',
+			regionShort: 'ORL', // 'RU-ORL', // ISO 3166 code
+			regionSlug: 'oryol-oblast',
 			weight: 50,
-			cities: ["Oryol"],
+			cities: ['Oryol'],
 			extendedData: {
 				zipFormat: {
-					format: "30Z***"
+					format: '30Z***'
 				},
 				phoneFormat: {
 					areaCodes: [486]
@@ -642,14 +642,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Penza Oblast",
-			regionShort: "PNZ", // "RU-PNZ", // ISO 3166 code
-			regionSlug: "penza-oblast",
+			regionName: 'Penza Oblast',
+			regionShort: 'PNZ', // 'RU-PNZ', // ISO 3166 code
+			regionSlug: 'penza-oblast',
 			weight: 50,
-			cities: ["Penza"],
+			cities: ['Penza'],
 			extendedData: {
 				zipFormat: {
-					format: "44&***"
+					format: '44&***'
 				},
 				phoneFormat: {
 					areaCodes: [841]
@@ -657,14 +657,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Pskov Oblast",
-			regionShort: "PSK", // "RU-PSK", // ISO 3166 code
-			regionSlug: "pskov-oblast",
+			regionName: 'Pskov Oblast',
+			regionShort: 'PSK', // 'RU-PSK', // ISO 3166 code
+			regionSlug: 'pskov-oblast',
 			weight: 50,
-			cities: ["Pskov"],
+			cities: ['Pskov'],
 			extendedData: {
 				zipFormat: {
-					format: "18&***"
+					format: '18&***'
 				},
 				phoneFormat: {
 					areaCodes: [811]
@@ -672,14 +672,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Rostov Oblast",
-			regionShort: "ROS", // "RU-ROS", // ISO 3166 code
-			regionSlug: "rostov-oblast",
+			regionName: 'Rostov Oblast',
+			regionShort: 'ROS', // 'RU-ROS', // ISO 3166 code
+			regionSlug: 'rostov-oblast',
 			weight: 50,
-			cities: ["Rostov"],
+			cities: ['Rostov'],
 			extendedData: {
 				zipFormat: {
-					format: "34R***"
+					format: '34R***'
 				},
 				phoneFormat: {
 					areaCodes: [863]
@@ -687,14 +687,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Ryazan Oblast",
-			regionShort: "RYA", // "RU-RYA", // ISO 3166 code
-			regionSlug: "ryazan-oblast",
+			regionName: 'Ryazan Oblast',
+			regionShort: 'RYA', // 'RU-RYA', // ISO 3166 code
+			regionSlug: 'ryazan-oblast',
 			weight: 50,
-			cities: ["Ryazan"],
+			cities: ['Ryazan'],
 			extendedData: {
 				zipFormat: {
-					format: "39-***"
+					format: '39-***'
 				},
 				phoneFormat: {
 					areaCodes: [491]
@@ -702,14 +702,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Sakhalin Oblast",
-			regionShort: "SAK", // "RU-SAK", // ISO 3166 code
-			regionSlug: "sakhalin-oblast",
+			regionName: 'Sakhalin Oblast',
+			regionShort: 'SAK', // 'RU-SAK', // ISO 3166 code
+			regionSlug: 'sakhalin-oblast',
 			weight: 50,
-			cities: ["Sakhalin"],
+			cities: ['Sakhalin'],
 			extendedData: {
 				zipFormat: {
-					format: "69}***"
+					format: '69}***'
 				},
 				phoneFormat: {
 					areaCodes: [424]
@@ -717,14 +717,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Samara Oblast",
-			regionShort: "SAM", // "RU-SAM", // ISO 3166 code
-			regionSlug: "samara-oblast",
+			regionName: 'Samara Oblast',
+			regionShort: 'SAM', // 'RU-SAM', // ISO 3166 code
+			regionSlug: 'samara-oblast',
 			weight: 50,
-			cities: ["Samara", "Tolyatti"],
+			cities: ['Samara', 'Tolyatti'],
 			extendedData: {
 				zipFormat: {
-					format: "44^***"
+					format: '44^***'
 				},
 				phoneFormat: {
 					areaCodes: [846, 848]
@@ -732,14 +732,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Saratov Oblast",
-			regionShort: "SAR", // "RU-SAR", // ISO 3166 code
-			regionSlug: "saratov-oblast",
+			regionName: 'Saratov Oblast',
+			regionShort: 'SAR', // 'RU-SAR', // ISO 3166 code
+			regionSlug: 'saratov-oblast',
 			weight: 50,
-			cities: ["Saratov"],
+			cities: ['Saratov'],
 			extendedData: {
 				zipFormat: {
-					format: "41+***"
+					format: '41+***'
 				},
 				phoneFormat: {
 					areaCodes: [845]
@@ -747,14 +747,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Smolensk Oblast",
-			regionShort: "SMO", // "RU-SMO", // ISO 3166 code
-			regionSlug: "smolensk-oblast",
+			regionName: 'Smolensk Oblast',
+			regionShort: 'SMO', // 'RU-SMO', // ISO 3166 code
+			regionSlug: 'smolensk-oblast',
 			weight: 50,
-			cities: ["Smolensk"],
+			cities: ['Smolensk'],
 			extendedData: {
 				zipFormat: {
-					format: "21S***"
+					format: '21S***'
 				},
 				phoneFormat: {
 					areaCodes: [481]
@@ -762,14 +762,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Sverdlovsk Oblast",
-			regionShort: "SVE", // "RU-SVE", // ISO 3166 code
-			regionSlug: "sverdlovsk-oblast",
+			regionName: 'Sverdlovsk Oblast',
+			regionShort: 'SVE', // 'RU-SVE', // ISO 3166 code
+			regionSlug: 'sverdlovsk-oblast',
 			weight: 50,
-			cities: ["Yekaterinburg"],
+			cities: ['Yekaterinburg'],
 			extendedData: {
 				zipFormat: {
-					format: "62U***"
+					format: '62U***'
 				},
 				phoneFormat: {
 					areaCodes: [343]
@@ -777,14 +777,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Tambov Oblast",
-			regionShort: "TAM", // "RU-TAM", // ISO 3166 code
-			regionSlug: "tambov-oblast",
+			regionName: 'Tambov Oblast',
+			regionShort: 'TAM', // 'RU-TAM', // ISO 3166 code
+			regionSlug: 'tambov-oblast',
 			weight: 50,
-			cities: ["Tambov"],
+			cities: ['Tambov'],
 			extendedData: {
 				zipFormat: {
-					format: "39Z***"
+					format: '39Z***'
 				},
 				phoneFormat: {
 					areaCodes: [475]
@@ -792,14 +792,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Tomsk Oblast",
-			regionShort: "TOM", // "RU-TOM", // ISO 3166 code
-			regionSlug: "tomsk-oblast",
+			regionName: 'Tomsk Oblast',
+			regionShort: 'TOM', // 'RU-TOM', // ISO 3166 code
+			regionSlug: 'tomsk-oblast',
 			weight: 50,
-			cities: ["Tomsk"],
+			cities: ['Tomsk'],
 			extendedData: {
 				zipFormat: {
-					format: "63S***"
+					format: '63S***'
 				},
 				phoneFormat: {
 					areaCodes: [382]
@@ -807,14 +807,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Tver Oblast",
-			regionShort: "TVE", // "RU-TVE", // ISO 3166 code
-			regionSlug: "tver-oblast",
+			regionName: 'Tver Oblast',
+			regionShort: 'TVE', // 'RU-TVE', // ISO 3166 code
+			regionSlug: 'tver-oblast',
 			weight: 50,
-			cities: ["Tver"],
+			cities: ['Tver'],
 			extendedData: {
 				zipFormat: {
-					format: "17&***"
+					format: '17&***'
 				},
 				phoneFormat: {
 					areaCodes: [482]
@@ -822,14 +822,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Tula Oblast",
-			regionShort: "TUL", // "RU-TUL", // ISO 3166 code
-			regionSlug: "tula-oblast",
+			regionName: 'Tula Oblast',
+			regionShort: 'TUL', // 'RU-TUL', // ISO 3166 code
+			regionSlug: 'tula-oblast',
 			weight: 50,
-			cities: ["Tula"],
+			cities: ['Tula'],
 			extendedData: {
 				zipFormat: {
-					format: "30-***"
+					format: '30-***'
 				},
 				phoneFormat: {
 					areaCodes: [487]
@@ -837,14 +837,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Tyumen Oblast",
-			regionShort: "TYU", // "RU-TYU", // ISO 3166 code
-			regionSlug: "tyumen-oblast",
+			regionName: 'Tyumen Oblast',
+			regionShort: 'TYU', // 'RU-TYU', // ISO 3166 code
+			regionSlug: 'tyumen-oblast',
 			weight: 50,
-			cities: ["Tyumen"],
+			cities: ['Tyumen'],
 			extendedData: {
 				zipFormat: {
-					format: "62Q***"
+					format: '62Q***'
 				},
 				phoneFormat: {
 					areaCodes: [345]
@@ -852,14 +852,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Ulyanovsk Oblast",
-			regionShort: "ULY", // "RU-ULY", // ISO 3166 code
-			regionSlug: "ulyanovsk-oblast",
+			regionName: 'Ulyanovsk Oblast',
+			regionShort: 'ULY', // 'RU-ULY', // ISO 3166 code
+			regionSlug: 'ulyanovsk-oblast',
 			weight: 50,
-			cities: ["Ulyanovsk"],
+			cities: ['Ulyanovsk'],
 			extendedData: {
 				zipFormat: {
-					format: "43Z***"
+					format: '43Z***'
 				},
 				phoneFormat: {
 					areaCodes: [842]
@@ -867,14 +867,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Vladimir Oblast",
-			regionShort: "VLA", // "RU-VLA", // ISO 3166 code
-			regionSlug: "vladimir-oblast",
+			regionName: 'Vladimir Oblast',
+			regionShort: 'VLA', // 'RU-VLA', // ISO 3166 code
+			regionSlug: 'vladimir-oblast',
 			weight: 50,
-			cities: ["Vladimir"],
+			cities: ['Vladimir'],
 			extendedData: {
 				zipFormat: {
-					format: "60&***"
+					format: '60&***'
 				},
 				phoneFormat: {
 					areaCodes: [492]
@@ -882,14 +882,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Volgograd Oblast",
-			regionShort: "VGG", // "RU-VGG", // ISO 3166 code
-			regionSlug: "volgograd-oblast",
+			regionName: 'Volgograd Oblast',
+			regionShort: 'VGG', // 'RU-VGG', // ISO 3166 code
+			regionSlug: 'volgograd-oblast',
 			weight: 50,
-			cities: ["Volgograd"],
+			cities: ['Volgograd'],
 			extendedData: {
 				zipFormat: {
-					format: "40U***"
+					format: '40U***'
 				},
 				phoneFormat: {
 					areaCodes: [844]
@@ -897,14 +897,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Vologda Oblast",
-			regionShort: "VLG", // "RU-VLG", // ISO 3166 code
-			regionSlug: "vologda-oblast",
+			regionName: 'Vologda Oblast',
+			regionShort: 'VLG', // 'RU-VLG', // ISO 3166 code
+			regionSlug: 'vologda-oblast',
 			weight: 50,
-			cities: ["Cherepovets", "Vologda"],
+			cities: ['Cherepovets', 'Vologda'],
 			extendedData: {
 				zipFormat: {
-					format: "16&***"
+					format: '16&***'
 				},
 				phoneFormat: {
 					areaCodes: [817, 820]
@@ -912,14 +912,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Voronezh Oblast",
-			regionShort: "VOR", // "RU-VOR", // ISO 3166 code
-			regionSlug: "voronezh-oblast",
+			regionName: 'Voronezh Oblast',
+			regionShort: 'VOR', // 'RU-VOR', // ISO 3166 code
+			regionSlug: 'voronezh-oblast',
 			weight: 50,
-			cities: ["Voronezh"],
+			cities: ['Voronezh'],
 			extendedData: {
 				zipFormat: {
-					format: "39R****"
+					format: '39R****'
 				},
 				phoneFormat: {
 					areaCodes: [473]
@@ -927,14 +927,14 @@ const Russia: GetCountryData = (i18n) => ({
 			}
 		},
 		{
-			regionName: "Yaroslavl Oblast",
-			regionShort: "YAR", // "RU-YAR", // ISO 3166 code
-			regionSlug: "yaroslavl-oblast",
+			regionName: 'Yaroslavl Oblast',
+			regionShort: 'YAR', // 'RU-YAR', // ISO 3166 code
+			regionSlug: 'yaroslavl-oblast',
 			weight: 50,
-			cities: ["Yaroslavl"],
+			cities: ['Yaroslavl'],
 			extendedData: {
 				zipFormat: {
-					format: "15&***"
+					format: '15&***'
 				},
 				phoneFormat: {
 					areaCodes: [485]

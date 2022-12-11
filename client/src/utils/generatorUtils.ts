@@ -2,7 +2,6 @@ import { DataTypeFolder } from '../../_plugins';
 import {
 	DataTypeBatchGeneratedPayload,
 	DataTypeWorkerInterface,
-	GenerationContext,
 	UnchangedGenerationData, WorkerInterface
 } from '~types/generator';
 import { CountryDataType, CountryNamesMap } from '~types/countries';
@@ -17,9 +16,8 @@ import { WorkerUtils } from '~utils/workerUtils';
  */
 
 let isPaused = false;
-let lastMainProcessOptions: MainProcessOptions | null = null;
+let lastMainProcessOptions: MainProcessOptionsBrowser | MainProcessOptionsNode | null = null;
 let currentSpeed: number; // TODO possible range?
-
 const workerQueue: any = {};
 
 // top-level function
@@ -32,7 +30,6 @@ interface OnBatchComplete {
 }
 
 type BaseGenerateDataTypesProps = {
-	generationContext: GenerationContext;
 	numResults: number;
 	batchSize: number;
 	i18n: any;
@@ -58,8 +55,7 @@ export interface GenerateDataTypes {
 	(options: GenerateDataTypesNodeProps | GenerateDataTypesBrowserProps): void;
 }
 
-type MainProcessOptions = {
-	generationContext: GenerationContext;
+type MainProcessBaseOptions = {
 	numResults: number;
 	numBatches: number;
 	batchSize: number;
@@ -70,7 +66,15 @@ type MainProcessOptions = {
 	dataTypeInterface: DataTypeWorkerInterface;
 	onBatchComplete: OnBatchComplete;
 	countryData: CountryDataType;
-	unchanged?: UnchangedGenerationData;
+	unchanged: UnchangedGenerationData;
+}
+
+type MainProcessOptionsNode = MainProcessBaseOptions & {
+	workerUtilsUrl: string;
+}
+
+type MainProcessOptionsBrowser = MainProcessBaseOptions & {
+	workerUtils: WorkerUtils;
 }
 
 type GenerateExportTypesProps = {
@@ -127,7 +131,7 @@ const pauseGeneration = (): void => {
 
 const continueGeneration = (): void => {
 	isPaused = false;
-	mainProcess(lastMainProcessOptions as MainProcessOptions);
+	mainProcess(lastMainProcessOptions as MainProcessOptionsBrowser | MainProcessOptionsNode);
 };
 
 const setSpeed = (speed: number): void => {
@@ -148,8 +152,8 @@ export default {
 // -------------------------------------------------------------------------------------------------------------------
 // Internal methods
 
-const mainProcess = (mainProcessOptions: MainProcessOptions): void => {
-	const { numResults, numBatches, batchSize, batchNum, template, unchanged, i18n, countryNames, onBatchComplete } = mainProcessOptions;
+const mainProcess = (mainProcessOptions: MainProcessOptionsBrowser | MainProcessOptionsNode): void => {
+	const { numResults, numBatches, batchSize, batchNum, ...other } = mainProcessOptions;
 	const { firstRow, lastRow } = getBatchInfo({ numResults, numBatches, batchSize, batchNum });
 	const lagTime = (100 - currentSpeed) * 50;
 
@@ -160,17 +164,7 @@ const mainProcess = (mainProcessOptions: MainProcessOptions): void => {
 	}
 
 	setTimeout(() => {
-		generateDataTypeBatch({
-			template,
-			numResults,
-			unchanged,
-			i18n,
-			firstRow,
-			lastRow,
-			batchNum,
-			countryNames,
-			onBatchComplete
-		})
+		generateDataTypeBatch({ firstRow, lastRow, numResults, batchNum, ...other })
 			.then(() => {
 				if (batchNum === numBatches) {
 					return;
@@ -213,14 +207,16 @@ const getBatchInfo: GetBatchInfo = ({ numResults, numBatches, batchSize, batchNu
 
 
 type GenerateDataTypeBaseBatchProps = {
-	template: GenerationTemplate;
-	unchanged: UnchangedGenerationData;
 	numResults: number;
-	i18n: any;
 	firstRow: number;
 	lastRow: number;
 	batchNum: number;
+	i18n: any;
+	template: GenerationTemplate;
+	unchanged: UnchangedGenerationData;
+	countryData: CountryDataType;
 	countryNames: CountryNamesMap;
+	dataTypeInterface: DataTypeWorkerInterface;
 	onBatchComplete: OnBatchComplete;
 }
 
@@ -234,14 +230,14 @@ type GenerateDataTypeBrowserBatchProps = GenerateDataTypeBaseBatchProps & {
 
 // this resolve the promise for every batch of data generated
 const generateDataTypeBatch = (options: GenerateDataTypeBrowserBatchProps | GenerateDataTypeNodeBatchProps): Promise<any> => new Promise((resolve) => {
-	const { firstRow, lastRow, onBatchComplete } = options;
+	const { batchNum, numResults, firstRow, lastRow, onBatchComplete } = options;
 	const rowPromises: any = [];
 
 	// rows are independent! The only necessarily synchronous bit is between process batches. So here we just run
 	// them all in a loop
 	for (let rowNum=firstRow; rowNum<=lastRow; rowNum++) {
 		const currRowData: any[] = [];
-		rowPromises.push(processDataTypeBatchGroup(template, rowNum, i18n, currRowData, unchanged, countryNames));
+		rowPromises.push(processDataTypeBatchGroup({ rowNum, currRowData, ...options }));
 	}
 
 	Promise.all(rowPromises)
@@ -256,22 +252,43 @@ const generateDataTypeBatch = (options: GenerateDataTypeBrowserBatchProps | Gene
 		});
 });
 
-const processDataTypeBatchGroup = (generationTemplate: any, rowNum: number, i18n: any, currRowData: any[], unchanged: any, countryNames: any): any => {
-	const processBatches = Object.keys(generationTemplate);
+type ProcessDataTypeBatchGroupBaseProps = {
+	currRowData: any[]; // TODO
+	template: GenerationTemplate;
+	rowNum: number;
+	i18n: any;
+	unchanged: UnchangedGenerationData;
+	countryData: CountryDataType;
+	countryNames: CountryNamesMap;
+	dataTypeInterface: DataTypeWorkerInterface;
+}
+
+type ProcessDataTypeBatchGroupNode = ProcessDataTypeBatchGroupBaseProps & {
+	workerUtils: WorkerUtils;
+}
+
+type ProcessDataTypeBatchGroupBrowser = ProcessDataTypeBatchGroupBaseProps & {
+	workerUtilsUrl: string;
+}
+
+const processDataTypeBatchGroup = (options: ProcessDataTypeBatchGroupNode | ProcessDataTypeBatchGroupBrowser): any => {
+	const { template, currRowData } = options;
+
+	const processGroups = Object.keys(template);
 
 	return new Promise((resolveAll): any => {
-		let sequence = Promise.resolve();
+		let group = Promise.resolve();
 
 		// process each batch sequentially. This ensures the data generated from one processing batch is available to any
 		// dependent children. For example, the Region data type needs the Country data being generated first so it
 		// knows what country regions to generate if a mapping had been selected in the UI
-		processBatches.forEach((processBatchNumberStr, batchIndex) => {
+		processGroups.forEach((processBatchNumberStr, batchIndex) => {
 			const processBatchNum = parseInt(processBatchNumberStr, 10);
-			const currBatch = generationTemplate[processBatchNum];
+			const currBatch = template[processBatchNum];
 
 			// yup. We're mutating the currRowData param on each loop. We don't care hhahaha!!! Up yours, linter!
-			sequence = sequence
-				.then(() => processDataTypeBatch(currBatch, rowNum, i18n, currRowData, unchanged, countryNames))
+			group = group
+				.then(() => processDataTypeBatch({ cells: currBatch, ...options }))
 				.then((promises) => {
 
 					// this bit's sneaky. It ensures that the CURRENT batch within the row being generated is fully processed
@@ -290,8 +307,8 @@ const processDataTypeBatchGroup = (generationTemplate: any, rowNum: number, i18n
 								}
 								resolveBatch();
 
-								if (batchIndex === processBatches.length-1) {
-									currRowData.sort((a, b) =>a.colIndex < b.colIndex ? -1 : 1);
+								if (batchIndex === processGroups.length-1) {
+									currRowData.sort((a, b) => a.colIndex < b.colIndex ? -1 : 1);
 									resolveAll(currRowData.map((row) => row.data));
 								}
 							});
@@ -302,7 +319,7 @@ const processDataTypeBatchGroup = (generationTemplate: any, rowNum: number, i18n
 };
 
 type ProcessDataTypeBatchBaseProps = {
-	cells: any[];
+	cells: any[]; // TODO
 	rowNum: number;
 	i18n: any;
 	currRowData: any;
@@ -322,6 +339,7 @@ type ProcessDataTypeBatchBrowserProps = ProcessDataTypeBatchBaseProps & {
 
 const processDataTypeBatch = (options: ProcessDataTypeBatchNodeProps | ProcessDataTypeBatchBrowserProps): Promise<any>[] => {
 	const { cells, unchanged, rowNum, i18n, dataTypeInterface, currRowData, ...otherOptions } = options;
+
 	return cells.map((currCell: any) => {
 		const dataType = currCell.dataType;
 
@@ -329,6 +347,7 @@ const processDataTypeBatch = (options: ProcessDataTypeBatchNodeProps | ProcessDa
 			if (unchanged[currCell.colIndex]) {
 				resolve(unchanged[currCell.colIndex][rowNum - 1]);
 			} else {
+
 				queueJob(dataType, dataTypeInterface[dataType], {
 					rowNum: rowNum,
 					i18n: i18n.dataTypes[dataType],
@@ -354,6 +373,7 @@ const queueJob = (dataType: DataTypeFolder, workerInterface: WorkerInterface, pa
 		resolve,
 		reject
 	});
+
 	processQueue(dataType, workerInterface);
 };
 

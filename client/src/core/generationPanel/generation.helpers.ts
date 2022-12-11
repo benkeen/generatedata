@@ -62,7 +62,6 @@ export const getRowGenerationRatePerSecond = (
 
 	// the math below relies on this being correct otherwise we'll get stuck in an infinite loop
 	if (batchEndTime <= batchStartTime) {
-		console.log("-- ", batchEndTime, batchStartTime);
 		throw Error('invalid data passed to getRowGenerationRatePerSecond()');
 	}
 

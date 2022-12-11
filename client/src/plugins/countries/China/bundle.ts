@@ -7,11 +7,11 @@ const China: GetCountryData = (i18n) => ({
 	continent: 'asia',
 	extendedData: {
 		zipFormat: {
-			format: "Xxxxxx"
+			format: 'Xxxxxx'
 		},
 		phoneFormat: {
 			displayFormats: [
-				"0xxx xxxx xxxx"
+				'0xxx xxxx xxxx'
 			]
 		}
 	},
@@ -19,82 +19,82 @@ const China: GetCountryData = (i18n) => ({
 		{
 			regionName: i18n.regionNorthChina,
 			regionShort: i18n.regionNorthChina,
-			regionSlug: "north_china",
+			regionSlug: 'north_china',
 			weight: 164,
 			cities: [
-				"Beijing",
-				"Tianjin",
-				"Hebei",
-				"Shanxi",
-				"Inner Mongolia"
+				'Beijing',
+				'Tianjin',
+				'Hebei',
+				'Shanxi',
+				'Inner Mongolia'
 			]
 		},
 		{
 			regionName: i18n.regionNortheastChina,
 			regionShort: i18n.regionNortheastChina,
-			regionSlug: "northeast_china",
+			regionSlug: 'northeast_china',
 			weight: 109,
 			cities: [
-				"Liaoning",
-				"Jilin",
-				"Heilongjiang"
+				'Liaoning',
+				'Jilin',
+				'Heilongjiang'
 			]
 		},
 		{
 			regionName: i18n.regionEastChina,
 			regionShort: i18n.regionEastChina,
-			regionSlug: "east_china",
+			regionSlug: 'east_china',
 			weight: 384,
 			cities: [
-				"Shanghai",
-				"Jiangsu",
-				"Zhejiang",
-				"Anhui",
-				"Fujian",
-				"Jiangxi",
-				"Shandong"
+				'Shanghai',
+				'Jiangsu',
+				'Zhejiang',
+				'Anhui',
+				'Fujian',
+				'Jiangxi',
+				'Shandong'
 			]
 		},
 		{
 			regionName: i18n.regionSouthCentralChina,
 			regionShort: i18n.regionSouthCentralChina,
-			regionSlug: "south_central_china",
+			regionSlug: 'south_central_china',
 			weight: 384,
 			cities: [
-				"Henan",
-				"Hubei",
-				"Hunan",
-				"Guangdong",
-				"Guangxi",
-				"Hainan",
-				"Hong Kong",
-				"Macau"
+				'Henan',
+				'Hubei',
+				'Hunan',
+				'Guangdong',
+				'Guangxi',
+				'Hainan',
+				'Hong Kong',
+				'Macau'
 			]
 		},
 		{
 			regionName: i18n.regionSouthwestChina,
 			regionShort: i18n.regionSouthwestChina,
-			regionSlug: "southwest_china",
+			regionSlug: 'southwest_china',
 			weight: 192,
 			cities: [
-				"Chongqing",
-				"Sichuan",
-				"Guizhou",
-				"Yunnan",
-				"Tibet"
+				'Chongqing',
+				'Sichuan',
+				'Guizhou',
+				'Yunnan',
+				'Tibet'
 			]
 		},
 		{
 			regionName: i18n.regionNorthwestChina,
 			regionShort: i18n.regionNorthwestChina,
-			regionSlug: "northwest_china",
+			regionSlug: 'northwest_china',
 			weight: 96,
 			cities: [
-				"Shaanxi",
-				"Gansu",
-				"Qinghai",
-				"Ningxia",
-				"Xinjiang"
+				'Shaanxi',
+				'Gansu',
+				'Qinghai',
+				'Ningxia',
+				'Xinjiang'
 			]
 		}
 	]

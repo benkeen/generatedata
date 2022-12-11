@@ -4,8 +4,6 @@ import {GDLocale} from "~types/general";
 export { CountryNameFiles } from '../_namePlugins';
 export { DataTypeGenerationOptions, ExportType, ExportTypeGenerationOptions };
 
-export type GenerationContext = 'node' | 'browser';
-
 /**
  * This is the public type for what users supply to the generation method.
  *

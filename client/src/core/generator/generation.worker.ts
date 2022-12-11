@@ -20,10 +20,9 @@ context.onmessage = (e: any) => {
 	} else if (e.data.action === GenerationWorkerActionType.ProcessDataTypesOnly) {
 
 		// TODO again rethink this.
-		const { batchSize, numResults, unchanged, i18n, template, countryNames, dataTypes, countryData, workerUtils } = e.data;
+		const { batchSize, numResults, unchanged, i18n, template, countryNames, dataTypes, countryData, workerUtilsUrl } = e.data;
 
 		generatorUtils.generateDataTypes({
-			generationContext: 'browser',
 			numResults,
 			batchSize,
 			unchanged,
@@ -33,7 +32,7 @@ context.onmessage = (e: any) => {
 			onBatchComplete: context.postMessage, // TODO need to catch errors too? vs. dataTypeInterface.onSuccess
 			dataTypeInterface: getDataTypeWorkerInterface(dataTypes),
 			countryData,
-			workerUtils
+			workerUtilsUrl
 		});
 
 	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypesOnly) {

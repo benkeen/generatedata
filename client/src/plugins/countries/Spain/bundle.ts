@@ -8,245 +8,245 @@ import { GetCountryData } from '~types/countries';
 
 const Spain: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
-	countrySlug: "spain",
+	countrySlug: 'spain',
 	regionNames: i18n.regionNames,
-	continent: "europe",
+	continent: 'europe',
 	extendedData: {
 		zipFormat: {
-			format: "xxxxx"
+			format: 'xxxxx'
 		}
 	},
 	regions: [
 		{
-			regionName: "Andalucía",
-			regionShort: "AN",
-			regionSlug: "andalucia",
+			regionName: 'Andalucía',
+			regionShort: 'AN',
+			regionSlug: 'andalucia',
 			weight: 1788,
 			cities: [
-				"Almería",
-				"Cádiz",
-				"Córdoba",
-				"Granada",
-				"Sevilla",
-				"Huelva",
-				"Jaén",
-				"Málaga",
-				"Jerez de la Frontera",
-				"Marbella",
-				"Dos Hermanas",
-				"Algeciras"
+				'Almería',
+				'Cádiz',
+				'Córdoba',
+				'Granada',
+				'Sevilla',
+				'Huelva',
+				'Jaén',
+				'Málaga',
+				'Jerez de la Frontera',
+				'Marbella',
+				'Dos Hermanas',
+				'Algeciras'
 			]
 		},
 		{
-			regionName: "Aragón",
-			regionShort: "AR",
-			regionSlug: "aragon",
+			regionName: 'Aragón',
+			regionShort: 'AR',
+			regionSlug: 'aragon',
 			weight: 286,
 			cities: [
-				"Huesca",
-				"Teruel",
-				"Zaragoza"
+				'Huesca',
+				'Teruel',
+				'Zaragoza'
 			]
 		},
 		{
-			regionName: "Principado de Asturias",
-			regionShort: "AS",
-			regionSlug: "asturias",
+			regionName: 'Principado de Asturias',
+			regionShort: 'AS',
+			regionSlug: 'asturias',
 			weight: 228,
 			cities: [
-				"Oviedo",
-				"Gijón"
+				'Oviedo',
+				'Gijón'
 			]
 		},
 		{
-			regionName: "Cantabria",
-			regionShort: "CA",
-			regionSlug: "cantabria",
+			regionName: 'Cantabria',
+			regionShort: 'CA',
+			regionSlug: 'cantabria',
 			weight: 126,
 			cities: [
-				"Santander"
+				'Santander'
 			]
 		},
 		{
-			regionName: "Castilla - La Mancha",
-			regionShort: "CM",
-			regionSlug: "clm",
+			regionName: 'Castilla - La Mancha',
+			regionShort: 'CM',
+			regionSlug: 'clm',
 			weight: 449,
 			cities: [
-				"Ciudad Real",
-				"Albacete",
-				"Cuenca",
-				"Toledo",
-				"Guadalajara"
+				'Ciudad Real',
+				'Albacete',
+				'Cuenca',
+				'Toledo',
+				'Guadalajara'
 			]
 		},
 		{
-			regionName: "Castilla y León",
-			regionShort: "CL",
-			regionSlug: "cle",
+			regionName: 'Castilla y León',
+			regionShort: 'CL',
+			regionSlug: 'cle',
 			weight: 539,
 			cities: [
-				"Burgos",
-				"León",
-				"Palencia",
-				"Valladolid",
-				"Zamora",
-				"Ávila",
-				"Salamanca",
-				"Segovia",
-				"Soria"
+				'Burgos',
+				'León',
+				'Palencia',
+				'Valladolid',
+				'Zamora',
+				'Ávila',
+				'Salamanca',
+				'Segovia',
+				'Soria'
 			]
 		},
 		{
-			regionName: "Catalunya",
-			regionShort: "CA",
-			regionSlug: "cataluña",
+			regionName: 'Catalunya',
+			regionShort: 'CA',
+			regionSlug: 'cataluña',
 			weight: 1602,
 			cities: [
-				"Barcelona",
-				"Tarragona",
-				"Girona",
-				"Lleida",
-				"L'Hospitalet de Llobregat",
-				"Badalona",
-				"Tarrasa",
-				"Sabadell",
-				"Mataró",
-				"Santa Coloma de Gramenet",
-				"Reus"
+				'Barcelona',
+				'Tarragona',
+				'Girona',
+				'Lleida',
+				'L\'Hospitalet de Llobregat',
+				'Badalona',
+				'Tarrasa',
+				'Sabadell',
+				'Mataró',
+				'Santa Coloma de Gramenet',
+				'Reus'
 			]
 		},
 		{
-			regionName: "Ceuta",
-			regionShort: "CE",
-			regionSlug: "ceuta",
+			regionName: 'Ceuta',
+			regionShort: 'CE',
+			regionSlug: 'ceuta',
 			weight: 18,
 			cities: [
-				"Ceuta"
+				'Ceuta'
 			]
 		},
 		{
-			regionName: "Comunitat Valenciana",
-			regionShort: "CV",
-			regionSlug: "valencia",
+			regionName: 'Comunitat Valenciana',
+			regionShort: 'CV',
+			regionSlug: 'valencia',
 			weight: 1085,
 			cities: [
-				"Castelló",
-				"Valéncia",
-				"Alacant",
-				"Elx",
-				"Torrevieja"
+				'Castelló',
+				'Valéncia',
+				'Alacant',
+				'Elx',
+				'Torrevieja'
 			]
 		},
 		{
-			regionName: "Canarias",
-			regionShort: "CN",
-			regionSlug: "canarias",
+			regionName: 'Canarias',
+			regionShort: 'CN',
+			regionSlug: 'canarias',
 			weight: 448,
 			cities: [
-				"Santa Cruz de Tenerife",
-				"Las Palmas",
-				"San Cristóbal de la Laguna",
-				"Telde"
+				'Santa Cruz de Tenerife',
+				'Las Palmas',
+				'San Cristóbal de la Laguna',
+				'Telde'
 			]
 		},
 		{
-			regionName: "Illes Balears",
-			regionShort: "BA",
-			regionSlug: "baleares",
+			regionName: 'Illes Balears',
+			regionShort: 'BA',
+			regionSlug: 'baleares',
 			weight: 237,
 			cities: [
-				"Palma de Mallorca"
+				'Palma de Mallorca'
 			]
 		},
 		{
-			regionName: "Extremadura",
-			regionShort: "EX",
-			regionSlug: "extremadura",
+			regionName: 'Extremadura',
+			regionShort: 'EX',
+			regionSlug: 'extremadura',
 			weight: 234,
 			cities: [
-				"Badajoz",
-				"Cáceres"
+				'Badajoz',
+				'Cáceres'
 			]
 		},
 		{
-			regionName: "Galicia",
-			regionShort: "GA",
-			regionSlug: "galicia",
+			regionName: 'Galicia',
+			regionShort: 'GA',
+			regionSlug: 'galicia',
 			weight: 588,
 			cities: [
-				"A Coruña",
-				"Ourense",
-				"Lugo",
-				"Pontevedra",
-				"Vigo"
+				'A Coruña',
+				'Ourense',
+				'Lugo',
+				'Pontevedra',
+				'Vigo'
 			]
 		},
 		{
-			regionName: "Madrid",
-			regionShort: "MA",
-			regionSlug: "madrid",
+			regionName: 'Madrid',
+			regionShort: 'MA',
+			regionSlug: 'madrid',
 			weight: 1375,
 			cities: [
-				"Madrid",
-				"Móstoles",
-				"Alcalá de Henares",
-				"Fuenlabrada",
-				"Leganés",
-				"Getafe",
-				"Alcorcón",
-				"Torrejón de Ardoz",
-				"Parla",
-				"Alcobendas"
+				'Madrid',
+				'Móstoles',
+				'Alcalá de Henares',
+				'Fuenlabrada',
+				'Leganés',
+				'Getafe',
+				'Alcorcón',
+				'Torrejón de Ardoz',
+				'Parla',
+				'Alcobendas'
 			]
 		},
 		{
-			regionName: "Melilla",
-			regionShort: "ME",
-			regionSlug: "melilla",
+			regionName: 'Melilla',
+			regionShort: 'ME',
+			regionSlug: 'melilla',
 			weight: 17,
 			cities: [
-				"Melilla"
+				'Melilla'
 			]
 		},
 		{
-			regionName: "Murcia",
-			regionShort: "MU",
-			regionSlug: "murcia",
+			regionName: 'Murcia',
+			regionShort: 'MU',
+			regionSlug: 'murcia',
 			weight: 312,
 			cities: [
-				"Murcia",
-				"Cartagena"
+				'Murcia',
+				'Cartagena'
 			]
 		},
 		{
-			regionName: "Navarra",
-			regionShort: "NA",
-			regionSlug: "navarra",
+			regionName: 'Navarra',
+			regionShort: 'NA',
+			regionSlug: 'navarra',
 			weight: 136,
 			cities: [
-				"Pamplona"
+				'Pamplona'
 			]
 		},
 		{
-			regionName: "Euskadi",
-			regionShort: "PV",
-			regionSlug: "paisvasco",
+			regionName: 'Euskadi',
+			regionShort: 'PV',
+			regionSlug: 'paisvasco',
 			weight: 464,
 			cities: [
-				"Bilbo",
-				"Donosti",
-				"Gasteiz",
-				"Baracaldo"
+				'Bilbo',
+				'Donosti',
+				'Gasteiz',
+				'Baracaldo'
 			]
 		},
 		{
-			regionName: "La Rioja",
-			regionShort: "LR",
-			regionSlug: "larioja",
+			regionName: 'La Rioja',
+			regionShort: 'LR',
+			regionSlug: 'larioja',
 			weight: 68,
 			cities: [
-				"Logroño"
+				'Logroño'
 			]
 		}
 	]
