@@ -3,6 +3,7 @@ import { UnchangedGenerationData } from '~types/generator';
 import { CountryDataType, CountryNamesMap } from '~types/countries';
 import { DataTypeMap } from '~types/dataTypes';
 import { ExportTypeFolder } from '../../../_plugins';
+import { ExportTypeMap } from '~types/exportTypes';
 
 export enum GenerationWorkerActionType {
 	Generate = 'GENERATE',
@@ -52,11 +53,18 @@ export type GenerateAction = {
 		numResults: number;
 		batchSize: number;
 		speed: number;
+		columns: any; // TODO
 		i18n: any;
 		template: GenerationTemplate;
-
-		workerResources: any; // TODO
-		// unchanged: data.unchanged || {},
+		countryData: CountryDataType;
+		countryNames: CountryNamesMap;
+		workerUtilsUrl: string;
+		dataTypes: DataTypeMap;
+		exportType: ExportTypeFolder;
+		exportTypes: ExportTypeMap;
+		exportTypeSettings: any;
+		stripWhitespace: boolean;
+		logDataBatch: () => void;
 	};
 };
 

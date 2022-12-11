@@ -16,17 +16,14 @@ const mapStateToProps = (state: any): Partial<EngineProps> & { packetId: any } =
 		packetId,
 		fullI18n: selectors.getI18n(state),
 		packet,
-		workerResources: {},
 		countryNames: coreUtils.getCountryNames()
 	};
 
 	if (packet !== null) {
-		props.workerResources = {
-			workerUtilsUrl: coreUtils.getWorkerUtilsUrl(),
-			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state)),
-			dataTypes: coreUtils.getDataTypeWorkerMap(packet.config.dataTypes),
-			countryData: getCountryData()
-		};
+		props.workerUtilsUrl = coreUtils.getWorkerUtilsUrl();
+		props.exportTypes = coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state));
+		props.dataTypes = coreUtils.getDataTypeWorkerMap(packet.config.dataTypes);
+		props.countryData = getCountryData();
 	}
 
 	return props;
@@ -41,9 +38,11 @@ const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): Engine
 
 	return {
 		...stateProps,
-		logDataBatch: (numGenRows: number, dataStr: string): GDAction => (
-			dispatch(packetActions.logDataBatch(packetId, numGenRows, dataStr))
-		)
+		logDataBatch: (numGenRows: number, dataStr: string): any => { // GDAction
+			console.log('log data batch: ', numGenRows, dataStr);
+
+			// dispatch(packetActions.logDataBatch(packetId, numGenRows, dataStr))
+		}
 	};
 };
 

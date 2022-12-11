@@ -4,8 +4,6 @@ import C from '~core/constants';
 import { getLocale, getStrings } from '~utils/langUtils';
 import * as React from 'react';
 
-// export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
-
 export type LoadedExportTypes = {
 	[name in ExportTypeFolder]?: ETBundle
 }
@@ -15,6 +13,7 @@ const loadedExportTypes: LoadedExportTypes = {};
 
 let cachedGroupedExportTypes: any;
 let lastLocale: any;
+
 export const getGroupedExportTypes = (): any => {
 	const locale = getLocale();
 	const i18n = getStrings();

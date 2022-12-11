@@ -29,7 +29,38 @@ context.onmessage = (e: GenerationActions) => {
 			exportTypeInterface: getWorkerInterface(e.data.exportTypes[e.data.exportType])
 		});
 	} else if (e.data.action === GenerationWorkerActionType.Generate) {
+		const {
+			columns, numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData, stripWhitespace,
+			exportTypeSettings, exportTypes, exportType, dataTypes
+		} = e.data;
 
+		const onBatchComplete = ({ data }: any): void => {
+			const { completedBatchNum, numGeneratedRows, generatedData } = data;
+			const isLastBatch = numGeneratedRows >= numResults;
+			const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));
+
+			generatorUtils.generateExportTypes({
+				numResults,
+				isFirstBatch: completedBatchNum === 1,
+				isLastBatch,
+				rows: displayData,
+				columns,
+				stripWhitespace,
+				settings: exportTypeSettings,
+				workerUtilsUrl,
+				onComplete: (data: any): void => {
+					console.log("...", data);
+					//context.postMessage(data)
+				},
+				exportTypeInterface: getWorkerInterface(exportTypes[exportType] as string)
+			});
+		};
+
+		generatorUtils.generateDataTypes({
+			numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData,
+			onBatchComplete,
+			dataTypeInterface: getDataTypeWorkerInterface(dataTypes)
+		});
 	}
 };
 
