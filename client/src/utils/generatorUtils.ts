@@ -358,8 +358,6 @@ const processDataTypeBatch = (options: ProcessDataTypeBatchNodeProps | ProcessDa
 			if (unchanged[currCell.colIndex]) {
 				resolve(unchanged[currCell.colIndex][rowNum - 1]);
 			} else {
-				console.log('TODO missing countryNames -> ', otherOptions);
-
 				queueJob(dataType, dataTypeInterface[dataType], {
 					rowNum: rowNum,
 					i18n: i18n.dataTypes[dataType],

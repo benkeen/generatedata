@@ -1,65 +1,32 @@
 import generatorUtils from '~utils/generatorUtils';
-import { GenerationWorkerActionType } from '~core/generator/generation.types';
+import {GenerationActions, GenerationWorkerActionType} from '~core/generator/generation.types';
 import {DataTypeWorkerInterface, WorkerInterface} from "~types/generator";
+import {DataTypeMap} from "~types/dataTypes";
 
 const context: Worker = self as any;
 const workerCache: any = {};
-const abortedMessageIds: any = {};
 
-// TODO type!
-context.onmessage = (e: any) => {
+context.onmessage = (e: GenerationActions) => {
 	if (e.data.action === GenerationWorkerActionType.Pause) {
 		generatorUtils.pause();
 	} else if (e.data.action === GenerationWorkerActionType.Abort) {
-		generatorUtils.pause(); // TODO
+		generatorUtils.pause();
 	} else if (e.data.action === GenerationWorkerActionType.Continue) {
 		generatorUtils.continue();
 	} else if (e.data.action === GenerationWorkerActionType.SetSpeed) {
 		generatorUtils.setSpeed(e.data.speed);
-
 	} else if (e.data.action === GenerationWorkerActionType.ProcessDataTypesOnly) {
-
-		// TODO again rethink this.
-		const { batchSize, numResults, unchanged, i18n, template, countryNames, dataTypes, countryData, workerUtilsUrl } = e.data;
-
 		generatorUtils.generateDataTypes({
-			numResults,
-			batchSize,
-			unchanged,
-			i18n,
-			template,
-			countryNames,
-			onBatchComplete: context.postMessage, // TODO need to catch errors too? vs. dataTypeInterface.onSuccess
-			dataTypeInterface: getDataTypeWorkerInterface(dataTypes),
-			countryData,
-			workerUtilsUrl
+			...e.data,
+			onBatchComplete: context.postMessage,
+			dataTypeInterface: getDataTypeWorkerInterface(e.data.dataTypes),
 		});
-
 	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypesOnly) {
-		const {
-			_action, _messageId, rows, columns, isFirstBatch, isLastBatch, exportType, numResults,
-			exportTypeSettings: settings, stripWhitespace, workerUtilsUrl, exportTypes
-		} = e.data;
-
-		if (_action === 'abort') {
-			abortedMessageIds[_messageId] = true;
-		}
-
 		generatorUtils.generateExportTypes({
-			isFirstBatch,
-			isLastBatch,
-			numResults,
-			rows,
-			columns,
-			settings,
-			stripWhitespace,
-			workerUtilsUrl,
-			onComplete: (data: any) => {
-				if (!abortedMessageIds[_messageId]) {
-					context.postMessage(data);
-				}
-			},
-			exportTypeInterface: getWorkerInterface(exportTypes[exportType])
+			...e.data,
+			settings: e.data.exportTypeSettings,
+			onComplete: (data: any) => context.postMessage(data),
+			exportTypeInterface: getWorkerInterface(e.data.exportTypes[e.data.exportType])
 		});
 	} else if (e.data.action === GenerationWorkerActionType.Generate) {
 
@@ -69,15 +36,16 @@ context.onmessage = (e: any) => {
 // this standardizes the interface for communication between the workers, allowing generatorUtils to work for both
 // workers + backend code
 interface GetWorkerInterface {
-	(workerMap: string): DataTypeWorkerInterface;
+	(workerMap: DataTypeMap): DataTypeWorkerInterface;
 }
 
 // this standardizes the interface for communication between the workers, allowing generatorUtils to work for both
 // workers + backend code
 const getDataTypeWorkerInterface: GetWorkerInterface = (workerMap) => {
 	const workerInterface: DataTypeWorkerInterface = {};
-	Object.keys(workerMap).map((plugin) => {
-		workerInterface[plugin] = getWorkerInterface(workerMap[plugin as any]);
+	Object.keys(workerMap).forEach((plugin) => {
+		// @ts-ignore
+		workerInterface[plugin] = getWorkerInterface(workerMap[plugin]);
 	});
 	return workerInterface;
 };
@@ -85,7 +53,6 @@ const getDataTypeWorkerInterface: GetWorkerInterface = (workerMap) => {
 const getWorkerInterface = (workerPath: string): WorkerInterface => {
 	const worker = workerCache[workerPath] || new Worker(workerPath);
 
-	// TODO check performance
 	let onSuccess: any;
 	const onRegisterSuccess = (f: any) => onSuccess = f;
 	worker.onmessage = (resp: any) => {

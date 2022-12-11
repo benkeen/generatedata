@@ -213,6 +213,7 @@ export const generate = (data: any) => {
 	let maleNamesSource = maleNames;
 	let femaleNamesSource = femaleNames;
 	let lastNamesSource = lastNames;
+
 	if (source === NamesSource.countries) {
 		const randomCountry: string = utils.randomUtils.getRandomArrayValue(selectedCountries);
 		maleNamesSource = countryNames[randomCountry].maleNames;

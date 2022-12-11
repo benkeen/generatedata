@@ -44,16 +44,18 @@ export const getExportTypeWorkerMap = (exportTypes: ExportTypeMap): ExportTypeMa
 export const getWorkerUtilsUrl = (): string => webWorkers.workerUtils;
 
 const messageIds: any = {};
-const liveMessages: any = {};
+// const liveMessages: any = {};
 
 // wrapper method for the worker calls. This just adds a layer to abort any previous unfinished messages that are
 // sent to the worker. It's up to the worker to handle aborting it however it sees fit, but the important part is
 // that it doesn't post back any data from stale requests
 export const performTask = (workerName: string, worker: any, postMessagePayload: any, onMessage: any): void => {
-	if (liveMessages[workerName]) {
-		worker.postMessage({ _action: 'abort', _messageId: messageIds[workerName] });
-		liveMessages[workerName] = false;
-	}
+	// if (liveMessages[workerName]) {
+	// 	console.log('ABORT live one.');
+	//
+	// 	worker.postMessage({ action: 'abort', _messageId: messageIds[workerName] });
+	// 	liveMessages[workerName] = false;
+	// }
 
 	if (!messageIds[workerName]) {
 		messageIds[workerName] = 1;
@@ -85,8 +87,6 @@ export const getCountryNamesBundle = (): any => {
 		)
 			.then((resp: any) => {
 				namesPlugins = resp.default;
-				console.log('get count names!', namesPlugins);
-
 				resolve(resp.default);
 			})
 			.catch((e) => {

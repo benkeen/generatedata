@@ -11,7 +11,8 @@ describe('generation method', () => {
 		i18n: {},
 		countryI18n: {},
 		countryData: {},
-		workerUtilsUrl: ''
+		workerUtilsUrl: '',
+		template: {}
 	};
 
 	it('generates a single item when only lat is selected', () => {
