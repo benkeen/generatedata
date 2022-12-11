@@ -76,11 +76,9 @@ export const generatePreviewString = (props: any): Promise<any> => {
 			isFirstBatch: true,
 			isLastBatch: true,
 			stripWhitespace: false,
-			workerResources: {
-				workerUtils: coreUtils.getWorkerUtils(),
-				exportTypes: coreUtils.getExportTypeWorkerMap(loadedExportTypes),
-				countryData: getCountryData()
-			}
+			workerUtilsUrl: coreUtils.getWorkerUtilsUrl(),
+			exportTypes: coreUtils.getExportTypeWorkerMap(loadedExportTypes),
+			countryData: getCountryData()
 		}, ({ data }: MessageEvent): void => {
 			resolve(data);
 		});

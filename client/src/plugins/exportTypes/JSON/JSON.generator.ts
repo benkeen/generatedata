@@ -6,10 +6,10 @@ const context: Worker = self as any;
 
 let workerUtilsLoaded = false;
 context.onmessage = (e: ETOnMessage) => {
-	const { workerResources, settings, stripWhitespace } = e.data;
+	const { settings, stripWhitespace, workerUtilsUrl } = e.data;
 
 	if (!workerUtilsLoaded) {
-		importScripts(workerResources.workerUtils);
+		importScripts(workerUtilsUrl);
 		workerUtilsLoaded = true;
 	}
 

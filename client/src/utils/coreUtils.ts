@@ -41,8 +41,7 @@ export const getExportTypeWorkerMap = (exportTypes: ExportTypeMap): ExportTypeMa
 	return map;
 };
 
-// TODO rename to getWorkerUtilsFilename ?
-export const getWorkerUtils = (): string => webWorkers.workerUtils;
+export const getWorkerUtilsUrl = (): string => webWorkers.workerUtils;
 
 const messageIds: any = {};
 const liveMessages: any = {};
@@ -86,6 +85,8 @@ export const getCountryNamesBundle = (): any => {
 		)
 			.then((resp: any) => {
 				namesPlugins = resp.default;
+				console.log('get count names!', namesPlugins);
+
 				resolve(resp.default);
 			})
 			.catch((e) => {

@@ -77,7 +77,7 @@ type MainProcessOptionsBrowser = MainProcessBaseOptions & {
 	workerUtils: WorkerUtils;
 }
 
-type GenerateExportTypesProps = {
+type GenerateExportTypesBaseProps = {
 	numResults: number;
 	exportTypeInterface: any; // TODO
 	onComplete: any; // TODO
@@ -86,12 +86,19 @@ type GenerateExportTypesProps = {
 	rows: any; // TODO
 	columns: any; // TODO
 	settings: any; // TODO
-	stripWhitespace: boolean,
-	workerResources: any; // TODO
+	stripWhitespace: boolean;
 };
 
+type GenerateExportTypesNodeProps = GenerateExportTypesBaseProps & {
+	workerUtils: WorkerUtils;
+}
+
+type GenerateExportTypesBrowserProps = GenerateExportTypesBaseProps & {
+	workerUtilsUrl: string;
+}
+
 export interface GenerateExportTypes {
-	(settings: GenerateExportTypesProps): void;
+	(settings: GenerateExportTypesNodeProps | GenerateExportTypesBrowserProps): void;
 }
 
 export const generateDataTypes: GenerateDataTypes = (options): void => {
@@ -108,18 +115,9 @@ export const generateDataTypes: GenerateDataTypes = (options): void => {
 	});
 };
 
-export const generateExportTypes: GenerateExportTypes = ({ exportTypeInterface, onComplete, isFirstBatch, isLastBatch, numResults, rows, columns, settings, stripWhitespace, workerResources }) => {
-	exportTypeInterface.send({
-		isFirstBatch,
-		isLastBatch,
-		numResults,
-		rows,
-		columns,
-		settings,
-		stripWhitespace,
-		workerResources,
-	});
-
+export const generateExportTypes: GenerateExportTypes = (options): void => {
+	const { exportTypeInterface, onComplete, ...other } = options;
+	exportTypeInterface.send(other);
 	exportTypeInterface.onSuccess((e: MessageEvent): void => {
 		onComplete(e.data);
 	});
@@ -230,14 +228,27 @@ type GenerateDataTypeBrowserBatchProps = GenerateDataTypeBaseBatchProps & {
 
 // this resolve the promise for every batch of data generated
 const generateDataTypeBatch = (options: GenerateDataTypeBrowserBatchProps | GenerateDataTypeNodeBatchProps): Promise<any> => new Promise((resolve) => {
-	const { batchNum, numResults, firstRow, lastRow, onBatchComplete } = options;
+	const { batchNum, numResults, firstRow, lastRow, onBatchComplete, ...other } = options;
 	const rowPromises: any = [];
+
+	/*
+	template: GenerationTemplate;
+	i18n: any;
+	unchanged: UnchangedGenerationData;
+	countryData: CountryDataType;
+	countryNames: CountryNamesMap;
+	dataTypeInterface: DataTypeWorkerInterface;
+	 */
 
 	// rows are independent! The only necessarily synchronous bit is between process batches. So here we just run
 	// them all in a loop
 	for (let rowNum=firstRow; rowNum<=lastRow; rowNum++) {
 		const currRowData: any[] = [];
-		rowPromises.push(processDataTypeBatchGroup({ rowNum, currRowData, ...options }));
+		rowPromises.push(processDataTypeBatchGroup({
+			rowNum,
+			currRowData,
+			...other
+		}));
 	}
 
 	Promise.all(rowPromises)
@@ -347,6 +358,7 @@ const processDataTypeBatch = (options: ProcessDataTypeBatchNodeProps | ProcessDa
 			if (unchanged[currCell.colIndex]) {
 				resolve(unchanged[currCell.colIndex][rowNum - 1]);
 			} else {
+				console.log('TODO missing countryNames -> ', otherOptions);
 
 				queueJob(dataType, dataTypeInterface[dataType], {
 					rowNum: rowNum,

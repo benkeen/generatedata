@@ -3,9 +3,9 @@ const context: Worker = self as any;
 
 let workerUtilsLoaded = false;
 context.onmessage = (e: ETOnMessage) => {
-	const { stripWhitespace, workerResources } = e.data;
+	const { stripWhitespace } = e.data;
 	if (!workerUtilsLoaded) {
-		importScripts(workerResources.workerUtils);
+		importScripts(e.data.workerUtilsUrl);
 		workerUtilsLoaded = true;
 	}
 	context.postMessage(generate(e.data, stripWhitespace));

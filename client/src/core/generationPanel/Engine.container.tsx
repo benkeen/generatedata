@@ -22,7 +22,7 @@ const mapStateToProps = (state: any): Partial<EngineProps> & { packetId: any } =
 
 	if (packet !== null) {
 		props.workerResources = {
-			workerUtils: coreUtils.getWorkerUtils(),
+			workerUtilsUrl: coreUtils.getWorkerUtilsUrl(),
 			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state)),
 			dataTypes: coreUtils.getDataTypeWorkerMap(packet.config.dataTypes),
 			countryData: getCountryData()

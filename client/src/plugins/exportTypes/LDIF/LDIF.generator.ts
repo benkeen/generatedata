@@ -5,10 +5,8 @@ const context: Worker = self as any;
 
 let workerUtilsLoaded = false;
 context.onmessage = (e: ETOnMessage) => {
-	const { workerResources } = e.data;
-
 	if (!workerUtilsLoaded) {
-		importScripts(workerResources.workerUtils);
+		importScripts(e.data.workerUtilsUrl);
 		workerUtilsLoaded = true;
 	}
 

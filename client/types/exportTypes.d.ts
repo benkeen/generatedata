@@ -54,16 +54,14 @@ export type ETMessageData = {
 	settings: any; // TODO generic possible? This is the export type settings
 	stripWhitespace: boolean;
 	rowState: any;
-	workerResources: {
-		workerUtils: string;
-		exportTypes: ExportTypeMap;
-		dataTypes: DataTypeMap;
-		countries: CountryMap;
-	};
+	workerUtilsUrl: string;
+	exportTypes: ExportTypeMap;
+	dataTypes: DataTypeMap;
+	countries: CountryMap;
 };
 
 interface ETOnMessage extends MessageEvent {
-	data: ETMessageData
+	data: ETMessageData;
 }
 
 export type ETDownloadPacket = {

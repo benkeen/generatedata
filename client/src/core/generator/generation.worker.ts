@@ -36,17 +36,14 @@ context.onmessage = (e: any) => {
 		});
 
 	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypesOnly) {
-		// TODO all this
 		const {
 			_action, _messageId, rows, columns, isFirstBatch, isLastBatch, exportType, numResults,
-			exportTypeSettings: settings, stripWhitespace
+			exportTypeSettings: settings, stripWhitespace, workerUtilsUrl, exportTypes
 		} = e.data;
 
 		if (_action === 'abort') {
 			abortedMessageIds[_messageId] = true;
 		}
-
-		const workerResources = e.data.workerResources;
 
 		generatorUtils.generateExportTypes({
 			isFirstBatch,
@@ -56,13 +53,13 @@ context.onmessage = (e: any) => {
 			columns,
 			settings,
 			stripWhitespace,
-			workerResources,
+			workerUtilsUrl,
 			onComplete: (data: any) => {
 				if (!abortedMessageIds[_messageId]) {
 					context.postMessage(data);
 				}
 			},
-			exportTypeInterface: getWorkerInterface(workerResources.exportTypes[exportType])
+			exportTypeInterface: getWorkerInterface(exportTypes[exportType])
 		});
 	} else if (e.data.action === GenerationWorkerActionType.Generate) {
 
