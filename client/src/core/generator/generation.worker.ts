@@ -50,7 +50,9 @@ context.onmessage = (e: GenerationActions) => {
 				stripWhitespace,
 				settings: exportTypeSettings,
 				workerUtilsUrl,
-				onComplete: context.postMessage,
+				onComplete: (data: string) => {
+					context.postMessage({ numGeneratedRows, data });
+				},
 				exportTypeInterface: getWorkerInterface(exportTypeWorkerUrl)
 			});
 		};

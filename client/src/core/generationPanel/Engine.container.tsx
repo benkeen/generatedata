@@ -38,11 +38,7 @@ const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): Engine
 
 	return {
 		...stateProps,
-		logDataBatch: (numGenRows: number, dataStr: string): any => { // GDAction
-			console.log('log data batch: ', numGenRows, dataStr);
-
-			// dispatch(packetActions.logDataBatch(packetId, numGenRows, dataStr))
-		}
+		logDataBatch: (numGenRows: number, dataStr: string): GDAction => dispatch(packetActions.logDataBatch(packetId, numGenRows, dataStr))
 	};
 };
 

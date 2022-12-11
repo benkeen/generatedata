@@ -51,10 +51,9 @@ const Engine = ({ packet, fullI18n, logDataBatch, countryNames, dataTypeWorkerMa
 			stripWhitespace
 		});
 
-		generationWorker.onmessage = (data): void => { // numGeneratedRows: number, data: any
-			console.log('result!', data, logDataBatch);
+		generationWorker.onmessage = ({ data }): void => {
+			logDataBatch(data.numGeneratedRows, data.data);
 		};
-
 	}, [numGeneratedRows]);
 
 	useDidUpdate(() => {
