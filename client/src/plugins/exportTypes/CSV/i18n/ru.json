@@ -1,0 +1,6 @@
+{
+	"EXPORT_TYPE_NAME": "CSV",
+	"delimiterChars": "Delimiter char(s)",
+	"validationNoDelimiter": "Please enter a delimiter character for the CSV export type.",
+	"eolChar": "End of line character"
+}

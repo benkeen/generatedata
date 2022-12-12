@@ -86,10 +86,8 @@ const getWorkerInterface = (workerPath: string): WorkerInterface => {
 	let workerInterface: WorkerInterface;
 
 	if (workerCache[workerPath]) {
-		console.log('from cache!', workerPath);
 		workerInterface = workerCache[workerPath];
 	} else {
-		console.log('NEW!', workerPath);
 		const worker = new Worker(workerPath);
 
 		let onSuccess: any;

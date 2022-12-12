@@ -1,0 +1,17 @@
+{
+  "NAME": "Random Number of Words",
+  "DESC": "This Data Type generates a random number of words within the range specified.",
+  "DEFAULT_TITLE": "text",
+  "fromStart": "Start from beginning of text",
+  "generate": "Generate",
+  "to": "to",
+  "words": "words",
+  "help": "This Data Type generates a random number of words within the range specified. You can choose to generate words from the default lorem ipsum dummy text, or supply a text of your own.",
+  "selectTextSource": "Select Text Source",
+  "lipsumDesc": "Lorem ipsum is a standard dummy text based in Latin that's been in use since the 1500's.",
+  "customTextDesc": "This field lets you enter whatever text you would like to be used as the data source.",
+  "source": "Source",
+  "explanation": "This section lets you customize the text used as the data source.",
+  "enterCustomText": "Enter some custom text here. Make sure you enter enough words to cover what you need.",
+  "custom": "Custom"
+}

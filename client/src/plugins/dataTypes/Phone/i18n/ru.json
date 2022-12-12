@@ -1,0 +1,15 @@
+{
+  "NAME": "Phone / Fax",
+  "DESC": "Generates a random phone/fax number in a variety of formats for different countries/regions.",
+  "DEFAULT_TITLE": "phone",
+  "differentFormats": "Different formats",
+  "northAmerica": "North America",
+  "helpText1": "Whatever text you enter into the options text field will be used to generate telephone numbers. Uppercase <b>X</b>'s will be converted to a random number between 1 and 9; lowercase <b>x</b>'s will be converted to a random number between 0 and 9.",
+  "helpText2": "Select one of the values in the example dropdown for some ideas. Remember: any other characters besides <b>X</b> and <b>x</b> will be left unconverted.",
+  "incompleteFields": "The Phone / Fax data type needs to have the format entered in the Options text field. Please fix the following rows:",
+  "uk": "UK",
+  "france": "France",
+  "germany": "Germany",
+  "australia": "Australia",
+  "japan": "Japan"
+}
