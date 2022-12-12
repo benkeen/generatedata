@@ -83,31 +83,40 @@ const getDataTypeWorkerInterface: GetWorkerInterface = (workerMap) => {
 };
 
 const getWorkerInterface = (workerPath: string): WorkerInterface => {
-	const worker = workerCache[workerPath] || new Worker(workerPath);
+	let workerInterface: WorkerInterface;
 
-	let onSuccess: any;
-	const onRegisterSuccess = (f: any) => onSuccess = f;
-	worker.onmessage = (resp: any) => {
-		if (onSuccess) {
-			onSuccess(resp);
-		}
-	};
-	let onError: any;
-	const onRegisterError = (f: any) => onError = f;
-	worker.onerror = (resp: any) => {
-		if (onError) {
-			onError(resp);
-		}
-	};
+	if (workerCache[workerPath]) {
+		console.log('from cache!', workerPath);
+		workerInterface = workerCache[workerPath];
+	} else {
+		console.log('NEW!', workerPath);
+		const worker = new Worker(workerPath);
 
-	const workerInterface: WorkerInterface = {
-		send: worker.postMessage,
-		onSuccess: onRegisterSuccess,
-		onError: onRegisterError
-	};
+		let onSuccess: any;
+		const onRegisterSuccess = (f: any) => onSuccess = f;
+		worker.onmessage = (resp: any) => {
+			if (onSuccess) {
+				onSuccess(resp);
+			}
+		};
+		let onError: any;
+		const onRegisterError = (f: any) => onError = f;
+		worker.onerror = (resp: any) => {
+			if (onError) {
+				onError(resp);
+			}
+		};
 
-	// bind the method to this new worker, not the main generation worker (i.e. this file)
-	workerInterface.send = workerInterface.send.bind(worker);
+		workerInterface = {
+			send: worker.postMessage,
+			onSuccess: onRegisterSuccess,
+			onError: onRegisterError
+		};
+
+		// bind the method to this new worker, not the main generation worker (i.e. this file)
+		workerInterface.send = workerInterface.send.bind(worker);
+		workerCache[workerPath] = workerInterface;
+	}
 
 	return workerInterface;
 };
