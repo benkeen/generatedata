@@ -1,7 +1,7 @@
 {
-  "NAME": "Chilean RUT number",
-  "DESC": "Generates a RUT/RUN Chilean National Identification Number.",
+  "NAME": "Чилийский номер RUT",
+  "DESC": "Генерирует чилийский национальный идентификационный номер RUT/RUN.",
   "DEFAULT_TITLE": "rut",
-  "onlyDigit": "Only verification digit",
-  "digitUppercase": "Uppercase digit"
+  "onlyDigit": "Только проверочная цифра",
+  "digitUppercase": "Заглавная цифра"
 }

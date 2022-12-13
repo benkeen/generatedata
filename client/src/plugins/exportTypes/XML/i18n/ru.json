@@ -1,9 +1,9 @@
 {
   "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Node name",
-  "rowLabel": "Node Name",
-  "rowLabelPlural": "Node Names",
-  "invalidNodeName": "XML node names can only contain the following characters: a-Z, 0-9, -, _, .",
-  "rootNodeName": "Root node name",
-  "recordNodeName": "Record node name"
+  "COL_TITLE": "Имя узла",
+  "rowLabel": "Имя узла",
+  "rowLabelPlural": "Имена узлов",
+  "invalidNodeName": "Имена узлов XML могут содержать только следующие символы: a-Z, 0-9, -, _, .",
+  "rootNodeName": "Имя корневого узла",
+  "recordNodeName": "Записать имя узла"
 }

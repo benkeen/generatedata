@@ -1,7 +1,7 @@
 {
-  "NAME": "Latitude / Longitude",
-  "DESC": "This data type generates a random latitude and/or longitude. If both are selected, it displays both separated by a comma.",
+  "NAME": "Широта Долгота",
+  "DESC": "Этот тип данных генерирует случайную широту и/или долготу. Если выбраны оба, они отображаются через запятую.",
   "DEFAULT_TITLE": "latlng",
-  "latitude": "Latitude",
-  "longitude": "Longitude"
+  "latitude": "Широта",
+  "longitude": "Долгота"
 }

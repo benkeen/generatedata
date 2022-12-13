@@ -1,6 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Column Title",
-  "dataFormat": "Data format",
-  "batchVars": "Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for users generating the data in-page, which generates the results in chunks. For all other situations, both are always true."
+  "COL_TITLE": "Название столбца",
+  "dataFormat": "Формат данных",
+  "batchVars": "Логические значения, определяющие, является ли текущая партия генерируемых результатов первой или последней. Это когда-либо используется только для пользователей, генерирующих данные на странице, которые генерируют результаты в виде фрагментов. Для всех других ситуаций оба всегда верны."
 }

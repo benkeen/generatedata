@@ -1,13 +1,13 @@
 {
-  "NAME": "Organisation Number",
-  "DESC": "Generates organisation numbers, used in some countries for registration of companies, associations etc.",
+  "NAME": "Номер организации",
+  "DESC": "Генерирует номера организаций, используемые в некоторых странах для регистрации компаний, ассоциаций и т. д.",
   "DEFAULT_TITLE": "orgnumber",
-  "help_text": "At the present time only Swedish ones are supported. The organisation numbers are generated according to the format you specify:",
-  "incomplete_fields": "The Organisation Number Data Type needs to have the format entered in the Options text field. Please fix the following rows:",
+  "help_text": "В настоящее время поддерживаются только шведские. Номера организаций генерируются в соответствии с указанным форматом:",
+  "incomplete_fields": "Тип данных «Номер организации» должен иметь формат, введенный в текстовом поле «Параметры». Исправьте следующие строки:",
   "example_OrganisationNumberWithoutHyphen": "167502241016",
   "example_OrganisationNumberWithHyphen": "16750224-1016",
-  "type_OrganisationNumberWithoutHyphen": "A (Swedish) organisation number with 12 siffers and no hyphen",
-  "type_OrganisationNumberWithHyphen": "A (Swedish) organisation number with 12 siffers and a hyphen",
-  "separators": "Separators:",
-  "separator_help": "The characters you enter here will be used as separator in the organisation number fields. Note: you can mix several separators, use | to separate them (for example -|+)"
+  "type_OrganisationNumberWithoutHyphen": "(Шведский) номер организации с 12 сифферсами и без дефиса.",
+  "type_OrganisationNumberWithHyphen": "(Шведский) номер организации с 12 сифферсами и дефисом.",
+  "separators": "Сепараторы:",
+  "separator_help": "Введенные здесь символы будут использоваться в качестве разделителя в полях номера организации. Примечание: вы можете смешивать несколько разделителей, используйте | чтобы разделить их (например -|+)"
 }

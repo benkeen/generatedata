@@ -1,7 +1,7 @@
 {
   "EXPORT_TYPE_NAME": "JSON",
-  "COL_TITLE": "Property Name",
-  "complex": "Complex",
-  "simple": "Simple",
-  "dataStructureFormat": "Data structure format"
+  "COL_TITLE": "Имя свойства",
+  "complex": "Сложный",
+  "simple": "Простой",
+  "dataStructureFormat": "Формат структуры данных"
 }

@@ -1,12 +1,12 @@
 {
   "NAME": "Track2",
-  "DESC": "Track2 is a data format used to store information on magnetic card stripes. It contains the cardholder's account number, encrypted PIN and other discretionary data. The credit card may be of any type (Visa, Mastercard, etc).",
+  "DESC": "Track2 — это формат данных, используемый для хранения информации на полосах магнитных карт. Он содержит номер счета держателя карты, зашифрованный PIN-код и другие необязательные данные. Кредитная карта может быть любого типа (Visa, Mastercard и т.д.).",
   "DEFAULT_TITLE": "track2",
-  "dialogTitle": "Track2 Data Source",
-  "dialogDesc": "This lets you target a PAN row to create more realistic Track2 values. By default it generates arbitrary strings for the PAN, so supplying an actual PAN row ensures a valid and consistent Track2 value.",
-  "panSource": "PAN source",
-  "randomString": "Random string",
-  "panRow": "PAN row",
-  "row": "Row",
-  "customizeSource": "Customize source"
+  "dialogTitle": "Источник данных Track2",
+  "dialogDesc": "Это позволяет нацеливать строку PAN для создания более реалистичных значений Track2. По умолчанию он генерирует произвольные строки для PAN, поэтому предоставление фактической строки PAN обеспечивает допустимое и согласованное значение Track2.",
+  "panSource": "Источник PAN",
+  "randomString": "Случайная строка",
+  "panRow": "PAN строка",
+  "row": "Cтрока",
+  "customizeSource": "Настроить источник"
 }
