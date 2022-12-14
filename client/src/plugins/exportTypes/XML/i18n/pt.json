@@ -3,7 +3,7 @@
   "COL_TITLE": "Nome do nó",
   "rowLabel": "Nome do nó",
   "rowLabelPlural": "Nomes de Nó",
-  "invalidNodeName": "Os nomes de nós XML podem conter apenas os seguintes caracteres: a-Z, 0-9, -, _,.",
+  "invalidNodeName": "Insira um nome de nó XML válido.",
   "rootNodeName": "Nome do nó raiz",
   "recordNodeName": "Nome do nó de registro"
 }

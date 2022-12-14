@@ -3,7 +3,7 @@
   "COL_TITLE": "Nom du nœud",
   "rowLabel": "Nom du nœud",
   "rowLabelPlural": "Noms des nœuds",
-  "invalidNodeName": "Les noms de nœuds XML ne peuvent contenir que les caractères suivants: a-Z, 0-9, -, _,.",
+  "invalidNodeName": "Veuillez entrer un nom de nœud XML valide.",
   "rootNodeName": "Nom du nœud racine",
   "recordNodeName": "Enregistrer le nom du nœud"
 }

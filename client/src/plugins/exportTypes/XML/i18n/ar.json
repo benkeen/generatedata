@@ -3,7 +3,7 @@
   "COL_TITLE": "اسم العقدة",
   "rowLabel": "اسم العقدة",
   "rowLabelPlural": "أسماء العقدة",
-  "invalidNodeName": "يمكن أن يحتوي اسم عقدة XML فقط على الأحرف التالية: a-Z, 0-9, -, _, .",
+  "invalidNodeName": "الرجاء إدخال اسم صالح لعقدة XML.",
   "rootNodeName": "اسم عقدة الجذر",
   "recordNodeName": "تسجيل اسم العقدة"
 }

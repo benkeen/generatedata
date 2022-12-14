@@ -3,7 +3,7 @@
   "COL_TITLE": "नोड का नाम",
   "rowLabel": "नोड का नाम",
   "rowLabelPlural": "नोड नाम",
-  "invalidNodeName": "XML नोड नामों में केवल निम्नलिखित वर्ण हो सकते हैं: a-Z, 0-9, -, _, .",
+  "invalidNodeName": "कृपया एक मान्य XML नोड नाम दर्ज करें।",
   "rootNodeName": "रूट नोड नाम",
   "recordNodeName": "रिकॉर्ड नोड नाम"
 }

@@ -3,7 +3,7 @@
   "COL_TITLE": "Knotenname",
   "rowLabel": "Knotenname",
   "rowLabelPlural": "Knotennamen",
-  "invalidNodeName": "XML-Knotennamen dürfen nur die folgenden Zeichen enthalten: a-Z, 0-9, -, _ ,.",
+  "invalidNodeName": "Bitte geben Sie einen gültigen XML-Knotennamen ein.",
   "rootNodeName": "Stammknotenname",
   "recordNodeName": "Knotennamen aufzeichnen"
 }

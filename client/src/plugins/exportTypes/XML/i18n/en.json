@@ -3,7 +3,7 @@
   "COL_TITLE": "Node name",
   "rowLabel": "Node Name",
   "rowLabelPlural": "Node Names",
-  "invalidNodeName": "XML node names can only contain the following characters: a-Z, 0-9, -, _, .",
+  "invalidNodeName": "Please enter a valid XML node name.",
   "rootNodeName": "Root node name",
   "recordNodeName": "Record node name"
 }

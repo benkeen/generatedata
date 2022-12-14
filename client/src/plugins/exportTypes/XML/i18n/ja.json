@@ -3,7 +3,7 @@
   "COL_TITLE": "ノード名",
   "rowLabel": "ノード名",
   "rowLabelPlural": "ノード名",
-  "invalidNodeName": "XMLノード名には、a-Z、0-9、-、_、。の文字のみを含めることができます。",
+  "invalidNodeName": "有効な XML ノード名を入力してください。",
   "rootNodeName": "ルートノード名",
   "recordNodeName": "レコードノード名"
 }

@@ -3,7 +3,7 @@
   "COL_TITLE": "Имя узла",
   "rowLabel": "Имя узла",
   "rowLabelPlural": "Имена узлов",
-  "invalidNodeName": "Имена узлов XML могут содержать только следующие символы: a-Z, 0-9, -, _, .",
+  "invalidNodeName": "Введите допустимое имя узла XML.",
   "rootNodeName": "Имя корневого узла",
   "recordNodeName": "Записать имя узла"
 }

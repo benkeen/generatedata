@@ -3,7 +3,7 @@
   "COL_TITLE": "Nombre del nodo",
   "rowLabel": "Nombre del nodo",
   "rowLabelPlural": "Nombres de nodo",
-  "invalidNodeName": "Los nombres de nodo XML solo pueden contener los siguientes caracteres: a-Z, 0-9, -, _,.",
+  "invalidNodeName": "Introduzca un nombre de nodo XML válido.",
   "rootNodeName": "Nombre del nodo raíz",
   "recordNodeName": "Registrar nombre de nodo"
 }
