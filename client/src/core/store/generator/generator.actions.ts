@@ -202,21 +202,11 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 			countryData: getCountryData()
 		});
 
-		generationWorker.onmessage = (resp: any): void => {
-			console.log('generationWorker.onmessage, ', resp);
-			// if (!resp.data) {
-			// 	console.log('no response on generationWorker.onmessage');
-			// 	return;
-			// }
-
-			const { pluginType, data } = resp;
-
-			if (pluginType === 'exportType') {
-				console.log('ignoring export type');
+		generationWorker.onmessage = (e: MessageEvent): void => {
+			if (e.data.event !== GenerationWorkerActionType.DataTypesProcessed) {
 				return;
 			}
-
-			const { generatedData } = data;
+			const { generatedData } = e.data.data;
 
 			columns.forEach(({ id }, index: number) => {
 				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {

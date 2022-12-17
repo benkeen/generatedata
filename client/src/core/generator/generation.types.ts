@@ -10,7 +10,9 @@ export enum GenerationWorkerActionType {
 	Pause = 'PAUSE',
 	Abort = 'ABORT',
 	Continue = 'CONTINUE',
-	SetSpeed = 'SET_SPEED'
+	SetSpeed = 'SET_SPEED',
+	DataTypesProcessed = 'DATA_TYPES_PROCESSED',
+	ExportTypeProcessed = 'EXPORT_TYPES_PROCESSED'
 }
 
 export type ProcessDataTypesOnlyAction = {

@@ -1,6 +1,6 @@
 import generatorUtils from '~utils/generatorUtils';
 import { GenerationActions, GenerationWorkerActionType } from '~core/generator/generation.types';
-import { DataTypeWorkerInterface, WorkerInterface } from '~types/generator';
+import {DataTypeBatchGeneratedPayload, DataTypeWorkerInterface, WorkerInterface} from '~types/generator';
 import { DataTypeMap } from '~types/dataTypes';
 
 const context: Worker = self as any;
@@ -18,17 +18,19 @@ context.onmessage = (e: GenerationActions) => {
 	} else if (e.data.action === GenerationWorkerActionType.ProcessDataTypesOnly) {
 		generatorUtils.generateDataTypes({
 			...e.data,
-			onBatchComplete: context.postMessage,
+			onBatchComplete: (data: DataTypeBatchGeneratedPayload) => {
+				context.postMessage({ event: GenerationWorkerActionType.DataTypesProcessed, data });
+			},
 			dataTypeInterface: getDataTypeWorkerInterface(e.data.dataTypeWorkerMap),
 		});
 	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypesOnly) {
 		generatorUtils.generateExportTypes({
 			...e.data,
 			settings: e.data.exportTypeSettings,
-			onComplete: (resp: any) => {
-				context.postMessage({ pluginType: 'exportType', data: resp.data });
+			onComplete: (data: string) => {
+				context.postMessage({ event: GenerationWorkerActionType.ExportTypeProcessed, data });
 			},
-			exportTypeInterface: getWorkerInterface(e.data.exportTypeWorkerUrl, 'exportType')
+			exportTypeInterface: getWorkerInterface(e.data.exportTypeWorkerUrl)
 		});
 
 	// this worker action combines the two above for easier usage. Used in the generator where it doesn't need such
@@ -53,9 +55,13 @@ context.onmessage = (e: GenerationActions) => {
 				settings: exportTypeSettings,
 				workerUtilsUrl,
 				onComplete: (data: string) => {
-					context.postMessage({ numGeneratedRows, data });
+					context.postMessage({
+						event: GenerationWorkerActionType.ExportTypeProcessed,
+						numGeneratedRows,
+						data
+					});
 				},
-				exportTypeInterface: getWorkerInterface(exportTypeWorkerUrl, 'exportType')
+				exportTypeInterface: getWorkerInterface(exportTypeWorkerUrl)
 			});
 		};
 
@@ -79,12 +85,12 @@ const getDataTypeWorkerInterface: GetWorkerInterface = (workerMap) => {
 	const workerInterface: DataTypeWorkerInterface = {};
 	Object.keys(workerMap).forEach((plugin) => {
 		// @ts-ignore
-		workerInterface[plugin] = getWorkerInterface(workerMap[plugin], 'dataType');
+		workerInterface[plugin] = getWorkerInterface(workerMap[plugin]);
 	});
 	return workerInterface;
 };
 
-const getWorkerInterface = (workerPath: string, pluginType: 'dataType' | 'exportType'): WorkerInterface => {
+const getWorkerInterface = (workerPath: string): WorkerInterface => {
 	let workerInterface: WorkerInterface;
 
 	if (workerCache[workerPath]) {
@@ -94,9 +100,9 @@ const getWorkerInterface = (workerPath: string, pluginType: 'dataType' | 'export
 
 		let onSuccess: any;
 		const onRegisterSuccess = (f: any) => onSuccess = f;
-		worker.onmessage = (resp: any) => {
+		worker.onmessage = (resp: any) => { // TODO typings
 			if (onSuccess) {
-				onSuccess({ pluginType, resp });
+				onSuccess(resp);
 			}
 		};
 
@@ -104,7 +110,7 @@ const getWorkerInterface = (workerPath: string, pluginType: 'dataType' | 'export
 		const onRegisterError = (f: any) => onError = f;
 		worker.onerror = (resp: any) => {
 			if (onError) {
-				onError({ pluginType, resp });
+				onError(resp);
 			}
 		};
 

@@ -122,8 +122,8 @@ export const generateExportTypes: GenerateExportTypes = (options): void => {
 	exportTypeInterface.send(other);
 
 	// listen for the response and post
-	exportTypeInterface.onSuccess(({ resp }: any): void => {
-		onComplete({ pluginType: 'exportType', data: resp.data });
+	exportTypeInterface.onSuccess((resp: MessageEvent): void => {
+		onComplete(resp.data);
 	});
 };
 
@@ -308,7 +308,7 @@ const processDataTypeBatchGroup = (options: ProcessDataTypeBatchGroupNode | Proc
 										id: currBatch[i].id,
 										colIndex: currBatch[i].colIndex,
 										dataType: currBatch[i].dataType,
-										data: singleBatchResponses[i].data
+										data: singleBatchResponses[i]
 									});
 								}
 								resolveBatch();
@@ -397,8 +397,8 @@ const processQueue = (dataType: DataTypeFolder, workerInterface: WorkerInterface
 
 	workerInterface.send(payload);
 
-	workerInterface.onSuccess(({ pluginType, resp }: any): void => {
-		resolve({ pluginType, data: resp.data });
+	workerInterface.onSuccess((resp: any): void => {
+		resolve(resp.data);
 		processNextItem(dataType, workerInterface);
 	});
 

@@ -1,5 +1,5 @@
 import { DataTypeGenerationOptions, ExportType, ExportTypeGenerationOptions } from '../_plugins';
-import {GDLocale} from "~types/general";
+import { GDLocale } from '~types/general';
 
 export { CountryNameFiles } from '../_namePlugins';
 export { DataTypeGenerationOptions, ExportType, ExportTypeGenerationOptions };
