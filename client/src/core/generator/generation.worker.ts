@@ -25,8 +25,10 @@ context.onmessage = (e: GenerationActions) => {
 		generatorUtils.generateExportTypes({
 			...e.data,
 			settings: e.data.exportTypeSettings,
-			onComplete: (data: any) => context.postMessage(data), // necessary?
-			exportTypeInterface: getWorkerInterface(e.data.exportTypeWorkerUrl)
+			onComplete: (resp: any) => {
+				context.postMessage({ pluginType: 'exportType', data: resp.data });
+			},
+			exportTypeInterface: getWorkerInterface(e.data.exportTypeWorkerUrl, 'exportType')
 		});
 
 	// this worker action combines the two above for easier usage. Used in the generator where it doesn't need such
@@ -53,7 +55,7 @@ context.onmessage = (e: GenerationActions) => {
 				onComplete: (data: string) => {
 					context.postMessage({ numGeneratedRows, data });
 				},
-				exportTypeInterface: getWorkerInterface(exportTypeWorkerUrl)
+				exportTypeInterface: getWorkerInterface(exportTypeWorkerUrl, 'exportType')
 			});
 		};
 
@@ -77,12 +79,12 @@ const getDataTypeWorkerInterface: GetWorkerInterface = (workerMap) => {
 	const workerInterface: DataTypeWorkerInterface = {};
 	Object.keys(workerMap).forEach((plugin) => {
 		// @ts-ignore
-		workerInterface[plugin] = getWorkerInterface(workerMap[plugin]);
+		workerInterface[plugin] = getWorkerInterface(workerMap[plugin], 'dataType');
 	});
 	return workerInterface;
 };
 
-const getWorkerInterface = (workerPath: string): WorkerInterface => {
+const getWorkerInterface = (workerPath: string, pluginType: 'dataType' | 'exportType'): WorkerInterface => {
 	let workerInterface: WorkerInterface;
 
 	if (workerCache[workerPath]) {
@@ -94,14 +96,15 @@ const getWorkerInterface = (workerPath: string): WorkerInterface => {
 		const onRegisterSuccess = (f: any) => onSuccess = f;
 		worker.onmessage = (resp: any) => {
 			if (onSuccess) {
-				onSuccess(resp);
+				onSuccess({ pluginType, resp });
 			}
 		};
+
 		let onError: any;
 		const onRegisterError = (f: any) => onError = f;
 		worker.onerror = (resp: any) => {
 			if (onError) {
-				onError(resp);
+				onError({ pluginType, resp });
 			}
 		};
 
@@ -113,6 +116,7 @@ const getWorkerInterface = (workerPath: string): WorkerInterface => {
 
 		// bind the method to this new worker, not the main generation worker (i.e. this file)
 		workerInterface.send = workerInterface.send.bind(worker);
+
 		workerCache[workerPath] = workerInterface;
 	}
 

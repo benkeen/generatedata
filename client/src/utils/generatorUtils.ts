@@ -117,9 +117,13 @@ export const generateDataTypes: GenerateDataTypes = (options): void => {
 
 export const generateExportTypes: GenerateExportTypes = (options): void => {
 	const { exportTypeInterface, onComplete, ...other } = options;
+
+	// pass off work to the Export Type worker
 	exportTypeInterface.send(other);
-	exportTypeInterface.onSuccess((e: MessageEvent): void => {
-		onComplete(e.data);
+
+	// listen for the response and post
+	exportTypeInterface.onSuccess(({ resp }: any): void => {
+		onComplete({ pluginType: 'exportType', data: resp.data });
 	});
 };
 
@@ -231,15 +235,6 @@ const generateDataTypeBatch = (options: GenerateDataTypeBrowserBatchProps | Gene
 	const { batchNum, numResults, firstRow, lastRow, onBatchComplete, ...other } = options;
 	const rowPromises: any = [];
 
-	/*
-	template: GenerationTemplate;
-	i18n: any;
-	unchanged: UnchangedGenerationData;
-	countryData: CountryDataType;
-	countryNames: CountryNamesMap;
-	dataTypeInterface: DataTypeWorkerInterface;
-	 */
-
 	// rows are independent! The only necessarily synchronous bit is between process batches. So here we just run
 	// them all in a loop
 	for (let rowNum=firstRow; rowNum<=lastRow; rowNum++) {
@@ -313,7 +308,7 @@ const processDataTypeBatchGroup = (options: ProcessDataTypeBatchGroupNode | Proc
 										id: currBatch[i].id,
 										colIndex: currBatch[i].colIndex,
 										dataType: currBatch[i].dataType,
-										data: singleBatchResponses[i]
+										data: singleBatchResponses[i].data
 									});
 								}
 								resolveBatch();
@@ -402,8 +397,8 @@ const processQueue = (dataType: DataTypeFolder, workerInterface: WorkerInterface
 
 	workerInterface.send(payload);
 
-	workerInterface.onSuccess((response: any): void => {
-		resolve(response.data);
+	workerInterface.onSuccess(({ pluginType, resp }: any): void => {
+		resolve({ pluginType, data: resp.data });
 		processNextItem(dataType, workerInterface);
 	});
 

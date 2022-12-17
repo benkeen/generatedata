@@ -256,6 +256,8 @@ window.gd.localeLoaded(i18n);
 				target = `dist/workers/${filename}`;
 			}
 
+			// TODO detect when the command is run and look for the generated __hash-[filename] content, then update
+			// __
 			commands[`buildWebWorker${index}`] = {
 				command: `npx rollup -c --config-src=${file} --config-target=${target}`
 			};
@@ -320,15 +322,12 @@ window.gd.localeLoaded(i18n);
 			webWorkerMap.workerUtils = newFilename;
 		} else {
 			const [pluginFolder] = oldFile.split('.');
-			const cleanPluginFolder = pluginFolder.replace(/^(DT-|ET-|C-)/, '');
+			const cleanPluginFolder = pluginFolder.replace(/^(DT-|ET-)/, '');
 
 			if (/^DT-/.test(oldFile)) {
 				webWorkerMap.dataTypes[cleanPluginFolder] = newFilename;
 			} else if (/^ET-/.test(oldFile)) {
 				webWorkerMap.exportTypes[cleanPluginFolder] = newFilename;
-			} else {
-				const countryFolder = path.basename(oldPath, path.extname(oldPath)).replace(/(C-)/, '');
-				webWorkerMap.countries[countryFolder] = newFilename;
 			}
 		}
 	};
