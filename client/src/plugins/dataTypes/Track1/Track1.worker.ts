@@ -1,8 +1,8 @@
 import utils from '../../../utils';
-import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { DTWorkerGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 
 let utilsLoaded = false;
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
@@ -28,7 +28,7 @@ export const onmessage = (e: DTOnMessage) => {
 	Longitudinal redundancy check (LRC) — it is one character and a validity character calculated from other
 		data on the track.
 */
-export const generate = (data: DTGenerationData): DTGenerateResult => {
+export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
 	const { nameSource, panSource, targetNameRowId, targetPanRowId } = data.rowState;
 
 	let pan = '';

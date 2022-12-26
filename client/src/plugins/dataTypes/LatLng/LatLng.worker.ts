@@ -1,4 +1,4 @@
-import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { DTWorkerGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 import { getRandomNum } from '~utils/randomUtils';
 
 const DECIMAL_PLACES = 5;
@@ -15,7 +15,7 @@ const cachedMath = {
 	divisor: pow
 };
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
+export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
 	const { rowState } = data;
 
 	const coords = [];
@@ -42,7 +42,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 let utilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;

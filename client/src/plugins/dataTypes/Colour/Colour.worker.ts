@@ -1,31 +1,14 @@
-import rc from 'randomcolor';
-import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
-import { ColourFormat } from './Colour';
-
-export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const { value, luminosity, format, alpha } = data.rowState;
-
-	const display: any = rc({
-		count: 1,
-		hue: value,
-		luminosity: luminosity,
-		format,
-		alpha: format === ColourFormat.rgba ? alpha : 1
-	});
-
-	return {
-		display
-	};
-};
-
+import utils from '../../../utils';
+import { DTWorkerOnMessage } from '~types/dataTypes';
+import { generate } from './Colour.generate';
 
 let utilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
 	}
 
-	postMessage(generate(e.data));
+	postMessage(generate(e.data, utils));
 };

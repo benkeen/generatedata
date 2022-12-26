@@ -1,21 +1,12 @@
 import utils from '../../../utils';
-import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
-
-export const generate = ({ rowState }: DTGenerationData): DTGenerateResult => {
-	const formats = rowState.split('|');
-	let chosenFormat = formats[0];
-	if (formats.length > 1) {
-		chosenFormat = formats[utils.randomUtils.getRandomNum(0, formats.length - 1)];
-	}
-	const val = utils.randomUtils.generateRandomAlphanumericStr(chosenFormat);
-	return { display: val };
-};
+import { DTWorkerOnMessage } from '~types/dataTypes';
+import { generate } from './Alphanumeric.generate';
 
 let utilsLoaded = false;
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
 	}
-	postMessage(generate(e.data));
+	postMessage(generate(e.data, utils));
 };

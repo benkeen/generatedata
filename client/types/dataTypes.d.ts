@@ -1,14 +1,19 @@
 // TODO rename to dataTypePlugins.ts
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
-import {AnyObject, GenerationTemplate} from './general';
+import { AnyObject, GenerationTemplate } from './general';
 import { DataTypeFolder } from '../_plugins';
 import { CountryNamesMap, CountryType } from '~types/countries';
+import { WorkerUtils } from '~utils/workerUtils';
 
 export type DataTypeMap = {
 	[dataType in DataTypeFolder]?: string;
 };
 
 export type DTBundle = {
+	// the node generator method. For the UI, a separate [DataType]-worker.ts file needs to be written to implement
+	// the same interface
+	generate: (data: DTWorkerGenerationData, utils: WorkerUtils) => DTGenerateResult;
+
 	initialState?: any;
 
 	// optional <Example /> React component to show something in the UI for the "Example" column
@@ -115,11 +120,14 @@ export type DTGenerationData = {
 		[key in CountryType]?: any;
 	};
 	template: GenerationTemplate;
+}
+
+export type DTWorkerGenerationData = DTGenerationData & {
 	workerUtilsUrl: string; // this is the URL of the workerUtils worker file
 }
 
-interface DTOnMessage extends MessageEvent {
-	data: DTGenerationData
+interface DTWorkerOnMessage extends MessageEvent {
+	data: DTWorkerGenerationData;
 }
 
 export type DTGenerationExistingRowData = {

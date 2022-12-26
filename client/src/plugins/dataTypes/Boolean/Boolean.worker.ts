@@ -1,28 +1,14 @@
 import utils from '../../../utils';
-import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
-
-export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const formats = data.rowState;
-
-	let val = '';
-	if (formats.length) {
-		let chosenFormat = formats[0];
-		if (formats.length > 1) {
-			chosenFormat = formats[utils.randomUtils.getRandomNum(0, formats.length - 1)];
-		}
-		val = chosenFormat.trim();
-	}
-
-	return { display: val };
-};
+import { DTWorkerOnMessage } from '~types/dataTypes';
+import { generate } from './Boolean.generate';
 
 let utilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
 	}
 
-	postMessage(generate(e.data));
+	postMessage(generate(e.data, utils));
 };

@@ -1,6 +1,6 @@
-import { DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	postMessage(generate(e.data.rowState));
 };
 

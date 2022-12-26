@@ -1,27 +1,14 @@
 import utils from '../../../utils';
-import { DTGenerateResult, DTGenerationData, DTGenerationExistingRowData, DTOnMessage } from '~types/dataTypes';
+import { DTWorkerOnMessage } from '~types/dataTypes';
+import { generate } from './Computed.generate';
 
 let utilsLoaded = false;
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const placeholders: any = {};
-
-	data.existingRowData.forEach((row: DTGenerationExistingRowData) => {
-		placeholders[`ROW${row.colIndex+1}`] = row.data.display;
-		placeholders[`ROWDATA${row.colIndex+1}`] = row;
-	});
-	placeholders.ROWNUM = data.rowNum;
-
-	return {
-		display: utils.generalUtils.template(data.rowState.value, placeholders)
-	};
-};
-
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
 	}
 
-	postMessage(generate(e.data));
+	postMessage(generate(e.data, utils));
 };

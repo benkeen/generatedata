@@ -1,5 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help, getMetadata, rowStateReducer } from './Names';
+import { generate } from './Names.generate';
 
 export { GenerationOptionsType } from './Names';
 
@@ -9,7 +10,8 @@ const bundle: DTBundle = {
 	Options,
 	Help,
 	getMetadata,
-	rowStateReducer
+	rowStateReducer,
+	generate
 };
 
 export default bundle;

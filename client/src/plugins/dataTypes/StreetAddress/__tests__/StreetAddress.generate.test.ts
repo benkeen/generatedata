@@ -1,11 +1,11 @@
 import { generate } from '../StreetAddress.worker';
 import * as sinon from 'sinon';
 import utils from '../../../../utils';
-import { DTGenerationData } from '~types/dataTypes';
+import { DTWorkerGenerationData } from '~types/dataTypes';
 const i18n = require('../i18n/en.json');
 
 describe('generate', () => {
-	let data: DTGenerationData = {
+	let data: DTWorkerGenerationData = {
 		rowNum: 1,
 		rowState: '',
 		i18n,

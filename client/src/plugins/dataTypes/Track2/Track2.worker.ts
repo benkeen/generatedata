@@ -2,10 +2,10 @@
  * @author Ben Keen <ben.keen@gmail.com>, original code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
  */
 import utils from '../../../utils';
-import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { DTWorkerGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 
 let utilsLoaded = false;
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
@@ -30,7 +30,7 @@ export const onmessage = (e: DTOnMessage) => {
 	- Most reader devices do not return this value when the card is swiped to the presentation layer, and
 		use it only to verify the input internally to the reader.
 */
-export const generate = (data: DTGenerationData): DTGenerateResult => {
+export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
 	const { panSource, targetPanRowId } = data.rowState;
 
 	let pan = '';

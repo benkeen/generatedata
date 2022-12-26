@@ -1,11 +1,11 @@
-import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { DTWorkerGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 import { CountryDataType, CountryType, Region } from '~types/countries';
 import utils from '../../../utils';
 import { PostalZipSource } from './PostalZip';
 
 let workerUtilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		workerUtilsLoaded = true;
@@ -14,7 +14,7 @@ export const onmessage = (e: DTOnMessage) => {
 	postMessage(generate(e.data));
 };
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
+export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
 	const { rowState, countryData, existingRowData } = data;
 	const { source, selectedCountries } = rowState;
 

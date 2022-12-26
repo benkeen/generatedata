@@ -1,8 +1,8 @@
 import { format, fromUnixTime } from 'date-fns';
 import utils from '../../../utils';
-import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { DTWorkerGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
+export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
 	const { fromDate, toDate, format: displayFormat } = data.rowState;
 	if (!displayFormat) {
 		return { display: '' };
@@ -13,7 +13,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 let workerUtilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		workerUtilsLoaded = true;

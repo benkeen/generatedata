@@ -1,10 +1,10 @@
 import utils from '../../../utils';
-import { DTOnMessage } from '~types/dataTypes';
+import { DTWorkerOnMessage } from '~types/dataTypes';
 import { generate } from './Names.generate';
 
 let workerUtilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		workerUtilsLoaded = true;

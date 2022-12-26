@@ -1,10 +1,10 @@
 import * as latlng from '../LatLng.worker';
-import { DTGenerationData } from '~types/dataTypes';
+import { DTWorkerGenerationData } from '~types/dataTypes';
 
 // klutzy tests
 describe('generation method', () => {
 
-	const defaultSettings: DTGenerationData = {
+	const defaultSettings: DTWorkerGenerationData = {
 		rowNum: 1,
 		rowState: {},
 		existingRowData: [],

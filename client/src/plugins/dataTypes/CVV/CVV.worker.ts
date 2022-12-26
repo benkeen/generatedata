@@ -1,11 +1,11 @@
 // @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh
 // @package DataTypes
 import utils from '../../../utils';
-import { DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 
 let utilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;

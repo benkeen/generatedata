@@ -1,6 +1,6 @@
-import { DTGenerateResult, DTGenerationData, DTOnMessage } from '~types/dataTypes';
+import { DTGenerateResult, DTWorkerGenerationData, DTWorkerOnMessage } from '~types/dataTypes';
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
+export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
 	const rowNum = data.rowNum;
 	const { loopCount, values } = data.rowState;
 	const numValues = values.length;
@@ -25,7 +25,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 let utilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;

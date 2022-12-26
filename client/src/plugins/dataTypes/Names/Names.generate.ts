@@ -1,5 +1,6 @@
 import { NamesSource } from './Names';
 import { WorkerUtils } from '~utils/workerUtils';
+import { DTGenerateResult } from "~types/dataTypes";
 
 const maleNames = [
 	'Aaron', 'Abbot', 'Abdul', 'Abel', 'Abraham', 'Acton', 'Adam', 'Addison', 'Adrian', 'Ahmed', 'Aidan', 'Akeem',
@@ -174,7 +175,7 @@ const genders = ['male', 'female'];
 
 export const getRandomGender = (utils: WorkerUtils) => utils.randomUtils.getRandomBool() ? genders[0] : genders[1];
 
-export const generate = (data: any, utils: WorkerUtils) => {
+export const generate = (data: any, utils: WorkerUtils): DTGenerateResult => {
 	const { rowState, countryNames } = data;
 
 	// for backward compatibility. Prior to 4.0.6, rowState would just be an array of options

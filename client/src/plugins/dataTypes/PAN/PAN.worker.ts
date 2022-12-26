@@ -1,8 +1,8 @@
-import { DTGenerateResult, DTOnMessage, DTGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTWorkerOnMessage, DTWorkerGenerationData } from '~types/dataTypes';
 import utils from '../../../utils';
 
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
+export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
 	const cards = Object.keys(data.rowState.cardFormats);
 	if (!cards.length) {
 		return { display: '' };
@@ -23,7 +23,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 };
 
 let utilsLoaded = false;
-export const onmessage = (e: DTOnMessage): void => {
+export const onmessage = (e: DTWorkerOnMessage): void => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;

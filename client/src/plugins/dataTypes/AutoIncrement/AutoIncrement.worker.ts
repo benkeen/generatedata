@@ -1,24 +1,14 @@
-import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 import utils from '../../../utils';
-
-export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const rowNum = data.rowNum;
-	const { incrementStart, incrementValue, incrementPlaceholder } = data.rowState;
-
-	let value = ((rowNum - 1) * incrementValue) + incrementStart;
-	if (incrementPlaceholder) {
-		value = utils.generalUtils.template(incrementPlaceholder, { INCR: value });
-	}
-	return { display: value };
-};
+import { DTWorkerOnMessage } from '~types/dataTypes';
+import { generate } from './AutoIncrement.generate';
 
 let utilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
 	}
 
-	postMessage(generate(e.data));
+	postMessage(generate(e.data, utils));
 };

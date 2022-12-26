@@ -1,9 +1,9 @@
-import { DTGenerateResult, DTGenerationData, DTOnMessage } from '~types/dataTypes';
+import { DTGenerateResult, DTWorkerGenerationData, DTWorkerOnMessage } from '~types/dataTypes';
 import utils from '../../../utils';
 
 let utilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
@@ -12,7 +12,7 @@ export const onmessage = (e: DTOnMessage) => {
 	postMessage(generate(e.data));
 };
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
+export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
 	const { from, to, currencySymbol, currencySymbolLocation, includeCents, thousandsSeparator, centsSeparator } = data.rowState;
 
 	let minValue = from;

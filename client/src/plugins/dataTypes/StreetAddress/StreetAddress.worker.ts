@@ -1,12 +1,12 @@
 import utils from '../../../utils';
-import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { DTWorkerGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 
 const getWords = () => {
 	const { words } = utils.stringUtils.getLipsumWords();
 	return words;
 };
 
-export const generate = ({ i18n }: DTGenerationData): DTGenerateResult => {
+export const generate = ({ i18n }: DTWorkerGenerationData): DTGenerateResult => {
 	const { streetTypes, poBox, apNum } = i18n;
 	const streetName = utils.stringUtils.uppercaseWords(utils.randomUtils.generateRandomTextStr(getWords(), false, 1));
 	const streetType = utils.randomUtils.getRandomArrayValue(streetTypes.split(','));
@@ -36,7 +36,7 @@ export const generate = ({ i18n }: DTGenerationData): DTGenerateResult => {
 
 let workerUtilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		workerUtilsLoaded = true;

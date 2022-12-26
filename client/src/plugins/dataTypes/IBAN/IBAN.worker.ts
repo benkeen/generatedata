@@ -2,7 +2,7 @@
  * Original author (PHP): Joeri Noort <joert@joert.net>
  */
 import utils from '../../../utils';
-import { DTGenerateResult, DTOnMessage } from '~types/dataTypes';
+import { DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 
 // Template definition
 // 	b :	NATIONAL_BANK_CODE
@@ -178,7 +178,7 @@ const getOrd = (str: string): number => str.charCodeAt(0);
 
 let utilsLoaded = false;
 
-export const onmessage = (e: DTOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
