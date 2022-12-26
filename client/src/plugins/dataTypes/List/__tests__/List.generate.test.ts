@@ -1,9 +1,5 @@
-import sinon from 'sinon';
-import { onmessage } from '../CVV.generator';
+import { onmessage } from '../List.worker';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
-import utils from '~utils/index';
-
-const i18n = require('../i18n/en.json');
 
 describe('onmessage', () => {
 	const postMessage = jest.fn();
@@ -17,13 +13,16 @@ describe('onmessage', () => {
 		const payload: any = {
 			data: {
 				...getBlankDTGeneratorPayload(),
-				i18n
+				rowState: {
+					listType: 'exactly',
+					values: [123],
+					exactly: 1,
+					atMost: 1
+				}
 			}
 		};
 
-		sinon.stub(utils.randomUtils, 'getRandomNum').onCall(0).returns(123);
-
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: 123 });
+		expect(postMessage).toHaveBeenCalledWith({ display: '123' });
 	});
 });

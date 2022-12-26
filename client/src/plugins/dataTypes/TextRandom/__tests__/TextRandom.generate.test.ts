@@ -1,7 +1,7 @@
 import sinon from 'sinon';
-import { onmessage } from '../Phone.generator';
+import { onmessage } from '../TextRandom.worker';
+import utils from '../../../../utils';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
-import utils from '~utils/index';
 
 describe('onmessage', () => {
 	const postMessage = jest.fn();
@@ -14,14 +14,20 @@ describe('onmessage', () => {
 	it('generates random data', () => {
 		const payload: any = {
 			data: {
-				...getBlankDTGeneratorPayload()
+				...getBlankDTGeneratorPayload(),
+				rowState: {
+					numWordsToGenerate: 1,
+					fromStart: 1,
+					minWords: 1,
+					maxWords: 1,
+					words: ['word']
+				}
 			}
 		};
 
-		sinon.stub(utils.randomUtils, 'getRandomArrayValue').returns(0);
-		sinon.stub(utils.randomUtils, 'generateRandomAlphanumericStr').returns('converted');
+		sinon.stub(utils.randomUtils, 'generateRandomTextStr').returns('testXXX');
 
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: 'converted' });
+		expect(postMessage).toHaveBeenCalledWith({ display: 'testXXX' });
 	});
 });

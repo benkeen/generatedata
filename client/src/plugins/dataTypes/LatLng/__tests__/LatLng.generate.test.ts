@@ -1,4 +1,4 @@
-import * as latlng from '../LatLng.generator';
+import * as latlng from '../LatLng.worker';
 import { DTGenerationData } from '~types/dataTypes';
 
 // klutzy tests

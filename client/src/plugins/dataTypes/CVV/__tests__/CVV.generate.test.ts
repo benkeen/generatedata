@@ -1,6 +1,8 @@
-import { onmessage } from '../AutoIncrement.generator';
-import { initialState } from '../AutoIncrement';
+import sinon from 'sinon';
+import { onmessage } from '../CVV.worker';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
+import utils from '~utils/index';
+
 const i18n = require('../i18n/en.json');
 
 describe('onmessage', () => {
@@ -11,22 +13,17 @@ describe('onmessage', () => {
 		window.importScripts = importScripts;
 	});
 
-	const rowState = {
-		incrementStart: parseInt(initialState.incrementStart, 10),
-		incrementValue: parseInt(initialState.incrementValue, 10),
-		incrementPlaceholder: initialState.incrementPlaceholder
-	};
-
 	it('generates random data', () => {
 		const payload: any = {
 			data: {
 				...getBlankDTGeneratorPayload(),
-				rowState,
 				i18n
 			}
 		};
 
+		sinon.stub(utils.randomUtils, 'getRandomNum').onCall(0).returns(123);
+
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: 1 });
+		expect(postMessage).toHaveBeenCalledWith({ display: 123 });
 	});
 });

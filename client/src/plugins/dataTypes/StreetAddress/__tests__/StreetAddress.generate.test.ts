@@ -1,4 +1,4 @@
-import { generate } from '../StreetAddress.generator';
+import { generate } from '../StreetAddress.worker';
 import * as sinon from 'sinon';
 import utils from '../../../../utils';
 import { DTGenerationData } from '~types/dataTypes';

@@ -23,7 +23,7 @@ context.onmessage = (e: GenerationActions) => {
 			},
 			dataTypeInterface: getDataTypeWorkerInterface(e.data.dataTypeWorkerMap),
 		});
-	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypesOnly) {
+	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypeOnly) {
 		generatorUtils.generateExportTypes({
 			...e.data,
 			settings: e.data.exportTypeSettings,

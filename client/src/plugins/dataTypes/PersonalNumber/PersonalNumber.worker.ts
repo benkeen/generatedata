@@ -4,19 +4,6 @@ export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
 
-export const getMetadata = (): DTMetadata => {
-	// Called before separator is set, so margin should be used
-	// $len = 12 + strlen(static::$sep);
-	const len = 13; // should be enough, allow for max one char sep
-	return {
-		sql: {
-			field: `varchar(${len}) default NULL`,
-			field_Oracle: `varchar2(${len}) default NULL`,
-			field_MSSQL: `VARCHAR(${len}) NULL`
-		}
-	};
-};
-
 /*
 	protected $isEnabled = true;
 	protected $dataTypeName = "PersonalNumber";

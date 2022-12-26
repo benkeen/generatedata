@@ -6,13 +6,13 @@ import { DataTypeMap } from '~types/dataTypes';
 export enum GenerationWorkerActionType {
 	Generate = 'GENERATE',
 	ProcessDataTypesOnly = 'PROCESS_DATA_TYPES_ONLY',
-	ProcessExportTypesOnly = 'PROCESS_EXPORT_TYPES_ONLY',
+	ProcessExportTypeOnly = 'PROCESS_EXPORT_TYPES_ONLY',
 	Pause = 'PAUSE',
 	Abort = 'ABORT',
 	Continue = 'CONTINUE',
 	SetSpeed = 'SET_SPEED',
 	DataTypesProcessed = 'DATA_TYPES_PROCESSED',
-	ExportTypeProcessed = 'EXPORT_TYPES_PROCESSED'
+	ExportTypeProcessed = 'EXPORT_TYPE_PROCESSED'
 }
 
 export type ProcessDataTypesOnlyAction = {
@@ -31,9 +31,9 @@ export type ProcessDataTypesOnlyAction = {
 	};
 };
 
-export type ProcessExportTypesOnlyAction = {
+export type ProcessExportTypeOnlyAction = {
 	data: {
-		action: GenerationWorkerActionType.ProcessExportTypesOnly;
+		action: GenerationWorkerActionType.ProcessExportTypeOnly;
 		rows: any; // TODO
 		columns: any; // TODO
 		isFirstBatch: boolean;
@@ -91,5 +91,5 @@ export type SetSpeedAction = {
 	};
 };
 
-export type GenerationActions = ProcessDataTypesOnlyAction | ProcessExportTypesOnlyAction | GenerateAction |
+export type GenerationActions = ProcessDataTypesOnlyAction | ProcessExportTypeOnlyAction | GenerateAction |
 	AbortAction | PauseAction | ContinueAction | SetSpeedAction;

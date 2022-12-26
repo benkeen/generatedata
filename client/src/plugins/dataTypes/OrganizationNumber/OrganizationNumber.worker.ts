@@ -1,21 +1,8 @@
-import { DTGenerateResult, DTMetadata } from '~types/dataTypes';
+import { DTGenerateResult } from '~types/dataTypes';
 
 // data: GenerationData
 export const generate = (): DTGenerateResult => {
 	return { display: '' };
-};
-
-export const getMetadata = (): DTMetadata => {
-	// Called before separator is set, so margin should be used
-	// $len = 10 + strlen(static::$sep);
-	const len = 11; // Should be enough, allow for max one char sep
-	return {
-		sql: {
-			field: `varchar(${len}) default NULL`,
-			field_Oracle: `varchar2(${len}) default NULL`,
-			field_MSSQL: `VARCHAR(${len}) NULL`
-		}
-	};
 };
 
 

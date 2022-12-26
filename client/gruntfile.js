@@ -197,11 +197,11 @@ window.gd.localeLoaded(i18n);
 
 		const map = {};
 		folders.forEach((folder) => {
-			const webworkerFile = path.join(__dirname, `/src/plugins/dataTypes/${folder}/${folder}.generator.ts`);
+			const webworkerFile = path.join(__dirname, `/src/plugins/dataTypes/${folder}/${folder}.worker.ts`);
 			if (!fs.existsSync(webworkerFile)) {
 				return;
 			}
-			map[`dist/workers/DT-${folder}.generator.js`] = [`src/plugins/dataTypes/${folder}/${folder}.generator.ts`];
+			map[`dist/workers/DT-${folder}.worker.js`] = [`src/plugins/dataTypes/${folder}/${folder}.worker.ts`];
 		});
 
 		return map;
@@ -213,11 +213,11 @@ window.gd.localeLoaded(i18n);
 
 		const map = {};
 		folders.forEach((folder) => {
-			const webworkerFile = path.join(__dirname, `/src/plugins/exportTypes/${folder}/${folder}.generator.ts`);
+			const webworkerFile = path.join(__dirname, `/src/plugins/exportTypes/${folder}/${folder}.worker.ts`);
 			if (!fs.existsSync(webworkerFile)) {
 				return;
 			}
-			map[`dist/workers/ET-${folder}.generator.js`] = [`src/plugins/exportTypes/${folder}/${folder}.generator.ts`];
+			map[`dist/workers/ET-${folder}.worker.js`] = [`src/plugins/exportTypes/${folder}/${folder}.worker.ts`];
 		});
 
 		return map;

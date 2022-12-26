@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import utils from '../../../../utils';
-import { onmessage } from '../Country.generator';
+import { onmessage } from '../Country.worker';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
 
 const i18n = require('../i18n/en.json');

@@ -1,7 +1,7 @@
-import { onmessage } from '../Boolean.generator';
+import sinon from 'sinon';
+import { onmessage } from '../Phone.worker';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
-
-const i18n = require('../i18n/en.json');
+import utils from '~utils/index';
 
 describe('onmessage', () => {
 	const postMessage = jest.fn();
@@ -14,13 +14,14 @@ describe('onmessage', () => {
 	it('generates random data', () => {
 		const payload: any = {
 			data: {
-				...getBlankDTGeneratorPayload(),
-				rowState: ['Booyah'],
-				i18n
+				...getBlankDTGeneratorPayload()
 			}
 		};
 
+		sinon.stub(utils.randomUtils, 'getRandomArrayValue').returns(0);
+		sinon.stub(utils.randomUtils, 'generateRandomAlphanumericStr').returns('converted');
+
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: 'Booyah' });
+		expect(postMessage).toHaveBeenCalledWith({ display: 'converted' });
 	});
 });

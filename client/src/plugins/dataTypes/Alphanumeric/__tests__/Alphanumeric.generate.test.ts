@@ -1,5 +1,10 @@
-import { onmessage } from '../List.generator';
+import sinon from 'sinon';
+import utils from '../../../../utils';
+import { onmessage } from '../Alphanumeric.worker';
+import { initialState } from '../Alphanumeric';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
+
+const i18n = require('../i18n/en.json');
 
 describe('onmessage', () => {
 	const postMessage = jest.fn();
@@ -13,16 +18,14 @@ describe('onmessage', () => {
 		const payload: any = {
 			data: {
 				...getBlankDTGeneratorPayload(),
-				rowState: {
-					listType: 'exactly',
-					values: [123],
-					exactly: 1,
-					atMost: 1
-				}
+				rowState: initialState.value,
+				i18n
 			}
 		};
 
+		sinon.stub(utils.randomUtils, 'generateRandomAlphanumericStr').returns('*****');
+
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: '123' });
+		expect(postMessage).toHaveBeenCalledWith({ display: '*****' });
 	});
 });

@@ -1,6 +1,4 @@
-import sinon from 'sinon';
-import { onmessage } from '../TextFixed.generator';
-import utils from '../../../../utils';
+import { onmessage } from '../WeightedList.worker';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
 
 describe('onmessage', () => {
@@ -16,15 +14,15 @@ describe('onmessage', () => {
 			data: {
 				...getBlankDTGeneratorPayload(),
 				rowState: {
-					words: ['word'],
-					numWordsToGenerate: 1
+					listType: 'exactly',
+					values: [123],
+					exactly: 1,
+					atMost: 1
 				}
 			}
 		};
 
-		sinon.stub(utils.randomUtils, 'generateRandomTextStr').returns('chicken');
-
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: 'chicken' });
+		expect(postMessage).toHaveBeenCalledWith({ display: '123' });
 	});
 });

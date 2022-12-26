@@ -1,10 +1,9 @@
 import * as sinon from 'sinon';
-import { generate } from '../Names.generator';
+import { generate } from '../Names.generate';
 import utils from '../../../../utils';
 import { NamesSource } from '../Names';
 
 describe('generate method converts all placeholders', () => {
-
 	afterEach(() => {
 		sinon.restore();
 	});
@@ -16,7 +15,7 @@ describe('generate method converts all placeholders', () => {
 				options: ['MaleName'],
 				source: NamesSource.any
 			}
-		})).toEqual({
+		}, utils)).toEqual({
 			display: 'Jim',
 			gender: 'male'
 		});
@@ -30,7 +29,7 @@ describe('generate method converts all placeholders', () => {
 				options: ['FemaleName'],
 				source: NamesSource.any
 			}
-		})).toEqual({
+		}, utils)).toEqual({
 			display: 'Sue',
 			gender: 'female'
 		});
@@ -46,7 +45,7 @@ describe('generate method converts all placeholders', () => {
 				options: ['MaleName, MaleName'],
 				source: NamesSource.any
 			}
-		})).toEqual({
+		}, utils)).toEqual({
 			display: 'Jim, Bob',
 			gender: 'male'
 		});
@@ -63,7 +62,7 @@ describe('generate method converts all placeholders', () => {
 				options: ['[MaleName]!!MaleName--MaleName'],
 				source: NamesSource.any
 			}
-		})).toEqual({
+		}, utils)).toEqual({
 			display: '[Jim]!!Jimbo--Bob',
 			gender: 'male'
 		});
@@ -79,7 +78,7 @@ describe('generate method converts all placeholders', () => {
 				options: ['FemaleName,MaleName'],
 				source: NamesSource.any
 			}
-		})).toEqual({
+		}, utils)).toEqual({
 			display: 'Susan,Thomas',
 			gender: 'unknown'
 		});
@@ -94,7 +93,7 @@ describe('generate method converts all placeholders', () => {
 				options: ['Surname'],
 				source: NamesSource.any
 			}
-		})).toEqual({
+		}, utils)).toEqual({
 			display: 'Whatever',
 			gender: 'unknown'
 		});
@@ -109,7 +108,7 @@ describe('generate method converts all placeholders', () => {
 				options: ['Initial'],
 				source: NamesSource.any
 			}
-		})).toEqual({
+		}, utils)).toEqual({
 			display: 'A',
 			gender: 'unknown'
 		});
@@ -119,10 +118,9 @@ describe('generate method converts all placeholders', () => {
 		sinon.stub(utils.randomUtils, 'getRandomArrayValue').returns('Jim');
 		expect(generate({
 			rowState: ['MaleName']
-		})).toEqual({
+		}, utils)).toEqual({
 			display: 'Jim',
 			gender: 'male'
 		});
 	});
-
 });

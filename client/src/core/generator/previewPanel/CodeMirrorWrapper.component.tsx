@@ -65,7 +65,7 @@ export const generatePreviewString = (props: any): Promise<any> => {
 
 	return new Promise((resolve) => {
 		coreUtils.performTask('exportTypeWorker', generationWorker, {
-			action: GenerationWorkerActionType.ProcessExportTypesOnly,
+			action: GenerationWorkerActionType.ProcessExportTypeOnly,
 			isFirstBatch: true,
 			isLastBatch: true,
 			rows: previewRows,

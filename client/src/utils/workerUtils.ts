@@ -1,9 +1,11 @@
 /* istanbul ignore file */
 
 /**
- * A separate bundle of this file is created by the build and loaded separately. This allows the main utility code
- * to be shared by the core code and any web worker code. That can just importScripts() the build file and load
- * the utility code in the scope of the web worker (and not necessitate a separate request).
+ * This file contains the subset of utility methods made available to the data generation code. It defines a WorkerUtils
+ * type which is used by both the node + web worker code.
+ *
+ * Web Workers are fussy. To share these utility methods, the core script generates a worker file which is loaded
+ * via importScripts() within any plugin worker and the methods are loaded as a global within the worker scope.
  */
 import * as arrayUtils from './arrayUtils';
 import * as countryUtils from './countryUtils';

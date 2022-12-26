@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import { onmessage } from '../PIN.generator';
+import { onmessage } from '../PIN.worker';
 import utils from '~utils/index';
 
 describe('onmessage', () => {

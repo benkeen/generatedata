@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 
 export type OrganizationNumberState = {
@@ -76,6 +76,19 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</table>
 	</>
 );
+
+export const getMetadata = (): DTMetadata => {
+	// Called before separator is set, so margin should be used
+	// $len = 10 + strlen(static::$sep);
+	const len = 11; // Should be enough, allow for max one char sep
+	return {
+		sql: {
+			field: `varchar(${len}) default NULL`,
+			field_Oracle: `varchar2(${len}) default NULL`,
+			field_MSSQL: `VARCHAR(${len}) NULL`
+		}
+	};
+};
 
 
 // var _exampleChange = function (msg) {

@@ -1,5 +1,7 @@
-import { onmessage } from '../WeightedList.generator';
+import { onmessage } from '../Boolean.worker';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
+
+const i18n = require('../i18n/en.json');
 
 describe('onmessage', () => {
 	const postMessage = jest.fn();
@@ -13,16 +15,12 @@ describe('onmessage', () => {
 		const payload: any = {
 			data: {
 				...getBlankDTGeneratorPayload(),
-				rowState: {
-					listType: 'exactly',
-					values: [123],
-					exactly: 1,
-					atMost: 1
-				}
+				rowState: ['Booyah'],
+				i18n
 			}
 		};
 
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: '123' });
+		expect(postMessage).toHaveBeenCalledWith({ display: 'Booyah' });
 	});
 });

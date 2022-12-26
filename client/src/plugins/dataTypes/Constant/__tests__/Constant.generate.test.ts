@@ -1,4 +1,4 @@
-import { onmessage } from '../Constant.generator';
+import { onmessage } from '../Constant.worker';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
 
 const testLoop = (rowNum: number, loopCount: number, values: any[], expected: any) => {

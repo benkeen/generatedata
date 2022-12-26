@@ -1,4 +1,4 @@
-import { generate } from '../BitcoinAddress.generator';
+import { generate } from '../BitcoinAddress.worker';
 import { BitcoinAddressFormat, BitcoinAddressState } from '../BitcoinAddress';
 
 describe('generate', () => {

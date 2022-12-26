@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import { onmessage } from '../TextRandom.generator';
+import { onmessage } from '../TextFixed.worker';
 import utils from '../../../../utils';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
 
@@ -16,18 +16,15 @@ describe('onmessage', () => {
 			data: {
 				...getBlankDTGeneratorPayload(),
 				rowState: {
-					numWordsToGenerate: 1,
-					fromStart: 1,
-					minWords: 1,
-					maxWords: 1,
-					words: ['word']
+					words: ['word'],
+					numWordsToGenerate: 1
 				}
 			}
 		};
 
-		sinon.stub(utils.randomUtils, 'generateRandomTextStr').returns('testXXX');
+		sinon.stub(utils.randomUtils, 'generateRandomTextStr').returns('chicken');
 
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: 'testXXX' });
+		expect(postMessage).toHaveBeenCalledWith({ display: 'chicken' });
 	});
 });
