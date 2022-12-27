@@ -1,8 +1,8 @@
-import { DTGenerateResult, DTWorkerGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import rc from 'randomcolor';
 import { ColourFormat } from './Colour';
 
-export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { value, luminosity, format, alpha } = data.rowState;
 
 	const display: any = rc({

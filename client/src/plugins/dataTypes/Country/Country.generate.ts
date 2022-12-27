@@ -1,12 +1,12 @@
 import fullCountryList from './fullCountryList';
 import { countryList } from '../../../../_plugins';
 import { CountryState } from './Country';
-import { DTGenerateResult, DTWorkerGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { CountryType } from '~types/countries';
 import { WorkerUtils } from '~utils/workerUtils';
 
 
-export const generate = (data: DTWorkerGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { rowState, countryData } = data;
 	const { source, selectedCountries } = rowState as CountryState;
 

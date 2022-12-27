@@ -1,7 +1,7 @@
-import { DTGenerateResult, DTWorkerGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
-export const generate = (data: DTWorkerGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { from, to, currencySymbol, currencySymbolLocation, includeCents, thousandsSeparator, centsSeparator } = data.rowState;
 
 	let minValue = from;

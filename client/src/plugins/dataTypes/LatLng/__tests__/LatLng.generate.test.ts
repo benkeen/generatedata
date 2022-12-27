@@ -1,17 +1,16 @@
 import { generate } from '../LatLng.generate';
-import { DTWorkerGenerationData } from '~types/dataTypes';
+import { DTGenerationData } from '~types/dataTypes';
 
 // klutzy tests
 describe('generation method', () => {
 
-	const defaultSettings: DTWorkerGenerationData = {
+	const defaultSettings: DTGenerationData = {
 		rowNum: 1,
 		rowState: {},
 		existingRowData: [],
 		i18n: {},
 		countryI18n: {},
 		countryData: {},
-		workerUtilsUrl: '',
 		template: {}
 	};
 

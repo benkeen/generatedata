@@ -1,7 +1,7 @@
-import { DTGenerateResult, DTWorkerGenerationData, DTGenerationExistingRowData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData, DTGenerationExistingRowData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
-export const generate = (data: DTWorkerGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const placeholders: any = {};
 
 	data.existingRowData.forEach((row: DTGenerationExistingRowData) => {

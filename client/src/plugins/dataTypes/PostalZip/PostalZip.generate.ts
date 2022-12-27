@@ -1,10 +1,10 @@
 import utils from '../../../utils';
-import { DTWorkerGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { CountryDataType, CountryType, Region } from '~types/countries';
 import { WorkerUtils } from '~utils/workerUtils';
 import { PostalZipSource } from './PostalZip';
 
-export const generate = (data: DTWorkerGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { rowState, countryData, existingRowData } = data;
 	const { source, selectedCountries } = rowState;
 

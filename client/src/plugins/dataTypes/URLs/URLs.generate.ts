@@ -1,7 +1,7 @@
-import { DTWorkerGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
-export const generate = (data: DTWorkerGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { protocolEnabled, protocolOptions, hostnameEnabled, hostnameOptions, pathEnabled, pathOptions, queryParamsEnabled, queryParamsOptions } = data.rowState;
 
 	let url = '';

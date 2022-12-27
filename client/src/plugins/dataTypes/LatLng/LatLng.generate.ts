@@ -1,4 +1,4 @@
-import { DTWorkerGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { getRandomNum } from '~utils/randomUtils';
 
 const DECIMAL_PLACES = 5;
@@ -15,7 +15,7 @@ const cachedMath = {
 	divisor: pow
 };
 
-export const generate = ({ rowState }: DTWorkerGenerationData): DTGenerateResult => {
+export const generate = ({ rowState }: DTGenerationData): DTGenerateResult => {
 	const coords = [];
 	let lat, lng;
 	if (rowState.lat && rowState.lng) {

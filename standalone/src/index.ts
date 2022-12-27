@@ -1,10 +1,13 @@
 import {
-    DataTypeGenerationOptions,
+    DataTypeGenerationOptions, DataTypeWorkerInterface,
     ExportType,
-    GDTemplate
+    GDTemplate, WorkerInterface
 } from '~types/generator';
-import { DataType } from '../client/_plugins';
-import { generate } from '../client/src/utils/generatorUtils';
+import { DataType } from '../../client/_plugins';
+import { generate } from '../../client/src/utils/generatorUtils';
+import workerUtils from '../../client/src/utils';
+import { getI18nStrings } from './utils/i18n';
+import { GDLocale } from '~types/general';
 
 // no point requiring users to supply a colIndex. We can add that ourselves.
 export type DataTypeGenerationOptionsWithColIndex = DataTypeGenerationOptions & {
@@ -39,10 +42,28 @@ const getNormalizedGDTemplate = (template: GDTemplate): GDTemplate => {
 
 const doStuff = (template: GDTemplate) => {
     // TODO add validation step here
-    const normalizedTemplate = getNormalizedGDTemplate(template);
 
-    generate(normalizedTemplate);
+    const normalizedTemplate = getNormalizedGDTemplate(template);
+    const i18n = getI18nStrings(normalizedTemplate.generationSettings.locale as GDLocale)
+
+    const dataTypeInterface: DataTypeWorkerInterface = {};
+
+
+    generate(normalizedTemplate, { i18n, workerUtils, dataTypeInterface });
 };
+
+const getWorkerInterface = (workerPath: string): WorkerInterface => {
+    let workerInterface: WorkerInterface;
+
+    // workerInterface = {
+    //     send: worker.postMessage,
+    //     onSuccess: onRegisterSuccess,
+    //     onError: onRegisterError
+    // };
+
+    return workerInterface;
+};
+
 
 (async () => {
     const template: GDTemplate = {

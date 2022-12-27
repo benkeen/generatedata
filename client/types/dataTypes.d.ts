@@ -12,7 +12,7 @@ export type DataTypeMap = {
 export type DTBundle = {
 	// the node generator method. For the UI, a separate [DataType]-worker.ts file needs to be written to implement
 	// the same interface
-	generate: (data: DTWorkerGenerationData, utils: WorkerUtils) => DTGenerateResult;
+	generate: (data: DTGenerationData, utils: WorkerUtils) => DTGenerateResult;
 
 	initialState?: any;
 

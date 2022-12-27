@@ -1,8 +1,8 @@
 import { format, fromUnixTime } from 'date-fns';
-import { DTWorkerGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
-export const generate = (data: DTWorkerGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { fromDate, toDate, format: displayFormat } = data.rowState;
 	if (!displayFormat) {
 		return { display: '' };

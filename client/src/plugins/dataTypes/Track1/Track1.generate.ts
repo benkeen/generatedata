@@ -1,4 +1,4 @@
-import { DTWorkerGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
 /*
@@ -19,7 +19,7 @@ import { WorkerUtils } from '~utils/workerUtils';
 	Longitudinal redundancy check (LRC) — it is one character and a validity character calculated from other
 		data on the track.
 */
-export const generate = (data: DTWorkerGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { nameSource, panSource, targetNameRowId, targetPanRowId } = data.rowState;
 
 	let pan = '';

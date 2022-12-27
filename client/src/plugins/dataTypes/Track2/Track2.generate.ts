@@ -1,7 +1,7 @@
 /**
  * @author Ben Keen <ben.keen@gmail.com>, original code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
  */
-import { DTWorkerGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
 /*
@@ -21,7 +21,7 @@ import { WorkerUtils } from '~utils/workerUtils';
 	- Most reader devices do not return this value when the card is swiped to the presentation layer, and
 		use it only to verify the input internally to the reader.
 */
-export const generate = (data: DTWorkerGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { panSource, targetPanRowId } = data.rowState;
 
 	let pan = '';

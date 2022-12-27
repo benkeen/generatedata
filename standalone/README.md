@@ -1,6 +1,6 @@
 ## Standalone app
 
-> Still in development
+> Still in development.
  
 This is the npm package + binary version of generatedata.
 

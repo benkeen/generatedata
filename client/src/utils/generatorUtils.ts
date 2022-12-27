@@ -7,8 +7,6 @@ import {
 import { CountryDataType, CountryNamesMap } from '~types/countries';
 import { GenerationTemplate } from '~types/general';
 import { WorkerUtils } from '~utils/workerUtils';
-import { getStrings } from "~utils/langUtils";
-// import { GenerationWorkerActionType } from "~core/generator/generation.types";
 
 /**
  * This utility file contains the guts of the data generation code. It farms out work to the various plugins
@@ -22,18 +20,16 @@ let lastMainProcessOptions: MainProcessOptionsBrowser | MainProcessOptionsNode |
 let currentSpeed: number; // TODO possible range?
 const workerQueue: any = {};
 
-export const generate = ({ generationSettings, dataTemplate, exportSettings }: GDTemplate) => {
-	const { numRows, packetSize, locale } = generationSettings;
-	const i18n = getStrings(locale);
-
-	console.log(locale, i18n);
+export const generate = (template: GDTemplate, settings: any) => {
+	const { numRows, packetSize } = template.generationSettings; // TODO locale no longer needed here
+	const { i18n, workerUtils, countryNames, countryData } = settings;
 
 	// const {
 	// 	columns, numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData, stripWhitespace,
 	// 	exportTypeSettings, exportTypeWorkerUrl, dataTypeWorkerMap
 	// } = data;
 
-	// const onBatchComplete = ({ completedBatchNum, numGeneratedRows, generatedData }: any): void => {
+	const onBatchComplete = ({ completedBatchNum, numGeneratedRows, generatedData }: any): void => {
 	// 	const isLastBatch = numGeneratedRows >= numResults;
 	// 	const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));
 	//
@@ -55,13 +51,19 @@ export const generate = ({ generationSettings, dataTemplate, exportSettings }: G
 	// 		},
 	// 		exportTypeInterface: getWorkerInterface(exportTypeWorkerUrl)
 	// 	});
-	// };
-	//
-	// generateDataTypes({
-	// 	numResults: numRows, batchSize: packetSize, i18n, template, countryNames, workerUtilsUrl, countryData,
-	// 	onBatchComplete,
-	// 	dataTypeInterface: dataTypeWorkerMap
-	// });
+	};
+
+	generateDataTypes({
+		numResults: numRows,
+		batchSize: packetSize as number,
+		i18n,
+		template,
+		countryNames,
+		countryData,
+		onBatchComplete,
+		workerUtils,
+		// dataTypeInterface: dataTypeWorkerMap
+	});
 };
 
 interface OnBatchComplete {

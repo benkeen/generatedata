@@ -1,8 +1,8 @@
 import utils from '../../../utils';
-import { DTWorkerGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 import { ListType } from './List';
 
-export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { listType, values, exactly, betweenLow, betweenHigh, delimiter } = data.rowState;
 
 	let items: any = [];

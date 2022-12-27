@@ -1,13 +1,13 @@
 import { countryList } from '../../../../_plugins';
 import { getRandomArrayValue } from '~utils/randomUtils';
-import { DTGenerateResult, DTWorkerGenerationData, DTWorkerOnMessage } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData, DTWorkerOnMessage } from '~types/dataTypes';
 import { Region, CountryType } from '~types/countries';
 import { RegionFormat } from './Region';
 
 // used for caching purposes
 const countryRegions: any = {};
 
-export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { rowState, countryData, existingRowData } = data;
 
 	let country: CountryType;

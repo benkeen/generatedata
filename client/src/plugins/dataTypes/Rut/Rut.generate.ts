@@ -1,7 +1,7 @@
-import { DTGenerateResult, DTWorkerGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
-export const generate = ({ rowState }: DTWorkerGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = ({ rowState }: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { formatCode, uppercaseDigit } = rowState;
 
 	const { getRandomNum } = utils.randomUtils;

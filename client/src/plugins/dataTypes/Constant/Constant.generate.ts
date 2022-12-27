@@ -1,6 +1,6 @@
-import { DTGenerateResult, DTWorkerGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 
-export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const rowNum = data.rowNum;
 	const { loopCount, values } = data.rowState;
 	const numValues = values.length;

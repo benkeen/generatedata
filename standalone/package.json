@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "build": "grunt",
-    "dev": "npx ts-node -r tsconfig-paths/register index.ts"
+    "dev": "npx ts-node -r tsconfig-paths/register src/index.ts"
   }
 }

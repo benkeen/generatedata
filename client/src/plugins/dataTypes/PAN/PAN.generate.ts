@@ -1,9 +1,9 @@
-import { DTGenerateResult, DTWorkerGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
 let utils: WorkerUtils;
 
-export const generate = (data: DTWorkerGenerationData, workerUtils: WorkerUtils): DTGenerateResult => {
+export const generate = (data: DTGenerationData, workerUtils: WorkerUtils): DTGenerateResult => {
 	utils = workerUtils;
 
 	const cards = Object.keys(data.rowState.cardFormats);

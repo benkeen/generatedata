@@ -1,18 +1,17 @@
 import { generate } from '../StreetAddress.generate';
 import * as sinon from 'sinon';
 import utils from '../../../../utils';
-import { DTWorkerGenerationData } from '~types/dataTypes';
+import { DTGenerationData } from '~types/dataTypes';
 const i18n = require('../i18n/en.json');
 
 describe('generate', () => {
-	let data: DTWorkerGenerationData = {
+	let data: DTGenerationData = {
 		rowNum: 1,
 		rowState: '',
 		i18n,
 		countryI18n: {},
 		existingRowData: [],
 		countryData: {},
-		workerUtilsUrl: '',
 		template: {}
 	};
 
