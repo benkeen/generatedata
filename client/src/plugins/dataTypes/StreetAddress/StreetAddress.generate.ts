@@ -2,7 +2,7 @@ import utils from '../../../utils';
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
-const getWords = () => {
+const getWords = (): string[] => {
 	const { words } = utils.stringUtils.getLipsumWords();
 	return words;
 };

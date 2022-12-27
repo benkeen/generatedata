@@ -1,5 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Options, Help, getMetadata, rowStateReducer } from './TextRandom';
+import { generate } from './TextRandom.generate';
 
 export { GenerationOptionsType } from './TextRandom';
 
@@ -8,7 +9,8 @@ const bundle: DTBundle = {
 	Options,
 	Help,
 	getMetadata,
-	rowStateReducer
+	rowStateReducer,
+	generate
 };
 
 export default bundle;

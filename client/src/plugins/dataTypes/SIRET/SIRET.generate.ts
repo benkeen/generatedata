@@ -1,4 +1,4 @@
-import { DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
+import { DTGenerateResult } from '~types/dataTypes';
 
 // data: DTGenerationData
 export const generate = (): DTGenerateResult => {

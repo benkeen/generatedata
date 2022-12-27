@@ -1,4 +1,4 @@
-import { DTGenerateResult, DTWorkerOnMessage, DTWorkerGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTWorkerGenerationData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
 let utils: WorkerUtils;

@@ -1,9 +1,9 @@
 import { WorkerUtils } from '~utils/workerUtils';
-import { DTGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 
 let utils: WorkerUtils;
 
-const getWords = () => {
+const getWords = (): string[] => {
 	const { words } = utils.stringUtils.getLipsumWords();
 	return words;
 };
@@ -24,7 +24,7 @@ export const generateCompanyName = (wordsArr: string[], types = companyTypes): s
 	return utils.stringUtils.uppercaseWords(selectedWords.join(' ')) + ' ' + companyType;
 };
 
-export const generate = (data: DTGenerationData, workerUtils: WorkerUtils) => {
+export const generate = (data: DTGenerationData, workerUtils: WorkerUtils): DTGenerateResult => {
 	utils = workerUtils;
 
 	const words = getWords();

@@ -1,5 +1,5 @@
 import * as sinon from 'sinon';
-import * as generation from '../Email.worker';
+import * as generation from '../Email.generate';
 import utils from '../../../../utils';
 
 const words = ['one', 'two', 'three', 'four', 'five', 'six'];

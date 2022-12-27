@@ -1,5 +1,5 @@
 import * as sinon from 'sinon';
-import * as generation from '../Company.worker';
+import * as generation from '../Company.generate';
 import utils from '../../../../utils';
 
 const companyTypes = ['Inc.', 'Co.'];

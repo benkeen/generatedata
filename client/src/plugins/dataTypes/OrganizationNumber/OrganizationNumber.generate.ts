@@ -1,8 +1,7 @@
-import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
-import { WorkerUtils } from '~utils/workerUtils';
+import { DTGenerateResult } from '~types/dataTypes';
 
 // data: GenerationData
-export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
 

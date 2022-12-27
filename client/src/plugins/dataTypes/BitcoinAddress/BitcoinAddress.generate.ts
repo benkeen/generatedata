@@ -1,6 +1,6 @@
-import { BitcoinAddressFormat, BitcoinAddressState } from "./BitcoinAddress";
-import { WorkerUtils } from "~utils/workerUtils";
-import { DTGenerateResult, DTGenerationData } from "~types/dataTypes";
+import { BitcoinAddressFormat } from './BitcoinAddress';
+// import { WorkerUtils } from '~utils/workerUtils';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 // import { BitcoinAddressFormat, BitcoinAddressState } from './BitcoinAddress';
 // import ECPairFactory from 'ecpair';
 // import * as ecc from 'tiny-secp256k1';
@@ -8,7 +8,7 @@ import { DTGenerateResult, DTGenerationData } from "~types/dataTypes";
 
 // const ECPair = ECPairFactory(ecc);
 
-export const generate = ({ rowState }: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
+export const generate = ({ rowState }: DTGenerationData): DTGenerateResult => { // utils: WorkerUtils
 	const formats: any = {};
 	if (rowState[BitcoinAddressFormat.Legacy].enabled && rowState[BitcoinAddressFormat.Legacy].weight) {
 		formats[BitcoinAddressFormat.Legacy] = rowState[BitcoinAddressFormat.Legacy].weight;
@@ -21,7 +21,7 @@ export const generate = ({ rowState }: DTGenerationData, utils: WorkerUtils): DT
 	}
 
 	// get a random format
-	const format = utils.randomUtils.getRandomWeightedValue(formats);
+	// const format = utils.randomUtils.getRandomWeightedValue(formats);
 
 	// let display;
 	// switch (format) {

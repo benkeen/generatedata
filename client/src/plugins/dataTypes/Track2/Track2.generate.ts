@@ -2,7 +2,7 @@
  * @author Ben Keen <ben.keen@gmail.com>, original code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
  */
 import { DTWorkerGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { WorkerUtils } from "~utils/workerUtils";
+import { WorkerUtils } from '~utils/workerUtils';
 
 /*
 	Source - http://en.wikipedia.org/wiki/Magnetic_stripe_card#Financial_cards

@@ -1,5 +1,5 @@
 import { CityState, RegionSource } from './City';
-import { CountryType, Region } from "~types/countries";
+import { CountryType, Region } from '~types/countries';
 import { DTGenerateResult, DTGenerationExistingRowData, DTGenerationData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 import { countryList } from '../../../../_plugins';

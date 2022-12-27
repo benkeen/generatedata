@@ -1,8 +1,8 @@
 /**
  * Original author (PHP): Joeri Noort <joert@joert.net>
  */
-import { DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
-import { WorkerUtils } from "~utils/workerUtils";
+import { DTGenerateResult } from '~types/dataTypes';
+import { WorkerUtils } from '~utils/workerUtils';
 
 let utils: WorkerUtils;
 

@@ -5,7 +5,7 @@ import { StringSource } from './Email';
 let utils: WorkerUtils;
 const MAX_EMAIL_LENGTH = 254;
 
-const getWords = () => {
+const getWords = (): string[] => {
 	const { words } = utils.stringUtils.getLipsumWords();
 	return words;
 };
@@ -13,7 +13,7 @@ const getWords = () => {
 export const cleanChars = (str: string): string => str.replace(/[^0-9a-zA-Z]/g, '').toLowerCase();
 export const cleanArray = (arr: string[]): string[] => arr.map(cleanChars);
 
-const getOneNameField = (name: string) => {
+const getOneNameField = (name: string): string => {
 	const parts = cleanArray(name.split(/\s+/));
 	const delim = utils.randomUtils.getRandomArrayValue(['.', '_', '-', '']);
 	const randomSize = utils.randomUtils.getRandomNum(1, parts.length);
@@ -72,7 +72,7 @@ export const getRandomEmailPrefix = (wordsArr: string[]): string => {
 	return selectedWords.join('.');
 };
 
-export const getDomain = (domains: string[], domainSuffixes: string[]) => {
+export const getDomain = (domains: string[], domainSuffixes: string[]): string => {
 	let domainStr = utils.randomUtils.getRandomArrayValue(domains);
 	if (domainStr.indexOf('.') === -1) {
 		domainStr += `.${utils.randomUtils.getRandomArrayValue(domainSuffixes)}`;
@@ -80,7 +80,7 @@ export const getDomain = (domains: string[], domainSuffixes: string[]) => {
 	return domainStr;
 };
 
-const getFinalEmail = (prefix: string, domain: string) => {
+const getFinalEmail = (prefix: string, domain: string): string => {
 	// if the email exceeded 254 chars (the max valid number of chars), truncate it. This could be way
 	// more elegant, but it's SUCH a fringe case I don't much mind
 	let email = `${prefix}@${domain}`.toLowerCase();
@@ -124,4 +124,4 @@ export const generate = (data: DTGenerationData, workerUtils: WorkerUtils): DTGe
 	return {
 		display: getFinalEmail(prefix, domain)
 	};
-}
+};

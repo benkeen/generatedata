@@ -13,7 +13,7 @@ export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
 	let country: CountryType;
 
 	if (rowState.source === 'countryRow') {
-		const countryRow = existingRowData.find(({id}: any) => id === rowState.targetRowId);
+		const countryRow = existingRowData.find(({ id }: any) => id === rowState.targetRowId);
 		country = countryRow!.data.countryDataType;
 	} else {
 		const list = rowState.source === 'anyRegion' ? countryList : rowState.selectedCountries;
@@ -60,7 +60,7 @@ export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
 
 let utilsLoaded = false;
 
-export const onmessage = (e: DTWorkerOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage): void => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;

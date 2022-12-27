@@ -1,5 +1,5 @@
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
-import { WorkerUtils } from "~utils/workerUtils";
+import { WorkerUtils } from '~utils/workerUtils';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const rowNum = data.rowNum;

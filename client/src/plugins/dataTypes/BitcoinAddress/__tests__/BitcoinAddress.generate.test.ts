@@ -1,5 +1,7 @@
-import { generate } from '../BitcoinAddress.worker';
+import { generate } from '../BitcoinAddress.generate';
+// import utils from '../../../../utils';
 import { BitcoinAddressFormat, BitcoinAddressState } from '../BitcoinAddress';
+import { DTGenerationData } from "~types/dataTypes";
 
 describe('generate', () => {
 	it('generates', () => {
@@ -17,6 +19,6 @@ describe('generate', () => {
 				weight: 1
 			},
 		};
-		expect(generate(state)).toEqual('123'); // won't work yet. Just testing
+		expect(generate(state as unknown as DTGenerationData)).toEqual('123'); // won't work yet. Just testing
 	});
 });

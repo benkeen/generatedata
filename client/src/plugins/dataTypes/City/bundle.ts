@@ -1,6 +1,7 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Options, Help, getMetadata } from './City';
 import { customProps, actionInterceptors } from './City.store';
+import { generate } from './City.generate';
 
 export { GenerationOptionsType } from './City';
 
@@ -10,7 +11,8 @@ const bundle: DTBundle = {
 	Options,
 	Help,
 	customProps,
-	actionInterceptors
+	actionInterceptors,
+	generate
 };
 
 export default bundle;

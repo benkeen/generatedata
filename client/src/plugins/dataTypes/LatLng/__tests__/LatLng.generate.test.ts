@@ -1,4 +1,4 @@
-import * as latlng from '../LatLng.worker';
+import { generate } from '../LatLng.generate';
 import { DTWorkerGenerationData } from '~types/dataTypes';
 
 // klutzy tests
@@ -16,7 +16,7 @@ describe('generation method', () => {
 	};
 
 	it('generates a single item when only lat is selected', () => {
-		const result = latlng.generate({
+		const result = generate({
 			...defaultSettings,
     		rowState: { lat: true, lng: false }
 		 });
@@ -26,7 +26,7 @@ describe('generation method', () => {
 	});
 
 	it('generates a single item when only lat is selected', () => {
-		const result = latlng.generate({
+		const result = generate({
 			...defaultSettings,
     		rowState: { lat: false, lng: true }
 		 });
@@ -36,7 +36,7 @@ describe('generation method', () => {
 	});
 
 	it('generates two item when both lat and lng are selected', () => {
-		const result = latlng.generate({
+		const result = generate({
 			...defaultSettings,
     		rowState: { lat: true, lng: true }
 		 });
@@ -46,7 +46,7 @@ describe('generation method', () => {
 	});
 
 	it('generates an empty string when neither lat nor lng is selected', () => {
-		const result = latlng.generate({
+		const result = generate({
 			...defaultSettings,
     		rowState: { lat: false, lng: false }
 		 });
