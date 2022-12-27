@@ -6,11 +6,9 @@ export const generate = (data: any, workerUtils: WorkerUtils) => {
 	utils = workerUtils;
 
 	const { settings, stripWhitespace } = data;
-	const content = settings.dataStructureFormat === 'simple'
+	return settings.dataStructureFormat === 'simple'
 		? generateSimple(data, stripWhitespace)
 		: generateComplex(data, stripWhitespace);
-
-	return content;
 };
 
 const generateSimple = (generationData: ETMessageData, stripWhitespace: boolean): string => {

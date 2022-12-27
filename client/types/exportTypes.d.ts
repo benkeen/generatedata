@@ -14,6 +14,7 @@ export interface ETValidateTitleField {
 }
 
 export type ETBundle = {
+	generate: any; // TODO
 	getCodeMirrorMode: (settings: any) => string; // TODO generics - data is same type as initialState
 	getDownloadFileInfo: (downloadPacket: ETDownloadPacket) => ETDownloadPacketResponse;
 	initialState?: any; // TODO generics
