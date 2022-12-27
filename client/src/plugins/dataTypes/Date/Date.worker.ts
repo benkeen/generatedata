@@ -1,15 +1,6 @@
-import { format, fromUnixTime } from 'date-fns';
 import utils from '../../../utils';
-import { DTWorkerGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
-
-export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
-	const { fromDate, toDate, format: displayFormat } = data.rowState;
-	if (!displayFormat) {
-		return { display: '' };
-	}
-	const date = utils.randomUtils.getRandomNum(fromDate, toDate);
-	return { display: format(fromUnixTime(date), displayFormat) };
-};
+import { DTWorkerOnMessage } from '~types/dataTypes';
+import { generate } from './Date.generate';
 
 let workerUtilsLoaded = false;
 
@@ -19,5 +10,5 @@ export const onmessage = (e: DTWorkerOnMessage) => {
 		workerUtilsLoaded = true;
 	}
 
-	postMessage(generate(e.data));
+	postMessage(generate(e.data, utils));
 };

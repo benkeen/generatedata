@@ -1,7 +1,8 @@
 // @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh
 // @package DataTypes
 import utils from '../../../utils';
-import { DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
+import { DTWorkerOnMessage } from '~types/dataTypes';
+import { generate } from './CVV.generate';
 
 let utilsLoaded = false;
 
@@ -11,9 +12,6 @@ export const onmessage = (e: DTWorkerOnMessage) => {
 		utilsLoaded = true;
 	}
 
-	postMessage(generate());
+	postMessage(generate(undefined, utils));
 };
 
-export const generate = (): DTGenerateResult => ({
-	display: utils.randomUtils.getRandomNum(111, 999)
-});
