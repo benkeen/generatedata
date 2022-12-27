@@ -1,12 +1,13 @@
 import { DataTypeFolder } from '../../_plugins';
 import {
 	DataTypeBatchGeneratedPayload,
-	DataTypeWorkerInterface,
+	DataTypeWorkerInterface, GDTemplate,
 	UnchangedGenerationData, WorkerInterface
 } from '~types/generator';
 import { CountryDataType, CountryNamesMap } from '~types/countries';
 import { GenerationTemplate } from '~types/general';
 import { WorkerUtils } from '~utils/workerUtils';
+import { getStrings } from "~utils/langUtils";
 // import { GenerationWorkerActionType } from "~core/generator/generation.types";
 
 /**
@@ -21,12 +22,17 @@ let lastMainProcessOptions: MainProcessOptionsBrowser | MainProcessOptionsNode |
 let currentSpeed: number; // TODO possible range?
 const workerQueue: any = {};
 
-const generate = () => {
+export const generate = ({ generationSettings, dataTemplate, exportSettings }: GDTemplate) => {
+	const { numRows, packetSize, locale } = generationSettings;
+	const i18n = getStrings(locale);
+
+	console.log(locale, i18n);
+
 	// const {
 	// 	columns, numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData, stripWhitespace,
 	// 	exportTypeSettings, exportTypeWorkerUrl, dataTypeWorkerMap
 	// } = data;
-	//
+
 	// const onBatchComplete = ({ completedBatchNum, numGeneratedRows, generatedData }: any): void => {
 	// 	const isLastBatch = numGeneratedRows >= numResults;
 	// 	const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));
@@ -52,7 +58,7 @@ const generate = () => {
 	// };
 	//
 	// generateDataTypes({
-	// 	numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData,
+	// 	numResults: numRows, batchSize: packetSize, i18n, template, countryNames, workerUtilsUrl, countryData,
 	// 	onBatchComplete,
 	// 	dataTypeInterface: dataTypeWorkerMap
 	// });

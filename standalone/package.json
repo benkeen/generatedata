@@ -1,0 +1,9 @@
+{
+  "name": "generatedata-standalone",
+  "description": "The npm package and binary version of generatedata.com",
+  "private": true,
+  "scripts": {
+    "build": "grunt",
+    "dev": "npx ts-node -r tsconfig-paths/register index.ts"
+  }
+}

@@ -13,3 +13,4 @@ coverage
 yarn-error.log
 cypress/
 server/database/_dbStructure.sql
+standalone/dist/

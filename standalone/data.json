@@ -1,0 +1,36 @@
+{
+  "generationSettings": {
+    "locale": "en",
+    "stripWhitespace": true,
+    "target": {
+      "filename": "generated-data.json",
+      "folder": "./"
+    }
+  },
+  "dataTemplate": [
+    {
+      "plugin": "Names",
+      "title": "First Name",
+      "settings": {
+        "options": [
+          "Name"
+        ]
+      }
+    },
+    {
+      "plugin": "Names",
+      "title": "Last Name",
+      "settings": {
+        "options": [
+          "Surname"
+        ]
+      }
+    }
+  ],
+  "exportSettings": {
+    "plugin": "JSON",
+    "settings": {
+      "dataStructureFormat": "simple"
+    }
+  }
+}

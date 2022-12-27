@@ -6,6 +6,7 @@
   "directories": {
     "test": "tests"
   },
+  "bin": "./bin/generatedata",
   "scripts": {
     "start": "cd client && grunt dev & yarn build & yarn webpackDev",
     "coverage": "yarn jest --coverage",
@@ -201,6 +202,7 @@
     "sass-loader": "^8.0.0",
     "sinon": "^8.0.4",
     "style-loader": "^1.0.0",
+    "tsconfig-paths": "4.1.1",
     "ts-jest": "^25.5.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.9.8",

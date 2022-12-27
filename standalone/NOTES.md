@@ -1,15 +1,19 @@
-# npm package design notes
+# Standalone app - npm package + binary
 
-The long-time purpose of this script was to offer a version as an npm package which would have no interface but 
-offer a programmatic way to generate data. The idea is that the existing UI will offer an "export JSON" option for 
+The long-time purpose of this script was to offer an npm package which would have no interface but provide a programmatic 
+way to generate test data. The idea is that the existing UI will offer an "export JSON" option for 
 whatever data set is constructed via the UI, which could be used in conjunction with the command line tool. All the 
 plugins + core already have their data pretty well-defined, so it's just a question of exposing the appropriate
 structure for the various options (and exposed via typescript types!) so developers can construct what they want as JSON.
 
-### General idea
+## General idea
+
+We'll expose two options: a programmatic node version and a standalone binary. 
+
+### 1. Node
 
 In this example I'll stick to commonJS, since I'll assume devs will want to run via the command line and es6 with node
-can be a pain, depending on your version.
+can still be a pain.
 
 `node generate-data-please.js`
 
@@ -22,7 +26,7 @@ const dataConfig = { // best exported from generatedata.com, but could be manual
 }; 
 
 // Async/sync? Both? Async for sure. We'll want to use some sort of npm package for showing a visual display of how 
-// it's progressing like: https://www.npmjs.com/package/cli-progress
+// it's progressing like: https://www.npmjs.com/package/cli-progress - or should that just be in the binary version?
 (async () => {
     const settings = {
         rows: 100000
@@ -59,6 +63,17 @@ type DataConfig = {
 	// exposed from core + plugins. Contains the actual data configuration 
 }
 ```
+
+### 2. Binary
+
+Realistically we won't be able to pass all settings via the command line, so targeting a source file with the 
+data set to generate makes the most sense, like so:
+
+```typescript
+generatedata --config=data.json 
+```
+
+
 
 ### Questions/considerations:
 
