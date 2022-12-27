@@ -1,5 +1,6 @@
 import utils from '../../../utils';
 import { DTWorkerOnMessage } from '~types/dataTypes';
+import { generate } from './NumberRange.generate';
 
 let utilsLoaded = false;
 
@@ -9,9 +10,5 @@ export const onmessage = (e: DTWorkerOnMessage) => {
 		utilsLoaded = true;
 	}
 
-	const { min, max } = e.data.rowState;
-
-	postMessage({
-		display: utils.randomUtils.getRandomNum(min, max)
-	});
+	postMessage(generate(e.data, utils));
 };

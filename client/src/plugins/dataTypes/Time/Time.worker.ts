@@ -1,31 +1,14 @@
-import { format, fromUnixTime } from 'date-fns';
 import utils from '../../../utils';
-import { DTWorkerGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
-
-export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
-	const { fromTime, toTime, format: displayFormat } = data.rowState;
-	if (!displayFormat) {
-		return { display: '' };
-	}
-	const time = utils.randomUtils.getRandomNum(fromTime, toTime);
-
-	let display = '';
-	try {
-		display = format(fromUnixTime(time), displayFormat);
-	} catch (e) {}
-
-	return {
-		display
-	};
-};
+import { DTWorkerOnMessage } from '~types/dataTypes';
+import { generate } from './Time.generate';
 
 let workerUtilsLoaded = false;
 
-export const onmessage = (e: DTWorkerOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage): void => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		workerUtilsLoaded = true;
 	}
 
-	postMessage(generate(e.data));
+	postMessage(generate(e.data, utils));
 };

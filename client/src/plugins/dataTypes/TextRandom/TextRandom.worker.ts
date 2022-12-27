@@ -1,19 +1,12 @@
-import { DTWorkerGenerationData, DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
 import utils from '../../../utils';
+import { DTWorkerOnMessage } from '~types/dataTypes';
+import { generate } from './TextRandom.generate';
 
 let utilsLoaded = false;
-export const onmessage = (e: DTWorkerOnMessage) => {
+export const onmessage = (e: DTWorkerOnMessage): void => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
 	}
-	postMessage(generate(e.data));
-};
-
-export const generate = (data: DTWorkerGenerationData): DTGenerateResult => {
-	const { fromStart, minWords, maxWords, words } = data.rowState;
-	const textStr = utils.randomUtils.generateRandomTextStr(words, fromStart, minWords, maxWords);
-	return {
-		display: textStr
-	};
+	postMessage(generate(e.data, utils));
 };

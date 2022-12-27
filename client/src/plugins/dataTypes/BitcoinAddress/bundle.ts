@@ -4,7 +4,6 @@ import { generate } from './BitcoinAddress.generate';
 
 export { GenerationOptionsType } from './BitcoinAddress';
 
-
 const bundle: DTBundle = {
 	initialState,
 	Options,

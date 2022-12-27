@@ -1,5 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help, getMetadata, rowStateReducer } from './WeightedList';
+import { generate } from './WeightedList.generate';
 
 export { GenerationOptionsType } from './WeightedList';
 
@@ -9,7 +10,8 @@ const bundle: DTBundle = {
 	Options,
 	Help,
 	getMetadata,
-	rowStateReducer
+	rowStateReducer,
+	generate
 };
 
 export default bundle;
