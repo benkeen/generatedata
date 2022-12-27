@@ -36,6 +36,7 @@ context.onmessage = (e: GenerationActions) => {
 	// this worker action combines the two above for easier usage. Used in the generator where it doesn't need such
 	// granular control as with the preview panel
 	} else if (e.data.action === GenerationWorkerActionType.Generate) {
+		// TODO move whole chunk to generatorUtils ...
 		const {
 			columns, numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData, stripWhitespace,
 			exportTypeSettings, exportTypeWorkerUrl, dataTypeWorkerMap

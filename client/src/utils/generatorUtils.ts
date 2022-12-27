@@ -7,6 +7,7 @@ import {
 import { CountryDataType, CountryNamesMap } from '~types/countries';
 import { GenerationTemplate } from '~types/general';
 import { WorkerUtils } from '~utils/workerUtils';
+// import { GenerationWorkerActionType } from "~core/generator/generation.types";
 
 /**
  * This utility file contains the guts of the data generation code. It farms out work to the various plugins
@@ -20,9 +21,41 @@ let lastMainProcessOptions: MainProcessOptionsBrowser | MainProcessOptionsNode |
 let currentSpeed: number; // TODO possible range?
 const workerQueue: any = {};
 
-// top-level function
 const generate = () => {
-
+	// const {
+	// 	columns, numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData, stripWhitespace,
+	// 	exportTypeSettings, exportTypeWorkerUrl, dataTypeWorkerMap
+	// } = data;
+	//
+	// const onBatchComplete = ({ completedBatchNum, numGeneratedRows, generatedData }: any): void => {
+	// 	const isLastBatch = numGeneratedRows >= numResults;
+	// 	const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));
+	//
+	// 	generateExportTypes({
+	// 		numResults,
+	// 		isFirstBatch: completedBatchNum === 1,
+	// 		isLastBatch,
+	// 		rows: displayData,
+	// 		columns,
+	// 		stripWhitespace,
+	// 		settings: exportTypeSettings,
+	// 		workerUtilsUrl,
+	// 		onComplete: (data: string) => {
+	// 			context.postMessage({
+	// 				event: GenerationWorkerActionType.ExportTypeProcessed,
+	// 				numGeneratedRows,
+	// 				data
+	// 			});
+	// 		},
+	// 		exportTypeInterface: getWorkerInterface(exportTypeWorkerUrl)
+	// 	});
+	// };
+	//
+	// generateDataTypes({
+	// 	numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData,
+	// 	onBatchComplete,
+	// 	dataTypeInterface: dataTypeWorkerMap
+	// });
 };
 
 interface OnBatchComplete {

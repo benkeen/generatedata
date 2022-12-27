@@ -195,7 +195,7 @@ export const countryMethods = {
 	Vietnam: CountryVietnam
 };
 
-enum DataTypeEnum {
+export enum DataType {
 	Alphanumeric = 'Alphanumeric',
 	AutoIncrement = 'AutoIncrement',
 	Boolean = 'Boolean',
@@ -268,50 +268,50 @@ import { GenerationOptionsType as URLsGenerationOptions } from './src/plugins/da
 import { GenerationOptionsType as WeightedListGenerationOptions } from './src/plugins/dataTypes/WeightedList/bundle';
 
 interface DataTypeOptionsMap {
-	[DataTypeEnum.Alphanumeric]: AlphanumericGenerationOptions;
-	[DataTypeEnum.AutoIncrement]: AutoIncrementGenerationOptions;
-	[DataTypeEnum.Boolean]: BooleanGenerationOptions;
-	[DataTypeEnum.CVV]: CVVGenerationOptions;
-	[DataTypeEnum.City]: CityGenerationOptions;
-	[DataTypeEnum.Colour]: ColourGenerationOptions;
-	[DataTypeEnum.Company]: CompanyGenerationOptions;
-	[DataTypeEnum.Computed]: ComputedGenerationOptions;
-	[DataTypeEnum.Constant]: ConstantGenerationOptions;
-	[DataTypeEnum.Country]: CountryGenerationOptions;
-	[DataTypeEnum.Currency]: CurrencyGenerationOptions;
-	[DataTypeEnum.Date]: DateGenerationOptions;
-	[DataTypeEnum.Email]: EmailGenerationOptions;
-	[DataTypeEnum.GUID]: GUIDGenerationOptions;
-	[DataTypeEnum.IBAN]: IBANGenerationOptions;
-	[DataTypeEnum.LatLng]: LatLngGenerationOptions;
-	[DataTypeEnum.List]: ListGenerationOptions;
-	[DataTypeEnum.Names]: NamesGenerationOptions;
-	[DataTypeEnum.NormalDistribution]: NormalDistributionGenerationOptions;
-	[DataTypeEnum.NumberRange]: NumberRangeGenerationOptions;
-	[DataTypeEnum.PAN]: PANGenerationOptions;
-	[DataTypeEnum.PIN]: PINGenerationOptions;
-	[DataTypeEnum.Phone]: PhoneGenerationOptions;
-	[DataTypeEnum.PostalZip]: PostalZipGenerationOptions;
-	[DataTypeEnum.Region]: RegionGenerationOptions;
-	[DataTypeEnum.Rut]: RutGenerationOptions;
-	[DataTypeEnum.StreetAddress]: StreetAddressGenerationOptions;
-	[DataTypeEnum.TextFixed]: TextFixedGenerationOptions;
-	[DataTypeEnum.TextRandom]: TextRandomGenerationOptions;
-	[DataTypeEnum.Time]: TimeGenerationOptions;
-	[DataTypeEnum.Track1]: Track1GenerationOptions;
-	[DataTypeEnum.Track2]: Track2GenerationOptions;
-	[DataTypeEnum.URLs]: URLsGenerationOptions;
-	[DataTypeEnum.WeightedList]: WeightedListGenerationOptions;
+	[DataType.Alphanumeric]: AlphanumericGenerationOptions;
+	[DataType.AutoIncrement]: AutoIncrementGenerationOptions;
+	[DataType.Boolean]: BooleanGenerationOptions;
+	[DataType.CVV]: CVVGenerationOptions;
+	[DataType.City]: CityGenerationOptions;
+	[DataType.Colour]: ColourGenerationOptions;
+	[DataType.Company]: CompanyGenerationOptions;
+	[DataType.Computed]: ComputedGenerationOptions;
+	[DataType.Constant]: ConstantGenerationOptions;
+	[DataType.Country]: CountryGenerationOptions;
+	[DataType.Currency]: CurrencyGenerationOptions;
+	[DataType.Date]: DateGenerationOptions;
+	[DataType.Email]: EmailGenerationOptions;
+	[DataType.GUID]: GUIDGenerationOptions;
+	[DataType.IBAN]: IBANGenerationOptions;
+	[DataType.LatLng]: LatLngGenerationOptions;
+	[DataType.List]: ListGenerationOptions;
+	[DataType.Names]: NamesGenerationOptions;
+	[DataType.NormalDistribution]: NormalDistributionGenerationOptions;
+	[DataType.NumberRange]: NumberRangeGenerationOptions;
+	[DataType.PAN]: PANGenerationOptions;
+	[DataType.PIN]: PINGenerationOptions;
+	[DataType.Phone]: PhoneGenerationOptions;
+	[DataType.PostalZip]: PostalZipGenerationOptions;
+	[DataType.Region]: RegionGenerationOptions;
+	[DataType.Rut]: RutGenerationOptions;
+	[DataType.StreetAddress]: StreetAddressGenerationOptions;
+	[DataType.TextFixed]: TextFixedGenerationOptions;
+	[DataType.TextRandom]: TextRandomGenerationOptions;
+	[DataType.Time]: TimeGenerationOptions;
+	[DataType.Track1]: Track1GenerationOptions;
+	[DataType.Track2]: Track2GenerationOptions;
+	[DataType.URLs]: URLsGenerationOptions;
+	[DataType.WeightedList]: WeightedListGenerationOptions;
 }
 
 export type DataTypeGenerationOptions = {
-	[K in DataTypeEnum]: {
+	[K in DataType]: {
 		plugin: K;
 		title: string;
 		settings: DataTypeOptionsMap[K];
 		id?: string | number;
 	}
-}[DataTypeEnum];
+}[DataType];
 
 export enum ExportType {
 	CSV = 'CSV',

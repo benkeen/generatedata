@@ -27,7 +27,11 @@ export type NamesState = {
 	selectedCountries: CountryNameFiles[];
 };
 
-export type GenerationOptionsType = Omit<NamesState, 'example'>;
+export type GenerationOptionsType = {
+	options: string[];
+	source?: NamesSource;
+	selectedCountries?: CountryNameFiles[];
+};
 
 export const initialState: NamesState = {
 	example: 'Name Surname',
