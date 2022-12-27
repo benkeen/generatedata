@@ -1,6 +1,6 @@
 import { ETMessageData } from '~types/exportTypes';
 
-export const generate = (data: any, ) => {
+export const generate = (data: any): string => {
 	const { exportFormat } = data.settings;
 
 	let content = '';

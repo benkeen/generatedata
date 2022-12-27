@@ -1,4 +1,4 @@
-import { getNumericFieldColumnIndexes } from '../SQL.worker';
+import { getNumericFieldColumnIndexes } from '../SQL.generate';
 
 describe('getNumericFieldColumnIndexes', () => {
 

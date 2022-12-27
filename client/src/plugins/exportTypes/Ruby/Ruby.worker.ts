@@ -1,49 +1,8 @@
-import { ETMessageData, ETOnMessage } from '~types/exportTypes';
+import { ETOnMessage } from '~types/exportTypes';
+import { generate } from './Ruby.generate'
+
 const context: Worker = self as any;
 
-let workerUtilsLoaded = false;
-context.onmessage = (e: ETOnMessage) => {
-	const { stripWhitespace, workerUtilsUrl } = e.data;
-	if (!workerUtilsLoaded) {
-		importScripts(workerUtilsUrl);
-		workerUtilsLoaded = true;
-	}
-	context.postMessage(generate(e.data, stripWhitespace));
-};
-
-export const generate = (data: ETMessageData, stripWhitespace: boolean): string => {
-	const newline = (stripWhitespace) ? '' : '\n';
-	const tab = (stripWhitespace) ? '' : '\t';
-
-	let content = '';
-	if (data.isFirstBatch) {
-		content += `data = [${newline}`;
-	}
-
-	data.rows.forEach((row: any, rowIndex: number) => {
-		const pairs: string[] = [];
-		data.columns.forEach(({ title }, colIndex) => {
-			const currValue = row[colIndex];
-			pairs.push(`'${title}': '${currValue}'`);
-
-			// if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
-			// 	$pairs[] = "'{$data["colData"][$j]}': {$currValue}";
-			// } else {
-			// 	$pairs[] = "'{$data["colData"][$j]}': '{$currValue}'";
-			// }
-		});
-		content += `${tab}{${newline}${tab}${tab}` + pairs.join(`,${newline}${tab}${tab}`) + `${newline}${tab}}`;
-
-		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
-			content += newline;
-		} else {
-			content += `,${newline}`;
-		}
-	});
-
-	if (data.isLastBatch) {
-		content += '];';
-	}
-
-	return content;
+context.onmessage = (e: ETOnMessage): void => {
+	context.postMessage(generate(e.data));
 };

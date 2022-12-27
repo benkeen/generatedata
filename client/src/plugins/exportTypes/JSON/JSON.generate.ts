@@ -2,7 +2,7 @@ import { ETMessageData } from '~types/exportTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
 let utils: WorkerUtils;
-export const generate = (data: any, workerUtils: WorkerUtils) => {
+export const generate = (data: any, workerUtils: WorkerUtils): string => {
 	utils = workerUtils;
 
 	const { settings, stripWhitespace } = data;
@@ -22,7 +22,7 @@ const generateSimple = (generationData: ETMessageData, stripWhitespace: boolean)
 	if (generationData.isFirstBatch) {
 		content += '[';
 	} else {
-		comma = ",";
+		comma = ',';
 	}
 
 	generationData.rows.forEach((row: any) => {
@@ -88,24 +88,24 @@ const generateComplex = (generationData: ETMessageData, stripWhitespace: boolean
 			const rowVals = rowValsArr.join(',');
 			content += `[${rowVals}]`;
 			if (rowIndex < numRows - 1) {
-				content += `,`;
+				content += ',';
 			}
 		} else {
 			const rowVals = rowValsArr.join(',\n\t\t\t');
 			content += `\t\t[\n\t\t\t${rowVals}\n\t\t]`;
 			if (rowIndex < numRows - 1) {
-				content += ",\n";
+				content += ',\n';
 			} else if (!generationData.isLastBatch) {
-				content += ",\n";
+				content += ',\n';
 			}
 		}
 	});
 
 	if (generationData.isLastBatch) {
 		if (stripWhitespace) {
-			content += `]}`;
+			content += ']}';
 		} else {
-			content += `\n\t]\n}`;
+			content += '\n\t]\n}';
 		}
 	}
 
