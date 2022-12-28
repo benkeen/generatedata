@@ -158,6 +158,7 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-preset-airbnb": "^4.4.0",
+    "browser-env": "3.3.0",
     "case-sensitive-paths-webpack-plugin": "^2.3.0",
     "concurrently": "^5.2.0",
     "coveralls": "^3.0.9",

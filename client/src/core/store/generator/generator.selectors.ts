@@ -144,38 +144,36 @@ export const getPreviewRows = createSelector(
 	}
 );
 
-type ProcessOrders = {
-	[num: number]: any;
+// TODO types
+export const convertRowsToGenerationTemplate = (rows: any): GenerationTemplate => {
+	const templateByProcessOrder: GenerationTemplate = {};
+	rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
+		const processOrder = processBatches[dataType as DataTypeFolder] as number;
+		const { rowStateReducer } = getDataType(dataType);
+
+		if (!templateByProcessOrder[processOrder]) {
+			templateByProcessOrder[processOrder] = [];
+		}
+
+		templateByProcessOrder[processOrder].push({
+			id,
+			title,
+			dataType,
+			colIndex,
+
+			// settings for the DT cell. The rowStateReducer is optional: it lets developers convert the Data Type row
+			// state into something friendlier for the generation step
+			rowState: rowStateReducer ? rowStateReducer(data) : data
+		});
+	});
+
+	return templateByProcessOrder;
 };
 
 export const getGenerationTemplate = createSelector(
 	getSortedRowsWithDataTypeSelected,
 	getLoadedDataTypes, // yup, intentional! This ensures the selector will be re-ran after the data types are async loaded
-	(rows): GenerationTemplate => {
-		const templateByProcessOrder: ProcessOrders = {};
-		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
-			const processOrder = processBatches[dataType as DataTypeFolder] as number;
-			const { rowStateReducer } = getDataType(dataType);
-
-			if (!templateByProcessOrder[processOrder]) {
-				templateByProcessOrder[processOrder] = [];
-			}
-
-			// TODO type
-			templateByProcessOrder[processOrder].push({
-				id,
-				title,
-				dataType,
-				colIndex,
-
-				// settings for the DT cell. The rowStateReducer is optional: it lets developers convert the Data Type row
-				// state into something friendlier for the generation step
-				rowState: rowStateReducer ? rowStateReducer(data) : data
-			});
-		});
-
-		return templateByProcessOrder;
-	}
+	convertRowsToGenerationTemplate
 );
 
 export const hasData = createSelector(

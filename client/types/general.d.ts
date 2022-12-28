@@ -71,7 +71,7 @@ export type GenerationTemplateRow = {
 }
 
 export type GenerationTemplate = {
-    [num: number]: GenerationTemplateRow[];
+    [processOrder: number]: GenerationTemplateRow[];
 };
 
 export type ColumnData = {

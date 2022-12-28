@@ -232,6 +232,79 @@ export enum DataType {
 	WeightedList = 'WeightedList'
 }
 
+// import { generate as AlphanumericGenerate } from './src/plugins/dataTypes/Alphanumeric/Alphanumeric.generate';
+// import { generate as AutoIncrementGenerate } from './src/plugins/dataTypes/AutoIncrement/AutoIncrement.generate';
+// import { generate as BooleanGenerate } from './src/plugins/dataTypes/Boolean/Boolean.generate';
+// import { generate as CVVGenerate } from './src/plugins/dataTypes/CVV/CVV.generate';
+// import { generate as CityGenerate } from './src/plugins/dataTypes/City/City.generate';
+// import { generate as ColourGenerate } from './src/plugins/dataTypes/Colour/Colour.generate';
+// import { generate as CompanyGenerate } from './src/plugins/dataTypes/Company/Company.generate';
+// import { generate as ComputedGenerate } from './src/plugins/dataTypes/Computed/Computed.generate';
+// import { generate as ConstantGenerate } from './src/plugins/dataTypes/Constant/Constant.generate';
+// import { generate as CountryGenerate } from './src/plugins/dataTypes/Country/Country.generate';
+// import { generate as CurrencyGenerate } from './src/plugins/dataTypes/Currency/Currency.generate';
+// import { generate as DateGenerate } from './src/plugins/dataTypes/Date/Date.generate';
+// import { generate as EmailGenerate } from './src/plugins/dataTypes/Email/Email.generate';
+// import { generate as GUIDGenerate } from './src/plugins/dataTypes/GUID/GUID.generate';
+// import { generate as IBANGenerate } from './src/plugins/dataTypes/IBAN/IBAN.generate';
+// import { generate as LatLngGenerate } from './src/plugins/dataTypes/LatLng/LatLng.generate';
+// import { generate as ListGenerate } from './src/plugins/dataTypes/List/List.generate';
+import { generate as NamesGenerate } from './src/plugins/dataTypes/Names/Names.generate';
+// import { generate as NormalDistributionGenerate } from './src/plugins/dataTypes/NormalDistribution/NormalDistribution.generate';
+// import { generate as NumberRangeGenerate } from './src/plugins/dataTypes/NumberRange/NumberRange.generate';
+// import { generate as PANGenerate } from './src/plugins/dataTypes/PAN/PAN.generate';
+// import { generate as PINGenerate } from './src/plugins/dataTypes/PIN/PIN.generate';
+// import { generate as PhoneGenerate } from './src/plugins/dataTypes/Phone/Phone.generate';
+// import { generate as PostalZipGenerate } from './src/plugins/dataTypes/PostalZip/PostalZip.generate';
+// import { generate as RegionGenerate } from './src/plugins/dataTypes/Region/Region.generate';
+// import { generate as RutGenerate } from './src/plugins/dataTypes/Rut/Rut.generate';
+// import { generate as StreetAddressGenerate } from './src/plugins/dataTypes/StreetAddress/StreetAddress.generate';
+// import { generate as TextFixedGenerate } from './src/plugins/dataTypes/TextFixed/TextFixed.generate';
+// import { generate as TextRandomGenerate } from './src/plugins/dataTypes/TextRandom/TextRandom.generate';
+// import { generate as TimeGenerate } from './src/plugins/dataTypes/Time/Time.generate';
+// import { generate as Track1Generate } from './src/plugins/dataTypes/Track1/Track1.generate';
+// import { generate as Track2Generate } from './src/plugins/dataTypes/Track2/Track2.generate';
+// import { generate as URLsGenerate } from './src/plugins/dataTypes/URLs/URLs.generate';
+// import { generate as WeightedListGenerate } from './src/plugins/dataTypes/WeightedList/WeightedList.generate';
+
+
+export const dataTypeGenerateMethods = {
+	// [DataType.Alphanumeric]: AlphanumericGenerate,
+	// [DataType.AutoIncrement]: AutoIncrementGenerate,
+	// [DataType.Boolean]: BooleanGenerate,
+	// [DataType.CVV]: CVVGenerate,
+	// [DataType.City]: CityGenerate,
+	// [DataType.Colour]: ColourGenerate,
+	// [DataType.Company]: CompanyGenerate,
+	// [DataType.Computed]: ComputedGenerate,
+	// [DataType.Constant]: ConstantGenerate,
+	// [DataType.Country]: CountryGenerate,
+	// [DataType.Currency]: CurrencyGenerate,
+	// [DataType.Date]: DateGenerate,
+	// [DataType.Email]: EmailGenerate,
+	// [DataType.GUID]: GUIDGenerate,
+	// [DataType.IBAN]: IBANGenerate,
+	// [DataType.LatLng]: LatLngGenerate,
+	// [DataType.List]: ListGenerate,
+	[DataType.Names]: NamesGenerate,
+	// [DataType.NormalDistribution]: NormalDistributionGenerate,
+	// [DataType.NumberRange]: NumberRangeGenerate,
+	// [DataType.PAN]: PANGenerate,
+	// [DataType.PIN]: PINGenerate,
+	// [DataType.Phone]: PhoneGenerate,
+	// [DataType.PostalZip]: PostalZipGenerate,
+	// [DataType.Region]: RegionGenerate,
+	// [DataType.Rut]: RutGenerate,
+	// [DataType.StreetAddress]: StreetAddressGenerate,
+	// [DataType.TextFixed]: TextFixedGenerate,
+	// [DataType.TextRandom]: TextRandomGenerate,
+	// [DataType.Time]: TimeGenerate,
+	// [DataType.Track1]: Track1Generate,
+	// [DataType.Track2]: Track2Generate,
+	// [DataType.URLs]: URLsGenerate,
+	// [DataType.WeightedList]: WeightedListGenerate
+};
+
 import { GenerationOptionsType as AlphanumericGenerationOptions } from './src/plugins/dataTypes/Alphanumeric/bundle';
 import { GenerationOptionsType as AutoIncrementGenerationOptions } from './src/plugins/dataTypes/AutoIncrement/bundle';
 import { GenerationOptionsType as BooleanGenerationOptions } from './src/plugins/dataTypes/Boolean/bundle';

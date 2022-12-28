@@ -116,6 +116,7 @@ const getWorkerInterface = (workerPath: string): WorkerInterface => {
 		};
 
 		workerInterface = {
+			context: 'worker',
 			send: worker.postMessage,
 			onSuccess: onRegisterSuccess,
 			onError: onRegisterError

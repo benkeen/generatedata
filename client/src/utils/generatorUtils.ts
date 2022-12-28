@@ -20,9 +20,9 @@ let lastMainProcessOptions: MainProcessOptionsBrowser | MainProcessOptionsNode |
 let currentSpeed: number; // TODO possible range?
 const workerQueue: any = {};
 
-export const generate = (template: GDTemplate, settings: any) => {
-	const { numRows, packetSize } = template.generationSettings; // TODO locale no longer needed here
-	const { i18n, workerUtils, countryNames, countryData } = settings;
+export const generate = (fullTemplate: GDTemplate, settings: any) => {
+	const { numRows, packetSize } = fullTemplate.generationSettings; // TODO locale no longer needed here
+	const { i18n, workerUtils, countryNames, countryData, dataTypeInterface, template } = settings;
 
 	// const {
 	// 	columns, numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData, stripWhitespace,
@@ -62,7 +62,7 @@ export const generate = (template: GDTemplate, settings: any) => {
 		countryData,
 		onBatchComplete,
 		workerUtils,
-		// dataTypeInterface: dataTypeWorkerMap
+		dataTypeInterface
 	});
 };
 
@@ -436,17 +436,25 @@ const processQueue = (dataType: DataTypeFolder, workerInterface: WorkerInterface
 	workerQueue[dataType].processing = true;
 	const { payload, resolve, reject } = queue[0];
 
-	workerInterface.send(payload);
-
-	workerInterface.onSuccess((resp: any): void => {
-		resolve(resp.data);
+	if (workerInterface.context === 'node') {
+		const resp = workerInterface.send(payload);
+		resolve(resp);
 		processNextItem(dataType, workerInterface);
-	});
+	} else {
+		workerInterface.send(payload);
 
-	workerInterface.onError((resp: any): void => {
-		reject(resp);
-		processNextItem(dataType, workerInterface);
-	});
+		// @ts-ignore
+		workerInterface.onSuccess((resp: any): void => {
+			resolve(resp.data);
+			processNextItem(dataType, workerInterface);
+		});
+
+		// @ts-ignore
+		workerInterface.onError((resp: any): void => {
+			reject(resp);
+			processNextItem(dataType, workerInterface);
+		});
+	}
 };
 
 const processNextItem = (dataType: DataTypeFolder, workerInterface: WorkerInterface): void => {

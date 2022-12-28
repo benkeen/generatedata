@@ -4,6 +4,7 @@ import {
 	ExportTypeGenerationOptions
 } from '../_plugins';
 import { GDLocale } from '~types/general';
+import { DTGenerateResult, DTGenerationData } from "~types/dataTypes";
 
 export { CountryNameFiles } from '../_namePlugins';
 export { DataTypeGenerationOptions, ExportType, ExportTypeGenerationOptions };
@@ -45,9 +46,10 @@ export type GDTemplate = {
 // Bad name but can't think of a better one. This is the interface required for the Data Type and Export Type
 // code for performing a unit of generation. It's a consistent interface used by both web workers and node code
 export type WorkerInterface = {
-	send: (data: any) => void;
-	onSuccess: (data: any) => void;
-	onError: (data: any) => void;
+	context: 'worker' | 'node',
+	send: (data: DTGenerationData) => void | DTGenerateResult;
+	onSuccess?: (data: any) => void;
+	onError?: (data: any) => void;
 };
 
 export type UnchangedGenerationData = {
@@ -55,7 +57,7 @@ export type UnchangedGenerationData = {
 }
 
 export type DataTypeWorkerInterface = {
-	[worker: string]: WorkerInterface; // TODO is the worker the URL, the folder?
+	[dataType: string]: WorkerInterface;
 };
 
 export type DataTypeBatchGeneratedPayload = {

@@ -42,7 +42,7 @@ export const setTourComponents = (tour: any): void => {
 
 export const getTourComponents = (): any => tourComponents;
 
-export const isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+export const isSafari = navigator?.vendor && navigator.vendor.indexOf('Apple') > -1 &&
 	navigator.userAgent &&
 	navigator.userAgent.indexOf('CriOS') == -1 &&
 	navigator.userAgent.indexOf('FxiOS') == -1;
