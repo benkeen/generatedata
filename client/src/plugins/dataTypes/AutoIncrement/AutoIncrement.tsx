@@ -11,6 +11,12 @@ export type GenerationOptionsType = {
 	incrementPlaceholder: string;
 }
 
+export const defaultGenerationOptions: GenerationOptionsType = {
+	incrementStart: 1,
+	incrementValue: 1,
+	incrementPlaceholder: ''
+}
+
 export type AutoIncrementState = {
 	example: string;
 	incrementStart: string;

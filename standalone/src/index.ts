@@ -1,5 +1,3 @@
-import { convertRowsToGenerationTemplate } from "~store/generator/generator.selectors";
-
 require('browser-env')();
 
 import {
@@ -10,11 +8,13 @@ import {
     WorkerInterface
 } from '~types/generator';
 import { DataType, dataTypeGenerateMethods } from '../../client/_plugins';
+import countryNames from '../../client/_namePlugins';
 import { generate } from '../../client/src/utils/generatorUtils';
 import workerUtils from '../../client/src/utils';
 import { getI18nStrings } from './utils/i18n';
 import { GDLocale, GenerationTemplate } from '~types/general';
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
+import { convertRowsToGenerationTemplate } from '~store/generator/generator.selectors';
 
 // no point requiring users to supply a colIndex. We can add that ourselves.
 export type DataTypeGenerationOptionsWithColIndex = DataTypeGenerationOptions & {
@@ -33,6 +33,8 @@ const getNormalizedGDTemplate = (template: GDTemplate): GDTemplate => ({
         packetSize: 100,
         ...template.generationSettings
     },
+
+    // TODO need to prefill all
     dataTemplate: template.dataTemplate,
     exportSettings: template.exportSettings
 });
@@ -44,17 +46,26 @@ const doStuff = (template: GDTemplate) => {
     const i18n = getI18nStrings(normalizedTemplate.generationSettings.locale as GDLocale)
     const dataTypeInterface = getWorkerInterface();
 
-    convertPublicToInternalTemplate(normalizedTemplate.dataTemplate);
-
-    // generate(normalizedTemplate, { i18n, workerUtils, dataTypeInterface });
+    generate(normalizedTemplate, {
+        i18n,
+        workerUtils,
+        dataTypeInterface,
+        template: convertPublicToInternalTemplate(normalizedTemplate.dataTemplate),
+        countryNames
+    });
 };
 
+let newRowId = 1;
 const convertPublicToInternalTemplate = (rows: DataTypeGenerationOptions[]): GenerationTemplate => {
-    const internalTemplate = {};
+    const cleanRows = rows.map((row) => ({
+        // for some situations, users can supply their own IDs; this pads the ones that don't have it
+        id: row.id || newRowId++,
+        title: row.title,
+        dataType: row.plugin,
+        rowState: row.settings
+    }));
 
-    console.log("--->", convertRowsToGenerationTemplate(rows));
-
-    return internalTemplate;
+    return convertRowsToGenerationTemplate(cleanRows);
 };
 
 

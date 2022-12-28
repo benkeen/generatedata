@@ -144,7 +144,7 @@ export const getPreviewRows = createSelector(
 	}
 );
 
-// TODO types
+// TODO types for rows
 export const convertRowsToGenerationTemplate = (rows: any): GenerationTemplate => {
 	const templateByProcessOrder: GenerationTemplate = {};
 	rows.map(({ id, title, dataType, data }: any, colIndex: number) => {

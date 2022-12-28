@@ -1,6 +1,6 @@
 import { countryList } from '../../../../_plugins';
 import { getRandomArrayValue } from '~utils/randomUtils';
-import { DTGenerateResult, DTGenerationData, DTWorkerOnMessage } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { Region, CountryType } from '~types/countries';
 import { RegionFormat } from './Region';
 
@@ -56,15 +56,4 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 			countryDataType: country
 		};
 	}
-};
-
-let utilsLoaded = false;
-
-export const onmessage = (e: DTWorkerOnMessage): void => {
-	if (!utilsLoaded) {
-		importScripts(e.data.workerUtilsUrl);
-		utilsLoaded = true;
-	}
-
-	postMessage(generate(e.data));
 };

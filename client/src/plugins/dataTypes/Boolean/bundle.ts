@@ -1,8 +1,8 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help, rowStateReducer, getMetadata } from './Boolean';
-import { generate } from './Boolean.generate';
 
-export { GenerationOptionsType } from './Boolean';
+export { generate } from './Boolean.generate';
+export { GenerationOptionsType, defaultGenerationOptions } from './Boolean';
 
 const bundle: DTBundle = {
 	initialState,
@@ -10,8 +10,7 @@ const bundle: DTBundle = {
 	Options,
 	Help,
 	rowStateReducer,
-	getMetadata,
-	generate
+	getMetadata
 };
 
 export default bundle;

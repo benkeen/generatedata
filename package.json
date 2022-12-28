@@ -6,7 +6,6 @@
   "directories": {
     "test": "tests"
   },
-  "bin": "./bin/generatedata",
   "scripts": {
     "start": "cd client && grunt dev & yarn build & yarn webpackDev",
     "coverage": "yarn jest --coverage",

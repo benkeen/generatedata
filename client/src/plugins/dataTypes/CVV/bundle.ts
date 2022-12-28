@@ -1,13 +1,13 @@
 import { DTBundle } from '~types/dataTypes';
 import { Help, getMetadata } from './CVV';
-import { generate } from './CVV.generate';
 
+export { generate } from './CVV.generate';
+export const defaultGenerationOptions = {};
 export type GenerationOptionsType = null;
 
 const bundle: DTBundle = {
 	Help,
-	getMetadata,
-	generate
+	getMetadata
 };
 
 export default bundle;

@@ -33,11 +33,15 @@ export type GenerationOptionsType = {
 	selectedCountries?: CountryNameFiles[];
 };
 
-export const initialState: NamesState = {
-	example: 'Name Surname',
+export const defaultGenerationOptions: Required<GenerationOptionsType> = {
 	options: ['Name Surname'],
 	source: NamesSource.any,
 	selectedCountries: []
+};
+
+export const initialState: NamesState = {
+	example: 'Name Surname',
+	...defaultGenerationOptions
 };
 
 export const rowStateReducer = ({ options, source, selectedCountries }: NamesState): GenerationOptionsType => ({

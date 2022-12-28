@@ -232,77 +232,77 @@ export enum DataType {
 	WeightedList = 'WeightedList'
 }
 
-// import { generate as AlphanumericGenerate } from './src/plugins/dataTypes/Alphanumeric/Alphanumeric.generate';
-// import { generate as AutoIncrementGenerate } from './src/plugins/dataTypes/AutoIncrement/AutoIncrement.generate';
-// import { generate as BooleanGenerate } from './src/plugins/dataTypes/Boolean/Boolean.generate';
-// import { generate as CVVGenerate } from './src/plugins/dataTypes/CVV/CVV.generate';
-// import { generate as CityGenerate } from './src/plugins/dataTypes/City/City.generate';
-// import { generate as ColourGenerate } from './src/plugins/dataTypes/Colour/Colour.generate';
-// import { generate as CompanyGenerate } from './src/plugins/dataTypes/Company/Company.generate';
-// import { generate as ComputedGenerate } from './src/plugins/dataTypes/Computed/Computed.generate';
-// import { generate as ConstantGenerate } from './src/plugins/dataTypes/Constant/Constant.generate';
-// import { generate as CountryGenerate } from './src/plugins/dataTypes/Country/Country.generate';
-// import { generate as CurrencyGenerate } from './src/plugins/dataTypes/Currency/Currency.generate';
-// import { generate as DateGenerate } from './src/plugins/dataTypes/Date/Date.generate';
-// import { generate as EmailGenerate } from './src/plugins/dataTypes/Email/Email.generate';
-// import { generate as GUIDGenerate } from './src/plugins/dataTypes/GUID/GUID.generate';
-// import { generate as IBANGenerate } from './src/plugins/dataTypes/IBAN/IBAN.generate';
-// import { generate as LatLngGenerate } from './src/plugins/dataTypes/LatLng/LatLng.generate';
-// import { generate as ListGenerate } from './src/plugins/dataTypes/List/List.generate';
-import { generate as NamesGenerate } from './src/plugins/dataTypes/Names/Names.generate';
-// import { generate as NormalDistributionGenerate } from './src/plugins/dataTypes/NormalDistribution/NormalDistribution.generate';
-// import { generate as NumberRangeGenerate } from './src/plugins/dataTypes/NumberRange/NumberRange.generate';
-// import { generate as PANGenerate } from './src/plugins/dataTypes/PAN/PAN.generate';
-// import { generate as PINGenerate } from './src/plugins/dataTypes/PIN/PIN.generate';
-// import { generate as PhoneGenerate } from './src/plugins/dataTypes/Phone/Phone.generate';
-// import { generate as PostalZipGenerate } from './src/plugins/dataTypes/PostalZip/PostalZip.generate';
-// import { generate as RegionGenerate } from './src/plugins/dataTypes/Region/Region.generate';
-// import { generate as RutGenerate } from './src/plugins/dataTypes/Rut/Rut.generate';
-// import { generate as StreetAddressGenerate } from './src/plugins/dataTypes/StreetAddress/StreetAddress.generate';
-// import { generate as TextFixedGenerate } from './src/plugins/dataTypes/TextFixed/TextFixed.generate';
-// import { generate as TextRandomGenerate } from './src/plugins/dataTypes/TextRandom/TextRandom.generate';
-// import { generate as TimeGenerate } from './src/plugins/dataTypes/Time/Time.generate';
-// import { generate as Track1Generate } from './src/plugins/dataTypes/Track1/Track1.generate';
-// import { generate as Track2Generate } from './src/plugins/dataTypes/Track2/Track2.generate';
-// import { generate as URLsGenerate } from './src/plugins/dataTypes/URLs/URLs.generate';
-// import { generate as WeightedListGenerate } from './src/plugins/dataTypes/WeightedList/WeightedList.generate';
+import { generate as AlphanumericG, defaultGenerationOptions as AlphanumericDGO } from './src/plugins/dataTypes/Alphanumeric/bundle';
+import { generate as AutoIncrementG, defaultGenerationOptions as AutoIncrementDGO } from './src/plugins/dataTypes/AutoIncrement/bundle';
+import { generate as BooleanG, defaultGenerationOptions as BooleanDGO } from './src/plugins/dataTypes/Boolean/bundle';
+import { generate as CVVG, defaultGenerationOptions as CVVDGO } from './src/plugins/dataTypes/CVV/bundle';
+import { generate as CityG, defaultGenerationOptions as CityDGO } from './src/plugins/dataTypes/City/bundle';
+import { generate as ColourG, defaultGenerationOptions as ColourDGO } from './src/plugins/dataTypes/Colour/bundle';
+import { generate as CompanyG, defaultGenerationOptions as CompanyDGO } from './src/plugins/dataTypes/Company/bundle';
+import { generate as ComputedG, defaultGenerationOptions as ComputedDGO } from './src/plugins/dataTypes/Computed/bundle';
+import { generate as ConstantG, defaultGenerationOptions as ConstantDGO } from './src/plugins/dataTypes/Constant/bundle';
+import { generate as CountryG, defaultGenerationOptions as CountryDGO } from './src/plugins/dataTypes/Country/bundle';
+import { generate as CurrencyG, defaultGenerationOptions as CurrencyDGO } from './src/plugins/dataTypes/Currency/bundle';
+import { generate as DateG, defaultGenerationOptions as DateDGO } from './src/plugins/dataTypes/Date/bundle';
+import { generate as EmailG, defaultGenerationOptions as EmailDGO } from './src/plugins/dataTypes/Email/bundle';
+import { generate as GUIDG, defaultGenerationOptions as GUIDDGO } from './src/plugins/dataTypes/GUID/bundle';
+import { generate as IBANG, defaultGenerationOptions as IBANDGO } from './src/plugins/dataTypes/IBAN/bundle';
+import { generate as LatLngG, defaultGenerationOptions as LatLngDGO } from './src/plugins/dataTypes/LatLng/bundle';
+import { generate as ListG, defaultGenerationOptions as ListDGO } from './src/plugins/dataTypes/List/bundle';
+import { generate as NamesG, defaultGenerationOptions as NamesDGO } from './src/plugins/dataTypes/Names/bundle';
+import { generate as NormalDistributionG, defaultGenerationOptions as NormalDistributionDGO } from './src/plugins/dataTypes/NormalDistribution/bundle';
+import { generate as NumberRangeG, defaultGenerationOptions as NumberRangeDGO } from './src/plugins/dataTypes/NumberRange/bundle';
+import { generate as PANG, defaultGenerationOptions as PANDGO } from './src/plugins/dataTypes/PAN/bundle';
+import { generate as PING, defaultGenerationOptions as PINDGO } from './src/plugins/dataTypes/PIN/bundle';
+import { generate as PhoneG, defaultGenerationOptions as PhoneDGO } from './src/plugins/dataTypes/Phone/bundle';
+import { generate as PostalZipG, defaultGenerationOptions as PostalZipDGO } from './src/plugins/dataTypes/PostalZip/bundle';
+import { generate as RegionG, defaultGenerationOptions as RegionDGO } from './src/plugins/dataTypes/Region/bundle';
+import { generate as RutG, defaultGenerationOptions as RutDGO } from './src/plugins/dataTypes/Rut/bundle';
+import { generate as StreetAddressG, defaultGenerationOptions as StreetAddressDGO } from './src/plugins/dataTypes/StreetAddress/bundle';
+import { generate as TextFixedG, defaultGenerationOptions as TextFixedDGO } from './src/plugins/dataTypes/TextFixed/bundle';
+import { generate as TextRandomG, defaultGenerationOptions as TextRandomDGO } from './src/plugins/dataTypes/TextRandom/bundle';
+import { generate as TimeG, defaultGenerationOptions as TimeDGO } from './src/plugins/dataTypes/Time/bundle';
+import { generate as Track1G, defaultGenerationOptions as Track1DGO } from './src/plugins/dataTypes/Track1/bundle';
+import { generate as Track2G, defaultGenerationOptions as Track2DGO } from './src/plugins/dataTypes/Track2/bundle';
+import { generate as URLsG, defaultGenerationOptions as URLsDGO } from './src/plugins/dataTypes/URLs/bundle';
+import { generate as WeightedListG, defaultGenerationOptions as WeightedListDGO } from './src/plugins/dataTypes/WeightedList/bundle';
 
 
 export const dataTypeGenerateMethods = {
-	// [DataType.Alphanumeric]: AlphanumericGenerate,
-	// [DataType.AutoIncrement]: AutoIncrementGenerate,
-	// [DataType.Boolean]: BooleanGenerate,
-	// [DataType.CVV]: CVVGenerate,
-	// [DataType.City]: CityGenerate,
-	// [DataType.Colour]: ColourGenerate,
-	// [DataType.Company]: CompanyGenerate,
-	// [DataType.Computed]: ComputedGenerate,
-	// [DataType.Constant]: ConstantGenerate,
-	// [DataType.Country]: CountryGenerate,
-	// [DataType.Currency]: CurrencyGenerate,
-	// [DataType.Date]: DateGenerate,
-	// [DataType.Email]: EmailGenerate,
-	// [DataType.GUID]: GUIDGenerate,
-	// [DataType.IBAN]: IBANGenerate,
-	// [DataType.LatLng]: LatLngGenerate,
-	// [DataType.List]: ListGenerate,
-	[DataType.Names]: NamesGenerate,
-	// [DataType.NormalDistribution]: NormalDistributionGenerate,
-	// [DataType.NumberRange]: NumberRangeGenerate,
-	// [DataType.PAN]: PANGenerate,
-	// [DataType.PIN]: PINGenerate,
-	// [DataType.Phone]: PhoneGenerate,
-	// [DataType.PostalZip]: PostalZipGenerate,
-	// [DataType.Region]: RegionGenerate,
-	// [DataType.Rut]: RutGenerate,
-	// [DataType.StreetAddress]: StreetAddressGenerate,
-	// [DataType.TextFixed]: TextFixedGenerate,
-	// [DataType.TextRandom]: TextRandomGenerate,
-	// [DataType.Time]: TimeGenerate,
-	// [DataType.Track1]: Track1Generate,
-	// [DataType.Track2]: Track2Generate,
-	// [DataType.URLs]: URLsGenerate,
-	// [DataType.WeightedList]: WeightedListGenerate
+	[DataType.Alphanumeric]: { generate: AlphanumericG, defaultGenerationOptions: AlphanumericDGO },
+	[DataType.AutoIncrement]: { generate: AutoIncrementG, defaultGenerationOptions: AutoIncrementDGO },
+	[DataType.Boolean]: { generate: BooleanG, defaultGenerationOptions: BooleanDGO },
+	[DataType.CVV]: { generate: CVVG, defaultGenerationOptions: CVVDGO },
+	[DataType.City]: { generate: CityG, defaultGenerationOptions: CityDGO },
+	[DataType.Colour]: { generate: ColourG, defaultGenerationOptions: ColourDGO },
+	[DataType.Company]: { generate: CompanyG, defaultGenerationOptions: CompanyDGO },
+	[DataType.Computed]: { generate: ComputedG, defaultGenerationOptions: ComputedDGO },
+	[DataType.Constant]: { generate: ConstantG, defaultGenerationOptions: ConstantDGO },
+	[DataType.Country]: { generate: CountryG, defaultGenerationOptions: CountryDGO },
+	[DataType.Currency]: { generate: CurrencyG, defaultGenerationOptions: CurrencyDGO },
+	[DataType.Date]: { generate: DateG, defaultGenerationOptions: DateDGO },
+	[DataType.Email]: { generate: EmailG, defaultGenerationOptions: EmailDGO },
+	[DataType.GUID]: { generate: GUIDG, defaultGenerationOptions: GUIDDGO },
+	[DataType.IBAN]: { generate: IBANG, defaultGenerationOptions: IBANDGO },
+	[DataType.LatLng]: { generate: LatLngG, defaultGenerationOptions: LatLngDGO },
+	[DataType.List]: { generate: ListG, defaultGenerationOptions: ListDGO },
+	[DataType.Names]: { generate: NamesG, defaultGenerationOptions: NamesDGO },
+	[DataType.NormalDistribution]: { generate: NormalDistributionG, defaultGenerationOptions: NormalDistributionDGO },
+	[DataType.NumberRange]: { generate: NumberRangeG, defaultGenerationOptions: NumberRangeDGO },
+	[DataType.PAN]: { generate: PANG, defaultGenerationOptions: PANDGO },
+	[DataType.PIN]: { generate: PING, defaultGenerationOptions: PINDGO },
+	[DataType.Phone]: { generate: PhoneG, defaultGenerationOptions: PhoneDGO },
+	[DataType.PostalZip]: { generate: PostalZipG, defaultGenerationOptions: PostalZipDGO },
+	[DataType.Region]: { generate: RegionG, defaultGenerationOptions: RegionDGO },
+	[DataType.Rut]: { generate: RutG, defaultGenerationOptions: RutDGO },
+	[DataType.StreetAddress]: { generate: StreetAddressG, defaultGenerationOptions: StreetAddressDGO },
+	[DataType.TextFixed]: { generate: TextFixedG, defaultGenerationOptions: TextFixedDGO },
+	[DataType.TextRandom]: { generate: TextRandomG, defaultGenerationOptions: TextRandomDGO },
+	[DataType.Time]: { generate: TimeG, defaultGenerationOptions: TimeDGO },
+	[DataType.Track1]: { generate: Track1G, defaultGenerationOptions: Track1DGO },
+	[DataType.Track2]: { generate: Track2G, defaultGenerationOptions: Track2DGO },
+	[DataType.URLs]: { generate: URLsG, defaultGenerationOptions: URLsDGO },
+	[DataType.WeightedList]: { generate: WeightedListG, defaultGenerationOptions: WeightedListDGO }
 };
 
 import { GenerationOptionsType as AlphanumericGenerationOptions } from './src/plugins/dataTypes/Alphanumeric/bundle';

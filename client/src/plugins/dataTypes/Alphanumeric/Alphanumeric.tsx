@@ -6,7 +6,13 @@ import { DTExampleProps, DTOptionsProps, DTHelpProps, DTMetadata } from '~types/
 import styles from './Alphanumeric.scss';
 import sharedStyles from '../../../styles/shared.scss';
 
-export type GenerationOptionsType = string;
+export type GenerationOptionsType = {
+	value: string;
+};
+
+export const defaultGenerationOptions: GenerationOptionsType = {
+	value: 'LLLxxLLLxLL'
+}
 
 export type AlphanumericState = {
 	example: string;
@@ -15,7 +21,7 @@ export type AlphanumericState = {
 
 export const initialState: AlphanumericState = {
 	example: 'LLLxxLLLxLL',
-	value: 'LLLxxLLLxLL'
+	...defaultGenerationOptions
 };
 
 const Copy = ({ content, tooltip, message }: any): JSX.Element => (
@@ -173,7 +179,7 @@ export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 	</>
 );
 
-export const rowStateReducer = (state: AlphanumericState): GenerationOptionsType => state.value;
+export const rowStateReducer = (state: AlphanumericState): GenerationOptionsType => ({ value: state.value });
 
 export const getMetadata = (): DTMetadata => ({
 	sql: {

@@ -1,8 +1,8 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help, rowStateReducer, getMetadata } from './Alphanumeric';
-import { generate } from './Alphanumeric.generate';
 
-export { GenerationOptionsType } from './Alphanumeric';
+export { generate } from './Alphanumeric.generate';
+export { defaultGenerationOptions, GenerationOptionsType } from './Alphanumeric';
 
 const bundle: DTBundle = {
 	initialState,
@@ -10,8 +10,7 @@ const bundle: DTBundle = {
 	Options,
 	Help,
 	rowStateReducer,
-	getMetadata,
-	generate
+	getMetadata
 };
 
 export default bundle;

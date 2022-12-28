@@ -1,8 +1,8 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help, rowStateReducer, getMetadata } from './AutoIncrement';
-import { generate } from './AutoIncrement.generate';
 
-export { GenerationOptionsType } from './AutoIncrement';
+export { generate } from './AutoIncrement.generate';
+export { GenerationOptionsType, defaultGenerationOptions } from './AutoIncrement';
 
 const bundle: DTBundle = {
 	initialState,
@@ -11,7 +11,6 @@ const bundle: DTBundle = {
 	Help,
 	rowStateReducer,
 	getMetadata,
-	generate
 };
 
 export default bundle;

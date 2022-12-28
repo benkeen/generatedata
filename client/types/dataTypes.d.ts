@@ -3,17 +3,12 @@ import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { AnyObject, GenerationTemplate } from './general';
 import { DataTypeFolder } from '../_plugins';
 import { CountryNamesMap, CountryType } from '~types/countries';
-import { WorkerUtils } from '~utils/workerUtils';
 
 export type DataTypeMap = {
 	[dataType in DataTypeFolder]?: string;
 };
 
 export type DTBundle = {
-	// the node generator method. For the UI, a separate [DataType]-worker.ts file needs to be written to implement
-	// the same interface
-	generate: (data: DTGenerationData, utils: WorkerUtils) => DTGenerateResult;
-
 	initialState?: any;
 
 	// optional <Example /> React component to show something in the UI for the "Example" column

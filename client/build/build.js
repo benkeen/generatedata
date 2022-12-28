@@ -113,11 +113,11 @@ const createPluginsListFile = () => {
 	content += `export enum DataType {\n${dataTypeEnums.join(',\n')}\n}\n\n`;
 
 	dtList.forEach((dt) => {
-		content += `import { generate as ${dt}Generate } from './src/plugins/dataTypes/${dt}/${dt}.generate';\n`
+		content += `import { generate as ${dt}G, defaultGenerationOptions as ${dt}DGO } from './src/plugins/dataTypes/${dt}/bundle';\n`
 	});
 
 	content += `\n\nexport const dataTypeGenerateMethods = {\n`;
-	const rows = dtList.map((dt) => `\t[DataType.${dt}]: ${dt}Generate`);
+	const rows = dtList.map((dt) => `\t[DataType.${dt}]: { generate: ${dt}G, defaultGenerationOptions: ${dt}DGO }`);
 	content += `${rows.join(',\n')}\n};\n\n`
 
 	dtList.forEach((dt) => {

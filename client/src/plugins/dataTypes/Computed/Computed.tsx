@@ -4,6 +4,8 @@ import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import sharedStyles from '../../../styles/shared.scss';
 import styles from './Computed.scss';
 
+export type GenerationOptionsType = string;
+
 export const initialState = {
 	value: ''
 };

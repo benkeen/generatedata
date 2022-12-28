@@ -32,12 +32,16 @@ export type ColourState = {
 
 export type GenerationOptionsType = Omit<ColourState, 'example'>
 
-export const initialState: ColourState = {
-	example: 'any',
+export const defaultGenerationOptions: GenerationOptionsType = {
 	value: 'any',
 	luminosity: LuminosityType.any,
 	format: ColourFormat.hex,
 	alpha: 1
+};
+
+export const initialState: ColourState = {
+	example: 'any',
+	...defaultGenerationOptions
 };
 
 const getModalOptions = ({ i18n }: any): DropdownOption[] => ([
