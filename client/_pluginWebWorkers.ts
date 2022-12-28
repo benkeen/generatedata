@@ -1,6 +1,6 @@
 export default {
-	"generationWorker": "generation.worker-fda4405e1f960d670930e7b408619343.js",
-	"workerUtils": "workerUtils-d7e18e48b1cc00c474479bc49136b487.js",
+	"generationWorker": "generation.worker-57f59eb8f904208b2f7d5d3cd3acf2f3.js",
+	"workerUtils": "workerUtils-d6e2be6a5e9af07224a0ccfd3213f087.js",
 	"dataTypes": {
 		"Alphanumeric": "DT-Alphanumeric.worker-eebe90d19350fbf8f65b3335a86f6a11.js",
 		"AutoIncrement": "DT-AutoIncrement.worker-4044449209e01205eaba7c954ca2d6b1.js",
@@ -29,7 +29,7 @@ export default {
 		"PersonalNumber": "DT-PersonalNumber.worker-68b329da9893e34099c7d8ad5cb9c940.js",
 		"Phone": "DT-Phone.worker-76adaa8ac5389e5ed2730413cd13c46f.js",
 		"PostalZip": "DT-PostalZip.worker-f6525dba94987e4b84cc2eebcbb08249.js",
-		"Region": "DT-Region.worker-2366675e0dbed895efdd5440ae65a0b9.js",
+		"Region": "DT-Region.worker-ddb1c66117573f18a2fcfdc7d9e185c7.js",
 		"Rut": "DT-Rut.worker-8a822ff4a0707423090e3aed00a5fa92.js",
 		"SIRET": "DT-SIRET.worker-f44c41e7c2aac86fcc7ea44124d14cae.js",
 		"StreetAddress": "DT-StreetAddress.worker-03a87c16c6600f1768225b5905f00f09.js",
@@ -43,17 +43,17 @@ export default {
 	},
 	"exportTypes": {
 		"CSV": "ET-CSV.worker-fb24e14582d7e4a9236de35949747066.js",
-		"CSharp": "ET-CSharp.worker-e1e1ff478609e87b8d52447d0e036e75.js",
+		"CSharp": "ET-CSharp.worker-ad30a94557964e47e80ea5dd348a24ad.js",
 		"HTML": "ET-HTML.worker-6aae232232141af7f311120b8de16df4.js",
 		"JSON": "ET-JSON.worker-0cd0b922260e8837e94c23364dd4a534.js",
-		"Javascript": "ET-Javascript.worker-be61a4d9b6bfa9b445ef14a713b6dc9f.js",
+		"Javascript": "ET-Javascript.worker-71bfe161a84c9474d7af9fa67c16e49b.js",
 		"LDIF": "ET-LDIF.worker-54b1d19450773c1665d495355e3828c2.js",
 		"PHP": "ET-PHP.worker-dcdd957a50a1cba6878d192ae3e7cf42.js",
 		"Perl": "ET-Perl.worker-13686e513ebae0fe1d3a594176060b52.js",
-		"Python": "ET-Python.worker-5e18fcc072d80f7395bf2133c5997268.js",
-		"Ruby": "ET-Ruby.worker-5474703b8708bf07a17052ada0f5a141.js",
-		"SQL": "ET-SQL.worker-c0ee60c25c0e7c6a90bec48073588d40.js",
-		"Typescript": "ET-Typescript.worker-9ff2cd9f0a81cf6f2adea4bf86a87d3d.js",
-		"XML": "ET-XML.worker-b11f4089be169a36cc4285799e883873.js"
+		"Python": "ET-Python.worker-c22641b466da4e6f101b70a56341c298.js",
+		"Ruby": "ET-Ruby.worker-852f7438a9734291c99576dccdf7d86c.js",
+		"SQL": "ET-SQL.worker-c39edcdc606d43ddac058aa61e82ee5c.js",
+		"Typescript": "ET-Typescript.worker-88018f13de722c2c5778454b97a33420.js",
+		"XML": "ET-XML.worker-4640081cb337bdc69b2c1ef7eedbd522.js"
 	}
 };

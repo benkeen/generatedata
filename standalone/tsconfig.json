@@ -22,6 +22,5 @@
       "~core/*": ["client/src/core/*"],
       "~types/*": ["client/types/*"]
     }
-  },
-  "include": ["*", "../"]
+  }
 }
