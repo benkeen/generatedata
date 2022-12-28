@@ -1,12 +1,12 @@
 import { DTBundle } from '~types/dataTypes';
 import { getMetadata } from './StreetAddress';
-import { generate } from './StreetAddress.generate';
 
+export { generate } from './StreetAddress.generate';
+export const defaultGenerationOptions = {};
 export type GenerationOptionsType = null;
 
 const bundle: DTBundle = {
-	getMetadata,
-	generate
+	getMetadata
 };
 
 export default bundle;

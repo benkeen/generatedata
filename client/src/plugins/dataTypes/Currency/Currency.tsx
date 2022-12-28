@@ -12,17 +12,6 @@ export enum PrefixLocation {
 	suffix = 'suffix'
 }
 
-export const initialState = {
-	example: '0.00|100.00|$|prefix|true|,|.',
-	from: '0.00',
-	to: '100.00',
-	currencySymbol: '$',
-	currencySymbolLocation: PrefixLocation.prefix,
-	includeCents: true,
-	thousandsSeparator: ',',
-	centsSeparator: '.'
-};
-
 export type GenerationOptionsType = {
 	from: number;
 	to: number;
@@ -32,6 +21,21 @@ export type GenerationOptionsType = {
 	thousandsSeparator: string;
 	centsSeparator: string;
 }
+
+export const defaultGenerationOptions = {
+	from: '0.00',
+	to: '100.00',
+	currencySymbol: '$',
+	currencySymbolLocation: PrefixLocation.prefix,
+	includeCents: true,
+	thousandsSeparator: ',',
+	centsSeparator: '.'
+};
+
+export const initialState = {
+	example: '0.00|100.00|$|prefix|true|,|.',
+	...defaultGenerationOptions
+};
 
 export const Example = ({ i18n, data, onUpdate }: any): JSX.Element => {
 	const onChange = (i: any): void => {

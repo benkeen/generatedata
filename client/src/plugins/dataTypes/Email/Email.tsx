@@ -22,6 +22,25 @@ export type EmailState = {
 	domainSuffixes: string;
 }
 
+const defaultDomains = 'google,hotmail,aol,icloud,outlook,yahoo,protonmail';
+const defaultDomainSuffixes = 'com,org,ca,net,co.uk,edu';
+
+export const initialState: EmailState = {
+	source: StringSource.random,
+	fieldId1: '',
+	fieldId2: '',
+	domains: defaultDomains,
+	domainSuffixes: defaultDomainSuffixes
+};
+
+export type GenerationOptionsType = {
+	source: StringSource;
+	fieldId1: string;
+	fieldId2: string;
+	domains: string[];
+	domainSuffixes: string[];
+};
+
 const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOptions, i18n }: any): JSX.Element => {
 	const getFieldsRow = (): JSX.Element | null => {
 		if (data.source === StringSource.random) {
@@ -119,25 +138,6 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOption
 			</div>
 		</Dialog>
 	);
-};
-
-const defaultDomains = 'google,hotmail,aol,icloud,outlook,yahoo,protonmail';
-const defaultDomainSuffixes = 'com,org,ca,net,co.uk,edu';
-
-export const initialState: EmailState = {
-	source: StringSource.random,
-	fieldId1: '',
-	fieldId2: '',
-	domains: defaultDomains,
-	domainSuffixes: defaultDomainSuffixes
-};
-
-export type GenerationOptionsType = {
-	source: StringSource;
-	fieldId1: string;
-	fieldId2: string;
-	domains: string[];
-	domainSuffixes: string[];
 };
 
 // earlier version of this DT didn't have any state whatsoever

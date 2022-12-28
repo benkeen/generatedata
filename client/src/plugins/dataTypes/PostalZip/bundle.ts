@@ -1,9 +1,9 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Options, Help, getMetadata } from './PostalZip';
 import { customProps, actionInterceptors } from './PostalZip.store';
-import { generate } from './PostalZip.generate';
 
-export { PostalZipState as GenerationOptionsType } from './PostalZip';
+export { generate } from './PostalZip.generate';
+export { PostalZipState as GenerationOptionsType, initialState as defaultGenerationOptions } from './PostalZip';
 
 const bundle: DTBundle = {
 	initialState,
@@ -11,8 +11,7 @@ const bundle: DTBundle = {
 	Help,
 	getMetadata,
 	customProps,
-	actionInterceptors,
-	generate
+	actionInterceptors
 };
 
 export default bundle;

@@ -1,13 +1,13 @@
 import { DTBundle } from '~types/dataTypes';
 import { Help, getMetadata } from './GUID';
-import { generate } from './GUID.generate';
 
+export { generate } from './GUID.generate';
+export const defaultGenerationOptions = {};
 export type GenerationOptionsType = null;
 
 const bundle: DTBundle = {
 	Help,
-	getMetadata,
-	generate
+	getMetadata
 };
 
 export default bundle;

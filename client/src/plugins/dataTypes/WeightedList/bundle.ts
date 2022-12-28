@@ -1,8 +1,8 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help, getMetadata, rowStateReducer } from './WeightedList';
-import { generate } from './WeightedList.generate';
 
-export { GenerationOptionsType } from './WeightedList';
+export { generate } from './WeightedList.generate';
+export { GenerationOptionsType, defaultGenerationOptions } from './WeightedList';
 
 const bundle: DTBundle = {
 	initialState,
@@ -10,8 +10,7 @@ const bundle: DTBundle = {
 	Options,
 	Help,
 	getMetadata,
-	rowStateReducer,
-	generate
+	rowStateReducer
 };
 
 export default bundle;

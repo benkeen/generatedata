@@ -21,6 +21,11 @@ export type GenerationOptionsType = {
 	ccCard: CreditCardType | 'any';
 }
 
+export const defaultGenerationOptions = {
+	cardFormats: Object.values(CreditCardType),
+	ccCard: 'any'
+};
+
 export const initialState: PanState = {
 	example: 'any',
 	cardTypes: creditCardTypes,

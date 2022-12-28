@@ -12,7 +12,7 @@ export type GenerationOptionsType = {
 
 export const defaultGenerationOptions: GenerationOptionsType = {
 	value: 'LLLxxLLLxLL'
-}
+};
 
 export type AlphanumericState = {
 	example: string;

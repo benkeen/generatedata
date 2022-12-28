@@ -13,7 +13,6 @@ import * as sharedStyles from '../../../styles/shared.scss';
 import * as styles from './Date.scss';
 import C from '../../../core/constants';
 
-
 export type DateState = {
 	fromDate: number;
 	toDate: number;

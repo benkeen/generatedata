@@ -1,9 +1,9 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Help, Options, getMetadata, rowStateReducer } from './Email';
-import { generate } from './Email.generate';
 import { customProps } from './Email.store';
 
-export { GenerationOptionsType } from './Email';
+export { generate } from './Email.generate';
+export { GenerationOptionsType, initialState as defaultGenerationOptions } from './Email';
 
 const bundle: DTBundle = {
 	initialState,
@@ -11,8 +11,7 @@ const bundle: DTBundle = {
 	Options,
 	getMetadata,
 	customProps,
-	rowStateReducer,
-	generate
+	rowStateReducer
 };
 
 export default bundle;

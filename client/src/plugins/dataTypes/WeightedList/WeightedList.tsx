@@ -55,6 +55,15 @@ const presets = {
 	}
 };
 
+const convertListItemsToObj = (values: WeightedListItem[]): WeightedOptions => {
+	const valuesObj: WeightedOptions = {};
+	values.forEach(({ value, weight }: WeightedListItem) => {
+		valuesObj[value] = parseInt(weight, 10);
+	});
+
+	return valuesObj;
+};
+
 export const enum WeightedListType {
 	exactly = 'exactly',
 	between = 'between'
@@ -85,6 +94,16 @@ export type GenerationOptionsType = {
 	delimiter: string;
 	values: WeightedOptions;
 }
+
+export const defaultGenerationOptions: GenerationOptionsType = {
+	listType: WeightedListType.exactly,
+	exactly: '1',
+	betweenLow: '',
+	betweenHigh: '',
+	allowDuplicates: true,
+	delimiter: ', ',
+	values: convertListItemsToObj(presets.evenOdd.values)
+};
 
 export const initialState: WeightedListState = {
 	example: 'even-odd',
@@ -546,17 +565,12 @@ export const rowStateReducer = ({
 		}
 	}
 
-	const valuesObj: WeightedOptions = {};
-	values.forEach(({ value, weight }: WeightedListItem) => {
-		valuesObj[value] = parseInt(weight, 10);
-	});
-
 	return {
 		listType,
 		exactly: cleanExactly,
 		betweenLow: cleanBetweenLow,
 		betweenHigh: cleanBetweenHigh,
-		values: valuesObj,
+		values: convertListItemsToObj(values),
 		delimiter: delimiter ? delimiter : ', ',
 		allowDuplicates
 	};

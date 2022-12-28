@@ -12,10 +12,14 @@ type RutState = {
 
 export type GenerationOptionsType = Omit<RutState, 'example'>;
 
+export const defaultGenerationOptions = {
+	formatCode: '12345678-9' as FormatCode,
+	uppercaseDigit: true
+};
+
 export const initialState: RutState = {
 	example: '',
-	formatCode: '12345678-9',
-	uppercaseDigit: true
+	...defaultGenerationOptions
 };
 
 export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {

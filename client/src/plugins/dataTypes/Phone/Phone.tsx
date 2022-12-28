@@ -8,14 +8,20 @@ export type PhoneState = {
 	option: string[];
 };
 
-export type GenerationOptionsType = string[];
+export type GenerationOptionsType = {
+	option: string[];
+};
 
-export const initialState: PhoneState = {
-	example: '1-Xxx-Xxx-xxxx|(Xxx) Xxx-xxxx',
+export const defaultGenerationOptions: GenerationOptionsType = {
 	option: ['1-Xxx-Xxx-xxxx', '(Xxx) Xxx-xxxx']
 };
 
-export const rowStateReducer = (state: PhoneState): GenerationOptionsType => state.option;
+export const initialState: PhoneState = {
+	example: '1-Xxx-Xxx-xxxx|(Xxx) Xxx-xxxx',
+	...defaultGenerationOptions
+};
+
+export const rowStateReducer = (state: PhoneState): GenerationOptionsType => ({ option: state.option });
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {

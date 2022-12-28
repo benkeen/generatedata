@@ -1,13 +1,13 @@
 import { DTBundle } from '~types/dataTypes';
 import { Help, getMetadata } from './IBAN';
-import { generate } from './IBAN.generate';
 
+export { generate } from './IBAN.generate';
+export const defaultGenerationOptions = {};
 export type GenerationOptionsType = null;
 
 const bundle: DTBundle = {
 	Help,
-	getMetadata,
-	generate
+	getMetadata
 };
 
 export default bundle;

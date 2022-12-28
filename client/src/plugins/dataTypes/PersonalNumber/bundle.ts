@@ -1,14 +1,15 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help, getMetadata } from './PersonalNumber';
-import { generate } from './PersonalNumber.generate';
+
+export { generate } from './PersonalNumber.generate';
+export { defaultGenerationOptions } from './PersonalNumber';
 
 const bundle: DTBundle = {
 	initialState,
 	Example,
 	Options,
 	Help,
-	getMetadata,
-	generate
+	getMetadata
 };
 
 export default bundle;

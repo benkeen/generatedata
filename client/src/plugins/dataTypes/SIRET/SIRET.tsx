@@ -7,11 +7,17 @@ type SiretState = {
 	option: string;
 };
 
-export type GenerationOptions = string;
+export type GenerationOptions = {
+	option: string;
+};
+
+export const defaultGenerationOptions: GenerationOptions = {
+	option: ''
+};
 
 export const initialState: SiretState = {
 	example: '',
-	option: ''
+	...defaultGenerationOptions
 };
 
 export const Options = ({ id, data, onUpdate }: DTOptionsProps): JSX.Element => {

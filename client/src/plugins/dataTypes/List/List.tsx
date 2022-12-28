@@ -34,14 +34,18 @@ export type GenerationOptionsType = {
 	delimiter: string;
 }
 
-export const initialState: ListState = {
-	example: '1|3|5|7|9|11|13|15|17|19',
+export const defaultGenerationOptions = {
 	listType: ListType.exactly,
 	exactly: '1',
 	betweenLow: '',
 	betweenHigh: '',
 	values: ['1', '3', '5', '7', '9', '11', '13', '15', '17', '19'],
 	delimiter: ', '
+};
+
+export const initialState: ListState = {
+	example: '1|3|5|7|9|11|13|15|17|19',
+	...defaultGenerationOptions
 };
 
 export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element => {

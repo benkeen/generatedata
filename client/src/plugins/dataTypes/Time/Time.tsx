@@ -10,7 +10,6 @@ import { ErrorTooltip } from '~components/tooltips';
 import * as styles from './Time.scss';
 import * as sharedStyles from '../../../styles/shared.scss';
 
-
 export type DateState = {
 	fromTime: number;
 	toTime: number;

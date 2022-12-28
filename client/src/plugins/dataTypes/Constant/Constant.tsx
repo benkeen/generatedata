@@ -10,7 +10,7 @@ import sharedStyles from '../../../styles/shared.scss';
 export type GenerationOptionsType = {
 	loopCount: number;
 	values: any[];
-}
+};
 
 export type ConstantState = {
 	loopCount: number;
