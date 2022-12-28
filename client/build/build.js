@@ -113,14 +113,6 @@ const createPluginsListFile = () => {
 	content += `export enum DataType {\n${dataTypeEnums.join(',\n')}\n}\n\n`;
 
 	dtList.forEach((dt) => {
-		content += `import { generate as ${dt}G, defaultGenerationOptions as ${dt}DGO } from './src/plugins/dataTypes/${dt}/bundle';\n`
-	});
-
-	content += `\n\nexport const dataTypeGenerateMethods = {\n`;
-	const rows = dtList.map((dt) => `\t[DataType.${dt}]: { generate: ${dt}G, defaultGenerationOptions: ${dt}DGO }`);
-	content += `${rows.join(',\n')}\n};\n\n`
-
-	dtList.forEach((dt) => {
 		content += `import { GenerationOptionsType as ${dt}GenerationOptions } from './src/plugins/dataTypes/${dt}/bundle';\n`;
 	});
 
@@ -155,6 +147,34 @@ const createPluginsListFile = () => {
 }[ExportType];\n\n`;
 
 	const file = path.join(__dirname, '..', '_plugins.ts');
+	if (fs.existsSync(file)) {
+		fs.unlinkSync(file);
+	}
+	fs.writeFileSync(file, content);
+};
+
+
+const createStandaloneListFile = () => {
+	let content = banner + '\n\nimport { DataType } from \'../client/_plugins\';\n';
+
+	const blacklistedDataTypes = process.env.GD_DATA_TYPE_BLACKLIST.split(',');
+	const dataTypes = helpers.getPlugins('dataTypes', []);
+
+	const dtList = dataTypes.filter((dt) => blacklistedDataTypes.indexOf(dt) === -1);
+
+	dtList.forEach((dt) => {
+		content += `import { generate as ${dt}G, defaultGenerationOptions as ${dt}DGO } from '../client/src/plugins/dataTypes/${dt}/bundle';\n`
+	});
+
+	content += `\n\nexport const dataTypeGenerateMethods = {\n`;
+	const rows = dtList.map((dt) => `\t[DataType.${dt}]: { generate: ${dt}G, defaultGenerationOptions: ${dt}DGO }`);
+	content += `${rows.join(',\n')}\n};\n\n`
+
+	// dtList.forEach((dt) => {
+	// 	content += `import { GenerationOptionsType as ${dt}GenerationOptions } from './src/plugins/dataTypes/${dt}/bundle';\n`;
+	// });
+
+	const file = path.join(__dirname, '../../standalone', '_standalone.ts');
 	if (fs.existsSync(file)) {
 		fs.unlinkSync(file);
 	}
@@ -237,4 +257,5 @@ generateNamesFile();
 
 createDatabaseInitFile();
 createPluginsListFile();
+createStandaloneListFile();
 createImportFile();

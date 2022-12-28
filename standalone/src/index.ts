@@ -7,7 +7,8 @@ import {
     GDTemplate,
     WorkerInterface
 } from '~types/generator';
-import { DataType, dataTypeGenerateMethods } from '../../client/_plugins';
+import { DataType } from '../../client/_plugins';
+import { dataTypeGenerateMethods } from '../_standalone';
 import countryNames from '../../client/_namePlugins';
 import { generate } from '../../client/src/utils/generatorUtils';
 import workerUtils from '../../client/src/utils';
