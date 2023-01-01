@@ -1,20 +1,7 @@
 import * as React from 'react';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
 import etShared from '../../../styles/etShared.scss';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-
-export type DataStructureFormat = 'simple' | 'complex';
-
-export interface GenerationOptionsType {
-	dataStructureFormat: DataStructureFormat;
-}
-
-export interface JSONSettings extends ETState, GenerationOptionsType {}
-
-export const initialState: JSONSettings = {
-	dataStructureFormat: 'simple',
-	isValid: true
-};
 
 export const Settings = ({ data, id, i18n, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (field: string, value: any): void => {

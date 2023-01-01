@@ -1,7 +1,8 @@
 import React from 'react';
 import sinon from 'sinon';
 import { render } from '@testing-library/react';
-import { Settings, initialState } from '../CSV';
+import { Settings } from '../CSV';
+import { initialState } from '../CSV.state';
 import { defaultETSettings } from '../../../../../tests/testHelpers';
 import * as langUtils from '~utils/langUtils';
 

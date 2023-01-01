@@ -1,5 +1,5 @@
 import { ETMessageData } from '~types/exportTypes';
-import { XMLSettings } from './XML';
+import { XMLSettings } from './XML.state';
 
 export const generate = (data: ETMessageData): string => {
 	const { isFirstBatch, isLastBatch, rows, columns, stripWhitespace } = data;

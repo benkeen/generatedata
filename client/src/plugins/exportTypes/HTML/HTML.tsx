@@ -1,20 +1,8 @@
 import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import etShared from '../../../styles/etShared.scss';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
-
-type ExportFormat = 'table' | 'ul' | 'dl';
-
-export type GenerationOptionsType = {
-	exportFormat: ExportFormat;
-}
-
-export interface HTMLSettings extends ETState, GenerationOptionsType {}
-
-export const initialState: HTMLSettings = {
-	exportFormat: 'table',
-	isValid: true // there's no way the config settings for the HTML ET can be misconfigured, so this is always true
-};
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
+import { ExportFormat } from './HTML.state';
 
 export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (exportFormat: ExportFormat): void => {

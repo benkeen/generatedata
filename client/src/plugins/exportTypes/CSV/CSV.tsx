@@ -2,18 +2,9 @@ import * as React from 'react';
 import TextField from '~components/TextField';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
+import { CSVSettings } from './CSV.state';
 import etShared from '../../../styles/etShared.scss';
 import styles from './CSV.scss';
-
-export type CSVSettings = {
-    delimiter: string;
-	lineEndings: 'Windows' | 'Unix' | 'Mac';
-};
-
-export const initialState: CSVSettings = {
-	delimiter: ',',
-	lineEndings: 'Unix'
-};
 
 const options = [
 	{ value: 'Windows', label: 'Windows' },

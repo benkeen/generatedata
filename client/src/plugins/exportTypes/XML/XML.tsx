@@ -9,22 +9,6 @@ import {
 } from '~types/exportTypes';
 import TextField from '~components/TextField';
 
-export type GenerationOptionsType = {
-	rootNodeName: string;
-	recordNodeName: string;
-	useCustomExportFormat: boolean;
-	customFormat: string;
-}
-
-export interface XMLSettings extends ETState, GenerationOptionsType {}
-
-export const initialState: XMLSettings = {
-	rootNodeName: 'records',
-	recordNodeName: 'record',
-	useCustomExportFormat: false,
-	customFormat: '',
-	isValid: true
-};
 
 export const Settings = ({ data, i18n, coreI18n, id, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (prop: string, value: any): void => {

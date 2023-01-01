@@ -3,7 +3,7 @@
  * ----------------------------------------
  **/
 
-import { DataType } from '../client/_plugins';
+import { DataType, ExportType } from '../client/_plugins';
 import { generate as AlphanumericG } from '../client/src/plugins/dataTypes/Alphanumeric/Alphanumeric.generate';
 import { defaultGenerationOptions as AlphanumericDGO } from '../client/src/plugins/dataTypes/Alphanumeric/Alphanumeric.state';
 import { generate as AutoIncrementG } from '../client/src/plugins/dataTypes/AutoIncrement/AutoIncrement.generate';
@@ -74,8 +74,7 @@ import { generate as WeightedListG } from '../client/src/plugins/dataTypes/Weigh
 import { defaultGenerationOptions as WeightedListDGO } from '../client/src/plugins/dataTypes/WeightedList/WeightedList.state';
 
 
-// TODO rename
-export const dataTypeGenerateMethods = {
+export const dataTypeNodeData = {
 	[DataType.Alphanumeric]: { generate: AlphanumericG, defaultGenerationOptions: AlphanumericDGO },
 	[DataType.AutoIncrement]: { generate: AutoIncrementG, defaultGenerationOptions: AutoIncrementDGO },
 	[DataType.Boolean]: { generate: BooleanG, defaultGenerationOptions: BooleanDGO },
@@ -110,5 +109,49 @@ export const dataTypeGenerateMethods = {
 	[DataType.Track2]: { generate: Track2G, defaultGenerationOptions: Track2DGO },
 	[DataType.URLs]: { generate: URLsG, defaultGenerationOptions: URLsDGO },
 	[DataType.WeightedList]: { generate: WeightedListG, defaultGenerationOptions: WeightedListDGO }
+};
+
+import { generate as CSVG } from '../client/src/plugins/exportTypes/CSV/CSV.generate';
+import { defaultGenerationOptions as CSVDGO } from '../client/src/plugins/exportTypes/CSV/CSV.state';
+import { generate as CSharpG } from '../client/src/plugins/exportTypes/CSharp/CSharp.generate';
+import { defaultGenerationOptions as CSharpDGO } from '../client/src/plugins/exportTypes/CSharp/CSharp.state';
+import { generate as HTMLG } from '../client/src/plugins/exportTypes/HTML/HTML.generate';
+import { defaultGenerationOptions as HTMLDGO } from '../client/src/plugins/exportTypes/HTML/HTML.state';
+import { generate as JSONG } from '../client/src/plugins/exportTypes/JSON/JSON.generate';
+import { defaultGenerationOptions as JSONDGO } from '../client/src/plugins/exportTypes/JSON/JSON.state';
+import { generate as JavascriptG } from '../client/src/plugins/exportTypes/Javascript/Javascript.generate';
+import { defaultGenerationOptions as JavascriptDGO } from '../client/src/plugins/exportTypes/Javascript/Javascript.state';
+import { generate as LDIFG } from '../client/src/plugins/exportTypes/LDIF/LDIF.generate';
+import { defaultGenerationOptions as LDIFDGO } from '../client/src/plugins/exportTypes/LDIF/LDIF.state';
+import { generate as PHPG } from '../client/src/plugins/exportTypes/PHP/PHP.generate';
+import { defaultGenerationOptions as PHPDGO } from '../client/src/plugins/exportTypes/PHP/PHP.state';
+import { generate as PerlG } from '../client/src/plugins/exportTypes/Perl/Perl.generate';
+import { defaultGenerationOptions as PerlDGO } from '../client/src/plugins/exportTypes/Perl/Perl.state';
+import { generate as PythonG } from '../client/src/plugins/exportTypes/Python/Python.generate';
+import { defaultGenerationOptions as PythonDGO } from '../client/src/plugins/exportTypes/Python/Python.state';
+import { generate as RubyG } from '../client/src/plugins/exportTypes/Ruby/Ruby.generate';
+import { defaultGenerationOptions as RubyDGO } from '../client/src/plugins/exportTypes/Ruby/Ruby.state';
+import { generate as SQLG } from '../client/src/plugins/exportTypes/SQL/SQL.generate';
+import { defaultGenerationOptions as SQLDGO } from '../client/src/plugins/exportTypes/SQL/SQL.state';
+import { generate as TypescriptG } from '../client/src/plugins/exportTypes/Typescript/Typescript.generate';
+import { defaultGenerationOptions as TypescriptDGO } from '../client/src/plugins/exportTypes/Typescript/Typescript.state';
+import { generate as XMLG } from '../client/src/plugins/exportTypes/XML/XML.generate';
+import { defaultGenerationOptions as XMLDGO } from '../client/src/plugins/exportTypes/XML/XML.state';
+
+
+export const exportTypeNodeData = {
+	[ExportType.CSV]: { generate: CSVG, defaultGenerationOptions: CSVDGO },
+	[ExportType.CSharp]: { generate: CSharpG, defaultGenerationOptions: CSharpDGO },
+	[ExportType.HTML]: { generate: HTMLG, defaultGenerationOptions: HTMLDGO },
+	[ExportType.JSON]: { generate: JSONG, defaultGenerationOptions: JSONDGO },
+	[ExportType.Javascript]: { generate: JavascriptG, defaultGenerationOptions: JavascriptDGO },
+	[ExportType.LDIF]: { generate: LDIFG, defaultGenerationOptions: LDIFDGO },
+	[ExportType.PHP]: { generate: PHPG, defaultGenerationOptions: PHPDGO },
+	[ExportType.Perl]: { generate: PerlG, defaultGenerationOptions: PerlDGO },
+	[ExportType.Python]: { generate: PythonG, defaultGenerationOptions: PythonDGO },
+	[ExportType.Ruby]: { generate: RubyG, defaultGenerationOptions: RubyDGO },
+	[ExportType.SQL]: { generate: SQLG, defaultGenerationOptions: SQLDGO },
+	[ExportType.Typescript]: { generate: TypescriptG, defaultGenerationOptions: TypescriptDGO },
+	[ExportType.XML]: { generate: XMLG, defaultGenerationOptions: XMLDGO }
 };
 

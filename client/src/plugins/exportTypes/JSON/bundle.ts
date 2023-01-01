@@ -1,15 +1,12 @@
 import { ETBundle } from '~types/exportTypes';
-import { Settings, initialState, getCodeMirrorMode, getDownloadFileInfo } from './JSON';
-import { generate } from './JSON.generate';
-
-export { GenerationOptionsType } from './JSON';
+import { Settings, getCodeMirrorMode, getDownloadFileInfo } from './JSON';
+import { initialState } from './JSON.state';
 
 const bundle: ETBundle = {
 	Settings,
 	initialState,
 	getCodeMirrorMode,
-	getDownloadFileInfo,
-	generate
+	getDownloadFileInfo
 };
 
 export default bundle;

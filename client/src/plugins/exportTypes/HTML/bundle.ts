@@ -1,15 +1,12 @@
 import { ETBundle } from '~types/exportTypes';
-import { Settings, initialState, getCodeMirrorMode, getDownloadFileInfo } from './HTML';
-import { generate } from './HTML.generate';
-
-export { GenerationOptionsType } from './HTML';
+import { Settings, getCodeMirrorMode, getDownloadFileInfo } from './HTML';
+import { initialState } from './HTML.state';
 
 const bundle: ETBundle = {
 	Settings,
 	initialState,
 	getCodeMirrorMode,
-	getDownloadFileInfo,
-	generate
+	getDownloadFileInfo
 };
 
 export default bundle;

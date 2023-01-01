@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Settings, initialState } from '../Javascript';
+import { Settings } from '../Javascript';
+import { initialState } from '../Javascript.state';
 import { defaultETSettings } from '../../../../../tests/testHelpers';
 
 const i18n = require('../i18n/en.json');

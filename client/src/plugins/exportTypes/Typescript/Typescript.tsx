@@ -1,20 +1,8 @@
 import * as React from 'react';
 import TextField from '~components/TextField';
+import { TypescriptSettings } from './Typescript.state';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
 import styles from './Typescript.scss';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
-
-export type GenerationOptionsType = {
-	typeName: string;
-	varName: string;
-}
-
-export interface TypescriptSettings extends ETState, GenerationOptionsType {}
-
-export const initialState: TypescriptSettings = {
-	typeName: 'RandomData',
-	varName: 'data',
-	isValid: true
-};
 
 export const Settings = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (field: string, value: string): void => {

@@ -313,35 +313,19 @@ export type DataTypeGenerationOptions = {
 	}
 }[DataType];
 
-export enum ExportType {
-	CSV = 'CSV',
-	CSharp = 'CSharp',
-	HTML = 'HTML',
-	JSON = 'JSON',
-	Javascript = 'Javascript',
-	LDIF = 'LDIF',
-	PHP = 'PHP',
-	Perl = 'Perl',
-	Python = 'Python',
-	Ruby = 'Ruby',
-	SQL = 'SQL',
-	Typescript = 'Typescript',
-	XML = 'XML'
-}
-
-import { GenerationOptionsType as CSVGenerationOptions } from './src/plugins/exportTypes/CSV/bundle';
-import { GenerationOptionsType as CSharpGenerationOptions } from './src/plugins/exportTypes/CSharp/bundle';
-import { GenerationOptionsType as HTMLGenerationOptions } from './src/plugins/exportTypes/HTML/bundle';
-import { GenerationOptionsType as JSONGenerationOptions } from './src/plugins/exportTypes/JSON/bundle';
-import { GenerationOptionsType as JavascriptGenerationOptions } from './src/plugins/exportTypes/Javascript/bundle';
-import { GenerationOptionsType as LDIFGenerationOptions } from './src/plugins/exportTypes/LDIF/bundle';
-import { GenerationOptionsType as PHPGenerationOptions } from './src/plugins/exportTypes/PHP/bundle';
-import { GenerationOptionsType as PerlGenerationOptions } from './src/plugins/exportTypes/Perl/bundle';
-import { GenerationOptionsType as PythonGenerationOptions } from './src/plugins/exportTypes/Python/bundle';
-import { GenerationOptionsType as RubyGenerationOptions } from './src/plugins/exportTypes/Ruby/bundle';
-import { GenerationOptionsType as SQLGenerationOptions } from './src/plugins/exportTypes/SQL/bundle';
-import { GenerationOptionsType as TypescriptGenerationOptions } from './src/plugins/exportTypes/Typescript/bundle';
-import { GenerationOptionsType as XMLGenerationOptions } from './src/plugins/exportTypes/XML/bundle';
+import { GenerationOptionsType as CSVGenerationOptions } from './src/plugins/exportTypes/CSV/CSV.state';
+import { GenerationOptionsType as CSharpGenerationOptions } from './src/plugins/exportTypes/CSharp/CSharp.state';
+import { GenerationOptionsType as HTMLGenerationOptions } from './src/plugins/exportTypes/HTML/HTML.state';
+import { GenerationOptionsType as JSONGenerationOptions } from './src/plugins/exportTypes/JSON/JSON.state';
+import { GenerationOptionsType as JavascriptGenerationOptions } from './src/plugins/exportTypes/Javascript/Javascript.state';
+import { GenerationOptionsType as LDIFGenerationOptions } from './src/plugins/exportTypes/LDIF/LDIF.state';
+import { GenerationOptionsType as PHPGenerationOptions } from './src/plugins/exportTypes/PHP/PHP.state';
+import { GenerationOptionsType as PerlGenerationOptions } from './src/plugins/exportTypes/Perl/Perl.state';
+import { GenerationOptionsType as PythonGenerationOptions } from './src/plugins/exportTypes/Python/Python.state';
+import { GenerationOptionsType as RubyGenerationOptions } from './src/plugins/exportTypes/Ruby/Ruby.state';
+import { GenerationOptionsType as SQLGenerationOptions } from './src/plugins/exportTypes/SQL/SQL.state';
+import { GenerationOptionsType as TypescriptGenerationOptions } from './src/plugins/exportTypes/Typescript/Typescript.state';
+import { GenerationOptionsType as XMLGenerationOptions } from './src/plugins/exportTypes/XML/XML.state';
 
 interface ExportTypeOptionsMap {
 	[ExportType.CSV]: CSVGenerationOptions;
@@ -365,4 +349,20 @@ export type ExportTypeGenerationOptions = {
 		settings: ExportTypeOptionsMap[K];
 	}
 }[ExportType];
+
+export enum ExportType {
+	CSV = 'CSV',
+	CSharp = 'CSharp',
+	HTML = 'HTML',
+	JSON = 'JSON',
+	Javascript = 'Javascript',
+	LDIF = 'LDIF',
+	PHP = 'PHP',
+	Perl = 'Perl',
+	Python = 'Python',
+	Ruby = 'Ruby',
+	SQL = 'SQL',
+	Typescript = 'Typescript',
+	XML = 'XML'
+}
 

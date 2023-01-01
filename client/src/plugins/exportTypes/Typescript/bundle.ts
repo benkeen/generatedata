@@ -1,16 +1,13 @@
 import { ETBundle } from '~types/exportTypes';
-import { initialState, Settings, getCodeMirrorMode, getDownloadFileInfo, isValid } from './Typescript';
-import { generate } from './Typescript.generate';
-
-export { GenerationOptionsType } from './Typescript';
+import { Settings, getCodeMirrorMode, getDownloadFileInfo, isValid } from './Typescript';
+import { initialState } from './Typescript.state';
 
 const bundle: ETBundle = {
 	initialState,
 	Settings,
 	getCodeMirrorMode,
 	getDownloadFileInfo,
-	isValid,
-	generate
+	isValid
 };
 
 export default bundle;

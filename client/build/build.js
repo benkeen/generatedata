@@ -128,15 +128,11 @@ const createPluginsListFile = () => {
 	}
 }[DataType];\n\n`;
 
-	const etList = exportTypes.filter((et) => blacklistedExportTypes.indexOf(et) === -1);
-	const exportTypeEnums = etList.map((et) => `\t${et} = '${et}'`);
-	content += `export enum ExportType {\n${exportTypeEnums.join(',\n')}\n}\n\n`;
-
-	etList.forEach((et) => {
-		content += `import { GenerationOptionsType as ${et}GenerationOptions } from './src/plugins/exportTypes/${et}/bundle';\n`;
+	exportTypes.forEach((et) => {
+		content += `import { GenerationOptionsType as ${et}GenerationOptions } from './src/plugins/exportTypes/${et}/${et}.state';\n`;
 	});
 
-	const exportTypeOptionsMap = etList.map((et) => `\t[ExportType.${et}]: ${et}GenerationOptions;`);
+	const exportTypeOptionsMap = exportTypes.map((et) => `\t[ExportType.${et}]: ${et}GenerationOptions;`);
 	content += `\ninterface ExportTypeOptionsMap {\n${exportTypeOptionsMap.join('\n')}\n}\n\n`;
 
 	content += `export type ExportTypeGenerationOptions = {
@@ -145,6 +141,9 @@ const createPluginsListFile = () => {
 		settings: ExportTypeOptionsMap[K];
 	}
 }[ExportType];\n\n`;
+
+	const exportTypeEnums = exportTypes.map((et) => `\t${et} = '${et}'`);
+	content += `export enum ExportType {\n${exportTypeEnums.join(',\n')}\n}\n\n`;
 
 	const file = path.join(__dirname, '..', '_plugins.ts');
 	if (fs.existsSync(file)) {
@@ -155,25 +154,32 @@ const createPluginsListFile = () => {
 
 
 const createStandaloneListFile = () => {
-	let content = banner + '\n\nimport { DataType } from \'../client/_plugins\';\n';
+	let content = banner + '\n\nimport { DataType, ExportType } from \'../client/_plugins\';\n';
 
 	const blacklistedDataTypes = process.env.GD_DATA_TYPE_BLACKLIST.split(',');
 	const dataTypes = helpers.getPlugins('dataTypes', []);
-
-	const dtList = dataTypes.filter((dt) => blacklistedDataTypes.indexOf(dt) === -1);
+	const dtList = dataTypes.filter((dt) => blacklistedDataTypes.indexOf(dt) === -1); // TODO can this be in the prev lines, second param?
 
 	dtList.forEach((dt) => {
 		content += `import { generate as ${dt}G } from '../client/src/plugins/dataTypes/${dt}/${dt}.generate';\n`
 		content += `import { defaultGenerationOptions as ${dt}DGO } from '../client/src/plugins/dataTypes/${dt}/${dt}.state';\n`
 	});
 
-	content += `\n\nexport const dataTypeGenerateMethods = {\n`;
+	content += `\n\nexport const dataTypeNodeData = {\n`;
 	const rows = dtList.map((dt) => `\t[DataType.${dt}]: { generate: ${dt}G, defaultGenerationOptions: ${dt}DGO }`);
 	content += `${rows.join(',\n')}\n};\n\n`
 
-	// dtList.forEach((dt) => {
-	// 	content += `import { GenerationOptionsType as ${dt}GenerationOptions } from './src/plugins/dataTypes/${dt}/bundle';\n`;
-	// });
+	const blacklistedExportTypes = process.env.GD_EXPORT_TYPE_BLACKLIST.split(',');
+	const etList = helpers.getPlugins('exportTypes', blacklistedExportTypes);
+
+	etList.forEach((et) => {
+		content += `import { generate as ${et}G } from '../client/src/plugins/exportTypes/${et}/${et}.generate';\n`
+		content += `import { defaultGenerationOptions as ${et}DGO } from '../client/src/plugins/exportTypes/${et}/${et}.state';\n`
+	});
+
+	content += `\n\nexport const exportTypeNodeData = {\n`;
+	const etRows = etList.map((et) => `\t[ExportType.${et}]: { generate: ${et}G, defaultGenerationOptions: ${et}DGO }`);
+	content += `${etRows.join(',\n')}\n};\n\n`
 
 	const file = path.join(__dirname, '../../standalone', '_standalone.ts');
 	if (fs.existsSync(file)) {

@@ -1,8 +1,6 @@
 import { ETBundle } from '~types/exportTypes';
-import { Settings, initialState, getCodeMirrorMode, getExportTypeLabel, validateTitleField, getDownloadFileInfo, isValid } from './SQL';
-import { generate } from './SQL.generate';
-
-export { GenerationOptionsType } from './SQL';
+import { Settings, getCodeMirrorMode, getExportTypeLabel, validateTitleField, getDownloadFileInfo, isValid } from './SQL';
+import { initialState } from './SQL.state';
 
 const bundle: ETBundle = {
 	Settings,
@@ -11,8 +9,7 @@ const bundle: ETBundle = {
 	getCodeMirrorMode,
 	validateTitleField,
 	isValid,
-	getDownloadFileInfo,
-	generate
+	getDownloadFileInfo
 };
 
 export default bundle;

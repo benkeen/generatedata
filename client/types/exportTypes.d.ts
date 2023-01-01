@@ -14,7 +14,6 @@ export interface ETValidateTitleField {
 }
 
 export type ETBundle = {
-	generate: any; // TODO
 	getCodeMirrorMode: (settings: any) => string; // TODO generics - data is same type as initialState
 	getDownloadFileInfo: (downloadPacket: ETDownloadPacket) => ETDownloadPacketResponse;
 	initialState?: any; // TODO generics
@@ -28,6 +27,7 @@ export type ETBrowserBundle = Omit<ETBundle, 'generate'>;
 
 // oddity, but this is used to let the main application know when the Export Type is in an invalid state. This prevents
 // it from attempting to generate anything until it's resolved
+// TODO rename. Maybe ETRequiredState / ETCoreState?
 export interface ETState {
 	isValid: boolean;
 }

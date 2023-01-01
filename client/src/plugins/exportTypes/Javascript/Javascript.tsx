@@ -3,19 +3,6 @@ import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import etShared from '../../../styles/etShared.scss';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 
-export type JavascriptExportFormat = 'variable' | 'es6' | 'commonJs';
-
-export type GenerationOptionsType = {
-	jsExportFormat: JavascriptExportFormat;
-}
-
-export interface ProgrammingLanguageState extends ETState, GenerationOptionsType {}
-
-export const initialState: ProgrammingLanguageState = {
-	jsExportFormat: 'variable',
-	isValid: true
-};
-
 export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (prop: string, value: any): void => {
 		onUpdate({

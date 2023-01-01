@@ -2,36 +2,9 @@ import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
 import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
+import { SQLSettings } from './SQL.state';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
 import styles from './SQL.scss';
-
-export type GenerationOptionsType = {
-	tableName: string;
-	databaseType: 'MySQL' | 'Postgres' | 'SQLite' | 'Oracle' | 'MSSQL';
-	createTable: boolean;
-	dropTable: boolean;
-	encloseInBackQuotes: boolean;
-	statementType: 'insert' | 'insertIgnore' | 'update';
-	insertBatchSize: number;
-	addPrimaryKey: boolean;
-	isValid: boolean;
-	quotes: 'single' | 'double';
-}
-
-export interface SQLSettings extends ETState, GenerationOptionsType {}
-
-export const initialState: SQLSettings = {
-	tableName: 'myTable',
-	databaseType: 'MySQL',
-	createTable: true,
-	dropTable: true,
-	encloseInBackQuotes: true,
-	statementType: 'insert',
-	insertBatchSize: 10,
-	addPrimaryKey: true,
-	isValid: true,
-	quotes: 'single'
-};
 
 export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): any => {
 	const onChange = (field: string, value: any): void => {

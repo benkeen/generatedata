@@ -8,7 +8,7 @@ import {
     WorkerInterface
 } from '~types/generator';
 import { DataType } from '../../client/_plugins';
-import { dataTypeGenerateMethods } from '../_standalone';
+import { dataTypeNodeData, exportTypeNodeData } from '../_standalone';
 import countryNames from '../../client/_namePlugins';
 import { generate } from '../../client/src/utils/generatorUtils';
 import workerUtils from '../../client/src/utils';
@@ -77,7 +77,7 @@ const convertPublicToInternalTemplate = (rows: DataTypeGenerationOptions[]): Gen
 const getWorkerInterface = (): DataTypeWorkerInterface => {
     const workerInterface: DataTypeWorkerInterface = {};
 
-    Object.keys(dataTypeGenerateMethods).forEach((dataType) => {
+    Object.keys(dataTypeNodeData).forEach((dataType) => {
         workerInterface[dataType] = {
             context: 'node',
             send: (payload: DTGenerationData): DTGenerateResult => {
@@ -86,11 +86,11 @@ const getWorkerInterface = (): DataTypeWorkerInterface => {
                 const fullPayload = {
                     ...payload,
                     rowState: {
-                        ...dataTypeGenerateMethods[dataType as DataType].defaultGenerationOptions,
+                        ...dataTypeNodeData[dataType as DataType].defaultGenerationOptions,
                         ...payload.rowState
                     }
                 };
-                return dataTypeGenerateMethods[dataType as DataType].generate(fullPayload, workerUtils)
+                return dataTypeNodeData[dataType as DataType].generate(fullPayload, workerUtils)
             }
         }
     });
@@ -101,7 +101,9 @@ const getWorkerInterface = (): DataTypeWorkerInterface => {
 const getExportTypeWorkerInterface = () => {
     return {
         context: 'node',
-        send: ()
+        send: () => {
+
+        }
     };
 };
 
