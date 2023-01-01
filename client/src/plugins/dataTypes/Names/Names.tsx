@@ -12,37 +12,8 @@ import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { countryList } from '../../../../_plugins';
 import { CountryType } from '~types/countries';
-import { CountryNameFiles } from '../../../../_namePlugins';
+import { NamesState, NamesSource, GenerationOptionsType } from './Names.state';
 import styles from './Names.scss';
-
-export const enum NamesSource {
-	any = 'any',
-	countries = 'countries'
-}
-
-export type NamesState = {
-	example: string;
-	options: string[];
-	source: NamesSource;
-	selectedCountries: CountryNameFiles[];
-};
-
-export type GenerationOptionsType = {
-	options: string[];
-	source?: NamesSource;
-	selectedCountries?: CountryNameFiles[];
-};
-
-export const defaultGenerationOptions: Required<GenerationOptionsType> = {
-	options: ['Name Surname'],
-	source: NamesSource.any,
-	selectedCountries: []
-};
-
-export const initialState: NamesState = {
-	example: 'Name Surname',
-	...defaultGenerationOptions
-};
 
 export const rowStateReducer = ({ options, source, selectedCountries }: NamesState): GenerationOptionsType => ({
 	options,

@@ -11,7 +11,7 @@
     "strictNullChecks": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "target": "es5",
+    "target": "es2019",
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
     "baseUrl": "../",
@@ -22,5 +22,10 @@
       "~core/*": ["client/src/core/*"],
       "~types/*": ["client/types/*"]
     }
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "types",
+    "typings"
+  ]
 }

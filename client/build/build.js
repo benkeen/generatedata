@@ -112,21 +112,21 @@ const createPluginsListFile = () => {
 	const dataTypeEnums = dtList.map((dt) => `\t${dt} = '${dt}'`);
 	content += `export enum DataType {\n${dataTypeEnums.join(',\n')}\n}\n\n`;
 
-	dtList.forEach((dt) => {
-		content += `import { GenerationOptionsType as ${dt}GenerationOptions } from './src/plugins/dataTypes/${dt}/bundle';\n`;
-	});
+	// dtList.forEach((dt) => {
+	// 	content += `import { GenerationOptionsType as ${dt}GenerationOptions } from './src/plugins/dataTypes/${dt}/bundle';\n`;
+	// });
+	//
+	// const dataTypeOptionsMap = dtList.map((dt) => `\t[DataType.${dt}]: ${dt}GenerationOptions;`);
+	// content += `\ninterface DataTypeOptionsMap {\n${dataTypeOptionsMap.join('\n')}\n}\n\n`;
 
-	const dataTypeOptionsMap = dtList.map((dt) => `\t[DataType.${dt}]: ${dt}GenerationOptions;`);
-	content += `\ninterface DataTypeOptionsMap {\n${dataTypeOptionsMap.join('\n')}\n}\n\n`;
-
-	content += `export type DataTypeGenerationOptions = {
-	[K in DataType]: {
-		plugin: K;
-		title: string;
-		settings: DataTypeOptionsMap[K];
-		id?: string | number;
-	}
-}[DataType];\n\n`;
+// 	content += `export type DataTypeGenerationOptions = {
+// 	[K in DataType]: {
+// 		plugin: K;
+// 		title: string;
+// 		settings: DataTypeOptionsMap[K];
+// 		id?: string | number;
+// 	}
+// }[DataType];\n\n`;
 
 	const etList = exportTypes.filter((et) => blacklistedExportTypes.indexOf(et) === -1);
 	const exportTypeEnums = etList.map((et) => `\t${et} = '${et}'`);
@@ -163,7 +163,8 @@ const createStandaloneListFile = () => {
 	const dtList = dataTypes.filter((dt) => blacklistedDataTypes.indexOf(dt) === -1);
 
 	dtList.forEach((dt) => {
-		content += `import { generate as ${dt}G, defaultGenerationOptions as ${dt}DGO } from '../client/src/plugins/dataTypes/${dt}/bundle';\n`
+		content += `import { generate as ${dt}G } from '../client/src/plugins/dataTypes/${dt}/${dt}.generate';\n`
+		content += `import { defaultGenerationOptions as ${dt}DGO } from '../client/src/plugins/dataTypes/${dt}/${dt}.state';\n`
 	});
 
 	content += `\n\nexport const dataTypeGenerateMethods = {\n`;

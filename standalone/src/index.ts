@@ -27,27 +27,27 @@ import { convertRowsToGenerationTemplate } from '~store/generator/generator.sele
  * values needed by the generation script.
  * @param template
  */
-// const getNormalizedGDTemplate = (template: GDTemplate): GDTemplate => ({
-//     generationSettings: {
-//         locale: 'en',
-//         stripWhitespace: false,
-//         packetSize: 100,
-//         ...template.generationSettings
-//     },
-//
-//     // TODO need to prefill all
-//     dataTemplate: template.dataTemplate,
-//     exportSettings: template.exportSettings
-// });
+const getNormalizedGDTemplate = (template: GDTemplate): GDTemplate => ({
+    generationSettings: {
+        locale: 'en',
+        stripWhitespace: false,
+        packetSize: 100,
+        ...template.generationSettings
+    },
+
+    // TODO need to prefill all
+    dataTemplate: template.dataTemplate,
+    exportSettings: template.exportSettings
+});
 
 const doStuff = (template: GDTemplate) => {
     // TODO add validation step here
 
-    // const normalizedTemplate = getNormalizedGDTemplate(template);
-    // const i18n = getI18nStrings(normalizedTemplate.generationSettings.locale as GDLocale)
-    // const dataTypeInterface = getWorkerInterface();
+    const normalizedTemplate = getNormalizedGDTemplate(template);
+    const i18n = getI18nStrings(normalizedTemplate.generationSettings.locale as GDLocale)
+    const dataTypeInterface = getWorkerInterface();
 
-    console.log('!!!!');
+    console.log('...');
 
     // generate(normalizedTemplate, {
     //     i18n,
@@ -75,7 +75,11 @@ const doStuff = (template: GDTemplate) => {
 const getWorkerInterface = (): DataTypeWorkerInterface => {
     const workerInterface: DataTypeWorkerInterface = {};
 
-    console.log(dataTypeGenerateMethods);
+    try {
+        console.log(dataTypeGenerateMethods);
+    } catch(e) {
+        console.log(e);
+    }
 
     // Object.keys(dataTypeGenerateMethods).forEach((dataType) => {
 //         workerInterface[dataType] = {

@@ -1,33 +1,13 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { CountryType } from '~types/countries';
 import { getI18nString } from '~utils/langUtils';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { countryList } from '../../../../_plugins';
+import { RegionSource } from './City.state';
 import styles from './City.scss';
-
-export const enum RegionSource {
-	any = 'any',
-	countries = 'countries',
-	regionRow = 'regionRow'
-}
-
-export type CityState = {
-	source: RegionSource;
-	selectedCountries: CountryType[];
-	targetRowId: string;
-};
-
-export type GenerationOptionsType = CityState;
-
-export const initialState: CityState = {
-	source: RegionSource.any,
-	selectedCountries: [],
-	targetRowId: ''
-};
 
 const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, regionRows }: any): JSX.Element => {
 	const regionPluginRows = regionRows

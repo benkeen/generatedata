@@ -1,8 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options, getMetadata } from './BitcoinAddress';
-
-export { generate } from './BitcoinAddress.generate';
-export { GenerationOptionsType, initialState as defaultGenerationOptions } from './BitcoinAddress';
+import { Options, getMetadata } from './BitcoinAddress';
+import { initialState } from './BitcoinAddress.state';
 
 const bundle: DTBundle = {
 	initialState,

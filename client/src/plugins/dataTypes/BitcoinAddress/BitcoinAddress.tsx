@@ -6,45 +6,8 @@ import TextField from '~components/TextField';
 import CheckboxPill from '~components/pills/CheckboxPill';
 import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { Tooltip } from '~components/tooltips';
+import { BitcoinAddressFormat } from './BitcoinAddress.state';
 import styles from './BitcoinAddress.scss';
-
-export const enum BitcoinAddressFormat {
-	Legacy = 'Legacy',
-	Compatibility = 'Compatibility',
-	Segwit = 'Segwit'
-}
-
-export type BitcoinAddressState = {
-	[BitcoinAddressFormat.Legacy]: {
-		enabled: boolean;
-		weight: number;
-	};
-	[BitcoinAddressFormat.Compatibility]: {
-		enabled: boolean;
-		weight: number;
-	};
-	[BitcoinAddressFormat.Segwit]: {
-		enabled: boolean;
-		weight: number;
-	};
-}
-
-export type GenerationOptionsType = BitcoinAddressState;
-
-export const initialState: BitcoinAddressState = {
-	[BitcoinAddressFormat.Legacy]: {
-		enabled: true,
-		weight: 1,
-	},
-	[BitcoinAddressFormat.Compatibility]: {
-		enabled: true,
-		weight: 1,
-	},
-	[BitcoinAddressFormat.Segwit]: {
-		enabled: true,
-		weight: 1,
-	}
-};
 
 const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: any): JSX.Element => {
 	const onToggleFormat = (format: BitcoinAddressFormat, checked: boolean): void => {

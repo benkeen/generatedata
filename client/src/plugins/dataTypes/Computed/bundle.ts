@@ -1,8 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Example, Options, Help, getMetadata } from './Computed';
-
-export { generate } from './Computed.generate';
-export { GenerationOptionsType, initialState as defaultGenerationOptions } from './Computed';
+import { Example, Options, Help, getMetadata } from './Computed';
+import { initialState } from './Computed.state';
 
 const bundle: DTBundle = {
 	initialState,

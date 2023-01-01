@@ -1,4 +1,4 @@
-import { NamesSource } from './Names';
+import { NamesSource } from './Names.state';
 import { WorkerUtils } from '~utils/workerUtils';
 import { DTGenerateResult } from '~types/dataTypes';
 

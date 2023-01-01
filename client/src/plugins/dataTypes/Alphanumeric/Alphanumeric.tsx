@@ -3,26 +3,9 @@ import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTOptionsProps, DTHelpProps, DTMetadata } from '~types/dataTypes';
+import { AlphanumericState, GenerationOptionsType } from './Alphanumeric.state';
 import styles from './Alphanumeric.scss';
 import sharedStyles from '../../../styles/shared.scss';
-
-export type GenerationOptionsType = {
-	value: string;
-};
-
-export const defaultGenerationOptions: GenerationOptionsType = {
-	value: 'LLLxxLLLxLL'
-};
-
-export type AlphanumericState = {
-	example: string;
-	value: string;
-};
-
-export const initialState: AlphanumericState = {
-	example: 'LLLxxLLLxLL',
-	...defaultGenerationOptions
-};
 
 const Copy = ({ content, tooltip, message }: any): JSX.Element => (
 	<span className={styles.copy}>

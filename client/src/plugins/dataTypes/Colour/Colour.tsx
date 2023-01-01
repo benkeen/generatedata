@@ -7,42 +7,8 @@ import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { Tooltip } from '~components/tooltips';
+import { ColourFormat, ColourState, LuminosityType, GenerationOptionsType } from './Colour.state';
 import styles from './Colour.scss';
-
-export const enum ColourFormat {
-	hex = 'hex',
-	rgb = 'rgb',
-	rgba = 'rgba'
-}
-
-export const enum LuminosityType {
-	any = 'any',
-	bright = 'bright',
-	light = 'light',
-	dark = 'dark'
-}
-
-export type ColourState = {
-	example: string;
-	value: string;
-	luminosity: LuminosityType;
-	format: ColourFormat;
-	alpha: number;
-};
-
-export type GenerationOptionsType = Omit<ColourState, 'example'>
-
-export const defaultGenerationOptions: GenerationOptionsType = {
-	value: 'any',
-	luminosity: LuminosityType.any,
-	format: ColourFormat.hex,
-	alpha: 1
-};
-
-export const initialState: ColourState = {
-	example: 'any',
-	...defaultGenerationOptions
-};
 
 const getModalOptions = ({ i18n }: any): DropdownOption[] => ([
 	{ value: 'any', label: i18n.anyColour },

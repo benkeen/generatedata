@@ -1,16 +1,12 @@
 import { DTBundle } from '~types/dataTypes';
 import {
-	defaultGenerationOptions,
-	initialState,
 	Example,
 	Options,
 	Help,
 	getMetadata,
 	rowStateReducer
 } from './Names';
-export { generate } from './Names.generate';
-
-export { defaultGenerationOptions, GenerationOptionsType } from './Names';
+import { initialState } from './Names.state';
 
 const bundle: DTBundle = {
 	initialState,

@@ -2,24 +2,7 @@ import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
-
-export type GenerationOptionsType = {
-	values: string[];
-};
-
-export type BooleanState = {
-	example: string;
-	values: string[];
-};
-
-export const defaultGenerationOptions = {
-	values: ['Yes', 'No']
-};
-
-export const initialState: BooleanState = {
-	example: 'Yes|No',
-	...defaultGenerationOptions
-};
+import { BooleanState, GenerationOptionsType } from './Boolean.state';
 
 export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {
