@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react';
-import {getWeightedListItems, Help, Options, WeightedListItem} from '../WeightedList';
+import { getWeightedListItems, WeightedListItem } from '../WeightedList.state';
+import { Help, Options } from '../WeightedList';
 const i18n = require('../i18n/en.json');
 
 const defaultProps = {

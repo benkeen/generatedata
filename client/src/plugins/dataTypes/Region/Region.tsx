@@ -8,23 +8,7 @@ import styles from './Region.scss';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { removeItem } from '~utils/arrayUtils';
 import { getI18nString } from '~utils/langUtils';
-
-export type RegionSource = 'anyRegion' | 'countries' | 'countryRow';
-export type RegionFormat = 'full' | 'short';
-
-export type RegionState = {
-	source: RegionSource;
-	selectedCountries: DataTypeFolder[];
-	targetRowId: string;
-	formats: RegionFormat[];
-};
-
-export const initialState: RegionState = {
-	source: 'anyRegion',
-	selectedCountries: [],
-	targetRowId: '',
-	formats: ['full']
-};
+import { RegionSource, RegionFormat } from './Region.state';
 
 const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any): JSX.Element => {
 	const countryPluginRows = countryRows

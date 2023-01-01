@@ -1,6 +1,6 @@
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import rc from 'randomcolor';
-import { ColourFormat } from './Colour';
+import { ColourFormat } from './Colour.state';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { value, luminosity, format, alpha } = data.rowState;

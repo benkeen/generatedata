@@ -1,7 +1,8 @@
 import React from 'react'
 import sinon from 'sinon';
 import { render, fireEvent } from '@testing-library/react';
-import { initialState, Options, Help, Example } from '../Alphanumeric';
+import { Options, Help, Example } from '../Alphanumeric';
+import { initialState } from '../Alphanumeric.state';
 import * as langUtils from '~utils/langUtils';
 const i18n = require('../i18n/en.json');
 

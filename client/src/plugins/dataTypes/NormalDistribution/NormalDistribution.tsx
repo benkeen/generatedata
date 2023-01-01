@@ -2,18 +2,6 @@ import * as React from 'react';
 import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import styles from './NormalDistribution.scss';
 
-export type NormalDistributionState = {
-	mean: number;
-	sigma: number;
-	precision: number;
-};
-
-export const initialState: NormalDistributionState = {
-	mean: 0,
-	sigma: 1,
-	precision: 10
-};
-
 export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
 		onUpdate({

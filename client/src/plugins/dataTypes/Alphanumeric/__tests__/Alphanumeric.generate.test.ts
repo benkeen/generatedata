@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import utils from '../../../../utils';
 import { onmessage } from '../Alphanumeric.worker';
-import { initialState } from '../Alphanumeric';
+import { initialState } from '../Alphanumeric.state';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
 
 const i18n = require('../i18n/en.json');

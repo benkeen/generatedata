@@ -8,45 +8,8 @@ import TextField from '~components/TextField';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { Tooltip } from '~components/tooltips';
 import * as langUtils from '~utils/langUtils';
+import { ListType, ListState, GenerationOptionsType } from './List.state';
 import * as styles from './List.scss';
-
-export const enum ListType {
-	exactly = 'exactly',
-	between = 'between'
-}
-
-export type ListState = {
-	example: string;
-	listType: ListType;
-	exactly: string;
-	betweenLow: string;
-	betweenHigh: string;
-	values: string[];
-	delimiter: string;
-};
-
-export type GenerationOptionsType = {
-	listType: ListType;
-	exactly: number;
-	betweenLow: number;
-	betweenHigh: number;
-	values: string[];
-	delimiter: string;
-}
-
-export const defaultGenerationOptions = {
-	listType: ListType.exactly,
-	exactly: '1',
-	betweenLow: '',
-	betweenHigh: '',
-	values: ['1', '3', '5', '7', '9', '11', '13', '15', '17', '19'],
-	delimiter: ', '
-};
-
-export const initialState: ListState = {
-	example: '1|3|5|7|9|11|13|15|17|19',
-	...defaultGenerationOptions
-};
 
 export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element => {
 	const onChange = (example: any): void => {

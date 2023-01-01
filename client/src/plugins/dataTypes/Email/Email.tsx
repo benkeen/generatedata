@@ -7,39 +7,9 @@ import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import * as styles from './Email.scss';
+import { StringSource, EmailState, defaultDomainSuffixes, defaultDomains, GenerationOptionsType } from './Email.state';
 import { Tooltip } from '~components/tooltips';
 
-export const enum StringSource {
-	random = 'random',
-	fields = 'fields'
-}
-
-export type EmailState = {
-	source: StringSource;
-	fieldId1: string;
-	fieldId2: string;
-	domains: string;
-	domainSuffixes: string;
-}
-
-const defaultDomains = 'google,hotmail,aol,icloud,outlook,yahoo,protonmail';
-const defaultDomainSuffixes = 'com,org,ca,net,co.uk,edu';
-
-export const initialState: EmailState = {
-	source: StringSource.random,
-	fieldId1: '',
-	fieldId2: '',
-	domains: defaultDomains,
-	domainSuffixes: defaultDomainSuffixes
-};
-
-export type GenerationOptionsType = {
-	source: StringSource;
-	fieldId1: string;
-	fieldId2: string;
-	domains: string[];
-	domainSuffixes: string[];
-};
 
 const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOptions, i18n }: any): JSX.Element => {
 	const getFieldsRow = (): JSX.Element | null => {

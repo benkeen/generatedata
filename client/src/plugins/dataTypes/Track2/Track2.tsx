@@ -6,18 +6,6 @@ import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import styles from './Track2.scss';
 
-export type Track2Source = 'row' | 'random';
-
-export type Track2State = {
-	panSource: Track2Source;
-	targetPanRowId: string;
-}
-
-export const initialState: Track2State = {
-	panSource: 'random',
-	targetPanRowId: '',
-};
-
 const Track2Dialog = ({ visible, data, id, panRows, onClose, onUpdatePANSource, onUpdateRowSource, coreI18n, i18n }: any): JSX.Element => {
 	const getPanSourceDropdown = (): JSX.Element | null => {
 		if (data.panSource !== 'row') {

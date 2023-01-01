@@ -1,16 +1,7 @@
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { NumberRangeState } from './NumberRange.state';
 import TextField from '~components/TextField';
-
-export type NumberRangeState = {
-	min: number;
-	max: number;
-};
-
-export const initialState: NumberRangeState = {
-	min: 0,
-	max: 10
-};
 
 export const rowStateReducer = (state: NumberRangeState): NumberRangeState => state;
 

@@ -1,9 +1,7 @@
 import { DTBundle } from '~types/dataTypes';
-import { Help, Options, initialState, getMetadata } from './Track1';
+import { Help, Options, getMetadata } from './Track1';
 import { customProps, actionInterceptors } from './Track1.store';
-
-export { generate } from './Track1.generate';
-export { Track1State as GenerationOptionsType, initialState as defaultGenerationOptions } from './Track1';
+import { initialState } from './Track1.state';
 
 const bundle: DTBundle = {
 	Help,

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { DTCustomProps } from '~types/dataTypes';
 import { getSortedRowsArray } from '~store/generator/generator.selectors';
-import { PostalZipState, PostalZipSource } from './PostalZip';
+import { PostalZipState, PostalZipSource } from './PostalZip.state';
 import { REMOVE_ROW, SELECT_DATA_TYPE } from '~store/generator/generator.actions';
 
 

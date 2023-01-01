@@ -5,26 +5,8 @@ import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { countryList, DataTypeFolder } from '../../../../_plugins';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { PostalZipSource } from './PostalZip.state';
 import styles from './PostalZip.scss';
-
-export const enum PostalZipSource {
-	any = 'any',
-	countries = 'countries',
-	countryRow = 'countryRow',
-	regionRow = 'regionRow'
-}
-
-export type PostalZipState = {
-	source: PostalZipSource;
-	selectedCountries: DataTypeFolder[];
-	targetRowId: string;
-};
-
-export const initialState: PostalZipState = {
-	source: PostalZipSource.any,
-	selectedCountries: [],
-	targetRowId: ''
-};
 
 const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, countryRows, regionRows }: any): JSX.Element => {
 	const countryPluginRows = countryRows.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));

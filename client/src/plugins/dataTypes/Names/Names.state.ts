@@ -1,4 +1,4 @@
-import { CountryNameFiles } from "../../../../_namePlugins";
+import { CountryNameFiles } from '../../../../_namePlugins';
 
 export const enum NamesSource {
 	any = 'any',

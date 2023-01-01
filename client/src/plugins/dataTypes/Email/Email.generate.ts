@@ -1,6 +1,6 @@
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
-import { StringSource } from './Email';
+import { StringSource } from './Email.state';
 
 let utils: WorkerUtils;
 const MAX_EMAIL_LENGTH = 254;

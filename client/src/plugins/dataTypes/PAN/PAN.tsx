@@ -7,30 +7,9 @@ import CreatablePillField from '~components/creatablePillField/CreatablePillFiel
 import { cloneObj } from '~utils/generalUtils';
 import { toSentenceCase } from '~utils/stringUtils';
 import { getI18nString } from '~utils/langUtils';
+import { PanState, GenerationOptionsType } from './PAN.state';
 import { creditCardFormats, CreditCardFormatType, CreditCardType, creditCardTypes } from './formats';
 import styles from './PAN.scss';
-
-export type PanState = {
-	example: string;
-	cardTypes: CreditCardType[];
-	cardFormats: CreditCardFormatType;
-};
-
-export type GenerationOptionsType = {
-	cardFormats: CreditCardFormatType;
-	ccCard: CreditCardType | 'any';
-}
-
-export const defaultGenerationOptions = {
-	cardFormats: Object.values(CreditCardType),
-	ccCard: 'any'
-};
-
-export const initialState: PanState = {
-	example: 'any',
-	cardTypes: creditCardTypes,
-	cardFormats: cloneObj(creditCardFormats)
-};
 
 export const getCreditCardOptions = (formats: string[], i18n: any): DropdownOption[] => (
 	formats.map((format) => ({

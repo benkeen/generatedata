@@ -1,8 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options, Help, getMetadata, rowStateReducer } from './TextFixed';
-
-export { generate } from './TextFixed.generate';
-export { GenerationOptionsType, initialState as defaultGenerationOptions } from './TextFixed';
+import { Options, Help, getMetadata, rowStateReducer } from './TextFixed';
+import { initialState } from './TextFixed.state';
 
 const bundle: DTBundle = {
 	initialState,

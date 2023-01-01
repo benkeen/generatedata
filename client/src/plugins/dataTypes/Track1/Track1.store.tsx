@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { DTCustomProps } from '~types/dataTypes';
 import { getSortedRowsArray } from '~store/generator/generator.selectors';
-import { Track1State } from './Track1';
+import { Track1State } from './Track1.state';
 import { REMOVE_ROW, SELECT_DATA_TYPE } from '~store/generator/generator.actions';
 
 // this defines a custom selector that extracts information about the country fields, needed by this component. The

@@ -2,7 +2,7 @@ import utils from '../../../utils';
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { CountryDataType, CountryType, Region } from '~types/countries';
 import { WorkerUtils } from '~utils/workerUtils';
-import { PostalZipSource } from './PostalZip';
+import { PostalZipSource } from './PostalZip.state';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { rowState, countryData, existingRowData } = data;

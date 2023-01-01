@@ -5,37 +5,8 @@ import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { PrefixLocation } from './Currency.state';
 import styles from './Currency.scss';
-
-export enum PrefixLocation {
-	prefix = 'prefix',
-	suffix = 'suffix'
-}
-
-export type GenerationOptionsType = {
-	from: number;
-	to: number;
-	currencySymbol: string;
-	currencySymbolLocation: PrefixLocation;
-	includeCents: boolean;
-	thousandsSeparator: string;
-	centsSeparator: string;
-}
-
-export const defaultGenerationOptions = {
-	from: '0.00',
-	to: '100.00',
-	currencySymbol: '$',
-	currencySymbolLocation: PrefixLocation.prefix,
-	includeCents: true,
-	thousandsSeparator: ',',
-	centsSeparator: '.'
-};
-
-export const initialState = {
-	example: '0.00|100.00|$|prefix|true|,|.',
-	...defaultGenerationOptions
-};
 
 export const Example = ({ i18n, data, onUpdate }: any): JSX.Element => {
 	const onChange = (i: any): void => {

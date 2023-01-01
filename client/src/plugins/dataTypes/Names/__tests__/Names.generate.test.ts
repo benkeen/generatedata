@@ -1,7 +1,7 @@
 import * as sinon from 'sinon';
 import { generate } from '../Names.generate';
 import utils from '../../../../utils';
-import { NamesSource } from '../Names';
+import { NamesSource } from '../Names.state';
 
 describe('generate method converts all placeholders', () => {
 	afterEach(() => {

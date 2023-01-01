@@ -2,24 +2,7 @@ import * as React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
-
-export type PhoneState = {
-	example: string;
-	option: string[];
-};
-
-export type GenerationOptionsType = {
-	option: string[];
-};
-
-export const defaultGenerationOptions: GenerationOptionsType = {
-	option: ['1-Xxx-Xxx-xxxx', '(Xxx) Xxx-xxxx']
-};
-
-export const initialState: PhoneState = {
-	example: '1-Xxx-Xxx-xxxx|(Xxx) Xxx-xxxx',
-	...defaultGenerationOptions
-};
+import { PhoneState, GenerationOptionsType } from './Phone.state';
 
 export const rowStateReducer = (state: PhoneState): GenerationOptionsType => ({ option: state.option });
 

@@ -1,5 +1,5 @@
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { WeightedListType } from './WeightedList';
+import { WeightedListType } from './WeightedList.state';
 import { WorkerUtils } from '~utils/workerUtils';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {

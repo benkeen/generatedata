@@ -19,3 +19,5 @@ export const initialState: CityState = {
 	selectedCountries: [],
 	targetRowId: ''
 };
+
+export const defaultGenerationOptions = initialState;

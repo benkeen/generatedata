@@ -1,5 +1,5 @@
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { ListType } from './List';
+import { ListType } from './List.state';
 import { WorkerUtils } from '~utils/workerUtils';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {

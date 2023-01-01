@@ -1,4 +1,4 @@
-import { CityState, RegionSource } from './City';
+import { CityState, RegionSource } from './City.state';
 import { CountryType, Region } from '~types/countries';
 import { DTGenerateResult, DTGenerationExistingRowData, DTGenerationData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';

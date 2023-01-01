@@ -232,6 +232,87 @@ export enum DataType {
 	WeightedList = 'WeightedList'
 }
 
+import { GenerationOptionsType as AlphanumericGenerationOptions } from './src/plugins/dataTypes/Alphanumeric/Alphanumeric.state';
+import { GenerationOptionsType as AutoIncrementGenerationOptions } from './src/plugins/dataTypes/AutoIncrement/AutoIncrement.state';
+import { GenerationOptionsType as BooleanGenerationOptions } from './src/plugins/dataTypes/Boolean/Boolean.state';
+import { GenerationOptionsType as CVVGenerationOptions } from './src/plugins/dataTypes/CVV/CVV.state';
+import { GenerationOptionsType as CityGenerationOptions } from './src/plugins/dataTypes/City/City.state';
+import { GenerationOptionsType as ColourGenerationOptions } from './src/plugins/dataTypes/Colour/Colour.state';
+import { GenerationOptionsType as CompanyGenerationOptions } from './src/plugins/dataTypes/Company/Company.state';
+import { GenerationOptionsType as ComputedGenerationOptions } from './src/plugins/dataTypes/Computed/Computed.state';
+import { GenerationOptionsType as ConstantGenerationOptions } from './src/plugins/dataTypes/Constant/Constant.state';
+import { GenerationOptionsType as CountryGenerationOptions } from './src/plugins/dataTypes/Country/Country.state';
+import { GenerationOptionsType as CurrencyGenerationOptions } from './src/plugins/dataTypes/Currency/Currency.state';
+import { GenerationOptionsType as DateGenerationOptions } from './src/plugins/dataTypes/Date/Date.state';
+import { GenerationOptionsType as EmailGenerationOptions } from './src/plugins/dataTypes/Email/Email.state';
+import { GenerationOptionsType as GUIDGenerationOptions } from './src/plugins/dataTypes/GUID/GUID.state';
+import { GenerationOptionsType as IBANGenerationOptions } from './src/plugins/dataTypes/IBAN/IBAN.state';
+import { GenerationOptionsType as LatLngGenerationOptions } from './src/plugins/dataTypes/LatLng/LatLng.state';
+import { GenerationOptionsType as ListGenerationOptions } from './src/plugins/dataTypes/List/List.state';
+import { GenerationOptionsType as NamesGenerationOptions } from './src/plugins/dataTypes/Names/Names.state';
+import { GenerationOptionsType as NormalDistributionGenerationOptions } from './src/plugins/dataTypes/NormalDistribution/NormalDistribution.state';
+import { GenerationOptionsType as NumberRangeGenerationOptions } from './src/plugins/dataTypes/NumberRange/NumberRange.state';
+import { GenerationOptionsType as PANGenerationOptions } from './src/plugins/dataTypes/PAN/PAN.state';
+import { GenerationOptionsType as PINGenerationOptions } from './src/plugins/dataTypes/PIN/PIN.state';
+import { GenerationOptionsType as PhoneGenerationOptions } from './src/plugins/dataTypes/Phone/Phone.state';
+import { GenerationOptionsType as PostalZipGenerationOptions } from './src/plugins/dataTypes/PostalZip/PostalZip.state';
+import { GenerationOptionsType as RegionGenerationOptions } from './src/plugins/dataTypes/Region/Region.state';
+import { GenerationOptionsType as RutGenerationOptions } from './src/plugins/dataTypes/Rut/Rut.state';
+import { GenerationOptionsType as StreetAddressGenerationOptions } from './src/plugins/dataTypes/StreetAddress/StreetAddress.state';
+import { GenerationOptionsType as TextFixedGenerationOptions } from './src/plugins/dataTypes/TextFixed/TextFixed.state';
+import { GenerationOptionsType as TextRandomGenerationOptions } from './src/plugins/dataTypes/TextRandom/TextRandom.state';
+import { GenerationOptionsType as TimeGenerationOptions } from './src/plugins/dataTypes/Time/Time.state';
+import { GenerationOptionsType as Track1GenerationOptions } from './src/plugins/dataTypes/Track1/Track1.state';
+import { GenerationOptionsType as Track2GenerationOptions } from './src/plugins/dataTypes/Track2/Track2.state';
+import { GenerationOptionsType as URLsGenerationOptions } from './src/plugins/dataTypes/URLs/URLs.state';
+import { GenerationOptionsType as WeightedListGenerationOptions } from './src/plugins/dataTypes/WeightedList/WeightedList.state';
+
+interface DataTypeOptionsMap {
+	[DataType.Alphanumeric]: AlphanumericGenerationOptions;
+	[DataType.AutoIncrement]: AutoIncrementGenerationOptions;
+	[DataType.Boolean]: BooleanGenerationOptions;
+	[DataType.CVV]: CVVGenerationOptions;
+	[DataType.City]: CityGenerationOptions;
+	[DataType.Colour]: ColourGenerationOptions;
+	[DataType.Company]: CompanyGenerationOptions;
+	[DataType.Computed]: ComputedGenerationOptions;
+	[DataType.Constant]: ConstantGenerationOptions;
+	[DataType.Country]: CountryGenerationOptions;
+	[DataType.Currency]: CurrencyGenerationOptions;
+	[DataType.Date]: DateGenerationOptions;
+	[DataType.Email]: EmailGenerationOptions;
+	[DataType.GUID]: GUIDGenerationOptions;
+	[DataType.IBAN]: IBANGenerationOptions;
+	[DataType.LatLng]: LatLngGenerationOptions;
+	[DataType.List]: ListGenerationOptions;
+	[DataType.Names]: NamesGenerationOptions;
+	[DataType.NormalDistribution]: NormalDistributionGenerationOptions;
+	[DataType.NumberRange]: NumberRangeGenerationOptions;
+	[DataType.PAN]: PANGenerationOptions;
+	[DataType.PIN]: PINGenerationOptions;
+	[DataType.Phone]: PhoneGenerationOptions;
+	[DataType.PostalZip]: PostalZipGenerationOptions;
+	[DataType.Region]: RegionGenerationOptions;
+	[DataType.Rut]: RutGenerationOptions;
+	[DataType.StreetAddress]: StreetAddressGenerationOptions;
+	[DataType.TextFixed]: TextFixedGenerationOptions;
+	[DataType.TextRandom]: TextRandomGenerationOptions;
+	[DataType.Time]: TimeGenerationOptions;
+	[DataType.Track1]: Track1GenerationOptions;
+	[DataType.Track2]: Track2GenerationOptions;
+	[DataType.URLs]: URLsGenerationOptions;
+	[DataType.WeightedList]: WeightedListGenerationOptions;
+}
+
+export type DataTypeGenerationOptions = {
+	[K in DataType]: {
+		plugin: K;
+		title: string;
+		settings: DataTypeOptionsMap[K];
+		id?: string | number;
+	}
+}[DataType];
+
 export enum ExportType {
 	CSV = 'CSV',
 	CSharp = 'CSharp',

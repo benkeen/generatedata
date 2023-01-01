@@ -2,24 +2,6 @@ import * as React from 'react';
 import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 import styles from './SIRET.scss';
 
-type SiretState = {
-	example: string;
-	option: string;
-};
-
-export type GenerationOptions = {
-	option: string;
-};
-
-export const defaultGenerationOptions: GenerationOptions = {
-	option: ''
-};
-
-export const initialState: SiretState = {
-	example: '',
-	...defaultGenerationOptions
-};
-
 export const Options = ({ id, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
 		// @ts-ignore

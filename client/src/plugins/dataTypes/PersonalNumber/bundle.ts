@@ -1,8 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Example, Options, Help, getMetadata } from './PersonalNumber';
-
-export { generate } from './PersonalNumber.generate';
-export { defaultGenerationOptions } from './PersonalNumber';
+import { Example, Options, Help, getMetadata } from './PersonalNumber';
+import { initialState } from './PersonalNumber.state';
 
 const bundle: DTBundle = {
 	initialState,

@@ -2,26 +2,6 @@ import * as React from 'react';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
 
-type FormatCode = '12345678-9' | '12.345.678-9' | '123456789' | '12.345.678-9' | '12345678' | '12.345.678' | '9';
-
-type RutState = {
-	example: string;
-	formatCode: FormatCode;
-	uppercaseDigit: boolean;
-};
-
-export type GenerationOptionsType = Omit<RutState, 'example'>;
-
-export const defaultGenerationOptions = {
-	formatCode: '12345678-9' as FormatCode,
-	uppercaseDigit: true
-};
-
-export const initialState: RutState = {
-	example: '',
-	...defaultGenerationOptions
-};
-
 export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const options = [
 		{ value: '12345678-9', label: '12345678-9' },

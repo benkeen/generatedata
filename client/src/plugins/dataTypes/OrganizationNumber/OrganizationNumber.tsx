@@ -2,16 +2,6 @@ import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 
-export type OrganizationNumberState = {
-	example: string;
-	separator: string;
-};
-
-export const initialState: OrganizationNumberState = {
-	example: '',
-	separator: ' '
-};
-
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {
 		onUpdate({

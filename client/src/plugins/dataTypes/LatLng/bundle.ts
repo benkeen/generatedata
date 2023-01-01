@@ -1,8 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options, Help, getMetadata } from './LatLng';
-
-export { generate } from './LatLng.generate';
-export { LatLngState as GenerationOptionsType, initialState as defaultGenerationOptions } from './LatLng';
+import { Options, Help, getMetadata } from './LatLng';
+import { initialState } from './LatLng.state';
 
 const bundle: DTBundle = {
 	initialState,

@@ -1,8 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
-import { Example, Options, initialState, getMetadata, rowStateReducer } from './URLs';
-
-export { generate } from './URLs.generate';
-export { GenerationOptionsType, defaultGenerationOptions } from './URLs';
+import { Example, Options, getMetadata, rowStateReducer } from './URLs';
+import { initialState } from './URLs.state';
 
 const bundle: DTBundle = {
 	Example,

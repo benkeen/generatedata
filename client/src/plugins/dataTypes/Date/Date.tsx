@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { format, subYears, addYears, fromUnixTime } from 'date-fns';
+import { format, fromUnixTime } from 'date-fns';
 import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
 import Button from '@material-ui/core/Button';
 import Dropdown from '~components/dropdown/Dropdown';
@@ -10,24 +10,9 @@ import { ErrorTooltip } from '~components/tooltips';
 import TextField from '~components/TextField';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import * as sharedStyles from '../../../styles/shared.scss';
+import { DateState, GenerationOptionsType } from './Date.state';
 import * as styles from './Date.scss';
 import C from '../../../core/constants';
-
-export type DateState = {
-	fromDate: number;
-	toDate: number;
-	example: string;
-	format: string;
-};
-
-export type GenerationOptionsType = Omit<DateState, 'example'>;
-
-export const initialState: DateState = {
-	fromDate: parseInt(format(subYears(new Date(), 1), 't'), 10),
-	toDate: parseInt(format(addYears(new Date(), 1), 't'), 10),
-	example: 'MMM d, y',
-	format: 'MMM d, y'
-};
 
 export const rowStateReducer = ({ fromDate, toDate, format }: DateState): GenerationOptionsType => ({
 	fromDate, toDate, format

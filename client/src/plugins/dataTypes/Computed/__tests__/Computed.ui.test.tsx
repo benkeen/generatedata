@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { initialState, Help, Options } from '../Computed';
+import { Help, Options } from '../Computed';
+import { initialState } from '../Computed.state';
 const i18n = require('../i18n/en.json');
 
 const defaultProps = {

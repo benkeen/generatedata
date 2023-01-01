@@ -1,5 +1,5 @@
 import { onmessage } from '../AutoIncrement.worker';
-import { initialState } from '../AutoIncrement';
+import { initialState } from '../AutoIncrement.state';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
 const i18n = require('../i18n/en.json');
 

@@ -7,19 +7,8 @@ import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import fullCountryList from './fullCountryList';
 import { countryList } from '../../../../_plugins';
 import styles from './Country.scss';
+import { CountrySource } from './Country.state';
 import { CountryType } from '~types/countries';
-
-export type CountrySource = 'plugins' | 'all';
-export type CountryState = {
-	source: CountrySource;
-	selectedCountries: string[];
-}
-export type GenerationOptionsType = CountryState;
-
-export const initialState: CountryState = {
-	source: 'plugins',
-	selectedCountries: []
-};
 
 const fullCountryListOptions = fullCountryList.map((countryName) => ({
 	value: countryName,

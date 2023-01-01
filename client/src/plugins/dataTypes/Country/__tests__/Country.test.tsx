@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Help, Options, initialState } from '../Country';
+import { Help, Options } from '../Country';
+import { initialState } from '../Country.state';
 
 const i18n = require('../i18n/en.json');
 

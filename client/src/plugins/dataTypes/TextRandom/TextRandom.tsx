@@ -5,32 +5,8 @@ import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { getLipsumWords } from '~utils/stringUtils';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
+import { TextSource, TextRandomState, GenerationOptionsType } from './TextRandom.state';
 import styles from './TextRandom.scss';
-
-type TextSource = 'lipsum' | 'custom';
-
-type TextRandomState = {
-	fromStart: boolean;
-	minWords: number;
-	maxWords: number;
-	textSource: TextSource;
-	customText: string;
-};
-
-export type GenerationOptionsType = {
-	fromStart: boolean;
-	minWords: number;
-	maxWords: number;
-	words: string[];
-}
-
-export const initialState: TextRandomState = {
-	fromStart: false,
-	minWords: 1,
-	maxWords: 10,
-	textSource: 'lipsum',
-	customText: ''
-};
 
 const TextRandomDialog = ({
 	 visible, data, id, onClose, onChangeFromStart, onUpdateSource, onUpdateCustomText, coreI18n, i18n

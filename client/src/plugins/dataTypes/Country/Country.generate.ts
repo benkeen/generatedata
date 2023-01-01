@@ -1,10 +1,9 @@
 import fullCountryList from './fullCountryList';
 import { countryList } from '../../../../_plugins';
-import { CountryState } from './Country';
+import { CountryState } from './Country.state';
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { CountryType } from '~types/countries';
 import { WorkerUtils } from '~utils/workerUtils';
-
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { rowState, countryData } = data;

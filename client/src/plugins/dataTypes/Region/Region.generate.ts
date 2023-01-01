@@ -2,7 +2,7 @@ import { countryList } from '../../../../_plugins';
 import { getRandomArrayValue } from '~utils/randomUtils';
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { Region, CountryType } from '~types/countries';
-import { RegionFormat } from './Region';
+import { RegionFormat } from './Region.state';
 
 // used for caching purposes
 const countryRegions: any = {};
