@@ -7,6 +7,7 @@ import {
 import { CountryDataType, CountryNamesMap } from '~types/countries';
 import { GenerationTemplate } from '~types/general';
 import { WorkerUtils } from '~utils/workerUtils';
+import { GenerationWorkerActionType } from "~core/generator/generation.types";
 
 /**
  * This utility file contains the guts of the data generation code. It farms out work to the various plugins
@@ -20,43 +21,31 @@ let lastMainProcessOptions: MainProcessOptionsBrowser | MainProcessOptionsNode |
 let currentSpeed: number; // TODO possible range?
 const workerQueue: any = {};
 
+// TODO here we need a version of GDTemplate where nothing is optional
 export const generate = (fullTemplate: GDTemplate, settings: any) => {
-	const { numRows, packetSize } = fullTemplate.generationSettings; // TODO locale no longer needed here
-	const { i18n, workerUtils, countryNames, countryData, dataTypeInterface, template } = settings;
-
-	// const {
-	// 	columns, numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData, stripWhitespace,
-	// 	exportTypeSettings, exportTypeWorkerUrl, dataTypeWorkerMap
-	// } = data;
+	const { numResults, packetSize, stripWhitespace } = fullTemplate.generationSettings; // TODO locale no longer needed here
+	const { i18n, workerUtils, countryNames, countryData, dataTypeInterface, template, exportTypeSettings, onComplete, exportTypeInterface } = settings;
 
 	const onBatchComplete = ({ completedBatchNum, numGeneratedRows, generatedData }: any): void => {
-		console.log("holy cow!", generatedData);
+		const isLastBatch = numGeneratedRows >= numResults;
+		const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));
 
-	// 	const isLastBatch = numGeneratedRows >= numResults;
-	// 	const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));
-	//
-	// 	generateExportTypes({
-	// 		numResults,
-	// 		isFirstBatch: completedBatchNum === 1,
-	// 		isLastBatch,
-	// 		rows: displayData,
-	// 		columns,
-	// 		stripWhitespace,
-	// 		settings: exportTypeSettings,
-	// 		workerUtilsUrl,
-	// 		onComplete: (data: string) => {
-	// 			context.postMessage({
-	// 				event: GenerationWorkerActionType.ExportTypeProcessed,
-	// 				numGeneratedRows,
-	// 				data
-	// 			});
-	// 		},
-	// 		exportTypeInterface: getWorkerInterface(exportTypeWorkerUrl)
-	// 	});
+		generateExportTypes({
+			numResults,
+			isFirstBatch: completedBatchNum === 1,
+			isLastBatch,
+			rows: displayData,
+			columns: [], // TODO
+			stripWhitespace: stripWhitespace as boolean, // TODO we knows it's defined here
+			settings: exportTypeSettings,
+			workerUtils,
+			onComplete,
+			exportTypeInterface
+		});
 	};
 
 	generateDataTypes({
-		numResults: numRows,
+		numResults,
 		batchSize: packetSize as number,
 		i18n,
 		template,
@@ -161,13 +150,17 @@ export const generateDataTypes: GenerateDataTypes = (options): void => {
 export const generateExportTypes: GenerateExportTypes = (options): void => {
 	const { exportTypeInterface, onComplete, ...other } = options;
 
-	// pass off work to the Export Type worker
-	exportTypeInterface.send(other);
+	if (exportTypeInterface.context === 'node') {
+		onComplete(exportTypeInterface.send(other));
+	} else {
+		// pass off work to the Export Type worker
+		exportTypeInterface.send(other);
 
-	// listen for the response and post
-	exportTypeInterface.onSuccess((resp: MessageEvent): void => {
-		onComplete(resp.data);
-	});
+		// listen for the response and post
+		exportTypeInterface.onSuccess((resp: MessageEvent): void => {
+			onComplete(resp.data);
+		});
+	}
 };
 
 const pauseGeneration = (): void => {

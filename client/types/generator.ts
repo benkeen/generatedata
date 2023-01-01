@@ -15,7 +15,7 @@ export { DataTypeGenerationOptions, ExportType, ExportTypeGenerationOptions };
  * Settings custom to the particular generation action. This is used in combination with DataSetConfig.
  */
 export type GenerationSettings = {
-	numRows: number;
+	numResults: number;
 	locale?: GDLocale;
 	stripWhitespace?: boolean; // default: false
 

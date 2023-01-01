@@ -45,12 +45,17 @@ const doStuff = (template: GDTemplate) => {
     const i18n = getI18nStrings(normalizedTemplate.generationSettings.locale as GDLocale)
     const dataTypeInterface = getWorkerInterface();
 
+    const onComplete = (data: string) => {
+        console.log('!!!!!!', data);
+    };
+
     generate(normalizedTemplate, {
         i18n,
         workerUtils,
         dataTypeInterface,
         template: convertPublicToInternalTemplate(normalizedTemplate.dataTemplate),
-        countryNames
+        countryNames,
+        onComplete
     });
 };
 
@@ -76,8 +81,8 @@ const getWorkerInterface = (): DataTypeWorkerInterface => {
         workerInterface[dataType] = {
             context: 'node',
             send: (payload: DTGenerationData): DTGenerateResult => {
-
-                // TODO this should be done once, not here
+                // this extends whatever settings the user supplied with the default values defined by the Data Type,
+                // so the data passed to the DT's generate method is complete
                 const fullPayload = {
                     ...payload,
                     rowState: {
@@ -85,7 +90,6 @@ const getWorkerInterface = (): DataTypeWorkerInterface => {
                         ...payload.rowState
                     }
                 };
-                
                 return dataTypeGenerateMethods[dataType as DataType].generate(fullPayload, workerUtils)
             }
         }
@@ -94,11 +98,17 @@ const getWorkerInterface = (): DataTypeWorkerInterface => {
     return workerInterface;
 };
 
+const getExportTypeWorkerInterface = () => {
+    return {
+        context: 'node',
+        send: ()
+    };
+};
 
 (async () => {
     const template: GDTemplate = {
         generationSettings: {
-            numRows: 10
+            numResults: 10
         },
         dataTemplate: [
             {
