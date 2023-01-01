@@ -7,7 +7,6 @@ import {
 import { CountryDataType, CountryNamesMap } from '~types/countries';
 import { GenerationTemplate } from '~types/general';
 import { WorkerUtils } from '~utils/workerUtils';
-import { GenerationWorkerActionType } from "~core/generator/generation.types";
 
 /**
  * This utility file contains the guts of the data generation code. It farms out work to the various plugins
@@ -24,7 +23,7 @@ const workerQueue: any = {};
 // TODO here we need a version of GDTemplate where nothing is optional
 export const generate = (fullTemplate: GDTemplate, settings: any) => {
 	const { numResults, packetSize, stripWhitespace } = fullTemplate.generationSettings; // TODO locale no longer needed here
-	const { i18n, workerUtils, countryNames, countryData, dataTypeInterface, template, exportTypeSettings, onComplete, exportTypeInterface } = settings;
+	const { i18n, workerUtils, countryNames, countryData, dataTypeInterface, columns, template, exportTypeSettings, onComplete, exportTypeInterface } = settings;
 
 	const onBatchComplete = ({ completedBatchNum, numGeneratedRows, generatedData }: any): void => {
 		const isLastBatch = numGeneratedRows >= numResults;
@@ -35,7 +34,7 @@ export const generate = (fullTemplate: GDTemplate, settings: any) => {
 			isFirstBatch: completedBatchNum === 1,
 			isLastBatch,
 			rows: displayData,
-			columns: [], // TODO
+			columns,
 			stripWhitespace: stripWhitespace as boolean, // TODO we knows it's defined here
 			settings: exportTypeSettings,
 			workerUtils,

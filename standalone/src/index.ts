@@ -40,10 +40,23 @@ const getNormalizedGDTemplate = (template: GDTemplate): GDTemplate => ({
     exportSettings: template.exportSettings
 });
 
+const getColumns = (rows: DataTypeGenerationOptions[]) => {
+    return rows.map((row) => ({
+        title: row.title,
+        dataType: row.plugin,
+        id: row.id || newRowId++,
+        metadata: {} // TODO...
+    }));
+
+    // metadata,
+    // id
+};
+
 const doStuff = (template: GDTemplate) => {
     const normalizedTemplate = getNormalizedGDTemplate(template);
     const i18n = getI18nStrings(normalizedTemplate.generationSettings.locale as GDLocale)
     const dataTypeInterface = getWorkerInterface();
+    const exportTypeInterface = getExportTypeWorkerInterface(normalizedTemplate.exportSettings.plugin);
 
     const onComplete = (data: string) => {
         console.log('!!!!!!', data);
@@ -53,9 +66,11 @@ const doStuff = (template: GDTemplate) => {
         i18n,
         workerUtils,
         dataTypeInterface,
+        exportTypeInterface,
         template: convertPublicToInternalTemplate(normalizedTemplate.dataTemplate),
         countryNames,
-        onComplete
+        onComplete,
+        columns: getColumns(normalizedTemplate.dataTemplate)
     });
 };
 
@@ -98,11 +113,21 @@ const getWorkerInterface = (): DataTypeWorkerInterface => {
     return workerInterface;
 };
 
-const getExportTypeWorkerInterface = () => {
+const getExportTypeWorkerInterface = (exportType: ExportType) => {
     return {
         context: 'node',
-        send: () => {
-
+        send: (payload: any) => {
+            // this extends whatever settings the user supplied with the default values defined by the Data Type,
+            // so the data passed to the DT's generate method is complete
+            const fullPayload = {
+                ...payload,
+                // TODO note name difference with DTs
+                settings: {
+                    ...exportTypeNodeData[exportType].defaultGenerationOptions,
+                    ...payload.settings
+                }
+            };
+            return exportTypeNodeData[exportType].generate(fullPayload, workerUtils)
         }
     };
 };
