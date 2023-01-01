@@ -74,6 +74,7 @@ import { generate as WeightedListG } from '../client/src/plugins/dataTypes/Weigh
 import { defaultGenerationOptions as WeightedListDGO } from '../client/src/plugins/dataTypes/WeightedList/WeightedList.state';
 
 
+// TODO rename
 export const dataTypeGenerateMethods = {
 	[DataType.Alphanumeric]: { generate: AlphanumericG, defaultGenerationOptions: AlphanumericDGO },
 	[DataType.AutoIncrement]: { generate: AutoIncrementG, defaultGenerationOptions: AutoIncrementDGO },

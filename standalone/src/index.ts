@@ -41,55 +41,55 @@ const getNormalizedGDTemplate = (template: GDTemplate): GDTemplate => ({
 });
 
 const doStuff = (template: GDTemplate) => {
-    // TODO add validation step here
-
     const normalizedTemplate = getNormalizedGDTemplate(template);
     const i18n = getI18nStrings(normalizedTemplate.generationSettings.locale as GDLocale)
     const dataTypeInterface = getWorkerInterface();
 
-    console.log('...');
-
-    // generate(normalizedTemplate, {
-    //     i18n,
-    //     workerUtils,
-    //     dataTypeInterface,
-    //     template: convertPublicToInternalTemplate(normalizedTemplate.dataTemplate),
-    //     countryNames
-    // });
+    generate(normalizedTemplate, {
+        i18n,
+        workerUtils,
+        dataTypeInterface,
+        template: convertPublicToInternalTemplate(normalizedTemplate.dataTemplate),
+        countryNames
+    });
 };
 
-// let newRowId = 1;
-// const convertPublicToInternalTemplate = (rows: DataTypeGenerationOptions[]): GenerationTemplate => {
-//     const cleanRows = rows.map((row) => ({
-//         // for some situations, users can supply their own IDs; this pads the ones that don't have it
-//         id: row.id || newRowId++,
-//         title: row.title,
-//         dataType: row.plugin,
-//         rowState: row.settings
-//     }));
-//
-//     return convertRowsToGenerationTemplate(cleanRows);
-// };
-//
+let newRowId = 1;
+const convertPublicToInternalTemplate = (rows: DataTypeGenerationOptions[]): GenerationTemplate => {
+    const cleanRows = rows.map((row) => ({
+        // for some situations, users can supply their own IDs so they can map data together. This pads the ones that
+        // don't have it
+        id: row.id || newRowId++,
+        title: row.title,
+        dataType: row.plugin,
+        data: row.settings
+    }));
+
+    return convertRowsToGenerationTemplate(cleanRows);
+};
+
 
 const getWorkerInterface = (): DataTypeWorkerInterface => {
     const workerInterface: DataTypeWorkerInterface = {};
 
-    try {
-        console.log(dataTypeGenerateMethods);
-    } catch(e) {
-        console.log(e);
-    }
+    Object.keys(dataTypeGenerateMethods).forEach((dataType) => {
+        workerInterface[dataType] = {
+            context: 'node',
+            send: (payload: DTGenerationData): DTGenerateResult => {
 
-    // Object.keys(dataTypeGenerateMethods).forEach((dataType) => {
-//         workerInterface[dataType] = {
-//             context: 'node',
-//             send: (payload: DTGenerationData): DTGenerateResult => {
-//                 // @ts-ignore
-//                 return dataTypeGenerateMethods[dataType as DataType](payload, workerUtils)
-//             }
-//         }
-//     });
+                // TODO this should be done once, not here
+                const fullPayload = {
+                    ...payload,
+                    rowState: {
+                        ...dataTypeGenerateMethods[dataType as DataType].defaultGenerationOptions,
+                        ...payload.rowState
+                    }
+                };
+                
+                return dataTypeGenerateMethods[dataType as DataType].generate(fullPayload, workerUtils)
+            }
+        }
+    });
 
     return workerInterface;
 };
@@ -98,7 +98,7 @@ const getWorkerInterface = (): DataTypeWorkerInterface => {
 (async () => {
     const template: GDTemplate = {
         generationSettings: {
-            numRows: 1000
+            numRows: 10
         },
         dataTemplate: [
             {

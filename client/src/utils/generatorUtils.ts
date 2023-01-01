@@ -30,6 +30,8 @@ export const generate = (fullTemplate: GDTemplate, settings: any) => {
 	// } = data;
 
 	const onBatchComplete = ({ completedBatchNum, numGeneratedRows, generatedData }: any): void => {
+		console.log("holy cow!", generatedData);
+
 	// 	const isLastBatch = numGeneratedRows >= numResults;
 	// 	const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));
 	//
