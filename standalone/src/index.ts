@@ -1,26 +1,26 @@
-require('browser-env')();
+// require('browser-env')();
 
 import {
     DataTypeGenerationOptions,
     DataTypeWorkerInterface,
     ExportType,
-    GDTemplate,
-    WorkerInterface
+    GDTemplate
 } from '~types/generator';
 import { DataType } from '../../client/_plugins';
 import { dataTypeNodeData, exportTypeNodeData } from '../_standalone';
 import countryNames from '../../client/_namePlugins';
-import { generate } from '../../client/src/utils/generatorUtils';
+import { generate as generateUtils } from '../../client/src/utils/generatorUtils';
 import workerUtils from '../../client/src/utils';
-import { getI18nStrings } from './utils/i18n';
 import { GDLocale, GenerationTemplate } from '~types/general';
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { convertRowsToGenerationTemplate } from '~store/generator/generator.selectors';
+import path from "path";
+import fs from "fs";
 
-// no point requiring users to supply a colIndex. We can add that ourselves.
-// export type DataTypeGenerationOptionsWithColIndex = DataTypeGenerationOptions & {
-//     colIndex: number;
-// }
+export const getI18nStrings = (locale: GDLocale): any => {
+    const localeFile = path.join(__dirname, `../dist/${locale}.json`);
+    return JSON.parse(fs.readFileSync(localeFile, 'utf8'));
+};
 
 /**
  * Used by both the node and binary scripts. It takes the user's template and fluffs it out with all the necessary
@@ -52,17 +52,22 @@ const getColumns = (rows: DataTypeGenerationOptions[]) => {
     // id
 };
 
-const doStuff = (template: GDTemplate) => {
+/**
+ * This'll be the primary export.
+ * @param template
+ */
+export const generate = (template: GDTemplate) => {
     const normalizedTemplate = getNormalizedGDTemplate(template);
     const i18n = getI18nStrings(normalizedTemplate.generationSettings.locale as GDLocale)
     const dataTypeInterface = getWorkerInterface();
     const exportTypeInterface = getExportTypeWorkerInterface(normalizedTemplate.exportSettings.plugin);
 
     const onComplete = (data: string) => {
-        console.log('!!!!!!', data);
+        console.log('!!!!!!');
+        return data;
     };
 
-    generate(normalizedTemplate, {
+    generateUtils(normalizedTemplate, {
         i18n,
         workerUtils,
         dataTypeInterface,
@@ -135,7 +140,7 @@ const getExportTypeWorkerInterface = (exportType: ExportType) => {
 (async () => {
     const template: GDTemplate = {
         generationSettings: {
-            numResults: 10
+            numResults: 1000
         },
         dataTemplate: [
             {
@@ -161,5 +166,5 @@ const getExportTypeWorkerInterface = (exportType: ExportType) => {
         }
     };
 
-     await doStuff(template);
+     await generate(template);
 })();

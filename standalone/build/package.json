@@ -1,0 +1,6 @@
+{
+  "name": "generatedata-standalone",
+  "description": "Build script",
+  "private": true,
+  "type": "module"
+}

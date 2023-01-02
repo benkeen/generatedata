@@ -13,7 +13,7 @@
 	"jsx": "react",
 	"allowSyntheticDefaultImports": true,
 	"removeComments": false,
-    "baseUrl": "",
+    "baseUrl": "./",
     "paths": {
       "~components/*": ["client/src/components/*"],
       "~utils/*": ["client/src/utils/*"],
