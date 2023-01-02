@@ -17,17 +17,13 @@ export { DataTypeGenerationOptions, ExportType, ExportTypeGenerationOptions };
 export type GenerationSettings = {
 	numResults: number;
 	locale?: GDLocale;
-	stripWhitespace?: boolean; // default: false
+	stripWhitespace?: boolean;
+	target?: 'file' | 'return';
 
-	// the default behaviour is to return the generated data. This option lets users generate a file instead. It's
-	// far better for larger data sets
-	target?: {
-		filename?: string; // the filename to generate
-		folder?: string; // the folder where the data is generated
-	},
-	packetSize?: number;
-	onError?: (err: any) => void;
-	onPacketComplete?: (result: any) => void;
+	// the default behaviour for the ppm package is for the generate method to return the generated data. This option
+	// lets users generate a file instead. It's far better for larger data sets
+	filename?: string; // the filename to generate including relative path
+	batchSize?: number; // TODO needed?
 }
 
 /**

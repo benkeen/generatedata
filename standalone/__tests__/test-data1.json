@@ -1,11 +1,9 @@
 {
   "generationSettings": {
+    "numResults": 1000,
     "locale": "en",
     "stripWhitespace": true,
-    "target": {
-      "filename": "generated-data.json",
-      "folder": "./"
-    }
+    "filename": "generated-data.json"
   },
   "dataTemplate": [
     {

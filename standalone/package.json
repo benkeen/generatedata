@@ -5,6 +5,10 @@
   "scripts": {
     "build": "npx grunt && cd build && node build.js",
     "test": ""
+  },
+  "dependencies": {
+    "ansi-colors": "^4.1.3",
+    "cli-progress": "^3.11.2",
+    "yargs": "^17.6.2"
   }
 }
-

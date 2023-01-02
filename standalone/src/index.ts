@@ -1,5 +1,5 @@
-// require('browser-env')();
-
+import path from 'path';
+import fs from 'fs';
 import {
     DataTypeGenerationOptions,
     DataTypeWorkerInterface,
@@ -14,8 +14,6 @@ import workerUtils from '../../client/src/utils';
 import { GDLocale, GenerationTemplate } from '~types/general';
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { convertRowsToGenerationTemplate } from '~store/generator/generator.selectors';
-import path from "path";
-import fs from "fs";
 
 export const getI18nStrings = (locale: GDLocale): any => {
     const localeFile = path.join(__dirname, `../dist/${locale}.json`);
@@ -31,7 +29,8 @@ const getNormalizedGDTemplate = (template: GDTemplate): GDTemplate => ({
     generationSettings: {
         locale: 'en',
         stripWhitespace: false,
-        packetSize: 100,
+        batchSize: 100,
+        target: 'return',
         ...template.generationSettings
     },
 
@@ -52,11 +51,15 @@ const getColumns = (rows: DataTypeGenerationOptions[]) => {
     // id
 };
 
+export type GDParams = {
+    onBatchComplete: ({ isLastBatch, numGeneratedRows, batchData }: any) => void;
+}
+
 /**
  * This'll be the primary export.
  * @param template
  */
-export const generate = async (template: GDTemplate) => {
+export const generate = async (template: GDTemplate, params?: GDParams) => {
     const normalizedTemplate = getNormalizedGDTemplate(template);
     const generationSettings = normalizedTemplate.generationSettings;
     const i18n = getI18nStrings(generationSettings.locale as GDLocale)
@@ -64,8 +67,19 @@ export const generate = async (template: GDTemplate) => {
     const exportTypeInterface = getExportTypeWorkerInterface(normalizedTemplate.exportSettings.plugin);
 
     let inMemoryResult = '';
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const onComplete = (data: string, settings: any) => {
+
+            // consumers can optionally pass an onBatchComplete callback that'll be called after each batch is processed.
+            // This is used by the command line binary to provide a progress bar
+            if (params?.onBatchComplete) {
+                params.onBatchComplete({
+                    isLastBatch: settings.isLastBatch,
+                    numGeneratedRows: settings.numGeneratedRows,
+                    batchData: data
+                });
+            }
+
             inMemoryResult += data;
             if (settings.isLastBatch) {
                 resolve(inMemoryResult);

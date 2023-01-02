@@ -1,5 +1,5 @@
-import { TsconfigPathsPlugin } from '@esbuild-plugins/tsconfig-paths';
 import { build } from 'esbuild';
+import { TsconfigPathsPlugin } from '@esbuild-plugins/tsconfig-paths';
 
 build({
     entryPoints: ['../src/index.ts'],
