@@ -2,19 +2,7 @@ import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
 	fieldGroup: 'numeric',
-	fieldGroupOrder: 10,
-	schema: {
-		$schema: 'http://json-schema.org/draft-04/schema#',
-		type: 'object',
-		properties: {
-			placeholder: {
-				type: 'string'
-			}
-		},
-		required: [
-			'placeholder'
-		]
-	}
+	fieldGroupOrder: 10
 };
 
 export default definition;

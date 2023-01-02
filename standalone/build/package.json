@@ -1,6 +1,6 @@
 {
-  "name": "generatedata-standalone",
-  "description": "Build script",
+  "name": "@generatedata/core-build",
+  "description": "Build script for the npm package",
   "private": true,
   "type": "module"
 }

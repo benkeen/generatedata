@@ -7,20 +7,8 @@ const definition: DTDefinition = {
 		'Alphanumeric', 'AutoIncrement', 'Boolean', 'City', 'Company', 'Constant', 'Country', 'Currency',
 		'CVV', 'Date', 'Email', 'GUID', 'IBAN', 'LatLng', 'List', 'Names', 'NormalDistribution', 'NumberRange',
 		'OrganizationNumber', 'PAN', 'PersonalNumber', 'Phone', 'PIN', 'PostalZip', 'Region', 'Rut', 'SIRET',
-		'StreetAddress', 'TextFixed', 'TextRandom', 'Track1', 'Track2'
-	],
-	schema: {
-		$schema: 'http://json-schema.org/draft-04/schema#',
-		type: 'object',
-		properties: {
-			placeholder: {
-				type: 'string'
-			}
-		},
-		required: [
-			'placeholder'
-		]
-	}
+		'StreetAddress', 'TextFixed', 'TextRandom', 'Track1', 'Track2', 'WeightedList'
+	]
 };
 
 export default definition;

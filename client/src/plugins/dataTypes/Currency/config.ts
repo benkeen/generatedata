@@ -2,36 +2,7 @@ import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
 	fieldGroup: 'financial',
-	fieldGroupOrder: 10,
-	schema: {
-		$schema: 'http://json-schema.org/draft-04/schema#',
-		type: 'object',
-		properties: {
-			format: {
-				type: 'string'
-			},
-			rangeFrom: {
-				type: 'string'
-			},
-			rangeTo: {
-				type: 'string'
-			},
-			symbol: {
-				type: 'string'
-			},
-			symbolLocation: {
-				enum: [
-					'prefix',
-					'suffix'
-				]
-			}
-		},
-		required: [
-			'format',
-			'rangeFrom',
-			'rangeTo'
-		]
-	}
+	fieldGroupOrder: 10
 };
 
 export default definition;

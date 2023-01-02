@@ -49,10 +49,10 @@ generate(configFileContent, {
 
         if (isLastBatch) {
             progressBar.stop();
-            console.log("output.");
         }
     }
 });
+
 /*
 const file = fs.createWriteStream('path/to/file');
   file.write("...");

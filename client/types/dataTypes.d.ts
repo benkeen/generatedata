@@ -44,7 +44,6 @@ export type DTDefinition = {
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
 	dependencies?: DataTypeFolder[];
-	schema?: any;
 };
 
 export type DTFieldGroup = 'numeric' | 'geo' | 'humanData' | 'other' | 'financial' | 'text' | 'countrySpecific';
