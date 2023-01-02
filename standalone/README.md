@@ -1,18 +1,30 @@
 # generatedata - npm package
 
+> In active development (Jan 2023)! Ignore this folder for now. 
 
 ### Installation
 
-`npm install generatedata`
+`npm install @generatedata/core`
 
 ### Usage
 
-The npm package provides both a binary you can use on the command line, or within your own code. 
+The npm package contains both a command line tool and methods that can be used within your own JS/TS code.  
 
 #### Binary
 
 ```
-generatedata --config=configfile.json
+npx generatedata --config=configFile.json
+```
+
+#### Typescript
+
+```typescript
+import { generate, GDTemplate } from '@generatedata/core';
+
+(async () => {
+	const template: GDTemplate = { ... };
+	await generate(template);
+})();
 ```
 
 ## Configuration file
