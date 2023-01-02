@@ -1,10 +1,10 @@
 {
-  "name": "generatedata-standalone",
+  "name": "generatedata",
+  "version": "0.0.1",
   "description": "The npm package and binary version of generatedata.com",
   "private": true,
   "scripts": {
-    "build": "npx grunt && cd build && node build.js",
-    "test": ""
+    "build": "npx grunt && cd build && node build.js"
   },
   "dependencies": {
     "ansi-colors": "^4.1.3",

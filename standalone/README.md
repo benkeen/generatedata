@@ -1,4 +1,4 @@
-## generatedata - npm package
+# generatedata - npm package
 
 
 ### Installation
