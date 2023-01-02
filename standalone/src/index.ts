@@ -56,26 +56,32 @@ const getColumns = (rows: DataTypeGenerationOptions[]) => {
  * This'll be the primary export.
  * @param template
  */
-export const generate = (template: GDTemplate) => {
+export const generate = async (template: GDTemplate) => {
     const normalizedTemplate = getNormalizedGDTemplate(template);
-    const i18n = getI18nStrings(normalizedTemplate.generationSettings.locale as GDLocale)
+    const generationSettings = normalizedTemplate.generationSettings;
+    const i18n = getI18nStrings(generationSettings.locale as GDLocale)
     const dataTypeInterface = getWorkerInterface();
     const exportTypeInterface = getExportTypeWorkerInterface(normalizedTemplate.exportSettings.plugin);
 
-    const onComplete = (data: string) => {
-        console.log('!!!!!!');
-        return data;
-    };
+    let inMemoryResult = '';
+    return new Promise((resolve, reject) => {
+        const onComplete = (data: string, settings: any) => {
+            inMemoryResult += data;
+            if (settings.isLastBatch) {
+                resolve(inMemoryResult);
+            }
+        };
 
-    generateUtils(normalizedTemplate, {
-        i18n,
-        workerUtils,
-        dataTypeInterface,
-        exportTypeInterface,
-        template: convertPublicToInternalTemplate(normalizedTemplate.dataTemplate),
-        countryNames,
-        onComplete,
-        columns: getColumns(normalizedTemplate.dataTemplate)
+        generateUtils(normalizedTemplate, {
+            i18n,
+            workerUtils,
+            dataTypeInterface,
+            exportTypeInterface,
+            template: convertPublicToInternalTemplate(normalizedTemplate.dataTemplate),
+            countryNames,
+            onComplete,
+            columns: getColumns(normalizedTemplate.dataTemplate)
+        });
     });
 };
 
@@ -136,35 +142,3 @@ const getExportTypeWorkerInterface = (exportType: ExportType) => {
         }
     };
 };
-
-(async () => {
-    const template: GDTemplate = {
-        generationSettings: {
-            numResults: 1000
-        },
-        dataTemplate: [
-            {
-                plugin: DataType.Names,
-                title: 'First Name',
-                settings: {
-                    options: ['Name']
-                }
-            },
-            {
-                plugin: DataType.Names,
-                title: 'Last Name',
-                settings: {
-                    options: ['Surname']
-                }
-            }
-        ],
-        exportSettings: {
-            plugin: ExportType.JSON,
-            settings: {
-                dataStructureFormat: 'simple'
-            }
-        }
-    };
-
-     await generate(template);
-})();

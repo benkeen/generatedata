@@ -38,7 +38,7 @@ export const generate = (fullTemplate: GDTemplate, settings: any) => {
 			stripWhitespace: stripWhitespace as boolean, // TODO we knows it's defined here
 			settings: exportTypeSettings,
 			workerUtils,
-			onComplete,
+			onComplete: (data: string) => onComplete(data, { isLastBatch, numGeneratedRows }),
 			exportTypeInterface
 		});
 	};
