@@ -1,10 +1,17 @@
 {
   "name": "@generatedata/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The npm package version of generatedata.com. Currently in development only.",
   "scripts": {
     "build": "npx grunt && cd build && node build.js"
   },
+  "bin": {
+    "generatedata": "./bin/generatedata.js"
+  },
+  "files": [
+    "dist/*",
+    "bin/generatedata.js"
+  ],
   "dependencies": {
     "ansi-colors": "^4.1.3",
     "cli-progress": "^3.11.2",
