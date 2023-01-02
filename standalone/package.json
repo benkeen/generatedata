@@ -1,7 +1,7 @@
 {
-  "name": "generatedata",
+  "name": "@generatedata/core",
   "version": "0.0.1",
-  "description": "The npm package version of generatedata.com. In development.",
+  "description": "The npm package version of generatedata.com. Currently in development only.",
   "scripts": {
     "build": "npx grunt && cd build && node build.js"
   },
