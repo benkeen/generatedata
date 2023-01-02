@@ -29,7 +29,7 @@ const getNormalizedGDTemplate = (template: GDTemplate): GDTemplate => ({
     generationSettings: {
         locale: 'en',
         stripWhitespace: false,
-        batchSize: 100,
+        packetSize: 100,
         target: 'return',
         ...template.generationSettings
     },

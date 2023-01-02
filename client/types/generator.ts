@@ -23,7 +23,7 @@ export type GenerationSettings = {
 	// the default behaviour for the ppm package is for the generate method to return the generated data. This option
 	// lets users generate a file instead. It's far better for larger data sets
 	filename?: string; // the filename to generate including relative path
-	batchSize?: number; // TODO needed?
+	packetSize?: number; // TODO needed?
 }
 
 /**
