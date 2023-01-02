@@ -1,8 +1,7 @@
 {
   "name": "generatedata",
   "version": "0.0.1",
-  "description": "The npm package and binary version of generatedata.com",
-  "private": true,
+  "description": "The npm package version of generatedata.com. In development.",
   "scripts": {
     "build": "npx grunt && cd build && node build.js"
   },
