@@ -2,12 +2,13 @@
   "name": "@generatedata/core",
   "version": "0.0.2",
   "description": "The npm package version of generatedata.com. Currently in development only.",
+  "main": "dist/index.js",
+  "bin": {
+    "generatedata": "./bin/generatedata.js"
+  },
   "scripts": {
     "build": "npx grunt && cd build && node build.js",
     "test": "node bin/generatedata --config=../__tests__/test-data1.json"
-  },
-  "bin": {
-    "generatedata": "./bin/generatedata.js"
   },
   "files": [
     "dist/*",

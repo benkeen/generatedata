@@ -1,3 +1,11 @@
+/**
+ * This file is boiled down to dist/index.js with esbuild and is the "main" entry in the package.json file. Users
+ * can import it and get access to the main `generate` method to programmaica
+ *
+ * The command line script (bin/generatedata.js) is separate. That imports this code but provides a wrapper over the
+ * functionality to show a progress indicator, allow for arguments + error handling etc.
+ */
+
 import path from 'path';
 import fs from 'fs';
 import {

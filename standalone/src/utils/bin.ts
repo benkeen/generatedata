@@ -1,3 +1,6 @@
+/**
+ * Utility methods for the command line binary.
+ */
 import path from 'path';
 import fs from 'fs';
 
