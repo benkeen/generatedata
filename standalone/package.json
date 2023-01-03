@@ -19,6 +19,8 @@
     "yargs": "^17.6.2"
   },
   "devDependencies": {
-    "test-console": "^2.0.0"
+    "jest": "^26.6.3",
+    "jest-cli": "^26.6.3",
+    "jest-css-modules": "^2.1.0"
   }
 }
