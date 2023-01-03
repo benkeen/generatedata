@@ -1,4 +1,4 @@
-import { cleanListWithBackup } from "../URLs";
+import { cleanListWithBackup } from '../URLs';
 
 describe('cleanListWithBackup', () => {
 	it('converts list of comma-delimited spaces to an array', () => {

@@ -1,28 +1,22 @@
-import { onmessage } from '../WeightedList.worker';
+import utils from '../../../../utils';
+import { generate } from '../WeightedList.generate';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
 
 describe('onmessage', () => {
-	const postMessage = jest.fn();
-	const importScripts = jest.fn();
-	beforeAll(() => {
-		window.postMessage = postMessage;
-		window.importScripts = importScripts;
-	});
-
 	it('generates random data', () => {
-		const payload: any = {
-			data: {
-				...getBlankDTGeneratorPayload(),
-				rowState: {
-					listType: 'exactly',
-					values: [123],
-					exactly: 1,
-					atMost: 1
-				}
+		const data: any = {
+			...getBlankDTGeneratorPayload(),
+			rowState: {
+				listType: 'exactly',
+				values: {
+					"123": 1
+				},
+				exactly: 1,
+				atMost: 1,
+				allowDuplicates: true
 			}
 		};
 
-		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: '123' });
+		expect(generate(data, utils)).toEqual({ display: '123' });
 	});
 });

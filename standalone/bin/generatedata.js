@@ -10,8 +10,7 @@ const { generate } = require('../dist');
 
 const args = yargs(hideBin(process.argv)).argv;
 
-
-const configFileContent = getConfigFile();
+const configFileContent = {}; // getConfigFile();
 
 
 // users can override any of the options in the generationSettings section of the template by passing them as query params

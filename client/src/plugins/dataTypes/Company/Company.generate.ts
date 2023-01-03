@@ -24,8 +24,10 @@ export const generateCompanyName = (wordsArr: string[], types = companyTypes): s
 	return utils.stringUtils.uppercaseWords(selectedWords.join(' ')) + ' ' + companyType;
 };
 
+export const setUtils = (workerUtils: WorkerUtils) => utils = workerUtils;
+
 export const generate = (data: DTGenerationData, workerUtils: WorkerUtils): DTGenerateResult => {
-	utils = workerUtils;
+	setUtils(workerUtils);
 
 	const words = getWords();
 	return {

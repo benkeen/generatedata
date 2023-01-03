@@ -10,6 +10,8 @@ const getWords = (): string[] => {
 	return words;
 };
 
+export const setUtils = (workerUtils: WorkerUtils) => utils = workerUtils;
+
 export const cleanChars = (str: string): string => str.replace(/[^0-9a-zA-Z]/g, '').toLowerCase();
 export const cleanArray = (arr: string[]): string[] => arr.map(cleanChars);
 
@@ -95,7 +97,7 @@ const getFinalEmail = (prefix: string, domain: string): string => {
 };
 
 export const generate = (data: DTGenerationData, workerUtils: WorkerUtils): DTGenerateResult => {
-	utils = workerUtils;
+	setUtils(workerUtils);
 
 	const { source, fieldId1, fieldId2, domains, domainSuffixes } = data.rowState;
 	const { existingRowData } = data;

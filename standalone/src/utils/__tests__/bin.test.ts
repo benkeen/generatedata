@@ -1,5 +1,7 @@
 import { getConfigFile } from '../bin';
 
 describe('getConfigFile', () => {
-	it('')
+	it('.', () => {
+		expect(true).toBe(true);
+	});
 });

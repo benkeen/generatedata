@@ -4,6 +4,10 @@ import utils from '../../../../utils';
 
 const words = ['one', 'two', 'three', 'four', 'five', 'six'];
 describe('getRandomEmailPrefix', () => {
+    beforeAll(() => {
+        generation.setUtils(utils);
+    });
+
     afterEach(function () {
         sinon.restore();
     });

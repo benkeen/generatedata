@@ -6,6 +6,10 @@ const companyTypes = ['Inc.', 'Co.'];
 const words = ['one', 'two', 'three'];
 
 describe('generateCompanyName', () => {
+    beforeAll(() => {
+        generation.setUtils(utils);
+    });
+
     afterEach(function () {
         sinon.restore();
     });
