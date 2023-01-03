@@ -15,7 +15,9 @@ import { GDLocale, GenerationTemplate } from '~types/general';
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { convertRowsToGenerationTemplate } from '~store/generator/generator.selectors';
 
-export const getI18nStrings = (locale: GDLocale): any => {
+export { availableLocales } from '../../client/_env';
+
+const getI18nStrings = (locale: GDLocale): any => {
     const localeFile = path.join(__dirname, `../dist/${locale}.json`);
     return JSON.parse(fs.readFileSync(localeFile, 'utf8'));
 };

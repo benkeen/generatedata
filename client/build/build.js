@@ -17,6 +17,13 @@ const banner = `/**
  * ----------------------------------------
  **/`;
 
+const allSupportedLocales = process.env.GD_ALL_SUPPORTED_LOCALES.split('|').reduce((acc, localeInfo) => {
+	const [shortCode, label] = localeInfo.split(',');
+	acc[shortCode] = label;
+	return acc;
+}, {});
+
+const availableLocales = process.env.GD_LOCALES.split(',');
 const envSettings = {
 	appType: process.env.GD_APP_TYPE,
 	defaultNumRows: parseInt(process.env.GD_DEFAULT_NUM_ROWS),
@@ -25,12 +32,8 @@ const envSettings = {
 	defaultLocale: process.env.GD_DEFAULT_LOCALE,
 	defaultExportType: process.env.GD_DEFAULT_EXPORT_TYPE,
 	apiEnabled: process.env.GD_REST_API_ENABLED === "true",
-	availableLocales: process.env.GD_LOCALES.split(','),
-	allSupportedLocales: process.env.GD_ALL_SUPPORTED_LOCALES.split('|').reduce((acc, localeInfo) => {
-		const [shortCode, label] = localeInfo.split(',');
-		acc[shortCode] = label;
-		return acc;
-	}, {}),
+	availableLocales,
+	allSupportedLocales,
 	googleAuthClientId: process.env.GD_GOOGLE_AUTH_CLIENT_ID,
 	jwtDurationMins: parseInt(process.env.GD_JWT_LIFESPAN_MINS)
 };
@@ -41,6 +44,8 @@ import { GDLocale, GDLocaleMap } from '~types/general';
 import { ExportTypeFolder } from './_plugins';
 
 export type AppType = 'login' | 'open' | 'closed' | 'prod';
+
+export const availableLocales = [${availableLocales.map((locale) => `'${locale}'`).join(', ')}] as const;
 
 export type EnvSettings = {
 	version: string;

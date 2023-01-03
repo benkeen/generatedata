@@ -30,6 +30,4 @@ const { generate } = require('../dist');
     };
 
     const data = await generate(template);
-
-    console.log(data);
 })();

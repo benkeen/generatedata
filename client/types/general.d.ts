@@ -3,6 +3,7 @@ import { MainState } from '~store/main/main.reducer';
 import { PacketsState } from '~store/packets/packets.reducer';
 import { AccountState } from '~store/account/account.reducer';
 import { DataTypeFolder } from '../_plugins';
+import { availableLocales } from '../_env';
 import { DTMetadata } from '~types/dataTypes';
 
 declare global {
@@ -28,7 +29,7 @@ export const enum AuthMethod {
 	google = 'google'
 }
 
-export type GDLocale = 'ar' | 'en' | 'fr' | 'de' | 'es' | 'ja' | 'hi' | 'nl' | 'pt' | 'ru' | 'ta' | 'zh';
+export type GDLocale = typeof availableLocales[number];
 
 export type GDLocaleMap = {
 	[locale in GDLocale]: string;
