@@ -49,3 +49,39 @@ export const getConfigFile = (args: BinCommandArgs, exit: any) => {
 
     return configFileContent;
 }
+
+export const applyAndValidateCommandLineArgs = (args, configFileContent, exit) => {
+    // users can override any of the options in the generationSettings section of the template by passing them as query params
+    const generationSettings = {
+        target: 'file',
+        ...configFileContent.generationSettings
+    };
+
+    // awkward. Wanted to just valid the schema in one go after overriding whatever the user wants, but we also need to do
+    // it here because we need to cast the strings... which means checking it first.
+    if (args.numResults && /^\d+$/.test(args.numResults)) {
+        generationSettings.numResults = parseInt(args.numResults, 10);
+    }
+
+    if (args.locale) {
+        if (args.locale.indexOf(args.locale) === -1) {
+            console.error('Invalid locale. Please enter one of the following values: ', args.locale);
+            exit(1);
+            return;
+        }
+    }
+
+    // TODO validate data structure - requires converting the type to JSON schema
+
+    return;
+
+    // locale?: GDLocale;
+    // stripWhitespace?: boolean;
+    // target?: 'file' | 'output';
+    //
+    // // the default behaviour for the ppm package is for the generate method to return the generated data. This option
+    // // lets users generate a file instead. It's far better for larger data sets
+    // filename?: string; // the filename to generate including relative path
+    // packetSize?: number; // TODO needed?
+
+}
