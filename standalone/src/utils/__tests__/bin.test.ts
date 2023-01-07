@@ -1,8 +1,8 @@
 import { getConfigFile, msgs } from '../bin';
 
-describe('getConfigFile', () => {
-	const stubExit = () => {};
+const stubExit = () => {};
 
+describe('getConfigFile', () => {
 	describe('--config param error states', () => {
 		const error = console.error;
 
@@ -43,4 +43,9 @@ describe('getConfigFile', () => {
 			expect(configFile).toEqual({ valid: true });
 		});
 	});
+});
+
+
+describe('getConfigFile', () => {
+
 });

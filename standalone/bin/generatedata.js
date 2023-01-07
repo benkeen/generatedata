@@ -9,8 +9,8 @@ const { getConfigFile, applyAndValidateCommandLineArgs } = require("../src/utils
 
 const args = yargs(hideBin(process.argv)).argv;
 
-const configFileContent = getConfigFile(args, process.exit);
-applyAndValidateCommandLineArgs(configFileContent);
+let configFileContent = getConfigFile(args, process.exit);
+configFileContent = applyAndValidateCommandLineArgs(args, configFileContent, process.exit);
 
 
 const progressBar = new cliProgress.SingleBar({
@@ -19,11 +19,6 @@ const progressBar = new cliProgress.SingleBar({
     barIncompleteChar: '\u2591',
     hideCursor: true
 });
-
-const updatedConfigFile = {
-    ...configFileContent,
-    generationSettings
-};
 
 const numResults = configFileContent.generationSettings.numResults;
 progressBar.start(numResults, 0);
