@@ -289,6 +289,8 @@ const generateDataTypeBatch = (options: GenerateDataTypeBrowserBatchProps | Gene
 				numResults,
 				generatedData
 			});
+
+			// @ts-ignore-line
 			resolve();
 		});
 });

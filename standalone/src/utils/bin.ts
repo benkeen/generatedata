@@ -3,8 +3,8 @@
  */
 import path from 'path';
 import fs from 'fs';
-import { GDTemplate } from "~types/generator";
-import { GDLocale } from "~types/general";
+import { GDTemplate } from '~types/generator';
+import { GDLocale } from '~types/general';
 
 type BinCommandArgs = {
     config?: string;

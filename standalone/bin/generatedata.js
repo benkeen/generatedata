@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
+console.log('????', __dirname);
+
+const path = require('path');
 const yargs = require('yargs/yargs');
 const colors = require('ansi-colors');
 const cliProgress = require('cli-progress');
 const { hideBin } = require('yargs/helpers');
 const { generate } = require('../dist');
-const { getConfigFile, applyAndValidateCommandLineArgs } = require("../src/utils/bin");
-
+const { getConfigFile, applyAndValidateCommandLineArgs } = require(path.resolve(__dirname, '../src/utils/bin'));
 const args = yargs(hideBin(process.argv)).argv;
 
 let configFileContent = getConfigFile(args, process.exit);

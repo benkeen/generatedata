@@ -81,6 +81,7 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 				const modeFile = document.createElement('script');
 				modeFile.src = `./codeMirrorModes/${mode}.js`;
 				modeFile.onload = (): void => {
+					// @ts-ignore-line
 					resolve();
 				};
 				document.body.appendChild(modeFile);
