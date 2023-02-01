@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
 import env from '../../../../_env';
@@ -20,8 +20,9 @@ import * as langUtils from '~utils/langUtils';
 const googleBtnId = 'google-signin-button';
 
 const init = (): void => {
+/*
 	window.gapi.load('client:auth2', (): void => {
-		/* eslint-disable @typescript-eslint/camelcase */
+		/!* eslint-disable @typescript-eslint/camelcase *!/
 		const auth2 = window.gapi.auth2.init({ client_id: env.googleAuthClientId, scope: 'profile' });
 
 		auth2.isSignedIn.listen((isSignedIn: any): void => {
@@ -30,17 +31,26 @@ const init = (): void => {
 			}
 		});
 	});
+*/
 };
-
 
 export const initGoogleAuth = (): void => {
 	const script = document.createElement('script');
-	script.src = 'https://apis.google.com/js/platform.js?onload=initGoogleAuth';
+	script.src = 'https://accounts.google.com/gsi/client';
 	script.async = true;
 	script.defer = true;
+	script.onload = (): void => {
+		// renderButton();
+
+		// window.google.accounts.id.renderButton(
+		// 	document.getElementById(googleBtnId),
+		// 	{ type: 'standard' }
+		// );
+	};
 	document.body.appendChild(script);
 
-	window.initGoogleAuth = init;
+	// window.initGoogleAuth = init;
+
 };
 
 export type AuthenticatedOptions = {
@@ -114,30 +124,68 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 };
 
 export const onLoginPanelRender = (): void => {
-	const observer = new MutationObserver((): void => {
-		if (document.contains(document.getElementById(googleBtnId)) && window.gapi) {
-			window.gapi.signin2.render(googleBtnId, {
-				scope: 'profile email',
-				width: 210,
-				height: 42,
-				longtitle: true,
-				theme: 'dark'
-			});
-			observer.disconnect();
-		}
-	});
+	// console.log('onLoginPanelRender.');
 
-	observer.observe(document, {
-		attributes: false,
-		childList: true,
-		characterData: false,
-		subtree: true
-	});
+	// const observer = new MutationObserver((): void => {
+	// 	// renderButton();
+	//
+	// 	if (document.contains(document.getElementById(googleBtnId)) && window.google) {
+	// 		observer.disconnect();
+	// 	}
+	// });
+	//
+	// observer.observe(document, {
+	// 	attributes: false,
+	// 	childList: true,
+	// 	characterData: false,
+	// 	subtree: true
+	// });
 };
 
-export const SignInWithGoogleButton = (): JSX.Element => <div id={googleBtnId} />;
+const renderButton = (): void => {
+	if (document.contains(document.getElementById(googleBtnId)) && window.google) {
+		window.google.accounts.id.initialize({
+			/* eslint-disable @typescript-eslint/camelcase */
+			client_id: env.googleAuthClientId,
+			callback: init
+		});
+		window.google.accounts.id.renderButton(
+			document.getElementById(googleBtnId),
+			{ type: 'standard' }
+		);
+	}
+};
+
+export const SignInWithGoogleButton = (): JSX.Element => {
+	const divRef = useRef(null);
+
+	React.useEffect(() => {
+		if (divRef.current) {
+			setTimeout(() => {
+				renderButton();
+			}, 1000);
+
+			// window.google.accounts.id.initialize({
+			// 	client_id: ''; // <YOUR_CLIENT_ID_GOES_HERE>,
+			// 		callback: (res, error) => {
+			// 			// This is the function that will be executed once the authentication with google is finished
+			// 		},
+			//  });
+			// window.google.accounts.id.renderButton(divRef.current, {
+			// 	// theme: 'filled_blue',
+			// 	// size: 'medium',
+			// 	type: 'standard',
+			// 	// text: 'continue_with',
+			// });
+		}
+	}, [divRef.current]);
+
+	return <div ref={divRef} id={googleBtnId} />;
+};
+
+SignInWithGoogleButton.displayName = 'SignInWithGoogleButton';
 
 export const logoutGoogle = (): void => {
-	const auth2 = window.gapi.auth2.getAuthInstance();
-	auth2.signOut();
+	// const auth2 = window.gapi.auth2.getAuthInstance();
+	// auth2.signOut();
 };

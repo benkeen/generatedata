@@ -11,9 +11,8 @@ declare global {
         gd: any;
         CodeMirror: any;
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
-        gapi: any;
-		initGoogleAuth: any;
 		clipboardData: any;
+		google: any;
     }
 }
 
