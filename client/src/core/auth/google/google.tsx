@@ -19,38 +19,15 @@ import * as langUtils from '~utils/langUtils';
 
 const googleBtnId = 'google-signin-button';
 
-const init = (): void => {
-/*
-	window.gapi.load('client:auth2', (): void => {
-		/!* eslint-disable @typescript-eslint/camelcase *!/
-		const auth2 = window.gapi.auth2.init({ client_id: env.googleAuthClientId, scope: 'profile' });
-
-		auth2.isSignedIn.listen((isSignedIn: any): void => {
-			if (isSignedIn) {
-				onAuthenticated(auth2.currentUser.get(), { onPageRender: true });
-			}
-		});
-	});
-*/
-};
-
 export const initGoogleAuth = (): void => {
 	const script = document.createElement('script');
 	script.src = 'https://accounts.google.com/gsi/client';
 	script.async = true;
 	script.defer = true;
 	script.onload = (): void => {
-		// renderButton();
-
-		// window.google.accounts.id.renderButton(
-		// 	document.getElementById(googleBtnId),
-		// 	{ type: 'standard' }
-		// );
+		// TODO still need to execute something here...
 	};
 	document.body.appendChild(script);
-
-	// window.initGoogleAuth = init;
-
 };
 
 export type AuthenticatedOptions = {
@@ -71,7 +48,7 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 		store.dispatch(setAuthenticated(true));
 		store.dispatch(setOnloadAuthDetermined());
 	} else {
-		const googleToken = googleUser.getAuthResponse().id_token;
+		const googleToken = googleUser.credential;
 		const response = await apolloClient.mutate({
 			mutation: gql`
                 mutation LoginWithGoogle($googleToken: String!) {
@@ -138,7 +115,7 @@ export const SignInWithGoogleButton = (): JSX.Element => {
 					window.google.accounts.id.initialize({
 						/* eslint-disable @typescript-eslint/camelcase */
 						client_id: env.googleAuthClientId,
-						callback: init
+						callback: onAuthenticated
 					});
 					window.google.accounts.id.renderButton(
 						document.getElementById(googleBtnId),
