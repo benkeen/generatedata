@@ -123,60 +123,29 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 	}
 };
 
-export const onLoginPanelRender = (): void => {
-	// console.log('onLoginPanelRender.');
-
-	// const observer = new MutationObserver((): void => {
-	// 	// renderButton();
-	//
-	// 	if (document.contains(document.getElementById(googleBtnId)) && window.google) {
-	// 		observer.disconnect();
-	// 	}
-	// });
-	//
-	// observer.observe(document, {
-	// 	attributes: false,
-	// 	childList: true,
-	// 	characterData: false,
-	// 	subtree: true
-	// });
-};
-
-const renderButton = (): void => {
-	if (document.contains(document.getElementById(googleBtnId)) && window.google) {
-		window.google.accounts.id.initialize({
-			/* eslint-disable @typescript-eslint/camelcase */
-			client_id: env.googleAuthClientId,
-			callback: init
-		});
-		window.google.accounts.id.renderButton(
-			document.getElementById(googleBtnId),
-			{ type: 'standard' }
-		);
-	}
-};
-
 export const SignInWithGoogleButton = (): JSX.Element => {
 	const divRef = useRef(null);
+	const [loaded, setLoaded] = React.useState(false);
 
 	React.useEffect(() => {
-		if (divRef.current) {
-			setTimeout(() => {
-				renderButton();
-			}, 1000);
+		if (divRef.current && !loaded) {
+			setLoaded(true);
 
-			// window.google.accounts.id.initialize({
-			// 	client_id: ''; // <YOUR_CLIENT_ID_GOES_HERE>,
-			// 		callback: (res, error) => {
-			// 			// This is the function that will be executed once the authentication with google is finished
-			// 		},
-			//  });
-			// window.google.accounts.id.renderButton(divRef.current, {
-			// 	// theme: 'filled_blue',
-			// 	// size: 'medium',
-			// 	type: 'standard',
-			// 	// text: 'continue_with',
-			// });
+			// timeout seems to be needed for the fade-in, perhaps? The DOM element clearly exists at this point but
+			// it won't show. Possibly a conflict with whatever google is doing.
+			setTimeout(() => {
+				if (document.contains(document.getElementById(googleBtnId)) && window.google) {
+					window.google.accounts.id.initialize({
+						/* eslint-disable @typescript-eslint/camelcase */
+						client_id: env.googleAuthClientId,
+						callback: init
+					});
+					window.google.accounts.id.renderButton(
+						document.getElementById(googleBtnId),
+						{ type: 'standard' }
+					);
+				}
+			}, 500);
 		}
 	}, [divRef.current]);
 

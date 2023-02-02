@@ -4,7 +4,7 @@ import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import { isValidEmail, addToast } from '~utils/generalUtils';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
-import { hasVendorLogin, getVendorLoginButtons, getLoginComponentRenderMethods } from '~utils/authUtils';
+import { hasVendorLogin, getVendorLoginButtons } from '~utils/authUtils';
 import styles from './Login.scss';
 import { useHistory } from 'react-router';
 
@@ -45,7 +45,6 @@ const LoginDialog = ({
 			setPassword('');
 			return;
 		}
-		getLoginComponentRenderMethods().map((func) => func());
 	}, [visible]);
 
 	useEffect(() => {
