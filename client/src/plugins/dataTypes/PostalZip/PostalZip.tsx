@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { countryList, DataTypeFolder } from '../../../../_plugins';
+import { countryList } from '../../../../_plugins';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { PostalZipSource } from './PostalZip.state';
 import styles from './PostalZip.scss';

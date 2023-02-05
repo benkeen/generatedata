@@ -15,8 +15,6 @@ import * as mainSelectors from '~store/main/main.selectors';
 import { addToast } from '~utils/generalUtils';
 import * as langUtils from '~utils/langUtils';
 
-// import { setAuthTokenRefresh } from '~utils/authUtils';
-
 const googleBtnId = 'google-signin-button';
 
 export const initGoogleAuth = (): void => {
@@ -24,9 +22,6 @@ export const initGoogleAuth = (): void => {
 	script.src = 'https://accounts.google.com/gsi/client';
 	script.async = true;
 	script.defer = true;
-	script.onload = (): void => {
-		// TODO still need to execute something here...
-	};
 	document.body.appendChild(script);
 };
 
@@ -46,6 +41,8 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 
 	if (isLoggedIn) {
 		store.dispatch(setAuthenticated(true));
+
+		// needed to complete the page load
 		store.dispatch(setOnloadAuthDetermined());
 	} else {
 		const googleToken = googleUser.credential;
@@ -54,6 +51,8 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
                 mutation LoginWithGoogle($googleToken: String!) {
                     loginWithGoogle(googleToken: $googleToken) {
                         token
+                        refreshToken
+                        tokenExpiry
                         success
                         error
                         firstName
@@ -81,20 +80,18 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 			}));
 
 			Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
-			onLoginSuccess(null, options.onPageRender, store.dispatch);
+			onLoginSuccess(tokenExpiry, options.onPageRender, store.dispatch);
 		} else {
 			if (response.data.loginWithGoogle.error === 'accountExpired') {
 				addToast({
 					type: 'error',
 					message: i18n.core.accountExpiredMsg
 				});
-				logoutGoogle();
 			} else if (response.data.loginWithGoogle.error === 'noUserAccount') {
 				addToast({
 					type: 'error',
 					message: i18n.core.userAccountNotFound
 				});
-				logoutGoogle();
 			}
 		}
 	}
@@ -106,6 +103,8 @@ export const SignInWithGoogleButton = (): JSX.Element => {
 
 	React.useEffect(() => {
 		if (divRef.current && !loaded) {
+
+			// TODO still need to execute something here for scenarios where script takes too long to load.
 			setLoaded(true);
 
 			// timeout seems to be needed for the fade-in, perhaps? The DOM element clearly exists at this point but
@@ -130,8 +129,3 @@ export const SignInWithGoogleButton = (): JSX.Element => {
 };
 
 SignInWithGoogleButton.displayName = 'SignInWithGoogleButton';
-
-export const logoutGoogle = (): void => {
-	// const auth2 = window.gapi.auth2.getAuthInstance();
-	// auth2.signOut();
-};

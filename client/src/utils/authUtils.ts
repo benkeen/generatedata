@@ -1,6 +1,5 @@
 import env from '../../_env';
-import { SignInWithGoogleButton, initGoogleAuth, logoutGoogle } from '~core/auth/google/google';
-import { AuthMethod } from '~types/general';
+import { SignInWithGoogleButton, initGoogleAuth } from '~core/auth/google/google';
 
 // refresh the token 1 minute before it expires
 export const setAuthTokenRefresh = (tokenExpiry: number, onRefresh: Function): void => {
@@ -32,10 +31,4 @@ export const getVendorLoginButtons = (): React.ReactNode[] => {
 	}
 
 	return buttons;
-};
-
-export const logoutVendor = (authMethod: AuthMethod): void => {
-	if (authMethod === AuthMethod.google) {
-		logoutGoogle();
-	}
 };

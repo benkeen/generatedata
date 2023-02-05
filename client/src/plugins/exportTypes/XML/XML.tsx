@@ -4,7 +4,6 @@ import {
 	ETDownloadPacket,
 	ETDownloadPacketResponse,
 	ETSettings,
-	ETState,
 	ETValidateTitleField
 } from '~types/exportTypes';
 import TextField from '~components/TextField';

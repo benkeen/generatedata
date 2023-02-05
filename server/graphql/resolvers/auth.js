@@ -119,7 +119,7 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
 	return { success: true };
 };
 
-const loginWithGoogle = async (root, { googleToken }) => {
+const loginWithGoogle = async (root, { googleToken }, { res }) => {
 	const client = new OAuth2Client(process.env.GD_GOOGLE_AUTH_CLIENT_ID);
 	let email = '';
 	let profileImage = '';
@@ -171,12 +171,14 @@ const loginWithGoogle = async (root, { googleToken }) => {
 		};
 	}
 
-	const token = await authUtils.getJwt({ accountId, email });
+	const { token, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
 	const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
 	return {
 		success: true,
 		token,
+		tokenExpiry,
+		refreshToken,
 		firstName,
 		lastName,
 		email,

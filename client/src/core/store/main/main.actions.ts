@@ -5,8 +5,8 @@ import { AccountStatusFilter, AuthMethod, GDAction, GDLocale } from '~types/gene
 import * as langUtils from '~utils/langUtils';
 import { getStrings, getCurrentLocalizedPath } from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
-import { getAuthMethod, getCurrentPage, getLocale } from '~store/main/main.selectors';
-import { logoutVendor, setAuthTokenRefresh } from '~utils/authUtils';
+import { getCurrentPage, getLocale } from '~store/main/main.selectors';
+import { setAuthTokenRefresh } from '~utils/authUtils';
 import { AccountStatus, AccountType, SelectedAccountTab } from '~types/account';
 import store from '~core/store';
 import { onChangeTab, showSaveDataSetDialog } from '~store/account/account.actions';
@@ -237,11 +237,8 @@ export const onOneTimeLoginSuccess = (tokenExpiry: number, password: string, his
 };
 
 export const LOGOUT = 'LOGOUT';
-export const logout = (): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
+export const logout = (): any => async (dispatch: Dispatch): Promise<any> => {
 	const i18n = getStrings();
-
-	// if the user logged in with Google, Facebook etc. we need to also let them know
-	logoutVendor(getAuthMethod(getState()));
 
 	Cookies.remove('refreshToken');
 

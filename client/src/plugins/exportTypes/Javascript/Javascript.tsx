@@ -1,7 +1,7 @@
 import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import etShared from '../../../styles/etShared.scss';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
 
 export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (prop: string, value: any): void => {
