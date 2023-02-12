@@ -20,21 +20,30 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 	} else if (source === PostalZipSource.countryRow) {
 		const countryRow = existingRowData.find(({ id }) => id === rowState.targetRowId);
 		country = countryRow!.data.countryDataType;
+
+	// region row
 	} else {
 		regionRow = existingRowData.find(({ id }) => id === rowState.targetRowId);
 		country = regionRow!.data.countryDataType;
 	}
 
 	if (!country) {
-		return {
-			display: ''
-		};
+		return { display: '' };
+	}
+
+	// if the user selected a row containing region data as the source for generating a zip, check the user has
+	// actually entered all necessary UI options for formatting options (short / full), otherwise we won't know what to generate
+	if (regionRow) {
+		if (!regionRow!.data.display || !regionRow!.data.displayFormat) {
+			return { display: '' };
+		}
 	}
 
 	const selectedCountry = countryData[country];
 	let selectedRegion: Region;
 	if (regionRow) {
-		selectedRegion = selectedCountry.regions.find((i: Region) => i.regionName === regionRow!.data.display) as Region;
+		const property = regionRow!.data.displayFormat === 'short' ? 'regionShort' : 'regionName';
+		selectedRegion = selectedCountry.regions.find((i: Region) => i[property] === regionRow!.data.display) as Region;
 	} else {
 		selectedRegion = utils.randomUtils.getRandomArrayValue(selectedCountry.regions);
 	}
@@ -44,9 +53,9 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 	};
 };
 
-
 const getRegionPostalCode = (countryData: CountryDataType, region: Region): string => {
 	let placeholders: any = {};
+
 	let format: string = countryData.extendedData.zipFormat.format;
 
 	if (countryData.extendedData.zipFormat.replacements) {

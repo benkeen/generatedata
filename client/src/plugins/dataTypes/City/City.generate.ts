@@ -29,6 +29,10 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 
 	let selectedRegion;
 	if (regionRow) {
+		// check the user fully filled out the region row. If the didn't include a display format, it'll be incomplete
+		if (!regionRow.data.displayFormat || !regionRow.data.display) {
+			return { display: '' };
+		}
 		selectedRegion = countryData.regions.find((i: Region) => {
 			if (regionRow.data.displayFormat === 'short') {
 				return i.regionShort === regionRow.data.display;
