@@ -22,7 +22,7 @@ export type EngineProps = {
 
 // this component does the actual work of generating the data and populating the store. It doesn't have a DOM presence,
 // it's just done this way to utilize the lifecycle methods
-const Engine = ({ packet, fullI18n, logDataBatch, countryNames, dataTypeWorkerMap, exportTypeWorkerMap, workerUtilsUrl }: EngineProps): any => {
+const Engine = ({ packet, fullI18n, logDataBatch, countryNames, countryData, dataTypeWorkerMap, exportTypeWorkerMap, workerUtilsUrl }: EngineProps): any => {
 	if (packet === null || fullI18n === null) {
 		return null;
 	}
@@ -44,6 +44,7 @@ const Engine = ({ packet, fullI18n, logDataBatch, countryNames, dataTypeWorkerMa
 			i18n: fullI18n,
 			template,
 			countryNames,
+			countryData,
 			workerUtilsUrl,
 			dataTypeWorkerMap,
 			exportTypeWorkerUrl: exportTypeWorkerMap[exportType],

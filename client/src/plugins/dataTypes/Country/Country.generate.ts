@@ -17,11 +17,11 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 		};
 	} else {
 		const randomCountry = utils.randomUtils.getRandomArrayValue(hasFilteredCountryList ? selectedCountries : countryList) as CountryType;
-		const data = countryData[randomCountry];
+		const randomCountryData = countryData[randomCountry];
 
 		return {
-			display: data.countryName,
-			slug: data.countrySlug,
+			display: randomCountryData.countryName,
+			slug: randomCountryData.countrySlug,
 			countryDataType: randomCountry
 		};
 	}
