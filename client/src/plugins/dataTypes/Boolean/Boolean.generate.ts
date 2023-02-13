@@ -2,7 +2,8 @@ import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
-	const formats = data.rowState;
+	// for backward compatibility
+	const formats = Array.isArray(data.rowState) ? data.rowState : data.rowState.values;
 
 	let val = '';
 	if (formats.length) {

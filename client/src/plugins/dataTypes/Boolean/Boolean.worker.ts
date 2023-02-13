@@ -9,6 +9,5 @@ export const onmessage = (e: DTWorkerOnMessage) => {
 		importScripts(e.data.workerUtilsUrl);
 		utilsLoaded = true;
 	}
-
 	postMessage(generate(e.data, utils));
 };

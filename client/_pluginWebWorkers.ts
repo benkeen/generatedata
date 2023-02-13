@@ -5,7 +5,7 @@ export default {
 		"Alphanumeric": "DT-Alphanumeric.worker-aa6aeac21cd8acc43368dc493883e235.js",
 		"AutoIncrement": "DT-AutoIncrement.worker-4044449209e01205eaba7c954ca2d6b1.js",
 		"BitcoinAddress": "DT-BitcoinAddress.worker-568d15bc32fcdb4c9152d825d04a88c2.js",
-		"Boolean": "DT-Boolean.worker-fca09686cf60da57b265eb5f509d78ec.js",
+		"Boolean": "DT-Boolean.worker-b7af707c48225a38d37ce3028429dbeb.js",
 		"CVV": "DT-CVV.worker-9e5dcbe71a0ae6b7c7fb20cccb6c6d35.js",
 		"City": "DT-City.worker-9a08370928f28fa361dc3f557b3829bc.js",
 		"Colour": "DT-Colour.worker-4575c8ce48148067eb82c709340b510a.js",
