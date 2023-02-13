@@ -2,7 +2,7 @@ export default {
 	"generationWorker": "generation.worker-57f59eb8f904208b2f7d5d3cd3acf2f3.js",
 	"workerUtils": "workerUtils-d6e2be6a5e9af07224a0ccfd3213f087.js",
 	"dataTypes": {
-		"Alphanumeric": "DT-Alphanumeric.worker-eebe90d19350fbf8f65b3335a86f6a11.js",
+		"Alphanumeric": "DT-Alphanumeric.worker-aa6aeac21cd8acc43368dc493883e235.js",
 		"AutoIncrement": "DT-AutoIncrement.worker-4044449209e01205eaba7c954ca2d6b1.js",
 		"BitcoinAddress": "DT-BitcoinAddress.worker-568d15bc32fcdb4c9152d825d04a88c2.js",
 		"Boolean": "DT-Boolean.worker-fca09686cf60da57b265eb5f509d78ec.js",
@@ -27,7 +27,7 @@ export default {
 		"PAN": "DT-PAN.worker-f23b490272351ba95ef3e06167bff8de.js",
 		"PIN": "DT-PIN.worker-aecbeadadb5c6e2fdd394692ea27b203.js",
 		"PersonalNumber": "DT-PersonalNumber.worker-68b329da9893e34099c7d8ad5cb9c940.js",
-		"Phone": "DT-Phone.worker-76adaa8ac5389e5ed2730413cd13c46f.js",
+		"Phone": "DT-Phone.worker-548550652d44fc8a79bcd863d391584b.js",
 		"PostalZip": "DT-PostalZip.worker-6cd6391db6e979c9d859b6211e49e539.js",
 		"Region": "DT-Region.worker-ddb1c66117573f18a2fcfdc7d9e185c7.js",
 		"Rut": "DT-Rut.worker-8a822ff4a0707423090e3aed00a5fa92.js",
