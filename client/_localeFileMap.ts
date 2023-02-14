@@ -10,7 +10,6 @@ export const localeFileMap: GDLocaleMap = {
 	"ja": "ja-e7a7bfc3.js",
 	"nl": "nl-72d15c70.js",
 	"pt": "pt-33698904.js",
-	"ru": "ru-819d733d.js",
 	"ta": "ta-0490b769.js",
 	"zh": "zh-0e775ffa.js"
 };
