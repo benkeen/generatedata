@@ -1,5 +1,10 @@
 ## Changelog
 
+- `4.1.0` - Feb 14, 2023
+    - Refactored code to accommodate upcoming npm package version (command-line generation).
+    - Moved to Google Identity Services for sign-in process.
+    - Misc bug fixes.
+    - https://github.com/benkeen/generatedata/milestone/43?closed=1
 - `4.0.15` - Nov 26, 2022
     - Weighted List Data Type added
     - Misc bug fixes.
