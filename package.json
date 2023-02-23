@@ -119,7 +119,7 @@
     "redux-thunk": "^2.3.0",
     "rollup": "^2.31.0",
     "sass": "^1.49.9",
-    "sequelize": "^6.3.5",
+    "sequelize": "^6.28.2",
     "styled-components": "^4.0.0",
     "terser-webpack-plugin": "^3.0.3",
     "underscore": "^1.12.1"
