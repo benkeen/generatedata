@@ -238,7 +238,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			const settingsToReset = [
 				'exportType', 'showGrid', 'showPreview', 'showExportSettings', 'numPreviewRows', 'showLineNumbers',
 				'enableLineWrapping', 'theme', 'previewTextSize', 'exportSettingsTab', 'numRowsToGenerate',
-				'stripWhitespace', 'currentDataSetId', 'currentDataSetName'
+				'stripWhitespace', 'currentDataSet'
 			];
 			settingsToReset.forEach((setting: any) => {
 				// @ts-ignore-line
