@@ -266,52 +266,212 @@ import { GenerationOptionsType as Track1GenerationOptions } from './src/plugins/
 import { GenerationOptionsType as Track2GenerationOptions } from './src/plugins/dataTypes/Track2/Track2.state';
 import { GenerationOptionsType as URLsGenerationOptions } from './src/plugins/dataTypes/URLs/URLs.state';
 import { GenerationOptionsType as WeightedListGenerationOptions } from './src/plugins/dataTypes/WeightedList/WeightedList.state';
-
-interface DataTypeOptionsMap {
-	[DataType.Alphanumeric]: AlphanumericGenerationOptions;
-	[DataType.AutoIncrement]: AutoIncrementGenerationOptions;
-	[DataType.Boolean]: BooleanGenerationOptions;
-	[DataType.CVV]: CVVGenerationOptions;
-	[DataType.City]: CityGenerationOptions;
-	[DataType.Colour]: ColourGenerationOptions;
-	[DataType.Company]: CompanyGenerationOptions;
-	[DataType.Computed]: ComputedGenerationOptions;
-	[DataType.Constant]: ConstantGenerationOptions;
-	[DataType.Country]: CountryGenerationOptions;
-	[DataType.Currency]: CurrencyGenerationOptions;
-	[DataType.Date]: DateGenerationOptions;
-	[DataType.Email]: EmailGenerationOptions;
-	[DataType.GUID]: GUIDGenerationOptions;
-	[DataType.IBAN]: IBANGenerationOptions;
-	[DataType.LatLng]: LatLngGenerationOptions;
-	[DataType.List]: ListGenerationOptions;
-	[DataType.Names]: NamesGenerationOptions;
-	[DataType.NormalDistribution]: NormalDistributionGenerationOptions;
-	[DataType.NumberRange]: NumberRangeGenerationOptions;
-	[DataType.PAN]: PANGenerationOptions;
-	[DataType.PIN]: PINGenerationOptions;
-	[DataType.Phone]: PhoneGenerationOptions;
-	[DataType.PostalZip]: PostalZipGenerationOptions;
-	[DataType.Region]: RegionGenerationOptions;
-	[DataType.Rut]: RutGenerationOptions;
-	[DataType.StreetAddress]: StreetAddressGenerationOptions;
-	[DataType.TextFixed]: TextFixedGenerationOptions;
-	[DataType.TextRandom]: TextRandomGenerationOptions;
-	[DataType.Time]: TimeGenerationOptions;
-	[DataType.Track1]: Track1GenerationOptions;
-	[DataType.Track2]: Track2GenerationOptions;
-	[DataType.URLs]: URLsGenerationOptions;
-	[DataType.WeightedList]: WeightedListGenerationOptions;
+interface AlphanumericDataTypeRow {
+	plugin: DataType.Alphanumeric;
+	title: string;
+	settings: AlphanumericGenerationOptions;
+	id?: string;
+}
+interface AutoIncrementDataTypeRow {
+	plugin: DataType.AutoIncrement;
+	title: string;
+	settings: AutoIncrementGenerationOptions;
+	id?: string;
+}
+interface BooleanDataTypeRow {
+	plugin: DataType.Boolean;
+	title: string;
+	settings: BooleanGenerationOptions;
+	id?: string;
+}
+interface CVVDataTypeRow {
+	plugin: DataType.CVV;
+	title: string;
+	settings: CVVGenerationOptions;
+	id?: string;
+}
+interface CityDataTypeRow {
+	plugin: DataType.City;
+	title: string;
+	settings: CityGenerationOptions;
+	id?: string;
+}
+interface ColourDataTypeRow {
+	plugin: DataType.Colour;
+	title: string;
+	settings: ColourGenerationOptions;
+	id?: string;
+}
+interface CompanyDataTypeRow {
+	plugin: DataType.Company;
+	title: string;
+	settings: CompanyGenerationOptions;
+	id?: string;
+}
+interface ComputedDataTypeRow {
+	plugin: DataType.Computed;
+	title: string;
+	settings: ComputedGenerationOptions;
+	id?: string;
+}
+interface ConstantDataTypeRow {
+	plugin: DataType.Constant;
+	title: string;
+	settings: ConstantGenerationOptions;
+	id?: string;
+}
+interface CountryDataTypeRow {
+	plugin: DataType.Country;
+	title: string;
+	settings: CountryGenerationOptions;
+	id?: string;
+}
+interface CurrencyDataTypeRow {
+	plugin: DataType.Currency;
+	title: string;
+	settings: CurrencyGenerationOptions;
+	id?: string;
+}
+interface DateDataTypeRow {
+	plugin: DataType.Date;
+	title: string;
+	settings: DateGenerationOptions;
+	id?: string;
+}
+interface EmailDataTypeRow {
+	plugin: DataType.Email;
+	title: string;
+	settings: EmailGenerationOptions;
+	id?: string;
+}
+interface GUIDDataTypeRow {
+	plugin: DataType.GUID;
+	title: string;
+	settings: GUIDGenerationOptions;
+	id?: string;
+}
+interface IBANDataTypeRow {
+	plugin: DataType.IBAN;
+	title: string;
+	settings: IBANGenerationOptions;
+	id?: string;
+}
+interface LatLngDataTypeRow {
+	plugin: DataType.LatLng;
+	title: string;
+	settings: LatLngGenerationOptions;
+	id?: string;
+}
+interface ListDataTypeRow {
+	plugin: DataType.List;
+	title: string;
+	settings: ListGenerationOptions;
+	id?: string;
+}
+interface NamesDataTypeRow {
+	plugin: DataType.Names;
+	title: string;
+	settings: NamesGenerationOptions;
+	id?: string;
+}
+interface NormalDistributionDataTypeRow {
+	plugin: DataType.NormalDistribution;
+	title: string;
+	settings: NormalDistributionGenerationOptions;
+	id?: string;
+}
+interface NumberRangeDataTypeRow {
+	plugin: DataType.NumberRange;
+	title: string;
+	settings: NumberRangeGenerationOptions;
+	id?: string;
+}
+interface PANDataTypeRow {
+	plugin: DataType.PAN;
+	title: string;
+	settings: PANGenerationOptions;
+	id?: string;
+}
+interface PINDataTypeRow {
+	plugin: DataType.PIN;
+	title: string;
+	settings: PINGenerationOptions;
+	id?: string;
+}
+interface PhoneDataTypeRow {
+	plugin: DataType.Phone;
+	title: string;
+	settings: PhoneGenerationOptions;
+	id?: string;
+}
+interface PostalZipDataTypeRow {
+	plugin: DataType.PostalZip;
+	title: string;
+	settings: PostalZipGenerationOptions;
+	id?: string;
+}
+interface RegionDataTypeRow {
+	plugin: DataType.Region;
+	title: string;
+	settings: RegionGenerationOptions;
+	id?: string;
+}
+interface RutDataTypeRow {
+	plugin: DataType.Rut;
+	title: string;
+	settings: RutGenerationOptions;
+	id?: string;
+}
+interface StreetAddressDataTypeRow {
+	plugin: DataType.StreetAddress;
+	title: string;
+	settings: StreetAddressGenerationOptions;
+	id?: string;
+}
+interface TextFixedDataTypeRow {
+	plugin: DataType.TextFixed;
+	title: string;
+	settings: TextFixedGenerationOptions;
+	id?: string;
+}
+interface TextRandomDataTypeRow {
+	plugin: DataType.TextRandom;
+	title: string;
+	settings: TextRandomGenerationOptions;
+	id?: string;
+}
+interface TimeDataTypeRow {
+	plugin: DataType.Time;
+	title: string;
+	settings: TimeGenerationOptions;
+	id?: string;
+}
+interface Track1DataTypeRow {
+	plugin: DataType.Track1;
+	title: string;
+	settings: Track1GenerationOptions;
+	id?: string;
+}
+interface Track2DataTypeRow {
+	plugin: DataType.Track2;
+	title: string;
+	settings: Track2GenerationOptions;
+	id?: string;
+}
+interface URLsDataTypeRow {
+	plugin: DataType.URLs;
+	title: string;
+	settings: URLsGenerationOptions;
+	id?: string;
+}
+interface WeightedListDataTypeRow {
+	plugin: DataType.WeightedList;
+	title: string;
+	settings: WeightedListGenerationOptions;
+	id?: string;
 }
 
-export type DataTypeGenerationOptions = {
-	[K in DataType]: {
-		plugin: K;
-		title: string;
-		settings: DataTypeOptionsMap[K];
-		id?: string | number;
-	}
-}[DataType];
+export type DataTemplateRow = AlphanumericDataTypeRow | AutoIncrementDataTypeRow | BooleanDataTypeRow | CVVDataTypeRow | CityDataTypeRow | ColourDataTypeRow | CompanyDataTypeRow | ComputedDataTypeRow | ConstantDataTypeRow | CountryDataTypeRow | CurrencyDataTypeRow | DateDataTypeRow | EmailDataTypeRow | GUIDDataTypeRow | IBANDataTypeRow | LatLngDataTypeRow | ListDataTypeRow | NamesDataTypeRow | NormalDistributionDataTypeRow | NumberRangeDataTypeRow | PANDataTypeRow | PINDataTypeRow | PhoneDataTypeRow | PostalZipDataTypeRow | RegionDataTypeRow | RutDataTypeRow | StreetAddressDataTypeRow | TextFixedDataTypeRow | TextRandomDataTypeRow | TimeDataTypeRow | Track1DataTypeRow | Track2DataTypeRow | URLsDataTypeRow | WeightedListDataTypeRow;
 
 import { GenerationOptionsType as CSVGenerationOptions } from './src/plugins/exportTypes/CSV/CSV.state';
 import { GenerationOptionsType as CSharpGenerationOptions } from './src/plugins/exportTypes/CSharp/CSharp.state';
@@ -326,29 +486,60 @@ import { GenerationOptionsType as RubyGenerationOptions } from './src/plugins/ex
 import { GenerationOptionsType as SQLGenerationOptions } from './src/plugins/exportTypes/SQL/SQL.state';
 import { GenerationOptionsType as TypescriptGenerationOptions } from './src/plugins/exportTypes/Typescript/Typescript.state';
 import { GenerationOptionsType as XMLGenerationOptions } from './src/plugins/exportTypes/XML/XML.state';
-
-interface ExportTypeOptionsMap {
-	[ExportType.CSV]: CSVGenerationOptions;
-	[ExportType.CSharp]: CSharpGenerationOptions;
-	[ExportType.HTML]: HTMLGenerationOptions;
-	[ExportType.JSON]: JSONGenerationOptions;
-	[ExportType.Javascript]: JavascriptGenerationOptions;
-	[ExportType.LDIF]: LDIFGenerationOptions;
-	[ExportType.PHP]: PHPGenerationOptions;
-	[ExportType.Perl]: PerlGenerationOptions;
-	[ExportType.Python]: PythonGenerationOptions;
-	[ExportType.Ruby]: RubyGenerationOptions;
-	[ExportType.SQL]: SQLGenerationOptions;
-	[ExportType.Typescript]: TypescriptGenerationOptions;
-	[ExportType.XML]: XMLGenerationOptions;
+interface CSVExportTypeConfig {
+	plugin: ExportType.CSV;
+	settings: CSVGenerationOptions;
+}
+interface CSharpExportTypeConfig {
+	plugin: ExportType.CSharp;
+	settings: CSharpGenerationOptions;
+}
+interface HTMLExportTypeConfig {
+	plugin: ExportType.HTML;
+	settings: HTMLGenerationOptions;
+}
+interface JSONExportTypeConfig {
+	plugin: ExportType.JSON;
+	settings: JSONGenerationOptions;
+}
+interface JavascriptExportTypeConfig {
+	plugin: ExportType.Javascript;
+	settings: JavascriptGenerationOptions;
+}
+interface LDIFExportTypeConfig {
+	plugin: ExportType.LDIF;
+	settings: LDIFGenerationOptions;
+}
+interface PHPExportTypeConfig {
+	plugin: ExportType.PHP;
+	settings: PHPGenerationOptions;
+}
+interface PerlExportTypeConfig {
+	plugin: ExportType.Perl;
+	settings: PerlGenerationOptions;
+}
+interface PythonExportTypeConfig {
+	plugin: ExportType.Python;
+	settings: PythonGenerationOptions;
+}
+interface RubyExportTypeConfig {
+	plugin: ExportType.Ruby;
+	settings: RubyGenerationOptions;
+}
+interface SQLExportTypeConfig {
+	plugin: ExportType.SQL;
+	settings: SQLGenerationOptions;
+}
+interface TypescriptExportTypeConfig {
+	plugin: ExportType.Typescript;
+	settings: TypescriptGenerationOptions;
+}
+interface XMLExportTypeConfig {
+	plugin: ExportType.XML;
+	settings: XMLGenerationOptions;
 }
 
-export type ExportTypeGenerationOptions = {
-	[K in ExportType]: {
-		plugin: K;
-		settings: ExportTypeOptionsMap[K];
-	}
-}[ExportType];
+export type ExportTypeConfig = CSVExportTypeConfig | CSharpExportTypeConfig | HTMLExportTypeConfig | JSONExportTypeConfig | JavascriptExportTypeConfig | LDIFExportTypeConfig | PHPExportTypeConfig | PerlExportTypeConfig | PythonExportTypeConfig | RubyExportTypeConfig | SQLExportTypeConfig | TypescriptExportTypeConfig | XMLExportTypeConfig;
 
 export enum ExportType {
 	CSV = 'CSV',

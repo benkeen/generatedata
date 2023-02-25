@@ -1,6 +1,6 @@
 /**
- * This file is boiled down to dist/index.js with esbuild and is the "main" entry in the package.json file. Users
- * can import it and get access to the main `generate` method to programmaica
+ * This file is boiled down to dist/index.js and is the "main" entry in the package.json file. Users
+ * can import it and get access to the main `generate` method to programmatically generate random data.
  *
  * The command line script (bin/generatedata.js) is separate. That imports this code but provides a wrapper over the
  * functionality to show a progress indicator, allow for arguments + error handling etc.
@@ -9,7 +9,7 @@
 import path from 'path';
 import fs from 'fs';
 import {
-    DataTypeGenerationOptions,
+    DataTemplateRow,
     DataTypeWorkerInterface,
     ExportType,
     GDTemplate
@@ -24,6 +24,7 @@ import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { convertRowsToGenerationTemplate } from '~store/generator/generator.selectors';
 
 export { availableLocales } from '../../client/_env';
+export { DataType, GDTemplate };
 
 const getI18nStrings = (locale: GDLocale): any => {
     const localeFile = path.join(__dirname, `../dist/${locale}.json`);
@@ -31,9 +32,7 @@ const getI18nStrings = (locale: GDLocale): any => {
 };
 
 /**
- * Used by both the node and binary scripts. It takes the user's template and fluffs it out with all the necessary
- * values needed by the generation script.
- * @param template
+ * Takes the user's template and fluffs it out with all the necessary values needed by the generation script.
  */
 const getNormalizedGDTemplate = (template: GDTemplate): GDTemplate => ({
     generationSettings: {
@@ -49,16 +48,13 @@ const getNormalizedGDTemplate = (template: GDTemplate): GDTemplate => ({
     exportSettings: template.exportSettings
 });
 
-const getColumns = (rows: DataTypeGenerationOptions[]) => {
+const getColumns = (rows: DataTemplateRow[]) => {
     return rows.map((row) => ({
         title: row.title,
         dataType: row.plugin,
         id: row.id || newRowId++,
         metadata: {} // TODO...
     }));
-
-    // metadata,
-    // id
 };
 
 export type GDParams = {
@@ -66,10 +62,10 @@ export type GDParams = {
 }
 
 /**
- * This'll be the primary export.
+ * The primary export
  * @param template
  */
-export const generate = async (template: GDTemplate, params?: GDParams) => {
+const generate = async (template: GDTemplate, params?: GDParams) => {
     const normalizedTemplate = getNormalizedGDTemplate(template);
     const generationSettings = normalizedTemplate.generationSettings;
     const i18n = getI18nStrings(generationSettings.locale as GDLocale)
@@ -109,8 +105,10 @@ export const generate = async (template: GDTemplate, params?: GDParams) => {
     });
 };
 
+export default generate;
+
 let newRowId = 1;
-const convertPublicToInternalTemplate = (rows: DataTypeGenerationOptions[]): GenerationTemplate => {
+const convertPublicToInternalTemplate = (rows: DataTemplateRow[]): GenerationTemplate => {
     const cleanRows = rows.map((row) => ({
         // for some situations, users can supply their own IDs so they can map data together. This pads the ones that
         // don't have it

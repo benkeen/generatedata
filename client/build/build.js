@@ -121,31 +121,52 @@ const createPluginsListFile = () => {
 		content += `import { GenerationOptionsType as ${dt}GenerationOptions } from './src/plugins/dataTypes/${dt}/${dt}.state';\n`;
 	});
 
-	const dataTypeOptionsMap = dtList.map((dt) => `\t[DataType.${dt}]: ${dt}GenerationOptions;`);
-	content += `\ninterface DataTypeOptionsMap {\n${dataTypeOptionsMap.join('\n')}\n}\n\n`;
+	const dataTemplateRows = [];
+	dtList.forEach((dt) => {
+		dataTemplateRows.push(`${dt}DataTypeRow`);
+		content += `interface ${dt}DataTypeRow {
+	plugin: DataType.${dt};
+	title: string;
+	settings: ${dt}GenerationOptions;
+	id?: string;
+}
+`;
+	});
 
-	content += `export type DataTypeGenerationOptions = {
-	[K in DataType]: {
-		plugin: K;
-		title: string;
-		settings: DataTypeOptionsMap[K];
-		id?: string | number;
-	}
-}[DataType];\n\n`;
+	content += `\nexport type DataTemplateRow = ${dataTemplateRows.join(' | ')};\n\n`;
 
 	exportTypes.forEach((et) => {
 		content += `import { GenerationOptionsType as ${et}GenerationOptions } from './src/plugins/exportTypes/${et}/${et}.state';\n`;
 	});
 
-	const exportTypeOptionsMap = exportTypes.map((et) => `\t[ExportType.${et}]: ${et}GenerationOptions;`);
-	content += `\ninterface ExportTypeOptionsMap {\n${exportTypeOptionsMap.join('\n')}\n}\n\n`;
+	const exportTypeConfigs = [];
+	exportTypes.forEach((et) => {
+		exportTypeConfigs.push(`${et}ExportTypeConfig`);
+		content += `interface ${et}ExportTypeConfig {
+	plugin: ExportType.${et};
+	settings: ${et}GenerationOptions;
+}
+`;
+	});
 
-	content += `export type ExportTypeGenerationOptions = {
-	[K in ExportType]: {
-		plugin: K;
-		settings: ExportTypeOptionsMap[K];
-	}
-}[ExportType];\n\n`;
+	content += `\nexport type ExportTypeConfig = ${exportTypeConfigs.join(' | ')};\n\n`;
+
+	// const exportTypeOptionsMap = exportTypes.map((et) => `\t[ExportType.${et}]: ${et}GenerationOptions;`);
+	// content += `\ninterface ExportTypeOptionsMap {\n${exportTypeOptionsMap.join('\n')}\n}\n\n`;
+
+// export type ExportTypeGenerationOptions = {
+// 	[K in ExportType]: {
+// 		plugin: K;
+// 		settings: ExportTypeOptionsMap[K];
+// 	}
+// }[ExportType];
+
+// 	content += `export type ExportTypeGenerationOptions = {
+// 	[K in ExportType]: {
+// 		plugin: K;
+// 		settings: ExportTypeOptionsMap[K];
+// 	}
+// }[ExportType];\n\n`;
 
 	const exportTypeEnums = exportTypes.map((et) => `\t${et} = '${et}'`);
 	content += `export enum ExportType {\n${exportTypeEnums.join(',\n')}\n}\n\n`;

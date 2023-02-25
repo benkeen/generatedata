@@ -7,13 +7,37 @@
     "generatedata": "./bin/generatedata.js"
   },
   "scripts": {
-    "build": "npx grunt && cd build && node build.js",
-    "test": "node bin/generatedata --config=../__tests__/test-data1.json"
+    "build": "npx grunt && tsc",
+    "test": "jest",
+    "test-old": "node bin/generatedata --config=../__tests__/test-data1.json"
   },
   "files": [
     "dist/*",
     "bin/generatedata.js"
   ],
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "setupFilesAfterEnv": [
+      "../client/tests/jestSetup.ts"
+    ],
+    "testRegex": "/__tests__/.*\\.(ts|tsx)$",
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sss|styl)$": "../node_modules/jest-css-modules",
+      "^~components(.*)$": "../client/src/components$1",
+      "^~types(.*)$": "../client/types$1",
+      "^~utils(.*)$": "../client/src/utils$1",
+      "^~store(.*)$": "../client/src/core/store$1",
+      "^~core(.*)$": "../client/src/core$1"
+    }
+  },
   "devDependencies": {
     "@types/jest": "^26.0.15",
     "jest": "^26.6.3",

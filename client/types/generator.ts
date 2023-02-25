@@ -1,13 +1,14 @@
 import {
-	DataTypeGenerationOptions,
+	DataType,
+	DataTemplateRow,
 	ExportType,
-	ExportTypeGenerationOptions
+	ExportTypeConfig
 } from '../_plugins';
 import { GDLocale } from '~types/general';
 import { DTGenerateResult, DTGenerationData } from "~types/dataTypes";
 
 export { CountryNameFiles } from '../_namePlugins';
-export { DataTypeGenerationOptions, ExportType, ExportTypeGenerationOptions };
+export { DataType, DataTemplateRow, ExportType, ExportTypeConfig };
 
 /**
  * Also the main public interface.
@@ -35,8 +36,8 @@ export type GenerationSettings = {
  */
 export type GDTemplate = {
 	generationSettings: GenerationSettings;
-	dataTemplate: DataTypeGenerationOptions[];
-	exportSettings: ExportTypeGenerationOptions;
+	dataTemplate: DataTemplateRow[];
+	exportSettings: ExportTypeConfig;
 }
 
 // Bad name but can't think of a better one. This is the interface required for the Data Type and Export Type

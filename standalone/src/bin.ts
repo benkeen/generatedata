@@ -1,6 +1,7 @@
-#!/usr/bin/env node
-
-console.log('????', __dirname);
+/**
+ * TODO work on this SECOND. Get the code version working first.
+ */
+// #!/usr/bin/env node
 
 const path = require('path');
 const yargs = require('yargs/yargs');
@@ -16,23 +17,23 @@ configFileContent = applyAndValidateCommandLineArgs(args, configFileContent, pro
 
 
 const progressBar = new cliProgress.SingleBar({
-    format: 'Generating |' + colors.grey('{bar}') + '| {percentage}% || {value}/{total} rows',
-    barCompleteChar: '\u2588',
-    barIncompleteChar: '\u2591',
-    hideCursor: true
+	format: 'Generating |' + colors.grey('{bar}') + '| {percentage}% || {value}/{total} rows',
+	barCompleteChar: '\u2588',
+	barIncompleteChar: '\u2591',
+	hideCursor: true
 });
 
 const numResults = configFileContent.generationSettings.numResults;
 progressBar.start(numResults, 0);
 
-generate(updatedConfigFile, {
-    onBatchComplete: ({ numGeneratedRows, isLastBatch }) => {
-        progressBar.update(numGeneratedRows);
+generate(configFileContent, {
+	onBatchComplete: ({ numGeneratedRows, isLastBatch }) => {
+		progressBar.update(numGeneratedRows);
 
-        if (isLastBatch) {
-            progressBar.stop();
-        }
-    }
+		if (isLastBatch) {
+			progressBar.stop();
+		}
+	}
 });
 
 /*

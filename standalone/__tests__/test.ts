@@ -1,20 +1,21 @@
-const { generate } = require('../dist');
+import generate, { DataType, GDTemplate } from '../src';
+import { ExportType } from "../../client/_plugins";
 
 (async () => {
-    const template = {
+    const template: GDTemplate = {
         generationSettings: {
             numResults: 10
         },
         dataTemplate: [
             {
-                plugin: 'Names',
+                plugin: DataType.Names,
                 title: 'First Name',
                 settings: {
                     options: ['Name']
                 }
             },
             {
-                plugin: 'Names',
+                plugin: DataType.Names,
                 title: 'Last Name',
                 settings: {
                     options: ['Surname']
@@ -22,7 +23,7 @@ const { generate } = require('../dist');
             }
         ],
         exportSettings: {
-            plugin: 'XML',
+            plugin: ExportType.JSON,
             settings: {
                 dataStructureFormat: 'simple'
             }
@@ -30,4 +31,6 @@ const { generate } = require('../dist');
     };
 
     const data = await generate(template);
+    console.log(data);
+
 })();
