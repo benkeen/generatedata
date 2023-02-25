@@ -1,6 +1,6 @@
 {
   "name": "generatedata",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Free, MIT-licensed tool for generating random test data. Have at it.",
   "main": "index.js",
   "directories": {
