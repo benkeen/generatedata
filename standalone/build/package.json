@@ -1,6 +1,0 @@
-{
-  "name": "@generatedata/core-build",
-  "description": "Build script for the npm package",
-  "private": true,
-  "type": "module"
-}

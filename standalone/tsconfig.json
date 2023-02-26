@@ -4,7 +4,7 @@
     "module": "commonjs",
     "lib": ["es6"],
     "types": ["node", "jest"],
-    "outDir": "./dist",
+    "outDir": "./build",
     "esModuleInterop": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -17,6 +17,7 @@
     "baseUrl": "../",
     "jsx": "react",
     "importsNotUsedAsValues": "remove",
+    "skipLibCheck": true,
     "paths": {
       "~components/*": ["client/src/components/*"],
       "~utils/*": ["client/src/utils/*"],

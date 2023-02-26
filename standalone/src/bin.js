@@ -1,7 +1,4 @@
-/**
- * TODO work on this SECOND. Get the code version working first.
- */
-// #!/usr/bin/env node
+#!/usr/bin/env node
 
 const path = require('path');
 const yargs = require('yargs/yargs');
@@ -27,7 +24,7 @@ const numResults = configFileContent.generationSettings.numResults;
 progressBar.start(numResults, 0);
 
 generate(configFileContent, {
-	onBatchComplete: ({ numGeneratedRows, isLastBatch }) => {
+	onBatchComplete: ({ numGeneratedRows, isLastBatch }: any) => {
 		progressBar.update(numGeneratedRows);
 
 		if (isLastBatch) {
