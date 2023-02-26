@@ -1,11 +1,34 @@
 # [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Names
 
-This Data Type generates a human name. It provides the following options to generate first names, male or female first
-names, a surname and an initial. You can also generate regional names for a few countries that support the feature.
+This Data Type lets you generate realistic **names** in a wide variety of formats. The options available are: male or
+female first names, surnames and initials, plus any combination of those in whatever order you want. You can also generate
+regional names for specific countries that support the feature.
 
-## Example npm package usages
+## Typings
 
-These examples are in Typescript, but for JS just remove the typings. `DataType.Names` is just a string like 'Names', same with `ExportType`.
+The `settings` property for the `Names` plugin `dataTemplate` entry allows the following options (see Examples below 
+for an illustration of all of these):
+
+```
+{
+    options: string[]; // an array of strings containing placeholders that get replaced with names
+    source?: NamesSource; // 'any' or 'countries'
+    selectedCountries?: CountryNameFiles[]; // see typing for list of support countries, but array of country names
+}
+```
+
+### Placeholders
+
+The `options` property is an array of strings that outlines a list of.
+
+- `Name` - a random first name (male or female)
+- `FemaleName` - a random female name
+- `MaleName` - a random male name
+- `Initial` - a random letter, generally you'll want to follow this with a period
+- `Surname` - a random surname.
+
+
+## Examples
 
 - [First and last names in separate fields](#first-and-last-names-in-separate-fields)
 - [Single name field with first name, last name with middle initial](#single-name-field-with-first-name-last-name-with-middle-initial)
@@ -281,3 +304,4 @@ Sample output:
     ...
 ]
 ```
+
