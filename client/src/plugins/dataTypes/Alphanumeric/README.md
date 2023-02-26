@@ -1,34 +1,19 @@
 # [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Alphanumeric
 
 This Data Type generates random alphanumeric strings in a custom format. This can be used for anything you fancy. The only
-limit is your imagination. (It's late, I really can't believe I just typed that).
+limit is your imagination. (It's late, I can't believe I just typed that).
 
 ## Typings
 
-The `settings` property for the `Alphanumeric` plugin `dataTemplate` entry contains a single `value` property, containing 
-whatever placeholder characters you want. See the Examples section below to see how it all fits together.
+The `settings` value for the `Alphanumeric` plugin `dataTemplate` entry contains a single `value` property, which is a 
+string containing whatever placeholder characters you want. See the Examples section below to see how it all fits
+together.
 
-```
+```typescript
 {
     value: string;
 }
 ```
-
-To generate multiple different formats in a single field, just separate the `value` contents with a pipe, e.g.
-
-```
-{
-    plugin: 'Alphanumeric',
-    title: 'multipleFormats',
-    settings: {
-        value: 'Xxxxx|xxxx|CXxxx'
-    }
-}`
-```
-
-This is an older Data Type. Most of the new ones allow an array for the value/options field within settings. At some point
-we may update it for consistency.
-
 
 ## Placeholders
 
@@ -42,6 +27,24 @@ X       - 1-9
 x       - 0-9
 H       - 0-F (hexidecimal value)
 ```
+
+## Misc notes / caveats
+
+- To generate multiple different formats in a single field, just separate the `value` contents with a pipe, e.g.
+
+```json
+{
+    plugin: 'Alphanumeric',
+    title: 'multipleFormats',
+    settings: {
+        value: 'Xxxxx|xxxx|CXxxx'
+    }
+}`
+```
+
+- Currently you can't escape any of the placeholders listed above. Feature Request issue open here: https://github.com/benkeen/generatedata/issues/817
+- This is an older Data Type. Most of the new ones use an array for the value/options field within settings. At some point
+  we may update it for consistency.
 
 ## Examples
 
@@ -79,7 +82,7 @@ for illustration purposes.
 
 Sample output:
 
-```
+```json
 [
     {
         "Zip": 42694
@@ -129,7 +132,7 @@ This generates a fake clothing tag number of the format `C-152314-DG`.
 
 Sample output:
 
-```
+```json
 [
     {
         "TagNumber": "L-670724-GG"
