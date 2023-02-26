@@ -6,6 +6,7 @@ export const generate = (data: any, workerUtils: WorkerUtils): string => {
 	utils = workerUtils;
 
 	const { settings, stripWhitespace } = data;
+
 	return settings.dataStructureFormat === 'simple'
 		? generateSimple(data, stripWhitespace)
 		: generateComplex(data, stripWhitespace);

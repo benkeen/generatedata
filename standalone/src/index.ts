@@ -24,10 +24,10 @@ import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { convertRowsToGenerationTemplate } from '~store/generator/generator.selectors';
 
 export { availableLocales } from '../../client/_env';
-export { DataType, GDTemplate };
+export { DataType, ExportType, GDTemplate };
 
 const getI18nStrings = (locale: GDLocale): any => {
-    const localeFile = path.join(__dirname, `../dist/${locale}.json`);
+    const localeFile = path.join(__dirname, `./_i18n/${locale}.json`);
     return JSON.parse(fs.readFileSync(localeFile, 'utf8'));
 };
 
@@ -97,6 +97,7 @@ const generate = async (template: GDTemplate, params?: GDParams) => {
             workerUtils,
             dataTypeInterface,
             exportTypeInterface,
+            exportTypeSettings: normalizedTemplate.exportSettings.settings, // TODO. This is in both the first param AND this one? Fix.
             template: convertPublicToInternalTemplate(normalizedTemplate.dataTemplate),
             countryNames,
             onComplete,

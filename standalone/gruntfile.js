@@ -15,10 +15,10 @@ module.exports = function (grunt) {
 	const exportTypesFolder = `${BASE_PATH}/src/plugins/exportTypes`;
 	const countriesFolder = `${BASE_PATH}/src/plugins/countries`;
 
-	const createEmptyDist = () => {
-		const distFolder = path.join(__dirname, '/dist');
-		if (!fs.existsSync(distFolder)) {
-			fs.mkdirSync(distFolder);
+	const createI18nFolder = () => {
+		const i18nFolder = path.join(__dirname, '/src/_i18n');
+		if (!fs.existsSync(i18nFolder)) {
+			fs.mkdirSync(i18nFolder);
 		}
 	};
 
@@ -57,19 +57,33 @@ module.exports = function (grunt) {
 			countries: countryImports
 		};
 
-		const filename = `./dist/${locale}.json`;
+		const filename = `./src/_i18n/${locale}.json`;
 		fs.writeFileSync(filename, JSON.stringify(template));
 	};
 
 	grunt.initConfig({
 		clean: {
 			dist: ['dist']
+		},
+		copy: {
+			i18n: {
+				files: [
+					{
+						expand: true,
+						cwd: 'src/_i18n',
+						src: ['*'],
+						dest: 'dist/standalone/src/_i18n'
+					}
+				]
+			},
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
-	grunt.registerTask('default', ['clean', 'createEmptyDist', 'i18n']);
+	grunt.registerTask('default', ['clean', 'createEmptyDist', 'copyI18nFiles', 'i18n']);
 	grunt.registerTask('i18n', generateI18nBundles);
-	grunt.registerTask('createEmptyDist', createEmptyDist);
+	grunt.registerTask('createEmptyDist', createI18nFolder);
+	grunt.registerTask('copyI18nFiles', ['copy:i18n'])
 };

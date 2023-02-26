@@ -1,5 +1,4 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
     "lib": ["es6"],
@@ -11,6 +10,7 @@
     "strictNullChecks": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "declaration": true,
     "target": "es2019",
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
