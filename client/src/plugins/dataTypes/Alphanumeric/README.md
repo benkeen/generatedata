@@ -32,14 +32,14 @@ H       - 0-F (hexidecimal value)
 
 - To generate multiple different formats in a single field, just separate the `value` contents with a pipe, e.g.
 
-```json
+```
 {
     plugin: 'Alphanumeric',
     title: 'multipleFormats',
     settings: {
         value: 'Xxxxx|xxxx|CXxxx'
     }
-}`
+}
 ```
 
 - Currently you can't escape any of the placeholders listed above. Feature Request issue open here: https://github.com/benkeen/generatedata/issues/817
@@ -82,7 +82,7 @@ for illustration purposes.
 
 Sample output:
 
-```json
+```
 [
     {
         "Zip": 42694
@@ -132,7 +132,7 @@ This generates a fake clothing tag number of the format `C-152314-DG`.
 
 Sample output:
 
-```json
+```
 [
     {
         "TagNumber": "L-670724-GG"
