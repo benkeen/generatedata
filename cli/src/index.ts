@@ -15,7 +15,7 @@ import {
     GDTemplate
 } from '~types/generator';
 import { DataType } from '../../client/_plugins';
-import { dataTypeNodeData, exportTypeNodeData } from '../_standalone';
+import { dataTypeNodeData, exportTypeNodeData } from '../_cliTypes';
 import countryNames from '../../client/_namePlugins';
 import { generate as generateUtils } from '../../client/src/utils/generatorUtils';
 import workerUtils from '../../client/src/utils';
@@ -92,12 +92,13 @@ const generate = async (template: GDTemplate, params?: GDParams) => {
             }
         };
 
-        generateUtils(normalizedTemplate, {
+        generateUtils({
             i18n,
             workerUtils,
             dataTypeInterface,
             exportTypeInterface,
-            exportTypeSettings: normalizedTemplate.exportSettings.settings, // TODO. This is in both the first param AND this one? Fix.
+            exportTypeSettings: normalizedTemplate.exportSettings.settings,
+            generationSettings: normalizedTemplate.generationSettings,
             template: convertPublicToInternalTemplate(normalizedTemplate.dataTemplate),
             countryNames,
             onComplete,

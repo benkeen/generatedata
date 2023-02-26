@@ -20,10 +20,11 @@ let lastMainProcessOptions: MainProcessOptionsBrowser | MainProcessOptionsNode |
 let currentSpeed: number; // TODO possible range?
 const workerQueue: any = {};
 
-// TODO here we need a version of GDTemplate where nothing is optional
-export const generate = (fullTemplate: GDTemplate, settings: any) => {
-	const { numResults, packetSize, stripWhitespace } = fullTemplate.generationSettings; // TODO locale no longer needed here
-	const { i18n, workerUtils, countryNames, countryData, dataTypeInterface, columns, template, exportTypeSettings, onComplete, exportTypeInterface } = settings;
+export const generate = ({
+	i18n, workerUtils, countryNames, countryData, dataTypeInterface, columns, template, exportTypeSettings, onComplete,
+	exportTypeInterface, generationSettings
+}: any) => {
+	const { numResults, packetSize, stripWhitespace } = generationSettings;
 
 	const onBatchComplete = ({ completedBatchNum, numGeneratedRows, generatedData }: any): void => {
 		const isLastBatch = numGeneratedRows >= numResults;

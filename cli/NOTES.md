@@ -1,14 +1,10 @@
-# Standalone app - npm package + binary
+# CLI
 
 The long-time purpose of this script was to offer an npm package which would have no interface but provide a programmatic 
 way to generate test data. The idea is that the existing UI will offer an "export JSON" option for 
 whatever data set is constructed via the UI, which could be used in conjunction with the command line tool. All the 
 plugins + core already have their data pretty well-defined, so it's just a question of exposing the appropriate
 structure for the various options (and exposed via typescript types!) so developers can construct what they want as JSON.
-
-## General idea
-
-We'll expose two options: a programmatic node version and a standalone binary. 
 
 ### 1. Node
 

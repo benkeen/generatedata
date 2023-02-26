@@ -179,7 +179,7 @@ const createPluginsListFile = () => {
 };
 
 
-const createStandaloneListFile = () => {
+const createCliTypesFile = () => {
 	let content = banner + '\n\nimport { DataType, ExportType } from \'../client/_plugins\';\n';
 
 	const blacklistedDataTypes = process.env.GD_DATA_TYPE_BLACKLIST.split(',');
@@ -207,7 +207,7 @@ const createStandaloneListFile = () => {
 	const etRows = etList.map((et) => `\t[ExportType.${et}]: { generate: ${et}G, defaultGenerationOptions: ${et}DGO }`);
 	content += `${etRows.join(',\n')}\n};\n\n`
 
-	const file = path.join(__dirname, '../../standalone', '_standalone.ts');
+	const file = path.join(__dirname, '../../cli', '_cliTypes.ts');
 	if (fs.existsSync(file)) {
 		fs.unlinkSync(file);
 	}
@@ -290,5 +290,5 @@ generateNamesFile();
 
 createDatabaseInitFile();
 createPluginsListFile();
-createStandaloneListFile();
+createCliTypesFile();
 createImportFile();

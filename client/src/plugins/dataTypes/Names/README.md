@@ -1,65 +1,97 @@
-## Names Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Names
 
-This Data Type generates a human name. You can choose to generate first names, a male first name, a female first name,
-a surname and an initial. 
+This Data Type generates a human name. It provides the following options to generate first names, male or female first
+names, a surname and an initial. You can also generate regional names for a few countries that support the feature.
+
+## Example npm package usages
+
+These examples are in Typescript, but for JS just remove the typings. `DataType.Names` is just a string like 'Names', same with `ExportType`.
+
+- First and last names in separate fields
+- Single name field with first name, last name with middle initial
+- Single field containing Male first name, female first name, any name in a comma delimited list
+- Single name field with different formats
 
 
-### Example API Usage
+### 1. First and last names in separate fields
 
-Here are a couple of examples. Just POST the following JSON content to 
-`http://[your site]/[generate data folder]/api/v1/data`:
-
-```javascript
+```typescript
 {
-    "numRows": 15,
-    "rows": [
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
         {
-            "type": "Names",
-            "title": "Name",
-            "settings": {
-                "placeholder": "Name"
+            plugin: DataType.Names,
+            title: 'First Name',
+            settings: {
+                options: ['Name']
             }
         },
         {
-            "type": "Names",
-            "title": "Male name",
-            "settings": {
-                "placeholder": "MaleName"
-            }
-        },
-        {
-            "type": "Names",
-            "title": "Female name",
-            "settings": {
-                "placeholder": "FemaleName"
-            }
-        },
-        {
-            "type": "Names",
-            "title": "Full name",
-            "settings": {
-                "placeholder": "Name Surname"
-            }
-        },
-        {
-            "type": "Names",
-            "title": "Full name with initial",
-            "settings": {
-                "placeholder": "Name Initial. Surname"
+            plugin: DataType.Names,
+            title: 'Last Name',
+            settings: {
+                options: ['Surname']
             }
         }
     ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "complex"
+    exportSettings: {
+        plugin: ExportType.JSON,
+        settings: {
+            dataStructureFormat: 'simple'
         }
     }
 }
 ```
- 
-### API help
 
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
+Sample output:
+
+```
+[
+    {
+        "First Name": "Hayley",
+        "Last Name": "Hopper"
+    },
+    {
+        "First Name": "Wyatt",
+        "Last Name": "Williams"
+    },
+    {
+         "First Name": "Uriah",
+         "Last Name": "Moses"
+    },
+    ...
+]
+```
+
+### 2. Single name field with First name, Last name with middle initial
+
+```typescript
+{
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
+        {
+            plugin: DataType.Names,
+            title: 'Name',
+            settings: {
+                options: ['Name Initial. Surname']
+            }
+        }
+    ],
+    exportSettings: {
+        plugin: ExportType.JSON,
+        settings: {
+            dataStructureFormat: 'simple'
+        }
+    }
+}
+```
+
+Sample output:
+
+```
+
+```

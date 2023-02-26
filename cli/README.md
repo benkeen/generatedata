@@ -1,12 +1,18 @@
-# generatedata - npm package
+# generatedata CLI
 
 > In active development (Feb 2023). None of this is finished, so ignore this folder for now.
 
+As of 4.2.0, the generatedata.com site is now available as a CLI. You can generate all the same data as you 
+can via the website, only via the command line. There are two ways to do this:
+
+- A binary that you can run on the node command line, and
+- JS code you can include and run in your own JS/TS applications. 
+
+Both are available via the `@generatedata/cli` package.
+
 ### Installation
 
-`npm install @generatedata/core`
-
-### Usage
+`npm install @generatedata/cli`
 
 The npm package contains both a command line tool and methods that can be used within your own JS/TS code. 
 
