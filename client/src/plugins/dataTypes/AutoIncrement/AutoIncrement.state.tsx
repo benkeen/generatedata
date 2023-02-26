@@ -1,7 +1,7 @@
 export type GenerationOptionsType = {
 	incrementStart: number;
 	incrementValue: number;
-	incrementPlaceholder: string;
+	incrementPlaceholder?: string;
 }
 
 export const defaultGenerationOptions: GenerationOptionsType = {

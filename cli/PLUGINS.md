@@ -1,6 +1,7 @@
 # [CLI](./README.md) &raquo; Plugins
 
-Each plugin has its own configuration settings. See the pages below for details and explanations of 
+Each plugin has its own configuration settings. See the pages below for details and explanations of each plugin and 
+what the options do.
 
 ### Data Types
 
