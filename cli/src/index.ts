@@ -65,12 +65,12 @@ export type GDParams = {
  * The primary export
  * @param template
  */
-const generate = async (template: GDTemplate, params?: GDParams) => {
+const generate = async (template: GDTemplate, params?: GDParams): Promise<string> => {
     const normalizedTemplate = getNormalizedGDTemplate(template);
     const generationSettings = normalizedTemplate.generationSettings;
     const i18n = getI18nStrings(generationSettings.locale as GDLocale)
     const dataTypeInterface = getWorkerInterface();
-    const exportTypeInterface = getExportTypeWorkerInterface(normalizedTemplate.exportSettings.plugin);
+    const exportTypeInterface = getExportTypeWorkerInterface(normalizedTemplate.exportSettings.plugin as ExportType);
 
     let inMemoryResult = '';
     return new Promise((resolve) => {

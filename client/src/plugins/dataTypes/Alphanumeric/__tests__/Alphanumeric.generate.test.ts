@@ -18,7 +18,9 @@ describe('onmessage', () => {
 		const payload: any = {
 			data: {
 				...getBlankDTGeneratorPayload(),
-				rowState: initialState.value,
+				rowState: {
+					value: initialState.value
+				},
 				i18n
 			}
 		};

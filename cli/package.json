@@ -1,5 +1,5 @@
 {
-  "name": "@generatedata/core",
+  "name": "@generatedata/cli",
   "version": "0.0.3",
   "description": "The npm package version of generatedata.com. Currently in development only.",
   "main": "dist/cli/index.js",

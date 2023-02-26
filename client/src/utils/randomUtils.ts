@@ -48,8 +48,6 @@ export const defaultPlaceholders = {
  *     X       - 1-9
  *     x       - 0-9
  *     H       - 0-F
- *
- * *** Note: don't change these placeholders.
  */
 export const generateRandomAlphanumericStr = (str: string, placeholders: any = defaultPlaceholders): string => {
 	if (!str) {

@@ -1,14 +1,15 @@
 # generatedata CLI
 
-> In active development (Feb 2023). None of this is finished, so ignore this folder for now.
+> In active development (Feb 2023). Come back later!
 
-As of 4.2.0, the generatedata.com site is now available as a CLI. You can generate all the same data as you 
-can via the website, only via the command line. There are two ways to do this:
+Since 4.2.0, the generatedata.com site is now available as a CLI. You can generate all the same data as you 
+can via the website, only via the command line from your own machine. There are two ways to do this:
 
-- A binary that you can run on the node command line, and
+- A _binary_ that you can run on the node command line, or
 - JS code you can include and run in your own JS/TS applications. 
 
-Both are available via the `@generatedata/cli` package.
+Both are available via the `@generatedata/cli` npm package.
+
 
 ### Installation
 
@@ -25,11 +26,11 @@ npx generatedata --config=configFile.json
 #### Typescript
 
 ```typescript
-import { generate, GDTemplate } from '@generatedata/core';
+import { generate, GDTemplate } from '@generatedata/cli';
 
 (async () => {
-	const template: GDTemplate = { ... };
-	await generate(template);
+    const template: GDTemplate = { ... };
+    await generate(template);
 })();
 ```
 

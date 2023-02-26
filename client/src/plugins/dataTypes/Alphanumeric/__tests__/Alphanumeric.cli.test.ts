@@ -8,9 +8,9 @@ describe('CLI data generation', () => {
 		dataTemplate: [
 			{
 				plugin: 'Alphanumeric',
-				title: 'Alphanumeric',
+				title: 'Zip',
 				settings: {
-					value: 'Name'
+					value: 'Xxxxx'
 				}
 			},
 		],
@@ -23,11 +23,10 @@ describe('CLI data generation', () => {
 	});
 
 	it('Confirm simple export format', async () => {
-		const data: any = await generate(getTemplate());
+		const data = await generate(getTemplate());
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual(['First Name');
+		expect(Object.keys(generatedJSON[0])).toEqual(['Zip']);
 	});
 });
-
