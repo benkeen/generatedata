@@ -4,7 +4,7 @@
     "module": "commonjs",
     "lib": ["es6"],
     "types": ["node", "jest"],
-    "outDir": "./build",
+    "outDir": "./dist",
     "esModuleInterop": true,
     "noImplicitAny": true,
     "noImplicitThis": true,

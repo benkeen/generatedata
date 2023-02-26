@@ -26,7 +26,7 @@ describe('Generation test', () => {
             exportSettings: {
                 plugin: ExportType.JSON,
                 settings: {
-                    dataStructureFormat: 'simple'
+                    dataStructureFormat: 'complex'
                 }
             }
         };

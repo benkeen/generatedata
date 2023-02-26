@@ -24,7 +24,7 @@ const numResults = configFileContent.generationSettings.numResults;
 progressBar.start(numResults, 0);
 
 generate(configFileContent, {
-	onBatchComplete: ({ numGeneratedRows, isLastBatch }: any) => {
+	onBatchComplete: ({ numGeneratedRows, isLastBatch }) => {
 		progressBar.update(numGeneratedRows);
 
 		if (isLastBatch) {
