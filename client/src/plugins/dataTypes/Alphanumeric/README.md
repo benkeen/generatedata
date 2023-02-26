@@ -103,7 +103,7 @@ Sample output:
 ]
 ```
 
-### Tag number 
+### Tag numbers
 
 This generates a fake clothing tag number of the format `C-152314-DG`.
 

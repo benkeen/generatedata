@@ -9,7 +9,7 @@ because it's nice and concise for illustration purposes. But remember that all o
 Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below for how to configure those.
 
 - [Alphanumeric](../client/src/plugins/dataTypes/Alphanumeric/README.md)
-- AutoIncrement
+- [AutoIncrement](../client/src/plugins/dataTypes/AutoIncrement/README.md)
 - BitcoinAddress
 - Boolean
 - City
