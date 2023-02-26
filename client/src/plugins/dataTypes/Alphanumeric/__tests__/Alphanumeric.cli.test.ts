@@ -24,8 +24,6 @@ describe('CLI data generation', () => {
 
 	it('Confirm simple export format', async () => {
 		const data = await generate(getTemplate());
-		console.log(data);
-
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);

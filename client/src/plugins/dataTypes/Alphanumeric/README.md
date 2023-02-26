@@ -14,6 +14,22 @@ whatever placeholder characters you want. See the Examples section below to see 
 }
 ```
 
+To generate multiple different formats in a single field, just separate the `value` contents with a pipe, e.g.
+
+```
+{
+    plugin: 'Alphanumeric',
+    title: 'multipleFormats',
+    settings: {
+        value: 'Xxxxx|xxxx|CXxxx'
+    }
+}`
+```
+
+This is an older Data Type. Most of the new ones allow an array for the value/options field within settings. At some point
+we may update it for consistency.
+
+
 ## Placeholders
 
 These are the available placeholders. Any character not specified here will be output as-is. 
@@ -29,7 +45,14 @@ H       - 0-F (hexidecimal value)
 
 ## Examples
 
-### US Zip codes
+- [US zip code](#us-zip-code)
+- [Tag numbers](#tag-numbers)
+
+
+### US zip code
+
+Note, this can actually be produced more accurately with the [Postal/Zip](../PostalZip/README.md) Data Type. This is just 
+for illustration purposes.
 
 ```javascript
 {
@@ -43,7 +66,7 @@ H       - 0-F (hexidecimal value)
             settings: {
                 value: 'Xxxxx'
             }
-        },
+        }
     ],
     exportSettings: {
         plugin: 'JSON',
@@ -72,6 +95,53 @@ Sample output:
     },
     {
         "Zip": 51791
+    },
+    ...
+]
+```
+
+### Tag number 
+
+This generates a fake clothing tag number of the format `C-152314-DG`.
+
+```javascript
+{
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
+        {
+            plugin: 'Alphanumeric',
+            title: 'TagNumber',
+            settings: {
+                value: 'C-xxxxxx-CC'
+            }
+        }
+    ],
+    exportSettings: {
+        plugin: 'JSON',
+        settings: {
+            dataStructureFormat: 'simple'
+        }
+    }
+}
+```
+
+Sample output:
+
+```
+[
+    {
+        "TagNumber": "L-670724-GG"
+    },
+    {
+        "TagNumber": "S-371395-QY"
+    },
+    {
+        "TagNumber": "C-861426-QF"
+    },
+    {
+        "TagNumber": "F-750425-VY"
     },
     ...
 ]

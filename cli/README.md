@@ -131,3 +131,13 @@ Note: requires the main client/ application to have been built first. To do that
 
 
 - `yarn test`
+
+
+
+### Other scenarios
+
+- Generating multiple different types in a single field
+- Having one field be based on another field
+    - e.g. regions (country, region, city, zip)
+    - email addresses that look like the names of the users
+    - doing math on the numeric result of another field

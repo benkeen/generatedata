@@ -4,6 +4,10 @@ Each plugin has its own configuration settings. See the pages below for details 
 
 ### Data Types
 
+These pages demonstrate the available configurations for each Data Type. Most of them use JSON as the export format, 
+because it's nice and concise for illustration purposes. But remember that all of them can be used with any Export 
+Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below for how to configure those.
+
 - [Alphanumeric](../client/src/plugins/dataTypes/Alphanumeric/README.md)
 - AutoIncrement
 - BitcoinAddress
