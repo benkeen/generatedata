@@ -1,6 +1,6 @@
-import generate, { DataType, ExportType, GDTemplate } from '../../../../../../standalone/dist/standalone/src';
+import generate, { DataType, ExportType, GDTemplate } from '../../../../../../cli/dist/cli/src';
 
-describe('data generation via standalone package', () => {
+describe('CLI data generation', () => {
 	const getTemplate = (dataStructureFormat: 'simple' | 'complex'): GDTemplate => ({
 		generationSettings: {
 			numResults: 10

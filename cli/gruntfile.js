@@ -72,7 +72,7 @@ module.exports = function (grunt) {
 						expand: true,
 						cwd: 'src/_i18n',
 						src: ['*'],
-						dest: 'dist/standalone/src/_i18n'
+						dest: 'dist/cli/src/_i18n'
 					}
 				]
 			},

@@ -7,13 +7,13 @@ names, a surname and an initial. You can also generate regional names for a few 
 
 These examples are in Typescript, but for JS just remove the typings. `DataType.Names` is just a string like 'Names', same with `ExportType`.
 
-- First and last names in separate fields
+- [First and last names in separate fields](#first-and-last-names-in-separate-fields)
 - Single name field with first name, last name with middle initial
 - Single field containing Male first name, female first name, any name in a comma delimited list
 - Single name field with different formats
 
 
-### 1. First and last names in separate fields
+### First and last names in separate fields
 
 ```typescript
 {

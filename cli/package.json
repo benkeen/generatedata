@@ -2,7 +2,7 @@
   "name": "@generatedata/core",
   "version": "0.0.3",
   "description": "The npm package version of generatedata.com. Currently in development only.",
-  "main": "dist/standalone/index.js",
+  "main": "dist/cli/index.js",
   "bin": {
     "generatedata": "./bin/generatedata.js"
   },
