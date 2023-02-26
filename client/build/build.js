@@ -125,7 +125,7 @@ const createPluginsListFile = () => {
 	dtList.forEach((dt) => {
 		dataTemplateRows.push(`${dt}DataTypeRow`);
 		content += `interface ${dt}DataTypeRow {
-	plugin: DataType.${dt};
+	plugin: DataType.${dt} | '${dt}';
 	title: string;
 	settings: ${dt}GenerationOptions;
 	id?: string;
@@ -143,30 +143,13 @@ const createPluginsListFile = () => {
 	exportTypes.forEach((et) => {
 		exportTypeConfigs.push(`${et}ExportTypeConfig`);
 		content += `interface ${et}ExportTypeConfig {
-	plugin: ExportType.${et};
+	plugin: ExportType.${et} | '${et}';
 	settings: ${et}GenerationOptions;
 }
 `;
 	});
 
 	content += `\nexport type ExportTypeConfig = ${exportTypeConfigs.join(' | ')};\n\n`;
-
-	// const exportTypeOptionsMap = exportTypes.map((et) => `\t[ExportType.${et}]: ${et}GenerationOptions;`);
-	// content += `\ninterface ExportTypeOptionsMap {\n${exportTypeOptionsMap.join('\n')}\n}\n\n`;
-
-// export type ExportTypeGenerationOptions = {
-// 	[K in ExportType]: {
-// 		plugin: K;
-// 		settings: ExportTypeOptionsMap[K];
-// 	}
-// }[ExportType];
-
-// 	content += `export type ExportTypeGenerationOptions = {
-// 	[K in ExportType]: {
-// 		plugin: K;
-// 		settings: ExportTypeOptionsMap[K];
-// 	}
-// }[ExportType];\n\n`;
 
 	const exportTypeEnums = exportTypes.map((et) => `\t${et} = '${et}'`);
 	content += `export enum ExportType {\n${exportTypeEnums.join(',\n')}\n}\n\n`;
@@ -232,7 +215,6 @@ const createImportFile = () => {
 	if (fs.existsSync(file)) {
 		fs.unlinkSync(file);
 	}
-
 
 	// rollup gets confused with an empty file, so we add a default exports just in case
 	if (!importLines.length) {

@@ -267,205 +267,205 @@ import { GenerationOptionsType as Track2GenerationOptions } from './src/plugins/
 import { GenerationOptionsType as URLsGenerationOptions } from './src/plugins/dataTypes/URLs/URLs.state';
 import { GenerationOptionsType as WeightedListGenerationOptions } from './src/plugins/dataTypes/WeightedList/WeightedList.state';
 interface AlphanumericDataTypeRow {
-	plugin: DataType.Alphanumeric;
+	plugin: DataType.Alphanumeric | 'Alphanumeric';
 	title: string;
 	settings: AlphanumericGenerationOptions;
 	id?: string;
 }
 interface AutoIncrementDataTypeRow {
-	plugin: DataType.AutoIncrement;
+	plugin: DataType.AutoIncrement | 'AutoIncrement';
 	title: string;
 	settings: AutoIncrementGenerationOptions;
 	id?: string;
 }
 interface BooleanDataTypeRow {
-	plugin: DataType.Boolean;
+	plugin: DataType.Boolean | 'Boolean';
 	title: string;
 	settings: BooleanGenerationOptions;
 	id?: string;
 }
 interface CVVDataTypeRow {
-	plugin: DataType.CVV;
+	plugin: DataType.CVV | 'CVV';
 	title: string;
 	settings: CVVGenerationOptions;
 	id?: string;
 }
 interface CityDataTypeRow {
-	plugin: DataType.City;
+	plugin: DataType.City | 'City';
 	title: string;
 	settings: CityGenerationOptions;
 	id?: string;
 }
 interface ColourDataTypeRow {
-	plugin: DataType.Colour;
+	plugin: DataType.Colour | 'Colour';
 	title: string;
 	settings: ColourGenerationOptions;
 	id?: string;
 }
 interface CompanyDataTypeRow {
-	plugin: DataType.Company;
+	plugin: DataType.Company | 'Company';
 	title: string;
 	settings: CompanyGenerationOptions;
 	id?: string;
 }
 interface ComputedDataTypeRow {
-	plugin: DataType.Computed;
+	plugin: DataType.Computed | 'Computed';
 	title: string;
 	settings: ComputedGenerationOptions;
 	id?: string;
 }
 interface ConstantDataTypeRow {
-	plugin: DataType.Constant;
+	plugin: DataType.Constant | 'Constant';
 	title: string;
 	settings: ConstantGenerationOptions;
 	id?: string;
 }
 interface CountryDataTypeRow {
-	plugin: DataType.Country;
+	plugin: DataType.Country | 'Country';
 	title: string;
 	settings: CountryGenerationOptions;
 	id?: string;
 }
 interface CurrencyDataTypeRow {
-	plugin: DataType.Currency;
+	plugin: DataType.Currency | 'Currency';
 	title: string;
 	settings: CurrencyGenerationOptions;
 	id?: string;
 }
 interface DateDataTypeRow {
-	plugin: DataType.Date;
+	plugin: DataType.Date | 'Date';
 	title: string;
 	settings: DateGenerationOptions;
 	id?: string;
 }
 interface EmailDataTypeRow {
-	plugin: DataType.Email;
+	plugin: DataType.Email | 'Email';
 	title: string;
 	settings: EmailGenerationOptions;
 	id?: string;
 }
 interface GUIDDataTypeRow {
-	plugin: DataType.GUID;
+	plugin: DataType.GUID | 'GUID';
 	title: string;
 	settings: GUIDGenerationOptions;
 	id?: string;
 }
 interface IBANDataTypeRow {
-	plugin: DataType.IBAN;
+	plugin: DataType.IBAN | 'IBAN';
 	title: string;
 	settings: IBANGenerationOptions;
 	id?: string;
 }
 interface LatLngDataTypeRow {
-	plugin: DataType.LatLng;
+	plugin: DataType.LatLng | 'LatLng';
 	title: string;
 	settings: LatLngGenerationOptions;
 	id?: string;
 }
 interface ListDataTypeRow {
-	plugin: DataType.List;
+	plugin: DataType.List | 'List';
 	title: string;
 	settings: ListGenerationOptions;
 	id?: string;
 }
 interface NamesDataTypeRow {
-	plugin: DataType.Names;
+	plugin: DataType.Names | 'Names';
 	title: string;
 	settings: NamesGenerationOptions;
 	id?: string;
 }
 interface NormalDistributionDataTypeRow {
-	plugin: DataType.NormalDistribution;
+	plugin: DataType.NormalDistribution | 'NormalDistribution';
 	title: string;
 	settings: NormalDistributionGenerationOptions;
 	id?: string;
 }
 interface NumberRangeDataTypeRow {
-	plugin: DataType.NumberRange;
+	plugin: DataType.NumberRange | 'NumberRange';
 	title: string;
 	settings: NumberRangeGenerationOptions;
 	id?: string;
 }
 interface PANDataTypeRow {
-	plugin: DataType.PAN;
+	plugin: DataType.PAN | 'PAN';
 	title: string;
 	settings: PANGenerationOptions;
 	id?: string;
 }
 interface PINDataTypeRow {
-	plugin: DataType.PIN;
+	plugin: DataType.PIN | 'PIN';
 	title: string;
 	settings: PINGenerationOptions;
 	id?: string;
 }
 interface PhoneDataTypeRow {
-	plugin: DataType.Phone;
+	plugin: DataType.Phone | 'Phone';
 	title: string;
 	settings: PhoneGenerationOptions;
 	id?: string;
 }
 interface PostalZipDataTypeRow {
-	plugin: DataType.PostalZip;
+	plugin: DataType.PostalZip | 'PostalZip';
 	title: string;
 	settings: PostalZipGenerationOptions;
 	id?: string;
 }
 interface RegionDataTypeRow {
-	plugin: DataType.Region;
+	plugin: DataType.Region | 'Region';
 	title: string;
 	settings: RegionGenerationOptions;
 	id?: string;
 }
 interface RutDataTypeRow {
-	plugin: DataType.Rut;
+	plugin: DataType.Rut | 'Rut';
 	title: string;
 	settings: RutGenerationOptions;
 	id?: string;
 }
 interface StreetAddressDataTypeRow {
-	plugin: DataType.StreetAddress;
+	plugin: DataType.StreetAddress | 'StreetAddress';
 	title: string;
 	settings: StreetAddressGenerationOptions;
 	id?: string;
 }
 interface TextFixedDataTypeRow {
-	plugin: DataType.TextFixed;
+	plugin: DataType.TextFixed | 'TextFixed';
 	title: string;
 	settings: TextFixedGenerationOptions;
 	id?: string;
 }
 interface TextRandomDataTypeRow {
-	plugin: DataType.TextRandom;
+	plugin: DataType.TextRandom | 'TextRandom';
 	title: string;
 	settings: TextRandomGenerationOptions;
 	id?: string;
 }
 interface TimeDataTypeRow {
-	plugin: DataType.Time;
+	plugin: DataType.Time | 'Time';
 	title: string;
 	settings: TimeGenerationOptions;
 	id?: string;
 }
 interface Track1DataTypeRow {
-	plugin: DataType.Track1;
+	plugin: DataType.Track1 | 'Track1';
 	title: string;
 	settings: Track1GenerationOptions;
 	id?: string;
 }
 interface Track2DataTypeRow {
-	plugin: DataType.Track2;
+	plugin: DataType.Track2 | 'Track2';
 	title: string;
 	settings: Track2GenerationOptions;
 	id?: string;
 }
 interface URLsDataTypeRow {
-	plugin: DataType.URLs;
+	plugin: DataType.URLs | 'URLs';
 	title: string;
 	settings: URLsGenerationOptions;
 	id?: string;
 }
 interface WeightedListDataTypeRow {
-	plugin: DataType.WeightedList;
+	plugin: DataType.WeightedList | 'WeightedList';
 	title: string;
 	settings: WeightedListGenerationOptions;
 	id?: string;
@@ -487,55 +487,55 @@ import { GenerationOptionsType as SQLGenerationOptions } from './src/plugins/exp
 import { GenerationOptionsType as TypescriptGenerationOptions } from './src/plugins/exportTypes/Typescript/Typescript.state';
 import { GenerationOptionsType as XMLGenerationOptions } from './src/plugins/exportTypes/XML/XML.state';
 interface CSVExportTypeConfig {
-	plugin: ExportType.CSV;
+	plugin: ExportType.CSV | 'CSV';
 	settings: CSVGenerationOptions;
 }
 interface CSharpExportTypeConfig {
-	plugin: ExportType.CSharp;
+	plugin: ExportType.CSharp | 'CSharp';
 	settings: CSharpGenerationOptions;
 }
 interface HTMLExportTypeConfig {
-	plugin: ExportType.HTML;
+	plugin: ExportType.HTML | 'HTML';
 	settings: HTMLGenerationOptions;
 }
 interface JSONExportTypeConfig {
-	plugin: ExportType.JSON;
+	plugin: ExportType.JSON | 'JSON';
 	settings: JSONGenerationOptions;
 }
 interface JavascriptExportTypeConfig {
-	plugin: ExportType.Javascript;
+	plugin: ExportType.Javascript | 'Javascript';
 	settings: JavascriptGenerationOptions;
 }
 interface LDIFExportTypeConfig {
-	plugin: ExportType.LDIF;
+	plugin: ExportType.LDIF | 'LDIF';
 	settings: LDIFGenerationOptions;
 }
 interface PHPExportTypeConfig {
-	plugin: ExportType.PHP;
+	plugin: ExportType.PHP | 'PHP';
 	settings: PHPGenerationOptions;
 }
 interface PerlExportTypeConfig {
-	plugin: ExportType.Perl;
+	plugin: ExportType.Perl | 'Perl';
 	settings: PerlGenerationOptions;
 }
 interface PythonExportTypeConfig {
-	plugin: ExportType.Python;
+	plugin: ExportType.Python | 'Python';
 	settings: PythonGenerationOptions;
 }
 interface RubyExportTypeConfig {
-	plugin: ExportType.Ruby;
+	plugin: ExportType.Ruby | 'Ruby';
 	settings: RubyGenerationOptions;
 }
 interface SQLExportTypeConfig {
-	plugin: ExportType.SQL;
+	plugin: ExportType.SQL | 'SQL';
 	settings: SQLGenerationOptions;
 }
 interface TypescriptExportTypeConfig {
-	plugin: ExportType.Typescript;
+	plugin: ExportType.Typescript | 'Typescript';
 	settings: TypescriptGenerationOptions;
 }
 interface XMLExportTypeConfig {
-	plugin: ExportType.XML;
+	plugin: ExportType.XML | 'XML';
 	settings: XMLGenerationOptions;
 }
 

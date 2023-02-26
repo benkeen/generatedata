@@ -1,4 +1,4 @@
-import generate, { DataType, ExportType, GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
 
 describe('CLI data generation', () => {
 	const getTemplate = (dataStructureFormat: 'simple' | 'complex'): GDTemplate => ({
@@ -7,14 +7,14 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: DataType.Names,
+				plugin: 'Names',
 				title: 'First Name',
 				settings: {
 					options: ['Name']
 				}
 			},
 			{
-				plugin: DataType.Names,
+				plugin: 'Names',
 				title: 'Last Name',
 				settings: {
 					options: ['Surname']
@@ -22,7 +22,7 @@ describe('CLI data generation', () => {
 			}
 		],
 		exportSettings: {
-			plugin: ExportType.JSON,
+			plugin: 'JSON',
 			settings: {
 				dataStructureFormat
 			}

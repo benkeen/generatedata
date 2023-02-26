@@ -3,8 +3,8 @@ import { ETState } from '~types/exportTypes';
 export type GenerationOptionsType = {
 	rootNodeName: string;
 	recordNodeName: string;
-	useCustomExportFormat: boolean;
-	customFormat: string;
+	useCustomExportFormat?: boolean;
+	customFormat?: string;
 }
 
 export const defaultGenerationOptions: GenerationOptionsType = {
