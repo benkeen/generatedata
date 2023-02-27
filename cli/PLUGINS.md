@@ -12,7 +12,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - [Alphanumeric](../client/src/plugins/dataTypes/Alphanumeric/README.md)
 - [AutoIncrement](../client/src/plugins/dataTypes/AutoIncrement/README.md)
 - [Boolean](../client/src/plugins/dataTypes/Boolean/README.md)
-- City
+- [City](../client/src/plugins/dataTypes/City/README.md))
 - Colour
 - Company
 - Computed

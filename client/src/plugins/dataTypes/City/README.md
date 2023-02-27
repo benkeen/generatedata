@@ -1,8 +1,21 @@
 # [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; City
 
-Generates a random city name.
+Generates a random city name. You have the choice of generating a simple city name from anywhere in the world, to mapping
+it to other data in the generated row, so the city is actually within a region or country from another field.
 
-### Example API Usage
+## Typings
+
+`
+{
+    source: RegionSource; // 'any', 'countries', 'regionRow'
+    selectedCountries: CountryType[];
+    targetRowId: string;
+}
+`
+
+
+
+### Example
 
 POST the following JSON content to: `http://[your site]/[generate data folder]/api/v1/data`:
 
