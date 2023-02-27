@@ -7,38 +7,31 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: "AutoIncrement",
-				title: "Simple increment",
+				plugin: 'Boolean',
+				title: 'boolean1',
 				settings: {
-					incrementStart: 1,
-					incrementValue: 1
+					values: ['Yes', 'No']
 				}
 			},
 			{
-				plugin: "AutoIncrement",
-				title: "Tens with prefix",
+				plugin: "Boolean",
+				title: "boolean2",
 				settings: {
-					incrementStart: 10,
-					incrementValue: 10,
-					incrementPlaceholder: "A-{{INCR}}"
+					values: ['0', '1']
 				}
 			},
 			{
-				plugin: "AutoIncrement",
-				title: "Decrement with suffix",
+				plugin: "Boolean",
+				title: "boolean3",
 				settings: {
-					incrementStart: 100,
-					incrementValue: -5,
-					incrementPlaceholder: "{{INCR}}B"
+					values: ['true', 'false']
 				}
 			},
 			{
-				plugin: "AutoIncrement",
-				title: "Incrementing range",
+				plugin: 'Boolean',
+				title: 'notReallyABoolean',
 				settings: {
-					incrementStart: 10,
-					incrementValue: 1,
-					incrementPlaceholder: "{{INCR}}-{{INCR*2}}"
+					values: ['Yes', 'No', 'Maybe']
 				}
 			}
 		],
@@ -50,16 +43,16 @@ describe('CLI data generation', () => {
 		}
 	});
 
-	it('Confirm simple export format', async () => {
+	it('Confirm generates correctly', async () => {
 		const data = await generate(getTemplate());
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
 		expect(Object.keys(generatedJSON[0])).toEqual([
-			'Simple increment',
-			'Tens with prefix',
-			'Decrement with suffix',
-			'Incrementing range'
+			'boolean1',
+			'boolean2',
+			'boolean3',
+			'notReallyABoolean'
 		]);
 	});
 });

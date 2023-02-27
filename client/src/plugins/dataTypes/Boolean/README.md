@@ -1,39 +1,115 @@
 # [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Boolean
 
-This Data Type generates random Boolean strings according to whatever format you want. Note: for the 
-placeholder strings, documentation for this Data Type in the generatedata UI. That provides the list of available
-placeholders.
+This Data Type generates random Boolean strings according to whatever format you want. It's actually just a convenience
+wrapper over some lower-level functions that supplies a bunch of preset boolean options via the UI, like `Yes/No`, `0/1`
+and others. 
 
-### Example API Usage
+By the way, even though you'll typically enter two values to randomly choose between, there's no reason why you can't
+add more - like the in the final field here.
 
-This example generates random Boolean. POST the following JSON content to 
-`http://[your site]/[generate data folder]/api/v1/data`:
 
-```javascript
+## Typings 
+
+The settings for this Data Type are just a single `value` property, containing an array of the values you want the script
+to randomly pull from. 
+
+```
 {
-    "numRows": 10,
-    "rows": [
+    value: string[];
+}
+```
+
+Note that they **must be** strings - so even if you want to generate a numeric boolean value (e.g. `0` and `1`), you'll still
+need to enter a string here (`["0", "1"]`). Whether or not the actual generated content will be a string, number, boolean
+etc. value will depend on the Export Type you've chosen. e.g. in XML, it would just output the character as-is without 
+single or double quotes around it, even if it was a string. But if it's in a programming language, it has to be
+syntactically correct for that language. 
+
+This Data Type asks the Export Types to _infer_ the type of data it us, based on the content generated. So it's up to the
+Export Type to determine exactly it appears. In the examples below, you can see that the [JSON](../../exportTypes/JSON/README.md)
+Export Type chose to render the genuine JS boolean and numbers as booleans and numbers, and not double quote them.
+
+
+### Example
+
+```
+{
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
         {
-            "type": "Boolean",
-            "title": "Random False-True",
-            "settings": {
-                "placeholder": "False|True"
+            plugin: "Boolean",
+            title: "boolean1",
+            settings: {
+                values: ["Yes", "No"]
             }
         },
         {
-            "type": "Boolean",
-            "title": "Random 0 or 1",
-            "settings": {
-                "placeholder": "0|1"
+            plugin: "Boolean",
+            title: "boolean2",
+            settings: {
+                values: ['0', '1']
+            }
+        },
+        {
+            plugin: "Boolean",
+            title: "boolean3",
+            settings: {
+                values: ['true', 'false']
+            }
+        },
+        {
+            plugin: 'Boolean',
+            title: 'notReallyABoolean',
+            settings: {
+                values: ['Yes', 'No', 'Maybe']
             }
         }
     ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "simple"
+    exportSettings: {
+        plugin: 'JSON',
+        settings: {
+            dataStructureFormat: 'simple'
         }
     }
 }
+```
+
+Sample output:
+
+```javascript
+[
+    {
+        "boolean1": "No",
+        "boolean2": 1,
+        "boolean3": true,
+        "notReallyABoolean": "Maybe"
+    },
+    {
+        "boolean1": "Yes",
+        "boolean2": 0,
+        "boolean3": false,
+        "notReallyABoolean": "Maybe"
+    },
+    {
+        "boolean1": "No",
+        "boolean2": 0,
+        "boolean3": false,
+        "notReallyABoolean": "Maybe"
+    },
+    {
+       "boolean1": "Yes",
+        "boolean2": 0,
+        "boolean3": false,
+        "notReallyABoolean": "No"
+    },
+    {
+        "boolean1": "Yes",
+        "boolean2": 1,
+        "boolean3": true,
+        "notReallyABoolean": "No"
+    },
+    ...
+]
 ```
