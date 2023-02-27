@@ -1,4 +1,4 @@
-## IBAN Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; IBAN
 
 This Data Type generates a random International Bank Account Number (IBAN).
 

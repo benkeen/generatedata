@@ -1,4 +1,4 @@
-## Track1 Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Track1
 
 This Data Type generates a random Track1 number.
 

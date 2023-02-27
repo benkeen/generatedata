@@ -137,6 +137,7 @@ Note: requires the main client/ application to have been built first. To do that
 ### Other scenarios
 
 - Generating multiple different types in a single field
+- Increasing probability of particular format being used over others
 - Having one field be based on another field
     - e.g. regions (country, region, city, zip)
     - email addresses that look like the names of the users

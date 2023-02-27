@@ -1,4 +1,4 @@
-## Region Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Region
 
 This Data Type generates a random region. A region is something like a State, Province or County - whatever is 
 applicable for a particular country.

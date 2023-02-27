@@ -1,4 +1,4 @@
-## Phone Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Phone
 
 This Data Type generates a phone number with a simple search-replace algorithm. Any `X`'s in the placeholder
 string are replaced with 1-9; any `x`'s (lowercase) are replaced with 0-9. 

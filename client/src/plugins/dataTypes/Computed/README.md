@@ -1,4 +1,4 @@
-## Computed Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Computed
 
 This Data Type lets you grab the content from other generate rows and manipulate that information however you need.
 

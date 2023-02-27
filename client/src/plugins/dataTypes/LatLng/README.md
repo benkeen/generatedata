@@ -1,4 +1,4 @@
-## LatLng Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; LatLng
 
 This Data Type generates a latitude / longitude.
 

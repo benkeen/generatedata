@@ -1,4 +1,4 @@
-## Constant Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Constant
 
 This Data Type generates a constant value (any string / number) for N rows, then switches to another constant. You can 
 control the size of N and the list of constants to be inserted. Basically it lets you do things like give half your 

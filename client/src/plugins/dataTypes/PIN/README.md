@@ -1,4 +1,4 @@
-## PIN Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; PIN
 
 This Data Type generates a four character PIN.
 

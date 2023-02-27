@@ -1,4 +1,4 @@
-## Boolean Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Boolean
 
 This Data Type generates random Boolean strings according to whatever format you want. Note: for the 
 placeholder strings, documentation for this Data Type in the generatedata UI. That provides the list of available
@@ -37,8 +37,3 @@ This example generates random Boolean. POST the following JSON content to
     }
 }
 ```
-
-### API help
-
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)

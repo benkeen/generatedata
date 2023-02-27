@@ -1,4 +1,4 @@
-## PersonalNumber Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; PersonalNumber
 
 This Data Type generates a random personal number, used in some countries for social security insurance.
 

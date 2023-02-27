@@ -1,4 +1,4 @@
-## Company Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Company
 
 Generates a random company name.
 

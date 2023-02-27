@@ -1,4 +1,4 @@
-## Country Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Country
 
 This Data Type generates a random country name. It can be used in two ways:
 1. Generates a random country name from the ~250 countries in the world. 

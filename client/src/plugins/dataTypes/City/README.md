@@ -1,4 +1,4 @@
-## City Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; City
 
 Generates a random city name.
 

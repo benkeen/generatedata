@@ -1,6 +1,6 @@
 # [CLI](./README.md) &raquo; Plugins
 
-Each plugin has its own configuration settings. See the pages below for details and explanations of each plugin and 
+Each plugin has its own unique configuration settings. See the pages below for details and explanations of each plugin and 
 what the options do.
 
 ### Data Types
@@ -11,8 +11,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 
 - [Alphanumeric](../client/src/plugins/dataTypes/Alphanumeric/README.md)
 - [AutoIncrement](../client/src/plugins/dataTypes/AutoIncrement/README.md)
-- BitcoinAddress
-- Boolean
+- [Boolean](../client/src/plugins/dataTypes/Boolean/README.md)
 - City
 - Colour
 - Company
@@ -38,7 +37,6 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - PostalZip
 - Region
 - Rut
-- SIRET
 - StreetAddress
 - TextFixed
 - TextRandom

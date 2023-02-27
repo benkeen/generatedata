@@ -1,4 +1,4 @@
-## TextFixed Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; TextFixed
 
 This Data Type generates a fixed number of random words.  
 

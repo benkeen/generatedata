@@ -1,4 +1,4 @@
-## Date Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Date
 
 This Data Type generates a random date in a particular format. 
 

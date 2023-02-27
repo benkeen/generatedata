@@ -1,4 +1,4 @@
-## TextFixed Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; TextRandom
 
 This Data Type generates a random number of random words, taken from lorem ipsum. You can specify the min and max
 number of words. 
@@ -27,8 +27,3 @@ number of words.
     }
 }
 ```
- 
-### API help
-
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)

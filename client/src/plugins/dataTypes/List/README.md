@@ -1,4 +1,4 @@
-## List Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; List
 
 This Data Type generates a item from a random list. 
 

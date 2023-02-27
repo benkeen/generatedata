@@ -82,7 +82,7 @@ This example generates four separate fields with different auto-increment values
     exportSettings: {
         type: "JSON",
         settings: {
-            dataStructureFormat: "complex"
+            dataStructureFormat: "simple"
         }
     }
 }

@@ -1,4 +1,4 @@
-## PAN Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; PAN
 
 This Data Type generates a *valid* Personal Access Number (PAN) for a variety of credit card types.  
 

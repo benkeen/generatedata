@@ -1,4 +1,4 @@
-## NormalDistribution Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; NormalDistribution
 
 This Data Type generates a random distribution based on a mean and a standard deviation.
 

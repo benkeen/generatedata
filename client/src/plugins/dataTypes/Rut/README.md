@@ -1,4 +1,4 @@
-## Rut Data Type
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Rut
 
 This Data Type generates a random Chilean Unique National Role Number
 

@@ -1,4 +1,4 @@
-### PostalZip API Usage
+# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; PostalZip
 
 This Data Type works in conjunction with the Countries plugins to generate country-specific postal/zip formats 
 for consistency of data across each row. For example:
