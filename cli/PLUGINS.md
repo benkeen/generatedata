@@ -12,7 +12,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - [Alphanumeric](../client/src/plugins/dataTypes/Alphanumeric/README.md)
 - [AutoIncrement](../client/src/plugins/dataTypes/AutoIncrement/README.md)
 - [Boolean](../client/src/plugins/dataTypes/Boolean/README.md)
-- [City](../client/src/plugins/dataTypes/City/README.md))
+- [City](../client/src/plugins/dataTypes/City/README.md) (TODO once Country and Region are fleshed out)
 - Colour
 - Company
 - Computed
@@ -35,7 +35,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - Phone
 - PIN
 - PostalZip
-- [Region](../client/src/plugins/dataTypes/Region/README.md)
+- [Region](../client/src/plugins/dataTypes/Region/README.md) (TODO once Country is fleshed out)
 - Rut
 - StreetAddress
 - TextFixed

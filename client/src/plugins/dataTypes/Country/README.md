@@ -4,54 +4,95 @@ This Data Type generates a random country name. It can be used in two ways:
 1. Generates a random country name from the ~250 countries in the world. 
 2. Generates a random country name from the list of Country plugins. 
  
-The Country plugins provide a much richer set of data for use by the Data Generator. Each plugin defines not just the 
-country name, but a list of its regions and cities. It can also define things like postal/zip formats, phone number 
-formats and more - anything specific to the country. The benefit to using the country plugins is when you 
-use multiple, related data types like `Country`, `Region` and `City`: it ensures that each row of data is consistent 
+The Country plugins provide a much richer set of data for use by the Data Generator. Each plugin contains regions, cities, 
+postal/zip formats and phone numbers - anything specific to the country. The benefit to using the country plugins is when you 
+use multiple, related data types like `Region` and `City`: it ensures that each row of data is consistent 
 and that the city names belong to the region, which belongs to the country. 
 
+## Examples
 
-### Example API Usage
+This generates two rows of data:
+1. Any country from the full list of `250 countries in the world.
+2. Any country from the list of plugins.
+3. One of the selected country plugins (Canada, Nigeria, Spain, Norway)
 
 ```javascript
 {
-    "numRows": 20,
-    "countries": ["CA", "US", "united_kingdom"],
-    "rows": [
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
         {
-            "type": "Country",
-            "title": "Country",
-            "settings": {
-                "limitCountriesToSelectedPlugins": true
+            plugin: 'Country',
+            title: 'any-country',
+            settings: {
+                source: 'all'
             }
         },
         {
-            "type": "Region",
-            "title": "Region",
-            "settings": {
-                "countries": {
-                    "CA": { "full": true, "short": false },
-                    "US": { "full": true, "short": false },
-                    "united_kingdom": { "full": true, "short": false }
-                }
+            plugin: 'Country',
+            title: 'country-plugin',
+            settings: {
+                source: 'plugins'
             }
         },
         {
-            "type": "City",
-            "title": "City"
+            plugin: 'Country',
+            title: 'country-plugin',
+            settings: {
+                source: 'plugins',
+                selectedCountries: [
+                    'Canada',
+                    'Nigeria',
+                    'Spain',
+                    'Norway'
+                ]
+            }
         }
     ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "simple"
+    exportSettings: {
+        plugin: 'JSON',
+        settings: {
+            dataStructureFormat: 'simple'
         }
     }
 }
 ```
- 
-### API help
 
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
+Sample output:
+
+```
+[
+    {
+        "any-country": "Armenia",
+        "country-plugin": "Germany",
+        "country-plugins-subset": "Norway"
+    },
+    {
+        "any-country": "Argentina",
+        "country-plugin": "Colombia",
+        "country-plugins-subset": "Norway"
+    },
+    {
+        "any-country": "Micronesia",
+        "country-plugin": "Poland",
+        "country-plugins-subset": "Nigeria"
+    },
+    {
+        "any-country": "Estonia",
+        "country-plugin": "Costa Rica",
+        "country-plugins-subset": "Spain"
+    },
+    {
+        "any-country": "Mongolia",
+        "country-plugin": "Ireland",
+        "country-plugins-subset": "Spain"
+    },
+    {
+        "any-country": "Bouvet Island",
+        "country-plugin": "Australia",
+        "country-plugins-subset": "Canada"
+    },
+    ...
+}
+```
