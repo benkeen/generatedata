@@ -22,6 +22,8 @@ import workerUtils from '../../client/src/utils';
 import { GDLocale, GenerationTemplate } from '~types/general';
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { convertRowsToGenerationTemplate } from '~store/generator/generator.selectors';
+import { getCountryData } from '~utils/countryUtils';
+import { setLocale } from '~utils/langUtils';
 
 export { availableLocales } from '../../client/_env';
 export { DataType, ExportType, GDTemplate };
@@ -67,8 +69,12 @@ export type GDParams = {
  */
 const generate = async (template: GDTemplate, params?: GDParams): Promise<string> => {
     const normalizedTemplate = getNormalizedGDTemplate(template);
-    const generationSettings = normalizedTemplate.generationSettings;
-    const i18n = getI18nStrings(generationSettings.locale as GDLocale)
+
+    // initialize the locale. This is used for a few things in the app for the generated date
+    const locale = normalizedTemplate.generationSettings.locale as GDLocale;
+    const i18n = getI18nStrings(normalizedTemplate.generationSettings.locale as GDLocale)
+    setLocale(locale, i18n);
+
     const dataTypeInterface = getWorkerInterface();
     const exportTypeInterface = getExportTypeWorkerInterface(normalizedTemplate.exportSettings.plugin as ExportType);
 
@@ -101,6 +107,7 @@ const generate = async (template: GDTemplate, params?: GDParams): Promise<string
             generationSettings: normalizedTemplate.generationSettings,
             template: convertPublicToInternalTemplate(normalizedTemplate.dataTemplate),
             countryNames,
+            countryData: getCountryData(),
             onComplete,
             columns: getColumns(normalizedTemplate.dataTemplate)
         });

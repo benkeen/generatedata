@@ -7,31 +7,10 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: 'Boolean',
-				title: 'boolean1',
+				plugin: 'City',
+				title: 'any-city',
 				settings: {
-					values: ['Yes', 'No']
-				}
-			},
-			{
-				plugin: "Boolean",
-				title: "boolean2",
-				settings: {
-					values: ['0', '1']
-				}
-			},
-			{
-				plugin: "Boolean",
-				title: "boolean3",
-				settings: {
-					values: ['true', 'false']
-				}
-			},
-			{
-				plugin: 'Boolean',
-				title: 'notReallyABoolean',
-				settings: {
-					values: ['Yes', 'No', 'Maybe']
+					source: 'any'
 				}
 			}
 		],
@@ -49,10 +28,7 @@ describe('CLI data generation', () => {
 
 		expect(generatedJSON.length).toEqual(10);
 		expect(Object.keys(generatedJSON[0])).toEqual([
-			'boolean1',
-			'boolean2',
-			'boolean3',
-			'notReallyABoolean'
+			'any-city'
 		]);
 	});
 });

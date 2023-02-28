@@ -6,11 +6,25 @@ export const enum RegionSource {
 	regionRow = 'regionRow'
 }
 
-export type CityState = {
-	source: RegionSource;
+export type CityStateAny = {
+	source: RegionSource.any | 'any';
+	selectedCountries?: [],
+	targetRowId?: ''
+};
+
+export type CityStateRegionRow = {
+	source: RegionSource.regionRow | 'regionRow'
+	selectedCountries?: [],
+	targetRowId: string;
+};
+
+export type CityStateCountryRow = {
+	source: RegionSource.countries | 'countries';
 	selectedCountries: CountryType[];
 	targetRowId: string;
 };
+
+export type CityState = CityStateAny | CityStateRegionRow | CityStateCountryRow;
 
 export type GenerationOptionsType = CityState;
 

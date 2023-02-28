@@ -17,7 +17,7 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 		country = utils.randomUtils.getRandomArrayValue(countryList as CountryType[]);
 	} else {
 		const list = rowState.selectedCountries.length ? selectedCountries : countryList;
-		country = utils.randomUtils.getRandomArrayValue(list) as CountryType;
+		country = utils.randomUtils.getRandomArrayValue(list as string[]) as CountryType;
 	}
 
 	// this can occur if the user hasn't configured the region DT properly
