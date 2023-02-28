@@ -8,21 +8,21 @@ export const enum RegionSource {
 
 export type CityStateAny = {
 	source: RegionSource.any | 'any';
-	selectedCountries?: [],
-	targetRowId?: ''
-};
+	selectedCountries?: [];
+	targetRowId?: '';
+}
 
 export type CityStateRegionRow = {
-	source: RegionSource.regionRow | 'regionRow'
-	selectedCountries?: [],
+	source: RegionSource.regionRow | 'regionRow';
+	selectedCountries?: [];
 	targetRowId: string;
-};
+}
 
 export type CityStateCountryRow = {
 	source: RegionSource.countries | 'countries';
 	selectedCountries: CountryType[];
 	targetRowId: string;
-};
+}
 
 export type CityState = CityStateAny | CityStateRegionRow | CityStateCountryRow;
 

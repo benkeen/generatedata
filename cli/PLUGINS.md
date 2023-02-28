@@ -17,7 +17,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - Company
 - Computed
 - Constant
-- Country
+- [Country](../client/src/plugins/dataTypes/Country/README.md)
 - Currency
 - CVV
 - Date
@@ -35,7 +35,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - Phone
 - PIN
 - PostalZip
-- Region
+- [Region](../client/src/plugins/dataTypes/Region/README.md)
 - Rut
 - StreetAddress
 - TextFixed
