@@ -1,4 +1,4 @@
-# [Docs](../../../docs/README.md) &raquo; Data Types
+# [Docs](../../../../docs/README.md) &raquo; Data Types
 
 These pages demonstrate the available configurations for each Data Type. Most of them use JSON as the export format,
 because it's nice and concise for illustration purposes. But remember that all of them can be used with any Export
