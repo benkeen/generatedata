@@ -2,7 +2,6 @@
 
 This Data Type generates a random email address. 
 
-
 ### Example API Usage
 
 ```javascript

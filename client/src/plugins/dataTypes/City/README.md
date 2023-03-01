@@ -5,14 +5,13 @@ it to other data in the generated row, so the city is actually within a region o
 
 ## Typings
 
-`
+```
 {
     source: RegionSource; // 'any', 'countries', 'regionRow'
     selectedCountries: CountryType[];
     targetRowId: string;
 }
-`
-
+```
 
 
 ### Example
@@ -37,8 +36,3 @@ POST the following JSON content to: `http://[your site]/[generate data folder]/a
     }
 }
 ```
-
-### API help
-
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
