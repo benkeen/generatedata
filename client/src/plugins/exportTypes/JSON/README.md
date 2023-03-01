@@ -1,4 +1,4 @@
-## JSON Export Type
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Export Types](../README.md) &raquo; JSON
 
 - [Intro](#intro)
 - [Example API Usage](#example-api-usage)

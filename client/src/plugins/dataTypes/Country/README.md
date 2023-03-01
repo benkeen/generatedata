@@ -1,19 +1,19 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Country
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; Country
 
 This Data Type generates a random country name. It can be used in two ways:
 1. Generates a random country name from the ~250 countries in the world. 
 2. Generates a random country name from the list of Country plugins. 
  
 The Country plugins provide a much richer set of data for use by the Data Generator. Each plugin contains regions, cities, 
-postal/zip formats and phone numbers - anything specific to the country. The benefit to using the country plugins is when you 
-use multiple, related data types like `Region` and `City`: it ensures that each row of data is consistent 
-and that the city names belong to the region, which belongs to the country. 
+postal/zip formats and phone numbers - anything specific to the country. These let you tie multiple rows together in your 
+data set, like `Country`, `Region` and `City`: it ensures that the data looks realistic for a single row of data, i.e. 
+a random city name is withing a random region within the randomly selected country. 
 
 ## Examples
 
 This generates two rows of data:
 1. Any country from the full list of `250 countries in the world.
-2. Any country from the list of plugins.
+2. Any country from the full list of plugins (pass empty array for `selectedCountries`)
 3. One of the selected country plugins (Canada, Nigeria, Spain, Norway)
 
 ```javascript
@@ -33,7 +33,8 @@ This generates two rows of data:
             plugin: 'Country',
             title: 'country-plugin',
             settings: {
-                source: 'plugins'
+                source: 'plugins',
+                selectedCountries: []
             }
         },
         {

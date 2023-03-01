@@ -9,7 +9,7 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 	const { rowState, countryData } = data;
 	const { source, selectedCountries } = rowState as CountryState;
 
-	const hasFilteredCountryList = selectedCountries.length > 0;
+	const hasFilteredCountryList = selectedCountries && selectedCountries.length > 0;
 
 	if (source === 'all') {
 		return {

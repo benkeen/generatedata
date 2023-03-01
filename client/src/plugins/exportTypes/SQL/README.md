@@ -1,4 +1,5 @@
-## SQL Export Type
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Export Types](../README.md) &raquo; SQL
+
 
 This plugin is probably the most configurable Export Type currently available. It generates the random data in SQL
 format for use in populating database such as MySQL, Oracle, SQLite and more. It offers a range of controls

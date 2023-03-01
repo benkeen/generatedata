@@ -1,4 +1,4 @@
-# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Export Types](../README.md) &raquo; LDIF
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Export Types](../README.md) &raquo; Ruby
 
 This plugin generates data in LDIF (LDAP Data Exchange Format).
 

@@ -17,7 +17,8 @@ describe('CLI data generation', () => {
 				plugin: 'Country',
 				title: 'country-plugin',
 				settings: {
-					source: 'plugins'
+					source: 'plugins',
+					selectedCountries: []
 				}
 			},
 			{

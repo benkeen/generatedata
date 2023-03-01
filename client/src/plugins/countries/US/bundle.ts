@@ -30,9 +30,9 @@ const US: GetCountryData = (i18n) => ({
 				'Mobile', 'Huntsville', 'Tuscaloosa'
 			],
 			extendedData: {
-				'zipFormat': {
-					'format': 'ZYxxx',
-					'replacements': {
+				zipFormat: {
+					format: 'ZYxxx',
+					replacements: {
 						'Z': '3',
 						'Y': '56',
 						'x': '0123456789'
@@ -49,7 +49,7 @@ const US: GetCountryData = (i18n) => ({
 				'Anchorage', 'Fairbanks', 'Juneau', 'College', 'Anchorage', 'Fairbanks', 'Juneau', 'College', 'Ketchikan'
 			],
 			extendedData: {
-				'zipFormat': {
+				zipFormat: {
 					'format': 'ZZYxx',
 					'replacements': {
 						'Z': '9',
@@ -68,9 +68,9 @@ const US: GetCountryData = (i18n) => ({
 				'Phoenix', 'Tucson', 'Mesa', 'Glendale', 'Chandler'
 			],
 			extendedData: {
-				'zipFormat': {
-					'format': 'ZYxxx',
-					'replacements': {
+				zipFormat: {
+					format: 'ZYxxx',
+					replacements: {
 						'Z': '8',
 						'Y': '56',
 						'x': '0123456789'

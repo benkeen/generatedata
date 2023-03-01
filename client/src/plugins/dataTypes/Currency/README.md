@@ -1,4 +1,4 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Currency
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; Currency
 
 This Data Type generates a random monetary amount. It's pretty versatile and can be used for many, if not all country
 currencies. 

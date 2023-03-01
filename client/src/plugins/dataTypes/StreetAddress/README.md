@@ -1,4 +1,4 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; StreetAddress
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; StreetAddress
 
 This Data Type generates a street address. 
 

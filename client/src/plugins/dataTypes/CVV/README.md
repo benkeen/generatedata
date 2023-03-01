@@ -1,4 +1,4 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; CVV
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; CVV
 
 This Data Type generates a random CVV Number for a credit card.
 

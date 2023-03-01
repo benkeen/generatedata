@@ -2,18 +2,21 @@ import { CountryType } from "~types/countries";
 
 export type CountrySource = 'plugins' | 'all';
 
-export type CountryStateDefault = {
+export type CountryState = {
 	source: CountrySource;
+	selectedCountries: CountryType[];
+}
+
+export type CountryStateAll = {
+	source: 'all';
 }
 
 export type CountryStatePlugins = {
-	source: CountrySource;
-	selectedCountries?: CountryType[];
+	source: 'plugins';
+	selectedCountries: CountryType[];
 }
 
-export type CountryState = CountryStateDefault | CountryStatePlugins;
-
-export type GenerationOptionsType = CountryState;
+export type GenerationOptionsType = CountryStateAll | CountryStatePlugins;
 
 export const initialState: CountryState = {
 	source: 'plugins',

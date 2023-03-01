@@ -1,4 +1,4 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; GUID
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; GUID
 
 This Data Type generates a random GUID of the form: *HHHHHHHH-HHHH-HHHH-HHHH-HHHHHHHHHHHH*  
 

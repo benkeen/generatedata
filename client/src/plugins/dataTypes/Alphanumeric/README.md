@@ -1,4 +1,4 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Alphanumeric
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; Alphanumeric
 
 This Data Type generates random alphanumeric strings in a custom format. This can be used for anything you fancy. The only
 limit is your imagination. (It's late, I can't believe I just typed that).
@@ -32,7 +32,7 @@ H       - 0-F (hexidecimal value)
 
 - To generate multiple different formats in a single field, just separate the `value` contents with a pipe, e.g.
 
-```
+```javascript
 {
     plugin: 'Alphanumeric',
     title: 'multipleFormats',
@@ -82,7 +82,7 @@ for illustration purposes.
 
 Sample output:
 
-```
+```javascript
 [
     {
         "Zip": 42694
@@ -132,7 +132,7 @@ This generates a fake clothing tag number of the format `C-152314-DG`.
 
 Sample output:
 
-```
+```javascript
 [
     {
         "TagNumber": "L-670724-GG"

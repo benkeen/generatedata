@@ -1,4 +1,4 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; AutoIncrement
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; AutoIncrement
 
 This Data Type generates auto-increment sequences in a variety of different ways.  
 
@@ -6,18 +6,16 @@ This Data Type generates auto-increment sequences in a variety of different ways
 actually already exists in the [SQL Export Type](../../exportTypes/SQL/README.md) - you don't need a separate field for
 that.
 
-
 ## Typings
 
-```
+```typescript
 {
     incrementStart: number;
     incrementValue: number;
-    incrementPlaceholder?: string
+    incrementPlaceholder?: string;
 }
 
 ```
-
 
 ## The `incrementPlaceholder` property
 

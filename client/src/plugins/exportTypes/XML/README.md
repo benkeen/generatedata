@@ -1,4 +1,4 @@
-## XML Export Type
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Export Types](../README.md) &raquo; XML
 
 This Export Type lets you generate your random data in XML format. You can use this plugin in one of two ways:
 

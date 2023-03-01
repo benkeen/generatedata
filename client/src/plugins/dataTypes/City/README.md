@@ -1,4 +1,4 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; City
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; City
 
 Generates a random city name. You have the choice of generating a simple city name from anywhere in the world, to mapping
 it to other data in the generated row, so the city is actually within a region or country from another field.

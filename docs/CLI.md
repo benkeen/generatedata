@@ -1,12 +1,12 @@
-# generatedata CLI
+# [Docs](../README.md) &raquo; CLI 
 
 > In active development (Feb 2023). Come back later!
 
-Since 4.2.0, the generatedata.com site is now available as a CLI. You can generate all the same data as you 
+Since 4.2.0, the generatedata.com site is now available as a CLI. You can generate all the same data as you
 can via the website, only via the command line from your own machine. There are two ways to do this:
 
 - A _binary_ that you can run on the node command line, or
-- JS code you can include and run in your own JS/TS applications. 
+- JS code you can include and run in your own JS/TS applications.
 
 Both are available via the `@generatedata/cli` npm package.
 
@@ -15,7 +15,7 @@ Both are available via the `@generatedata/cli` npm package.
 
 `npm install @generatedata/cli`
 
-The npm package contains both a command line tool and methods that can be used within your own JS/TS code. 
+The npm package contains both a command line tool and methods that can be used within your own JS/TS code.
 
 #### Binary
 
@@ -37,7 +37,7 @@ import { generate, GDTemplate } from '@generatedata/cli';
 ## Configuration file
 
 The configuration file contains the generation settings (number of rows, location of file, etc.), the JSON representation
-of the type of data you want, and the format (JSON, CSV etc.). Here's a simple example that generates 1000 rows of first and 
+of the type of data you want, and the format (JSON, CSV etc.). Here's a simple example that generates 1000 rows of first and
 last names in JSON format.
 
 ```json
@@ -77,8 +77,8 @@ last names in JSON format.
 }
 ```
 
-This file can get very large and hard to manually configure! The simplest way to create the file is to use the 
-[main website](https://generatedata.com). There, just use the interface to construct the data set and format you want, 
+This file can get very large and hard to manually configure! The simplest way to create the file is to use the
+[main website](https://generatedata.com). There, just use the interface to construct the data set and format you want,
 then click on the "Schema" icon. That will generate the configuration file which you can download and use locally.
 
 **(This will be added in 4.2.0).**
@@ -88,7 +88,7 @@ Let's look at the options. They're grouped into three top-level properties.
 
 #### 1. generationSettings
 
-This section contains all high-level settings about the data you're generating. 
+This section contains all high-level settings about the data you're generating.
 
 | Setting         | Type       | Required | Default value | Description                                                                                                                                                                                                                                                 |
 |-----------------|------------|-------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -116,12 +116,12 @@ all of these rows contain the same properties:
 
 #### 3. exportSettings
 
-This contains the settings for the _format_ of the data you want, like XML, SQL etc.  
+This contains the settings for the _format_ of the data you want, like XML, SQL etc.
 
 
 ### Local dev
 
-`yarn build`  
+`yarn build`
 - 
 - This generates the build artifacts.
 

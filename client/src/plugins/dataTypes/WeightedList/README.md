@@ -1,4 +1,4 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; WeightedList
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; WeightedList
 
 This Data Type generates random item or items from a weighted list. A weighted list is just a list of items where each
 item has a corresponding weight, for example:

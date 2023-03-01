@@ -1,4 +1,4 @@
-## HTML Export Type
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Export Types](../README.md) &raquo; HTML
 
 This plugin outputs the data in HTML format. You can either choose to output the data in a `<table>`, a `<ul>` or 
 `<dl>`'s, or if you're feeling really fancy, you can control the exact output via a custom Smarty template. The 

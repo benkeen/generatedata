@@ -1,4 +1,4 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Names
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; Names
 
 This Data Type lets you generate realistic **names** in a wide variety of formats. The options available are: male or
 female first names, surnames and initials, plus any combination of those in whatever order you want. You can also generate

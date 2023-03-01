@@ -1,4 +1,4 @@
-# [CLI](../../../../../cli/README.md) &raquo; [Plugins](../../../../../cli/PLUGINS.md) &raquo; Boolean
+# [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; Boolean
 
 This Data Type generates random Boolean strings according to whatever format you want. It's actually just a convenience
 wrapper over some lower-level functions that supplies a bunch of preset boolean options via the UI, like `Yes/No`, `0/1`
@@ -13,7 +13,7 @@ add more - like the in the final field here.
 The settings for this Data Type are just a single `value` property, containing an array of the values you want the script
 to randomly pull from. 
 
-```
+```typescript
 {
     value: string[];
 }
@@ -32,7 +32,7 @@ Export Type chose to render the genuine JS boolean and numbers as booleans and n
 
 ### Example
 
-```
+```javascript
 {
     generationSettings: {
         numResults: 10
