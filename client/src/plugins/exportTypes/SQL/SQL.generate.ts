@@ -148,7 +148,7 @@ export const generatePostgres = (generationData: ETMessageData): string => {
 			content += `DROP TABLE IF EXISTS "${sqlSettings.tableName}";\n\n`;
 		}
 		if (sqlSettings.createTable) {
-			content += 'CREATE TABLE "${sqlSettings.tableName}" (\n';
+			content += `CREATE TABLE "${sqlSettings.tableName}" (\n`;
 
 			if (sqlSettings.addPrimaryKey) {
 				content += '  id SERIAL PRIMARY KEY,\n';
