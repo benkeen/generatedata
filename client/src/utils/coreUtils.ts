@@ -58,7 +58,7 @@ export const performTask = (workerName: string, worker: any, postMessagePayload:
 
 	worker.postMessage({
 		...postMessagePayload,
-		_messageId: 1
+		_messageId: 1 // TODO
 	});
 
 	worker.onmessage = (data: any): void => {

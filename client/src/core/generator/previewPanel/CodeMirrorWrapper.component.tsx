@@ -76,7 +76,9 @@ export const generatePreviewString = (props: any): Promise<any> => {
 			exportTypeWorkerUrl,
 			countryData: getCountryData()
 		}, ({ data }: MessageEvent): void => {
-			resolve(data.data);
+			if (data.event === GenerationWorkerActionType.ExportTypeProcessed) {
+				resolve(data.data);
+			}
 		});
 	});
 };
