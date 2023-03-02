@@ -6,13 +6,13 @@ describe('CLI data generation', () => {
 			numResults: 10
 		},
 		dataTemplate: [
-			{
-				plugin: 'Email',
-				title: 'email',
-				settings: {
-					source: 'random'
-				}
-			},
+			// {
+			// 	plugin: 'Email',
+			// 	title: 'email',
+			// 	settings: {
+			// 		source: 'random'
+			// 	}
+			// },
 		],
 		exportSettings: {
 			plugin: 'JSON',

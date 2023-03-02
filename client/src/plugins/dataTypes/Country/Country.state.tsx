@@ -1,4 +1,4 @@
-import { CountryType } from "~types/countries";
+import { CountryType } from '~types/countries';
 
 export type CountrySource = 'plugins' | 'all';
 
