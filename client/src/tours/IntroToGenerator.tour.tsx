@@ -7,6 +7,7 @@ import * as selectors from '~store/generator/generator.selectors';
 import * as actions from '~store/generator/generator.actions';
 import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
+import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 
 
 const Step1 = (): JSX.Element => {
@@ -130,6 +131,15 @@ const steps = [
 		},
 		position: 'center' as ReactourStepPosition,
 		action: (): void => {
+			const pluginsToLoad: any = {
+				JSON: false,
+				Names: false,
+				Phone: false,
+				Email: false,
+				StreetAddress: false,
+				City: false,
+			};
+
 			store.dispatch(actions.clearPage(false));
 			store.dispatch(actions.addRows(5));
 
@@ -137,14 +147,34 @@ const steps = [
 			const rows = selectors.getSortedRowsArray(state);
 			const ids = rows.map(({ id }) => id);
 
-			store.dispatch(actions.onSelectDataType('Names', { gridRowId: ids[0] }));
-			store.dispatch(actions.onSelectDataType('Phone', { gridRowId: ids[1] }));
-			store.dispatch(actions.onSelectDataType('Email', { gridRowId: ids[2] }));
-			store.dispatch(actions.onSelectDataType('StreetAddress', { gridRowId: ids[3] }));
-			store.dispatch(actions.onSelectDataType('City', { gridRowId: ids[4] }));
-			store.dispatch(actions.onSelectExportType('JSON'));
+			const onLoadComplete = (plugin: DataTypeFolder | ExportTypeFolder): void => {
+				pluginsToLoad[plugin] = true;
 
-			store.dispatch(actions.refreshPreview(ids));
+				const allLoaded = Object.keys(pluginsToLoad).reduce((allLoaded, key) => allLoaded && pluginsToLoad[key], true);
+				if (allLoaded) {
+					store.dispatch(actions.refreshPreview(ids));
+				}
+			};
+
+			const shouldRefreshPreviewPanel = false;
+			store.dispatch(actions.onSelectDataType('Names', {
+				gridRowId: ids[0], shouldRefreshPreviewPanel, onLoadComplete
+			}));
+			store.dispatch(actions.onSelectDataType('Phone', {
+				gridRowId: ids[1], shouldRefreshPreviewPanel, onLoadComplete
+			}));
+			store.dispatch(actions.onSelectDataType('Email', {
+				gridRowId: ids[2], shouldRefreshPreviewPanel, onLoadComplete
+			}));
+			store.dispatch(actions.onSelectDataType('StreetAddress', {
+				gridRowId: ids[3], shouldRefreshPreviewPanel, onLoadComplete
+			}));
+			store.dispatch(actions.onSelectDataType('City', {
+				gridRowId: ids[4], shouldRefreshPreviewPanel, onLoadComplete
+			}));
+			store.dispatch(actions.onSelectExportType('JSON', {
+				shouldRefreshPreviewPanel, onLoadComplete
+			}));
 
 			const layout = selectors.getGeneratorLayout(state);
 			if (layout === 'horizontal') {

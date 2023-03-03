@@ -6,6 +6,7 @@ import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
 import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
+import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 
 const Step1 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
@@ -167,15 +168,41 @@ const steps = [
 
 				const ids = rows.map(({ id }) => id);
 
-				store.dispatch(actions.onSelectDataType('Country', { gridRowId: ids[0] }));
-				store.dispatch(actions.onSelectDataType('Region', { gridRowId: ids[1] }));
-				store.dispatch(actions.onSelectDataType('City', { gridRowId: ids[2] }));
-				store.dispatch(actions.onSelectDataType('StreetAddress', { gridRowId: ids[3] }));
-				store.dispatch(actions.onSelectDataType('PostalZip', { gridRowId: ids[4] }));
+				const pluginsToLoad: any = {
+					Typescript: false,
+					Country: false,
+					Region: false,
+					City: false,
+					StreetAddress: false,
+					PostalZip: false,
+				};
 
-				store.dispatch(actions.refreshPreview(ids));
+				const onLoadComplete = (plugin: DataTypeFolder | ExportTypeFolder): void => {
+					pluginsToLoad[plugin] = true;
 
-				store.dispatch(actions.onSelectExportType('Typescript'));
+					const allLoaded = Object.keys(pluginsToLoad).reduce((allLoaded, key) => allLoaded && pluginsToLoad[key], true);
+					if (allLoaded) {
+						store.dispatch(actions.refreshPreview(ids));
+					}
+				};
+
+				const shouldRefreshPreviewPanel = false;
+				store.dispatch(actions.onSelectDataType('Country', {
+					gridRowId: ids[0], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('Region', {
+					gridRowId: ids[1], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('City', {
+					gridRowId: ids[2], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('StreetAddress', {
+					gridRowId: ids[3], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('PostalZip', {
+					gridRowId: ids[4], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectExportType('Typescript', { shouldRefreshPreviewPanel, onLoadComplete }));
 			}, 10);
 		}
 	},

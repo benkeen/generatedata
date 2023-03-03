@@ -7,6 +7,7 @@ import * as selectors from '~store/generator/generator.selectors';
 import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
 import { GeneratorLayout } from '~core/generator/Generator.component';
+import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 
 const Step1 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
@@ -184,18 +185,59 @@ const steps = [
 
 				const ids = rows.map(({ id }) => id);
 
-				store.dispatch(actions.onSelectDataType('Names', { gridRowId: ids[0] }));
-				store.dispatch(actions.onSelectDataType('Phone', { gridRowId: ids[1] }));
-				store.dispatch(actions.onSelectDataType('Email', { gridRowId: ids[2] }));
-				store.dispatch(actions.onSelectDataType('StreetAddress', { gridRowId: ids[3] }));
-				store.dispatch(actions.onSelectDataType('City', { gridRowId: ids[4] }));
-				store.dispatch(actions.onSelectDataType('Region', { gridRowId: ids[5] }));
-				store.dispatch(actions.onSelectDataType('Country', { gridRowId: ids[6] }));
-				store.dispatch(actions.onSelectDataType('LatLng', { gridRowId: ids[7] }));
-				store.dispatch(actions.onSelectDataType('Alphanumeric', { gridRowId: ids[8] }));
-				store.dispatch(actions.onSelectDataType('Boolean', { gridRowId: ids[8] }));
+				const pluginsToLoad: any = {
+					Names: false,
+					Phone: false,
+					Email: false,
+					StreetAddress: false,
+					City: false,
+					Region: false,
+					Country: false,
+					LatLng: false,
+					Alphanumeric: false,
+					Boolean: false,
+				};
 
-				store.dispatch(actions.refreshPreview(ids));
+				const onLoadComplete = (plugin: DataTypeFolder | ExportTypeFolder): void => {
+					pluginsToLoad[plugin] = true;
+
+					const allLoaded = Object.keys(pluginsToLoad).reduce((allLoaded, key) => allLoaded && pluginsToLoad[key], true);
+					if (allLoaded) {
+						store.dispatch(actions.refreshPreview(ids));
+					}
+				};
+
+				const shouldRefreshPreviewPanel = false;
+				store.dispatch(actions.onSelectDataType('Names', {
+					gridRowId: ids[0], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('Phone', {
+					gridRowId: ids[1], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('Email', {
+					gridRowId: ids[2], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('StreetAddress', {
+					gridRowId: ids[3], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('City', {
+					gridRowId: ids[4], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('Region', {
+					gridRowId: ids[5], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('Country', {
+					gridRowId: ids[6], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('LatLng', {
+					gridRowId: ids[7], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('Alphanumeric', {
+					gridRowId: ids[8], shouldRefreshPreviewPanel, onLoadComplete
+				}));
+				store.dispatch(actions.onSelectDataType('Boolean', {
+					gridRowId: ids[8], shouldRefreshPreviewPanel, onLoadComplete
+				}));
 
 				document.querySelector('.tour-scrollableGridRows')!.scrollTop = 0;
 			}, 10);
