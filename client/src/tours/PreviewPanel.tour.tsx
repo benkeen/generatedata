@@ -167,11 +167,11 @@ const steps = [
 
 				const ids = rows.map(({ id }) => id);
 
-				store.dispatch(actions.onSelectDataType('Country', ids[0]));
-				store.dispatch(actions.onSelectDataType('Region', ids[1]));
-				store.dispatch(actions.onSelectDataType('City', ids[2]));
-				store.dispatch(actions.onSelectDataType('StreetAddress', ids[3]));
-				store.dispatch(actions.onSelectDataType('PostalZip', ids[4]));
+				store.dispatch(actions.onSelectDataType('Country', { gridRowId: ids[0] }));
+				store.dispatch(actions.onSelectDataType('Region', { gridRowId: ids[1] }));
+				store.dispatch(actions.onSelectDataType('City', { gridRowId: ids[2] }));
+				store.dispatch(actions.onSelectDataType('StreetAddress', { gridRowId: ids[3] }));
+				store.dispatch(actions.onSelectDataType('PostalZip', { gridRowId: ids[4] }));
 
 				store.dispatch(actions.refreshPreview(ids));
 

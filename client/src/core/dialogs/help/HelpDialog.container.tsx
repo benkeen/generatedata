@@ -15,7 +15,7 @@ const mapStateToProps = (state: any): Partial<HelpDialogProps> => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<HelpDialogProps> => ({
 	onClose: (): any => dispatch(actions.hideHelpDialog()),
-	onSelectDataType: (dataType: DataTypeFolder, id?: string): any => dispatch(actions.onSelectDataType(dataType, id))
+	onSelectDataType: (dataType: DataTypeFolder): any => dispatch(actions.onSelectDataType(dataType))
 });
 
 const container: any = connect(

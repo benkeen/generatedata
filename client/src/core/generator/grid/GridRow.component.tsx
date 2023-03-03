@@ -5,6 +5,7 @@ import DragIndicator from '@material-ui/icons/DragIndicator';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 import Dropdown from '~components/dropdown/Dropdown';
 import { DataRow } from '~store/generator/generator.reducer';
+import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
 import { DataTypeFolder } from '../../../../_plugins';
 import * as styles from './Grid.scss';
 import * as sharedStyles from '../../../styles/shared.scss';
@@ -37,7 +38,7 @@ export type GridRowProps = {
 	isDataTypeLoaded: boolean;
 	onChangeTitle: (id: string, value: string) => void;
 	onConfigureDataType: (id: string, data: any, metadata?: DTOptionsMetadata) => void;
-	onSelectDataType: (dataType: DataTypeFolder, id: string) => void;
+	onSelectDataType: (dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions) => void;
 	onRemove: (id: string) => void;
 	dtCustomProps: { [propName: string]: any };
 	dtDropdownOptions: any;
@@ -140,7 +141,7 @@ export const GridRow = ({
 								className={styles.dataTypeColDropdown}
 								isGrouped={true}
 								value={row.dataType}
-								onChange={(i: any): void => onSelectDataType(i.value, row.id)}
+								onChange={(i: any): void => onSelectDataType(i.value, { gridRowId: row.id })}
 								options={dtDropdownOptions}
 							/>
 							<div className={styles.dataTypeHelp}>

@@ -52,15 +52,16 @@ export const onChangeTitle = (id: string, value: string): any => async (dispatch
 	});
 };
 
-export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
-export const onSelectDataType = (dataType: DataTypeFolder, gridRowId?: string): any => (
-	(dispatch: any, getState: any): any => loadDataTypeBundle(dispatch, getState, dataType, { gridRowId })
-);
-
 export type LoadDataTypeBundleOptions = {
 	gridRowId?: string;
 	shouldRefreshPreviewPanel?: boolean;
+	onLoadComplete?: (dataType: DataTypeFolder) => void;
 };
+
+export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
+export const onSelectDataType = (dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions = {}): any => (
+	(dispatch: any, getState: any): any => loadDataTypeBundle(dispatch, getState, dataType, opts)
+);
 
 export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions = {}): void => {
 	const options = {
@@ -102,6 +103,12 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 
 			if (options.shouldRefreshPreviewPanel) {
 				dispatch(refreshPreview(ids));
+			}
+
+			// workaround to allow batch loading a bunch of different Data Types onload, and have the callee track what's
+			// been loaded to know when to do the refreshPreview() call
+			if (options.onLoadComplete) {
+				options.onLoadComplete(dataType);
 			}
 		});
 };
@@ -266,8 +273,13 @@ export const toggleExportSettings = (tab?: ExportSettingsTab): GDAction => ({
 export const HIDE_EXPORT_SETTINGS = 'HIDE_EXPORT_SETTINGS';
 export const hideExportSettings = (): GDAction => ({ type: HIDE_EXPORT_SETTINGS });
 
+export type LoadExportTypeBundleOptions = {
+	shouldRefreshPreviewPanel?: boolean;
+	onLoadComplete?: (exportType: ExportTypeFolder) => void;
+}
+
 export const SELECT_EXPORT_TYPE = 'SELECT_EXPORT_TYPE';
-export const onSelectExportType = (exportType: ExportTypeFolder, shouldRefreshPreviewPanel = true): any => {
+export const onSelectExportType = (exportType: ExportTypeFolder, opts: LoadExportTypeBundleOptions = {}): any => {
 	return (dispatch: any): any => {
 		dispatch({
 			type: SELECT_EXPORT_TYPE,
@@ -280,8 +292,11 @@ export const onSelectExportType = (exportType: ExportTypeFolder, shouldRefreshPr
 			.then((bundle: DTBundle) => {
 				dispatch(exportTypeLoaded(exportType, bundle.initialState));
 
-				if (shouldRefreshPreviewPanel) {
+				if (opts.shouldRefreshPreviewPanel) {
 					dispatch(refreshPreview());
+				}
+				if (opts.onLoadComplete) {
+					opts.onLoadComplete(exportType);
 				}
 			});
 	};
@@ -392,7 +407,7 @@ export const loadDataSet = (dataSet: DataSetListItem, showToast = true): any => 
 	});
 
 	// load all the datasets and export type
-	dispatch(onSelectExportType(exportType, false));
+	dispatch(onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
 	uniqueDataTypes.forEach((dataType: DataTypeFolder) => (
 		loadDataTypeBundle(dispatch, getState, dataType, { shouldRefreshPreviewPanel: false })
 	));

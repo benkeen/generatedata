@@ -1,3 +1,4 @@
+// @ts-ignore
 import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
 
 describe('CLI data generation', () => {

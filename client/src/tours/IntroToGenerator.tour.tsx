@@ -137,11 +137,11 @@ const steps = [
 			const rows = selectors.getSortedRowsArray(state);
 			const ids = rows.map(({ id }) => id);
 
-			store.dispatch(actions.onSelectDataType('Names', ids[0]));
-			store.dispatch(actions.onSelectDataType('Phone', ids[1]));
-			store.dispatch(actions.onSelectDataType('Email', ids[2]));
-			store.dispatch(actions.onSelectDataType('StreetAddress', ids[3]));
-			store.dispatch(actions.onSelectDataType('City', ids[4]));
+			store.dispatch(actions.onSelectDataType('Names', { gridRowId: ids[0] }));
+			store.dispatch(actions.onSelectDataType('Phone', { gridRowId: ids[1] }));
+			store.dispatch(actions.onSelectDataType('Email', { gridRowId: ids[2] }));
+			store.dispatch(actions.onSelectDataType('StreetAddress', { gridRowId: ids[3] }));
+			store.dispatch(actions.onSelectDataType('City', { gridRowId: ids[4] }));
 			store.dispatch(actions.onSelectExportType('JSON'));
 
 			store.dispatch(actions.refreshPreview(ids));

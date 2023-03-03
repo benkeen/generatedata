@@ -14,7 +14,7 @@ export type HelpDialogProps = {
 	onClose: any;
 	coreI18n: any;
 	dataTypeI18n: any;
-	onSelectDataType: (dataType: DataTypeFolder, id?: string) => void;
+	onSelectDataType: (dataType: DataTypeFolder) => void;
 };
 
 const DataTypeList = ({ onSelect, filterString }: any): any => {

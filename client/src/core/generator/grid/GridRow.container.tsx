@@ -6,6 +6,7 @@ import { getCountryNames } from '~utils/coreUtils';
 import { Store } from '~types/general';
 import { DataRow } from '~store/generator/generator.reducer';
 import * as actions from '~store/generator/generator.actions';
+import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
 import { DataTypeFolder } from '../../../../_plugins';
 import { DTOptionsMetadata } from '~types/dataTypes';
@@ -47,7 +48,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GridRowProps> => ({
 	onRemove: (id: string): any => dispatch(actions.removeRow(id)),
 	onChangeTitle: (id: string, value: string): any => dispatch(actions.onChangeTitle(id, value)),
 	onConfigureDataType: (id: string, data: any, metadata?: DTOptionsMetadata): any => dispatch(actions.onConfigureDataType(id, data, metadata)),
-	onSelectDataType: (dataType: DataTypeFolder, id: string): any => dispatch(actions.onSelectDataType(dataType, id)),
+	onSelectDataType: (dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions): any => dispatch(actions.onSelectDataType(dataType, opts)),
 });
 
 export default connect(

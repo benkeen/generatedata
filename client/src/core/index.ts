@@ -26,7 +26,7 @@ export const init = (): void => {
 	const numRows = selectors.getNumRows(state);
 
 	store.dispatch(mainActions.selectLocale(pageLocale));
-	store.dispatch(actions.onSelectExportType(exportType, false));
+	store.dispatch(actions.onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
 
 	const loadCountryNames = selectors.currentDataSetNeedsCountryNames(state);
 	if (loadCountryNames) {
