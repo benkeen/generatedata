@@ -8,31 +8,11 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: 'Country',
-				title: 'any-country',
+				plugin: 'Colour',
+				title: 'colour',
 				settings: {
-					source: 'all'
-				}
-			},
-			{
-				plugin: 'Country',
-				title: 'country-plugin',
-				settings: {
-					source: 'plugins',
-					selectedCountries: []
-				}
-			},
-			{
-				plugin: 'Country',
-				title: 'country-plugins-subset',
-				settings: {
-					source: 'plugins',
-					selectedCountries: [
-						'Canada',
-						'Nigeria',
-						'Spain',
-						'Norway'
-					]
+					value: '',
+					format: 'hex'
 				}
 			}
 		],
@@ -50,9 +30,7 @@ describe('CLI data generation', () => {
 
 		expect(generatedJSON.length).toEqual(10);
 		expect(Object.keys(generatedJSON[0])).toEqual([
-			'any-country',
-			'country-plugin',
-			'country-plugins-subset'
+			'colour'
 		]);
 	});
 });

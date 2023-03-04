@@ -1,6 +1,6 @@
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import rc from 'randomcolor';
-import { ColourFormat } from './Colour.state';
+import { ColourFormatEnum } from './Colour.state';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { value, luminosity, format, alpha } = data.rowState;
@@ -10,7 +10,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 		hue: value,
 		luminosity: luminosity,
 		format,
-		alpha: format === ColourFormat.rgba ? alpha : 1
+		alpha: format === ColourFormatEnum.rgba ? alpha : 1
 	});
 
 	return {

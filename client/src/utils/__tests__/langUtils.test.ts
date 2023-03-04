@@ -19,6 +19,7 @@ describe('getCurrentLocalizedPath', () => {
 	const { location } = window;
 
 	beforeAll(() => {
+		// @ts-ignore
 		delete window.location;
 	});
 

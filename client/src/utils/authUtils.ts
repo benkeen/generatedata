@@ -2,7 +2,7 @@ import env from '../../_env';
 import { SignInWithGoogleButton, initGoogleAuth } from '~core/auth/google/google';
 
 // refresh the token 1 minute before it expires
-export const setAuthTokenRefresh = (tokenExpiry: number, onRefresh: Function): void => {
+export const setAuthTokenRefresh = (tokenExpiry: number, onRefresh: any): void => {
 	const oneMinFromExpiry = (env.jwtDurationMins * 60 * 1000) - (60 * 1000);
 	const timeout = setTimeout((): void => {
 		clearTimeout(timeout);

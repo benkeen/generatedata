@@ -13,6 +13,32 @@ describe('CLI data generation', () => {
 				settings: {
 					source: 'any'
 				}
+			},
+			{
+				plugin: 'City',
+				title: 'city-within-country',
+				settings: {
+					source: 'countries',
+					selectedCountries: ['Australia', 'Canada']
+				}
+			},
+			{
+				plugin: 'Region',
+				title: 'region-source',
+				settings: {
+					source: 'countries',
+					selectedCountries: ['Germany', 'Australia'],
+					formats: ['full']
+				},
+				id: '1'
+			},
+			{
+				plugin: 'City',
+				title: 'city-within-region',
+				settings: {
+					source: 'regionRow',
+					targetRowId: '1'
+				}
 			}
 		],
 		exportSettings: {
@@ -29,7 +55,10 @@ describe('CLI data generation', () => {
 
 		expect(generatedJSON.length).toEqual(10);
 		expect(Object.keys(generatedJSON[0])).toEqual([
-			'any-city'
+			'any-city',
+			'city-within-country',
+			'region-source',
+			'city-within-region',
 		]);
 	});
 });

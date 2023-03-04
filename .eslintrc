@@ -76,16 +76,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/camelcase": [
-      "error",
-      {
-        "allow": [
-          "field_Oracle",
-          "field_MSSQL",
-          "field_Postgres"
-        ]
-      }
-    ]
+    "@typescript-eslint/ban-ts-comment": "off"
   },
   "settings": {
     "react": {

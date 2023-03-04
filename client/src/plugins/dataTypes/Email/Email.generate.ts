@@ -1,6 +1,6 @@
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { WorkerUtils } from '~utils/workerUtils';
-import { StringSource } from './Email.state';
+import { StringSourceEnum } from './Email.state';
 
 let utils: WorkerUtils;
 const MAX_EMAIL_LENGTH = 254;
@@ -107,7 +107,7 @@ export const generate = (data: DTGenerationData, workerUtils: WorkerUtils): DTGe
 	}
 
 	let prefix = '';
-	if (!source || source === StringSource.random) {
+	if (!source || source === StringSourceEnum.random) {
 		const words = getWords();
 		prefix = getRandomEmailPrefix(words);
 	} else {

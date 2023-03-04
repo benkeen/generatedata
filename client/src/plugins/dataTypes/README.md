@@ -7,8 +7,8 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - [Alphanumeric](./Alphanumeric/README.md)
 - [AutoIncrement](./AutoIncrement/README.md)
 - [Boolean](./Boolean/README.md)
-- [City](./City/README.md) (TODO once Country and Region are fleshed out)
-- Colour
+- [City](./City/README.md)
+- [Colour](./Colour/README.md)
 - Company
 - Computed
 - Constant

@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { DTCustomProps } from '~types/dataTypes';
 import { getSortedRowsArray } from '~store/generator/generator.selectors';
 import { REMOVE_ROW, SELECT_DATA_TYPE } from '~store/generator/generator.actions';
-import { CityState, CityStateRegionRow, RegionSource } from './City.state';
+import { CityState, CityStateRegionRow, RegionSourceEnum } from './City.state';
 
 const getRegionRows = createSelector(
 	getSortedRowsArray,
@@ -19,7 +19,7 @@ export const actionInterceptors = {
 		if (actionPayload.id === rowState.targetRowId) {
 			return {
 				...rowState,
-				source: RegionSource.any,
+				source: RegionSourceEnum.any,
 				targetRowId: ''
 			};
 		}
@@ -31,7 +31,7 @@ export const actionInterceptors = {
 			if (actionPayload.value !== 'Region') {
 				return {
 					...rowState,
-					source: RegionSource.any,
+					source: RegionSourceEnum.any,
 					targetRowId: ''
 				};
 			}

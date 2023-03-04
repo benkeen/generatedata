@@ -4,8 +4,8 @@ This Data Type generates a random region. A region is something like a State, Pr
 applicable for a particular country. The region data is stored in the [Country Plugins](../../countries/README.md), so 
 see that section to see what information is currently available. All country plugins provide regions.
 
-Countries are typically subdivided in numerous ways, so we choose the one that's most useful overall - almost always the
-region type that's used for addresses. For the shortcodes, typically they follow the ISO-3166-2 standard.
+Countries are typically subdivided geographically in numerous ways, so we choose the one that's most useful overall -
+almost always whatever region is used for addresses. For the shortcodes, typically they follow the ISO-3166-2 standard.
 
 This Data Type lets you generate regions in a number of different ways, hence the varied typings listed below. 
 
@@ -46,7 +46,7 @@ export type RegionStateCountries = Pick<RegionState, 'source' | 'selectedCountri
 ### Any region, with full and short names
 
 This example outputs three rows of region data using the `anyRegion` option as a data source. The first displays the
-full region name, the second shows their shortcode, 
+full region name, the second shows their shortcode, the third shows randomly one or the other formats. 
 
 ```javascript
 {
@@ -179,8 +179,8 @@ Sample output:
 This example shows how you can map one or more Region fields to a Country row. When generating the group of data,
 the generator will know to generate a region from the randomly generated country for that group, ensuring consistency.
 
-Note the use of the `id` and `targetRowId` properties. You can enter any string value you want for those, as long as
-it's unique across the entire data set. In the website, it generates a random GUID internally for each row.  
+Note the use of the `id` and `targetRowId` properties. You can enter _any string value_ you want for those, as long as
+it's unique across the entire data template. In the website, it generates a random GUID internally for each row.
 
 ```javascript
 {

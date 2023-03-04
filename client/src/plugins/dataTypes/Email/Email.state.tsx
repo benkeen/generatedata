@@ -1,7 +1,8 @@
-export const enum StringSource {
+export const enum StringSourceEnum {
 	random = 'random',
 	fields = 'fields'
 }
+export type StringSource = `${StringSourceEnum}`;
 
 export type EmailState = {
 	source: StringSource;
@@ -15,7 +16,7 @@ export const defaultDomains = 'google,hotmail,aol,icloud,outlook,yahoo,protonmai
 export const defaultDomainSuffixes = 'com,org,ca,net,co.uk,edu';
 
 export const initialState: EmailState = {
-	source: StringSource.random,
+	source: StringSourceEnum.random,
 	fieldId1: '',
 	fieldId2: '',
 	domains: defaultDomains,
@@ -24,10 +25,10 @@ export const initialState: EmailState = {
 
 export type GenerationOptionsType = {
 	source: StringSource;
-	fieldId1: string;
-	fieldId2: string;
-	domains: string[];
-	domainSuffixes: string[];
+	domains?: string[];
+	domainSuffixes?: string[];
+	fieldId1?: string;
+	fieldId2?: string;
 };
 
 export const defaultGenerationOptions = initialState;

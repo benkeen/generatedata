@@ -1,27 +1,27 @@
 import { CountryType } from '~types/countries';
 
-export const enum RegionSource {
+export const enum RegionSourceEnum {
 	any = 'any',
 	countries = 'countries',
 	regionRow = 'regionRow'
 }
+export type RegionSource = `${RegionSourceEnum}`;
 
 export type CityStateAny = {
-	source: RegionSource.any | 'any';
+	source: 'any';
 	selectedCountries?: [];
 	targetRowId?: '';
 }
 
 export type CityStateRegionRow = {
-	source: RegionSource.regionRow | 'regionRow';
+	source: 'regionRow';
 	selectedCountries?: [];
 	targetRowId: string;
 }
 
 export type CityStateCountryRow = {
-	source: RegionSource.countries | 'countries';
+	source: 'countries';
 	selectedCountries: CountryType[];
-	targetRowId: string;
 }
 
 export type CityState = CityStateAny | CityStateRegionRow | CityStateCountryRow;
@@ -29,7 +29,7 @@ export type CityState = CityStateAny | CityStateRegionRow | CityStateCountryRow;
 export type GenerationOptionsType = CityState;
 
 export const initialState: CityState = {
-	source: RegionSource.any,
+	source: 'any',
 	selectedCountries: [],
 	targetRowId: ''
 };

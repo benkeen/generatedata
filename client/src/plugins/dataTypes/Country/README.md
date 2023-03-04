@@ -2,17 +2,19 @@
 
 This Data Type generates a random country name. It can be used in two ways:
 1. Generates a random country name from the ~250 countries in the world. 
-2. Generates a random country name from the list of Country plugins. 
+2. Generates a random country name from the list of Country plugins (~35 countries). 
  
+_Wait, why would you choose the plugin option? It has way fewer countries!_
+
 The Country plugins provide a much richer set of data for use by the Data Generator. Each plugin contains regions, cities, 
 postal/zip formats and phone numbers - anything specific to the country. These let you tie multiple rows together in your 
 data set, like `Country`, `Region` and `City`: it ensures that the data looks realistic for a single row of data, i.e. 
-a random city name is withing a random region within the randomly selected country. 
+a random city name is within a random region within the randomly selected country. 
 
 ## Examples
 
-This generates two rows of data:
-1. Any country from the full list of `250 countries in the world.
+This generates three rows of data:
+1. Any country from the full list of ~250 countries in the world.
 2. Any country from the full list of plugins (pass empty array for `selectedCountries`)
 3. One of the selected country plugins (Canada, Nigeria, Spain, Norway)
 

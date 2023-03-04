@@ -7,13 +7,13 @@ describe('CLI data generation', () => {
 			numResults: 10
 		},
 		dataTemplate: [
-			// {
-			// 	plugin: 'Email',
-			// 	title: 'email',
-			// 	settings: {
-			// 		source: 'random'
-			// 	}
-			// },
+			{
+				plugin: 'Email',
+				title: 'email',
+				settings: {
+					source: 'random'
+				}
+			},
 		],
 		exportSettings: {
 			plugin: 'JSON',
@@ -26,8 +26,6 @@ describe('CLI data generation', () => {
 	it('Confirm simple export format', async () => {
 		const data = await generate(getTemplate());
 		const generatedJSON = JSON.parse(data);
-
-		console.log(data);
 
 		expect(generatedJSON.length).toEqual(10);
 		expect(Object.keys(generatedJSON[0])).toEqual(['email']);

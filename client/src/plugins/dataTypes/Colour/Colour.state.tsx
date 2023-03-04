@@ -1,34 +1,41 @@
-export const enum ColourFormat {
+export const enum ColourFormatEnum {
 	hex = 'hex',
 	rgb = 'rgb',
 	rgba = 'rgba'
 }
+export type ColourFormat = `${ColourFormatEnum}`;
 
-export const enum LuminosityType {
+export const enum LuminosityTypeEnum {
 	any = 'any',
 	bright = 'bright',
 	light = 'light',
 	dark = 'dark'
 }
+export type LuminosityType = `${LuminosityTypeEnum}`;
 
 export type ColourState = {
 	example: string;
 	value: string;
-	luminosity: LuminosityType;
 	format: ColourFormat;
+	luminosity: LuminosityType;
 	alpha: number;
 };
 
-export type GenerationOptionsType = Omit<ColourState, 'example'>
+export type GenerationOptionsType = {
+	value: string;
+	format: ColourFormat;
+	luminosity?: LuminosityType;
+	alpha?: number;
+}
 
-export const defaultGenerationOptions: GenerationOptionsType = {
+export const defaultGenerationOptions: ColourState = {
+	example: 'any',
 	value: 'any',
-	luminosity: LuminosityType.any,
-	format: ColourFormat.hex,
+	luminosity: 'any',
+	format: 'hex',
 	alpha: 1
 };
 
 export const initialState: ColourState = {
-	example: 'any',
 	...defaultGenerationOptions
 };

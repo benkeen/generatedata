@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 require('dotenv').config();
@@ -29,11 +30,15 @@ module.exports = (env, argv) => {
 			rules: [
 				{
 					test: /\.tsx?$/,
-					loader: ['ts-loader', 'eslint-loader']
+					use: [{ loader: 'ts-loader' }]
 				},
 				{
 					test: /\.js$/,
-					loader: ['babel-loader'],
+					use: [
+						{
+							loader: 'babel-loader'
+						}
+					],
 					exclude: '/node_modules'
 				},
 				{
@@ -69,6 +74,9 @@ module.exports = (env, argv) => {
 		},
 
 		plugins: [
+			new ESLintPlugin({
+				extensions: ['js', 'ts']
+			}),
 			new CaseSensitivePathsPlugin(),
 			new HtmlWebpackPlugin({
 				template: path.join(__dirname, 'src/index.html')
@@ -99,7 +107,7 @@ module.exports = (env, argv) => {
 	if (mode === 'development') {
 		config.devServer = {
 			historyApiFallback: true,
-			contentBase: path.join(__dirname, 'dist'),
+			static: path.join(__dirname, 'dist'),
 			// publicPath: 'http://localhost:9000',
 			port: process.env.GD_WEB_SERVER_PORT,
 			open: true

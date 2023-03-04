@@ -14,7 +14,10 @@ describe('onmessage', () => {
 	it('generates random data', () => {
 		const payload: any = {
 			data: {
-				...getBlankDTGeneratorPayload()
+				...getBlankDTGeneratorPayload(),
+				rowState: {
+					option: 'Xxx-xxxx'
+				}
 			}
 		};
 

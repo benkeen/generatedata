@@ -142,7 +142,7 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const setLoginError = (): GDAction => ({ type: LOGIN_ERROR });
 
 // default authentication
-export const login = (email: string, password: string, history: any, onLoginError: Function): any => {
+export const login = (email: string, password: string, history: any, onLoginError: any): any => {
 	return async (dispatch: Dispatch): Promise<any> => {
 		dispatch(startDialogProcessing());
 
