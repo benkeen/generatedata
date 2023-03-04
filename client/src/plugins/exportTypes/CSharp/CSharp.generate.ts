@@ -2,7 +2,7 @@ import { ETMessageData } from '~types/exportTypes';
 import { WorkerUtils } from '~utils/workerUtils';
 
 export const generate = (data: ETMessageData, utils: WorkerUtils): string => {
-	const { stripWhitespace } = data.rowState;
+	const { stripWhitespace } = data;
 
 	const newline = (stripWhitespace) ? '' : '\n';
 	const tab = (stripWhitespace) ? '' : '\t';

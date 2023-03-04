@@ -43,7 +43,7 @@ export default {
 	},
 	"exportTypes": {
 		"CSV": "ET-CSV.worker-fb24e14582d7e4a9236de35949747066.js",
-		"CSharp": "ET-CSharp.worker-ad30a94557964e47e80ea5dd348a24ad.js",
+		"CSharp": "ET-CSharp.worker-33d7d7b06eeac918d6bc00a5e9d2323f.js",
 		"HTML": "ET-HTML.worker-6aae232232141af7f311120b8de16df4.js",
 		"JSON": "ET-JSON.worker-0cd0b922260e8837e94c23364dd4a534.js",
 		"Javascript": "ET-Javascript.worker-71bfe161a84c9474d7af9fa67c16e49b.js",
