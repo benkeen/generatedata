@@ -16,8 +16,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
 	onSort: (id: string, newIndex: number): any => dispatch(actions.repositionRow(id, newIndex)),
 	toggleGrid: (): any => dispatch(actions.toggleGrid()),
 	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel()),
-	showHelpDialog: (dataType: DataTypeFolder): any => dispatch(actions.showHelpDialog(dataType)),
-	showSchemaDialog: (): any => dispatch(actions.showSchemaDialog()),
+	showHelpDialog: (dataType: DataTypeFolder): any => dispatch(actions.showHelpDialog(dataType))
 });
 
 const container: any = connect(

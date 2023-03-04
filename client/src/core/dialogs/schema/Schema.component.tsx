@@ -16,7 +16,7 @@ export type SchemaDialogProps = {
 const SchemaDialog = ({
 	visible, onClose, schema, theme, i18n
 }: SchemaDialogProps): JSX.Element | null => {
-	if (!FeatureToggles.SCHEMA_GENERATION_UI) {
+	if (!FeatureToggles.DATA_TEMPLATE_GENERATION_UI) {
 		return null;
 	}
 

@@ -334,7 +334,7 @@ export const showHelpDialog = (dataType: DataTypeFolder): GDAction => ({
 });
 
 export const SHOW_SCHEMA_DIALOG = 'SHOW_SCHEMA_DIALOG';
-export const showSchemaDialog = (): GDAction => ({ type: SHOW_SCHEMA_DIALOG });
+export const showDataTemplateDialog = (): GDAction => ({ type: SHOW_SCHEMA_DIALOG });
 
 export const HIDE_SCHEMA_DIALOG = 'HIDE_SCHEMA_DIALOG';
 export const hideSchemaDialog = (): GDAction => ({ type: HIDE_SCHEMA_DIALOG });

@@ -2,6 +2,7 @@ declare namespace PanelControlsScssNamespace {
   export interface IPanelControlsScss {
     btnSelected: string;
     builderControls: string;
+    dataTemplateControls: string;
     toggleLayoutBtn: string;
     toggleLayoutBtnDisabled: string;
   }

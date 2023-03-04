@@ -17,6 +17,24 @@
 	}
 }
 
+.dataTemplateControls {
+	margin: 0 6px 0 0;
+	background-color: #ffffff;
+	box-shadow: 0 1px 1px #cccccc;
+
+	& > button {
+		border: 0;
+	}
+
+	svg {
+		fill: #aaaaaa;
+	}
+
+	:global(.MuiButton-startIcon) {
+		margin-right: 0;
+	}
+}
+
 .btnSelected {
 	svg {
 		fill: #aaaaaa;

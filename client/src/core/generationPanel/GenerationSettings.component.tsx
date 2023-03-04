@@ -150,9 +150,7 @@ const GenerationSettingsPanel = ({
 					</DialogContent>
 					<DialogActions>
 						<div style={{ display: 'flex', width: '100%' }}>
-							<div style={{ flex: 1, alignSelf: 'center', paddingLeft: 10, color: '#cccccc' }}>
-								<span>View Schema</span>
-							</div>
+							<div style={{ flex: 1 }} />
 							<div>
 								{cancelButton}
 								<Button

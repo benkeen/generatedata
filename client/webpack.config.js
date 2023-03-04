@@ -30,7 +30,10 @@ module.exports = (env, argv) => {
 			rules: [
 				{
 					test: /\.tsx?$/,
-					use: [{ loader: 'ts-loader' }]
+					use: [{ loader: 'ts-loader' }],
+					// exclude: [
+					// 	path.resolve(__dirname, '../cli')
+					// ]
 				},
 				{
 					test: /\.js$/,
