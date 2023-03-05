@@ -91,23 +91,107 @@ Sample output:
 ### French Canadian dollars without cents
 
 ```javascript
-
+{
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
+        {
+            plugin: 'Currency',
+            title: 'french-canadian',
+            settings: {
+                from: 1000,
+                to: 5000,
+                currencySymbol: ' $',
+                currencySymbolLocation: 'suffix',
+                includeCents: true,
+                thousandsSeparator: '.',
+                centsSeparator: ','
+            }
+        }
+    ],
+    exportSettings: {
+        plugin: 'JSON',
+        settings: {
+            dataStructureFormat: 'simple'
+        }
+    }
+}
 ```
 
 Sample output:
 
 ```javascript
-
+[
+    {
+        "french-canadian": "1.268,40 $"
+    },
+    {
+        "french-canadian": "4.937,54 $"
+    },
+    {
+        "french-canadian": "4.350,88 $"
+    },
+    {
+        "french-canadian": "2.064,24 $"
+    },
+    {
+        "french-canadian": "1.535,07 $"
+    },
+    ...
+]
 ```
 
 ### €100,000 - €200,000
 
 ```javascript
-
+{
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
+        {
+            plugin: 'Currency',
+            title: 'french-canadian',
+            settings: {
+                from: 1000,
+                to: 5000,
+                currencySymbol: ' $',
+                currencySymbolLocation: 'suffix',
+                includeCents: true,
+                thousandsSeparator: '.',
+                centsSeparator: ','
+            }
+        }
+    ],
+    exportSettings: {
+        plugin: 'JSON',
+        settings: {
+            dataStructureFormat: 'simple'
+        }
+    }
+}
 ```
 
 Sample output:
 
 ```javascript
-
+[
+    {
+        "euros-no-cents": "€124,107"
+    },
+    {
+        "euros-no-cents": "€135,657"
+    },
+    {
+        "euros-no-cents": "€114,426"
+    },
+    {
+        "euros-no-cents": "€174,806"
+    },
+    {
+        "euros-no-cents": "€139,199"
+    },
+    ...
+]
 ```

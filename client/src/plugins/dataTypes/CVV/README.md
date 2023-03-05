@@ -1,6 +1,7 @@
 # [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; CVV
 
-This Data Type generates a random CVV Number for a credit card.
+CVV stands for Card Verification Value. It's that 3-digit number you see on the back of your credit card. This Data Type
+generates a random CVV.
 
 ### Example API Usage
 
@@ -22,8 +23,3 @@ This Data Type generates a random CVV Number for a credit card.
     }
 }
 ```
- 
-### API help
-
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
