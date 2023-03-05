@@ -1,7 +1,8 @@
-export enum PrefixLocation {
+export enum PrefixLocationEnum {
 	prefix = 'prefix',
 	suffix = 'suffix'
 }
+export type PrefixLocation = `${PrefixLocationEnum}`;
 
 export type GenerationOptionsType = {
 	from: number;
@@ -17,7 +18,7 @@ export const defaultGenerationOptions = {
 	from: '0.00',
 	to: '100.00',
 	currencySymbol: '$',
-	currencySymbolLocation: PrefixLocation.prefix,
+	currencySymbolLocation: PrefixLocationEnum.prefix,
 	includeCents: true,
 	thousandsSeparator: ',',
 	centsSeparator: '.'
