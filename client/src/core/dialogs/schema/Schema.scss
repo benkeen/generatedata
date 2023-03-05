@@ -1,6 +1,12 @@
 @import "../../../styles/variables";
 
-.schemaDialog {
+.dataTemplateDialog {
+	height: 100%;
+
+	:global(.MuiDialog-paper) {
+		height: 100%;
+	}
+
 	.actions {
 		button {
 			svg {
@@ -31,4 +37,12 @@
 			}
 		}
 	}
+}
+
+.dataTemplateDialogInner {
+	width: 800px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
 }

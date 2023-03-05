@@ -111,7 +111,7 @@ const TourDialog = ({
 		<>
 			<Dialog onClose={closeIntroDialog} open={tourIntroDialogVisible}>
 				<div style={{ width: 600 }}>
-					<DialogTitle onClose={onClose}>{i18n.takeTour}</DialogTitle>
+					<DialogTitle onClose={onClose}>{i18n.help}</DialogTitle>
 					<DialogContent dividers className={styles.introDialog}>
 						<div className={styles.cols}>
 							<div className={styles.col}>

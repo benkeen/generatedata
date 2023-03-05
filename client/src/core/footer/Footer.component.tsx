@@ -144,7 +144,7 @@ const Footer = ({
 						<li className={styles.showTourLink}>
 							<Button className={styles.tourBtn} onClick={showTourDialog}>
 								<Person />
-								<span>{i18n.takeTour}</span>
+								<span>{i18n.help}</span>
 							</Button>
 						</li>
 						{customFooterLinks}

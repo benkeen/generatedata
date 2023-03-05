@@ -2,7 +2,8 @@ declare namespace SchemaScssNamespace {
   export interface ISchemaScss {
     actions: string;
     content: string;
-    schemaDialog: string;
+    dataTemplateDialog: string;
+    dataTemplateDialogInner: string;
   }
 }
 
