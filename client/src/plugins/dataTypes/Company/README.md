@@ -1,31 +1,54 @@
 # [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; Company
 
-Generates a random company name.
+Generates a random company name. This is a very simple plugin and the same functionality can actually be achieved with 
+the [Custom List](../List) Data Type. But it's a quick convenient way to have all the company names auto-generated with
+no additional configuration.
 
-### Example API Usage
-
-POST the following JSON content to: `http://[your site]/[generate data folder]/api/v1/data`:
+### Examples
 
 ```javascript
 {
-    "numRows": 10,
-    "rows": [
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
         {
-            "type": "Company",
-            "title": "Company name"
+            plugin: 'Company',
+            title: 'company-name',
+            settings: {}
         }
     ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "simple"
+        exportSettings: {
+        plugin: 'JSON',
+            settings: {
+            dataStructureFormat: 'simple'
         }
     }
 }
 ```
 
-### API help
+Sample output:
 
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
+```javascript
+[
+    {
+        "company-name": "Rutrum LLC"
+    },
+    {
+        "company-name": "Orci Ltd"
+    },
+    {
+        "company-name": "Pede Nonummy Ut LLP"
+    },
+    {
+        "company-name": "Aliquam Adipiscing Foundation"
+    },
+    {
+        "company-name": "Luctus Vulputate Institute"
+    },
+    {
+        "company-name": "Morbi LLC"
+    },
+    ...
+]
+```
