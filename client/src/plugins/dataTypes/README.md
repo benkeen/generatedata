@@ -15,7 +15,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - [Country](./Country/README.md)
 - [Currency](./Currency/README.md)
 - [CVV](./CVV/README.md)
-- Date
+- [Date](./Date/README.md)
 - [Email](./Email/README.md)
 - GUID
 - IBAN
