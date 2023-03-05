@@ -14,6 +14,24 @@ describe('CLI data generation', () => {
 					value: '',
 					format: 'hex'
 				}
+			},
+			{
+				plugin: 'Colour',
+				title: 'bright-red',
+				settings: {
+					value: '#EE4B2B',
+					format: 'hex',
+					luminosity: 'bright'
+				}
+			},
+			{
+				plugin: 'Colour',
+				title: 'green-with-alpha',
+				settings: {
+					value: 'green',
+					format: 'rgba',
+					alpha: 0.5
+				}
 			}
 		],
 		exportSettings: {
@@ -30,7 +48,9 @@ describe('CLI data generation', () => {
 
 		expect(generatedJSON.length).toEqual(10);
 		expect(Object.keys(generatedJSON[0])).toEqual([
-			'colour'
+			'colour',
+			'bright-red',
+			'green-with-alpha'
 		]);
 	});
 });
