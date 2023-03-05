@@ -9,9 +9,9 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - [Boolean](./Boolean/README.md)
 - [City](./City/README.md)
 - [Colour](./Colour/README.md)
-- Company
+- [Company](./Company/README.md)
 - Computed
-- Constant
+- [Constant](./Constant/README.md)
 - [Country](./Country/README.md)
 - Currency
 - CVV

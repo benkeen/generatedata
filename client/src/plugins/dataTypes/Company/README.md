@@ -18,9 +18,9 @@ no additional configuration.
             settings: {}
         }
     ],
-        exportSettings: {
+    exportSettings: {
         plugin: 'JSON',
-            settings: {
+        settings: {
             dataStructureFormat: 'simple'
         }
     }
