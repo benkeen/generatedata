@@ -19,7 +19,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - [Email](./Email/README.md)
 - [GUID](./GUID/README.md)
 - [IBAN](./IBAN/README.md)
-- LatLng
+- [LatLng](./LatLng/README.md)
 - List
 - [Names](./Names/README.md)
 - NormalDistribution

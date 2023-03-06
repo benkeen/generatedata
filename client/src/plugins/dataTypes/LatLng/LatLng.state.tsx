@@ -4,8 +4,8 @@ export type LatLngState = {
 };
 
 export type GenerationOptionsType = {
-	lat: string;
-	lng: string;
+	lat: boolean;
+	lng: boolean;
 }
 
 export const initialState: LatLngState = {
