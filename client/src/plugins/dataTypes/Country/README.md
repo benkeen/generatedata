@@ -25,38 +25,38 @@ This generates three rows of data:
     },
     dataTemplate: [
         {
-            plugin: 'Country',
-            title: 'any-country',
+            plugin: "Country",
+            title: "any-country",
             settings: {
-                source: 'all'
+                source: "all"
             }
         },
         {
-            plugin: 'Country',
-            title: 'country-plugin',
+            plugin: "Country",
+            title: "country-plugin",
             settings: {
-                source: 'plugins',
+                source: "plugins",
                 selectedCountries: []
             }
         },
         {
-            plugin: 'Country',
-            title: 'country-plugin',
+            plugin: "Country",
+            title: "country-plugin",
             settings: {
-                source: 'plugins',
+                source: "plugins",
                 selectedCountries: [
-                    'Canada',
-                    'Nigeria',
-                    'Spain',
-                    'Norway'
+                    "Canada",
+                    "Nigeria",
+                    "Spain",
+                    "Norway"
                 ]
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }

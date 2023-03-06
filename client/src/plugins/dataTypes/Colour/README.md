@@ -53,18 +53,18 @@ anyway, just so you can see how they work.
     },
     dataTemplate: [
         {
-            plugin: 'Colour',
-            title: 'colour',
+            plugin: "Colour",
+            title: "colour",
             settings: {
-                value: '',
-                format: 'hex'
+                value: "",
+                format: "hex"
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }
@@ -104,19 +104,19 @@ Sample output:
     },
     dataTemplate: [
         {
-            plugin: 'Colour',
-            title: 'bright-red',
+            plugin: "Colour",
+            title: "bright-red",
             settings: {
-                value: '#EE4B2B',
-                format: 'hex',
-                luminosity: 'bright'
+                value: "#EE4B2B",
+                format: "hex",
+                luminosity: "bright"
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }
@@ -157,19 +157,19 @@ Sample output:
     },
     dataTemplate: [
         {
-            plugin: 'Colour',
-            title: 'green-with-alpha',
+            plugin: "Colour",
+            title: "green-with-alpha",
             settings: {
-                value: 'green',
-                format: 'rgba',
+                value: "green",
+                format: "rgba",
                 alpha: 0.5
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }

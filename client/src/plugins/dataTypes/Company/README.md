@@ -13,15 +13,15 @@ no additional configuration.
     },
     dataTemplate: [
         {
-            plugin: 'Company',
-            title: 'company-name',
+            plugin: "Company",
+            title: "company-name",
             settings: {}
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }

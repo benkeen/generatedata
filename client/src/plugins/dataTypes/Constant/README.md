@@ -19,8 +19,8 @@ of `N` and the list of constants to be inserted. See the examples.
     },
     dataTemplate: [
         {
-            plugin: 'Constant',
-            title: 'ones-and-twos',
+            plugin: "Constant",
+            title: "ones-and-twos",
             settings: {
                 loopCount: 1,
                 values: ["One", "Two"]
@@ -28,9 +28,9 @@ of `N` and the list of constants to be inserted. See the examples.
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }
@@ -71,8 +71,8 @@ Sample output:
     },
     dataTemplate: [
         {
-            plugin: 'Constant',
-            title: 'ABCs',
+            plugin: "Constant",
+            title: "ABCs",
             settings: {
                 loopCount: 2,
                 values: ["A", "B", "C"]
@@ -80,9 +80,9 @@ Sample output:
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }

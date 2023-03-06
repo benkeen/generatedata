@@ -49,28 +49,28 @@ Export Type chose to render the genuine JS boolean and numbers as booleans and n
             plugin: "Boolean",
             title: "boolean2",
             settings: {
-                values: ['0', '1']
+                values: ["0", "1"]
             }
         },
         {
             plugin: "Boolean",
             title: "boolean3",
             settings: {
-                values: ['true', 'false']
+                values: ["true", "false"]
             }
         },
         {
-            plugin: 'Boolean',
-            title: 'notReallyABoolean',
+            plugin: "Boolean",
+            title: "notReallyABoolean",
             settings: {
-                values: ['Yes', 'No', 'Maybe']
+                values: ["Yes", "No", "Maybe"]
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }

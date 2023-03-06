@@ -30,17 +30,17 @@ the generated data more realistic.
     },
     dataTemplate: [
         {
-            plugin: 'City',
-            title: 'any-city',
+            plugin: "City",
+            title: "any-city",
             settings: {
-                source: 'any'
+                source: "any"
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }
@@ -81,18 +81,18 @@ Sample output:
     },
     dataTemplate: [
         {
-            plugin: 'City',
-            title: 'city-within-country',
+            plugin: "City",
+            title: "city-within-country",
             settings: {
-                source: 'countries',
-                selectedCountries: ['Australia', 'Canada']
+                source: "countries",
+                selectedCountries: ["Australia", "Canada"]
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }
@@ -133,18 +133,18 @@ Sample output:
     },
     dataTemplate: [
         {
-            plugin: 'City',
-            title: 'city-within-country',
+            plugin: "City",
+            title: "city-within-country",
             settings: {
-                source: 'countries',
-                selectedCountries: ['Australia', 'Canada']
+                source: "countries",
+                selectedCountries: ["Australia", "Canada"]
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }

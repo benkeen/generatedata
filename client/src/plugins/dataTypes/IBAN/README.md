@@ -2,29 +2,51 @@
 
 This Data Type generates a random International Bank Account Number (IBAN).
 
-
-### Example API Usage
+## Examples
 
 ```javascript
 {
-    "numRows": 10,
-    "rows": [
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
         {
-            "type": "IBAN",
-            "title": "IBAN"
-        }
+            plugin: "IBAN",
+            title: "iban",
+            settings: {}
+        },
     ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "complex"
+        exportSettings: {
+        plugin: "JSON",
+        settings: {
+            dataStructureFormat: "simple"
         }
     }
 }
 ```
- 
-### API help
 
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
+Sample output:
+
+```
+[
+    {
+        "iban": "KW6507127736867163816748311366"
+    },
+    {
+        "iban": "NO0253423327445"
+    },
+    {
+        "iban": "TR744462537189752134298717"
+    },
+    {
+        "iban": "SK7083803211961717418112"
+    },
+    {
+        "iban": "KZ266045443160727663"
+    },
+    {
+        "iban": "SM5647721660133189212975872"
+    },
+    ...
+]
+```

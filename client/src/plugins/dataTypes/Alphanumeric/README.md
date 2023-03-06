@@ -34,10 +34,10 @@ H       - 0-F (hexidecimal value)
 
 ```javascript
 {
-    plugin: 'Alphanumeric',
-    title: 'multipleFormats',
+    plugin: "Alphanumeric",
+    title: "multipleFormats",
     settings: {
-        value: 'Xxxxx|xxxx|CXxxx'
+        value: "Xxxxx|xxxx|CXxxx"
     }
 }
 ```
@@ -64,17 +64,17 @@ for illustration purposes.
     },
     dataTemplate: [
         {
-            plugin: 'Alphanumeric',
-            title: 'US Zip',
+            plugin: "Alphanumeric",
+            title: "US Zip",
             settings: {
-                value: 'Xxxxx'
+                value: "Xxxxx"
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }
@@ -114,17 +114,17 @@ This generates a fake clothing tag number of the format `C-152314-DG`.
     },
     dataTemplate: [
         {
-            plugin: 'Alphanumeric',
-            title: 'TagNumber',
+            plugin: "Alphanumeric",
+            title: "TagNumber",
             settings: {
-                value: 'C-xxxxxx-CC'
+                value: "C-xxxxxx-CC"
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }

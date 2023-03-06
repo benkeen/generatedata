@@ -46,7 +46,7 @@ export type RegionStateCountries = Pick<RegionState, 'source' | 'selectedCountri
 ### Any region, with full and short names
 
 This example outputs three rows of region data using the `anyRegion` option as a data source. The first displays the
-full region name, the second shows their shortcode, the third shows randomly one or the other formats. 
+full region name, the second shows their shortcode, the third shows randomly short or full. 
 
 ```javascript
 {

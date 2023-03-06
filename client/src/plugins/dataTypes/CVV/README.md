@@ -12,15 +12,15 @@ generates a random CVV. All it really does is generate a random 3 digit code. Si
     },
     dataTemplate: [
         {
-            plugin: 'CVV',
-            title: 'cvv',
+            plugin: "CVV",
+            title: "cvv",
             settings: {}
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }

@@ -40,23 +40,23 @@ export type GenerationOptionsType = {
     },
     dataTemplate: [
         {
-            plugin: 'Currency',
-            title: 'us-dollars',
+            plugin: "Currency",
+            title: "us-dollars",
             settings: {
                 from: 1,
                 to: 1000000,
-                currencySymbol: '$',
-                currencySymbolLocation: 'prefix',
+                currencySymbol: "$",
+                currencySymbolLocation: "prefix",
                 includeCents: true,
-                thousandsSeparator: ',',
-                centsSeparator: '.'
+                thousandsSeparator: ",",
+                centsSeparator: "."
             }
         }
     ],
     exportSettings: {
-       plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }
@@ -97,23 +97,23 @@ Sample output:
     },
     dataTemplate: [
         {
-            plugin: 'Currency',
-            title: 'french-canadian',
+            plugin: "Currency",
+            title: "french-canadian",
             settings: {
                 from: 1000,
                 to: 5000,
-                currencySymbol: ' $',
-                currencySymbolLocation: 'suffix',
+                currencySymbol: " $",
+                currencySymbolLocation: "suffix",
                 includeCents: true,
-                thousandsSeparator: '.',
-                centsSeparator: ','
+                thousandsSeparator: ".",
+                centsSeparator: ","
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }
@@ -151,23 +151,23 @@ Sample output:
     },
     dataTemplate: [
         {
-            plugin: 'Currency',
-            title: 'french-canadian',
+            plugin: "Currency",
+            title: "french-canadian",
             settings: {
                 from: 1000,
                 to: 5000,
-                currencySymbol: ' $',
-                currencySymbolLocation: 'suffix',
+                currencySymbol: " $",
+                currencySymbolLocation: "suffix",
                 includeCents: true,
-                thousandsSeparator: '.',
-                centsSeparator: ','
+                thousandsSeparator: ".",
+                centsSeparator: ","
             }
         }
     ],
     exportSettings: {
-        plugin: 'JSON',
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }
