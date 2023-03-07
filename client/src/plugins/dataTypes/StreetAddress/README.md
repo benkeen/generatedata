@@ -1,30 +1,53 @@
 # [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; StreetAddress
 
-This Data Type generates a street address. 
+This Data Type generates a basic, westernized street address out of lorem ipsum text and standard address formats.
 
 
-### Example API Usage
+## Examples
 
 ```javascript
 {
-    "numRows": 20,
-    "rows": [
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
         {
-            "type": "StreetAddress",
-            "title": "Address"
+            plugin: 'StreetAddress',
+            title: 'street_address',
+            settings: {}
         }
     ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "complex"
+    exportSettings: {
+        plugin: 'JSON',
+        settings: {
+            dataStructureFormat: 'simple'
         }
     }
 }
 ```
  
-### API help
+Sample output:
 
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
+```
+[
+    {
+        "street_address": "105-6473 Amet Avenue"
+    },
+    {
+        "street_address": "2200 Ac Rd."
+    },
+    {
+        "street_address": "474-7655 Dolor Rd."
+    },
+    {
+        "street_address": "720-4330 Sit Rd."
+    },
+    {
+        "street_address": "806 Duis Rd."
+    },
+    {
+        "street_address": "912-1517 Egestas. Street"
+    },
+    ...
+]
+```

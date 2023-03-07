@@ -32,7 +32,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - PostalZip
 - [Region](./Region/README.md)
 - Rut
-- StreetAddress
+- [StreetAddress](./StreetAddress/README.md)
 - TextFixed
 - TextRandom
 - Time
