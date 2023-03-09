@@ -8,9 +8,12 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: 'StreetAddress',
-				title: 'street_address',
-				settings: {}
+				plugin: 'TextFixed',
+				title: 'text1',
+				settings: {
+					numWordsToGenerate: 10,
+					words: ['One', 'Two', 'Three', 'Four']
+				}
 			}
 		],
 		exportSettings: {
@@ -26,6 +29,6 @@ describe('CLI data generation', () => {
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual(['street_address']);
+		expect(Object.keys(generatedJSON[0])).toEqual(['text1']);
 	});
 });
