@@ -231,7 +231,6 @@ export enum DataType {
 	URLs = 'URLs',
 	WeightedList = 'WeightedList'
 }
-export type DataTypePlugin = `${DataType}`;
 
 import { GenerationOptionsType as AlphanumericGenerationOptions } from './src/plugins/dataTypes/Alphanumeric/Alphanumeric.state';
 import { GenerationOptionsType as AutoIncrementGenerationOptions } from './src/plugins/dataTypes/AutoIncrement/AutoIncrement.state';
@@ -268,7 +267,7 @@ import { GenerationOptionsType as Track2GenerationOptions } from './src/plugins/
 import { GenerationOptionsType as URLsGenerationOptions } from './src/plugins/dataTypes/URLs/URLs.state';
 import { GenerationOptionsType as WeightedListGenerationOptions } from './src/plugins/dataTypes/WeightedList/WeightedList.state';
 interface AlphanumericDataTypeRow {
-	plugin: DataTypePlugin;
+	plugin: DataType.Alphanumeric | 'Alphanumeric';
 	title: string;
 	settings: AlphanumericGenerationOptions;
 	id?: string;

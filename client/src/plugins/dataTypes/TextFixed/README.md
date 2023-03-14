@@ -1,35 +1,45 @@
 # [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; TextFixed
 
-This Data Type generates a fixed number of random words.  
+This Data Type generates a fixed number of words. You supply two parameters: an array of words to pull from, and the number
+of words you want to generate.
 
+## Typings
 
-### Example API Usage
+```typescript
+export type GenerationOptionsType = {
+	words: string[];
+	numWordsToGenerate: number;
+}
+```
+
+### Examples
 
 ```javascript
 {
-    "numRows": 20,
-    "rows": [
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
         {
-            "type": "TextRandom",
-            "title": "text",
-            "settings": {
-                "startsWithLipsum": false,
-                "minWords": 2,
-                "maxWords": 10
+            plugin: 'TextFixed',
+            title: 'text1',
+            settings: {
+                numWordsToGenerate: 2,
+                words: ['One', 'Two', 'Three', 'Four']
             }
         }
     ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "complex"
+    exportSettings: {
+        plugin: 'JSON',
+        settings: {
+            dataStructureFormat: 'simple'
         }
     }
 }
 ```
- 
-### API help
 
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
+Sample output: 
+
+```javascript
+
+```

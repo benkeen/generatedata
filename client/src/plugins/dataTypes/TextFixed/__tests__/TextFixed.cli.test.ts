@@ -11,7 +11,7 @@ describe('CLI data generation', () => {
 				plugin: 'TextFixed',
 				title: 'text1',
 				settings: {
-					numWordsToGenerate: 10,
+					numWordsToGenerate: 2,
 					words: ['One', 'Two', 'Three', 'Four']
 				}
 			}

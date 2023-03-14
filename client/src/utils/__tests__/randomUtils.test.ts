@@ -76,6 +76,11 @@ describe('generateRandomTextStr', () => {
 		expect(randomUtils.generateRandomTextStr(words, false, 2)).toEqual('one two');
 	});
 
+	it('generates the same string every time when min num of words is the total number of words', () => {
+		for (let i=0; i<10; i++) {
+			expect(randomUtils.generateRandomTextStr(['a', 'b', 'c'], false, 3)).toEqual('a b c');
+		}
+	});
 });
 
 describe('generateRandomAlphanumericStr', () => {

@@ -120,7 +120,7 @@ export const generateRandomTextStr = (words: string[], fromStart: boolean, min: 
 	if (fromStart) {
 		return words.slice(0, numWords).join(' ');
 	} else {
-		const offset = getRandomNum(0, totalWords - 1 - numWords);
+		const offset = getRandomNum(0, totalWords - numWords);
 		return words.slice(offset, offset + numWords).join(' ');
 	}
 };
