@@ -31,7 +31,7 @@ export const actionInterceptors = {
 		if (actionPayload.id === rowState.targetRowId) {
 			return {
 				...rowState,
-				source: PostalZipSource.any,
+				source: 'any',
 				targetRowId: ''
 			};
 		}
@@ -44,7 +44,7 @@ export const actionInterceptors = {
 				(rowState.source === 'countryRow' && actionPayload.value !== 'Country')) {
 				return {
 					...rowState,
-					source: PostalZipSource.any,
+					source: 'any',
 					targetRowId: ''
 				};
 			}

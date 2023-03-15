@@ -19,10 +19,10 @@ const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, on
 			...data,
 			source
 		};
-		if (source === PostalZipSource.countryRow) {
+		if (source === 'countryRow') {
 			newValues.targetRowId = countryPluginRows[0].value;
 		}
-		if (source === PostalZipSource.regionRow) {
+		if (source === 'regionRow') {
 			newValues.targetRowId = regionPluginRows[0].value;
 		}
 		onUpdate(newValues);
@@ -43,7 +43,7 @@ const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, on
 	};
 
 	const getRegionRowDropdown = (): React.ReactNode => {
-		if (data.source !== PostalZipSource.regionRow) {
+		if (data.source !== 'regionRow') {
 			return null;
 		}
 
@@ -106,21 +106,21 @@ const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, on
 					<RadioPillRow>
 						<RadioPill
 							label={i18n.anyFormat}
-							onClick={(): void => onUpdateSource(PostalZipSource.any)}
+							onClick={(): void => onUpdateSource('any')}
 							name={`${id}-source`}
 							checked={data.source === 'any'}
 							tooltip={i18n.anyFormatDesc}
 						/>
 						<RadioPill
 							label={i18n.countries}
-							onClick={(): void => onUpdateSource(PostalZipSource.countries)}
+							onClick={(): void => onUpdateSource('countries')}
 							name={`${id}-source`}
 							checked={data.source === 'countries'}
 							tooltip={i18n.countriesDesc}
 						/>
 						<RadioPill
 							label={i18n.countryRow}
-							onClick={(): void => onUpdateSource(PostalZipSource.countryRow)}
+							onClick={(): void => onUpdateSource('countryRow')}
 							name={`${id}-source`}
 							checked={data.source === 'countryRow'}
 							disabled={!countryPluginRowsExist}
@@ -128,7 +128,7 @@ const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, on
 						/>
 						<RadioPill
 							label={i18n.regionRow}
-							onClick={(): void => onUpdateSource(PostalZipSource.regionRow)}
+							onClick={(): void => onUpdateSource('regionRow')}
 							name={`${id}-source`}
 							checked={data.source === 'regionRow'}
 							disabled={!regionPluginRowsExist}

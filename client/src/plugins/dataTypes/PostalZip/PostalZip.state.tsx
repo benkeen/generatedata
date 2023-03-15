@@ -1,11 +1,12 @@
 import { DataTypeFolder } from '../../../../_plugins';
 
-export const enum PostalZipSource {
+export const enum PostalZipSourceEnum {
 	any = 'any',
 	countries = 'countries',
 	countryRow = 'countryRow',
 	regionRow = 'regionRow'
 }
+export type PostalZipSource = `${PostalZipSourceEnum}`;
 
 export type PostalZipState = {
 	source: PostalZipSource;
@@ -14,11 +15,25 @@ export type PostalZipState = {
 };
 
 export const initialState: PostalZipState = {
-	source: PostalZipSource.any,
+	source: PostalZipSourceEnum.any,
 	selectedCountries: [],
 	targetRowId: ''
 };
 
 export const defaultGenerationOptions = initialState;
 
-export type GenerationOptionsType = PostalZipState;
+export type PostalZipStateAny = {
+	source: 'any' | PostalZipSourceEnum.any;
+};
+
+export type PostalZipStateCountries = {
+	source: 'countries' | PostalZipSourceEnum.countries;
+	selectedCountries: DataTypeFolder[];
+};
+
+export type PostalZipStateDataRow = {
+	source: PostalZipSourceEnum.countryRow | PostalZipSourceEnum.regionRow;
+	targetRowId: string;
+}
+
+export type GenerationOptionsType = PostalZipStateAny | PostalZipStateCountries | PostalZipStateDataRow;

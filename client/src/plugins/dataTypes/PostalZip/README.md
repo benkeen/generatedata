@@ -10,39 +10,67 @@ Canada              (604) 264-2551
 United Kingdom      01512 215441
 ```
 
-### Example 
+## Examples 
+
+- [Generate a postal/zip code in a random format](#generate-a-postalzip-code-in-a-random-format)
+- [Generate a postal code from a set of predefined countries](#generate-a-postal-code-from-a-set-of-predefined-countries)
+- [Generate a postal code that maps to a country row](#generate-a-postal-code-that-maps-to-a-country-row)
+- [Generate a postal code that maps to a region row](#generate-a-postal-code-that-maps-to-a-region-row)
+
+
+### Generate a postal/zip code in a random format
 
 ```javascript
 {
-    "numRows": 10,
-    "countries": ["united_kingdom", "US"], 
-    "rows": [
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
         {
-            "type": "Country",
-            "title": "Country Name",
-            "settings": {
-                "limitCountriesToSelectedPlugins": true
+            plugin: DataType.PostalZip,
+            title: 'Any postal code',
+            settings: {
+                source: 'any'
             }
         },
-        { 
-            "type": "PostalZip",
-            "title": "Regional Postal/Zip Format",
-            "settings": {
-                "countries": ["united_kingdom", "US"]
-            }
-        }
     ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "simple"
+        exportSettings: {
+        plugin: ExportType.JSON,
+            settings: {
+            dataStructureFormat: 'simple'
         }
     }
 }
 ```
 
-### API help
+Sample output:
 
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
+```typescript
+[
+    {
+        "Any postal code": 95201
+    },
+    {
+        "Any postal code": 8322
+    },
+    {
+        "Any postal code": 34353
+    },
+    {
+        "Any postal code": "7933-9534"
+    },
+    {
+        "Any postal code": "39456-26578"
+    },
+    {
+        "Any postal code": 16580
+    },
+    ...
+]
+```
+
+### Generate a postal code from a set of predefined countries
+
+### Generate a postal code that maps to a country row
+
+### Generate a postal code that maps to a region row

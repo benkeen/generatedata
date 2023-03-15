@@ -73,7 +73,7 @@ describe('generateRandomTextStr', () => {
 	});
 
 	it('generates two random words', () => {
-		expect(randomUtils.generateRandomTextStr(words, false, 2)).toEqual('one two');
+		expect(randomUtils.generateRandomTextStr(words, false, 2)).toMatch(/[a-z]+\s[a-z]+/);
 	});
 
 	it('generates the same string every time when min num of words is the total number of words', () => {

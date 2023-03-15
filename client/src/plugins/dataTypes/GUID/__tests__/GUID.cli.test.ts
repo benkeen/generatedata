@@ -25,9 +25,7 @@ describe('CLI data generation', () => {
 		const data = await generate(getTemplate());
 		const generatedJSON = JSON.parse(data);
 
-		console.log(data);
-
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual(['email']);
+		expect(Object.keys(generatedJSON[0])).toEqual(['guid']);
 	});
 });

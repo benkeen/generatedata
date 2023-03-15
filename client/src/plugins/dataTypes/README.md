@@ -29,11 +29,11 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - PersonalNumber
 - Phone
 - PIN
-- PostalZip
+- [PostalZip](./PostalZip/README.md)
 - [Region](./Region/README.md)
 - Rut
 - [StreetAddress](./StreetAddress/README.md)
-- TextFixed
+- [TextFixed](./TextFixed/README.md)
 - TextRandom
 - Time
 - Track1
