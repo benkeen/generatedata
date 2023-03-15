@@ -14,6 +14,53 @@ describe('CLI data generation', () => {
 					source: 'any'
 				}
 			},
+			{
+				plugin: DataType.PostalZip,
+				title: 'two-countries',
+				settings: {
+					source: 'countries',
+					selectedCountries: ['Canada', 'US']
+				}
+			},
+			{
+				plugin: 'Country',
+				title: 'country-plugins-subset',
+				settings: {
+					source: 'plugins',
+					selectedCountries: [
+						'Canada',
+						'US',
+						'Norway'
+					]
+				},
+				id: '123'
+			},
+			{
+				plugin: 'PostalZip',
+				title: 'zip',
+				settings: {
+					source: 'countryRow',
+					targetRowId: '123'
+				}
+			},
+			{
+				plugin: 'Region',
+				title: 'Region from 2 countries',
+				settings: {
+					source: 'countries',
+					selectedCountries: ['Canada', 'US'],
+					formats: ['full']
+				},
+				id: '555'
+			},
+			{
+				plugin: 'PostalZip',
+				title: 'zip2',
+				settings: {
+					source: 'regionRow',
+					targetRowId: '555'
+				}
+			}
 		],
 		exportSettings: {
 			plugin: ExportType.JSON,
@@ -27,10 +74,15 @@ describe('CLI data generation', () => {
 		const data: any = await generate(getTemplate());
 		const generatedJSON = JSON.parse(data);
 
-		console.log(data);
-
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual(['Any postal code']);
+		expect(Object.keys(generatedJSON[0])).toEqual([
+			'Any postal code',
+			'two-countries',
+			'country-plugins-subset',
+			'zip',
+			'Region from 2 countries',
+			'zip2'
+		]);
 	});
 });
 

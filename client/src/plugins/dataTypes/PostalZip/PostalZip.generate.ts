@@ -2,7 +2,6 @@ import utils from '../../../utils';
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { CountryDataType, CountryType, Region } from '~types/countries';
 import { WorkerUtils } from '~utils/workerUtils';
-import { PostalZipSource } from './PostalZip.state';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
 	const { rowState, countryData, existingRowData } = data;
@@ -12,12 +11,12 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 	let country: CountryType;
 	let regionRow: any;
 
-	if (source === PostalZipSource.any) {
+	if (source === 'any') {
 		country = utils.randomUtils.getRandomArrayValue(countryList as CountryType[]);
-	} else if (source === PostalZipSource.countries) {
+	} else if (source === 'countries') {
 		const list = selectedCountries.length ? selectedCountries : countryList;
 		country = utils.randomUtils.getRandomArrayValue(list);
-	} else if (source === PostalZipSource.countryRow) {
+	} else if (source === 'countryRow') {
 		const countryRow = existingRowData.find(({ id }) => id === rowState.targetRowId);
 		country = countryRow!.data.countryDataType;
 
