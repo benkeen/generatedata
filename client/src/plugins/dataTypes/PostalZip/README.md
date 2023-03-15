@@ -1,14 +1,7 @@
 # [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; PostalZip
 
 This Data Type works in conjunction with the Countries plugins to generate country-specific postal/zip formats 
-for consistency of data across each row. For example:
-
-
-```
-United Kingdom      01552 515219
-Canada              (604) 264-2551
-United Kingdom      01512 215441
-```
+for consistency of data across each row.
 
 ## Examples 
 

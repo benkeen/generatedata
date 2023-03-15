@@ -12,6 +12,21 @@ export const generate = (data: any, workerUtils: WorkerUtils): string => {
 		: generateComplex(data, stripWhitespace);
 };
 
+const maybeEnquote = (value: any) => {
+	const isNumeric = utils.numberUtils.isNumeric(value);
+
+	let startsWithZero = false;
+	if (value.toString().length > 0) {
+		startsWithZero = value.toString()[0] === '0';
+	}
+	const isValidNumber = isNumeric && !startsWithZero;
+	if (!isValidNumber && !isJavascriptBoolean(value)) {
+		value = `"${value}"`;
+	}
+
+	return value;
+}
+
 const generateSimple = (generationData: ETMessageData, stripWhitespace: boolean): string => {
 	let content = '';
 	let comma = '';
@@ -41,9 +56,7 @@ const generateSimple = (generationData: ETMessageData, stripWhitespace: boolean)
 
 				// otherwise, do a safety check and encase it in double quote if necessary
 			} else {
-				if (!utils.numberUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
-					value = `"${value}"`;
-				}
+				value = maybeEnquote(value);
 			}
 
 			content += `${comma}${newline}${tab}${tab}"${propName}":${space}${value}`;
@@ -79,9 +92,7 @@ const generateComplex = (generationData: ETMessageData, stripWhitespace: boolean
 		const rowValsArr: any[] = [];
 		colTitles.forEach((colTitle: string, colIndex: number) => {
 			let value = row[colIndex];
-			if (!utils.numberUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
-				value = `"${value}"`;
-			}
+			value = maybeEnquote(value);
 			rowValsArr.push(value);
 		});
 
