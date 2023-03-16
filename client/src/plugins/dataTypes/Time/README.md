@@ -5,6 +5,19 @@ requires passing the `fromTime` and `toTime` settings sin _seconds timestamp_ fo
 easiest format to work with, so we have a feature request to improve the DX here: https://github.com/benkeen/generatedata/issues/825
 Try using an online service such as the [epochconvertor site](https://www.epochconverter.com/) to generate those values for you.
 
+## Formats
+
+This Data Type uses date-fns for the time formats. [See their documentation](https://date-fns.org/v2.29.3/docs/format) for 
+a full descriptions of each of the formatting placeholders. A few examples:
+
+- `h:mm aaa` - 3:35 pm
+- `h:mm a` - 3:35 PM
+- `h:mm aaaa` - 3:35 p.m.
+- `h:mm:ss aaa` - 3:35:00 pm
+- `h:mm:ss aa` - 3:35:00 PM
+- `h:mm:ss aaaa` - 3:35:00 P.M.
+- `H:mm` - 15:35
+- `H:mm:ss` - 15:35:00
 
 ## Examples
 

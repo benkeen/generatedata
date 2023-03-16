@@ -35,7 +35,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - [StreetAddress](./StreetAddress/README.md)
 - [TextFixed](./TextFixed/README.md)
 - TextRandom
-- Time
+- [Time](./Time/README.md)
 - Track1
 - Track2
 - URLs
