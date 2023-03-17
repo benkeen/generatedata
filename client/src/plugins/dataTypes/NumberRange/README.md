@@ -3,35 +3,72 @@
 This Data Type generates a number.
 
 
-### Example API Usage
+### Examples
 
-This generates a number between 1 and 100. Just POST the following JSON content to: 
-`http://[your site]/[generate data folder]/api/v1/data`
+This example generates 2 pieces of data:
+- a random number between 1 and 100.
+- a random number between -10000 and -20000.
 
 ```javascript
 {
-    "numRows": 50,
-    "rows": [
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
         {
-            "type": "NumberRange",
-            "title": "num",
-            "settings": {
-                "rangeMin": 1,
-                "rangeMax": 100
+            plugin: 'NumberRange',
+            title: 'num1',
+            settings: {
+                min: 1,
+                max: 100
+            }
+        },
+        {
+            plugin: 'NumberRange',
+            title: 'num2',
+            settings: {
+                min: -10000,
+                max: -20000
             }
         }
     ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "simple"
+    exportSettings: {
+        plugin: 'JSON',
+        settings: {
+            dataStructureFormat: 'simple'
         }
     }
 }
 ```
  
-### API help
+Sample output:
 
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
+```
+[
+    {
+        "num1": 100,
+        "num2": -2811
+    },
+    {
+        "num1": 23,
+        "num2": -4337
+    },
+    {
+        "num1": 89,
+        "num2": -8604
+    },
+    {
+        "num1": 72,
+        "num2": -9465
+    },
+    {
+        "num1": 8,
+        "num2": -2012
+    },
+    {
+        "num1": 4,
+        "num2": -8977
+    },
+    ...
+]
+```

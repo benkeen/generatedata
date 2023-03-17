@@ -23,7 +23,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - List
 - [Names](./Names/README.md)
 - NormalDistribution
-- NumberRange
+- [NumberRange](./NumberRange/README.md)
 - OrganizationNumber
 - PAN
 - PersonalNumber

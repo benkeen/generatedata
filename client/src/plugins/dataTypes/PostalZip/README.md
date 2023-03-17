@@ -20,17 +20,17 @@ for consistency of data across each row.
     },
     dataTemplate: [
         {
-            plugin: DataType.PostalZip,
-            title: 'Any postal code',
+            plugin: "PostalZip",
+            title: "Any postal code",
             settings: {
-                source: 'any'
+                source: "any"
             }
         },
     ],
-        exportSettings: {
-        plugin: ExportType.JSON,
-            settings: {
-            dataStructureFormat: 'simple'
+    exportSettings: {
+        plugin: "JSON",
+        settings: {
+            dataStructureFormat: "simple"
         }
     }
 }
@@ -73,18 +73,18 @@ This example outputs a random postal code from either Canada or the US.
     },
     dataTemplate: [
         {
-            plugin: DataType.PostalZip,
-            title: 'two-countries',
+            plugin: "PostalZip",
+            title: "two-countries",
             settings: {
-                source: 'countries',
-                selectedCountries: ['Canada', 'US']
+                source: "countries",
+                selectedCountries: ["Canada", "US"]
             }
         }
     ],
     exportSettings: {
-        plugin: ExportType.JSON,
+        plugin: "JSON",
         settings: {
-            dataStructureFormat: 'simple'
+            dataStructureFormat: "simple"
         }
     }
 }

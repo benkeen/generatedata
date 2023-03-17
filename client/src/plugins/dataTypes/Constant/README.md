@@ -10,6 +10,7 @@ of `N` and the list of constants to be inserted. See the examples.
 - [Every odd row gets a "One" value and every even gets a "Two"](#every-odd-row-gets-a-one-value-and-every-even-gets-a-two)
 - [The first 2 rows get "A", the second two rows "B", the third two rows "C", then loops](#the-first-2-rows-get-a-the-second-two-rows-b-the-third-two-rows-c-then-loops)  
 
+
 ### Every odd row gets a "One" value and every even gets a "Two"
 
 ```javascript

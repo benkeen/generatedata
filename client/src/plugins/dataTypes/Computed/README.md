@@ -1,12 +1,13 @@
 # [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; Computed
 
-This Data Type lets you grab the content from other generate rows and manipulate that information however you need.
+This Data Type lets you re-use the content from other generate fields in the row and manipulate that information however
+you need.
 
 
-### Example API Usage
+### Examples
 
-This example generates 2 rows of random numbers, then 2 rows of Composite fields that use the random numbers. To 
-use this, POST the following JSON content to `http://[your site]/[generate data folder]/api/v1/data`:
+This example generates 2 rows of random numbers, then 2 rows of Composite fields that use the random numbers.
+    
 
 ```javascript
 {
