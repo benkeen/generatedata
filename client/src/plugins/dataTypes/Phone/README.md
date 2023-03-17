@@ -4,38 +4,113 @@ This Data Type generates a phone number with a simple search-replace algorithm. 
 string are replaced with 1-9; any `x`'s (lowercase) are replaced with 0-9. 
 
 
-### Example API Usage
+## Examples
 
-Just POST the following JSON content to: 
-`http://[your site]/[generate data folder]/api/v1/data`
+- [Generate a random phone number in a single format](#generate-a-random-phone-number-in-a-single-format) 
+- [Generate a random phone number in multiple formats](#generate-a-random-phone-number-in-multiple-formats)
 
-```javascript
+### Generate a random phone number in a single format
+
+```typescript
 {
-    "numRows": 50,
-    "rows": [
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
         {
-            "type": "Phone",
-            "title": "phone_num",
-            "settings": {
-                "placeholder": "1-Xxx-Xxx-xxxx"
+            plugin: 'Phone',
+            title: 'phoneNum',
+            settings: {
+                option: ['(Xxx) Xxx-xxxx']
             }
         }
     ],
-    "export": {
-        "type": "JSON",
-        "settings": {
-            "stripWhitespace": false,
-            "dataStructureFormat": "simple"
+    exportSettings: {
+        plugin: ExportType.JSON,
+        settings: {
+            dataStructureFormat
         }
     }
 }
 ```
 
-Tip: to generate random formats, just include multiple values for the placeholder field in the string, separated by a `|` pipe
-character. The generator will pick one of the formats at random.
+Sample output:
 
- 
-### API help
+```javascript
+[
+    {
+        "phoneNum": "(143) 454-2481"
+    },
+    {
+        "phoneNum": "(988) 411-7252"
+    },
+    {
+        "phoneNum": "(340) 460-3834"
+    },
+    {
+        "phoneNum": "(380) 685-3692"
+    },
+    {
+        "phoneNum": "(337) 643-8780"
+    },
+    {
+        "phoneNum": "(344) 746-2939"
+    },
+    ...
+]
+```
 
-For more information about the API, check out:
-[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)
+### Generate a random phone number in multiple formats
+
+```typescript
+{
+    generationSettings: {
+        numResults: 10
+    },
+    dataTemplate: [
+        {
+            plugin: 'Phone',
+            title: 'phoneNum',
+            settings: {
+                option: [
+					'(Xxx) Xxx-xxxx',
+                    '1 (Xxx) Xxx-xxxx',
+					'Xxx Xxx-xxxx'
+                ]
+            }
+        }
+    ],
+    exportSettings: {
+        plugin: 'JSON',
+        settings: {
+            dataStructureFormat: 'simple'
+        }
+    }
+}
+```
+
+Sample output:
+
+```javascript
+[
+    {
+        "phoneNum": "882 579-5511"
+    },
+    {
+        "phoneNum": "(237) 433-6484"
+    },
+    {
+        "phoneNum": "(244) 278-9347"
+    },
+    {
+        "phoneNum": "1 (927) 607-4334"
+    },
+    {
+        "phoneNum": "553 957-8737"
+    },
+    {
+        "phoneNum": "302 923-7126"
+    },
+    ...
+]
+```

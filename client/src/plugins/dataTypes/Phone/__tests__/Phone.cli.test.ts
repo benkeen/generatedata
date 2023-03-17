@@ -8,17 +8,21 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: DataType.Names,
-				title: 'First Name',
+				plugin: DataType.Phone,
+				title: 'phoneNum1',
 				settings: {
-					options: ['Name']
+					option: ['(Xxx) Xxx-xxxx']
 				}
 			},
 			{
-				plugin: DataType.Names,
-				title: 'Last Name',
+				plugin: 'Phone',
+				title: 'phoneNum2',
 				settings: {
-					options: ['Surname']
+					option: [
+						'(Xxx) Xxx-xxxx',
+						'1 (Xxx) Xxx-xxxx',
+						'Xxx Xxx-xxxx'
+					]
 				}
 			}
 		],
@@ -35,17 +39,7 @@ describe('CLI data generation', () => {
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual(['First Name', 'Last Name']);
+		expect(Object.keys(generatedJSON[0])).toEqual(['phoneNum1', 'phoneNum2']);
 	});
-
-	it('Confirm simple export format', async () => {
-		const data: any = await generate(getTemplate('complex'));
-		const generatedJSON = JSON.parse(data);
-
-		expect(generatedJSON.cols).toEqual(['First Name', 'Last Name']);
-		expect(generatedJSON.data.length).toEqual(10);
-		expect(generatedJSON.data[0].length).toEqual(2);
-	});
-
 });
 

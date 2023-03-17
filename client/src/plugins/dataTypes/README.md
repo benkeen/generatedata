@@ -27,7 +27,7 @@ Types (XML, SQL, CSV etc.). See the [Export Types](#export-types) section below 
 - OrganizationNumber
 - PAN
 - PersonalNumber
-- Phone
+- [Phone](./Phone/README.md)
 - PIN
 - [PostalZip](./PostalZip/README.md)
 - [Region](./Region/README.md)
