@@ -67,10 +67,11 @@ export const presets = {
 	}
 };
 
-export const enum WeightedListType {
+export const enum WeightedListTypeEnum {
 	exactly = 'exactly',
 	between = 'between'
 }
+export type WeightedListType = `${WeightedListTypeEnum}`;
 
 export type WeightedListItem = {
 	value: string;
@@ -99,7 +100,7 @@ export type GenerationOptionsType = {
 }
 
 export const defaultGenerationOptions: GenerationOptionsType = {
-	listType: WeightedListType.exactly,
+	listType: 'exactly',
 	exactly: '1',
 	betweenLow: '',
 	betweenHigh: '',
@@ -110,7 +111,7 @@ export const defaultGenerationOptions: GenerationOptionsType = {
 
 export const initialState: WeightedListState = {
 	example: 'even-odd',
-	listType: WeightedListType.exactly,
+	listType: 'exactly',
 	exactly: '1',
 	betweenLow: '',
 	betweenHigh: '',
