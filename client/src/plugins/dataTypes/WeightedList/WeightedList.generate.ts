@@ -1,5 +1,5 @@
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { WeightedListType } from './WeightedList.state';
+import { WeightedListTypeEnum } from './WeightedList.state';
 import { WorkerUtils } from '~utils/workerUtils';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
@@ -7,7 +7,7 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 	const numValues = Object.keys(values).length;
 
 	let items: any = [];
-	if (listType === WeightedListType.exactly) {
+	if (listType === WeightedListTypeEnum.exactly) {
 		items = utils.randomUtils.getRandomWeightedSubset(values, exactly, allowDuplicates);
 	} else if (betweenLow && betweenHigh) {
 		const numItems = utils.randomUtils.getRandomNum(betweenLow, betweenHigh);
