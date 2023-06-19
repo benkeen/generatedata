@@ -3,7 +3,7 @@ import { createTheme } from '@material-ui/core/styles';
 
 const theme = createTheme({
 	typography: {
-		fontFamily: 'garamond, "Open Sans", serif',
+		fontFamily: '"Open Sans", serif',
 		button: {
 			fontSize: 'inherit'
 		},
