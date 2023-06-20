@@ -39,6 +39,7 @@ export type ProcessExportTypeOnlyAction = {
 		isFirstBatch: boolean;
 		isLastBatch: boolean;
 		currentBatch: number;
+		batchSize: number;
 		numResults: number;
 		exportTypeSettings: any;
 		stripWhitespace: boolean;

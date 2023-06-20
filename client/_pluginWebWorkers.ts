@@ -1,5 +1,5 @@
 export default {
-	"generationWorker": "generation.worker-6b527247ee72fde646a3dbc76c965b10.js",
+	"generationWorker": "generation.worker-1dc7caad6d37493ad34aaebb76baa983.js",
 	"workerUtils": "workerUtils-65b8fc68b3b2f31c1ae6ce27e6654eb7.js",
 	"dataTypes": {
 		"Alphanumeric": "DT-Alphanumeric.worker-aa6aeac21cd8acc43368dc493883e235.js",
@@ -52,7 +52,7 @@ export default {
 		"Perl": "ET-Perl.worker-8ad96145813186efe09ab6c6a6fe6a5b.js",
 		"Python": "ET-Python.worker-9c1c7cec5bde1e008402ef35a712b6e6.js",
 		"Ruby": "ET-Ruby.worker-8a9ee7ca87aef53afae83902b79b52a0.js",
-		"SQL": "ET-SQL.worker-eae398803517b19e2f3928b6ef49b695.js",
+		"SQL": "ET-SQL.worker-65601a52cf905bcb903957aaa853fbfe.js",
 		"Typescript": "ET-Typescript.worker-d4e2611a82f1e24e40479eadebdea946.js",
 		"XML": "ET-XML.worker-e0bf2162240237aee27b997a383f766e.js"
 	}

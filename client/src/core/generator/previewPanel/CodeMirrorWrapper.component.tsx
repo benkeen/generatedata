@@ -4,6 +4,7 @@ import * as coreUtils from '~utils/coreUtils';
 import { getCountryData } from '~utils/countryUtils';
 import { GeneratorLayout } from '~core/generator/Generator.component';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
+import C from '~core/constants';
 
 export type CodeMirrorWrapperProps = {
 	previewRows: any;
@@ -68,6 +69,8 @@ export const generatePreviewString = (props: any): Promise<any> => {
 			action: GenerationWorkerActionType.ProcessExportTypeOnly,
 			isFirstBatch: true,
 			isLastBatch: true,
+			batchSize: C.GENERATION_BATCH_SIZE,
+			currentBatch: 1,
 			rows: previewRows,
 			columns,
 			exportTypeSettings,

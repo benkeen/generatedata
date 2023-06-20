@@ -35,6 +35,7 @@ export const generate = ({
 			isFirstBatch: completedBatchNum === 1,
 			isLastBatch,
 			currentBatch: completedBatchNum,
+			batchSize: packetSize as number,
 			rows: displayData,
 			columns,
 			stripWhitespace: stripWhitespace as boolean, // TODO we knows it's defined here
@@ -117,6 +118,7 @@ type GenerateExportTypesBaseProps = {
 	isFirstBatch: boolean;
 	isLastBatch: boolean;
 	currentBatch: number;
+	batchSize: number;
 	rows: any; // TODO
 	columns: any; // TODO
 	settings: any; // TODO

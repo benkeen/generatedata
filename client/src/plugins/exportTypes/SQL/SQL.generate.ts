@@ -24,6 +24,10 @@ export const enum QuoteType {
 	double = '"'
 }
 
+const getCurrentRow = (batch: number, batchSize: number, rowIndex: number) => {
+	return (batchSize * (batch-1)) + rowIndex+1;
+};
+
 const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: number[], quote: QuoteType = QuoteType.double): any => {
 	let val = '';
 	if (numericFieldIndexes.indexOf(colIndex) !== -1) {
@@ -45,8 +49,7 @@ const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: numb
 
 export const generateMySQL = (data: ETMessageData): string => {
 	const sqlSettings: SQLSettings = data.settings;
-	const { isFirstBatch, columns, rows } = data;
-
+	const { isFirstBatch, currentBatch, batchSize, columns, rows } = data;
 	const backquote = sqlSettings.encloseInBackQuotes ? '`' : '';
 	const colTitles = columns.map(({ title }) => title);
 	let content = '';
@@ -120,7 +123,8 @@ export const generateMySQL = (data: ETMessageData): string => {
 				pairs.push(`${backquote}${title}${backquote} = ${colValue}`);
 			});
 			const pairsStr = pairs.join(', ');
-			content += `UPDATE ${backquote}${sqlSettings.tableName}${backquote} SET ${pairsStr} WHERE ${backquote}id${backquote} = ${rowIndex+1};\n`;
+			const id = getCurrentRow(currentBatch, batchSize, rowIndex);
+			content += `UPDATE ${backquote}${sqlSettings.tableName}${backquote} SET ${pairsStr} WHERE ${backquote}id${backquote} = ${id};\n`;
 		}
 	});
 
@@ -192,7 +196,8 @@ export const generatePostgres = (generationData: ETMessageData): string => {
 				pairs.push(`${title} = ${colValue}`);
 			});
 			const pairsStr = pairs.join(', ');
-			content += `UPDATE ${sqlSettings.tableName} SET ${pairsStr} WHERE id = ${rowIndex+1};\n`;
+			const id = getCurrentRow(generationData.currentBatch, generationData.batchSize, rowIndex);
+			content += `UPDATE ${sqlSettings.tableName} SET ${pairsStr} WHERE id = ${id};\n`;
 		}
 	});
 
@@ -272,7 +277,8 @@ export const generateSQLite = (generationData: ETMessageData): string => {
 				pairs.push(`${backquote}${title}${backquote} = ${colValue}`);
 			});
 			const pairsStr = pairs.join(', ');
-			content += `UPDATE ${backquote}${sqlSettings.tableName}${backquote} SET ${pairsStr} WHERE ${backquote}id${backquote} = ${rowIndex+1};\n`;
+			const id = getCurrentRow(generationData.currentBatch, generationData.batchSize, rowIndex);
+			content += `UPDATE ${backquote}${sqlSettings.tableName}${backquote} SET ${pairsStr} WHERE ${backquote}id${backquote} = ${id};\n`;
 		}
 	});
 
@@ -347,7 +353,8 @@ export const generateOracle = (generationData: ETMessageData): string => {
 				pairs.push(`${backquote}${title}${backquote} = ${colValue}`);
 			});
 			const pairsStr = pairs.join(', ');
-			content += `UPDATE ${backquote}${sqlSettings.tableName}${backquote} SET ${pairsStr} WHERE ${backquote}id${backquote} = ${rowIndex+1};\n`;
+			const id = getCurrentRow(generationData.currentBatch, generationData.batchSize, rowIndex);
+			content += `UPDATE ${backquote}${sqlSettings.tableName}${backquote} SET ${pairsStr} WHERE ${backquote}id${backquote} = ${id};\n`;
 		}
 	});
 
@@ -433,7 +440,8 @@ export const generateMSSQL = (generationData: ETMessageData): string => {
 				pairs.push(`[${title}] = ${colValue}`);
 			});
 			const pairsStr = pairs.join(', ');
-			content += `UPDATE [${sqlSettings.tableName}] SET ${pairsStr} WHERE [{$this->tableName}ID] = ${rowIndex+1};\n`;
+			const id = getCurrentRow(generationData.currentBatch, generationData.batchSize, rowIndex);
+			content += `UPDATE [${sqlSettings.tableName}] SET ${pairsStr} WHERE [{$this->tableName}ID] = ${id};\n`;
 
 			// if (($currentRow % 1000) == 0) {
 			// 	$content .= $endLineChar;
