@@ -50,6 +50,7 @@ context.onmessage = (e: GenerationActions) => {
 				numResults,
 				isFirstBatch: completedBatchNum === 1,
 				isLastBatch,
+				currentBatch: completedBatchNum,
 				rows: displayData,
 				columns,
 				stripWhitespace,

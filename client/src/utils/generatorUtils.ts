@@ -1,7 +1,7 @@
 import { DataTypeFolder } from '../../_plugins';
 import {
 	DataTypeBatchGeneratedPayload,
-	DataTypeWorkerInterface, GDTemplate,
+	DataTypeWorkerInterface,
 	UnchangedGenerationData, WorkerInterface
 } from '~types/generator';
 import { CountryDataType, CountryNamesMap } from '~types/countries';
@@ -34,6 +34,7 @@ export const generate = ({
 			numResults,
 			isFirstBatch: completedBatchNum === 1,
 			isLastBatch,
+			currentBatch: completedBatchNum,
 			rows: displayData,
 			columns,
 			stripWhitespace: stripWhitespace as boolean, // TODO we knows it's defined here
@@ -115,6 +116,7 @@ type GenerateExportTypesBaseProps = {
 	onComplete: any; // TODO
 	isFirstBatch: boolean;
 	isLastBatch: boolean;
+	currentBatch: number;
 	rows: any; // TODO
 	columns: any; // TODO
 	settings: any; // TODO

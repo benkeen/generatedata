@@ -38,6 +38,7 @@ export type ProcessExportTypeOnlyAction = {
 		columns: any; // TODO
 		isFirstBatch: boolean;
 		isLastBatch: boolean;
+		currentBatch: number;
 		numResults: number;
 		exportTypeSettings: any;
 		stripWhitespace: boolean;
