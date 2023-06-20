@@ -41,5 +41,6 @@
   "week": "週間",
   "year": "年",
   "endDateEarlierThanStartDate": "終了日は開始日より後でなければなりません",
-  "dateFormat": "日付形式"
+  "dateFormat": "日付形式",
+  "invalidDateFormat": "無効な形式。 使用可能な書式設定オプションを表示するには、行のヘルプ アイコンをクリックします。"
 }

@@ -25,3 +25,13 @@ export const formatUnixTime = (time: number, formatStr: string = C.DATETIME_FORM
 	}
 	return format(fromUnixTime(time), formatStr);
 };
+
+export const isValidDateFormat = (dateFormat: string) => {
+	let isValid = true;
+	try {
+		format(new Date(), dateFormat);
+	} catch (e) {
+		isValid = false;
+	}
+	return isValid;
+};

@@ -41,5 +41,6 @@
   "week": "Semana",
   "year": "Año",
   "endDateEarlierThanStartDate": "La fecha de finalización debe ser posterior a la fecha de inicio.",
-  "dateFormat": "Formato de fecha"
+  "dateFormat": "Formato de fecha",
+  "invalidDateFormat": "Formato inválido. Haga clic en el icono de ayuda de la fila para ver las opciones de formato disponibles."
 }

@@ -14,7 +14,7 @@ export default {
 		"Constant": "DT-Constant.worker-ee94693e3c416b3ca6b2aa34c37f9d6f.js",
 		"Country": "DT-Country.worker-002d89b3fc102c35bd6fedeac6ef99c3.js",
 		"Currency": "DT-Currency.worker-b689578c2998895dacefba720c44d8fe.js",
-		"Date": "DT-Date.worker-33320a7c46a40fe0ec9c662c20b96096.js",
+		"Date": "DT-Date.worker-b1cf4221c494b479f8f46ebe4ce99e0d.js",
 		"Email": "DT-Email.worker-534303bf5f971c145afc6399bbd6818e.js",
 		"GUID": "DT-GUID.worker-f3b1de4ba8fc957a63d52df8e81e201f.js",
 		"IBAN": "DT-IBAN.worker-adbb63c98f1a1bd8d2588f354c2aa965.js",

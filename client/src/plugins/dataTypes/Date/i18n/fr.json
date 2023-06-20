@@ -41,7 +41,8 @@
   "week": "La semaine",
   "year": "An",
   "endDateEarlierThanStartDate": "La date de fin doit être postérieure à la date de début",
-  "dateFormat": "Format de date"
+  "dateFormat": "Format de date",
+  "invalidDateFormat": "Format invalide. Cliquez sur l'icône d'aide de ligne pour les options de formatage disponibles."
 }
 
 

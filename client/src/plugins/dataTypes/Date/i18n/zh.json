@@ -41,5 +41,6 @@
   "week": "周",
   "year": "年",
   "endDateEarlierThanStartDate": "结束日期应晚于开始日期",
-  "dateFormat": "日期格式"
+  "dateFormat": "日期格式",
+  "invalidDateFormat": "无效的格式。单击行帮助图标以获得可用的格式选项。"
 }

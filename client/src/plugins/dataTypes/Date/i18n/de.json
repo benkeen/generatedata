@@ -41,5 +41,6 @@
   "week": "Week",
   "year": "Year",
   "endDateEarlierThanStartDate": "The end date should be later than the start date",
-  "dateFormat": "Date format"
+  "dateFormat": "Date format",
+  "invalidDateFormat": "Ungültiges Format. Klicken Sie auf das Zeilenhilfesymbol, um die verfügbaren Formatierungsoptionen anzuzeigen."
 }

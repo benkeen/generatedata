@@ -41,5 +41,6 @@
   "week": "Semana",
   "year": "Ano",
   "endDateEarlierThanStartDate": "A data de término deve ser posterior à data de início",
-  "dateFormat": "Formato de data"
+  "dateFormat": "Formato de data",
+  "invalidDateFormat": "Formato Inválido. Clique no ícone de ajuda da linha para obter as opções de formatação disponíveis."
 }

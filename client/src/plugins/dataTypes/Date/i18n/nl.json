@@ -41,7 +41,8 @@
   "week": "Week",
   "year": "Jaar",
   "endDateEarlierThanStartDate": "De einddatum moet later zijn dan de startdatum",
-  "dateFormat": "Date format"
+  "dateFormat": "Date format",
+  "invalidDateFormat": "Ongeldig formaat. Klik op het rijhulppictogram voor beschikbare opmaakopties."
 }
 
 

@@ -9,6 +9,7 @@ import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/
 import { ErrorTooltip } from '~components/tooltips';
 import TextField from '~components/TextField';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
+import { isValidDateFormat } from '~utils/dateUtils';
 import * as sharedStyles from '../../../styles/shared.scss';
 import { DateState, GenerationOptionsType } from './Date.state';
 import * as styles from './Date.scss';
@@ -120,6 +121,15 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 		toDateError = i18n.endDateEarlierThanStartDate;
 	}
 
+	let formatError = coreI18n.requiredField;
+	if (data.format) {
+		formatError = '';
+
+		if (!isValidDateFormat(data.format)) {
+			formatError = i18n.invalidDateFormat;
+		}
+	}
+
 	return (
 		<LocalizedDatePickerProvider>
 			<div>
@@ -143,7 +153,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 				<div>
 					<span className={styles.formatCodeLabel}>{i18n.formatCode}</span>
 					<TextField
-						error={data.format ? '' : coreI18n.requiredField}
+						error={formatError}
 						value={data.format}
 						style={{ width: 140 }}
 						onChange={(e: any): void => onChange('format', e.target.value)}
