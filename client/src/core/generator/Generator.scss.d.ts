@@ -3,7 +3,6 @@ declare namespace GeneratorScssNamespace {
     controlRow: string;
     disabled: string;
     icons: string;
-    incompatibleBrowser: string;
   }
 }
 

@@ -12,8 +12,6 @@ import DataSetHistory from './dataSetHistory/DataSetHistory.container';
 import HelpDialog from '../dialogs/help/HelpDialog.container';
 import ClearPageDialog from '../dialogs/clearPage/ClearPage.container';
 import SchemaDialog from '../dialogs/schema/Schema.container';
-import IncompatibleBrowser from './IncompatibleBrowser.component';
-import * as generalUtils from '../../utils/generalUtils';
 import C from '../constants';
 import './Generator.scss';
 
@@ -60,10 +58,6 @@ const Builder = ({
 	}
 
 	const getContent = (): JSX.Element => {
-		if (generalUtils.isSafari) {
-			return <IncompatibleBrowser i18n={i18n} />;
-		}
-
 		if (windowSize.width < C.SMALL_SCREEN_WIDTH) {
 			return smallScreenVisiblePanel === 'grid' ? <Grid /> : <Preview />;
 		}
