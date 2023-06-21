@@ -1,8 +1,11 @@
 ## Changelog
 
+- `4.1.4` - Jun 20, 2023
+    - Misc bug fixes.
+    - https://github.com/benkeen/generatedata/milestone/48?closed=1
 - `4.1.3` - Mar 2, 2023
-  - Misc bug fixes.
-  - https://github.com/benkeen/generatedata/milestone/47?closed=1
+    - Misc bug fixes.
+    - https://github.com/benkeen/generatedata/milestone/47?closed=1
 - `4.1.2` - Mar 1, 2023
     - Misc bug fixes.
     - https://github.com/benkeen/generatedata/milestone/46?closed=1
