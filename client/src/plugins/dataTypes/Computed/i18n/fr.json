@@ -10,7 +10,6 @@
   "compositeMultiplication": "multiplication",
   "compositeNa": "N / A",
   "compositeSubtraction": "soustraction",
-
   "rowPlaceholder": "Sort la valeur de n'importe quelle autre ligne de la grille",
   "rowNumPlaceholder": "Renvoie le numéro de ligne actuel de l'ensemble de données généré. Donc, si c'est sur la 10 000e ligne, cela aura une valeur de 10 000.",
   "additionalInfo": "Contient des informations supplémentaires sur chaque ligne.",

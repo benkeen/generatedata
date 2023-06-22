@@ -10,7 +10,6 @@
   "compositeMultiplication": "乘法",
   "compositeNa": "不适用",
   "compositeSubtraction": "减法",
-
   "rowPlaceholder": "从网格中的任何其他行输出值",
   "rowNumPlaceholder": "输出生成的数据集的当前行号。 因此，如果它在第10,000行，则其值为10000。",
   "additionalInfo": "包含有关每一行的其他信息。",

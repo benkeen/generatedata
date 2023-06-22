@@ -18,7 +18,6 @@
   "countryRow": "Country Row",
   "rowDesc": "Hiermee kunt u een specifiek landveld in uw dataset lokaliseren dat landplug-ins als bron heeft. Het genereert regio's die zijn toegewezen aan de waarde in dat veld.",
   "row": "Rij",
-
   "anyRegionFromCountry": "Elke regio uit 1 land",
   "anyRegionFromCountries": "Elke regio uit %1 landen"
 }

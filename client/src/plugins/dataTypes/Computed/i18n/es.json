@@ -10,7 +10,6 @@
   "compositeMultiplication": "multiplicación",
   "compositeNa": "N / A",
   "compositeSubtraction": "sustracción",
-
   "rowPlaceholder": "Muestra el valor de cualquier otra fila de la cuadrícula",
   "rowNumPlaceholder": "Muestra el número de fila actual del conjunto de datos generado. Entonces, si está en la fila 10,000, esto tendrá un valor de 10,000.",
   "additionalInfo": "Contiene información adicional sobre cada fila.",

@@ -10,7 +10,6 @@
   "compositeMultiplication": "Multiplikation",
   "compositeNa": "N / A",
   "compositeSubtraction": "Subtraktion",
-
   "rowPlaceholder": "Gibt den Wert aus einer anderen Zeile im Raster aus",
   "rowNumPlaceholder": "Gibt die aktuelle Zeilennummer des generierten Datensatzes aus. Wenn es sich also in der 10.000sten Zeile befindet, hat dies einen Wert von 10000.",
   "additionalInfo": "Enthält zusätzliche Informationen zu jeder Zeile.",
