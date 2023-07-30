@@ -37,7 +37,7 @@ const generatePAN = (prefix: number, format: string): string => {
 	// calculate sum
 	let sum = 0;
 	let pos = 0;
-	while (pos < numChars-1) {
+	while (pos < numChars) {   // see issue 843 - incorrect PAN check digits
 		const currentNum: number = +reversedNums[pos];
 		let odd = currentNum*2;
 		if (odd > 9) {
@@ -45,7 +45,7 @@ const generatePAN = (prefix: number, format: string): string => {
 		}
 		sum += odd;
 
-		if (pos != (numChars - 2)) {
+		if ((pos + 1) < numChars) {  // see issue 843 - incorrect PAN check digits
 			sum += +reversedNums[pos+1];
 		}
 		pos += 2;
