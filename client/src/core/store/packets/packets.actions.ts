@@ -3,7 +3,7 @@ import { createGenerationWorker } from '~utils/coreUtils';
 import * as selectors from '../generator/generator.selectors';
 import * as packetSelectors from './packets.selectors';
 import { getDownloadFileInfo } from '~utils/exportTypeUtils';
-import { getGeneratorRoute } from '~utils/routeUtils';
+import { getGeneratorPageRoute } from '~utils/routeUtils';
 import { GDAction } from '~types/general';
 import { downloadFile } from '../../generationPanel/generation.helpers';
 import * as mainSelectors from '~store/main/main.selectors';
@@ -91,7 +91,7 @@ export const showActivityPanel = (packetId: string, history: any) => (dispatch: 
 	const state = getState();
 	const locale = mainSelectors.getLocale(state);
 
-	history.push(getGeneratorRoute(locale));
+	history.push(getGeneratorPageRoute(locale));
 	dispatch({
 		type: SHOW_ACTIVITY_PANEL,
 		payload: { packetId }

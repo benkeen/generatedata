@@ -11,7 +11,7 @@ import { AccountStatus, AccountType, SelectedAccountTab } from '~types/account';
 import store from '~core/store';
 import { onChangeTab, showSaveDataSetDialog } from '~store/account/account.actions';
 import { addToast, setTourComponents } from '~utils/generalUtils';
-import { getGeneratorRoute, updateBodyClass } from '~utils/routeUtils';
+import { getGeneratorPageRoute, isGeneratorPage, updateBodyClass } from '~utils/routeUtils';
 import * as actions from '~store/generator/generator.actions';
 import { CLEAR_GRID } from '~store/generator/generator.actions';
 import C from '~core/constants';
@@ -316,11 +316,12 @@ export const setOnloadAuthDetermined = (): GDAction => ({ type: ONLOAD_AUTH_DETE
 export const SHOW_TOUR_INTRO_DIALOG = 'SHOW_TOUR_INTRO_DIALOG';
 export const showTourIntroDialog = (history?: any) => (dispatch: Dispatch, getState: any): any => {
 	const state = getState();
+	const currentPage = getCurrentPage(state);
 	const locale = getLocale(state);
-	const generatorRoute = getGeneratorRoute(locale);
+	const generatorRoute = getGeneratorPageRoute(locale);
 
 	// the tour is specific to the generator page, so always redirect there when showing/hiding it
-	if (history && getCurrentPage(state) !== generatorRoute) {
+	if (history && !isGeneratorPage(currentPage, locale)) {
 		history.push(generatorRoute);
 	}
 

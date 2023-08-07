@@ -6,8 +6,10 @@ import AccountsPage from '~core/accounts/Accounts.container';
 import { GDHeaderLink, GDLocale, GDRoute } from '~types/general';
 import { AccountType } from '~types/account';
 import { PAGE_CHANGE } from '~store/main/main.actions';
+import { trimChars } from '~utils/stringUtils';
 import env from '../../_env';
 import C from '../core/constants';
+
 
 // TODO move this under `extensionUtils`
 let customRoutes: GDRoute[] = [];
@@ -60,7 +62,7 @@ export const getRoutes = (): GDRoute[] => {
 
 export const getUnlocalizedGeneratorRoute = (): string => process.env.GD_GENERATOR_PATH || '';
 
-export const getGeneratorRoute = (locale: GDLocale): string => {
+export const getGeneratorPageRoute = (locale: GDLocale): string => {
 	let path = getUnlocalizedGeneratorRoute();
 	if (locale !== 'en') {
 		path = `/${locale}${path}`;
@@ -68,6 +70,15 @@ export const getGeneratorRoute = (locale: GDLocale): string => {
 
 	return path;
 };
+
+// helper method to return a boolean if the user is on the generator page, regardless of locale
+export const isGeneratorPage = (currentPage: string, locale: GDLocale) => {
+	const generatorRoute = getGeneratorPageRoute(locale);
+
+	// do a comparison that ignores trailing slashes. Issue #795
+	return trimChars(currentPage, '/') === trimChars(generatorRoute, '/');
+};
+
 
 export interface CustomHeaderLinkGetter {
 	(isLoggedIn: boolean, accountType: AccountType): GDHeaderLink[];

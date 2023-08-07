@@ -16,7 +16,7 @@ import useOnClickOutside from 'use-onclickoutside';
 import styles from './Footer.scss';
 import { useWindowSize } from 'react-hooks-window-size';
 import C from '~core/constants';
-import { getGeneratorRoute } from '~utils/routeUtils';
+import { getGeneratorPageRoute, isGeneratorPage } from '~utils/routeUtils';
 import { GDLocale } from '~types/general';
 
 export type FooterProps = {
@@ -120,7 +120,7 @@ const Footer = ({
 	};
 
 	let footerControlsClasses = styles.footerControls;
-	if (getGeneratorRoute(locale) === currentPage) {
+	if (isGeneratorPage(currentPage, locale)) {
 		footerControlsClasses += ` ${styles.visible}`;
 	}
 

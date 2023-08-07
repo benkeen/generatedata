@@ -10,7 +10,7 @@ import styles from './DataSets.scss';
 import * as sharedStyles from '../../../styles/shared.scss';
 import { DataSetListItem } from '~types/dataSets';
 import { formatUnixTime } from '~utils/dateUtils';
-import { getGeneratorRoute } from '~utils/routeUtils';
+import { getGeneratorPageRoute } from '~utils/routeUtils';
 import { useHistory } from 'react-router';
 import { getFormattedNum } from '~utils/numberUtils';
 import { GDLocale } from '~types/general';
@@ -59,7 +59,7 @@ const DataSets = ({ onLoadDataSet, locale, i18n, className = '' }: DataSetsProps
 
 	const loadDataSet = (dataSet: DataSetListItem): void => {
 		onLoadDataSet(dataSet);
-		history.push(getGeneratorRoute(locale));
+		history.push(getGeneratorPageRoute(locale));
 	};
 
 	const numItemsOnPage = data?.dataSets?.results?.length || 0;

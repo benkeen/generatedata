@@ -33,3 +33,8 @@ export const padString = (val: number | string, length: number): string => {
 	}
 	return str;
 };
+
+export const trimChars = (str: string, c: string) => {
+	const re = new RegExp(`^[${c}]+|[${c}]+$`, 'g');
+	return str.replace(re, '');
+};

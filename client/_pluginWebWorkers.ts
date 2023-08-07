@@ -1,6 +1,6 @@
 export default {
 	"generationWorker": "generation.worker-1dc7caad6d37493ad34aaebb76baa983.js",
-	"workerUtils": "workerUtils-65b8fc68b3b2f31c1ae6ce27e6654eb7.js",
+	"workerUtils": "workerUtils-147a9a5e4f67fd34971a0742261cb2c1.js",
 	"dataTypes": {
 		"Alphanumeric": "DT-Alphanumeric.worker-aa6aeac21cd8acc43368dc493883e235.js",
 		"AutoIncrement": "DT-AutoIncrement.worker-4044449209e01205eaba7c954ca2d6b1.js",
@@ -24,7 +24,7 @@ export default {
 		"NormalDistribution": "DT-NormalDistribution.worker-34b078989c3ea781a1a3cb8e8cfba27a.js",
 		"NumberRange": "DT-NumberRange.worker-f4dfbe5a9b49c0962d8515ff5f18f905.js",
 		"OrganizationNumber": "DT-OrganizationNumber.worker-c73635c7d12396f308b42aab35ed4abb.js",
-		"PAN": "DT-PAN.worker-f23b490272351ba95ef3e06167bff8de.js",
+		"PAN": "DT-PAN.worker-352f8b0753c07a1e373f547fd447aa66.js",
 		"PIN": "DT-PIN.worker-aecbeadadb5c6e2fdd394692ea27b203.js",
 		"PersonalNumber": "DT-PersonalNumber.worker-68b329da9893e34099c7d8ad5cb9c940.js",
 		"Phone": "DT-Phone.worker-548550652d44fc8a79bcd863d391584b.js",
@@ -45,14 +45,14 @@ export default {
 		"CSV": "ET-CSV.worker-d59f3b7a33bfec11d9ceb62748e1bba0.js",
 		"CSharp": "ET-CSharp.worker-33d7d7b06eeac918d6bc00a5e9d2323f.js",
 		"HTML": "ET-HTML.worker-1ffa85d63440e46b0cc0e9a0a1e8164d.js",
-		"JSON": "ET-JSON.worker-5eeb4f4afdddfdaec35484b31f51ab1c.js",
+		"JSON": "ET-JSON.worker-6e9bd478e3af10addaf4d6bc3b9e5b6c.js",
 		"Javascript": "ET-Javascript.worker-55a32ab7bf1a1219561098b33bb96e4b.js",
 		"LDIF": "ET-LDIF.worker-b84f8aa6df63437d2f9bb1a9f92f967e.js",
 		"PHP": "ET-PHP.worker-12806ff32091f26bf33fdc0bcf110a57.js",
 		"Perl": "ET-Perl.worker-8ad96145813186efe09ab6c6a6fe6a5b.js",
 		"Python": "ET-Python.worker-9c1c7cec5bde1e008402ef35a712b6e6.js",
 		"Ruby": "ET-Ruby.worker-8a9ee7ca87aef53afae83902b79b52a0.js",
-		"SQL": "ET-SQL.worker-65601a52cf905bcb903957aaa853fbfe.js",
+		"SQL": "ET-SQL.worker-360a1e379a68c591cde80daa6c589c9f.js",
 		"Typescript": "ET-Typescript.worker-d4e2611a82f1e24e40479eadebdea946.js",
 		"XML": "ET-XML.worker-e0bf2162240237aee27b997a383f766e.js"
 	}

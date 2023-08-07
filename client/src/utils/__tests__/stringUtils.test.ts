@@ -34,3 +34,14 @@ describe('toSentenceCase', () => {
 		expect(stringUtils.toSentenceCase('HELLO WORLD')).toEqual('Hello world');
 	});
 });
+
+describe('trimChars', () => {
+	it('trims characters as expected', () => {
+		expect(stringUtils.trimChars('hello', '')).toEqual('hello');
+		expect(stringUtils.trimChars('hello', '/')).toEqual('hello');
+		expect(stringUtils.trimChars('hello/', '/')).toEqual('hello');
+		expect(stringUtils.trimChars('/hello/', '/')).toEqual('hello');
+		expect(stringUtils.trimChars('/hello!', '!')).toEqual('/hello');
+		expect(stringUtils.trimChars('/hello!!!', '!')).toEqual('/hello');
+	});
+});

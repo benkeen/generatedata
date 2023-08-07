@@ -2,7 +2,6 @@ declare namespace GeneratorScssNamespace {
   export interface IGeneratorScss {
     controlRow: string;
     disabled: string;
-    icons: string;
   }
 }
 
