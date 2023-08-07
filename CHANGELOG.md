@@ -1,5 +1,8 @@
 ## Changelog
 
+- `4.1.5` - Aug 7, 2023
+    - Misc bug fixes, including fix for generating valid PAN numbers (thanks @benjamindonnachie!)
+    - https://github.com/benkeen/generatedata/milestone/49?closed=1
 - `4.1.4` - Jun 20, 2023
     - Misc bug fixes.
     - https://github.com/benkeen/generatedata/milestone/48?closed=1
