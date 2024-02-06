@@ -1,6 +1,6 @@
 export default {
 	"generationWorker": "generation.worker-1dc7caad6d37493ad34aaebb76baa983.js",
-	"workerUtils": "workerUtils-147a9a5e4f67fd34971a0742261cb2c1.js",
+	"workerUtils": "workerUtils-3c164759c2afb30c7d56bae4e519988c.js",
 	"dataTypes": {
 		"Alphanumeric": "DT-Alphanumeric.worker-aa6aeac21cd8acc43368dc493883e235.js",
 		"AutoIncrement": "DT-AutoIncrement.worker-4044449209e01205eaba7c954ca2d6b1.js",
@@ -24,7 +24,7 @@ export default {
 		"NormalDistribution": "DT-NormalDistribution.worker-34b078989c3ea781a1a3cb8e8cfba27a.js",
 		"NumberRange": "DT-NumberRange.worker-f4dfbe5a9b49c0962d8515ff5f18f905.js",
 		"OrganizationNumber": "DT-OrganizationNumber.worker-c73635c7d12396f308b42aab35ed4abb.js",
-		"PAN": "DT-PAN.worker-352f8b0753c07a1e373f547fd447aa66.js",
+		"PAN": "DT-PAN.worker-6d7ae8891f2a24d2ad6205cede3fe87a.js",
 		"PIN": "DT-PIN.worker-aecbeadadb5c6e2fdd394692ea27b203.js",
 		"PersonalNumber": "DT-PersonalNumber.worker-68b329da9893e34099c7d8ad5cb9c940.js",
 		"Phone": "DT-Phone.worker-548550652d44fc8a79bcd863d391584b.js",
