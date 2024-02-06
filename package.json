@@ -3,6 +3,7 @@
   "version": "4.1.6",
   "description": "Free, MIT-licensed tool for generating random test data. Have at it.",
   "main": "index.js",
+  "license": "GPL3",
   "directories": {
     "test": "tests"
   },
