@@ -157,7 +157,7 @@
     "@types/js-cookie": "^2.2.6",
     "@types/loadable__component": "^5.13.8",
     "@types/nanoid": "3.0.0",
-    "@types/node": "^14.14.7",
+    "@types/node": "^16.18.79",
     "@types/react-beautiful-dnd": "^12.1.2",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-input-autosize": "^2.2.4",
