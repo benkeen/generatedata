@@ -74,12 +74,21 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 				});
 		});
 
-		// TODO this reloads the code mirror modes multiple times unnecessarily
-
 		const codeMirrorModes = exportTypes[exportType].codeMirrorModes.map((mode: string) => {
 			return new Promise((resolve) => {
+				const normalizedMode = mode.replace('/', '_');
+				const id = `mode-${normalizedMode}`;
+
+				// if the codemirror mode was already inserted, don't bother doing it again
+				if (document.getElementById(id)) {
+					// @ts-ignore-line
+					resolve();
+					return;
+				}
+
 				const modeFile = document.createElement('script');
 				modeFile.src = `./codeMirrorModes/${mode}.js`;
+				modeFile.id = id;
 				modeFile.onload = (): void => {
 					// @ts-ignore-line
 					resolve();
