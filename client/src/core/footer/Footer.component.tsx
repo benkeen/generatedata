@@ -16,8 +16,9 @@ import useOnClickOutside from 'use-onclickoutside';
 import styles from './Footer.scss';
 import { useWindowSize } from 'react-hooks-window-size';
 import C from '~core/constants';
-import { getGeneratorPageRoute, isGeneratorPage } from '~utils/routeUtils';
+import { isGeneratorPage } from '~utils/routeUtils';
 import { GDLocale } from '~types/general';
+import { useHistory } from 'react-router';
 
 export type FooterProps = {
 	i18n: any;
@@ -38,6 +39,7 @@ const Footer = ({
 	i18n, locale, actionButtonsEnabled, scriptVersion, onSave, onGenerate, currentPage,
 	currentDataSetId, onSaveNewDataSet, onSaveAs, showTourDialog, customFooterLinks
 }: FooterProps): JSX.Element => {
+	const history = useHistory();
 	const saveAsButtonRef = React.useRef(null);
 	const anchorRef = React.useRef<HTMLDivElement>(null);
 	const [saveAsMenuOpen, setSaveAsMenuOpen] = useState(false);
@@ -142,7 +144,7 @@ const Footer = ({
 							</Tooltip>
 						</li>
 						<li className={styles.showTourLink}>
-							<Button className={styles.tourBtn} onClick={showTourDialog}>
+							<Button className={styles.tourBtn} onClick={() => showTourDialog(history)}>
 								<Person />
 								<span>{i18n.help}</span>
 							</Button>
