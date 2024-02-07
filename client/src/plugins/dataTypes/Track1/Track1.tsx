@@ -66,6 +66,7 @@ const Track1Dialog = ({
 							onClick={(): void => onUpdatePANSource('random')}
 							name={`${id}-panSource`}
 							checked={data.panSource === 'random'}
+							style={{ marginRight: 10 }}
 						/>
 						<RadioPill
 							label={i18n.panRow}
@@ -87,6 +88,7 @@ const Track1Dialog = ({
 							onClick={(): void => onUpdateNameSource('random')}
 							name={`${id}-nameSource`}
 							checked={data.nameSource === 'random'}
+							style={{ marginRight: 10 }}
 						/>
 						<RadioPill
 							label={i18n.nameRow}
