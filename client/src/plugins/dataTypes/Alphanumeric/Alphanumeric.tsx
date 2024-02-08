@@ -169,5 +169,8 @@ export const getMetadata = (): DTMetadata => ({
 		field: 'varchar(255)',
 		field_Oracle: 'varchar2(255)',
 		field_MSSQL: 'VARCHAR(255) NULL'
+	},
+	general: {
+		dataType: 'infer'
 	}
 });

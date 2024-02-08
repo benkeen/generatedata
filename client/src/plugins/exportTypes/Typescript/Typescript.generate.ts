@@ -1,11 +1,27 @@
 import { ETMessageData } from '~types/exportTypes';
-import { DTMetadataType } from '~types/dataTypes';
 import { ColumnData } from '~types/general';
 import { WorkerUtils } from '~utils/workerUtils';
 
-export const generate = ({ stripWhitespace, isFirstBatch, isLastBatch, settings, columns, rows }: ETMessageData, utils: WorkerUtils): string => {
+let utils: WorkerUtils;
+const maybeEnquote = (value: any) => {
+	const isNumeric = utils.numberUtils.isNumeric(value);
+
+	let startsWithZero = false;
+	if ((value || "").toString().length > 0) {
+		startsWithZero = value.toString()[0] === '0';
+	}
+	const isValidNumber = isNumeric && !startsWithZero;
+	if (!isValidNumber && !isJavascriptBoolean(value)) {
+		value = `"${value}"`;
+	}
+
+	return value;
+}
+
+export const generate = ({ stripWhitespace, isFirstBatch, isLastBatch, settings, columns, rows }: ETMessageData, workerUtils: WorkerUtils): string => {
 	let content = '';
 	let comma = '';
+	utils = workerUtils;
 
 	const newline = (stripWhitespace) ? '' : '\n';
 	const tab = (stripWhitespace) ? '' : '\t';
@@ -35,9 +51,7 @@ export const generate = ({ stripWhitespace, isFirstBatch, isLastBatch, settings,
 
 			// otherwise, do a safety check and encase it in double quote if necessary
 			} else {
-				if (!utils.numberUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
-					value = `"${value}"`;
-				}
+				value = maybeEnquote(value);
 			}
 
 			content += `${comma}${newline}${tab}${tab}${propName}:${space}${value}`;
@@ -58,7 +72,14 @@ const generateTypes = (typeName: string, colData: ColumnData[]): string => {
 	let typeBlock = `export type ${typeName} = {\n`;
 
 	colData.forEach(({ title, metadata }) => {
-		const type: DTMetadataType = metadata && metadata.general && metadata.general.dataType ? metadata.general.dataType : 'string';
+		let type = 'string';
+		if (metadata && metadata.general) {
+			if (metadata.general.dataType === 'infer') {
+				type = 'number | string';
+			} else if (metadata.general.dataType !== 'string') {
+				type = metadata.general.dataType;
+			}
+		}
 		typeBlock += `\t${title}: ${type};\n`;
 	});
 

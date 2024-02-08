@@ -45,7 +45,7 @@ export default {
 		"CSV": "ET-CSV.worker-d59f3b7a33bfec11d9ceb62748e1bba0.js",
 		"CSharp": "ET-CSharp.worker-33d7d7b06eeac918d6bc00a5e9d2323f.js",
 		"HTML": "ET-HTML.worker-1ffa85d63440e46b0cc0e9a0a1e8164d.js",
-		"JSON": "ET-JSON.worker-5731e7c471bf4936b22eb4357e2fab8e.js",
+		"JSON": "ET-JSON.worker-72b8698f0dd724f547083265c1b441eb.js",
 		"Javascript": "ET-Javascript.worker-55a32ab7bf1a1219561098b33bb96e4b.js",
 		"LDIF": "ET-LDIF.worker-b84f8aa6df63437d2f9bb1a9f92f967e.js",
 		"PHP": "ET-PHP.worker-12806ff32091f26bf33fdc0bcf110a57.js",
@@ -53,7 +53,7 @@ export default {
 		"Python": "ET-Python.worker-9c1c7cec5bde1e008402ef35a712b6e6.js",
 		"Ruby": "ET-Ruby.worker-8a9ee7ca87aef53afae83902b79b52a0.js",
 		"SQL": "ET-SQL.worker-360a1e379a68c591cde80daa6c589c9f.js",
-		"Typescript": "ET-Typescript.worker-d4e2611a82f1e24e40479eadebdea946.js",
+		"Typescript": "ET-Typescript.worker-731ec517166380fbbfbbb307f2eff4b8.js",
 		"XML": "ET-XML.worker-e0bf2162240237aee27b997a383f766e.js"
 	}
 };
