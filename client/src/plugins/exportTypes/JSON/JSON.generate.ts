@@ -16,7 +16,7 @@ const maybeEnquote = (value: any) => {
 	const isNumeric = utils.numberUtils.isNumeric(value);
 
 	let startsWithZero = false;
-	if (value.toString().length > 0) {
+	if ((value || "").toString().length > 0) {
 		startsWithZero = value.toString()[0] === '0';
 	}
 	const isValidNumber = isNumeric && !startsWithZero;

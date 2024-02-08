@@ -45,7 +45,7 @@ export default {
 		"CSV": "ET-CSV.worker-d59f3b7a33bfec11d9ceb62748e1bba0.js",
 		"CSharp": "ET-CSharp.worker-33d7d7b06eeac918d6bc00a5e9d2323f.js",
 		"HTML": "ET-HTML.worker-1ffa85d63440e46b0cc0e9a0a1e8164d.js",
-		"JSON": "ET-JSON.worker-6e9bd478e3af10addaf4d6bc3b9e5b6c.js",
+		"JSON": "ET-JSON.worker-5731e7c471bf4936b22eb4357e2fab8e.js",
 		"Javascript": "ET-Javascript.worker-55a32ab7bf1a1219561098b33bb96e4b.js",
 		"LDIF": "ET-LDIF.worker-b84f8aa6df63437d2f9bb1a9f92f967e.js",
 		"PHP": "ET-PHP.worker-12806ff32091f26bf33fdc0bcf110a57.js",
