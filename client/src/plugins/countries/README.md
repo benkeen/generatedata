@@ -24,7 +24,7 @@ Data Type that's been explicitly mapped to a higher region).
 
 - **Australia**
   - [x] global phone format
-  - [ ] region-specific phone format
+  - [x] region-specific phone format
   - [x] global zip format
   - [ ] regional zip format
   - [x] names
