@@ -1,13 +1,13 @@
 import {
-	DataType,
-	DataTemplateRow,
-	ExportType,
-	ExportTypeConfig
-} from '../_plugins';
-import { GDLocale } from '~types/general';
+  DataType,
+  DataTemplateRow,
+  ExportType,
+  ExportTypeConfig,
+} from "../_plugins";
+import { GDLocale } from "~types/general";
 import { DTGenerateResult, DTGenerationData } from "~types/dataTypes";
 
-export { CountryNameFiles } from '../_namePlugins';
+export { CountryNameFiles } from "../_namePlugins";
 export { DataType, DataTemplateRow, ExportType, ExportTypeConfig };
 
 /**
@@ -16,16 +16,16 @@ export { DataType, DataTemplateRow, ExportType, ExportTypeConfig };
  * Settings custom to the particular generation action. This is used in combination with DataSetConfig.
  */
 export type GenerationSettings = {
-	numResults: number;
-	locale?: GDLocale;
-	stripWhitespace?: boolean;
-	target?: 'file' | 'return';
+  numResults: number;
+  locale?: GDLocale;
+  stripWhitespace?: boolean;
+  target?: "file" | "return";
 
-	// the default behaviour for the ppm package is for the generate method to return the generated data. This option
-	// lets users generate a file instead. It's far better for larger data sets
-	filename?: string; // the filename to generate including relative path
-	packetSize?: number; // TODO needed?
-}
+  // the default behaviour for the ppm package is for the generate method to return the generated data. This option
+  // lets users generate a file instead. It's far better for larger data sets
+  filename?: string; // the filename to generate including relative path
+  packetSize?: number; // TODO needed?
+};
 
 /**
  * This is the public type for what users supply to the generation method.
@@ -35,31 +35,31 @@ export type GenerationSettings = {
  * UI after constructing whatever the user wants.
  */
 export type GDTemplate = {
-	generationSettings: GenerationSettings;
-	dataTemplate: DataTemplateRow[];
-	exportSettings: ExportTypeConfig;
-}
+  generationSettings: GenerationSettings;
+  dataTemplate: DataTemplateRow[];
+  exportSettings: ExportTypeConfig;
+};
 
 // Bad name but can't think of a better one. This is the interface required for the Data Type and Export Type
 // code for performing a unit of generation. It's a consistent interface used by both web workers and node code
 export type WorkerInterface = {
-	context: 'worker' | 'node',
-	send: (data: DTGenerationData) => void | DTGenerateResult;
-	onSuccess?: (data: any) => void;
-	onError?: (data: any) => void;
+  context: "worker" | "node";
+  send: (data: DTGenerationData) => void | DTGenerateResult;
+  onSuccess?: (data: any) => void;
+  onError?: (data: any) => void;
 };
 
 export type UnchangedGenerationData = {
-	[colIndex: number]: string; // colIndex => row ID (unique GUID)
-}
+  [colIndex: number]: string; // colIndex => row ID (unique GUID)
+};
 
 export type DataTypeWorkerInterface = {
-	[dataType: string]: WorkerInterface;
+  [dataType: string]: WorkerInterface;
 };
 
 export type DataTypeBatchGeneratedPayload = {
-	completedBatchNum: number;
-	numGeneratedRows: number;
-	numResults: number;
-	generatedData: any;
+  completedBatchNum: number;
+  numGeneratedRows: number;
+  numResults: number;
+  generatedData: any;
 };
