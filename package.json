@@ -135,7 +135,7 @@
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "rollup": "^2.31.0",
+    "rollup": "^3.29.5",
     "sass": "^1.49.9",
     "sequelize": "^6.29.0",
     "styled-components": "^4.0.0",
