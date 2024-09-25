@@ -17,9 +17,9 @@ numerous different tools and applications on your own machine and keep them up t
 lets you forget about the details of an application. In our case, we've dockerized a lot of the application, but 
 not all - hence the need to install the things here.
 
-3. Download the latest version of generatedata. For this, if you're a developer you can either `git clone` [the repo](https://github.com/benkeen/generatedata)
-and check out the current `master` branch, or download the [latest official version](https://github.com/benkeen/generatedata/releases). 
-Master is generally stable, but it's not guaranteed - so downloading the latest zip/tar is probably your safest bet.
+3. Download the latest version of generatedata. For this, `git clone` [the repo](https://github.com/benkeen/generatedata)
+and check out the current `master` branch. The master branch is generally stable, but if you have any trouble that isn't
+documented here, raise an issue on github describing your problem.
 5. [Install node](https://nodejs.org/en).
 6. [Install nvm](https://github.com/nvm-sh/nvm).
 7. Install yarn: `npm install --global yarn`
