@@ -7,15 +7,23 @@ const Australia: GetCountryData = (i18n) => ({
 	continent: 'oceania',
 	extendedData: {
 		zipFormat: {
-			format: 'Xxxx'
+			format: 'Xxxx',
 		},
+		// the general phone format and area codes for the country
+		// https://voicerules.com/blog/telecommuting/how-to-call-australia-from-the-us/
 		phoneFormat: {
+			areaCodes: [
+				4,	// Mobile phones
+				5, 	// Mobile phones
+				2,	// New South Wales, Canberra region, and parts of northern Victoria
+				7,	// Queensland
+				3,	// Tasmania, Victoria, and parts of southern New South Wales
+				8,	// Western and South Australia, the Northern Territory, New South Wales, Cocos, and Christmas Islands
+			],
 			displayFormats: [
-				'Xxxx-xxxx',
-				'(0x) xxxx xxxx',
-				'04xx xxx xxx'
-			]
-		}
+				'+61 A Xxxx xxxx',
+			],
+		},
 	},
 	regions: [
 		{
@@ -23,9 +31,15 @@ const Australia: GetCountryData = (i18n) => ({
 			regionShort: 'ACT',
 			regionSlug: 'australian_capital_territories',
 			weight: 3,
-			cities: [
-				'Canberra'
-			]
+			cities: ['Canberra'],
+			extendedData: {
+				zipFormat: {
+					format: 'Xxxx',
+				},
+				phoneFormat: {
+					areaCodes: [2, 4, 5],
+				},
+			},
 		},
 		{
 			regionName: 'New South Wales',
@@ -53,18 +67,31 @@ const Australia: GetCountryData = (i18n) => ({
 				'Queanbeyan',
 				'Tamworth',
 				'Wagga Wagga',
-				'Wollongong'
-			]
+				'Wollongong',
+			],
+			extendedData: {
+				zipFormat: {
+					format: 'Xxxx',
+				},
+				phoneFormat: {
+					areaCodes: [8, 3, 2, 4, 5],
+				},
+			},
 		},
 		{
 			regionName: 'Northern Territory',
 			regionShort: 'NT',
 			regionSlug: 'northern_territory',
 			weight: 2,
-			cities: [
-				'Darwin',
-				'Palmerston'
-			]
+			cities: ['Darwin', 'Palmerston'],
+			extendedData: {
+				zipFormat: {
+					format: 'Xxxx',
+				},
+				phoneFormat: {
+					areaCodes: [8, 4, 5],
+				},
+			},
 		},
 		{
 			regionName: 'Queensland',
@@ -89,8 +116,16 @@ const Australia: GetCountryData = (i18n) => ({
 				'Redlands',
 				'Rockhampton',
 				'Toowoomba',
-				'Townsville'
-			]
+				'Townsville',
+			],
+			extendedData: {
+				zipFormat: {
+					format: 'Xxxx',
+				},
+				phoneFormat: {
+					areaCodes: [7, 4, 5],
+				},
+			},
 		},
 		{
 			regionName: 'South Australia',
@@ -105,20 +140,31 @@ const Australia: GetCountryData = (i18n) => ({
 				'Port Pirie',
 				'Port Lincoln',
 				'Victor Harbor',
-				'Whyalla'
-			]
+				'Whyalla',
+			],
+			extendedData: {
+				zipFormat: {
+					format: 'Xxxx',
+				},
+				phoneFormat: {
+					areaCodes: [8, 4, 5],
+				},
+			},
 		},
 		{
 			regionName: 'Tasmania',
 			regionShort: 'TAS',
 			regionSlug: 'tasmania',
 			weight: 5,
-			cities: [
-				'Greater Hobart',
-				'Burnie',
-				'Devonport',
-				'Launceston'
-			]
+			cities: ['Greater Hobart', 'Burnie', 'Devonport', 'Launceston'],
+			extendedData: {
+				zipFormat: {
+					format: 'Xxxx',
+				},
+				phoneFormat: {
+					areaCodes: [3, 4, 5],
+				},
+			},
 		},
 		{
 			regionName: 'Victoria',
@@ -148,8 +194,16 @@ const Australia: GetCountryData = (i18n) => ({
 				'Traralgon',
 				'Wangaratta',
 				'Warrnambool',
-				'Wodonga'
-			]
+				'Wodonga',
+			],
+			extendedData: {
+				zipFormat: {
+					format: 'Xxxx',
+				},
+				phoneFormat: {
+					areaCodes: [3, 2, 4, 5],
+				},
+			},
 		},
 		{
 			regionName: 'Western Australia',
@@ -178,10 +232,18 @@ const Australia: GetCountryData = (i18n) => ({
 				'Stirling',
 				'Subiaco',
 				'Swan',
-				'Wanneroo'
-			]
-		}
-	]
+				'Wanneroo',
+			],
+			extendedData: {
+				zipFormat: {
+					format: 'Xxxx',
+				},
+				phoneFormat: {
+					areaCodes: [8, 4, 5],
+				},
+			},
+		},
+	],
 });
 
 export default Australia;

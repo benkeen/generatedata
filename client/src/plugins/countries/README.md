@@ -16,186 +16,186 @@ The goal of the country plugins is **not to be exhaustive** in terms of the data
 to be able to generate realistic-looking regional data, but that doesn't mean having 100% of all regions and cities
 etc. to be provided. In fact, it's better to keep the data somewhat limited to ensure decent performance.
 
-# Available Countries & Functionality
+## Available Countries & Functionality
 
 This lists the available country plugins and what they currently provide. The global phone and zip formats are so that
 the generator can at least provide somewhat realistic looking information for a mapped Data Type (i.e. a phone or zip
 Data Type that's been explicitly mapped to a higher region).
 
 - **Australia**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [x] global phone format
+  - [x] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **Austria**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **Belgium**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **Brazil**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [x] regional zip format
-    - [x] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [x] regional zip format
+  - [x] names
 - **Canada**
-    - [x] global phone format
-    - [x] region-specific phone format
-    - [x] global zip format
-    - [x] regional zip format
-    - [x] names
+  - [x] global phone format
+  - [x] region-specific phone format
+  - [x] global zip format
+  - [x] regional zip format
+  - [x] names
 - **Chile**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **China**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **Colombia**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Costa Rica**
-    - [x] global phone format
-    - [x] region-specific phone format
-    - [x] global zip format
-    - [x] regional zip format
-    - [ ] names
+  - [x] global phone format
+  - [x] region-specific phone format
+  - [x] global zip format
+  - [x] regional zip format
+  - [ ] names
 - **France**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Germany**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **India**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **Indonesia**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Ireland**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Italy**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Mexico**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Netherlands**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **New Zealand**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Nigeria**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **Norway**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Pakistan**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Peru**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Philippines**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Poland**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Russia**
-    - [x] global phone format
-    - [x] region-specific phone format
-    - [x] global zip format
-    - [x] regional zip format
-    - [ ] names
+  - [x] global phone format
+  - [x] region-specific phone format
+  - [x] global zip format
+  - [x] regional zip format
+  - [ ] names
 - **Singapore**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **South Africa**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **South Korea**
-    - [x] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [ ] names
+  - [x] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [ ] names
 - **Spain**
-    - [ ] global phone format
-    - [ ] region-specific phone format
-    - [x] global zip format
-    - [ ] regional zip format
-    - [x] names
+  - [ ] global phone format
+  - [ ] region-specific phone format
+  - [x] global zip format
+  - [ ] regional zip format
+  - [x] names
 - **Sweden**
   - [ ] global phone format
   - [ ] region-specific phone format

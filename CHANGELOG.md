@@ -1,246 +1,245 @@
 ## Changelog
 
 - `4.1.6` - Dec 10, 2023
-    - Mexican first and last names added
-    - https://github.com/benkeen/generatedata/milestone/50?closed=1
+  - Mexican first and last names added
+  - <https://github.com/benkeen/generatedata/milestone/50?closed=1>
 - `4.1.5` - Aug 7, 2023
-    - Misc bug fixes, including fix for generating valid PAN numbers (thanks @benjamindonnachie!)
-    - https://github.com/benkeen/generatedata/milestone/49?closed=1
+  - Misc bug fixes, including fix for generating valid PAN numbers (thanks @benjamindonnachie!)
+  - <https://github.com/benkeen/generatedata/milestone/49?closed=1>
 - `4.1.4` - Jun 20, 2023
-    - Misc bug fixes.
-    - https://github.com/benkeen/generatedata/milestone/48?closed=1
+  - Misc bug fixes.
+  - <https://github.com/benkeen/generatedata/milestone/48?closed=1>
 - `4.1.3` - Mar 2, 2023
-    - Misc bug fixes.
-    - https://github.com/benkeen/generatedata/milestone/47?closed=1
+  - Misc bug fixes.
+  - <https://github.com/benkeen/generatedata/milestone/47?closed=1>
 - `4.1.2` - Mar 1, 2023
-    - Misc bug fixes.
-    - https://github.com/benkeen/generatedata/milestone/46?closed=1
+  - Misc bug fixes.
+  - <https://github.com/benkeen/generatedata/milestone/46?closed=1>
 - `4.1.1` - Feb 25, 2023
-    - Misc bug fixes.
-    - https://github.com/benkeen/generatedata/milestone/45?closed=1
+  - Misc bug fixes.
+  - <https://github.com/benkeen/generatedata/milestone/45?closed=1>
 - `4.1.0` - Feb 14, 2023
-    - Refactored code to accommodate upcoming npm package version (command-line generation).
-    - Moved to Google Identity Services for sign-in process.
-    - Misc bug fixes.
-    - https://github.com/benkeen/generatedata/milestone/43?closed=1
+  - Refactored code to accommodate upcoming npm package version (command-line generation).
+  - Moved to Google Identity Services for sign-in process.
+  - Misc bug fixes.
+  - <https://github.com/benkeen/generatedata/milestone/43?closed=1>
 - `4.0.15` - Nov 26, 2022
-    - Weighted List Data Type added
-    - Misc bug fixes.
-    - https://github.com/benkeen/generatedata/milestone/41?closed=1
+  - Weighted List Data Type added
+  - Misc bug fixes.
+  - <https://github.com/benkeen/generatedata/milestone/41?closed=1>
 - `4.0.14` - Mar 5, 2022
-    - URLs Data Type added
-    - Ukrainian, Singapore and South Africa country data added
-    - https://github.com/benkeen/generatedata/milestone/40?closed=1
+  - URLs Data Type added
+  - Ukrainian, Singapore and South Africa country data added
+  - <https://github.com/benkeen/generatedata/milestone/40?closed=1>
 - `4.0.13` - Mar 3, 2022
-    - Philippines country data added
-    - https://github.com/benkeen/generatedata/milestone/39?closed=1
+  - Philippines country data added
+  - <https://github.com/benkeen/generatedata/milestone/39?closed=1>
 - `4.0.12` - Dec 28, 2021
-    - List Data Type now offers a "between" option
-    - Norwegian country data added. Thanks @maddingo!
-    - https://github.com/benkeen/generatedata/milestone/38?closed=1
+  - List Data Type now offers a "between" option
+  - Norwegian country data added. Thanks @maddingo!
+  - <https://github.com/benkeen/generatedata/milestone/38?closed=1>
 - `4.0.11` - Dec 8, 2021
-    - Dutch name data - thanks @rvanraamsdonk!
-    - Misc bug fixes
-    - https://github.com/benkeen/generatedata/milestone/37?closed=1
+  - Dutch name data - thanks @rvanraamsdonk!
+  - Misc bug fixes
+  - <https://github.com/benkeen/generatedata/milestone/37?closed=1>
 - `4.0.10` - Dec 6, 2021
-    - Language selection overhauled
-    - Bug fixes
-    - Turkey name data - thanks @alicanipek!
-    - https://github.com/benkeen/generatedata/milestone/36?closed=1
+  - Language selection overhauled
+  - Bug fixes
+  - Turkey name data - thanks @alicanipek!
+  - <https://github.com/benkeen/generatedata/milestone/36?closed=1>
 - `4.0.9` - Nov 20, 2021
-    - Node updated to 14
-    - German name data - thanks @ntauch!
-    - https://github.com/benkeen/generatedata/milestone/35?closed=1
+  - Node updated to 14
+  - German name data - thanks @ntauch!
+  - <https://github.com/benkeen/generatedata/milestone/35?closed=1>
 - `4.0.8` - Nov 13, 2021
-    - additional bug fix for regions, cities and postal code Data Types throwing errors
-    - Chilean country names added
-    - Admin: status filter and total count added to accounts page
-    - https://github.com/benkeen/generatedata/milestone/34?closed=1
+  - additional bug fix for regions, cities and postal code Data Types throwing errors
+  - Chilean country names added
+  - Admin: status filter and total count added to accounts page
+  - <https://github.com/benkeen/generatedata/milestone/34?closed=1>
 - `4.0.7` - Nov 11, 2021
-    - bug fix for regions, cities and postal code Data Types throwing errors (didn't fully work)
-    - Fix for error thrown when closing Export Type overlay
-    - https://github.com/benkeen/generatedata/milestone/33?closed=1
+  - bug fix for regions, cities and postal code Data Types throwing errors (didn't fully work)
+  - Fix for error thrown when closing Export Type overlay
+  - <https://github.com/benkeen/generatedata/milestone/33?closed=1>
 - `4.0.6` - Nov 6, 2021
-    - Regional names added
-    - Email Data Type now lets you target other fields for more realistic data
-    - China country data added
-    - C# now handles auto-increment numeric values better
-    - https://github.com/benkeen/generatedata/milestone/32?closed=1
+  - Regional names added
+  - Email Data Type now lets you target other fields for more realistic data
+  - China country data added
+  - C# now handles auto-increment numeric values better
+  - <https://github.com/benkeen/generatedata/milestone/32?closed=1>
 - `4.0.5` - Oct 5, 2021
-    - Portuguese translation added
-    - Misc code improvements
-    - https://github.com/benkeen/generatedata/milestone/31?closed=1
+  - Portuguese translation added
+  - Misc code improvements
+  - <https://github.com/benkeen/generatedata/milestone/31?closed=1>
 - `4.0.4` - Sept 27, 2021
-    - Hindi locale added
-    - Improvements for small screens
-    - Misc bug fixes
-    - https://github.com/benkeen/generatedata/milestone/30?closed=1
+  - Hindi locale added
+  - Improvements for small screens
+  - Misc bug fixes
+  - <https://github.com/benkeen/generatedata/milestone/30?closed=1>
 - `4.0.3` - Sept 22, 2021
-    - Bug fix for CSV Export Type.
-    - https://github.com/benkeen/generatedata/milestone/29?closed=1
+  - Bug fix for CSV Export Type.
+  - <https://github.com/benkeen/generatedata/milestone/29?closed=1>
 - `4.0.2` - Sept 21, 2021
-    - misc bug fixes, UX improvements
-    - minor dependency updates
-    - https://github.com/benkeen/generatedata/milestone/28?closed=1
+  - misc bug fixes, UX improvements
+  - minor dependency updates
+  - <https://github.com/benkeen/generatedata/milestone/28?closed=1>
 - `4.0.1` - Sept 19, 2021:
-    - localization files now cache-busted
-    - check for is-safari updated.
+  - localization files now cache-busted
+  - check for is-safari updated.
 - `4.0.0` - Sept 17, 2021:
-    - initial release!
-    - bug fixes
+  - initial release!
+  - bug fixes
 - `4.0.0-beta-20210911`:
-    - Color Data Type added
-    - Localized date picker components
-    - bug fixes
+  - Color Data Type added
+  - Localized date picker components
+  - bug fixes
 - `4.0.0-beta-20210906`:
-    - Date format standardization in code
-    - Better error handling for expired accounts
-    - misc bug fixes
+  - Date format standardization in code
+  - Better error handling for expired accounts
+  - misc bug fixes
 - `4.0.0-beta-20210903`:
-    - Time Data Type added
-    - misc bug fixes
+  - Time Data Type added
+  - misc bug fixes
 - `4.0.0-beta-20210826`:
-    - account searching
-    - misc bug fixes
+  - account searching
+  - misc bug fixes
 - `4.0.0-beta-20210809`:
-    - back in the game! Returning to work on generatedata - misc updates.
-    - Last logged in col on accounts page
-    - Expiry date added to accounts page
-    - Fix for TextFixed Data Type
+  - back in the game! Returning to work on generatedata - misc updates.
+  - Last logged in col on accounts page
+  - Expiry date added to accounts page
+  - Fix for TextFixed Data Type
 - `4.0.0-alpha-20210608`:
-    - minor authentication + password reset bug fixes.
+  - minor authentication + password reset bug fixes.
 - `4.0.0-alpha-20210607`:
-    - tons of updates & fixes - too many to note! UI updates, database changes, performances fixes and more.
+  - tons of updates & fixes - too many to note! UI updates, database changes, performances fixes and more.
 - `4.0.0-alpha-20210429`:
-    - preview panel scrolling fix.
-    - List Data Type now allows customizable delimiter.
+  - preview panel scrolling fix.
+  - List Data Type now allows customizable delimiter.
 - `4.0.0-alpha-20210424`:
-    - Safari error page.
+  - Safari error page.
 - `4.0.0-alpha-20210418`:
-    - Email support added.
-    - Forget password email; expiry emails.
+  - Email support added.
+  - Forget password email; expiry emails.
 - `4.0.0-alpha-20210305`:
-    - Track1 Data Type added.
+  - Track1 Data Type added.
 - `4.0.0-alpha-20210301`:
-    - Credit Card PAN Data Type added.
+  - Credit Card PAN Data Type added.
 - `4.0.0-alpha-20210224`:
-    - Assorted lib updates.
+  - Assorted lib updates.
 - `4.0.0-alpha-20210223`:
-    - Improved generation settings panel.
-    - i18n fixes.
+  - Improved generation settings panel.
+  - i18n fixes.
 - `4.0.0-alpha-20201111`:
-    - Chilean RUT number, PIN and CVV Data Types added.
-    - Fixed/Random Number of Words Data Types expanded to allow providing your own text as word source.
+  - Chilean RUT number, PIN and CVV Data Types added.
+  - Fixed/Random Number of Words Data Types expanded to allow providing your own text as word source.
 - `4.0.0-alpha-20201108`:
-    - CSV, LDIF Export Types added.
-    - All Data Types and Export Types translated.
+  - CSV, LDIF Export Types added.
+  - All Data Types and Export Types translated.
 - `4.0.0-alpha-20201104`:
-    - Computed and Composite Data Types combined.
-    - Names Data Type options structure change.
-    - Fix for help dialog not resetting search text
-    - version now links to changelog
+  - Computed and Composite Data Types combined.
+  - Names Data Type options structure change.
+  - Fix for help dialog not resetting search text
+  - version now links to changelog
 - `4.0.0-alpha-20201102`:
-    - all 9 languages now available to toggle between.
-    - "Clear Page" modal now lets you either just clear the grid, or reset everything (all plugins) to their default
+  - all 9 languages now available to toggle between.
+  - "Clear Page" modal now lets you either just clear the grid, or reset everything (all plugins) to their default
       settings
 - `4.0.0-alpha-20201101`:
-    - initial functional alpha. Data now generates!
+  - initial functional alpha. Data now generates!
 - `3.4.1` - Nov 24, 2019
-    - Excel Export Type updated for new PHP lib, thanks [@adibaby](https://github.com/adibaby)!
-    - Bug fix for SocialSecurityNumber, courtesy of [@guzzisti](https://github.com/guzzisti).
-    - https://github.com/benkeen/generatedata/milestone/26?closed=1
+  - Excel Export Type updated for new PHP lib, thanks [@adibaby](https://github.com/adibaby)!
+  - Bug fix for SocialSecurityNumber, courtesy of [@guzzisti](https://github.com/guzzisti).
+  - <https://github.com/benkeen/generatedata/milestone/26?closed=1>
 - `3.4.0` - Nov 16, 2019
-    - Misc updates,
-    - new inject SQL feature added. Great work, [@harish81](https://github.com/harish81)!
-    - https://github.com/benkeen/generatedata/milestone/25?closed=1
+  - Misc updates,
+  - new inject SQL feature added. Great work, [@harish81](https://github.com/harish81)!
+  - <https://github.com/benkeen/generatedata/milestone/25?closed=1>
 - `3.3.1` - July 18, 2019
-    - https://github.com/benkeen/generatedata/milestone/23?closed=1
+  - <https://github.com/benkeen/generatedata/milestone/23?closed=1>
 - `3.3.0` - July 1, 2019
-    - misc bug fixes
+  - misc bug fixes
 - `3.2.8` - Sep 12, 2017
-    - misc bug fixes
+  - misc bug fixes
 - `3.2.7` - Jul 29, 2017
-    - "Computed" Data Type added.
-    - misc bug fixes
+  - "Computed" Data Type added.
+  - misc bug fixes
 - `3.2.6` - Apr 17, 2017
-    - misc bug fixes: https://github.com/benkeen/generatedata/milestone/20?closed=1
+  - misc bug fixes: <https://github.com/benkeen/generatedata/milestone/20?closed=1>
 - `3.2.5` - Apr 16, 2016
-    - bug fixes: https://github.com/benkeen/generatedata/issues?utf8=%E2%9C%93&q=milestone%3A3.2.3+ - thanks for your
+  - bug fixes: <https://github.com/benkeen/generatedata/issues?utf8=%E2%9C%93&q=milestone%3A3.2.3+> - thanks for your
       help, [Conrad Hagemans](https://github.com/conradhagemans)!
-    - "Precision" option added to Normal Distribution Data Type - thanks [@aevans84](https://github.com/aevans84).
-    - generation of complex JSON structures added by [Tony OHagan](https://github.com/tohagan).
-      See: https://github.com/benkeen/generatedata/tree/master/plugins/exportTypes/JSON#generating-complex-objects
+  - "Precision" option added to Normal Distribution Data Type - thanks [@aevans84](https://github.com/aevans84).
+  - generation of complex JSON structures added by [Tony OHagan](https://github.com/tohagan).
+      See: <https://github.com/benkeen/generatedata/tree/master/plugins/exportTypes/JSON#generating-complex-objects>
 - `3.2.4` - Dec 6, 2015
-    - patch release for per-user settings.
+  - patch release for per-user settings.
 - `3.2.3` - Nov 15, 2015
-    - SIRET/SIREN Data Type added (French business numbers) added.
+  - SIRET/SIREN Data Type added (French business numbers) added.
       Merci, [Fabrice Marquès](https://github.com/fmarques56)!
-    - Bug fixes: https://github.com/benkeen/generatedata/issues?utf8=%E2%9C%93&q=milestone%3A3.2.3+
+  - Bug fixes: <https://github.com/benkeen/generatedata/issues?utf8=%E2%9C%93&q=milestone%3A3.2.3+>
 - `3.2.2` - Nov 12, 2015
-    - The plugins (Data Types, Export Types, Countries) seen in the interface may not be configured on a per-user level.
-    - Installation script updated to allow customization of plugin selection.
+  - The plugins (Data Types, Export Types, Countries) seen in the interface may not be configured on a per-user level.
+  - Installation script updated to allow customization of plugin selection.
 - `3.2.1` - May 25, 2015
-    - Configuration history option added to store the last 200 (this is configurable) versions of a data set. In case of
+  - Configuration history option added to store the last 200 (this is configurable) versions of a data set. In case of
       data loss, you can now revert to an older version very simply.
-    - Assorted bug fixes, including some improvements to the installation script.
+  - Assorted bug fixes, including some improvements to the installation script.
 - `3.2.0` - Jan 29, 2015
-    - Adds a new REST API as an alternative way to generate data. See
+  - Adds a new REST API as an alternative way to generate data. See
       the [API Documentation](http://benkeen.github.io/generatedata/api.html) for more information.
 - `3.1.4` - Sept 6, 2014
-    - Chinese language file added, thanks to [Zhao Yang](https://github.com/jptiancai)
-    - PAN, Track 1 and Track 2 data type updates, courtesy of Zeeshan Shaikh
-    - Turkey Country plugin added
-    - Bug fixes: https://github.com/benkeen/generatedata/issues?q=milestone%3A3.1.4+is%3Aclosed
+  - Chinese language file added, thanks to [Zhao Yang](https://github.com/jptiancai)
+  - PAN, Track 1 and Track 2 data type updates, courtesy of Zeeshan Shaikh
+  - Turkey Country plugin added
+  - Bug fixes: <https://github.com/benkeen/generatedata/issues?q=milestone%3A3.1.4+is%3Aclosed>
 - `3.1.3` - July 20, 2014
-    - Misc data generation efficiency improvements
-    - Batch Size SQL export option added by [Anton Nizhegorodov](https://github.com/an1zhegorodov)
-    - Poland, Nigeria Country plugins added
-    - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=13&page=1&state=closed
+  - Misc data generation efficiency improvements
+  - Batch Size SQL export option added by [Anton Nizhegorodov](https://github.com/an1zhegorodov)
+  - Poland, Nigeria Country plugins added
+  - Bug fixes: <https://github.com/benkeen/generatedata/issues?milestone=13&page=1&state=closed>
 - `3.1.2` - July 12, 2014
-    - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=12&page=1&state=closed
+  - Bug fixes: <https://github.com/benkeen/generatedata/issues?milestone=12&page=1&state=closed>
 - `3.1.1` - Jan 31, 2014
-    - New credit card data types: PAN, PIN, CVV, Track 1 and Track 2 courtesy of Zeeshan Shaikh
-    - INSERT IGNORE option added to the SQL Export Type, thanks to [Ap.Mathu](https://github.com/apmuthu)
-    - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=11&page=1&state=closed
+  - New credit card data types: PAN, PIN, CVV, Track 1 and Track 2 courtesy of Zeeshan Shaikh
+  - INSERT IGNORE option added to the SQL Export Type, thanks to [Ap.Mathu](https://github.com/apmuthu)
+  - Bug fixes: <https://github.com/benkeen/generatedata/issues?milestone=11&page=1&state=closed>
 - `3.1.0` - Dec 19, 2013
-    - Bug fix for accidental short-tags that were introduced in earlier code
+  - Bug fix for accidental short-tags that were introduced in earlier code
 - `3.0.9` - Dec 11, 2013
-    - Compression option added to reduce download sizes, courtesy of [Manu Ullas](https://github.com/unullmass) -
+  - Compression option added to reduce download sizes, courtesy of [Manu Ullas](https://github.com/unullmass) -
       thanks!
-    - New credit card Data Type, thanks to [rsicher1](https://github.com/rsicher1)
-    - You can now make copies of Data Sets, via the main dialog window. Just check a single row and click "Copy Data
+  - New credit card Data Type, thanks to [rsicher1](https://github.com/rsicher1)
+  - You can now make copies of Data Sets, via the main dialog window. Just check a single row and click "Copy Data
       Set" button.
-    - CodeMirror updated to v3.2.0
-    - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=9&page=1&state=closed
+  - CodeMirror updated to v3.2.0
+  - Bug fixes: <https://github.com/benkeen/generatedata/issues?milestone=9&page=1&state=closed>
 - `3.0.8` - Oct 28, 2013
-    - International Bank Numbers - thanks, Joeri Noort!
-    - PostgreSQL database support added to SQL Export Type
-    - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=8&page=1&state=closed
+  - International Bank Numbers - thanks, Joeri Noort!
+  - PostgreSQL database support added to SQL Export Type
+  - Bug fixes: <https://github.com/benkeen/generatedata/issues?milestone=8&page=1&state=closed>
 - `3.0.7` - Sept 7, 2013
-    - LDIF Export Type support - thanks, [Marco Corona](https://github.com/coronam)!
-    - Proper (genuine!) French translation courtesy of [Michel Roca](https://github.com/mRoca)
-    - Optional JS, CSS minimization and bundling via Grunt. See help documentation for more information:
+  - LDIF Export Type support - thanks, [Marco Corona](https://github.com/coronam)!
+  - Proper (genuine!) French translation courtesy of [Michel Roca](https://github.com/mRoca)
+  - Optional JS, CSS minimization and bundling via Grunt. See help documentation for more information:
       [http://benkeen.github.io/generatedata/developer.html#bundling](http://benkeen.github.io/generatedata/developer.html#bundling)
-    - PHP 5.5 compatibility fixes: database connection now with mysqli; Generator class renamed to DataGenerator due to
+  - PHP 5.5 compatibility fixes: database connection now with mysqli; Generator class renamed to DataGenerator due to
       naming conflict
-    - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=7&page=1&state=closed
+  - Bug fixes: <https://github.com/benkeen/generatedata/issues?milestone=7&page=1&state=closed>
 - `3.0.6` - Aug 1, 2013
-    - Costa Rica Country plugin, Phone-Regional Data Type added, courtesy of [Andre Fortin](https://github.com/twindual)
-    - bug fixes, see: https://github.com/benkeen/generatedata/issues?milestone=6&page=1&state=closed
+  - Costa Rica Country plugin, Phone-Regional Data Type added, courtesy of [Andre Fortin](https://github.com/twindual)
+  - bug fixes, see: <https://github.com/benkeen/generatedata/issues?milestone=6&page=1&state=closed>
 - `3.0.5` - July 13, 2013
-    - Currency Data Type added
-    - Assorted bug fixes, see: https://github.com/benkeen/generatedata/issues?milestone=5&page=1&state=closed
+  - Currency Data Type added
+  - Assorted bug fixes, see: <https://github.com/benkeen/generatedata/issues?milestone=5&page=1&state=closed>
 - `3.0.4` - July 2nd, 2013
-    - Italy Export Type, courtesy of [Marcello Verona](https://github.com/marciuz)
-    - Regional Names Data Type added, data for Italy and France from [Marcello Verona](https://github.com/marciuz)
+  - Italy Export Type, courtesy of [Marcello Verona](https://github.com/marciuz)
+  - Regional Names Data Type added, data for Italy and France from [Marcello Verona](https://github.com/marciuz)
 - `3.0.3` - June 23, 2013
-    - Bug fixes. See: https://github.com/benkeen/generatedata/issues?milestone=3
+  - Bug fixes. See: <https://github.com/benkeen/generatedata/issues?milestone=3>
 - `3.0.2` - June 12, 2013
-    - Spanish translation and Country plugin added (thanks, [@robarago](https://github.com/robarago)!)
-    - bug fixes, other updates: https://github.com/benkeen/generatedata/issues?milestone=2&state=closed
+  - Spanish translation and Country plugin added (thanks, [@robarago](https://github.com/robarago)!)
+  - bug fixes, other updates: <https://github.com/benkeen/generatedata/issues?milestone=2&state=closed>
 - `3.0.1` - June 1st, 2013
-    - MSSQL support added (thanks, [Kent](https://github.com/kchenery)!)
-    - Assorted bug fixes / updates. See: https://github.com/benkeen/generatedata/issues?milestone=1&state=closed
+  - MSSQL support added (thanks, [Kent](https://github.com/kchenery)!)
+  - Assorted bug fixes / updates. See: <https://github.com/benkeen/generatedata/issues?milestone=1&state=closed>
 - `3.0.0` - May 21st, 2013
-    - Initial release
-
+  - Initial release
