@@ -1,10 +1,23 @@
 import { Dispatch } from 'redux';
 import { format } from 'date-fns';
 import { apolloClient } from '../../apolloClient';
-import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
-import { getEditingData, getSelectedAccountsPageTab } from '~store/account/account.selectors';
-import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
-import { AccountStatus, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
+import {
+	AccountEditingData,
+	SaveDataDialogType
+} from '~store/account/account.reducer';
+import {
+	getEditingData,
+	getSelectedAccountsPageTab
+} from '~store/account/account.selectors';
+import {
+	getCurrentDataSetId,
+	getDataSetSavePackage
+} from '~store/generator/generator.selectors';
+import {
+	AccountStatus,
+	SelectedAccountsTab,
+	SelectedAccountTab
+} from '~types/account';
 import { GDAction } from '~types/general';
 import { addToast } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
@@ -73,7 +86,8 @@ export const saveYourAccount =
 		async (dispatch: Dispatch, getState: any): Promise<any> => {
 			const i18n = getStrings();
 
-			const { firstName, lastName, email, country, region } = getEditingData(getState());
+			const { firstName, lastName, email, country, region } =
+			getEditingData(getState());
 
 			await apolloClient.mutate({
 				mutation: queries.SAVE_CURRENT_ACCOUNT,
@@ -93,7 +107,16 @@ export const saveAccount =
 	(data: any): any =>
 		async (dispatch: Dispatch): Promise<any> => {
 			const i18n = getStrings();
-			const { accountId, firstName, lastName, email, country, region, disabled, expiryDate } = data;
+			const {
+				accountId,
+				firstName,
+				lastName,
+				email,
+				country,
+				region,
+				disabled,
+				expiryDate
+			} = data;
 
 			const accountStatus = getAccountStatus(disabled, expiryDate);
 
@@ -132,7 +155,12 @@ export const clearOneTimePassword = (): GDAction => ({
 });
 
 export const savePassword =
-	(currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void): any =>
+	(
+		currentPassword: string,
+		newPassword: string,
+		onSuccess: () => void,
+		onError: () => void
+	): any =>
 		async (dispatch: Dispatch): Promise<any> => {
 			const i18n = getStrings();
 
@@ -157,7 +185,9 @@ export const savePassword =
 		};
 
 export const SHOW_SAVE_DATA_SET_DIALOG = 'SHOW_SAVE_DATA_SET_DIALOG';
-export const showSaveDataSetDialog = (dialogType: SaveDataDialogType): GDAction => ({
+export const showSaveDataSetDialog = (
+	dialogType: SaveDataDialogType
+): GDAction => ({
 	type: SHOW_SAVE_DATA_SET_DIALOG,
 	payload: {
 		dialogType
@@ -206,7 +236,8 @@ export const saveNewDataSet =
 		// TODO error handling
 		};
 
-export const UPDATE_CURRENT_DATA_SET_LAST_SAVED = 'UPDATE_CURRENT_DATA_SET_LAST_SAVED';
+export const UPDATE_CURRENT_DATA_SET_LAST_SAVED =
+	'UPDATE_CURRENT_DATA_SET_LAST_SAVED';
 export const updateCurrentDataSetLastSaved = (lastSaved: any): GDAction => ({
 	type: UPDATE_CURRENT_DATA_SET_LAST_SAVED,
 	payload: {
@@ -233,7 +264,9 @@ export const saveCurrentDataSet =
 			});
 
 			if (response.data.saveDataSet.success) {
-				dispatch(updateCurrentDataSetLastSaved(response.data.saveDataSet.savedDate));
+				dispatch(
+					updateCurrentDataSetLastSaved(response.data.saveDataSet.savedDate)
+				);
 
 				addToast({
 					type: 'success',
@@ -270,10 +303,21 @@ export const createAccount =
 	(data: any) =>
 		async (dispatch: Dispatch): Promise<any> => {
 			const i18n = getStrings();
-			const { firstName, lastName, email, country, region, disabled, expiry, expiryDate } = data;
+			const {
+				firstName,
+				lastName,
+				email,
+				country,
+				region,
+				disabled,
+				expiry,
+				expiryDate,
+				oneTimePassword
+			} = data;
 			const accountStatus = getAccountStatus(disabled, expiryDate);
 
-			const expiryDateValue = expiry && expiry !== 'none' ? expiryDate.toString() : null;
+			const expiryDateValue =
+			expiry && expiry !== 'none' ? expiryDate.toString() : null;
 			const response = await apolloClient.mutate({
 				mutation: queries.CREATE_USER_ACCOUNT,
 				variables: {
@@ -283,6 +327,7 @@ export const createAccount =
 					country,
 					region,
 					accountStatus,
+					oneTimePassword,
 					expiryDate: expiryDateValue
 				}
 			});
@@ -302,7 +347,10 @@ export const createAccount =
 			}
 		};
 
-export const getAccountStatus = (disabled: boolean, expiryDate: number): AccountStatus => {
+export const getAccountStatus = (
+	disabled: boolean,
+	expiryDate: number
+): AccountStatus => {
 	let accountStatus = AccountStatus.live;
 	if (disabled) {
 		accountStatus = AccountStatus.disabled;

@@ -46,8 +46,18 @@ export const DELETE_ACCOUNT = gql`
 `;
 
 export const GET_DATA_SETS = gql`
-	query GetDataSets($limit: Int, $offset: Int, $sortCol: String, $sortDir: SortDir) {
-		dataSets(limit: $limit, offset: $offset, sortCol: $sortCol, sortDir: $sortDir) {
+	query GetDataSets(
+		$limit: Int
+		$offset: Int
+		$sortCol: String
+		$sortDir: SortDir
+	) {
+		dataSets(
+			limit: $limit
+			offset: $offset
+			sortCol: $sortCol
+			sortDir: $sortDir
+		) {
 			totalCount
 			results {
 				dataSetId
@@ -163,7 +173,10 @@ export const SAVE_ACCOUNT = gql`
 
 export const UPDATE_PASSWORD = gql`
 	mutation UpdatePassword($currentPassword: String!, $newPassword: String!) {
-		updatePassword(currentPassword: $currentPassword, newPassword: $newPassword) {
+		updatePassword(
+			currentPassword: $currentPassword
+			newPassword: $newPassword
+		) {
 			success
 			error
 		}
@@ -179,6 +192,7 @@ export const CREATE_USER_ACCOUNT = gql`
 		$region: String
 		$accountStatus: AccountStatus
 		$expiryDate: String
+		$oneTimePassword: String
 	) {
 		createUserAccount(
 			firstName: $firstName
@@ -188,6 +202,7 @@ export const CREATE_USER_ACCOUNT = gql`
 			region: $region
 			accountStatus: $accountStatus
 			expiryDate: $expiryDate
+			oneTimePassword: $oneTimePassword
 		) {
 			success
 		}

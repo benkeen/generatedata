@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { format, fromUnixTime, add } from 'date-fns';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
+import {
+	LocalizedDatePicker,
+	LocalizedDatePickerProvider
+} from '~components/datePicker/LocalizedDatePicker.component';
 import { getFormattedNum } from '~utils/numberUtils';
 import * as dateStyles from '../../../plugins/dataTypes/Date/Date.scss';
 import C from '../../../core/constants';
@@ -27,6 +30,7 @@ export type ManageAccountState = {
 	email: string;
 	country: string;
 	region: string;
+	oneTimePassword?: string;
 	disabled: boolean;
 	expiry: ExpiryOption;
 	expiryDate: null | number;
@@ -47,7 +51,11 @@ const ManageAccount = ({
 	const [showDatepicker, setShowDatepicker] = useState(false);
 	const [showErrors] = useState(false);
 
-	let accountHasChanges = data.firstName !== '' && data.lastName !== '' && data.email !== '' && data.country !== '';
+	let accountHasChanges =
+		data.firstName !== '' &&
+		data.lastName !== '' &&
+		data.email !== '' &&
+		data.country !== '';
 	if (data.country === 'CA' && data.region === '') {
 		accountHasChanges = false;
 	}
@@ -97,13 +105,17 @@ const ManageAccount = ({
 		email: data.email,
 		country: data.country,
 		region: data.region,
+		oneTimePassword: data.oneTimePassword,
 		numRowsGenerated: data.numRowsGenerated
 	};
 
 	let expiryLabel = i18n.selectExpiryDate;
 
 	if (data.expiryDate) {
-		expiryLabel = format(fromUnixTime(Math.round(data.expiryDate / 1000)), C.DATE_FORMAT);
+		expiryLabel = format(
+			fromUnixTime(Math.round(data.expiryDate / 1000)),
+			C.DATE_FORMAT
+		);
 	}
 
 	return (
@@ -117,7 +129,12 @@ const ManageAccount = ({
 					submitButtonLabel={submitButtonLabel}
 					showRequiredFieldError={showErrors}
 					onCancel={onClickCancel}
-					onSave={(): void => onSave(data)}
+					onSave={(setOneTimePassword: boolean): void => {
+						if (!setOneTimePassword) {
+							data.oneTimePassword = undefined;
+						}
+						onSave(data);
+					}}
 					isAddingUser={data.isAddingUser}
 				/>
 			</div>
@@ -164,7 +181,11 @@ const ManageAccount = ({
 						autoOk
 						open={showDatepicker}
 						className={dateStyles.dateField}
-						value={data.expiryDate === null ? fromUnixTime(yearFromNow) : fromUnixTime(data.expiryDate / 1000)}
+						value={
+							data.expiryDate === null
+								? fromUnixTime(yearFromNow)
+								: fromUnixTime(data.expiryDate / 1000)
+						}
 						onChange={(val: any): void => onSelectDate(format(val, 'T'))}
 						onClose={(): void => setShowDatepicker(false)}
 					/>

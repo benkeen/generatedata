@@ -12,7 +12,12 @@ export type AccountsPageProps = {
 	onDestroy: () => void;
 };
 
-const Accounts = ({ selectedTab, onChangeTab, onDestroy, i18n }: AccountsPageProps): JSX.Element | null => {
+const Accounts = ({
+	selectedTab,
+	onChangeTab,
+	onDestroy,
+	i18n
+}: AccountsPageProps): JSX.Element | null => {
 	useEffect((): any => {
 		return (): void => {
 			onDestroy();
@@ -33,13 +38,21 @@ const Accounts = ({ selectedTab, onChangeTab, onDestroy, i18n }: AccountsPagePro
 			<nav>
 				<ul>
 					<li
-						className={selectedTab === SelectedAccountsTab.accounts ? sharedStyles.selected : ''}
+						className={
+							selectedTab === SelectedAccountsTab.accounts
+								? sharedStyles.selected
+								: ''
+						}
 						onClick={(): void => onChangeTab(SelectedAccountsTab.accounts)}
 					>
 						{i18n.accounts}
 					</li>
 					<li
-						className={selectedTab === SelectedAccountsTab.createAccount ? sharedStyles.selected : ''}
+						className={
+							selectedTab === SelectedAccountsTab.createAccount
+								? sharedStyles.selected
+								: ''
+						}
 						onClick={(): void => onChangeTab(SelectedAccountsTab.createAccount)}
 					>
 						{i18n.createAccount}

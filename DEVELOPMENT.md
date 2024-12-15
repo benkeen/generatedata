@@ -73,7 +73,7 @@ These are found in `src/i18n`. They contain all the core i18n files.
 
 Local dev, general steps:
 
-- `yarn prodAll` -
+- `yarn start` - builds the client-side code and
 - `yarn startDevServer` -
 
 ### Common problems

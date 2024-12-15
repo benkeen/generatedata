@@ -11,7 +11,12 @@ const getAccountNumRowsGenerated = async (accountId) => {
 		where: {
 			accountId: accountId
 		},
-		attributes: [[db.sequelize.fn('sum', db.sequelize.col('num_rows_generated')), 'totalRowsGenerated']]
+		attributes: [
+			[
+				db.sequelize.fn('sum', db.sequelize.col('num_rows_generated')),
+				'totalRowsGenerated'
+			]
+		]
 	});
 
 	return results[0].dataValues.totalRowsGenerated || 0;
@@ -20,8 +25,16 @@ const getAccountNumRowsGenerated = async (accountId) => {
 const login = async (root, { email, password }, { res }) => {
 	const user = await db.accounts.findOne({
 		attributes: [
-			'accountId', 'accountType', 'password', 'oneTimePassword', 'firstName', 'lastName', 'country', 'region',
-			'dateCreated', 'expiryDate'
+			'accountId',
+			'accountType',
+			'password',
+			'oneTimePassword',
+			'firstName',
+			'lastName',
+			'country',
+			'region',
+			'dateCreated',
+			'expiryDate'
 		],
 		where: {
 			email
@@ -32,7 +45,12 @@ const login = async (root, { email, password }, { res }) => {
 		return { success: false };
 	}
 
-	const { accountId, password: encodedPassword, oneTimePassword, expiryDate } = user.dataValues;
+	const {
+		accountId,
+		password: encodedPassword,
+		oneTimePassword,
+		expiryDate
+	} = user.dataValues;
 
 	const accountExpired = authUtils.accountExpired(expiryDate);
 	if (accountExpired) {
@@ -50,7 +68,10 @@ const login = async (root, { email, password }, { res }) => {
 
 	let oneTimePasswordIsCorrect = false;
 	if (oneTimePassword) {
-		oneTimePasswordIsCorrect = await authUtils.isValidPassword(password, oneTimePassword);
+		oneTimePasswordIsCorrect = await authUtils.isValidPassword(
+			password,
+			oneTimePassword
+		);
 
 		// note we don't reset the password here. It's needed on the request to update the password - there we DON'T
 		// check the previous one (since it's not available). We only ever want to do that if there's a one-time password
@@ -61,7 +82,12 @@ const login = async (root, { email, password }, { res }) => {
 		return { success: false };
 	}
 
-	const { token, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
+	const { token, tokenExpiry, refreshToken } = await getNewTokens(
+		accountId,
+		email,
+		user,
+		res
+	);
 	const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
 	// we ignore async-ness here. No point slowing down the login just to track the last logged in date
@@ -98,7 +124,10 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
 
 		const accountExpired = authUtils.accountExpired(expiryDate);
 		if (accountExpired) {
-			const { subject, text, html } = passwordResetAccountExpired({ firstName, i18n });
+			const { subject, text, html } = passwordResetAccountExpired({
+				firstName,
+				i18n
+			});
 			await emailUtils.sendEmail(email, subject, text, html);
 		} else {
 			const tempPassword = nanoid(14);
@@ -109,7 +138,12 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
 				oneTimePassword: tempPasswordHash
 			});
 
-			const { subject, text, html } = passwordReset({ firstName, email, tempPassword, i18n });
+			const { subject, text, html } = passwordReset({
+				firstName,
+				email,
+				tempPassword,
+				i18n
+			});
 			await emailUtils.sendEmail(email, subject, text, html);
 		}
 	}
@@ -124,7 +158,7 @@ const loginWithGoogle = async (root, { googleToken }, { res }) => {
 	let email = '';
 	let profileImage = '';
 
-	async function verify () {
+	async function verify() {
 		const ticket = await client.verifyIdToken({
 			idToken: googleToken,
 			audience: process.env.GD_GOOGLE_AUTH_CLIENT_ID
@@ -146,8 +180,17 @@ const loginWithGoogle = async (root, { googleToken }, { res }) => {
 	// here the authentication has passed. Now verify the account exists
 	const user = await db.accounts.findOne({
 		attributes: [
-			'accountId', 'accountType', 'password', 'firstName', 'lastName', 'country', 'region', 'dateCreated',
-			'expiryDate', 'country', 'region'
+			'accountId',
+			'accountType',
+			'password',
+			'firstName',
+			'lastName',
+			'country',
+			'region',
+			'dateCreated',
+			'expiryDate',
+			'country',
+			'region'
 		],
 		where: {
 			email
@@ -161,7 +204,16 @@ const loginWithGoogle = async (root, { googleToken }, { res }) => {
 		};
 	}
 
-	const { accountId, accountType, firstName, lastName, country, region, expiryDate, dateCreated } = user.dataValues;
+	const {
+		accountId,
+		accountType,
+		firstName,
+		lastName,
+		country,
+		region,
+		expiryDate,
+		dateCreated
+	} = user.dataValues;
 	const accountExpired = authUtils.accountExpired(expiryDate);
 
 	if (accountExpired) {
@@ -171,7 +223,12 @@ const loginWithGoogle = async (root, { googleToken }, { res }) => {
 		};
 	}
 
-	const { token, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
+	const { token, tokenExpiry, refreshToken } = await getNewTokens(
+		accountId,
+		email,
+		user,
+		res
+	);
 	const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
 	return {
@@ -200,7 +257,14 @@ const checkAndUpdateRefreshToken = async (root, args, { token, req, res }) => {
 	const oldRefreshToken = req.cookies.refreshToken;
 	const user = await db.accounts.findOne({
 		attributes: [
-			'accountId', 'accountType', 'firstName', 'email', 'lastName', 'country', 'region', 'dateCreated',
+			'accountId',
+			'accountType',
+			'firstName',
+			'email',
+			'lastName',
+			'country',
+			'region',
+			'dateCreated',
 			'expiryDate'
 		],
 		where: {
@@ -213,7 +277,11 @@ const checkAndUpdateRefreshToken = async (root, args, { token, req, res }) => {
 	}
 
 	const { accountId, email } = user.dataValues;
-	const { token: newToken, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
+	const {
+		token: newToken,
+		tokenExpiry,
+		refreshToken
+	} = await getNewTokens(accountId, email, user, res);
 
 	const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 

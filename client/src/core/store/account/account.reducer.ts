@@ -3,7 +3,12 @@ import produce from 'immer';
 import * as mainActions from '../main/main.actions';
 import * as actions from '../account/account.actions';
 import * as packetActions from '../packets/packets.actions';
-import { AccountStatus, AccountType, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
+import {
+	AccountStatus,
+	AccountType,
+	SelectedAccountsTab,
+	SelectedAccountTab
+} from '~types/account';
 
 // use for both Edit Account, Your Account. Your Account only uses a subset of the fields.
 export type AccountEditingData = {
@@ -12,6 +17,7 @@ export type AccountEditingData = {
 	email: string;
 	country: string;
 	region: string;
+	oneTimePassword?: string;
 	numRowsGenerated: number;
 	expiryDate?: number;
 	disabled?: boolean;
@@ -84,8 +90,17 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case mainActions.SET_AUTHENTICATION_DATA: {
-			const { firstName, lastName, expiryDate, accountType, email, country, region, profileImage, numRowsGenerated } =
-				action.payload;
+			const {
+				firstName,
+				lastName,
+				expiryDate,
+				accountType,
+				email,
+				country,
+				region,
+				profileImage,
+				numRowsGenerated
+			} = action.payload;
 			draft.firstName = firstName;
 			draft.lastName = lastName;
 			draft.email = email;
@@ -162,8 +177,17 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case actions.ON_EDIT_ACCOUNT:
-			const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate, numRowsGenerated } =
-				action.payload.accountInfo;
+			const {
+				accountId,
+				accountStatus,
+				firstName,
+				lastName,
+				email,
+				country,
+				region,
+				expiryDate,
+				numRowsGenerated
+			} = action.payload.accountInfo;
 
 			draft.selectedAccountsTab = SelectedAccountsTab.editAccount;
 			draft.editingData = {

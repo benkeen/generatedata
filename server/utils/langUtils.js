@@ -39,7 +39,8 @@ const getI18n = (i18nString, placeholders) => {
 	return parsed;
 };
 
-const getI18nString = (i18nString, placeholders) => getI18n(i18nString, placeholders).join('');
+const getI18nString = (i18nString, placeholders) =>
+	getI18n(i18nString, placeholders).join('');
 
 module.exports = {
 	getStrings,

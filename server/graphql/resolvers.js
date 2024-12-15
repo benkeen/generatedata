@@ -31,8 +31,12 @@ const resolvers = {
 			let filterClause = '';
 			if (filterStr) {
 				const fields = ['first_name', 'last_name', 'email'];
-				const cleanFilter = filterStr.replace(/[^a-zA-Z'\s]/g, '').replace(/'/, '\\\'');
-				const clauses = fields.map((field) => `${field} LIKE '%${cleanFilter}%'`);
+				const cleanFilter = filterStr
+					.replace(/[^a-zA-Z'\s]/g, '')
+					.replace(/'/, '\\\'');
+				const clauses = fields.map(
+					(field) => `${field} LIKE '%${cleanFilter}%'`
+				);
 				filterClause = `AND (${clauses.join(' OR ')})`;
 			}
 
@@ -51,29 +55,42 @@ const resolvers = {
 				OFFSET ${offset} 
 			`);
 
-			const [totalCountQuery] = await db.sequelize.query(`
+			const [totalCountQuery] = await db.sequelize.query(
+				`
 				SELECT count(*) as c
 				FROM accounts
 				WHERE created_by = ${accountId} ${filterClause} ${statusClause}
-			`, { raw: true, type: db.sequelize.QueryTypes.SELECT });
+			`,
+				{ raw: true, type: db.sequelize.QueryTypes.SELECT }
+			);
 
 			const updatedResults = results.map(async (row) => {
 				const accountId = row.account_id;
 
 				// not great, but info is needed. May be a better idea to denormalize the DB and store this on the
 				// account row
-				const numRowsGenerated = await authResolvers.getAccountNumRowsGenerated(accountId);
+				const numRowsGenerated =
+					await authResolvers.getAccountNumRowsGenerated(accountId);
 				let accountStatus = row.account_status;
 
 				// update any accounts that have an expiry date set and are now expired
-				if (row.date_expires && row.account_status !== 'expired' && row.account_status !== 'disabled') {
-					const accountExpired = authUtils.accountExpired(new Date(row.date_expires));
+				if (
+					row.date_expires &&
+					row.account_status !== 'expired' &&
+					row.account_status !== 'disabled'
+				) {
+					const accountExpired = authUtils.accountExpired(
+						new Date(row.date_expires)
+					);
 					if (accountExpired) {
-						await db.sequelize.query(`
+						await db.sequelize.query(
+							`
 							UPDATE accounts
 							SET account_status = 'expired'
 							WHERE account_id = ${accountId}
-						`, { raw: true, type: db.sequelize.QueryTypes.UPDATE });
+						`,
+							{ raw: true, type: db.sequelize.QueryTypes.UPDATE }
+						);
 
 						accountStatus = 'expired';
 					}
@@ -93,7 +110,7 @@ const resolvers = {
 					country: row.country,
 					region: row.region,
 					numRowsGenerated
-				}
+				};
 			});
 
 			return {
@@ -151,11 +168,14 @@ const resolvers = {
 				OFFSET ${offset}
 			`);
 
-			const [totalCountQuery] = await db.sequelize.query(`
+			const [totalCountQuery] = await db.sequelize.query(
+				`
 				SELECT count(*) as c
 				FROM datasets
 				WHERE account_id = ${accountId} 
-			`, { raw: true, type: db.sequelize.QueryTypes.SELECT });
+			`,
+				{ raw: true, type: db.sequelize.QueryTypes.SELECT }
+			);
 
 			return {
 				totalCount: totalCountQuery.c,
@@ -201,11 +221,14 @@ const resolvers = {
 				OFFSET ${offset}
 			`);
 
-			const [totalCountQuery] = await db.sequelize.query(`
+			const [totalCountQuery] = await db.sequelize.query(
+				`
 				SELECT count(*) as c
 				FROM dataset_history
 				WHERE dataset_id = ${dataSetId} 
-			`, { raw: true, type: db.sequelize.QueryTypes.SELECT });
+			`,
+				{ raw: true, type: db.sequelize.QueryTypes.SELECT }
+			);
 
 			return {
 				totalCount: totalCountQuery.c,
@@ -242,6 +265,5 @@ const resolvers = {
 		updateDataSetGenerationCount: dataSetResolvers.updateDataSetGenerationCount
 	}
 };
-
 
 module.exports = resolvers;

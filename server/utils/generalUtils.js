@@ -16,7 +16,6 @@ const getSiteUrl = () => {
 	return `${protocol}://${domain}${cleanPort}`;
 };
 
-
 module.exports = {
 	getSiteUrl
 };

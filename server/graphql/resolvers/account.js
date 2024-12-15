@@ -1,202 +1,208 @@
-const dateFns = require("date-fns");
-const db = require("../../database");
-const authUtils = require("../../utils/authUtils");
+const dateFns = require('date-fns');
+const db = require('../../database');
+const authUtils = require('../../utils/authUtils');
 
 const updateCurrentAccount = async (root, args, { token, user }) => {
-  if (!authUtils.authenticate(token)) {
-    return { success: false };
-  }
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
-  const { accountId } = user;
-  const userRecord = await db.accounts.findByPk(accountId);
+	const { accountId } = user;
+	const userRecord = await db.accounts.findByPk(accountId);
 
-  const { firstName, lastName, email, country, region } = args;
-  userRecord.update({
-    firstName,
-    lastName,
-    email,
-    country,
-    region,
-  });
+	const { firstName, lastName, email, country, region } = args;
+	userRecord.update({
+		firstName,
+		lastName,
+		email,
+		country,
+		region
+	});
 
-  return {
-    success: true,
-  };
+	return {
+		success: true
+	};
 };
 
 const updateAccount = async (root, args, { token, user }) => {
-  if (!authUtils.authenticate(token)) {
-    return { success: false };
-  }
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
-  const {
-    accountId,
-    accountStatus,
-    firstName,
-    lastName,
-    email,
-    country,
-    region,
-    expiryDate,
-  } = args;
-  const userRecord = await db.accounts.findByPk(accountId);
+	const {
+		accountId,
+		accountStatus,
+		firstName,
+		lastName,
+		email,
+		country,
+		region,
+		expiryDate
+	} = args;
+	const userRecord = await db.accounts.findByPk(accountId);
 
-  const { accountId: currentAccountId } = user;
-  const currentUser = await db.accounts.findByPk(currentAccountId);
+	const { accountId: currentAccountId } = user;
+	const currentUser = await db.accounts.findByPk(currentAccountId);
 
-  if (currentUser.dataValues.accountType !== "superuser") {
-    return {
-      success: false,
-      errorStatus: "PermissionDenied",
-    };
-  }
+	if (currentUser.dataValues.accountType !== 'superuser') {
+		return {
+			success: false,
+			errorStatus: 'PermissionDenied'
+		};
+	}
 
-  let validatedAccountStatus = accountStatus;
+	let validatedAccountStatus = accountStatus;
 
-  // "disabled" trumps "expired", otherwise the UI looks weird (you disable something but it never appears that way)
-  if (expiryDate && validatedAccountStatus !== "disabled") {
-    const now = Number(dateFns.format(new Date(), "t"));
+	// "disabled" trumps "expired", otherwise the UI looks weird (you disable something but it never appears that way)
+	if (expiryDate && validatedAccountStatus !== 'disabled') {
+		const now = Number(dateFns.format(new Date(), 't'));
 
-    if (expiryDate < now) {
-      validatedAccountStatus = "expired";
-    }
-  }
+		if (expiryDate < now) {
+			validatedAccountStatus = 'expired';
+		}
+	}
 
-  let expiryDateMs = null;
-  if (expiryDate) {
-    expiryDateMs = parseInt(expiryDate, 10);
-  }
+	let expiryDateMs = null;
+	if (expiryDate) {
+		expiryDateMs = parseInt(expiryDate, 10);
+	}
 
-  userRecord.update({
-    accountStatus: validatedAccountStatus,
-    firstName,
-    lastName,
-    email,
-    country,
-    region,
-    expiryDate: expiryDateMs,
-  });
+	userRecord.update({
+		accountStatus: validatedAccountStatus,
+		firstName,
+		lastName,
+		email,
+		country,
+		region,
+		expiryDate: expiryDateMs
+	});
 
-  return {
-    success: true,
-  };
+	return {
+		success: true
+	};
 };
 
 const updatePassword = async (root, args, { token, user }) => {
-  if (!authUtils.authenticate(token)) {
-    return { success: false };
-  }
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
-  const { accountId } = user;
-  const userRecord = await db.accounts.findByPk(accountId);
-  const { currentPassword, newPassword } = args;
+	const { accountId } = user;
+	const userRecord = await db.accounts.findByPk(accountId);
+	const { currentPassword, newPassword } = args;
 
-  const isCorrect = await authUtils.isValidPassword(
-    currentPassword,
-    userRecord.dataValues.password,
-  );
+	const isCorrect = await authUtils.isValidPassword(
+		currentPassword,
+		userRecord.dataValues.password
+	);
 
-  if (!isCorrect) {
-    const oneTimePasswordCorrect = await authUtils.isValidPassword(
-      currentPassword,
-      userRecord.dataValues.oneTimePassword,
-    );
+	if (!isCorrect) {
+		const oneTimePasswordCorrect = await authUtils.isValidPassword(
+			currentPassword,
+			userRecord.dataValues.oneTimePassword
+		);
 
-    if (!oneTimePasswordCorrect) {
-      return {
-        success: false,
-        error: "PASSWORD_INCORRECT",
-      };
-    }
-  }
+		if (!oneTimePasswordCorrect) {
+			return {
+				success: false,
+				error: 'PASSWORD_INCORRECT'
+			};
+		}
+	}
 
-  const newPasswordHash = await authUtils.getPasswordHash(newPassword);
+	const newPasswordHash = await authUtils.getPasswordHash(newPassword);
 
-  userRecord.update({
-    password: newPasswordHash,
-    oneTimePassword: "",
-  });
+	userRecord.update({
+		password: newPasswordHash,
+		oneTimePassword: ''
+	});
 
-  return {
-    success: true,
-  };
+	return {
+		success: true
+	};
 };
 
 const createUserAccount = async (root, args, { token, user }) => {
-  if (!authUtils.authenticate(token)) {
-    return { success: false };
-  }
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
-  const userRecord = await db.accounts.findByPk(user.accountId);
-  if (userRecord.dataValues.accountType !== "superuser") {
-    return {
-      success: false,
-      errorStatus: "PermissionDenied",
-    };
-  }
+	const userRecord = await db.accounts.findByPk(user.accountId);
+	if (userRecord.dataValues.accountType !== 'superuser') {
+		return {
+			success: false,
+			errorStatus: 'PermissionDenied'
+		};
+	}
 
-  const { accountId } = user;
-  const dateCreated = new Date().getTime();
-  const {
-    firstName,
-    lastName,
-    email,
-    country,
-    region,
-    accountStatus,
-    expiryDate,
-  } = args;
+	const { accountId } = user;
+	const dateCreated = new Date().getTime();
+	const {
+		firstName,
+		lastName,
+		email,
+		country,
+		region,
+		accountStatus,
+		expiryDate,
+		oneTimePassword
+	} = args;
 
-  let expiryDateMs = null;
-  if (expiryDate) {
-    expiryDateMs = parseInt(expiryDate, 10);
-  }
+	let expiryDateMs = null;
+	if (expiryDate) {
+		expiryDateMs = parseInt(expiryDate, 10);
+	}
 
-  await db.accounts.create({
-    createdBy: accountId,
-    accountType: "user",
-    accountStatus,
-    dateCreated,
-    lastUpdated: dateCreated,
-    expiryDate: expiryDateMs,
-    password: "", // blank password
-    firstName,
-    lastName,
-    email,
-    country,
-    region,
-    numRowsGenerated: 0,
-  });
+	const tempPasswordHash = oneTimePassword
+		? await authUtils.getPasswordHash(oneTimePassword)
+		: undefined;
 
-  return {
-    success: true,
-  };
+	await db.accounts.create({
+		createdBy: accountId,
+		accountType: 'user',
+		accountStatus,
+		dateCreated,
+		lastUpdated: dateCreated,
+		expiryDate: expiryDateMs,
+		password: '', // blank password
+		oneTimePassword: tempPasswordHash,
+		firstName,
+		lastName,
+		email,
+		country,
+		region,
+		numRowsGenerated: 0
+	});
+
+	return {
+		success: true
+	};
 };
 
 const deleteAccount = async (root, { accountId, content }, { token, user }) => {
-  if (!authUtils.authenticate(token)) {
-    return { success: false };
-  }
+	if (!authUtils.authenticate(token)) {
+		return { success: false };
+	}
 
-  const userRecord = await db.accounts.findByPk(user.accountId);
-  if (userRecord.dataValues.accountType !== "superuser") {
-    return {
-      success: false,
-      errorStatus: "PermissionDenied",
-    };
-  }
+	const userRecord = await db.accounts.findByPk(user.accountId);
+	if (userRecord.dataValues.accountType !== 'superuser') {
+		return {
+			success: false,
+			errorStatus: 'PermissionDenied'
+		};
+	}
 
-  db.accounts.destroy({ where: { accountId } });
+	db.accounts.destroy({ where: { accountId } });
 
-  return {
-    success: true,
-  };
+	return {
+		success: true
+	};
 };
 
 module.exports = {
-  updateCurrentAccount,
-  updateAccount,
-  updatePassword,
-  createUserAccount,
-  deleteAccount,
+	updateCurrentAccount,
+	updateAccount,
+	updatePassword,
+	createUserAccount,
+	deleteAccount
 };

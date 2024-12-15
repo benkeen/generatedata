@@ -1,10 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
+import IconButton from '@material-ui/core/IconButton';
 import Dropdown from '~components/dropdown/Dropdown';
-import { canadianProvinceOptions, countryDropdownOptions } from '~utils/countryUtils';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import {
+	canadianProvinceOptions,
+	countryDropdownOptions
+} from '~utils/countryUtils';
+import Refresh from '@material-ui/icons/Refresh';
 import { AccountEditingData } from '~store/account/account.reducer';
 import { isValidEmail } from '~utils/generalUtils';
+import { generateRandomAlphanumericStr } from '~utils/randomUtils';
 import sharedStyles from '../../../styles/shared.scss';
 
 export type MainFieldsProps = {
@@ -13,7 +22,7 @@ export type MainFieldsProps = {
 	updateAccount: (data: AccountEditingData) => void;
 	submitButtonLabel: string;
 	i18n: any;
-	onSave: () => void;
+	onSave: (setOneTimePassword: boolean) => void;
 	onCancel: () => void;
 	showRequiredFieldError: boolean;
 	isAddingUser: boolean;
@@ -33,6 +42,8 @@ const MainFields = ({
 	className = ''
 }: MainFieldsProps): JSX.Element => {
 	const emailFieldRef = useRef(null);
+	const [oneTimePasswordFieldVisible, setOneTimePasswordFieldVisible] =
+		useState(false);
 
 	// very fussy indeed!
 	const [emailFieldHasFocus, setEmailFieldHasFocus] = useState(false);
@@ -70,6 +81,10 @@ const MainFields = ({
 			fieldsValid = false;
 		}
 	}
+	let oneTimePasswordError;
+	if (isAddingUser && data.oneTimePassword?.trim() === '') {
+		oneTimePasswordError = i18n.requiredField;
+	}
 
 	const saveButtonEnabled = accountHasChanges && fieldsValid;
 
@@ -99,11 +114,22 @@ const MainFields = ({
 			return;
 		}
 
-		onSave();
+		onSave(isAddingUser && oneTimePasswordFieldVisible);
 	};
 
-	const firstNameError = showRequiredFieldError && data.firstName.trim() === '' ? i18n.requiredField : '';
-	const lastNameError = showRequiredFieldError && data.lastName.trim() === '' ? i18n.requiredField : '';
+	const generatePassword = () => {
+		const pwd = generateRandomAlphanumericStr('CcEVvFLlDXxH');
+		update('oneTimePassword', pwd);
+	};
+
+	const firstNameError =
+		showRequiredFieldError && data.firstName.trim() === ''
+			? i18n.requiredField
+			: '';
+	const lastNameError =
+		showRequiredFieldError && data.lastName.trim() === ''
+			? i18n.requiredField
+			: '';
 
 	let cancelLinkClasses = sharedStyles.cancelLink;
 	if (!saveButtonEnabled) {
@@ -160,10 +186,60 @@ const MainFields = ({
 				</div>
 
 				{getCanadianRegions()}
+
+				{isAddingUser && (
+					<div style={{ marginTop: -10, marginBottom: 15 }}>
+						<FormGroup>
+							<FormControlLabel
+								control={
+									<Checkbox
+										checked={oneTimePasswordFieldVisible}
+										color="primary"
+										onClick={() =>
+											setOneTimePasswordFieldVisible(
+												!oneTimePasswordFieldVisible
+											)
+										}
+									/>
+								}
+								label="Set one-time password"
+							/>
+						</FormGroup>
+						{oneTimePasswordFieldVisible && (
+							<>
+								<div
+									style={{
+										display: 'flex',
+										flexDirection: 'row'
+									}}
+								>
+									<TextField
+										error={oneTimePasswordError}
+										value={data.oneTimePassword}
+										name="oneTimePassword"
+										onChange={(e: any): void =>
+											update('oneTimePassword', e.target.value)
+										}
+										style={{ width: '100%', marginRight: 8 }}
+									/>
+									<IconButton size="small" onClick={generatePassword}>
+										<Refresh />
+									</IconButton>
+								</div>
+							</>
+						)}
+					</div>
+				)}
 			</div>
 
 			<div>
-				<Button type="submit" color="primary" variant="contained" disableElevation disabled={!saveButtonEnabled}>
+				<Button
+					type="submit"
+					color="primary"
+					variant="contained"
+					disableElevation
+					disabled={!saveButtonEnabled}
+				>
 					{submitButtonLabel}
 				</Button>
 

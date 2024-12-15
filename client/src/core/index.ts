@@ -26,7 +26,9 @@ export const init = (): void => {
 	const numRows = selectors.getNumRows(state);
 
 	store.dispatch(mainActions.selectLocale(pageLocale));
-	store.dispatch(actions.onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
+	store.dispatch(
+		actions.onSelectExportType(exportType, { shouldRefreshPreviewPanel: false })
+	);
 
 	const loadCountryNames = selectors.currentDataSetNeedsCountryNames(state);
 	if (loadCountryNames) {
@@ -47,7 +49,9 @@ export const init = (): void => {
 
 	const preloadDataTypes = selectors.getRowDataTypes(state);
 
-	preloadDataTypes.forEach((dataType: DataTypeFolder) => (
-		actions.loadDataTypeBundle(store.dispatch, store.getState, dataType, { shouldRefreshPreviewPanel: false })
-	));
+	preloadDataTypes.forEach((dataType: DataTypeFolder) =>
+		actions.loadDataTypeBundle(store.dispatch, store.getState, dataType, {
+			shouldRefreshPreviewPanel: false
+		})
+	);
 };
