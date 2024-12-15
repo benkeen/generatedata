@@ -3,7 +3,9 @@ import { useMutation, useQuery } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Pagination from '~components/Pagination';
-import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
+import TableHeader, {
+	ColSortDir
+} from '~components/tables/TableHeader.component';
 import * as queries from '~core/queries';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
@@ -18,10 +20,20 @@ import { GDLocale } from '~types/general';
 const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 	<div className={styles.row}>
 		<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
-		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
-		<div className={styles.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated)}</div>
+		<div className={styles.dateCreated}>
+			{formatUnixTime(dataSet.historyDateCreatedUnix)}
+		</div>
+		<div className={styles.numRowsGenerated}>
+			{getFormattedNum(dataSet.numRowsGenerated)}
+		</div>
 		<div className={styles.open}>
-			<Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>
+			<Button
+				size="small"
+				type="submit"
+				color="primary"
+				variant="outlined"
+				onClick={onLoad}
+			>
 				{i18n.open}
 			</Button>
 		</div>
@@ -41,7 +53,12 @@ export type DataSetsProps = {
 // to be moved to a user setting at some point
 const NUM_PER_PAGE = 10;
 
-const DataSets = ({ onLoadDataSet, locale, i18n, className = '' }: DataSetsProps): JSX.Element | null => {
+const DataSets = ({
+	onLoadDataSet,
+	locale,
+	i18n,
+	className = ''
+}: DataSetsProps): JSX.Element | null => {
 	const history = useHistory();
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [currentPage, setCurrentPage] = useState(1);
@@ -66,13 +83,15 @@ const DataSets = ({ onLoadDataSet, locale, i18n, className = '' }: DataSetsProps
 
 	const numItemsOnPage = data?.dataSets?.results?.length || 0;
 	const afterDeletePage = numItemsOnPage === 1 ? currentPage - 1 : currentPage;
+	let offset = (afterDeletePage - 1) * NUM_PER_PAGE;
+	offset = offset < 0 ? 0 : offset;
 
 	const [deleteDataSet] = useMutation(queries.DELETE_DATA_SET, {
 		refetchQueries: [
 			{
 				query: queries.GET_DATA_SETS,
 				variables: {
-					offset: (afterDeletePage - 1) * NUM_PER_PAGE,
+					offset,
 					limit: NUM_PER_PAGE,
 					sortDir,
 					sortCol

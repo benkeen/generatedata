@@ -54,8 +54,6 @@ const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
 	let hasAccess = false;
 	const dataSet = db.dataSets.findByPk(dataSetId);
 
-	console.log(dataSet);
-
 	const dateCreated = new Date().getTime();
 	await db.dataSetHistory.create({
 		dataSetId,
@@ -70,15 +68,16 @@ const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
 	};
 };
 
-const deleteDataSet = async (root, { dataSetId, content }, { token, user }) => {
+const deleteDataSet = async (_root, { dataSetId }, { token, user }) => {
 	if (!authUtils.authenticate(token)) {
 		return { success: false };
 	}
 
-	// TODO check access
-
-	if (user.accountType === 'user') {
-		return;
+	const dataSet = await db.dataSets.findByPk(dataSetId);
+	if (dataSet.accountId !== user.accountId) {
+		return {
+			success: false
+		};
 	}
 
 	db.dataSets.destroy({ where: { dataSetId } });
