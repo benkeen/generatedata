@@ -3,9 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Pagination from '~components/Pagination';
-import TableHeader, {
-	ColSortDir
-} from '~components/tables/TableHeader.component';
+import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
 import * as queries from '~core/queries';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
@@ -20,20 +18,10 @@ import { GDLocale } from '~types/general';
 const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 	<div className={styles.row}>
 		<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
-		<div className={styles.dateCreated}>
-			{formatUnixTime(dataSet.historyDateCreatedUnix)}
-		</div>
-		<div className={styles.numRowsGenerated}>
-			{getFormattedNum(dataSet.numRowsGenerated)}
-		</div>
+		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
+		<div className={styles.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated)}</div>
 		<div className={styles.open}>
-			<Button
-				size="small"
-				type="submit"
-				color="primary"
-				variant="outlined"
-				onClick={onLoad}
-			>
+			<Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>
 				{i18n.open}
 			</Button>
 		</div>
@@ -46,6 +34,8 @@ const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 export type DataSetsProps = {
 	locale: GDLocale;
 	onLoadDataSet: (dataSet: DataSetListItem) => void;
+	onClearCurrentDataSet: () => void;
+	currentDataSetId: number | null;
 	className: string;
 	i18n: any;
 };
@@ -57,7 +47,9 @@ const DataSets = ({
 	onLoadDataSet,
 	locale,
 	i18n,
-	className = ''
+	currentDataSetId,
+	className = '',
+	onClearCurrentDataSet
 }: DataSetsProps): JSX.Element | null => {
 	const history = useHistory();
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
@@ -100,6 +92,15 @@ const DataSets = ({
 		],
 		onCompleted: () => {
 			setDeleteDialogVisibility(false);
+
+			if (currentDataSetId) {
+				const { dataSetId: deletedDataSetId } = selectedDataSet as DataSetListItem;
+
+				// double == intentional. Maybe a string
+				if (currentDataSetId == deletedDataSetId) {
+					onClearCurrentDataSet();
+				}
+			}
 		}
 	});
 
