@@ -2,7 +2,7 @@ const dateFns = require('date-fns');
 const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
 
-const updateCurrentAccount = async (root, args, { token, user }) => {
+const updateCurrentAccount = async (_root, args, { token, user }) => {
 	if (!authUtils.authenticate(token)) {
 		return { success: false };
 	}
@@ -24,7 +24,7 @@ const updateCurrentAccount = async (root, args, { token, user }) => {
 	};
 };
 
-const updateAccount = async (root, args, { token, user }) => {
+const updateAccount = async (_root, args, { token, user }) => {
 	if (!authUtils.authenticate(token)) {
 		return { success: false };
 	}
@@ -179,7 +179,7 @@ const createUserAccount = async (root, args, { token, user }) => {
 	};
 };
 
-const deleteAccount = async (root, { accountId, content }, { token, user }) => {
+const deleteAccount = async (_root, { accountId }, { token, user }) => {
 	if (!authUtils.authenticate(token)) {
 		return { success: false };
 	}

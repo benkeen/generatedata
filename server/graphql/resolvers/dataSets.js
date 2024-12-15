@@ -2,7 +2,7 @@ const db = require('../../database');
 const authUtils = require('../../utils/authUtils');
 
 const saveNewDataSet = async (
-	root,
+	_root,
 	{ dataSetName, content },
 	{ token, user }
 ) => {
@@ -33,12 +33,15 @@ const saveNewDataSet = async (
 	};
 };
 
-const renameDataSet = async (root, { dataSetId, dataSetName }, { token }) => {
+const renameDataSet = async (_root, { dataSetId, dataSetName }, { token }) => {
 	authUtils.authenticate(token);
 
-	// TODO security. Check user can update this data set
-
 	const dataSet = await db.dataSets.findByPk(dataSetId);
+	if (dataSet.accountId !== user.accountId) {
+		return {
+			success: false
+		};
+	}
 
 	await dataSet.update({ dataSetName });
 
@@ -47,12 +50,15 @@ const renameDataSet = async (root, { dataSetId, dataSetName }, { token }) => {
 	};
 };
 
-const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
+const saveDataSet = async (_root, { dataSetId, content }, { token, user }) => {
 	authUtils.authenticate(token);
 
-	// now check the user is able to access and change this data set
-	let hasAccess = false;
-	const dataSet = db.dataSets.findByPk(dataSetId);
+	const dataSet = await db.dataSets.findByPk(dataSetId);
+	if (dataSet.accountId !== user.accountId) {
+		return {
+			success: false
+		};
+	}
 
 	const dateCreated = new Date().getTime();
 	await db.dataSetHistory.create({
@@ -89,7 +95,7 @@ const deleteDataSet = async (_root, { dataSetId }, { token, user }) => {
 };
 
 const updateDataSetGenerationCount = async (
-	root,
+	_root,
 	{ dataSetId, generatedRows },
 	{ token, user }
 ) => {

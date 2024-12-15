@@ -22,7 +22,7 @@ const getAccountNumRowsGenerated = async (accountId) => {
 	return results[0].dataValues.totalRowsGenerated || 0;
 };
 
-const login = async (root, { email, password }, { res }) => {
+const login = async (_root, { email, password }, { res }) => {
 	const user = await db.accounts.findOne({
 		attributes: [
 			'accountId',
@@ -153,7 +153,7 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
 	return { success: true };
 };
 
-const loginWithGoogle = async (root, { googleToken }, { res }) => {
+const loginWithGoogle = async (_root, { googleToken }, { res }) => {
 	const client = new OAuth2Client(process.env.GD_GOOGLE_AUTH_CLIENT_ID);
 	let email = '';
 	let profileImage = '';
@@ -249,7 +249,7 @@ const loginWithGoogle = async (root, { googleToken }, { res }) => {
 	};
 };
 
-const checkAndUpdateRefreshToken = async (root, args, { token, req, res }) => {
+const checkAndUpdateRefreshToken = async (_root, _args, { req, res }) => {
 	if (!req.cookies.refreshToken) {
 		return { success: false };
 	}

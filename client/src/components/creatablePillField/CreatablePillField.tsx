@@ -88,7 +88,8 @@ const CreatablePillField = ({
 	const [tempValue, setTempValue] = React.useState('');
 	const options = value.map(createOption);
 
-	const handleInputChange = (newTempValue: string): void => setTempValue(newTempValue);
+	const handleInputChange = (newTempValue: string): void =>
+		setTempValue(newTempValue);
 	const handleKeyDown = (e: any): void => {
 		if (!tempValue) {
 			return;
@@ -108,7 +109,13 @@ const CreatablePillField = ({
 		}
 	};
 
-	const onSortEnd = ({ oldIndex, newIndex }: { oldIndex: number; newIndex: number }): void => {
+	const onSortEnd = ({
+		oldIndex,
+		newIndex
+	}: {
+		oldIndex: number;
+		newIndex: number;
+	}): void => {
 		const sortedOptions = arrayMove(options, oldIndex, newIndex);
 		onChange(sortedOptions.map((i: DropdownOption) => i.value));
 	};
@@ -123,7 +130,12 @@ const CreatablePillField = ({
 
 	// onCreateOption={(a: any) => console.log(a)}
 	return (
-		<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
+		<ErrorTooltip
+			title={error}
+			arrow
+			disableHoverListener={!error}
+			disableFocusListener={!error}
+		>
 			<SortableCreatableSelect
 				className={classes.join(' ')}
 				styles={selectStyles}
@@ -131,13 +143,17 @@ const CreatablePillField = ({
 				inputValue={tempValue}
 				axis="xy"
 				distance={4}
-				getHelperDimensions={({ node }: any): any => node.getBoundingClientRect()}
+				getHelperDimensions={({ node }: any): any =>
+					node.getBoundingClientRect()
+				}
 				isClearable={isClearable}
 				isMulti
 				onSortEnd={onSortEnd}
 				menuIsOpen={false}
 				onChange={(options: any): void => {
-					const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
+					const newValues = options
+						? options.map(({ value }: DropdownOption) => value)
+						: [];
 					onChange(newValues);
 				}}
 				onInputChange={handleInputChange}
