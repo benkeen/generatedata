@@ -59,62 +59,47 @@ export const getCurrentExportTypeWorkerUrl = createSelector(
 	}
 );
 
-export const getNumRows = createSelector(
-	getSortedRows,
-	(rows) => rows.length
+export const getNumRows = createSelector(getSortedRows, (rows) => rows.length);
+
+export const getSortedRowsArray = createSelector(getRows, getSortedRows, (rows, sorted) =>
+	sorted.map((id: string) => rows[id])
 );
 
-export const getSortedRowsArray = createSelector(
-	getRows,
-	getSortedRows,
-	(rows, sorted) => sorted.map((id: string) => rows[id])
+export const getSortedRowsArrayWithIds = createSelector(getRows, getSortedRows, (rows, sorted) =>
+	sorted.map((id: string) => ({ ...rows[id], id }))
 );
 
-export const getSortedRowsArrayWithIds = createSelector(
-	getRows,
-	getSortedRows,
-	(rows, sorted) => sorted.map((id: string) => ({ ...rows[id], id }))
+export const getTitles = createSelector(getSortedRowsArray, (rows) => rows.map(({ title }) => title));
+
+export const getNonEmptySortedRows = createSelector(getSortedRowsArray, (rows) =>
+	rows.filter((row: DataRow) => row.title.trim() !== '' && row.dataType !== null && row.dataType.trim() !== '')
 );
 
-export const getTitles = createSelector(
-	getSortedRowsArray,
-	(rows) => rows.map(({ title }) => title)
-);
-
-export const getNonEmptySortedRows = createSelector(
-	getSortedRowsArray,
-	(rows) => rows.filter((row: DataRow) => row.title.trim() !== '' && row.dataType !== null && row.dataType.trim() !== '')
-);
-
-export const getSortedRowsWithDataTypeSelected = createSelector(
-	getSortedRowsArrayWithIds,
-	(rows) => rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
+export const getSortedRowsWithDataTypeSelected = createSelector(getSortedRowsArrayWithIds, (rows) =>
+	rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
 );
 
 // returns everything in the grid where a Data Type has been selected
-export const getColumns = createSelector(
-	getSortedRowsWithDataTypeSelected,
-	(rows): (ColumnData & { id: string })[] => {
-		return rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
-			.map(({ dataType, title, data, id }: any) => {
-				const { getMetadata } = getDataType(dataType);
-				const metadata = getMetadata ? getMetadata(data) : null;
+export const getColumns = createSelector(getSortedRowsWithDataTypeSelected, (rows): (ColumnData & { id: string })[] => {
+	return rows
+		.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
+		.map(({ dataType, title, data, id }: any) => {
+			const { getMetadata } = getDataType(dataType);
+			const metadata = getMetadata ? getMetadata(data) : null;
 
-				return {
-					title,
-					dataType,
-					metadata,
-					id
-				};
-			});
-	}
-);
+			return {
+				title,
+				dataType,
+				metadata,
+				id
+			};
+		});
+});
 
-export const getRowDataTypes = createSelector(
-	getRows,
-	(rows) => (
-		Object.keys(rows).filter((id: string) => rows[id].dataType !== null).map((id: string) => rows[id].dataType)
-	)
+export const getRowDataTypes = createSelector(getRows, (rows) =>
+	Object.keys(rows)
+		.filter((id: string) => rows[id].dataType !== null)
+		.map((id: string) => rows[id].dataType)
 );
 
 export const getPreviewRows = createSelector(
@@ -125,9 +110,9 @@ export const getPreviewRows = createSelector(
 		const numRows = rows.length;
 		const formattedData: any[] = [];
 
-		for (let j=0; j<numPreviewRows; j++) {
+		for (let j = 0; j < numPreviewRows; j++) {
 			const rowData = [];
-			for (let i=0; i<numRows; i++) {
+			for (let i = 0; i < numRows; i++) {
 				const id = rows[i].id;
 				// this occurs when a new row is first added. The data is generated AFTERWARDS (see logic in onSelectDataType() action)
 				if (!data[id]) {
@@ -176,10 +161,7 @@ export const getGenerationTemplate = createSelector(
 	convertRowsToGenerationTemplate
 );
 
-export const hasData = createSelector(
-	getPreviewRows,
-	(rows) => rows.length > 0
-);
+export const hasData = createSelector(getPreviewRows, (rows) => rows.length > 0);
 
 export const selectedExportTypeLoaded = createSelector(
 	getExportType,
@@ -187,9 +169,8 @@ export const selectedExportTypeLoaded = createSelector(
 	(exportType, loadedExportTypes) => loadedExportTypes[exportType]
 );
 
-export const getLoadedExportTypesArray = createSelector(
-	getLoadedExportTypes,
-	(exportTypes) => Object.keys(exportTypes).filter((et: ExportTypeFolder) => exportTypes[et])
+export const getLoadedExportTypesArray = createSelector(getLoadedExportTypes, (exportTypes) =>
+	Object.keys(exportTypes).filter((et: ExportTypeFolder) => exportTypes[et])
 );
 
 // returns the entire i18n content
@@ -205,21 +186,15 @@ export const getI18n = createSelector(
 );
 
 // TODO hmm.. this kinda belongs in `main` not `generator`
-export const getCoreI18n = createSelector(
-	mainSelectors.getLocale,
-	(locale): any | null => {
-		const strings = langUtils.getStrings(locale);
-		return strings ? strings.core : null;
-	}
-);
+export const getCoreI18n = createSelector(mainSelectors.getLocale, (locale): any | null => {
+	const strings = langUtils.getStrings(locale);
+	return strings ? strings.core : null;
+});
 
-export const getCountryI18n = createSelector(
-	mainSelectors.getLocale,
-	(locale): any | null => {
-		const strings = langUtils.getStrings(locale);
-		return strings ? strings.countries : null;
-	}
-);
+export const getCountryI18n = createSelector(mainSelectors.getLocale, (locale): any | null => {
+	const strings = langUtils.getStrings(locale);
+	return strings ? strings.countries : null;
+});
 
 export const getDataTypeI18n = createSelector(
 	mainSelectors.localeFileLoaded,
@@ -242,11 +217,7 @@ export const getExportTypeI18n = createSelector(
 	}
 );
 
-export const getExportTypeColumnTitle = createSelector(
-	getExportTypeI18n,
-	(i18n) => i18n.COL_TITLE
-);
-
+export const getExportTypeColumnTitle = createSelector(getExportTypeI18n, (i18n) => i18n.COL_TITLE);
 
 // Export Types can optionally override the label that appears in the Preview panel. For example, instead of
 // just showing "Programming Language", they can show "PHP" or "Programming Language: Perl" or whatever they
@@ -273,7 +244,7 @@ export const getExportTypeLabel = createSelector(
 export const getCurrentExportTypeSettings = createSelector(
 	getExportType,
 	getExportTypeSettings,
-	(exportType, settings) => exportType ? settings[exportType] : {}
+	(exportType, settings) => (exportType ? settings[exportType] : {})
 );
 
 // wrapper function for the Export Type's getCodeMirrorMode function. This ensures it's loaded and does the work
@@ -356,9 +327,8 @@ export const getDataSetSavePackage = createSelector(
 	})
 );
 
-export const currentDataSetNeedsCountryNames = createSelector(
-	getSortedRowsArray,
-	(rows) => rows.reduce((needsCountryNames, { metadata }) => {
+export const currentDataSetNeedsCountryNames = createSelector(getSortedRowsArray, (rows) =>
+	rows.reduce((needsCountryNames, { metadata }) => {
 		return needsCountryNames ? true : !!metadata?.useCountryNames;
 	}, false)
 );
@@ -371,16 +341,20 @@ export const getGenerationSchema = createSelector(
 	getCurrentExportTypeSettings,
 	(rows, sortedRows, exportType, exportTypeSettings): any => {
 		const nonEmptyRows = sortedRows.filter((id) => !!rows[id].dataType);
-		return JSON.stringify({
-			rows: nonEmptyRows.map((rowId) => {
-				const { title, dataType, data } = rows[rowId];
-				return { title, dataType, data };
-			}),
-			exportType,
-			exportTypeSettings,
-			// nope. These are settings specific to the particular generation, not the data itself. Separate them
-			// stripWhitespace,
-			// numRows: 1
-		}, null, '   ');
+		return JSON.stringify(
+			{
+				rows: nonEmptyRows.map((rowId) => {
+					const { title, dataType, data } = rows[rowId];
+					return { title, dataType, data };
+				}),
+				exportType,
+				exportTypeSettings
+				// nope. These are settings specific to the particular generation, not the data itself. Separate them
+				// stripWhitespace,
+				// numRows: 1
+			},
+			null,
+			'   '
+		);
 	}
 );

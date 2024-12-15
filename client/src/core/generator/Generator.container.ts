@@ -20,7 +20,4 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorProps> => ({
 	onResizePanels: (size: number): GDAction => dispatch(actions.setPanelSize(size))
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Generator);
+export default connect(mapStateToProps, mapDispatchToProps)(Generator);

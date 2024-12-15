@@ -22,8 +22,14 @@ export type TourDialogProps = {
 };
 
 const TourDialog = ({
-	tourIntroDialogVisible, showTourIntroDialog, onClose, tourBundleLoaded, loadTourBundle, restoreGeneratorState,
-	saveGeneratorState, i18n
+	tourIntroDialogVisible,
+	showTourIntroDialog,
+	onClose,
+	tourBundleLoaded,
+	loadTourBundle,
+	restoreGeneratorState,
+	saveGeneratorState,
+	i18n
 }: TourDialogProps): JSX.Element => {
 	const windowSize = useWindowSize();
 
@@ -40,13 +46,12 @@ const TourDialog = ({
 		if (tourIntroDialogVisible) {
 			setLoadingBundle(false);
 
-		// unreadable logic, but this fires when the tour dialog was just hidden and there's a tour slated to be shown.
-		// It saves the current generator state before the tour messes around with it
+			// unreadable logic, but this fires when the tour dialog was just hidden and there's a tour slated to be shown.
+			// It saves the current generator state before the tour messes around with it
 		} else if (currentTour !== null) {
 			saveGeneratorState();
 		}
 	}, [tourIntroDialogVisible]);
-
 
 	// hide the tour if the screen gets too small
 	useEffect(() => {
@@ -117,27 +122,19 @@ const TourDialog = ({
 							<div className={styles.col}>
 								<h3>{i18n.welcomeToTheGenerator}</h3>
 
-								<p>
-									{i18n.tourIntroPara1}
-								</p>
+								<p>{i18n.tourIntroPara1}</p>
 
-								<p>
-									{i18n.tourIntroPara2}
-								</p>
+								<p>{i18n.tourIntroPara2}</p>
 							</div>
 
 							<div className={styles.separator} />
 
 							<div className={`${styles.col} ${styles.buttonCol}`}>
 								<div>
-									<PrimaryButton onClick={(): void => selectTour('intro')}>
-										1. {i18n.introToGenerator}
-									</PrimaryButton>
+									<PrimaryButton onClick={(): void => selectTour('intro')}>1. {i18n.introToGenerator}</PrimaryButton>
 								</div>
 								<div>
-									<PrimaryButton onClick={(): void => selectTour('gridPanel')}>
-										2. {i18n.theGridPanel}
-									</PrimaryButton>
+									<PrimaryButton onClick={(): void => selectTour('gridPanel')}>2. {i18n.theGridPanel}</PrimaryButton>
 								</div>
 								<div>
 									<PrimaryButton onClick={(): void => selectTour('previewPanel')}>
@@ -153,7 +150,9 @@ const TourDialog = ({
 						</div>
 					</DialogContent>
 					<DialogActions>
-						<PrimaryButton onClick={closeIntroDialog} color="default">{i18n.close}</PrimaryButton>
+						<PrimaryButton onClick={closeIntroDialog} color="default">
+							{i18n.close}
+						</PrimaryButton>
 					</DialogActions>
 				</div>
 				<DialogLoadingSpinner visible={loadingBundle} />

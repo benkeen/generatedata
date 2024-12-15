@@ -8,7 +8,8 @@ import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 
 // const ECPair = ECPairFactory(ecc);
 
-export const generate = ({ rowState }: DTGenerationData): DTGenerateResult => { // utils: WorkerUtils
+export const generate = ({ rowState }: DTGenerationData): DTGenerateResult => {
+	// utils: WorkerUtils
 	const formats: any = {};
 	if (rowState[BitcoinAddressFormat.Legacy].enabled && rowState[BitcoinAddressFormat.Legacy].weight) {
 		formats[BitcoinAddressFormat.Legacy] = rowState[BitcoinAddressFormat.Legacy].weight;

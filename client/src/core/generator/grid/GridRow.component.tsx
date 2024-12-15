@@ -19,7 +19,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProper
 	const styles: React.CSSProperties = {
 		...draggableStyle,
 		userSelect: 'none',
-		margin: '0 0 0 0',
+		margin: '0 0 0 0'
 	};
 	if (isDragging) {
 		styles.background = '#e0ebfd';
@@ -52,13 +52,33 @@ export type GridRowProps = {
 	countryNamesMap: CountryNamesMap | null;
 };
 
-const NoExample = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>;
-const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>;
+const NoExample = ({ coreI18n, emptyColClass }: any): JSX.Element => (
+	<div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>
+);
+const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => (
+	<div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>
+);
 
 export const GridRow = ({
-	row, index, Example, Options, onRemove, onChangeTitle, onConfigureDataType, onSelectDataType, dtDropdownOptions,
-	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, gridPanelDimensions, showHelpDialog, isDataTypeLoaded,
-	isCountryNamesLoading, isCountryNamesLoaded, countryNamesMap
+	row,
+	index,
+	Example,
+	Options,
+	onRemove,
+	onChangeTitle,
+	onConfigureDataType,
+	onSelectDataType,
+	dtDropdownOptions,
+	i18n,
+	countryI18n,
+	selectedDataTypeI18n,
+	dtCustomProps,
+	gridPanelDimensions,
+	showHelpDialog,
+	isDataTypeLoaded,
+	isCountryNamesLoading,
+	isCountryNamesLoaded,
+	countryNamesMap
 }: GridRowProps): JSX.Element => {
 	let example: any = null;
 	let options: any = null;
@@ -112,7 +132,6 @@ export const GridRow = ({
 	return (
 		<Draggable key={row.id} draggableId={row.id} index={index}>
 			{(provided: any, snapshot: any): any => {
-
 				// the title field is always required, regardless of Export Type
 				let titleColError = '';
 				if (row.dataType) {
@@ -124,16 +143,15 @@ export const GridRow = ({
 				}
 
 				return (
-					<div className={`${styles.gridRow} tour-gridRow`} key={row.id}
-						 ref={provided.innerRef}
-						 {...provided.draggableProps}
-						 style={getItemStyle(
-							 snapshot.isDragging,
-							 provided.draggableProps.style
-						 )}
+					<div
+						className={`${styles.gridRow} tour-gridRow`}
+						key={row.id}
+						ref={provided.innerRef}
+						{...provided.draggableProps}
+						style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
 					>
-						<div className={styles.orderCol}{...provided.dragHandleProps}>
-							<DragIndicator fontSize="small"/>
+						<div className={styles.orderCol} {...provided.dragHandleProps}>
+							<DragIndicator fontSize="small" />
 							{index + 1}
 						</div>
 						<div className={styles.dataTypeCol}>
@@ -158,11 +176,14 @@ export const GridRow = ({
 						</div>
 						<div className={styles.examplesCol}>{example}</div>
 						<div className={styles.optionsCol}>{options}</div>
-						<div className={styles.settingsIconCol} onClick={(): void => {
-							if (row.dataType === null) {
-								return;
-							}
-						}}>
+						<div
+							className={styles.settingsIconCol}
+							onClick={(): void => {
+								if (row.dataType === null) {
+									return;
+								}
+							}}
+						>
 							<SmallScreenSettingsIcon
 								id={row.id}
 								data={row.data}

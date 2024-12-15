@@ -15,9 +15,7 @@ const Link = ({ url, children = null, offSite = false }: LinkParams): JSX.Elemen
 		props.rel = 'noopener noreferrer';
 	}
 
-	return (
-		<a {...props}>{children ? children : url}</a>
-	);
+	return <a {...props}>{children ? children : url}</a>;
 };
 
 export default Link;

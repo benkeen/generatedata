@@ -8,12 +8,7 @@ import { arDZ, de, enUS, es, fr, ja, hi, nl, pt, ru, ta, zhCN } from 'date-fns/l
 export const LocalizedDatePicker = (props: any): JSX.Element => {
 	const { core: i18n } = getStrings();
 
-	return (
-		<DatePicker
-			{...props}
-			cancelLabel={i18n.cancel}
-		/>
-	);
+	return <DatePicker {...props} cancelLabel={i18n.cancel} />;
 };
 
 // localized wrapper for the date picker provider

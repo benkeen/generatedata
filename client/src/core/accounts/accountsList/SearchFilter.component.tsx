@@ -9,11 +9,7 @@ export type SearchFilterProps = {
 
 const SearchFilter = ({ value, onChange }: SearchFilterProps): JSX.Element => (
 	<div className={styles.searchFilter}>
-		<TextField
-			placeholder="Filter accounts"
-			value={value}
-			onChange={(e: any): void => onChange(e.target.value)}
-		/>
+		<TextField placeholder="Filter accounts" value={value} onChange={(e: any): void => onChange(e.target.value)} />
 	</div>
 );
 

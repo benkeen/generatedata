@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import ChangePassword from '../ChangePassword.component';
 
@@ -8,13 +8,7 @@ describe('ChangePassword container', () => {
 	it('submitting form does not work when fields empty', () => {
 		const onSave = jest.fn();
 		const { container } = render(
-			<ChangePassword
-				className="the-class"
-				onSave={onSave}
-				i18n={i18n}
-				oneTimePassword=""
-				throttle={false}
-			/>
+			<ChangePassword className="the-class" onSave={onSave} i18n={i18n} oneTimePassword="" throttle={false} />
 		);
 
 		const submitButton = container.querySelector('button[type=submit]') as HTMLButtonElement;
@@ -26,13 +20,7 @@ describe('ChangePassword container', () => {
 	it('submitting form still does not works when fields non-empty but new passwords are not identical', () => {
 		const onSave = jest.fn();
 		const { container } = render(
-			<ChangePassword
-				className="the-class"
-				onSave={onSave}
-				i18n={i18n}
-				oneTimePassword=""
-				throttle={false}
-			/>
+			<ChangePassword className="the-class" onSave={onSave} i18n={i18n} oneTimePassword="" throttle={false} />
 		);
 
 		const currentPasswordField = container.querySelector('input[name=currentPassword]') as HTMLInputElement;
@@ -65,13 +53,7 @@ describe('ChangePassword container', () => {
 	it('submitting form works when fields non-empty and new passwords are identical', () => {
 		const onSave = jest.fn();
 		const { container } = render(
-			<ChangePassword
-				className="the-class"
-				onSave={onSave}
-				i18n={i18n}
-				oneTimePassword=""
-				throttle={false}
-			/>
+			<ChangePassword className="the-class" onSave={onSave} i18n={i18n} oneTimePassword="" throttle={false} />
 		);
 
 		const currentPasswordField = container.querySelector('input[name=currentPassword]') as HTMLInputElement;

@@ -27,12 +27,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<SaveDataSetDialogProps>
 		// this returns them to the save dialog after logging in
 		mainActions.setReturnToSaveDataSet();
 	},
-	onSave: (dataSetName: string): any => dispatch(actions.saveNewDataSet(dataSetName)),
+	onSave: (dataSetName: string): any => dispatch(actions.saveNewDataSet(dataSetName))
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(SaveDataSetDialog);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(SaveDataSetDialog);
 
 export default container;

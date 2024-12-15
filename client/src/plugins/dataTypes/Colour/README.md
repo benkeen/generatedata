@@ -3,7 +3,6 @@
 The Colour Data Type generates colours in different formats (hex, rgb, rgba), luminosities (bright, light, dark) and
 alphas. Under the hood it uses the [randomColor package](https://github.com/davidmerfield/randomColor).
 
-
 ## Typings
 
 ```typescript
@@ -31,17 +30,16 @@ export type ColourState = {
 };
 ```
 
-Note: `value` maps to the `hue` setting in the [randomColor package](https://github.com/davidmerfield/randomColor). It can 
+Note: `value` maps to the `hue` setting in the [randomColor package](https://github.com/davidmerfield/randomColor). It can
 either be a hex code or one of the predefined constants: `red, orange, yellow, green, blue, purple, pink, monochrome`.
-
 
 ## Examples
 
 When it comes to actually illustrating the colours generated, markdown isn't exacty great! But these examples are here
-anyway, just so you can see how they work. 
+anyway, just so you can see how they work.
 
 - [Any random color in hex mode](#any-random-color-in-hex-mode)
-- [Any bright red](#any-bright-red) 
+- [Any bright red](#any-bright-red)
 - [Any green with 0.5% alpha in rgba](#any-green-with-05-alpha-in-rgba)
 
 ### Any random color in hex mode
@@ -70,7 +68,7 @@ anyway, just so you can see how they work.
 }
 ```
 
-Sample output: 
+Sample output:
 
 ```
 [
@@ -95,6 +93,7 @@ Sample output:
     ...
 ]
 ```
+
 ### Any bright red
 
 ```javascript

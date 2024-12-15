@@ -30,10 +30,9 @@ export const downloadFile = (filename: string, data: any, type: string): void =>
 	}, 0);
 };
 
-
 type secondCount = {
 	[second: number]: number;
-}
+};
 
 // used in the stats generation. This does the job of figuring out the row generation rate per second. It returns
 // an object of the following form:
@@ -59,7 +58,6 @@ export const getRowGenerationRatePerSecond = (
 	// how many rows were generated during the interval (will always be C.GENERATION_BATCH_SIZE)
 	numRows: number
 ): secondCount => {
-
 	// the math below relies on this being correct otherwise we'll get stuck in an infinite loop
 	if (batchEndTime <= batchStartTime) {
 		throw Error('invalid data passed to getRowGenerationRatePerSecond()');
@@ -89,7 +87,7 @@ export const getRowGenerationRatePerSecond = (
 		const numRowsInCurrentDuration = secondDuration / singleRowTime;
 
 		const currentSecondMs = Math.floor(currTimeBlock - baseTime);
-		currentSecond = ((currentSecondMs === 0) ? 0 : Math.floor(currentSecondMs / 1000)) + 1;
+		currentSecond = (currentSecondMs === 0 ? 0 : Math.floor(currentSecondMs / 1000)) + 1;
 		result[currentSecond] = parseFloat(numRowsInCurrentDuration.toFixed(2));
 
 		if (shouldBreak) {
@@ -101,7 +99,6 @@ export const getRowGenerationRatePerSecond = (
 
 	return result;
 };
-
 
 /*
  * Used for the preview panel only. When a user changes a row we need to figure out what rows to invalidate in the preview
@@ -116,12 +113,19 @@ export const getRowGenerationRatePerSecond = (
  * data type maps to other data types in whatever way they find useful (e.g. a Composite field just referencing it
  * via its Options field and entering a {{ROWX}} placeholder string).
  */
-export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & { id: string })[] , dataTypePreviewData: any): UnchangedGenerationData => {
+export const getUnchangedData = (
+	idsToRefresh: string[],
+	columns: (ColumnData & { id: string })[],
+	dataTypePreviewData: any
+): UnchangedGenerationData => {
 	if (!idsToRefresh.length) {
 		return {};
 	}
 
-	const columnsWithIndex = columns.map((col, colIndex) => ({ ...col, colIndex }));
+	const columnsWithIndex = columns.map((col, colIndex) => ({
+		...col,
+		colIndex
+	}));
 
 	// first pass is to look at the list of IDs about to be refreshed, and get a list of data types in the
 	// grid that aren't affected by this change
@@ -145,24 +149,24 @@ export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & 
 	});
 
 	const result: any = {};
-	columnsWithIndex.filter((col) => {
-		// just for clarity, because this is kinda dense
-		const colIsNotAffectedDataType = unchangedDataTypes[col.dataType];
-		const isNotDirectlyChangedCol = idsToRefresh.indexOf(col.id) === -1;
+	columnsWithIndex
+		.filter((col) => {
+			// just for clarity, because this is kinda dense
+			const colIsNotAffectedDataType = unchangedDataTypes[col.dataType];
+			const isNotDirectlyChangedCol = idsToRefresh.indexOf(col.id) === -1;
 
-		return colIsNotAffectedDataType && isNotDirectlyChangedCol;
-	}).map((col) => {
-		result[col.colIndex] = dataTypePreviewData[col.id];
-	});
+			return colIsNotAffectedDataType && isNotDirectlyChangedCol;
+		})
+		.map((col) => {
+			result[col.colIndex] = dataTypePreviewData[col.id];
+		});
 
 	return result;
 };
 
-
 export const getGenerationActivityPanel = (numRowsToGenerate: number): GenerationActivityPanel => {
-	return (numRowsToGenerate > C.SMALL_GENERATION_COUNT) ? GenerationActivityPanel.large : GenerationActivityPanel.small;
+	return numRowsToGenerate > C.SMALL_GENERATION_COUNT ? GenerationActivityPanel.large : GenerationActivityPanel.small;
 };
-
 
 export const getGraphDuration = (numRowsToGenerate: number): LoadTimeGraphDuration => {
 	if (numRowsToGenerate < C.GRAPH_RANGES.RANGE1) {

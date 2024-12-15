@@ -4,9 +4,7 @@ import { renderWithStoreAndRouter } from '../../../../../tests/testHelpers';
 
 describe('ExportTypeTab', () => {
 	it('renders', () => {
-		const { baseElement } = renderWithStoreAndRouter(
-			<ExportTypeTab />
-		);
+		const { baseElement } = renderWithStoreAndRouter(<ExportTypeTab />);
 
 		expect(baseElement.querySelector('div')).toBeTruthy();
 	});

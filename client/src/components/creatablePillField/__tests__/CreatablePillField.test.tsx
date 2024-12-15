@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { render } from '@testing-library/react';
 import CreatablePillField from '../CreatablePillField';
 
@@ -9,10 +9,6 @@ const defaultProps = {
 
 describe('CreatablePillField', () => {
 	it('renders', () => {
-		const { baseElement } = render(
-			<CreatablePillField
-				{...defaultProps}
-			/>
-		);
+		const { baseElement } = render(<CreatablePillField {...defaultProps} />);
 	});
 });

@@ -17,11 +17,9 @@ const ClearPageDialog = ({ visible, onClose, onClear, i18n }: ClearPageDialogPro
 		<div style={{ width: 420 }}>
 			<DialogTitle onClose={onClose}>{i18n.clearPage}</DialogTitle>
 			<DialogContent dividers className={styles.contentPanel}>
-				<WarningIcon/>
+				<WarningIcon />
 				<div>
-					<div style={{ marginBottom: 8 }}>
-						{i18n.clearPageConfirmation}
-					</div>
+					<div style={{ marginBottom: 8 }}>{i18n.clearPageConfirmation}</div>
 				</div>
 			</DialogContent>
 			<DialogActions>

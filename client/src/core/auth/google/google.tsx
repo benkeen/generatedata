@@ -48,25 +48,25 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 		const googleToken = googleUser.credential;
 		const response = await apolloClient.mutate({
 			mutation: gql`
-                mutation LoginWithGoogle($googleToken: String!) {
-                    loginWithGoogle(googleToken: $googleToken) {
-                        token
-                        refreshToken
-                        tokenExpiry
-                        success
-                        error
-                        firstName
-                        lastName
-                        expiryDate
-                        accountType
-                        dateCreated
-                        email
-                        numRowsGenerated
-                        profileImage
-                        country
-                        region
-                    }
-                }
+				mutation LoginWithGoogle($googleToken: String!) {
+					loginWithGoogle(googleToken: $googleToken) {
+						token
+						refreshToken
+						tokenExpiry
+						success
+						error
+						firstName
+						lastName
+						expiryDate
+						accountType
+						dateCreated
+						email
+						numRowsGenerated
+						profileImage
+						country
+						region
+					}
+				}
 			`,
 			variables: { googleToken }
 		});
@@ -74,12 +74,16 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 		if (response.data.loginWithGoogle.success) {
 			const { tokenExpiry, refreshToken } = response.data.loginWithGoogle;
 
-			store.dispatch(setAuthenticationData({
-				...response.data.loginWithGoogle,
-				authMethod: AuthMethod.google
-			}));
+			store.dispatch(
+				setAuthenticationData({
+					...response.data.loginWithGoogle,
+					authMethod: AuthMethod.google
+				})
+			);
 
-			Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
+			Cookies.set('refreshToken', refreshToken, {
+				expires: new Date(tokenExpiry)
+			});
 			onLoginSuccess(tokenExpiry, options.onPageRender, store.dispatch);
 		} else {
 			if (response.data.loginWithGoogle.error === 'accountExpired') {
@@ -103,7 +107,6 @@ export const SignInWithGoogleButton = (): JSX.Element => {
 
 	React.useEffect(() => {
 		if (divRef.current && !loaded) {
-
 			// TODO still need to execute something here for scenarios where script takes too long to load.
 			setLoaded(true);
 
@@ -116,10 +119,7 @@ export const SignInWithGoogleButton = (): JSX.Element => {
 						client_id: env.googleAuthClientId,
 						callback: onAuthenticated
 					});
-					window.google.accounts.id.renderButton(
-						document.getElementById(googleBtnId),
-						{ type: 'standard' }
-					);
+					window.google.accounts.id.renderButton(document.getElementById(googleBtnId), { type: 'standard' });
 				}
 			}, 500);
 		}

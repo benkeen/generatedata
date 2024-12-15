@@ -13,7 +13,4 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<ActivePacketsListProps>
 	openPacket: (packetId: string, history: any): any => dispatch(actions.showActivityPanel(packetId, history))
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ActivePacketsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ActivePacketsList);

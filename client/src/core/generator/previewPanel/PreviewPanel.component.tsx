@@ -15,7 +15,6 @@ import PanelButtons from '~core/generator/dataSetHistory/PanelButtons.container'
 import C from '../../constants';
 import * as styles from './PreviewPanel.scss';
 
-
 export type PreviewPanelProps = {
 	togglePreview: () => void;
 	refreshPreview: () => void;
@@ -58,13 +57,15 @@ const NoResultsBlock = ({ i18n, type }: any): JSX.Element => {
 	return (
 		<div className={styles.noResults}>
 			<div style={{ marginTop: -50 }}>
-				<Icon style={{
-					fontSize: 100,
-					position: 'absolute',
-					opacity: 0.1,
-					top: 'calc(50% - 76px)',
-					left: 'calc(50% - 50px)'
-				}} />
+				<Icon
+					style={{
+						fontSize: 100,
+						position: 'absolute',
+						opacity: 0.1,
+						top: 'calc(50% - 76px)',
+						left: 'calc(50% - 50px)'
+					}}
+				/>
 				<div style={{ height: '100%', margin: 'auto' }}>
 					<h1>{map[type].title}</h1>
 					<p>{map[type].label}</p>
@@ -75,9 +76,24 @@ const NoResultsBlock = ({ i18n, type }: any): JSX.Element => {
 };
 
 const PreviewPanel = ({
-	i18n, theme, togglePreview, hasData, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible,
-	dataSetHistoryVisible, exportTypeLabel, changeSmallScreenVisiblePanel, exportTypeLoaded, initialDependenciesLoaded,
-	hasValidExportTypeSettings, hasBulkActionPending, previewPanelDependenciesLoaded, initRefresh, closeOverlayPanels
+	i18n,
+	theme,
+	togglePreview,
+	hasData,
+	previewTextSize,
+	refreshPreview,
+	toggleExportSettings,
+	exportSettingsVisible,
+	dataSetHistoryVisible,
+	exportTypeLabel,
+	changeSmallScreenVisiblePanel,
+	exportTypeLoaded,
+	initialDependenciesLoaded,
+	hasValidExportTypeSettings,
+	hasBulkActionPending,
+	previewPanelDependenciesLoaded,
+	initRefresh,
+	closeOverlayPanels
 }: PreviewPanelProps): React.ReactNode => {
 	const windowSize = useWindowSize();
 
@@ -91,23 +107,18 @@ const PreviewPanel = ({
 		if (previewPanelDependenciesLoaded) {
 			initRefresh();
 		}
-
 	}, [hasBulkActionPending, previewPanelDependenciesLoaded]);
 
 	const getNoResults = (): JSX.Element | null => {
 		if (!hasValidExportTypeSettings) {
-			return (
-				<NoResultsBlock i18n={i18n} type="invalidSettings" />
-			);
+			return <NoResultsBlock i18n={i18n} type="invalidSettings" />;
 		}
 
 		if (hasData) {
 			return null;
 		}
 
-		return (
-			<NoResultsBlock i18n={i18n} type="noData" />
-		);
+		return <NoResultsBlock i18n={i18n} type="noData" />;
 	};
 
 	let closeIconAction: any;
@@ -153,9 +164,7 @@ const PreviewPanel = ({
 		}
 
 		return (
-			<PreviewPanelButton
-				onClick={exportTypeLabelBtnAction}
-				className={exportTypeButtonClasses}>
+			<PreviewPanelButton onClick={exportTypeLabelBtnAction} className={exportTypeButtonClasses}>
 				{exportTypeLabel}
 				{!hasValidExportTypeSettings ? <ErrorIcon /> : null}
 			</PreviewPanelButton>
@@ -171,9 +180,7 @@ const PreviewPanel = ({
 			return <PreviewPanelLoader />;
 		}
 
-		return (
-			<CodeMirrorWrapper />
-		);
+		return <CodeMirrorWrapper />;
 	};
 
 	if (!initialDependenciesLoaded) {
@@ -229,10 +236,7 @@ const PreviewPanel = ({
 		);
 	}
 
-	return (
-		<div className={`${styles.previewPanel} ${themeName}`}>{content}</div>
-	);
+	return <div className={`${styles.previewPanel} ${themeName}`}>{content}</div>;
 };
 
 export default PreviewPanel;
-

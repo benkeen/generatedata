@@ -12,7 +12,13 @@ export type DeleteDataSetDialogProps = {
 	dataSetName?: string | null;
 };
 
-const DeleteDataSetDialog = ({ visible, dataSetName, onClose, onDelete, i18n }: DeleteDataSetDialogProps): JSX.Element => (
+const DeleteDataSetDialog = ({
+	visible,
+	dataSetName,
+	onClose,
+	onDelete,
+	i18n
+}: DeleteDataSetDialogProps): JSX.Element => (
 	<Dialog onClose={onClose} open={visible}>
 		<div style={{ width: 420 }}>
 			<DialogTitle onClose={onClose}>{i18n.deleteDataSet}</DialogTitle>

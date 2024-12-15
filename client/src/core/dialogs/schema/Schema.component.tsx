@@ -19,7 +19,7 @@ export type SchemaDialogProps = {
 function a11yProps(index: number) {
 	return {
 		id: `vertical-tab-${index}`,
-		'aria-controls': `vertical-tabpanel-${index}`,
+		'aria-controls': `vertical-tabpanel-${index}`
 	};
 }
 
@@ -29,7 +29,7 @@ interface TabPanelProps {
 	value: any;
 }
 
-function TabPanel (props: TabPanelProps) {
+function TabPanel(props: TabPanelProps) {
 	const { children, value, index, ...other } = props;
 
 	return (
@@ -50,18 +50,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 		flexGrow: 1,
 		backgroundColor: theme.palette.background.paper,
 		display: 'flex',
-		height: 224,
+		height: 224
 	},
 	tabPanel: {
 		padding: '5px 15px 0'
 	},
-	tabs: {
-	},
+	tabs: {}
 }));
 
-const SchemaDialog = ({
-	visible, onClose, schema, theme, i18n
-}: SchemaDialogProps): JSX.Element | null => {
+const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogProps): JSX.Element | null => {
 	const classes = useStyles();
 	const [code, setCode] = React.useState(schema);
 	const [value, setValue] = React.useState(0);
@@ -94,19 +91,14 @@ const SchemaDialog = ({
 						</Tabs>
 						<TabPanel value={value} index={0}>
 							<div className={classes.tabPanel}>
-								The data you create here in the UI can be downloaded as a template for use with the
-								generatedata CLI, letting you generate data
+								The data you create here in the UI can be downloaded as a template for use with the generatedata CLI,
+								letting you generate data
 							</div>
 						</TabPanel>
 						<TabPanel value={value} index={1}>
 							<div className={classes.tabPanel}>
 								<div className={`${styles.content} themeLucario`}>
-
-									Javascript
-									Typescript
-									JSON template only
-
-
+									Javascript Typescript JSON template only
 									<CodeMirror
 										value={code}
 										onBeforeChange={(editor, data, value): void => setCode(value)}
@@ -122,9 +114,7 @@ const SchemaDialog = ({
 							</div>
 						</TabPanel>
 						<TabPanel value={value} index={2}>
-							<div className={classes.tabPanel}>
-								Import.
-							</div>
+							<div className={classes.tabPanel}>Import.</div>
 						</TabPanel>
 					</div>
 				</DialogContent>

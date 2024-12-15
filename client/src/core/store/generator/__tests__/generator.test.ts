@@ -8,10 +8,12 @@ import { GeneratorLayout } from '~core/generator/Generator.component';
 describe('generator section', () => {
 	let store: any;
 	beforeEach(() => {
-		store = createStore(combineReducers({
-			generator: generatorReducer,
-			main: mainReducer
-		}));
+		store = createStore(
+			combineReducers({
+				generator: generatorReducer,
+				main: mainReducer
+			})
+		);
 	});
 
 	it('the grid panel is visible by default', () => {
@@ -89,10 +91,12 @@ describe('generator section', () => {
 describe('grid rows', () => {
 	let store: any;
 	beforeEach(() => {
-		store = createStore(combineReducers({
-			generator: generatorReducer,
-			main: mainReducer
-		}));
+		store = createStore(
+			combineReducers({
+				generator: generatorReducer,
+				main: mainReducer
+			})
+		);
 	});
 
 	it('adds rows, well, adds rows', () => {
@@ -191,14 +195,15 @@ describe('grid rows', () => {
 	// });
 });
 
-
 describe('preview panel settings', () => {
 	let store: any;
 	beforeEach(() => {
-		store = createStore(combineReducers({
-			generator: generatorReducer,
-			main: mainReducer
-		}));
+		store = createStore(
+			combineReducers({
+				generator: generatorReducer,
+				main: mainReducer
+			})
+		);
 	});
 
 	it('adds rows, well, adds rows', () => {
@@ -208,18 +213,19 @@ describe('preview panel settings', () => {
 	});
 });
 
-
-describe("misc selectors", () => {
+describe('misc selectors', () => {
 	let store: any;
 	beforeEach(() => {
-		store = createStore(combineReducers({
-			generator: generatorReducer,
-			main: mainReducer
-		}));
+		store = createStore(
+			combineReducers({
+				generator: generatorReducer,
+				main: mainReducer
+			})
+		);
 	});
 
-	describe("getRowDataTypes", () => {
-		it("returns nothing when there are no rows", () => {
+	describe('getRowDataTypes', () => {
+		it('returns nothing when there are no rows', () => {
 			expect(selectors.getRowDataTypes(store.getState())).toEqual([]);
 		});
 
@@ -228,6 +234,4 @@ describe("misc selectors", () => {
 		// 	expect(selectors.getRowDataTypes(store.getState())).toEqual([]);
 		// });
 	});
-
 });
-

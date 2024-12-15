@@ -8,9 +8,7 @@ export const PillRow = ({ className, children }: any): JSX.Element => {
 	if (className) {
 		classes += ` ${className}`;
 	}
-	return (
-		<div className={classes}>{children}</div>
-	);
+	return <div className={classes}>{children}</div>;
 };
 
 export const enum PillType {
@@ -32,26 +30,20 @@ type PillProps = {
 const BasePill = ({ type, label, onClick, name, checked, disabled, tooltip, style }: PillProps): JSX.Element => {
 	const button = (
 		<Button onClick={onClick} size="small" color="primary" variant="outlined" style={style} disabled={disabled}>
-			<input
-				type={type}
-				name={name}
-				checked={checked}
-				disabled={disabled}
-				onChange={(): void => {}}
-			/>
+			<input type={type} name={name} checked={checked} disabled={disabled} onChange={(): void => {}} />
 			<span>{label}</span>
 		</Button>
 	);
 
 	if (tooltip) {
 		return (
-			<Tooltip title={<span dangerouslySetInnerHTML={{ __html: tooltip }} />}
+			<Tooltip
+				title={<span dangerouslySetInnerHTML={{ __html: tooltip }} />}
 				arrow
 				disableHoverListener={disabled}
-				disableFocusListener={disabled}>
-				<span>
-					{button}
-				</span>
+				disableFocusListener={disabled}
+			>
+				<span>{button}</span>
 			</Tooltip>
 		);
 	}

@@ -30,29 +30,31 @@ export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
 export const LOCALE_FILE_LOADING = 'LOCALE_FILE_LOADING';
 export const setLocaleFileLoading = (): GDAction => ({ type: LOCALE_FILE_LOADING });
 
-export const selectLocale = (locale: GDLocale, history?: any): any => (dispatch: Dispatch): any => {
-	dispatch(setLocaleFileLoading());
+export const selectLocale =
+	(locale: GDLocale, history?: any): any =>
+		(dispatch: Dispatch): any => {
+			dispatch(setLocaleFileLoading());
 
-	window.gd = {};
-	window.gd.localeLoaded = (strings: any): void => {
-		langUtils.setLocale(locale, strings);
-		dispatch(setLocaleFileLoaded(locale));
-		Cookies.set('lang', locale);
+			window.gd = {};
+			window.gd.localeLoaded = (strings: any): void => {
+				langUtils.setLocale(locale, strings);
+				dispatch(setLocaleFileLoaded(locale));
+				Cookies.set('lang', locale);
 
-		const htmlTag = document.querySelector('html');
-		if (htmlTag) {
-			htmlTag.setAttribute('lang', locale);
-		}
+				const htmlTag = document.querySelector('html');
+				if (htmlTag) {
+					htmlTag.setAttribute('lang', locale);
+				}
 
-		if (history) {
-			history.push(getCurrentLocalizedPath(locale));
-		}
-	};
-	const s = document.createElement('script');
-	const filename = localeFileMap[locale];
-	s.src = `./${filename}`;
-	document.body.appendChild(s);
-};
+				if (history) {
+					history.push(getCurrentLocalizedPath(locale));
+				}
+			};
+			const s = document.createElement('script');
+			const filename = localeFileMap[locale];
+			s.src = `./${filename}`;
+			document.body.appendChild(s);
+		};
 
 export const RESET_STORE = 'RESET_STORE';
 export const resetStore = (): GDAction => ({ type: RESET_STORE });
@@ -148,8 +150,8 @@ export const login = (email: string, password: string, history: any, onLoginErro
 
 		const response = await apolloClient.mutate({
 			mutation: gql`
-                mutation LoginMutation($email: String!, $password: String!) {
-                    login(email: $email, password: $password) {
+				mutation LoginMutation($email: String!, $password: String!) {
+					login(email: $email, password: $password) {
 						token
 						tokenExpiry
 						error
@@ -168,18 +170,20 @@ export const login = (email: string, password: string, history: any, onLoginErro
 						numRowsGenerated
 						profileImage
 						wasOneTimeLogin
-                    }
-                }
+					}
+				}
 			`,
 			variables: { email, password }
 		});
 
 		if (response.data.login.success) {
 			const { tokenExpiry, refreshToken } = response.data.login;
-			dispatch(setAuthenticationData({
-				...response.data.login,
-				authMethod: 'default'
-			}));
+			dispatch(
+				setAuthenticationData({
+					...response.data.login,
+					authMethod: 'default'
+				})
+			);
 
 			Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
 
@@ -188,7 +192,6 @@ export const login = (email: string, password: string, history: any, onLoginErro
 			} else {
 				onLoginSuccess(tokenExpiry, false, dispatch);
 			}
-
 		} else {
 			dispatch(setLoginError());
 			onLoginError(response.data.login.error);
@@ -219,9 +222,17 @@ export const onLoginSuccess = (tokenExpiry: number | null, onPageRender: boolean
 };
 
 export const SET_ONE_TIME_PASSWORD = 'SET_ONE_TIME_PASSWORD';
-export const setOneTimePassword = (password: string): GDAction => ({ type: SET_ONE_TIME_PASSWORD, payload: { password } });
+export const setOneTimePassword = (password: string): GDAction => ({
+	type: SET_ONE_TIME_PASSWORD,
+	payload: { password }
+});
 
-export const onOneTimeLoginSuccess = (tokenExpiry: number, password: string, history: any, dispatch: Dispatch): void => {
+export const onOneTimeLoginSuccess = (
+	tokenExpiry: number,
+	password: string,
+	history: any,
+	dispatch: Dispatch
+): void => {
 	const i18n = getStrings();
 	setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
 	dispatch(setLoginDialogVisibility(false));
@@ -237,154 +248,163 @@ export const onOneTimeLoginSuccess = (tokenExpiry: number, password: string, his
 };
 
 export const LOGOUT = 'LOGOUT';
-export const logout = (): any => async (dispatch: Dispatch): Promise<any> => {
-	const i18n = getStrings();
+export const logout =
+	(): any =>
+		async (dispatch: Dispatch): Promise<any> => {
+			const i18n = getStrings();
 
-	Cookies.remove('refreshToken');
+			Cookies.remove('refreshToken');
 
-	dispatch({ type: LOGOUT });
-	dispatch({ type: CLEAR_GRID });
-	dispatch(actions.addRows(C.NUM_DEFAULT_ROWS));
+			dispatch({ type: LOGOUT });
+			dispatch({ type: CLEAR_GRID });
+			dispatch(actions.addRows(C.NUM_DEFAULT_ROWS));
 
-	addToast({
-		type: 'success',
-		message: i18n.core.nowLoggedOut
-	});
+			addToast({
+				type: 'success',
+				message: i18n.core.nowLoggedOut
+			});
 
-	// doesn't awfully matter if this fails. It's just for cleanup
-	await apolloClient.mutate({
-		mutation: gql`
-            mutation Logout {
-                logout {
-                    success
-                }
-            }
-		`
-	});
-};
+			// doesn't awfully matter if this fails. It's just for cleanup
+			await apolloClient.mutate({
+				mutation: gql`
+				mutation Logout {
+					logout {
+						success
+					}
+				}
+			`
+			});
+		};
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = (token: string): GDAction => ({ type: SET_AUTH_TOKEN, payload: { token } });
 
 export const REFRESHING_TOKEN = 'REFRESHING_TOKEN';
-export const updateRefreshToken = () => async (dispatch: Dispatch): Promise<any> => {
-	dispatch({ type: REFRESHING_TOKEN });
+export const updateRefreshToken =
+	() =>
+		async (dispatch: Dispatch): Promise<any> => {
+			dispatch({ type: REFRESHING_TOKEN });
 
-	const response = await apolloClient.mutate({
-		mutation: gql`
-            mutation RefreshToken {
-                refreshToken {
-                    token
-                    tokenExpiry
-					refreshToken
-                    success
-                    firstName
-                    lastName
-                    email
-                    country
-                    region
-                    expiryDate
-                    accountType
-                    dateCreated
-                    numRowsGenerated
-                    profileImage
-                }
-            }
-		`
-	});
+			const response = await apolloClient.mutate({
+				mutation: gql`
+				mutation RefreshToken {
+					refreshToken {
+						token
+						tokenExpiry
+						refreshToken
+						success
+						firstName
+						lastName
+						email
+						country
+						region
+						expiryDate
+						accountType
+						dateCreated
+						numRowsGenerated
+						profileImage
+					}
+				}
+			`
+			});
 
-	const success = response.data.refreshToken.success;
-	if (success) {
-		const { token, tokenExpiry, refreshToken } = response.data.refreshToken;
+			const success = response.data.refreshToken.success;
+			if (success) {
+				const { token, tokenExpiry, refreshToken } = response.data.refreshToken;
 
-		Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
+				Cookies.set('refreshToken', refreshToken, { expires: new Date(tokenExpiry) });
 
-		setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
-		dispatch(setAuthenticationData(response.data.refreshToken));
-		dispatch(setAuthToken(token));
-	} else {
-		// console.log('token NOT refreshed -- user logged out');
-	}
+				setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
+				dispatch(setAuthenticationData(response.data.refreshToken));
+				dispatch(setAuthToken(token));
+			} else {
+			// console.log('token NOT refreshed -- user logged out');
+			}
 
-	dispatch(setAuthenticated(success));
-	dispatch(setOnloadAuthDetermined());
-};
+			dispatch(setAuthenticated(success));
+			dispatch(setOnloadAuthDetermined());
+		};
 
 export const ONLOAD_AUTH_DETERMINED = 'ONLOAD_AUTH_DETERMINED';
 export const setOnloadAuthDetermined = (): GDAction => ({ type: ONLOAD_AUTH_DETERMINED });
 
 export const SHOW_TOUR_INTRO_DIALOG = 'SHOW_TOUR_INTRO_DIALOG';
-export const showTourIntroDialog = (history?: any) => (dispatch: Dispatch, getState: any): any => {
-	const state = getState();
-	const currentPage = getCurrentPage(state);
-	const locale = getLocale(state);
-	const generatorRoute = getGeneratorPageRoute(locale);
+export const showTourIntroDialog =
+	(history?: any) =>
+		(dispatch: Dispatch, getState: any): any => {
+			const state = getState();
+			const currentPage = getCurrentPage(state);
+			const locale = getLocale(state);
+			const generatorRoute = getGeneratorPageRoute(locale);
 
-	// the tour is specific to the generator page, so always redirect there when showing/hiding it
-	if (history && !isGeneratorPage(currentPage, locale)) {
-		history.push(generatorRoute);
-	}
+			// the tour is specific to the generator page, so always redirect there when showing/hiding it
+			if (history && !isGeneratorPage(currentPage, locale)) {
+				history.push(generatorRoute);
+			}
 
-	dispatch({ type: SHOW_TOUR_INTRO_DIALOG });
-};
+			dispatch({ type: SHOW_TOUR_INTRO_DIALOG });
+		};
 
 export const HIDE_TOUR_INTRO_DIALOG = 'HIDE_TOUR_INTRO_DIALOG';
 export const hideTourIntroDialog = (): GDAction => ({ type: HIDE_TOUR_INTRO_DIALOG });
 
 export const TOUR_BUNDLE_LOADED = 'TOUR_BUNDLE_LOADED';
-export const loadTourBundle = (): any => (dispatch: Dispatch): void => {
-	const i18n = getStrings();
+export const loadTourBundle =
+	(): any =>
+		(dispatch: Dispatch): void => {
+			const i18n = getStrings();
 
-	// TODO check hashing of bundle here
-	import(
-		/* webpackChunkName: "tour" */
-		/* webpackMode: "lazy" */
-		'../../../tours'
-	)
-		.then((resp) => {
-			setTourComponents(resp.default);
-			dispatch({ type: TOUR_BUNDLE_LOADED });
-		})
-		.catch(() => {
-			dispatch(hideTourIntroDialog());
+			// TODO check hashing of bundle here
+			import(
+			/* webpackChunkName: "tour" */
+			/* webpackMode: "lazy" */
+				'../../../tours'
+			)
+				.then((resp) => {
+					setTourComponents(resp.default);
+					dispatch({ type: TOUR_BUNDLE_LOADED });
+				})
+				.catch(() => {
+					dispatch(hideTourIntroDialog());
 
-			addToast({
-				type: 'success',
-				message: i18n.core.problemLoadingTour
+					addToast({
+						type: 'success',
+						message: i18n.core.problemLoadingTour
+					});
+				});
+		};
+
+export const sendPasswordResetEmail =
+	(email: string, onLoginError: any): any =>
+		async (dispatch: Dispatch): Promise<any> => {
+			const i18n = getStrings();
+
+			dispatch(startDialogProcessing());
+
+			const response = await apolloClient.mutate({
+				mutation: gql`
+				mutation SendPasswordResetEmailMutation($email: String!) {
+					sendPasswordResetEmail(email: $email) {
+						success
+					}
+				}
+			`,
+				variables: { email }
 			});
-		});
-};
 
-
-export const sendPasswordResetEmail = (email: string, onLoginError: any): any => async (dispatch: Dispatch): Promise<any> => {
-	const i18n = getStrings();
-
-	dispatch(startDialogProcessing());
-
-	const response = await apolloClient.mutate({
-		mutation: gql`
-            mutation SendPasswordResetEmailMutation($email: String!) {
-                sendPasswordResetEmail(email: $email) {
-                    success
-                }
-            }
-		`,
-		variables: { email }
-	});
-
-	if (response.data.sendPasswordResetEmail.success) {
-		addToast({
-			type: 'success',
-			message: i18n.core.passwordResetMsg
-		});
-		dispatch(setPasswordResetDialogVisibility(false));
-		dispatch(setLoginDialogVisibility(true, email));
-		dispatch(stopDialogProcessing());
-	} else {
-		dispatch(setLoginError());
-		onLoginError();
-	}
-};
+			if (response.data.sendPasswordResetEmail.success) {
+				addToast({
+					type: 'success',
+					message: i18n.core.passwordResetMsg
+				});
+				dispatch(setPasswordResetDialogVisibility(false));
+				dispatch(setLoginDialogVisibility(true, email));
+				dispatch(stopDialogProcessing());
+			} else {
+				dispatch(setLoginError());
+				onLoginError();
+			}
+		};
 
 export const SET_ACCOUNTS_SORT_DIR = 'SET_ACCOUNTS_SORT_DIR';
 export const setAccountsSortDir = (sortDir: ColSortDir): any => ({ type: SET_ACCOUNTS_SORT_DIR, payload: { sortDir } });
@@ -396,7 +416,13 @@ export const SET_ACCOUNTS_CURRENT_PAGE = 'SET_ACCOUNTS_CURRENT_PAGE';
 export const setAccountsCurrentPage = (page: number): any => ({ type: SET_ACCOUNTS_CURRENT_PAGE, payload: { page } });
 
 export const SET_ACCOUNTS_FILTER_STRING = 'SET_ACCOUNTS_FILTER_STRING';
-export const setAccountsFilterString = (filter: string): any => ({ type: SET_ACCOUNTS_FILTER_STRING, payload: { filter } });
+export const setAccountsFilterString = (filter: string): any => ({
+	type: SET_ACCOUNTS_FILTER_STRING,
+	payload: { filter }
+});
 
 export const SET_ACCOUNT_STATUS_FILTER = 'SET_ACCOUNT_STATUS_FILTER';
-export const setAccountStatusFilter = (status: AccountStatusFilter): any => ({ type: SET_ACCOUNT_STATUS_FILTER, payload: { status } });
+export const setAccountStatusFilter = (status: AccountStatusFilter): any => ({
+	type: SET_ACCOUNT_STATUS_FILTER,
+	payload: { status }
+});

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import sinon from 'sinon';
 import { render, fireEvent } from '@testing-library/react';
 import HelpDialog from '../HelpDialog.component';
@@ -16,10 +16,9 @@ const defaultProps = {
 	dataTypeI18n: {
 		Names: NamesI18n
 	},
-	onSelectDataType : () => {},
+	onSelectDataType: () => {},
 	loadedDataTypes: {}
 };
-
 
 describe('HelpDialog', () => {
 	it('clicking close calls the onClose callback', () => {
@@ -29,20 +28,15 @@ describe('HelpDialog', () => {
 				Names: NamesI18n
 			}
 		});
-		sinon.stub(dataTypeUtils, 'getSortedGroupedDataTypes').returns([{
-			label: 'Blah',
-			options: [
-				{ value: 'Names', label: 'Names' }
-			]
-		}]);
+		sinon.stub(dataTypeUtils, 'getSortedGroupedDataTypes').returns([
+			{
+				label: 'Blah',
+				options: [{ value: 'Names', label: 'Names' }]
+			}
+		]);
 
 		const onClose = jest.fn();
-		const { baseElement } = render(
-			<HelpDialog
-				{...defaultProps}
-				onClose={onClose}
-			/>
-		);
+		const { baseElement } = render(<HelpDialog {...defaultProps} onClose={onClose} />);
 
 		const closeButton = baseElement.querySelector('.MuiDialogTitle-root button') as HTMLButtonElement;
 		fireEvent.click(closeButton);

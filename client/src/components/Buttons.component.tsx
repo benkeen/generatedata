@@ -46,11 +46,7 @@ export const StyledPreviewPanelButton = withStyles({
 })(Button);
 
 export const PreviewPanelButton = ({ children, ...props }: ButtonProps): JSX.Element => (
-	<StyledPreviewPanelButton
-		color="primary"
-		variant="outlined"
-		size="medium"
-		{...props}>
+	<StyledPreviewPanelButton color="primary" variant="outlined" size="medium" {...props}>
 		{children}
 	</StyledPreviewPanelButton>
 );

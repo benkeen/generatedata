@@ -24,7 +24,4 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<TourDialogProps> => ({
 	restoreGeneratorState: (): any => dispatch(actions.popStashedState())
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(TourIntroDialog);
+export default connect(mapStateToProps, mapDispatchToProps)(TourIntroDialog);

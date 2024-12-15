@@ -30,27 +30,34 @@ export const addRows = (numRows: number): GDAction => ({
 });
 
 export const REMOVE_ROW = 'REMOVE_ROW';
-export const removeRow = (id: string): GDAction => ({ type: REMOVE_ROW, payload: { id } });
+export const removeRow = (id: string): GDAction => ({
+	type: REMOVE_ROW,
+	payload: { id }
+});
 
 export const CHANGE_TITLE = 'CHANGE_TITLE';
-export const onChangeTitle = (id: string, value: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
-	const state = getState();
-	const validateTitle = selectors.getExportTypeTitleValidationFunction(state);
+export const onChangeTitle =
+	(id: string, value: string): any =>
+		async (dispatch: Dispatch, getState: any): Promise<any> => {
+			const state = getState();
+			const validateTitle = selectors.getExportTypeTitleValidationFunction(state);
 
-	let titleError = null;
-	if (validateTitle) {
-		const i18n = selectors.getExportTypeI18n(state);
-		const settings = selectors.getCurrentExportTypeSettings(state);
-		titleError = validateTitle(value, i18n, settings);
-	}
+			let titleError = null;
+			if (validateTitle) {
+				const i18n = selectors.getExportTypeI18n(state);
+				const settings = selectors.getCurrentExportTypeSettings(state);
+				titleError = validateTitle(value, i18n, settings);
+			}
 
-	dispatch({
-		type: CHANGE_TITLE,
-		payload: {
-			id, value, titleError
-		}
-	});
-};
+			dispatch({
+				type: CHANGE_TITLE,
+				payload: {
+					id,
+					value,
+					titleError
+				}
+			});
+		};
 
 export type LoadDataTypeBundleOptions = {
 	gridRowId?: string;
@@ -59,11 +66,17 @@ export type LoadDataTypeBundleOptions = {
 };
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
-export const onSelectDataType = (dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions = {}): any => (
-	(dispatch: any, getState: any): any => loadDataTypeBundle(dispatch, getState, dataType, opts)
-);
+export const onSelectDataType =
+	(dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions = {}): any =>
+		(dispatch: any, getState: any): any =>
+			loadDataTypeBundle(dispatch, getState, dataType, opts);
 
-export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions = {}): void => {
+export const loadDataTypeBundle = (
+	dispatch: Dispatch,
+	getState: any,
+	dataType: DataTypeFolder,
+	opts: LoadDataTypeBundleOptions = {}
+): void => {
 	const options = {
 		gridRowId: null,
 		shouldRefreshPreviewPanel: true,
@@ -79,53 +92,58 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 		defaultTitle = getUniqueString(defaultTitle as string, titles);
 	}
 
-	requestDataTypeBundle(dataType)
-		.then((bundle: DTBundle) => {
-			dispatch(dataTypeLoaded(dataType));
-			if (bundle.actionInterceptors) {
-				registerInterceptors(dataType, bundle.actionInterceptors);
-			}
+	requestDataTypeBundle(dataType).then((bundle: DTBundle) => {
+		dispatch(dataTypeLoaded(dataType));
+		if (bundle.actionInterceptors) {
+			registerInterceptors(dataType, bundle.actionInterceptors);
+		}
 
-			// if it's been selected within the grid, select the row and update the preview panel
-			const ids = [];
-			if (options.gridRowId) {
-				ids.push(options.gridRowId);
-				dispatch({
-					type: SELECT_DATA_TYPE,
-					payload: {
-						id: options.gridRowId,
-						value: dataType,
-						data: bundle.initialState,
-						defaultTitle
-					}
-				});
-			}
+		// if it's been selected within the grid, select the row and update the preview panel
+		const ids = [];
+		if (options.gridRowId) {
+			ids.push(options.gridRowId);
+			dispatch({
+				type: SELECT_DATA_TYPE,
+				payload: {
+					id: options.gridRowId,
+					value: dataType,
+					data: bundle.initialState,
+					defaultTitle
+				}
+			});
+		}
 
-			if (options.shouldRefreshPreviewPanel) {
-				dispatch(refreshPreview(ids));
-			}
+		if (options.shouldRefreshPreviewPanel) {
+			dispatch(refreshPreview(ids));
+		}
 
-			// workaround to allow batch loading a bunch of different Data Types onload, and have the callee track what's
-			// been loaded to know when to do the refreshPreview() call
-			if (options.onLoadComplete) {
-				options.onLoadComplete(dataType);
-			}
-		});
+		// workaround to allow batch loading a bunch of different Data Types onload, and have the callee track what's
+		// been loaded to know when to do the refreshPreview() call
+		if (options.onLoadComplete) {
+			options.onLoadComplete(dataType);
+		}
+	});
 };
 
 export const REQUEST_COUNTRY_NAMES = 'REQUEST_COUNTRY_NAMES';
 export const COUNTRY_NAMES_LOADED = 'COUNTRY_NAMES_LOADED';
-export const requestCountryNames = (): any => (dispatch: any): any => {
-	dispatch({ type: REQUEST_COUNTRY_NAMES });
+export const requestCountryNames =
+	(): any =>
+		(dispatch: any): any => {
+			dispatch({ type: REQUEST_COUNTRY_NAMES });
 
-	getCountryNamesBundle()
-		.then(() => {
-			dispatch({ type: COUNTRY_NAMES_LOADED });
-		});
-};
+			getCountryNamesBundle().then(() => {
+				dispatch({ type: COUNTRY_NAMES_LOADED });
+			});
+		};
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
-export const onConfigureDataType = (id: string, data: any, metadata?: DTOptionsMetadata, triggeredByInterceptor = false): any => {
+export const onConfigureDataType = (
+	id: string,
+	data: any,
+	metadata?: DTOptionsMetadata,
+	triggeredByInterceptor = false
+): any => {
 	return (dispatch: any, getState: any): any => {
 		if (metadata && metadata.useCountryNames) {
 			const state = getState();
@@ -134,16 +152,19 @@ export const onConfigureDataType = (id: string, data: any, metadata?: DTOptionsM
 			}
 		}
 
-		const configureDataType = (disp: any): any => new Promise((resolve: any) => {
-			disp({
-				type: CONFIGURE_DATA_TYPE,
-				triggeredByInterceptor,
-				payload: {
-					id, data, metadata
-				}
+		const configureDataType = (disp: any): any =>
+			new Promise((resolve: any) => {
+				disp({
+					type: CONFIGURE_DATA_TYPE,
+					triggeredByInterceptor,
+					payload: {
+						id,
+						data,
+						metadata
+					}
+				});
+				resolve();
 			});
-			resolve();
-		});
 		configureDataType(dispatch).then(() => dispatch(refreshPreview([id])));
 	};
 };
@@ -160,7 +181,8 @@ export const REPOSITION_ROW = 'REPOSITION_ROW';
 export const repositionRow = (id: string, newIndex: number): GDAction => ({
 	type: REPOSITION_ROW,
 	payload: {
-		id, newIndex
+		id,
+		newIndex
 	}
 });
 
@@ -243,16 +265,26 @@ export const TOGGLE_LAYOUT = 'TOGGLE_LAYOUT';
 export const toggleLayout = (): GDAction => ({ type: TOGGLE_LAYOUT });
 
 export const UPDATE_NUM_PREVIEW_ROWS = 'UPDATE_NUM_PREVIEW_ROWS';
-export const updateNumPreviewRows = (numRows: number): GDAction => ({ type: UPDATE_NUM_PREVIEW_ROWS, payload: { numRows } });
+export const updateNumPreviewRows = (numRows: number): GDAction => ({
+	type: UPDATE_NUM_PREVIEW_ROWS,
+	payload: { numRows }
+});
 
 export const CHANGE_THEME = 'CHANGE_THEME';
-export const changeTheme = (theme: string): GDAction => ({ type: CHANGE_THEME, payload: { theme } });
+export const changeTheme = (theme: string): GDAction => ({
+	type: CHANGE_THEME,
+	payload: { theme }
+});
 
 export const TOGGLE_SHOW_LINE_NUMBERS = 'TOGGLE_SHOW_LINE_NUMBERS';
-export const toggleShowLineNumbers = (): GDAction => ({ type: TOGGLE_SHOW_LINE_NUMBERS });
+export const toggleShowLineNumbers = (): GDAction => ({
+	type: TOGGLE_SHOW_LINE_NUMBERS
+});
 
 export const TOGGLE_LINE_WRAPPING = 'TOGGLE_LINE_WRAPPING';
-export const toggleLineWrapping = (): GDAction => ({ type: TOGGLE_LINE_WRAPPING });
+export const toggleLineWrapping = (): GDAction => ({
+	type: TOGGLE_LINE_WRAPPING
+});
 
 export const SET_PREVIEW_TEXT_SIZE = 'SET_PREVIEW_TEXT_SIZE';
 export const setPreviewTextSize = (previewTextSize: number): GDAction => ({
@@ -271,12 +303,14 @@ export const toggleExportSettings = (tab?: ExportSettingsTab): GDAction => ({
 });
 
 export const HIDE_EXPORT_SETTINGS = 'HIDE_EXPORT_SETTINGS';
-export const hideExportSettings = (): GDAction => ({ type: HIDE_EXPORT_SETTINGS });
+export const hideExportSettings = (): GDAction => ({
+	type: HIDE_EXPORT_SETTINGS
+});
 
 export type LoadExportTypeBundleOptions = {
 	shouldRefreshPreviewPanel?: boolean;
 	onLoadComplete?: (exportType: ExportTypeFolder) => void;
-}
+};
 
 export const SELECT_EXPORT_TYPE = 'SELECT_EXPORT_TYPE';
 export const onSelectExportType = (exportType: ExportTypeFolder, opts: LoadExportTypeBundleOptions = {}): any => {
@@ -288,17 +322,16 @@ export const onSelectExportType = (exportType: ExportTypeFolder, opts: LoadExpor
 			}
 		});
 
-		loadExportTypeBundle(exportType)
-			.then((bundle: DTBundle) => {
-				dispatch(exportTypeLoaded(exportType, bundle.initialState));
+		loadExportTypeBundle(exportType).then((bundle: DTBundle) => {
+			dispatch(exportTypeLoaded(exportType, bundle.initialState));
 
-				if (opts.shouldRefreshPreviewPanel) {
-					dispatch(refreshPreview());
-				}
-				if (opts.onLoadComplete) {
-					opts.onLoadComplete(exportType);
-				}
-			});
+			if (opts.shouldRefreshPreviewPanel) {
+				dispatch(refreshPreview());
+			}
+			if (opts.onLoadComplete) {
+				opts.onLoadComplete(exportType);
+			}
+		});
 	};
 };
 
@@ -320,10 +353,14 @@ export const dataTypeLoaded = (dataType: DataTypeFolder): GDAction => ({
 });
 
 export const SHOW_GENERATION_SETTINGS_PANEL = 'SHOW_GENERATION_SETTINGS_PANEL';
-export const showGenerationSettingsPanel = (): GDAction => ({ type: SHOW_GENERATION_SETTINGS_PANEL });
+export const showGenerationSettingsPanel = (): GDAction => ({
+	type: SHOW_GENERATION_SETTINGS_PANEL
+});
 
 export const HIDE_START_GENERATION_PANEL = 'HIDE_START_GENERATION_PANEL';
-export const hideStartGenerationPanel = (): GDAction => ({ type: HIDE_START_GENERATION_PANEL });
+export const hideStartGenerationPanel = (): GDAction => ({
+	type: HIDE_START_GENERATION_PANEL
+});
 
 export const SHOW_HELP_DIALOG = 'SHOW_HELP_DIALOG';
 export const showHelpDialog = (dataType: DataTypeFolder): GDAction => ({
@@ -334,7 +371,9 @@ export const showHelpDialog = (dataType: DataTypeFolder): GDAction => ({
 });
 
 export const SHOW_SCHEMA_DIALOG = 'SHOW_SCHEMA_DIALOG';
-export const showDataTemplateDialog = (): GDAction => ({ type: SHOW_SCHEMA_DIALOG });
+export const showDataTemplateDialog = (): GDAction => ({
+	type: SHOW_SCHEMA_DIALOG
+});
 
 export const HIDE_SCHEMA_DIALOG = 'HIDE_SCHEMA_DIALOG';
 export const hideSchemaDialog = (): GDAction => ({ type: HIDE_SCHEMA_DIALOG });
@@ -351,29 +390,33 @@ export const updateNumRowsToGenerate = (numRowsToGenerate: number): GDAction => 
 });
 
 export const TOGGLE_STRIP_WHITESPACE = 'TOGGLE_STRIP_WHITESPACE';
-export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITESPACE });
+export const toggleStripWhitespace = (): GDAction => ({
+	type: TOGGLE_STRIP_WHITESPACE
+});
 
 export const CLEAR_GRID = 'CLEAR_GRID';
 export const RESET_GENERATOR = 'RESET_GENERATOR';
-export const clearPage = (addDefaultRows = true): any => (dispatch: Dispatch, getState: any): void => {
-	const loadedExportTypes = selectors.getLoadedExportTypesArray(getState());
+export const clearPage =
+	(addDefaultRows = true): any =>
+		(dispatch: Dispatch, getState: any): void => {
+			const loadedExportTypes = selectors.getLoadedExportTypesArray(getState());
 
-	const exportTypeInitialStates: any = {};
-	loadedExportTypes.forEach((et: ExportTypeFolder) => {
-		exportTypeInitialStates[et] = getExportTypeInitialState(et);
-	});
+			const exportTypeInitialStates: any = {};
+			loadedExportTypes.forEach((et: ExportTypeFolder) => {
+				exportTypeInitialStates[et] = getExportTypeInitialState(et);
+			});
 
-	dispatch({
-		type: RESET_GENERATOR,
-		payload: {
-			exportTypeInitialStates
-		}
-	});
+			dispatch({
+				type: RESET_GENERATOR,
+				payload: {
+					exportTypeInitialStates
+				}
+			});
 
-	if (addDefaultRows) {
-		dispatch(addRows(5));
-	}
-};
+			if (addDefaultRows) {
+				dispatch(addRows(5));
+			}
+		};
 
 export const SET_PANEL_SIZE = 'SET_PANEL_SIZE';
 export const setPanelSize = (size: number): GDAction => ({
@@ -384,56 +427,68 @@ export const setPanelSize = (size: number): GDAction => ({
 });
 
 export const CHANGE_SMALL_SCREEN_VISIBLE_PANEL = 'CHANGE_SMALL_SCREEN_VISIBLE_PANEL';
-export const changeSmallScreenVisiblePanel = (): GDAction => ({ type: CHANGE_SMALL_SCREEN_VISIBLE_PANEL });
+export const changeSmallScreenVisiblePanel = (): GDAction => ({
+	type: CHANGE_SMALL_SCREEN_VISIBLE_PANEL
+});
 
 export const SET_INITIAL_DEPENDENCIES_LOADED = 'SET_INITIAL_DEPENDENCIES_LOADED';
-export const setInitialDependenciesLoaded = (): GDAction => ({ type: SET_INITIAL_DEPENDENCIES_LOADED });
+export const setInitialDependenciesLoaded = (): GDAction => ({
+	type: SET_INITIAL_DEPENDENCIES_LOADED
+});
 
 export const SET_BULK_ACTION = 'SET_BULK_ACTION';
 export const LOAD_DATA_SET = 'LOAD_DATA_SET';
 
-export const loadDataSet = (dataSet: DataSetListItem, showToast = true): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
-	const i18n = getStrings();
-	const { exportType, exportTypeSettings, rows, sortedRows } = JSON.parse(dataSet.content);
+export const loadDataSet =
+	(dataSet: DataSetListItem, showToast = true): any =>
+		async (dispatch: Dispatch, getState: any): Promise<any> => {
+			const i18n = getStrings();
+			const { exportType, exportTypeSettings, rows, sortedRows } = JSON.parse(dataSet.content);
 
-	const dataTypes = sortedRows.map((hash: string) => rows[hash].dataType).filter((dataType: DataTypeFolder | null) => dataType !== null);
-	const uniqueDataTypes = getUnique(dataTypes);
+			const dataTypes = sortedRows
+				.map((hash: string) => rows[hash].dataType)
+				.filter((dataType: DataTypeFolder | null) => dataType !== null);
+			const uniqueDataTypes = getUnique(dataTypes);
 
-	dispatch({
-		type: SET_BULK_ACTION,
-		payload: {
-			isComplete: false
-		}
-	});
+			dispatch({
+				type: SET_BULK_ACTION,
+				payload: {
+					isComplete: false
+				}
+			});
 
-	// load all the datasets and export type
-	dispatch(onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
-	uniqueDataTypes.forEach((dataType: DataTypeFolder) => (
-		loadDataTypeBundle(dispatch, getState, dataType, { shouldRefreshPreviewPanel: false })
-	));
+			// load all the datasets and export type
+			dispatch(onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
+			uniqueDataTypes.forEach((dataType: DataTypeFolder) =>
+				loadDataTypeBundle(dispatch, getState, dataType, {
+					shouldRefreshPreviewPanel: false
+				})
+			);
 
-	dispatch({
-		type: LOAD_DATA_SET,
-		payload: {
-			exportType,
-			exportTypeSettings,
-			rows,
-			sortedRows,
-			dataSetId: dataSet.dataSetId,
-			dataSetName: dataSet.dataSetName
-		}
-	});
+			dispatch({
+				type: LOAD_DATA_SET,
+				payload: {
+					exportType,
+					exportTypeSettings,
+					rows,
+					sortedRows,
+					dataSetId: dataSet.dataSetId,
+					dataSetName: dataSet.dataSetName
+				}
+			});
 
-	if (showToast) {
-		addToast({
-			type: 'success',
-			message: i18n.core.dataSetLoaded
-		});
-	}
-};
+			if (showToast) {
+				addToast({
+					type: 'success',
+					message: i18n.core.dataSetLoaded
+				});
+			}
+		};
 
 export const STASH_GENERATOR_STATE = 'STASH_GENERATOR_STATE';
-export const stashGeneratorState = (): GDAction => ({ type: STASH_GENERATOR_STATE });
+export const stashGeneratorState = (): GDAction => ({
+	type: STASH_GENERATOR_STATE
+});
 
 export const POP_STASHED_STATE = 'POP_STASHED_STATE';
 export const popStashedState = (): GDAction => ({ type: POP_STASHED_STATE });
@@ -442,27 +497,42 @@ export const LOAD_STASHED_STATE = 'LOAD_STASHED_STATE';
 export const loadStashedState = (): GDAction => ({ type: LOAD_STASHED_STATE });
 
 export const SHOW_DATA_SET_HISTORY = 'SHOW_DATA_SET_HISTORY';
-export const showDataSetHistory = (): GDAction => ({ type: SHOW_DATA_SET_HISTORY });
+export const showDataSetHistory = (): GDAction => ({
+	type: SHOW_DATA_SET_HISTORY
+});
 
 export const HIDE_DATA_SET_HISTORY = 'HIDE_DATA_SET_HISTORY';
-export const hideDataSetHistory = (): GDAction => ({ type: HIDE_DATA_SET_HISTORY });
+export const hideDataSetHistory = (): GDAction => ({
+	type: HIDE_DATA_SET_HISTORY
+});
 
-export const loadDataSetHistoryItem = (content: any): any => (dispatch: Dispatch, getState: any): any => {
-	const state = getState();
-	const { dataSetId, dataSetName } = getCurrentDataSet(state);
+export const loadDataSetHistoryItem =
+	(content: any): any =>
+		(dispatch: Dispatch, getState: any): any => {
+			const state = getState();
+			const { dataSetId, dataSetName } = getCurrentDataSet(state);
 
-	dispatch(loadDataSet({
-		dataSetId,
-		dataSetName,
-		content
-	} as DataSetListItem, false));
-};
+			dispatch(
+				loadDataSet(
+				{
+					dataSetId,
+					dataSetName,
+					content
+				} as DataSetListItem,
+				false
+				)
+			);
+		};
 
 export const SHOW_CLEAR_PAGE_DIALOG = 'SHOW_CLEAR_PAGE_DIALOG';
-export const showClearPageDialog = (): GDAction => ({ type: SHOW_CLEAR_PAGE_DIALOG });
+export const showClearPageDialog = (): GDAction => ({
+	type: SHOW_CLEAR_PAGE_DIALOG
+});
 
 export const HIDE_CLEAR_GRID_DIALOG = 'HIDE_CLEAR_GRID_DIALOG';
-export const hideClearPageDialog = (): GDAction => ({ type: HIDE_CLEAR_GRID_DIALOG });
+export const hideClearPageDialog = (): GDAction => ({
+	type: HIDE_CLEAR_GRID_DIALOG
+});
 
 export const SELECT_DATA_SET_HISTORY_ITEM = 'SELECT_DATA_SET_HISTORY_ITEM';
 export const selectDataSetHistoryItem = (historyId: number, isLatest: boolean): GDAction => ({
@@ -475,10 +545,12 @@ export const selectDataSetHistoryItem = (historyId: number, isLatest: boolean): 
 
 // N.B. the version was actually selected when they clicked "View". This just closes the overlay and saves the
 // current state of the generator
-export const revertToHistoryVersion = (): any => (dispatch: Dispatch, getState: any): any => {
-	const state = getState();
-	const i18n = selectors.getCoreI18n(state);
+export const revertToHistoryVersion =
+	(): any =>
+		(dispatch: Dispatch, getState: any): any => {
+			const state = getState();
+			const i18n = selectors.getCoreI18n(state);
 
-	dispatch(hideDataSetHistory());
-	dispatch(accountActions.saveCurrentDataSet(i18n.dataSetReverted));
-};
+			dispatch(hideDataSetHistory());
+			dispatch(accountActions.saveCurrentDataSet(i18n.dataSetReverted));
+		};

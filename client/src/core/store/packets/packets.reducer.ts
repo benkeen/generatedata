@@ -52,7 +52,7 @@ export type DataPacket = {
 
 export type DataPackets = {
 	[packetId: string]: DataPacket;
-}
+};
 
 export type PacketsState = {
 	currentPacketId: string | null;
@@ -67,7 +67,14 @@ export const initialState: PacketsState = {
 };
 
 export const getNewPacket = ({
-	generationWorkerId, stripWhitespace, numRowsToGenerate, template, dataTypes, columns, exportType, exportTypeSettings
+	generationWorkerId,
+	stripWhitespace,
+	numRowsToGenerate,
+	template,
+	dataTypes,
+	columns,
+	exportType,
+	exportTypeSettings
 }: any): DataPacket => {
 	const now = new Date().getTime();
 	const loadTimeGraphDuration = getGraphDuration(numRowsToGenerate);
@@ -115,7 +122,14 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 
 		case actions.START_GENERATION: {
 			const {
-				generationWorkerId, numRowsToGenerate, template, dataTypes, columns, exportType, exportTypeSettings, stripWhitespace
+				generationWorkerId,
+				numRowsToGenerate,
+				template,
+				dataTypes,
+				columns,
+				exportType,
+				exportTypeSettings,
+				stripWhitespace
 			} = action.payload;
 
 			const packetId = nanoid();
@@ -185,21 +199,22 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 
 			// the start time for this batch was either the previous completed batch, or for the very first one - the start
 			// of the generation
-			const startTime = numExistingPackets > 0 ?
-				draft.packets[packetId].data[draft.packets[packetId].data.length-1].endTime :
-				draft.packets[packetId].resumeTime;
+			const startTime =
+				numExistingPackets > 0
+					? draft.packets[packetId].data[draft.packets[packetId].data.length - 1].endTime
+					: draft.packets[packetId].resumeTime;
 
 			const duration = now - startTime;
 
 			let newAverageSpeed = duration;
 			if (numExistingPackets > 0) {
-				newAverageSpeed = ((draft.packets[packetId].stats.averageSpeed * numExistingPackets) + duration) / (numExistingPackets + 1);
+				newAverageSpeed =
+					(draft.packets[packetId].stats.averageSpeed * numExistingPackets + duration) / (numExistingPackets + 1);
 			}
 
 			draft.packets[packetId].stats.averageSpeed = newAverageSpeed;
 			draft.packets[packetId].stats.totalSize += byteSize;
 			draft.packets[packetId].stats.lastBatchGenerationDuration = duration;
-
 
 			draft.packets[packetId].numGeneratedRows = numGeneratedRows;
 			draft.packets[packetId].data.push({
@@ -208,7 +223,12 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				endTime: now
 			});
 
-			const result = getRowGenerationRatePerSecond(draft.packets[packetId].resumeTime, startTime, now, C.GENERATION_BATCH_SIZE);
+			const result = getRowGenerationRatePerSecond(
+				draft.packets[packetId].resumeTime,
+				startTime,
+				now,
+				C.GENERATION_BATCH_SIZE
+			);
 
 			const seconds = Object.keys(result);
 			seconds.forEach((second) => {
@@ -222,7 +242,7 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				draft.packets[packetId].stats.rowGenerationRatePerSecond[secondNum] = currVal;
 			});
 
-			draft.packets[packetId].stats.lastCompleteLoggedSecond = parseInt(seconds[seconds.length-1], 10) - 1;
+			draft.packets[packetId].stats.lastCompleteLoggedSecond = parseInt(seconds[seconds.length - 1], 10) - 1;
 			break;
 		}
 	}

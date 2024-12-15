@@ -6,7 +6,7 @@ import Header from './header/Header.container';
 import Footer from './footer/Footer.container';
 
 class ErrorBoundary extends React.Component<any, any> {
-	constructor (props: any) {
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			hasError: false,
@@ -27,13 +27,12 @@ class ErrorBoundary extends React.Component<any, any> {
 	// }
 
 	onClear(): void {
-		persistor.purge()
-			.then(() => {
-				this.setState({
-					hasError: false,
-					error: ''
-				});
+		persistor.purge().then(() => {
+			this.setState({
+				hasError: false,
+				error: ''
 			});
+		});
 	}
 
 	render(): any {
@@ -50,15 +49,17 @@ class ErrorBoundary extends React.Component<any, any> {
 							</div>
 							<div>
 								<p style={{ fontSize: 13, color: '#999999', marginBottom: 20 }}>
-									Sorry! Some sort of error occurred. This project is still in alpha so you may see this
-									page a little more than you'd like. Feel free to complain about it via
-									a <a href="https://github.com/benkeen/generatedata/issues" target="_blank" rel="noopener noreferrer">github issue</a> &#8212; but we will get to it!
+									Sorry! Some sort of error occurred. This project is still in alpha so you may see this page a little
+									more than you'd like. Feel free to complain about it via a{' '}
+									<a href="https://github.com/benkeen/generatedata/issues" target="_blank" rel="noopener noreferrer">
+										github issue
+									</a>{' '}
+									&#8212; but we will get to it!
 								</p>
 
-								<Button
-									color="primary"
-									variant="outlined"
-									onClick={this.onClear}>Curse the developer and start anew</Button>
+								<Button color="primary" variant="outlined" onClick={this.onClear}>
+									Curse the developer and start anew
+								</Button>
 
 								<div>{this.state.error}</div>
 							</div>

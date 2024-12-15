@@ -30,13 +30,19 @@ export type GeneratorProps = {
 	lastLayoutHeight: number | null;
 	smallScreenVisiblePanel: GeneratorPanel;
 	showDataSetHistory: boolean;
-}
+};
 
 const Builder = ({
-	isGridVisible, isPreviewVisible, generatorLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight,
-	smallScreenVisiblePanel, showDataSetHistory, i18n
+	isGridVisible,
+	isPreviewVisible,
+	generatorLayout,
+	onResizePanels,
+	lastLayoutWidth,
+	lastLayoutHeight,
+	smallScreenVisiblePanel,
+	showDataSetHistory,
+	i18n
 }: GeneratorProps): JSX.Element => {
-
 	const windowSize = useWindowSize();
 	const onResize = (size: number): void => onResizePanels(size);
 
@@ -51,7 +57,7 @@ const Builder = ({
 		}
 	} else {
 		minSize = 100;
-		maxSize = (windowSize.height - (C.HEADER_HEIGHT + C.FOOTER_HEIGHT)) - 100;
+		maxSize = windowSize.height - (C.HEADER_HEIGHT + C.FOOTER_HEIGHT) - 100;
 		if (lastLayoutHeight) {
 			defaultSize = lastLayoutHeight < maxSize ? lastLayoutHeight : maxSize;
 		}
@@ -77,7 +83,8 @@ const Builder = ({
 					maxSize={maxSize}
 					defaultSize={defaultSize}
 					size={defaultSize}
-					onChange={onResize}>
+					onChange={onResize}
+				>
 					<Grid />
 					<Preview />
 				</SplitPane>
@@ -92,9 +99,7 @@ const Builder = ({
 	return (
 		<>
 			<div style={{ height: '100%' }}>
-				<div style={{ height: '100%', position: 'relative' }}>
-					{getContent()}
-				</div>
+				<div style={{ height: '100%', position: 'relative' }}>{getContent()}</div>
 				<ExportSettings />
 				<DataSetHistory />
 				<GenerationSettings />

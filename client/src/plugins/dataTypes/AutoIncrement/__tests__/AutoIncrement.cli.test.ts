@@ -8,38 +8,38 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: "AutoIncrement",
-				title: "Simple increment",
+				plugin: 'AutoIncrement',
+				title: 'Simple increment',
 				settings: {
 					incrementStart: 1,
 					incrementValue: 1
 				}
 			},
 			{
-				plugin: "AutoIncrement",
-				title: "Tens with prefix",
+				plugin: 'AutoIncrement',
+				title: 'Tens with prefix',
 				settings: {
 					incrementStart: 10,
 					incrementValue: 10,
-					incrementPlaceholder: "A-{{INCR}}"
+					incrementPlaceholder: 'A-{{INCR}}'
 				}
 			},
 			{
-				plugin: "AutoIncrement",
-				title: "Decrement with suffix",
+				plugin: 'AutoIncrement',
+				title: 'Decrement with suffix',
 				settings: {
 					incrementStart: 100,
 					incrementValue: -5,
-					incrementPlaceholder: "{{INCR}}B"
+					incrementPlaceholder: '{{INCR}}B'
 				}
 			},
 			{
-				plugin: "AutoIncrement",
-				title: "Incrementing range",
+				plugin: 'AutoIncrement',
+				title: 'Incrementing range',
 				settings: {
 					incrementStart: 10,
 					incrementValue: 1,
-					incrementPlaceholder: "{{INCR}}-{{INCR*2}}"
+					incrementPlaceholder: '{{INCR}}-{{INCR*2}}'
 				}
 			}
 		],

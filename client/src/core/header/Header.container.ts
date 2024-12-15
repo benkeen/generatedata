@@ -14,7 +14,7 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	isLoggedIn: mainSelectors.isLoggedIn(state),
 	accountType: accountSelectors.getAccountType(state),
 	isOnloadAuthDetermined: mainSelectors.isOnloadAuthDetermined(state),
-	profileImage: accountSelectors.getProfileImage(state),
+	profileImage: accountSelectors.getProfileImage(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
@@ -24,9 +24,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
 	onLogout: (): any => dispatch(mainActions.logout())
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Header);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(Header);
 
 export default container;

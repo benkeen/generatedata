@@ -89,7 +89,9 @@
 }
 
 @media (max-width: 720px) {
-	.status, .lastModified, .numRowsGenerated {
+	.status,
+	.lastModified,
+	.numRowsGenerated {
 		display: none;
 	}
 }

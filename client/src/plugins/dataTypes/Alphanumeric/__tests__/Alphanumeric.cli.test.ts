@@ -13,7 +13,7 @@ describe('CLI data generation', () => {
 				settings: {
 					value: 'Xxxxx'
 				}
-			},
+			}
 		],
 		exportSettings: {
 			plugin: 'JSON',

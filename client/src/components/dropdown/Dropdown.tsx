@@ -26,7 +26,6 @@ const selectStyles = {
 	menuPortal: (base: any): any => ({ ...base, zIndex: C.ZINDEXES.DIALOG })
 };
 
-
 const Dropdown = ({ value, isGrouped, options, hasError, placeholder, ...props }: any): JSX.Element => {
 	const i18n = getStrings();
 
@@ -39,7 +38,8 @@ const Dropdown = ({ value, isGrouped, options, hasError, placeholder, ...props }
 	if (isGrouped) {
 		if (props.isMulti) {
 			selectedValue = [];
-			options.filter(() => { // group: any
+			options.filter(() => {
+				// group: any
 				// TODO
 				return true;
 			});

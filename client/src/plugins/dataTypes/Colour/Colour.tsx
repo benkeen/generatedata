@@ -10,7 +10,7 @@ import { Tooltip } from '~components/tooltips';
 import { ColourFormatEnum, ColourState, LuminosityTypeEnum, GenerationOptionsType } from './Colour.state';
 import styles from './Colour.scss';
 
-const getModalOptions = ({ i18n }: any): DropdownOption[] => ([
+const getModalOptions = ({ i18n }: any): DropdownOption[] => [
 	{ value: 'any', label: i18n.anyColour },
 	{ value: 'blue', label: i18n.blues },
 	{ value: 'green', label: i18n.greens },
@@ -20,7 +20,7 @@ const getModalOptions = ({ i18n }: any): DropdownOption[] => ([
 	{ value: 'purple', label: i18n.purples },
 	{ value: 'pink', label: i18n.pinks },
 	{ value: 'monochrome', label: i18n.monochromes }
-]);
+];
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {
@@ -31,11 +31,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	};
 
 	return (
-		<Dropdown
-			value={data.example}
-			onChange={(i: any): void => onChange(i.value)}
-			options={getModalOptions({ i18n })}
-		/>
+		<Dropdown value={data.example} onChange={(i: any): void => onChange(i.value)} options={getModalOptions({ i18n })} />
 	);
 };
 
@@ -44,13 +40,15 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
 	const [counter, setCounter] = React.useState(0);
 
 	React.useEffect(() => {
-		setRandomDemoColours(rc({
-			count: 30,
-			hue: data.value,
-			luminosity: data.luminosity,
-			format: data.format,
-			alpha: data.format === ColourFormatEnum.rgba ? data.alpha : 1
-		}));
+		setRandomDemoColours(
+			rc({
+				count: 30,
+				hue: data.value,
+				luminosity: data.luminosity,
+				format: data.format,
+				alpha: data.format === ColourFormatEnum.rgba ? data.alpha : 1
+			})
+		);
 	}, [data, counter]);
 
 	const onChange = (prop: string, value: any): void => {
@@ -78,9 +76,7 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
 								</td>
 							</tr>
 							<tr>
-								<td className={styles.labelCol}>
-									{i18n.luminosity}
-								</td>
+								<td className={styles.labelCol}>{i18n.luminosity}</td>
 								<td>
 									<RadioPillRow>
 										<RadioPill
@@ -158,20 +154,24 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
 					</table>
 
 					<ul className={styles.demoColours}>
-						{randomDemoColours.map((colour: string, index: number): JSX.Element => (
-							<li key={`${colour}-${index}`}>
-								<Tooltip title={colour}>
-									<span style={{ backgroundColor: colour }} />
-								</Tooltip>
-							</li>
-						))}
+						{randomDemoColours.map(
+							(colour: string, index: number): JSX.Element => (
+								<li key={`${colour}-${index}`}>
+									<Tooltip title={colour}>
+										<span style={{ backgroundColor: colour }} />
+									</Tooltip>
+								</li>
+							)
+						)}
 					</ul>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={(): void => setCounter(counter+1)} color="primary" variant="outlined">
+					<Button onClick={(): void => setCounter(counter + 1)} color="primary" variant="outlined">
 						{i18n.refresh}
 					</Button>
-					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
+					<Button onClick={onClose} color="primary" variant="outlined">
+						{coreI18n.close}
+					</Button>
 				</DialogActions>
 			</div>
 		</Dialog>
@@ -192,12 +192,8 @@ export const Options = ({ id, i18n, coreI18n, data, onUpdate }: DTOptionsProps):
 
 	return (
 		<div className={styles.buttonLabel}>
-			<Button
-				onClick={(): void => setDialogVisibility(true)}
-				variant="outlined"
-				color="primary"
-				size="small">
-				<span dangerouslySetInnerHTML={{ __html: buttonLabel }}/>
+			<Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+				<span dangerouslySetInnerHTML={{ __html: buttonLabel }} />
 			</Button>
 			<ColourDialog
 				visible={dialogVisible}
@@ -214,12 +210,8 @@ export const Options = ({ id, i18n, coreI18n, data, onUpdate }: DTOptionsProps):
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
-		<p>
-			{i18n.helpDesc1}
-		</p>
-		<p>
-			{i18n.helpDesc2}
-		</p>
+		<p>{i18n.helpDesc1}</p>
+		<p>{i18n.helpDesc2}</p>
 	</>
 );
 

@@ -10,7 +10,7 @@ import { SaveDataDialogType } from '~store/account/account.reducer';
 const mapStateToProps = (state: any): Partial<GeneratorControlsProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	isLoggedIn: mainSelectors.isLoggedIn(state),
-	dataSet: selectors.getCurrentDataSet(state),
+	dataSet: selectors.getCurrentDataSet(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorControlsProps> => ({
@@ -25,9 +25,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorControlsProps>
 	}
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(GeneratorControls);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(GeneratorControls);
 
 export default container;

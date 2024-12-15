@@ -1,8 +1,8 @@
-@import "../../styles/variables";
+@import '../../styles/variables';
 
 .footer {
 	flex: 0 0 60px;
-	background-image: url("./images/bg.png");
+	background-image: url('./images/bg.png');
 	padding: 16px 20px;
 
 	& > div {
@@ -48,7 +48,9 @@
 		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.6)));
 	}
 
-	button.generateButton, button.saveButton, button.saveButtonAsMainBtn {
+	button.generateButton,
+	button.saveButton,
+	button.saveButtonAsMainBtn {
 		font-size: 13px;
 
 		svg {

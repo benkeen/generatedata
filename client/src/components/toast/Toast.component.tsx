@@ -62,7 +62,9 @@ const Toast = (): JSX.Element => {
 				autoHideDuration={payload.autoHideDuration}
 				onClose={handleClose}
 			>
-				<Alert onClose={handleClose} severity={payload.type}>{payload.message}</Alert>
+				<Alert onClose={handleClose} severity={payload.type}>
+					{payload.message}
+				</Alert>
 			</Snackbar>
 		</Portal>
 	);

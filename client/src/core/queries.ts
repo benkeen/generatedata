@@ -1,42 +1,54 @@
 import { gql } from '@apollo/client';
 
-
-export const GET_ACCOUNTS = gql`	
-	query GetAccounts ($limit: Int, $offset: Int, $sortCol: String, $sortDir: SortDir, $filterStr: String, $status: String) {
-        accounts (limit: $limit, offset: $offset, sortCol: $sortCol, sortDir: $sortDir, filterStr: $filterStr, status: $status) {
+export const GET_ACCOUNTS = gql`
+	query GetAccounts(
+		$limit: Int
+		$offset: Int
+		$sortCol: String
+		$sortDir: SortDir
+		$filterStr: String
+		$status: String
+	) {
+		accounts(
+			limit: $limit
+			offset: $offset
+			sortCol: $sortCol
+			sortDir: $sortDir
+			filterStr: $filterStr
+			status: $status
+		) {
 			totalCount
 			results {
-                accountId
-                accountType
-                accountStatus,
-                firstName
-                lastName
+				accountId
+				accountType
+				accountStatus
+				firstName
+				lastName
 				email
 				country
 				region
-                dateCreated
-                expiryDate
+				dateCreated
+				expiryDate
 				lastLoggedIn
-                numRowsGenerated
-            }
-        }
-    }
+				numRowsGenerated
+			}
+		}
+	}
 `;
 
 export const DELETE_ACCOUNT = gql`
-    mutation DeleteAccount($accountId: ID!) {
-        deleteAccount(accountId: $accountId) {
-            success
-            error
-        }
-    }
+	mutation DeleteAccount($accountId: ID!) {
+		deleteAccount(accountId: $accountId) {
+			success
+			error
+		}
+	}
 `;
 
-
 export const GET_DATA_SETS = gql`
-    query GetDataSets ($limit: Int, $offset: Int, $sortCol: String, $sortDir: SortDir) {
-        dataSets (limit: $limit, offset: $offset, sortCol: $sortCol, sortDir: $sortDir) {
-            totalCount
+	query GetDataSets($limit: Int, $offset: Int, $sortCol: String, $sortDir: SortDir) {
+		dataSets(limit: $limit, offset: $offset, sortCol: $sortCol, sortDir: $sortDir) {
+			totalCount
 			results {
 				dataSetId
 				dataSetName
@@ -46,30 +58,30 @@ export const GET_DATA_SETS = gql`
 				numRowsGenerated
 				historyDateCreatedUnix
 			}
-        }
-    }
+		}
+	}
 `;
 
 export const GET_DATA_SET_HISTORY = gql`
-    query GetDataSetHistory($dataSetId: ID!, $limit: Int, $offset: Int) {
-        dataSetHistory(dataSetId: $dataSetId, limit: $limit, offset: $offset) {
+	query GetDataSetHistory($dataSetId: ID!, $limit: Int, $offset: Int) {
+		dataSetHistory(dataSetId: $dataSetId, limit: $limit, offset: $offset) {
 			totalCount
-            results {
-                historyId
-                dateCreated
-                content	
+			results {
+				historyId
+				dateCreated
+				content
 			}
-        }
-    }
+		}
+	}
 `;
 
 export const DELETE_DATA_SET = gql`
-    mutation DeleteDataSet($dataSetId: ID!) {
-        deleteDataSet(dataSetId: $dataSetId) {
-            success
-            error
-        }
-    }
+	mutation DeleteDataSet($dataSetId: ID!) {
+		deleteDataSet(dataSetId: $dataSetId) {
+			success
+			error
+		}
+	}
 `;
 
 export const SAVE_NEW_DATA_SET = gql`
@@ -84,12 +96,12 @@ export const SAVE_NEW_DATA_SET = gql`
 `;
 
 export const RENAME_DATA_SET = gql`
-    mutation RenameDataSet($dataSetId: ID!, $dataSetName: String!) {
-        renameDataSet(dataSetId: $dataSetId, dataSetName: $dataSetName) {
-            success
-            error
-        }
-    }
+	mutation RenameDataSet($dataSetId: ID!, $dataSetName: String!) {
+		renameDataSet(dataSetId: $dataSetId, dataSetName: $dataSetName) {
+			success
+			error
+		}
+	}
 `;
 
 export const SAVE_CURRENT_DATA_SET = gql`
@@ -104,38 +116,80 @@ export const SAVE_CURRENT_DATA_SET = gql`
 `;
 
 export const SAVE_CURRENT_ACCOUNT = gql`
-	mutation UpdateCurrentAccount($firstName: String!, $lastName: String!, $email: String!, $country: String!, $region: String) {
-		updateCurrentAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region) {
+	mutation UpdateCurrentAccount(
+		$firstName: String!
+		$lastName: String!
+		$email: String!
+		$country: String!
+		$region: String
+	) {
+		updateCurrentAccount(
+			firstName: $firstName
+			lastName: $lastName
+			email: $email
+			country: $country
+			region: $region
+		) {
 			success
 		}
 	}
 `;
 
 export const SAVE_ACCOUNT = gql`
-    mutation UpdateAccount($accountId: ID!, $accountStatus: AccountStatus, $firstName: String!, $lastName: String!,
-		$email: String!, $country: String!, $region: String, $expiryDate: String) {
-        updateAccount(accountId: $accountId, accountStatus: $accountStatus, firstName: $firstName, lastName: $lastName, email: $email, country: $country,
-			region: $region, expiryDate: $expiryDate) {
-            success
-        }
-    }
+	mutation UpdateAccount(
+		$accountId: ID!
+		$accountStatus: AccountStatus
+		$firstName: String!
+		$lastName: String!
+		$email: String!
+		$country: String!
+		$region: String
+		$expiryDate: String
+	) {
+		updateAccount(
+			accountId: $accountId
+			accountStatus: $accountStatus
+			firstName: $firstName
+			lastName: $lastName
+			email: $email
+			country: $country
+			region: $region
+			expiryDate: $expiryDate
+		) {
+			success
+		}
+	}
 `;
 
 export const UPDATE_PASSWORD = gql`
-    mutation UpdatePassword($currentPassword: String!, $newPassword: String!) {
-        updatePassword(currentPassword: $currentPassword, newPassword: $newPassword) {
-            success
-            error
-        }
-    }
+	mutation UpdatePassword($currentPassword: String!, $newPassword: String!) {
+		updatePassword(currentPassword: $currentPassword, newPassword: $newPassword) {
+			success
+			error
+		}
+	}
 `;
 
 export const CREATE_USER_ACCOUNT = gql`
-    mutation CreateUserAccount($firstName: String!, $lastName: String!, $email: String!, $country: String, $region: String,
-		$accountStatus: AccountStatus, $expiryDate: String) {
-        createUserAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region,
-			accountStatus: $accountStatus, expiryDate: $expiryDate) {
-            success
-        }
-    }
+	mutation CreateUserAccount(
+		$firstName: String!
+		$lastName: String!
+		$email: String!
+		$country: String
+		$region: String
+		$accountStatus: AccountStatus
+		$expiryDate: String
+	) {
+		createUserAccount(
+			firstName: $firstName
+			lastName: $lastName
+			email: $email
+			country: $country
+			region: $region
+			accountStatus: $accountStatus
+			expiryDate: $expiryDate
+		) {
+			success
+		}
+	}
 `;

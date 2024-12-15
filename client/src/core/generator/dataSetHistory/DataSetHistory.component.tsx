@@ -29,9 +29,14 @@ export type DataSetHistoryProps = {
 const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
-
 const Row = ({
-	rowLabel, dateCreated, content, loadHistoryVersion, isSelected, i18n, Btn
+	rowLabel,
+	dateCreated,
+	content,
+	loadHistoryVersion,
+	isSelected,
+	i18n,
+	Btn
 }: any): React.ReactElement => {
 	let classes = styles.row;
 	if (isSelected) {
@@ -42,14 +47,9 @@ const Row = ({
 		<div className={classes}>
 			{rowLabel && <label>{rowLabel}</label>}
 			<div className={styles.rowWrapper}>
-				<div className={styles.dateCreated}>
-					{format(fromUnixTime(dateCreated / 1000), C.DATETIME_FORMAT)}
-				</div>
+				<div className={styles.dateCreated}>{format(fromUnixTime(dateCreated / 1000), C.DATETIME_FORMAT)}</div>
 				<div className={styles.edit}>
-					<Btn
-						size="small"
-						disabled={isSelected}
-						onClick={(): void => loadHistoryVersion(content)}>
+					<Btn size="small" disabled={isSelected} onClick={(): void => loadHistoryVersion(content)}>
 						{i18n.view}
 					</Btn>
 				</div>
@@ -59,8 +59,14 @@ const Row = ({
 };
 
 export const DataSetHistory = ({
-	showPanel, dataSet, closePanel, loadHistoryVersion, loadStashedVersion, selectedDataSetHistoryItem,
-	setSelectedDataHistoryItem, i18n
+	showPanel,
+	dataSet,
+	closePanel,
+	loadHistoryVersion,
+	loadStashedVersion,
+	selectedDataSetHistoryItem,
+	setSelectedDataHistoryItem,
+	i18n
 }: DataSetHistoryProps): React.ReactElement | null => {
 	const { dataSetId, dataSetName, lastSaved } = dataSet;
 	const { historyId } = selectedDataSetHistoryItem;

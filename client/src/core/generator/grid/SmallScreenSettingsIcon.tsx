@@ -8,16 +8,24 @@ import { HtmlTooltip } from '~components/tooltips';
 import useOnClickOutside from 'use-onclickoutside';
 import C from '../../constants';
 
-
 export const SmallScreenSettingsIcon = ({
-	id, data, dataType, isDataTypeLoaded, Example, Options, i18n, countryI18n, gridPanelDimensions,
-	selectedDataTypeI18n, onConfigureDataType, dtCustomProps
+	id,
+	data,
+	dataType,
+	isDataTypeLoaded,
+	Example,
+	Options,
+	i18n,
+	countryI18n,
+	gridPanelDimensions,
+	selectedDataTypeI18n,
+	onConfigureDataType,
+	dtCustomProps
 }: any): any => {
 	const popoverRef = React.useRef(null);
 	const [open, setOpen] = React.useState(false);
 
 	useOnClickOutside(popoverRef, (e) => {
-
 		// the `gd-is-portal` part is added in case Data Types use other portal-based content besides react select. If
 		// that's the case, clicking it will always close the tooltip here. So to get around it, give the portal a class
 		// of gd-is-portal. That'll suppress the close event here,

@@ -14,7 +14,11 @@ export type ExportSettingsProps = {
 	toggleExportSettings: any;
 };
 
-export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings }: ExportSettingsProps): React.ReactElement => {
+export const ExportSettings = ({
+	i18n,
+	showExportSettings,
+	toggleExportSettings
+}: ExportSettingsProps): React.ReactElement => {
 	const [selectedTabIndex, setSelectedTabIndex] = React.useState(0);
 	const handleChange = (e: React.ChangeEvent<{}>, newValue: number): void => setSelectedTabIndex(newValue);
 	const getTab = (): JSX.Element | null => {
@@ -38,9 +42,7 @@ export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings 
 					<Tab label={i18n.settings} />
 					<Tab label={i18n.preview} />
 				</Tabs>
-				<section>
-					{getTab()}
-				</section>
+				<section>{getTab()}</section>
 				<footer>
 					<Button onClick={toggleExportSettings} variant="outlined" color="primary" disableElevation>
 						<HighlightOffIcon />

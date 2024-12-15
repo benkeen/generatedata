@@ -13,7 +13,4 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<ExportSettingsProps> =>
 	toggleExportSettings: (): any => dispatch(actions.toggleExportSettings())
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ExportSettings);
+export default connect(mapStateToProps, mapDispatchToProps)(ExportSettings);

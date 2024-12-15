@@ -22,5 +22,3 @@ export const getAccountsSortCol = (state: Store): string => state.main.accountsS
 export const getAccountsSortDir = (state: Store): ColSortDir => state.main.accountsSortDir;
 export const getAccountsFilterStr = (state: Store): string => state.main.accountsFilterStr;
 export const getAccountStatusFilter = (state: Store): AccountStatusFilter => state.main.accountStatusFilter;
-
-

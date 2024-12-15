@@ -1,7 +1,7 @@
 # [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; City
 
 Generates a random city name. You have the choice of generating a city name from anywhere in the world, or mapping
-it to other data in the generated row, so the city is actually within a region or country from another field. This makes 
+it to other data in the generated row, so the city is actually within a region or country from another field. This makes
 the generated data more realistic.
 
 ## Typings
@@ -19,7 +19,6 @@ the generated data more realistic.
 - [Random city from anywhere](#random-city-from-anywhere)
 - [Random city within a specific country list](#random-city-within-a-specific-country-list)
 - [Random city within a generated region row](#random-city-within-a-generated-region-row)
-
 
 ### Random city from anywhere
 

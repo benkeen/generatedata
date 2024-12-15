@@ -4,9 +4,7 @@ import { renderWithStoreAndRouter } from '../../../../../tests/testHelpers';
 
 describe('CodeMirrorWrapper', () => {
 	it('renders', () => {
-		const { baseElement } = renderWithStoreAndRouter(
-			<CodeMirrorWrapper />
-		);
+		const { baseElement } = renderWithStoreAndRouter(<CodeMirrorWrapper />);
 
 		expect(baseElement.querySelector('div')).toBeTruthy();
 	});

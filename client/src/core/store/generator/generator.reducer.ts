@@ -78,11 +78,30 @@ export type StashedGeneratorState = {
 };
 
 const stashProps = [
-	'exportType', 'rows', 'sortedRows', 'showGrid', 'showPreview', 'smallScreenVisiblePanel',
-	'generatorLayout', 'showExportSettings', 'exportTypeSettings', 'showGenerationSettingsPanel', 'showHelpDialog',
-	'helpDialogSection', 'showLineNumbers', 'enableLineWrapping', 'theme', 'previewTextSize', 'dataTypePreviewData',
-	'exportSettingsTab', 'numPreviewRows', 'stripWhitespace', 'numPreviewRows', 'stripWhitespace',
-	'currentDataSetId', 'currentDataSetName'
+	'exportType',
+	'rows',
+	'sortedRows',
+	'showGrid',
+	'showPreview',
+	'smallScreenVisiblePanel',
+	'generatorLayout',
+	'showExportSettings',
+	'exportTypeSettings',
+	'showGenerationSettingsPanel',
+	'showHelpDialog',
+	'helpDialogSection',
+	'showLineNumbers',
+	'enableLineWrapping',
+	'theme',
+	'previewTextSize',
+	'dataTypePreviewData',
+	'exportSettingsTab',
+	'numPreviewRows',
+	'stripWhitespace',
+	'numPreviewRows',
+	'stripWhitespace',
+	'currentDataSetId',
+	'currentDataSetName'
 ];
 
 export type CurrentDataSet = {
@@ -145,7 +164,10 @@ export type GeneratorState = {
 export const getInitialState = (): GeneratorState => ({
 	// the extra check for existence on these vars is just to placate the tests (not sure why needed)
 	loadedDataTypes: Object.keys(dataTypes).reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
-	loadedExportTypes: Object.keys(exportTypes).reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
+	loadedExportTypes: Object.keys(exportTypes).reduce(
+		(acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }),
+		{}
+	),
 	initialDependenciesLoaded: false,
 	exportType: env.defaultExportType,
 	rows: {},
@@ -236,9 +258,19 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 			const initialState = getInitialState();
 			const settingsToReset = [
-				'exportType', 'showGrid', 'showPreview', 'showExportSettings', 'numPreviewRows', 'showLineNumbers',
-				'enableLineWrapping', 'theme', 'previewTextSize', 'exportSettingsTab', 'numRowsToGenerate',
-				'stripWhitespace', 'currentDataSet'
+				'exportType',
+				'showGrid',
+				'showPreview',
+				'showExportSettings',
+				'numPreviewRows',
+				'showLineNumbers',
+				'enableLineWrapping',
+				'theme',
+				'previewTextSize',
+				'exportSettingsTab',
+				'numRowsToGenerate',
+				'stripWhitespace',
+				'currentDataSet'
 			];
 			settingsToReset.forEach((setting: any) => {
 				// @ts-ignore-line
@@ -278,10 +310,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 				};
 				newRowIDs.push(rowId);
 			}
-			draft.sortedRows = [
-				...draft.sortedRows,
-				...newRowIDs
-			];
+			draft.sortedRows = [...draft.sortedRows, ...newRowIDs];
 			break;
 		}
 
@@ -303,7 +332,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 		case actions.SELECT_DATA_TYPE: {
 			const { id, value, data, defaultTitle } = action.payload;
-			const title = (draft.rows[id].title) ? draft.rows[id].title : defaultTitle;
+			const title = draft.rows[id].title ? draft.rows[id].title : defaultTitle;
 
 			draft.rows[id] = {
 				...draft.rows[id],
@@ -356,7 +385,8 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.TOGGLE_LAYOUT:
-			draft.generatorLayout = draft.generatorLayout === GeneratorLayout.horizontal ? GeneratorLayout.vertical : GeneratorLayout.horizontal;
+			draft.generatorLayout =
+				draft.generatorLayout === GeneratorLayout.horizontal ? GeneratorLayout.vertical : GeneratorLayout.horizontal;
 			break;
 
 		case actions.TOGGLE_LINE_WRAPPING:
@@ -412,7 +442,8 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL:
-			draft.smallScreenVisiblePanel = draft.smallScreenVisiblePanel === GeneratorPanel.grid ? GeneratorPanel.preview : GeneratorPanel.grid;
+			draft.smallScreenVisiblePanel =
+				draft.smallScreenVisiblePanel === GeneratorPanel.grid ? GeneratorPanel.preview : GeneratorPanel.grid;
 			break;
 
 		case actions.SET_BULK_ACTION:
@@ -550,4 +581,3 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 }, getInitialState());
 
 export default reducer;
-

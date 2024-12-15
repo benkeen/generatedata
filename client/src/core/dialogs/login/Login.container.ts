@@ -24,9 +24,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<LoginDialogProps> => ({
 	}
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(LoginDialog);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(LoginDialog);
 
 export default container;

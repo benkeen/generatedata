@@ -20,10 +20,17 @@ export type YourAccountProps = {
 };
 
 const YourAccount = ({
-	data, numGeneratedRows, accountHasChanges, updateAccount, onSave, onCancel, className, i18n, onInit,
+	data,
+	numGeneratedRows,
+	accountHasChanges,
+	updateAccount,
+	onSave,
+	onCancel,
+	className,
+	i18n,
+	onInit,
 	expiryDate
 }: YourAccountProps): JSX.Element => {
-
 	useEffect(() => {
 		onInit();
 	}, []);
@@ -36,9 +43,7 @@ const YourAccount = ({
 		return (
 			<div className={styles.rightBlock}>
 				<label>{i18n.accountExpiryDate}</label>
-				<div>
-					{formatUnixTime(parseInt(expiryDate)/1000, C.DATE_FORMAT)}
-				</div>
+				<div>{formatUnixTime(parseInt(expiryDate) / 1000, C.DATE_FORMAT)}</div>
 			</div>
 		);
 	};
@@ -60,9 +65,7 @@ const YourAccount = ({
 				<div className={styles.rightCol}>
 					<div className={styles.rightBlock}>
 						<label>{i18n.totalNumGeneratedRows}</label>
-						<div>
-							{getFormattedNum(numGeneratedRows)}
-						</div>
+						<div>{getFormattedNum(numGeneratedRows)}</div>
 					</div>
 					{getExpiryDate()}
 				</div>
@@ -72,27 +75,3 @@ const YourAccount = ({
 };
 
 export default YourAccount;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

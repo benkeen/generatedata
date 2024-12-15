@@ -4,9 +4,7 @@ import { renderWithStoreAndRouter } from '../../../../tests/testHelpers';
 
 describe('ActivePacketsList', () => {
 	it('renders', () => {
-		const { baseElement } = renderWithStoreAndRouter(
-			<ActivePacketsList />
-		);
+		const { baseElement } = renderWithStoreAndRouter(<ActivePacketsList />);
 
 		expect(baseElement.querySelector('div')).toBeTruthy();
 	});

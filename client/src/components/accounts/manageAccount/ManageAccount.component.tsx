@@ -14,7 +14,7 @@ export type ManageAccountProps = {
 	initialState: ManageAccountState;
 	submitButtonLabel: string;
 	onCancel?: () => void;
-}
+};
 
 export enum ExpiryOption {
 	none = 'none',
@@ -32,11 +32,17 @@ export type ManageAccountState = {
 	expiryDate: null | number;
 	numRowsGenerated: number;
 	isAddingUser: boolean;
-}
+};
 
 const yearFromNow = Number(format(add(new Date(), { years: 1 }), 't'));
 
-const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel }: ManageAccountProps): JSX.Element => {
+const ManageAccount = ({
+	i18n,
+	onCancel,
+	onSave,
+	initialState,
+	submitButtonLabel
+}: ManageAccountProps): JSX.Element => {
 	const [data, setData] = useState(initialState);
 	const [showDatepicker, setShowDatepicker] = useState(false);
 	const [showErrors] = useState(false);
@@ -148,9 +154,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
 				</div>
 				<div className={styles.rightBlock}>
 					<label>{i18n.totalNumGeneratedRows}</label>
-					<div>
-						{getFormattedNum(initialState.numRowsGenerated)}
-					</div>
+					<div>{getFormattedNum(initialState.numRowsGenerated)}</div>
 				</div>
 			</div>
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { render } from '@testing-library/react';
 import { Help, getMetadata } from '../AutoIncrement';
 import { AutoIncrementState } from '../AutoIncrement.state';
@@ -12,11 +12,10 @@ const defaultProps = {
 
 describe('Help', () => {
 	it('renders', () => {
-		const { container } = render(<Help {...defaultProps}/>);
+		const { container } = render(<Help {...defaultProps} />);
 		expect(container).toBeTruthy();
 	});
 });
-
 
 describe('getMetadata', () => {
 	it('returns number as the general data type when no placeholder and numeric values for the incr + starting value', () => {
@@ -102,5 +101,4 @@ describe('getMetadata', () => {
 		};
 		expect(getMetadata(rowData1).general!.dataType).toEqual('string');
 	});
-
 });

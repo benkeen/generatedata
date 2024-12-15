@@ -15,6 +15,4 @@ const mapStateToProps = (state: Store): CodeMirrorWrapperProps => ({
 	generatorLayout: selectors.getGeneratorLayout(state)
 });
 
-export default connect(
-	mapStateToProps,
-)(CodeMirrorWrapper);
+export default connect(mapStateToProps)(CodeMirrorWrapper);

@@ -23,9 +23,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<PasswordResetDialogProp
 	}
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(PasswordReset);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(PasswordReset);
 
 export default container;

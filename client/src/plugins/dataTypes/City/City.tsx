@@ -9,9 +9,21 @@ import { countryList } from '../../../../_plugins';
 import { RegionSourceEnum, RegionSource } from './City.state';
 import styles from './City.scss';
 
-const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, regionRows }: any): JSX.Element => {
-	const regionPluginRows = regionRows
-		.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
+const CityDialog = ({
+	visible,
+	data,
+	id,
+	onClose,
+	countryI18n,
+	coreI18n,
+	i18n,
+	onUpdate,
+	regionRows
+}: any): JSX.Element => {
+	const regionPluginRows = regionRows.map(({ index, id, title }: any) => ({
+		value: id,
+		label: `${i18n.row} #${index + 1}: ${title}`
+	}));
 
 	const regionPluginRowsExist = regionPluginRows.length > 0;
 
@@ -45,13 +57,7 @@ const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, o
 			return null;
 		}
 
-		return (
-			<Dropdown
-				value={data.targetRowId}
-				onChange={onChangeTargetRow}
-				options={regionPluginRows}
-			/>
-		);
+		return <Dropdown value={data.targetRowId} onChange={onChangeTargetRow} options={regionPluginRows} />;
 	};
 
 	const getCountryPluginsList = (): React.ReactNode => {
@@ -80,9 +86,7 @@ const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, o
 			<div style={{ maxWidth: 500 }}>
 				<DialogTitle onClose={onClose}>{i18n.selectCities}</DialogTitle>
 				<DialogContent dividers>
-					<div>
-						{i18n.explanation}
-					</div>
+					<div>{i18n.explanation}</div>
 
 					<h3>{i18n.source}</h3>
 
@@ -115,14 +119,24 @@ const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, o
 					{getCountryPluginsList()}
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
+					<Button onClick={onClose} color="primary" variant="outlined">
+						{coreI18n.close}
+					</Button>
 				</DialogActions>
 			</div>
 		</Dialog>
 	);
 };
 
-export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regionRows }: DTOptionsProps): JSX.Element => {
+export const Options = ({
+	id,
+	data,
+	coreI18n,
+	i18n,
+	countryI18n,
+	onUpdate,
+	regionRows
+}: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 	const numSelected = data.selectedCountries.length;
 
@@ -143,11 +157,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regio
 
 	return (
 		<div className={styles.buttonLabel}>
-			<Button
-				onClick={(): void => setDialogVisibility(true)}
-				variant="outlined"
-				color="primary"
-				size="small">
+			<Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
 				<span dangerouslySetInnerHTML={{ __html: label }} />
 			</Button>
 			<CityDialog

@@ -1,7 +1,7 @@
-@import "../../styles/variables";
+@import '../../styles/variables';
 
 .header {
-	background-image: url("./images/bg.png");
+	background-image: url('./images/bg.png');
 	padding: 0 10px;
 	height: 60px;
 	display: flex;
@@ -69,7 +69,8 @@
 			transition: border 150ms ease-in-out;
 			text-overflow: ellipsis;
 
-			&:hover, &:focus {
+			&:hover,
+			&:focus {
 				border: 1px solid $primary-color;
 				text-overflow: inherit;
 			}
@@ -94,14 +95,16 @@
 	margin-right: 20px;
 	animation: fadein 1s;
 
-	li, a {
+	li,
+	a {
 		color: #2e3d4e;
 		cursor: pointer;
 		font-size: 13px;
-		transition: color .1s ease-in-out;
+		transition: color 0.1s ease-in-out;
 		text-decoration: none;
 
-		a:hover, &:hover {
+		a:hover,
+		&:hover {
 			color: $primary-color;
 			text-decoration: none;
 		}
@@ -148,7 +151,7 @@ div ul {
 	}
 
 	.flags {
-		background-image: url("./images/flags.png");
+		background-image: url('./images/flags.png');
 		background-repeat: no-repeat;
 		background-size: 120px;
 		flex: 1;
@@ -170,8 +173,11 @@ div.selectedLocale {
 	}
 }
 
-
 @keyframes fadein {
-	from { opacity: 0; }
-	to   { opacity: 1; }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

@@ -19,7 +19,6 @@ describe('accounts section', () => {
 	});
 
 	it('updates an account', () => {
-
 		// check default account info state
 		expect(selectors.getFirstName(store.getState())).toEqual('');
 		expect(selectors.getLastName(store.getState())).toEqual('');
@@ -27,14 +26,16 @@ describe('accounts section', () => {
 		expect(selectors.getCountry(store.getState())).toEqual('');
 		expect(selectors.getRegion(store.getState())).toEqual('');
 
-		store.dispatch(actions.updateAccount({
-			firstName: 'Tom',
-			lastName: 'Jones',
-			email: 'tom@jones.net',
-			country: 'Canada',
-			region: 'British Columbia',
-			numRowsGenerated: 100
-		}));
+		store.dispatch(
+			actions.updateAccount({
+				firstName: 'Tom',
+				lastName: 'Jones',
+				email: 'tom@jones.net',
+				country: 'Canada',
+				region: 'British Columbia',
+				numRowsGenerated: 100
+			})
+		);
 
 		// check nothing has been changed in the main state for the user
 		expect(selectors.getFirstName(store.getState())).toEqual('');
@@ -53,14 +54,16 @@ describe('accounts section', () => {
 	});
 
 	it('cancelling changes resets back to default values', () => {
-		store.dispatch(actions.updateAccount({
-			firstName: 'Tom',
-			lastName: 'Jones',
-			email: 'tom@jones.net',
-			country: 'Canada',
-			region: 'British Columbia',
-			numRowsGenerated: 100
-		}));
+		store.dispatch(
+			actions.updateAccount({
+				firstName: 'Tom',
+				lastName: 'Jones',
+				email: 'tom@jones.net',
+				country: 'Canada',
+				region: 'British Columbia',
+				numRowsGenerated: 100
+			})
+		);
 
 		const editingData = selectors.getEditingData(store.getState());
 		expect(editingData.firstName).toEqual('Tom');
@@ -80,14 +83,16 @@ describe('accounts section', () => {
 	});
 
 	it('updating the account moves the editing data to the final values', () => {
-		store.dispatch(actions.updateAccount({
-			firstName: 'Tom',
-			lastName: 'Jones',
-			email: 'tom@jones.net',
-			country: 'Canada',
-			region: 'British Columbia',
-			numRowsGenerated: 100
-		}));
+		store.dispatch(
+			actions.updateAccount({
+				firstName: 'Tom',
+				lastName: 'Jones',
+				email: 'tom@jones.net',
+				country: 'Canada',
+				region: 'British Columbia',
+				numRowsGenerated: 100
+			})
+		);
 
 		expect(selectors.getFirstName(store.getState())).toEqual('');
 		expect(selectors.getLastName(store.getState())).toEqual('');
@@ -127,22 +132,24 @@ describe('accounts section', () => {
 	});
 
 	it('auth data gets set', () => {
-		store.dispatch(setAuthenticationData({
-			authMethod: AuthMethod.google,
-			token: '123456',
-			accountId: 5,
-			firstName: 'Jim',
-			lastName: 'Beam',
-			email: 'jim@beam.net',
-			country: 'United States',
-			region: 'Montana',
-			profileImage: 'image-here.jpg',
-			expiryDate: '1000010101001',
-			dateCreated: '1000010101001',
-			accountType: 'admin',
-			accountStatus: AccountStatus.live,
-			numRowsGenerated: 50000
-		}));
+		store.dispatch(
+			setAuthenticationData({
+				authMethod: AuthMethod.google,
+				token: '123456',
+				accountId: 5,
+				firstName: 'Jim',
+				lastName: 'Beam',
+				email: 'jim@beam.net',
+				country: 'United States',
+				region: 'Montana',
+				profileImage: 'image-here.jpg',
+				expiryDate: '1000010101001',
+				dateCreated: '1000010101001',
+				accountType: 'admin',
+				accountStatus: AccountStatus.live,
+				numRowsGenerated: 50000
+			})
+		);
 
 		expect(selectors.getFirstName(store.getState())).toEqual('Jim');
 		expect(selectors.getLastName(store.getState())).toEqual('Beam');
@@ -155,14 +162,16 @@ describe('accounts section', () => {
 	});
 
 	it('logging out clears the pertinent account info', () => {
-		store.dispatch(actions.updateAccount({
-			firstName: 'Tom',
-			lastName: 'Jones',
-			email: 'tom@jones.net',
-			country: 'Canada',
-			region: 'British Columbia',
-			numRowsGenerated: 100
-		}));
+		store.dispatch(
+			actions.updateAccount({
+				firstName: 'Tom',
+				lastName: 'Jones',
+				email: 'tom@jones.net',
+				country: 'Canada',
+				region: 'British Columbia',
+				numRowsGenerated: 100
+			})
+		);
 
 		store.dispatch({ type: LOGOUT });
 
@@ -172,5 +181,4 @@ describe('accounts section', () => {
 		expect(selectors.getCountry(store.getState())).toEqual('');
 		expect(selectors.getRegion(store.getState())).toEqual('');
 	});
-
 });

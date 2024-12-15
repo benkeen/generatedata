@@ -18,9 +18,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountsPageProps> => (
 	onDestroy: (): any => dispatch(accountActions.onCleanupAccountsPage())
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(AccountsPage);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(AccountsPage);
 
 export default withAuth(container);

@@ -5,19 +5,19 @@ limit is your imagination. (It's late, I can't believe I just typed that).
 
 ## Typings
 
-The `settings` value for the `Alphanumeric` plugin `dataTemplate` entry contains a single `value` property, which is a 
+The `settings` value for the `Alphanumeric` plugin `dataTemplate` entry contains a single `value` property, which is a
 string containing whatever placeholder characters you want. See the Examples section below to see how it all fits
 together.
 
 ```typescript
 {
-    value: string;
+	value: string;
 }
 ```
 
 ## Placeholders
 
-These are the available placeholders. Any character not specified here will be output as-is. 
+These are the available placeholders. Any character not specified here will be output as-is.
 
 ```
 C, c, E - any consonant (upper case, lower case, any)
@@ -51,10 +51,9 @@ H       - 0-F (hexidecimal value)
 - [US zip code](#us-zip-code)
 - [Tag numbers](#tag-numbers)
 
-
 ### US zip code
 
-Note, this can actually be produced more accurately with the [Postal/Zip](../PostalZip/README.md) Data Type. This is just 
+Note, this can actually be produced more accurately with the [Postal/Zip](../PostalZip/README.md) Data Type. This is just
 for illustration purposes.
 
 ```javascript

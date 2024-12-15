@@ -14,7 +14,7 @@ const mapStateToProps = (state: any): Partial<ExportTypeTabProps> => {
 		exportTypeI18n = exportTypeI18n[exportType];
 	}
 	const exportTypeSettings = selectors.getExportTypeSettings(state);
-	const settings = (exportTypeSettings[exportType]) ? exportTypeSettings[exportType] : {};
+	const settings = exportTypeSettings[exportType] ? exportTypeSettings[exportType] : {};
 
 	return {
 		exportType,
@@ -31,7 +31,4 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<ExportTypeTabProps> => 
 	onUpdate: (data: any): any => dispatch(actions.configureExportType(data))
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ExportTypeTab);
+export default connect(mapStateToProps, mapDispatchToProps)(ExportTypeTab);

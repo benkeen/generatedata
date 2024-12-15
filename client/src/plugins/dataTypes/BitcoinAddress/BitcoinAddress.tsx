@@ -14,7 +14,7 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
 		onUpdate({
 			...data,
 			[format]: {
-				...data[format ],
+				...data[format],
 				enabled: checked
 			}
 		});
@@ -54,9 +54,9 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
 								<td className={styles.labelCol}>
 									<CheckboxPill
 										label="P2PKH / Legacy"
-										onClick={(): void => (
+										onClick={(): void =>
 											onToggleFormat(BitcoinAddressFormat.Legacy, !data[BitcoinAddressFormat.Legacy].enabled)
-										)}
+										}
 										name={`format-${id}`}
 										checked={data[BitcoinAddressFormat.Legacy].enabled}
 									/>
@@ -77,7 +77,12 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
 								<td className={styles.labelCol}>
 									<CheckboxPill
 										label="P2SH / Compatibility"
-										onClick={(): void => onToggleFormat(BitcoinAddressFormat.Compatibility, !data[BitcoinAddressFormat.Compatibility].enabled)}
+										onClick={(): void =>
+											onToggleFormat(
+												BitcoinAddressFormat.Compatibility,
+												!data[BitcoinAddressFormat.Compatibility].enabled
+											)
+										}
 										name={`format-${id}`}
 										checked={data[BitcoinAddressFormat.Compatibility].enabled}
 									/>
@@ -90,7 +95,9 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
 										value={data[BitcoinAddressFormat.Compatibility].weight}
 										style={{ width: 60 }}
 										disabled={!data[BitcoinAddressFormat.Compatibility].enabled}
-										onChange={(e: any): void => onChangeWeight(BitcoinAddressFormat.Compatibility, parseInt(e.target.value))}
+										onChange={(e: any): void =>
+											onChangeWeight(BitcoinAddressFormat.Compatibility, parseInt(e.target.value))
+										}
 									/>
 								</td>
 							</tr>
@@ -98,7 +105,9 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
 								<td className={styles.labelCol}>
 									<CheckboxPill
 										label="P2WPKH / Bech32"
-										onClick={(): void => onToggleFormat(BitcoinAddressFormat.Segwit, !data[BitcoinAddressFormat.Segwit].enabled)}
+										onClick={(): void =>
+											onToggleFormat(BitcoinAddressFormat.Segwit, !data[BitcoinAddressFormat.Segwit].enabled)
+										}
 										name={`format-${id}`}
 										checked={data[BitcoinAddressFormat.Segwit].enabled}
 									/>
@@ -119,13 +128,14 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
 					</table>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
+					<Button onClick={onClose} color="primary" variant="outlined">
+						{coreI18n.close}
+					</Button>
 				</DialogActions>
 			</div>
 		</Dialog>
 	);
 };
-
 
 export const Options = ({ data, id, i18n, coreI18n, onUpdate }: DTOptionsProps): JSX.Element | null => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
@@ -148,12 +158,8 @@ export const Options = ({ data, id, i18n, coreI18n, onUpdate }: DTOptionsProps):
 
 	return (
 		<div>
-			<Button
-				onClick={(): void => setDialogVisibility(true)}
-				variant="outlined"
-				color="primary"
-				size="small">
-				<span dangerouslySetInnerHTML={{ __html: buttonLabel }}/>
+			<Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+				<span dangerouslySetInnerHTML={{ __html: buttonLabel }} />
 			</Button>
 			<BitcoinDialog
 				visible={dialogVisible}
@@ -168,10 +174,9 @@ export const Options = ({ data, id, i18n, coreI18n, onUpdate }: DTOptionsProps):
 	);
 };
 
-
 export const getMetadata = (): DTMetadata => ({
 	general: {
-		dataType: 'string',
+		dataType: 'string'
 	},
 	sql: {
 		field: 'varchar(50)',

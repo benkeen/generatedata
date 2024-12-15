@@ -2,19 +2,19 @@ import { shouldGeneratePreviewRows } from '../generator.selectors';
 import { getTestState } from '../../../../../tests/testHelpers';
 import { Store } from '~types/general';
 
-describe("shouldGeneratePreviewRows", () => {
+describe('shouldGeneratePreviewRows', () => {
 	let state: Store;
 	beforeEach(() => {
 		state = getTestState();
 	});
 
-	it("return false when there's no data type rows", () => {
+	it('return false when there\'s no data type rows', () => {
 		state.generator.loadedExportTypes.JSON = true;
 		state.main.localeFileLoaded = true;
 		expect(shouldGeneratePreviewRows(state)).toEqual(false);
 	});
 
-	it("return false when there is a data type but it's not loaded yet", () => {
+	it('return false when there is a data type but it\'s not loaded yet', () => {
 		state.generator.loadedExportTypes.JSON = true;
 		state.main.localeFileLoaded = true;
 		state.generator.rows = {
@@ -30,7 +30,7 @@ describe("shouldGeneratePreviewRows", () => {
 		expect(shouldGeneratePreviewRows(state)).toEqual(false);
 	});
 
-	it("return true when there is a single data type that's been loaded", () => {
+	it('return true when there is a single data type that\'s been loaded', () => {
 		state.generator.loadedExportTypes.JSON = true;
 		state.main.localeFileLoaded = true;
 		state.generator.rows = {
@@ -46,7 +46,7 @@ describe("shouldGeneratePreviewRows", () => {
 		expect(shouldGeneratePreviewRows(state)).toEqual(true);
 	});
 
-	it("with multiple data types only returns true when they're all loaded", () => {
+	it('with multiple data types only returns true when they\'re all loaded', () => {
 		state.generator.loadedExportTypes.JSON = true;
 		state.main.localeFileLoaded = true;
 		state.generator.rows = {
@@ -118,5 +118,4 @@ describe("shouldGeneratePreviewRows", () => {
 		state.generator.loadedDataTypes.Names = true;
 		expect(shouldGeneratePreviewRows(state)).toEqual(false);
 	});
-
 });

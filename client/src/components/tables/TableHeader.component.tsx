@@ -61,11 +61,7 @@ const TableHeader = ({ cols, sortCol, sortDir, onSort }: TableHeaderProps): JSX.
 		);
 	});
 
-	return (
-		<div className={`${styles.row} ${styles.header}`}>
-			{columns}
-		</div>
-	);
+	return <div className={`${styles.row} ${styles.header}`}>{columns}</div>;
 };
 
 export default TableHeader;

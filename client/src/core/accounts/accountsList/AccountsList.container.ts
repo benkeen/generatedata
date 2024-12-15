@@ -26,9 +26,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountsListProps> => (
 	setAccountStatusFilter: (status: AccountStatusFilter): void => dispatch(mainActions.setAccountStatusFilter(status))
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(AccountsList);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(AccountsList);
 
 export default container;

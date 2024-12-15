@@ -63,20 +63,13 @@ function initStore(state: any): any {
 	const packetsPersistConfig = {
 		key: 'packets',
 		storage,
-		blacklist: [
-			'currentPacketId',
-			'packetIds',
-			'packets'
-		]
+		blacklist: ['currentPacketId', 'packetIds', 'packets']
 	};
 
 	const accountPersistConfig = {
 		key: 'account',
 		storage,
-		blacklist: [
-			'yourAccount',
-			'editAccount'
-		]
+		blacklist: ['yourAccount', 'editAccount']
 	};
 
 	const rootReducer = combineReducers({
@@ -91,13 +84,7 @@ function initStore(state: any): any {
 	const store = createStore(
 		persistedRootReducer,
 		state,
-		composeEnhancers(
-			applyMiddleware(
-				thunk,
-				actionsInterceptor
-			),
-			...enhancers
-		)
+		composeEnhancers(applyMiddleware(thunk, actionsInterceptor), ...enhancers)
 	);
 	persistor = persistStore(store);
 

@@ -23,13 +23,7 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 		{ value: 'Down|Up', label: 'Down / Up' }
 	];
 
-	return (
-		<Dropdown
-			value={data.example}
-			onChange={(i: any): void => onChange(i.value)}
-			options={options}
-		/>
-	);
+	return <Dropdown value={data.example} onChange={(i: any): void => onChange(i.value)} options={options} />;
 };
 
 export const Options = ({ coreI18n, data, onUpdate }: DTOptionsProps): JSX.Element => (

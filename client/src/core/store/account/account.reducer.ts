@@ -84,8 +84,8 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case mainActions.SET_AUTHENTICATION_DATA: {
-			const { firstName, lastName, expiryDate, accountType, email, country, region, profileImage,
-				numRowsGenerated } = action.payload;
+			const { firstName, lastName, expiryDate, accountType, email, country, region, profileImage, numRowsGenerated } =
+				action.payload;
 			draft.firstName = firstName;
 			draft.lastName = lastName;
 			draft.email = email;
@@ -117,7 +117,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				expiryDate: undefined,
 				disabled: undefined,
 				accountId: undefined,
-				status: undefined,
+				status: undefined
 			};
 			break;
 
@@ -162,7 +162,8 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case actions.ON_EDIT_ACCOUNT:
-			const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate, numRowsGenerated } = action.payload.accountInfo;
+			const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate, numRowsGenerated } =
+				action.payload.accountInfo;
 
 			draft.selectedAccountsTab = SelectedAccountsTab.editAccount;
 			draft.editingData = {
@@ -183,9 +184,6 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			draft.numRowsGenerated += action.payload.count;
 			break;
 	}
-
 }, initialState);
 
 export default reducer;
-
-

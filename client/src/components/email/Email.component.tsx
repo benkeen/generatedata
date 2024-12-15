@@ -13,7 +13,9 @@ const Email = ({ email, text = '', i18n }: EmailProps): JSX.Element => {
 
 	return (
 		<>
-			<a href={`mailto:${email}`} target="_blank" rel="noreferrer">{textString}</a>
+			<a href={`mailto:${email}`} target="_blank" rel="noreferrer">
+				{textString}
+			</a>
 			<CopyToClipboard
 				className={styles.copy}
 				content={email}

@@ -8,7 +8,4 @@ const mapStateToProps = (state: any): Partial<PageProps> => ({
 
 const mapDispatchToProps = (): Partial<PageProps> => ({});
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Page);
+export default connect(mapStateToProps, mapDispatchToProps)(Page);

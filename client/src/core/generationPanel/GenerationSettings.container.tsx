@@ -25,7 +25,9 @@ const mapStateToProps = (state: any, ownProps: Partial<GenerationSettingsProps>)
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): { dispatch: any } => ({ dispatch });
+const mapDispatchToProps = (dispatch: Dispatch): { dispatch: any } => ({
+	dispatch
+});
 
 const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): GenerationSettingsProps => {
 	const props = {
@@ -43,12 +45,8 @@ const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): Genera
 	return {
 		...props,
 		onAbort: (): GDAction => dispatch(packetActions.abortGeneration(packetId)),
-		onDownload: (): any => dispatch(packetActions.promptToDownload()),
+		onDownload: (): any => dispatch(packetActions.promptToDownload())
 	};
 };
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-	mergeProps
-)(GenerationSettings);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(GenerationSettings);

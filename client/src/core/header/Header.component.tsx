@@ -28,7 +28,15 @@ export type HeaderProps = {
 };
 
 const Header = ({
-	i18n, locale, showLoginDialog, profileImage, isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
+	i18n,
+	locale,
+	showLoginDialog,
+	profileImage,
+	isLoggedIn,
+	onLogout,
+	accountType,
+	isOnloadAuthDetermined,
+	currentPage
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const windowSize = useWindowSize();
@@ -51,13 +59,7 @@ const Header = ({
 						<MenuIcon fontSize="large" />
 					</Button>
 					{isOnloadAuthDetermined && (
-						<Menu
-							id="nav-menu"
-							anchorEl={anchorEl}
-							keepMounted
-							open={Boolean(anchorEl)}
-							onClose={handleClose}
-						>
+						<Menu id="nav-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
 							<MobileLinks
 								locale={locale}
 								profileImage={profileImage}
@@ -75,7 +77,7 @@ const Header = ({
 
 		return (
 			<ul className={styles.headerLinks}>
-				{isOnloadAuthDetermined ?
+				{isOnloadAuthDetermined ? (
 					<HeaderLinks
 						locale={locale}
 						profileImage={profileImage}
@@ -84,8 +86,8 @@ const Header = ({
 						showLoginDialog={showLoginDialog}
 						onLogout={onLogout}
 						i18n={i18n}
-					/> : null
-				}
+					/>
+				) : null}
 			</ul>
 		);
 	};
@@ -106,12 +108,7 @@ const Header = ({
 			<header className={styles.header}>
 				<div style={{ position: 'relative' }}>
 					<h1>
-						<img
-							src="./images/dice80.png"
-							width={40}
-							height={40}
-							alt={i18n.siteLogo}
-						/>
+						<img src="./images/dice80.png" width={40} height={40} alt={i18n.siteLogo} />
 					</h1>
 					<div className={logoClasses}>
 						<img src="./images/logo.png" alt="generatedata.com" />
@@ -119,9 +116,7 @@ const Header = ({
 					<div className={generatorControlsClasses}>
 						<GeneratorControls disabled={generatorControlsDisabled} />
 					</div>
-					<nav>
-						{getNav()}
-					</nav>
+					<nav>{getNav()}</nav>
 				</div>
 			</header>
 			<LoginDialog />

@@ -32,7 +32,16 @@ export type AccountsListProps = {
 	i18n: any;
 };
 
-const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastLoggedIn, expiryDate }: any): JSX.Element => {
+const Row = ({
+	i18n,
+	firstName,
+	lastName,
+	onEdit,
+	onDelete,
+	accountStatus,
+	lastLoggedIn,
+	expiryDate
+}: any): JSX.Element => {
 	let expiryDateVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
 	try {
 		if (expiryDate) {
@@ -55,7 +64,9 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastL
 			<div className={styles.lastLoggedIn}>{lastLoggedInVal}</div>
 			<div className={styles.expiryDate}>{expiryDateVal}</div>
 			<div className={styles.edit}>
-				<Button size="small" type="submit" color="primary" variant="outlined" onClick={onEdit}>{i18n.edit}</Button>
+				<Button size="small" type="submit" color="primary" variant="outlined" onClick={onEdit}>
+					{i18n.edit}
+				</Button>
 			</div>
 			<div className={styles.del} onClick={onDelete}>
 				<HighlightOffIcon />
@@ -64,11 +75,20 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastL
 	);
 };
 
-
 const NUM_PER_PAGE = 10;
 const AccountsList = ({
-	accountsCurrentPage, accountsSortCol, accountsSortDir, accountsFilterStr, accountStatusFilter, onEditAccount,
-	setAccountsSortDir, setAccountsSortCol, setAccountsCurrentPage, setAccountsFilterString, setAccountStatusFilter, i18n
+	accountsCurrentPage,
+	accountsSortCol,
+	accountsSortDir,
+	accountsFilterStr,
+	accountStatusFilter,
+	onEditAccount,
+	setAccountsSortDir,
+	setAccountsSortCol,
+	setAccountsCurrentPage,
+	setAccountsFilterString,
+	setAccountStatusFilter,
+	i18n
 }: AccountsListProps): JSX.Element | null => {
 	const [dialogVisible, setDialogVisible] = useState(false);
 	const [deleteAccountInfo, setDeleteAccountInfo] = useState<any>(null);
@@ -97,7 +117,8 @@ const AccountsList = ({
 	}, [data]);
 
 	const numItemsOnPage = lastData?.accounts?.results?.length || 0;
-	const afterDeletePage = numItemsOnPage === 1 && accountsCurrentPage > 1 ? accountsCurrentPage-1 : accountsCurrentPage;
+	const afterDeletePage =
+		numItemsOnPage === 1 && accountsCurrentPage > 1 ? accountsCurrentPage - 1 : accountsCurrentPage;
 
 	const [deleteAccount] = useMutation(queries.DELETE_ACCOUNT, {
 		refetchQueries: [
@@ -166,21 +187,18 @@ const AccountsList = ({
 
 	let content;
 	if (totalCount === 0) {
-		content = (
-			<div className={`${styles.page} ${sharedStyles.emptyText}`}>
-				{i18n.noAccountsCreated}
-			</div>
-		);
+		content = <div className={`${styles.page} ${sharedStyles.emptyText}`}>{i18n.noAccountsCreated}</div>;
 	} else {
-		const paginationRow = totalCount > NUM_PER_PAGE ? (
-			<div className={styles.paginationRow}>
-				<Pagination
-					numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
-					currentPage={accountsCurrentPage}
-					onChange={(e: any, pageNum: number): void => setAccountsCurrentPage(pageNum)}
-				/>
-			</div>
-		) : null;
+		const paginationRow =
+			totalCount > NUM_PER_PAGE ? (
+				<div className={styles.paginationRow}>
+					<Pagination
+						numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
+						currentPage={accountsCurrentPage}
+						onChange={(e: any, pageNum: number): void => setAccountsCurrentPage(pageNum)}
+					/>
+				</div>
+			) : null;
 
 		content = (
 			<>
@@ -217,10 +235,7 @@ const AccountsList = ({
 	return (
 		<>
 			<div className={styles.filtersRow}>
-				<SearchFilter
-					value={accountsFilterStr}
-					onChange={setAccountsFilterString}
-				/>
+				<SearchFilter value={accountsFilterStr} onChange={setAccountsFilterString} />
 				<Dropdown
 					className={styles.accountsFilter}
 					value={accountStatusFilter}

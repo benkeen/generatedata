@@ -93,7 +93,9 @@
 }
 
 @media (max-width: 720px) {
-	.status, .lastLoggedIn, .expiryDate {
+	.status,
+	.lastLoggedIn,
+	.expiryDate {
 		display: none;
 	}
 

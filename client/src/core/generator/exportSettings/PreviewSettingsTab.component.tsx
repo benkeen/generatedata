@@ -28,19 +28,24 @@ const previewRowOptions = getArrayOfSize(C.MAX_PREVIEW_ROWS - C.MIN_PREVIEW_ROWS
 });
 
 export const PreviewSettingsTab = ({
-	theme, numPreviewRows, showLineNumbers, enableLineWrapping, previewTextSize, onChangeTheme,
-	toggleLineNumbers, toggleLineWrapping, onChangePreviewTextSize, updateNumPreviewRows, i18n
+	theme,
+	numPreviewRows,
+	showLineNumbers,
+	enableLineWrapping,
+	previewTextSize,
+	onChangeTheme,
+	toggleLineNumbers,
+	toggleLineWrapping,
+	onChangePreviewTextSize,
+	updateNumPreviewRows,
+	i18n
 }: PreviewSettingsTabProps): JSX.Element => {
 	return (
 		<div className={styles.tabContent}>
 			<div className={styles.row}>
 				<div className={styles.label}>{i18n.theme}</div>
 				<div className={styles.field}>
-					<Dropdown
-						value={theme}
-						options={C.THEMES}
-						onChange={({ value }: any): void => onChangeTheme(value)}
-					/>
+					<Dropdown value={theme} options={C.THEMES} onChange={({ value }: any): void => onChangeTheme(value)} />
 				</div>
 			</div>
 			<div className={styles.row}>

@@ -1,6 +1,6 @@
-@import "../../styles/variables";
+@import '../../styles/variables';
 
-.errorField>div,
-.errorField:hover>div {
+.errorField > div,
+.errorField:hover > div {
 	border: 1px solid $error;
 }

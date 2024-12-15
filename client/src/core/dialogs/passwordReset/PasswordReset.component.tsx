@@ -17,7 +17,15 @@ export type PasswordResetDialogProps = {
 	i18n: any;
 };
 
-const PasswordResetDialog = ({ visible, onClose, dialogProcessing, onSubmit, showLoginDialog, defaultEmail, i18n }: PasswordResetDialogProps): JSX.Element => {
+const PasswordResetDialog = ({
+	visible,
+	onClose,
+	dialogProcessing,
+	onSubmit,
+	showLoginDialog,
+	defaultEmail,
+	i18n
+}: PasswordResetDialogProps): JSX.Element => {
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');

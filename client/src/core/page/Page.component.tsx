@@ -7,15 +7,13 @@ import * as styles from './Page.scss';
 export type PageProps = {
 	localeFileLoaded: boolean;
 	children: any;
-}
+};
 
 const Page = ({ localeFileLoaded, children }: PageProps): JSX.Element => {
 	const content = localeFileLoaded ? (
 		<>
 			<Header />
-			<div className={styles.content}>
-				{children}
-			</div>
+			<div className={styles.content}>{children}</div>
 			<Footer />
 		</>
 	) : (
@@ -24,11 +22,7 @@ const Page = ({ localeFileLoaded, children }: PageProps): JSX.Element => {
 		</Centered>
 	);
 
-	return (
-		<div className={styles.page}>
-			{content}
-		</div>
-	);
+	return <div className={styles.page}>{content}</div>;
 };
 
 export default Page;

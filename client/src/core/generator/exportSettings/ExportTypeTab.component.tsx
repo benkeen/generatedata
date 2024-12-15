@@ -17,9 +17,14 @@ export type ExportTypeTabProps = {
 };
 
 export const ExportTypeTab = ({
-	exportType, i18n, exportTypeI18n, onChangeExportType, SettingsComponent, onUpdate, exportTypeSettings
+	exportType,
+	i18n,
+	exportTypeI18n,
+	onChangeExportType,
+	SettingsComponent,
+	onUpdate,
+	exportTypeSettings
 }: ExportTypeTabProps): JSX.Element => {
-
 	let spinnerStyles = styles.spinner;
 	if (SettingsComponent) {
 		spinnerStyles += ` ${styles.fadeOut}`;
@@ -42,13 +47,15 @@ export const ExportTypeTab = ({
 			</div>
 
 			<div className="tour-exportTypeSettings">
-				{SettingsComponent ? <SettingsComponent
-					id={`exportTypeSettings-${exportType}`}
-					coreI18n={i18n}
-					i18n={exportTypeI18n}
-					onUpdate={onUpdate}
-					data={exportTypeSettings}
-				/> : null}
+				{SettingsComponent ? (
+					<SettingsComponent
+						id={`exportTypeSettings-${exportType}`}
+						coreI18n={i18n}
+						i18n={exportTypeI18n}
+						onUpdate={onUpdate}
+						data={exportTypeSettings}
+					/>
+				) : null}
 			</div>
 			<MediumSpinner className={spinnerStyles} />
 		</div>

@@ -29,7 +29,15 @@ export type GeneratorControlsProps = {
 };
 
 const GeneratorControls = ({
-	i18n, isLoggedIn, dataSet, onUpdate, onSaveDataSet, onSaveAs, onClearGrid, onShowHistory, disabled,
+	i18n,
+	isLoggedIn,
+	dataSet,
+	onUpdate,
+	onSaveDataSet,
+	onSaveAs,
+	onClearGrid,
+	onShowHistory,
+	disabled,
 	showClearPageDialog
 }: GeneratorControlsProps): JSX.Element => {
 	const popoverRef = useRef(null);
@@ -50,9 +58,7 @@ const GeneratorControls = ({
 	}, [dataSetName]);
 
 	const [deleteDataSet] = useMutation(queries.DELETE_DATA_SET, {
-		refetchQueries: [
-			{ query: queries.GET_DATA_SETS }
-		],
+		refetchQueries: [{ query: queries.GET_DATA_SETS }],
 		onCompleted: () => {
 			setDeleteDialogVisibility(false);
 			onClearGrid();
@@ -125,7 +131,8 @@ const GeneratorControls = ({
 									onClick={(): any => {
 										setMenuVisibility(false);
 										onSaveAs();
-									}}>
+									}}
+								>
 									<ListItemText primary={i18n.saveAs} />
 								</ListItem>
 								<ListItem
@@ -134,7 +141,8 @@ const GeneratorControls = ({
 									onClick={(): any => {
 										setMenuVisibility(false);
 										setDeleteDialogVisibility(true);
-									}}>
+									}}
+								>
 									<ListItemText primary={i18n.delete} />
 								</ListItem>
 								<ListItem
@@ -143,7 +151,8 @@ const GeneratorControls = ({
 									onClick={(): void => {
 										setMenuVisibility(false);
 										onShowHistory();
-									}}>
+									}}
+								>
 									<ListItemText primary={i18n.history} />
 								</ListItem>
 							</List>
@@ -155,7 +164,8 @@ const GeneratorControls = ({
 									onClick={(): any => {
 										setMenuVisibility(false);
 										showClearPageDialog();
-									}}>
+									}}
+								>
 									<ListItemText primary={i18n.newDataSet} />
 								</ListItem>
 							</List>
@@ -163,7 +173,12 @@ const GeneratorControls = ({
 					}
 				>
 					<span>
-						<IconButton size="small" aria-label={i18n.dataSetOptions} disabled={disabled} onClick={(): void => setMenuVisibility(true)}>
+						<IconButton
+							size="small"
+							aria-label={i18n.dataSetOptions}
+							disabled={disabled}
+							onClick={(): void => setMenuVisibility(true)}
+						>
 							<ArrowDropDownIcon fontSize="large" />
 						</IconButton>
 					</span>
@@ -187,10 +202,7 @@ const GeneratorControls = ({
 
 	return (
 		<>
-			<Measure
-				bounds
-				onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
-			>
+			<Measure bounds onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}>
 				{({ measureRef }): any => (
 					<div ref={measureRef} style={{ display: 'flex' }}>
 						<AutoSizer
@@ -213,11 +225,13 @@ const GeneratorControls = ({
 			<DeleteDataSetDialog
 				visible={dialogVisible}
 				onClose={(): void => setDeleteDialogVisibility(false)}
-				onDelete={(): any => deleteDataSet({
-					variables: {
-						dataSetId
-					}
-				})}
+				onDelete={(): any =>
+					deleteDataSet({
+						variables: {
+							dataSetId
+						}
+					})
+				}
 				i18n={i18n}
 			/>
 		</>

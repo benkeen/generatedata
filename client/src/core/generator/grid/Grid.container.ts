@@ -19,9 +19,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
 	showHelpDialog: (dataType: DataTypeFolder): any => dispatch(actions.showHelpDialog(dataType))
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Grid);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(Grid);
 
 export default container;

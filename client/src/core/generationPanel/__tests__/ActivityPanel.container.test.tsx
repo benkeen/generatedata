@@ -4,9 +4,7 @@ import { renderWithStoreAndRouter } from '../../../../tests/testHelpers';
 
 describe('ActivityPanel', () => {
 	it('renders', () => {
-		const { baseElement } = renderWithStoreAndRouter(
-			<ActivityPanel />
-		);
+		const { baseElement } = renderWithStoreAndRouter(<ActivityPanel />);
 
 		expect(baseElement.querySelector('div')).toBeTruthy();
 	});

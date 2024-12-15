@@ -6,7 +6,7 @@ import CheckBox from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 import SwapHoriz from '@material-ui/icons/SwapHoriz';
 import SwapVert from '@material-ui/icons/SwapVert';
-import CodeIcon from "@material-ui/icons/Code";
+import CodeIcon from '@material-ui/icons/Code';
 import { toSentenceCase } from '~utils/stringUtils';
 import { Tooltip } from '~components/tooltips';
 import { GeneratorLayout } from '../Generator.component';
@@ -27,8 +27,16 @@ export type PanelControlsProps = {
 };
 
 export const PanelControls = ({
-	className, toggleGrid, togglePreview, toggleLayout, showClearPageDialog, isGridVisible, isPreviewVisible,
-	generatorLayout, showDataTemplateDialog, i18n
+	className,
+	toggleGrid,
+	togglePreview,
+	toggleLayout,
+	showClearPageDialog,
+	isGridVisible,
+	isPreviewVisible,
+	generatorLayout,
+	showDataTemplateDialog,
+	i18n
 }: PanelControlsProps): JSX.Element => {
 	const toggleLayoutEnabled = isGridVisible && isPreviewVisible;
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
@@ -51,10 +59,12 @@ export const PanelControls = ({
 	const getToggleLayoutBtn = (): JSX.Element => {
 		if (toggleLayoutEnabled) {
 			return (
-				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.togglePanelLayout }}/>}
-					 arrow
-					 disableHoverListener={!toggleLayoutEnabled}
-					 disableFocusListener={!toggleLayoutEnabled}>
+				<Tooltip
+					title={<span dangerouslySetInnerHTML={{ __html: i18n.togglePanelLayout }} />}
+					arrow
+					disableHoverListener={!toggleLayoutEnabled}
+					disableFocusListener={!toggleLayoutEnabled}
+				>
 					<Button onClick={toggleLayout} disabled={!toggleLayoutEnabled} className={styles.toggleLayoutBtn}>
 						<ToggleDirectionIcon />
 					</Button>
@@ -63,7 +73,11 @@ export const PanelControls = ({
 		}
 
 		return (
-			<Button onClick={toggleLayout} disabled={!toggleLayoutEnabled} className={`${styles.toggleLayoutBtn} ${styles.toggleLayoutBtnDisabled}`}>
+			<Button
+				onClick={toggleLayout}
+				disabled={!toggleLayoutEnabled}
+				className={`${styles.toggleLayoutBtn} ${styles.toggleLayoutBtnDisabled}`}
+			>
 				<ToggleDirectionIcon />
 			</Button>
 		);
@@ -76,7 +90,11 @@ export const PanelControls = ({
 
 		return (
 			<ButtonGroup aria-label="" size="small" className={`${className} ${styles.dataTemplateControls}`}>
-				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: 'Export / import template' }}/>} placement="bottom" arrow>
+				<Tooltip
+					title={<span dangerouslySetInnerHTML={{ __html: 'Export / import template' }} />}
+					placement="bottom"
+					arrow
+				>
 					<Button onClick={showDataTemplateDialog} startIcon={<CodeIcon />} />
 				</Tooltip>
 			</ButtonGroup>
@@ -87,19 +105,28 @@ export const PanelControls = ({
 		<>
 			<ButtonGroup aria-label="" size="small" className={`${className} ${styles.builderControls}`}>
 				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowGrid }} />} arrow>
-					<Button className={gridBtnClasses} onClick={toggleGrid} startIcon={<GridIcon fontSize="small"/>}>
+					<Button className={gridBtnClasses} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>
 						{i18n.grid}
 					</Button>
 				</Tooltip>
 				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowPreviewPanel }} />} arrow>
-					<Button className={previewBtnClasses} onClick={togglePreview} startIcon={<PreviewIcon/>}>
+					<Button className={previewBtnClasses} onClick={togglePreview} startIcon={<PreviewIcon />}>
 						{i18n.preview}
 					</Button>
 				</Tooltip>
 				{getToggleLayoutBtn()}
-				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: toSentenceCase(i18n.clearPage) }} />} arrow>
+				<Tooltip
+					title={
+						<span
+							dangerouslySetInnerHTML={{
+								__html: toSentenceCase(i18n.clearPage)
+							}}
+						/>
+					}
+					arrow
+				>
 					<Button onClick={showClearPageDialog}>
-						<Delete/>
+						<Delete />
 					</Button>
 				</Tooltip>
 			</ButtonGroup>

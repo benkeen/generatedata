@@ -4,9 +4,7 @@ import { renderWithStoreAndRouter } from '../../../../../tests/testHelpers';
 
 describe('Grid', () => {
 	it('renders', () => {
-		const { baseElement } = renderWithStoreAndRouter(
-			<Grid />
-		);
+		const { baseElement } = renderWithStoreAndRouter(<Grid />);
 
 		expect(baseElement.querySelector('div')).toBeTruthy();
 	});

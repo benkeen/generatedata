@@ -4,9 +4,7 @@ import { renderWithStoreAndRouter } from '../../../../../tests/testHelpers';
 
 describe('ExportSettings', () => {
 	it('renders', () => {
-		const { baseElement } = renderWithStoreAndRouter(
-			<ExportSettings />
-		);
+		const { baseElement } = renderWithStoreAndRouter(<ExportSettings />);
 
 		expect(baseElement.querySelector('div')).toBeTruthy();
 	});

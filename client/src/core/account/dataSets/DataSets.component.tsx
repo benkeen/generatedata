@@ -21,7 +21,9 @@ const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
 		<div className={styles.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated)}</div>
 		<div className={styles.open}>
-			<Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>{i18n.open}</Button>
+			<Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>
+				{i18n.open}
+			</Button>
 		</div>
 		<div className={styles.del} onClick={onDelete}>
 			<HighlightOffIcon />
@@ -63,7 +65,7 @@ const DataSets = ({ onLoadDataSet, locale, i18n, className = '' }: DataSetsProps
 	};
 
 	const numItemsOnPage = data?.dataSets?.results?.length || 0;
-	const afterDeletePage = numItemsOnPage === 1 ? currentPage-1 : currentPage;
+	const afterDeletePage = numItemsOnPage === 1 ? currentPage - 1 : currentPage;
 
 	const [deleteDataSet] = useMutation(queries.DELETE_DATA_SET, {
 		refetchQueries: [
@@ -97,22 +99,21 @@ const DataSets = ({ onLoadDataSet, locale, i18n, className = '' }: DataSetsProps
 	if (totalCount === 0) {
 		return (
 			<section className={`${className} ${styles.page}`}>
-				<div className={sharedStyles.emptyText}>
-					{i18n.noDataSetsSaved}
-				</div>
+				<div className={sharedStyles.emptyText}>{i18n.noDataSetsSaved}</div>
 			</section>
 		);
 	}
 
-	const paginationRow = totalCount > NUM_PER_PAGE ? (
-		<div className={styles.paginationRow}>
-			<Pagination
-				numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
-				currentPage={currentPage}
-				onChange={(e: any, pageNum: number): void => setCurrentPage(pageNum)}
-			/>
-		</div>
-	) : null;
+	const paginationRow =
+		totalCount > NUM_PER_PAGE ? (
+			<div className={styles.paginationRow}>
+				<Pagination
+					numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
+					currentPage={currentPage}
+					onChange={(e: any, pageNum: number): void => setCurrentPage(pageNum)}
+				/>
+			</div>
+		) : null;
 
 	const cols = [
 		{
@@ -134,7 +135,7 @@ const DataSets = ({ onLoadDataSet, locale, i18n, className = '' }: DataSetsProps
 			sortable: true
 		},
 		{ label: i18n.open, className: styles.open },
-		{ label: '', className: styles.del },
+		{ label: '', className: styles.del }
 	];
 
 	return (
@@ -169,11 +170,13 @@ const DataSets = ({ onLoadDataSet, locale, i18n, className = '' }: DataSetsProps
 				visible={dialogVisible}
 				dataSetName={selectedDataSet ? selectedDataSet.dataSetName : null}
 				onClose={(): void => setDeleteDialogVisibility(false)}
-				onDelete={(): any => deleteDataSet({
-					variables: {
-						dataSetId: selectedDataSet!.dataSetId
-					}
-				})}
+				onDelete={(): any =>
+					deleteDataSet({
+						variables: {
+							dataSetId: selectedDataSet!.dataSetId
+						}
+					})
+				}
 				i18n={i18n}
 			/>
 		</>

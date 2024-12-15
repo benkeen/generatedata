@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import sinon from 'sinon';
 import { render, fireEvent } from '@testing-library/react';
 import { Options, Help, Example } from '../Alphanumeric';
@@ -23,13 +23,7 @@ describe('Example', () => {
 
 		const data = { ...initialState };
 		const onUpdate = jest.fn();
-		const { container } = render(
-			<Example
-				{...defaultProps}
-				data={data}
-				onUpdate={onUpdate}
-			/>
-		);
+		const { container } = render(<Example {...defaultProps} data={data} onUpdate={onUpdate} />);
 		expect(container).toBeTruthy();
 	});
 });
@@ -38,14 +32,7 @@ describe('Options', () => {
 	it('changing the content should call callback', () => {
 		const data = { ...initialState };
 		const onUpdate = jest.fn();
-		const { container } = render(
-			<Options
-				{...defaultProps}
-				data={data}
-				onUpdate={onUpdate}
-				throttle={false}
-			/>
-		);
+		const { container } = render(<Options {...defaultProps} data={data} onUpdate={onUpdate} throttle={false} />);
 		const field = container.querySelector('input');
 
 		// @ts-ignore
@@ -64,7 +51,7 @@ describe('Options', () => {
 
 describe('Help', () => {
 	it('renders', () => {
-		const { container } = render(<Help {...defaultProps}/>);
+		const { container } = render(<Help {...defaultProps} />);
 		expect(container).toBeTruthy();
 	});
 });

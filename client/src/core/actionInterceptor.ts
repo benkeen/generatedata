@@ -23,32 +23,35 @@ export const registerInterceptors = (dataType: DataTypeFolder, interceptors: DTA
 };
 
 export const getActionInterceptors = (action: string): DTInterceptorSingleAction[] => {
-	return actionInterceptors[action] ? actionInterceptors[action]: [];
+	return actionInterceptors[action] ? actionInterceptors[action] : [];
 };
 
-const actionInterceptor = (store: Store) => (next: any): any => (action: any): any => {
-	// returns all interceptors for the current action
-	const interceptors = action && action.type ? getActionInterceptors(action.type) : [];
+const actionInterceptor =
+	(store: Store) =>
+		(next: any): any =>
+			(action: any): any => {
+				// returns all interceptors for the current action
+				const interceptors = action && action.type ? getActionInterceptors(action.type) : [];
 
-	if (interceptors.length) {
-		const rows = getRows(store.getState());
-		interceptors.forEach(({ dataType, interceptor }) => {
-			Object.keys(rows).forEach((rowId: string) => {
-				const row: DataRow = rows[rowId];
-				if (row.dataType === dataType) {
-					const result = interceptor(rowId, row.data, action.payload);
-					if (result) {
-						// TODO note: interceptors don't currently support options metadata. e.g. the Names DataType
-						// onUpdate() returns both the new row state, but also some metadata that tells the core
-						// script to load the country names. Hence the `undefined` 3rd param here.
-						store.dispatch(onConfigureDataType(rowId, result, undefined, true));
-					}
+				if (interceptors.length) {
+					const rows = getRows(store.getState());
+					interceptors.forEach(({ dataType, interceptor }) => {
+						Object.keys(rows).forEach((rowId: string) => {
+							const row: DataRow = rows[rowId];
+							if (row.dataType === dataType) {
+								const result = interceptor(rowId, row.data, action.payload);
+								if (result) {
+									// TODO note: interceptors don't currently support options metadata. e.g. the Names DataType
+									// onUpdate() returns both the new row state, but also some metadata that tells the core
+									// script to load the country names. Hence the `undefined` 3rd param here.
+									store.dispatch(onConfigureDataType(rowId, result, undefined, true));
+								}
+							}
+						});
+					});
 				}
-			});
-		});
-	}
 
-	return next(action);
-};
+				return next(action);
+			};
 
 export default actionInterceptor;

@@ -179,7 +179,6 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			draft.accountStatusFilter = action.payload.status;
 			break;
 	}
-
 }, initialState);
 
 export default reducer;

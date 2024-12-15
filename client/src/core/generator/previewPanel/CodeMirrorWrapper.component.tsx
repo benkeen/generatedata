@@ -20,8 +20,15 @@ export type CodeMirrorWrapperProps = {
 
 const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
 	const {
-		previewRows, columns, exportTypeSettings, codeMirrorMode, theme, showLineNumbers, generatorLayout,
-		enableLineWrapping, exportTypeWorkerUrl
+		previewRows,
+		columns,
+		exportTypeSettings,
+		codeMirrorMode,
+		theme,
+		showLineNumbers,
+		generatorLayout,
+		enableLineWrapping,
+		exportTypeWorkerUrl
 	} = props;
 	const [code, setCode] = React.useState('');
 	const [codeMirrorInstance, setCodeMirrorInstance] = React.useState<any>(null);
@@ -30,10 +37,9 @@ const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
 		if (!columns.length || !previewRows.length) {
 			return;
 		}
-		generatePreviewString(props)
-			.then((str: string) => {
-				setCode(str);
-			});
+		generatePreviewString(props).then((str: string) => {
+			setCode(str);
+		});
 	}, [previewRows, columns, exportTypeWorkerUrl, exportTypeSettings]);
 
 	useEffect(() => {
@@ -65,23 +71,28 @@ export const generatePreviewString = (props: any): Promise<any> => {
 	const generationWorker = coreUtils.getGenerationWorker('preview');
 
 	return new Promise((resolve) => {
-		coreUtils.performTask('exportTypeWorker', generationWorker, {
-			action: GenerationWorkerActionType.ProcessExportTypeOnly,
-			isFirstBatch: true,
-			isLastBatch: true,
-			batchSize: C.GENERATION_BATCH_SIZE,
-			currentBatch: 1,
-			rows: previewRows,
-			columns,
-			exportTypeSettings,
-			stripWhitespace: false,
-			workerUtilsUrl: coreUtils.getWorkerUtilsUrl(),
-			exportTypeWorkerUrl,
-			countryData: getCountryData()
-		}, ({ data }: MessageEvent): void => {
-			if (data.event === GenerationWorkerActionType.ExportTypeProcessed) {
-				resolve(data.data);
+		coreUtils.performTask(
+			'exportTypeWorker',
+			generationWorker,
+			{
+				action: GenerationWorkerActionType.ProcessExportTypeOnly,
+				isFirstBatch: true,
+				isLastBatch: true,
+				batchSize: C.GENERATION_BATCH_SIZE,
+				currentBatch: 1,
+				rows: previewRows,
+				columns,
+				exportTypeSettings,
+				stripWhitespace: false,
+				workerUtilsUrl: coreUtils.getWorkerUtilsUrl(),
+				exportTypeWorkerUrl,
+				countryData: getCountryData()
+			},
+			({ data }: MessageEvent): void => {
+				if (data.event === GenerationWorkerActionType.ExportTypeProcessed) {
+					resolve(data.data);
+				}
 			}
-		});
+		);
 	});
 };

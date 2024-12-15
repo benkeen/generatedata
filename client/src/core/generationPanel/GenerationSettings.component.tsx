@@ -33,8 +33,19 @@ export type GenerationSettingsProps = {
 };
 
 const GenerationSettingsPanel = ({
-	visible, isLoggedIn, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate,
-	onToggleStripWhitespace, onGenerate, isGenerating, packet, onAbort, onDownload
+	visible,
+	isLoggedIn,
+	onClose,
+	i18n,
+	stripWhitespace,
+	numRowsToGenerate,
+	onChangeNumRowsToGenerate,
+	onToggleStripWhitespace,
+	onGenerate,
+	isGenerating,
+	packet,
+	onAbort,
+	onDownload
 }: GenerationSettingsProps): JSX.Element => {
 	let error = '';
 
@@ -49,9 +60,7 @@ const GenerationSettingsPanel = ({
 			return null;
 		}
 
-		return (
-			<Engine />
-		);
+		return <Engine />;
 	};
 
 	const getGenerationOverlay = (): JSX.Element | null => {
@@ -105,14 +114,20 @@ const GenerationSettingsPanel = ({
 
 			onAbort();
 			onClose();
-			generationWorker.postMessage({ action: GenerationWorkerActionType.Abort });
+			generationWorker.postMessage({
+				action: GenerationWorkerActionType.Abort
+			});
 			coreUtils.destroyGenerationWorker(generationWorkerId);
 		} else {
 			onClose();
 		}
 	};
 
-	let cancelButton: any = <Button onClick={closeModal} color="default">{i18n.cancel}</Button>;
+	let cancelButton: any = (
+		<Button onClick={closeModal} color="default">
+			{i18n.cancel}
+		</Button>
+	);
 	if (packet && packet.numGeneratedRows === numRowsToGenerate) {
 		cancelButton = null;
 	}

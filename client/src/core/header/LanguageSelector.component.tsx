@@ -13,7 +13,6 @@ import env from '../../../_env';
 import * as styles from '~core/header/Header.scss';
 import { useHistory } from 'react-router';
 
-
 const allLocaleOptions = Object.keys(env.allSupportedLocales).map((shortCode) => ({
 	value: shortCode,
 	label: env.allSupportedLocales[shortCode as GDLocale]
@@ -27,9 +26,17 @@ export type SelectorDialogProps = {
 	loading: boolean;
 	onExited: () => void;
 	i18n: any;
-}
+};
 
-const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, loading, i18n }: SelectorDialogProps): JSX.Element => {
+const SelectorDialog = ({
+	visible,
+	currentLocale,
+	onSelect,
+	onClose,
+	onExited,
+	loading,
+	i18n
+}: SelectorDialogProps): JSX.Element => {
 	const history = useHistory();
 
 	return (
@@ -41,15 +48,18 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, l
 				</DialogTitle>
 				<DialogContent dividers>
 					<List disablePadding>
-						{allLocaleOptions.map((currLocale: any): JSX.Element => (
-							<ListItem
-								button
-								key={currLocale.value}
-								className={currentLocale === currLocale.value ? styles.selectedLocale : ''}
-								onClick={(): void => onSelect(currLocale.value, history)}>
-								<ListItemText primary={currLocale.label} />
-							</ListItem>
-						))}
+						{allLocaleOptions.map(
+							(currLocale: any): JSX.Element => (
+								<ListItem
+									button
+									key={currLocale.value}
+									className={currentLocale === currLocale.value ? styles.selectedLocale : ''}
+									onClick={(): void => onSelect(currLocale.value, history)}
+								>
+									<ListItemText primary={currLocale.label} />
+								</ListItem>
+							)
+						)}
 					</List>
 				</DialogContent>
 			</div>
@@ -65,9 +75,16 @@ export type LanguageSelectorProps = {
 	availableLocales: GDLocale[];
 	onChangeLocale: (locale: GDLocale, history: any) => void;
 	isLocaleFileLoading: boolean;
-}
+};
 
-const LanguageSelector = ({ locale, isMobile = false, availableLocales, onChangeLocale, isLocaleFileLoading, i18n }: LanguageSelectorProps): JSX.Element | null => {
+const LanguageSelector = ({
+	locale,
+	isMobile = false,
+	availableLocales,
+	onChangeLocale,
+	isLocaleFileLoading,
+	i18n
+}: LanguageSelectorProps): JSX.Element | null => {
 	const [dialogVisible, setSelectorDialogVisible] = React.useState(false);
 	const [lastI18n, setLastI18n] = React.useState(i18n);
 

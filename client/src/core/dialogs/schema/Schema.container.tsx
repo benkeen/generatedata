@@ -15,9 +15,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<SchemaDialogProps> => (
 	onClose: (): any => dispatch(actions.hideSchemaDialog())
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(SchemaDialog);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(SchemaDialog);
 
 export default container;

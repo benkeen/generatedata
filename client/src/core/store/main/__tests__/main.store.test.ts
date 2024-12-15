@@ -40,5 +40,4 @@ describe('accounts section', () => {
 		store.dispatch(actions.setAuthenticated(true));
 		expect(selectors.isLoggedIn(store.getState())).toEqual(true);
 	});
-
 });

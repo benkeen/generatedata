@@ -26,7 +26,7 @@ export type GenerationOptionsType = {
 	format: ColourFormat;
 	luminosity?: LuminosityType;
 	alpha?: number;
-}
+};
 
 export const defaultGenerationOptions: ColourState = {
 	example: 'any',

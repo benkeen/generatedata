@@ -32,9 +32,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<ManageAccountProps> => 
 	onCancel: (): any => dispatch(accountActions.onChangeAccountsTab(SelectedAccountsTab.accounts))
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ManageAccount);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(ManageAccount);
 
 export default container;

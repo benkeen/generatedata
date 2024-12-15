@@ -1,123 +1,130 @@
-const db = require('../../database');
-const authUtils = require('../../utils/authUtils');
+const db = require("../../database");
+const authUtils = require("../../utils/authUtils");
 
-const saveNewDataSet = async (root, { dataSetName, content }, { token, user }) => {
-	authUtils.authenticate(token);
+const saveNewDataSet = async (
+  root,
+  { dataSetName, content },
+  { token, user },
+) => {
+  authUtils.authenticate(token);
 
-	const { accountId } = user;
+  const { accountId } = user;
 
-	const dateCreated = new Date().getTime();
-	const dataSet = await db.dataSets.create({
-		dataSetName,
-		status: 'private',
-		dateCreated,
-		accountId,
-		numRowsGenerated: 0
-	});
+  const dateCreated = new Date().getTime();
+  const dataSet = await db.dataSets.create({
+    dataSetName,
+    status: "private",
+    dateCreated,
+    accountId,
+    numRowsGenerated: 0,
+  });
 
-	const { dataSetId } = dataSet.dataValues;
-	await db.dataSetHistory.create({
-		dataSetId,
-		dateCreated,
-		content
-	});
+  const { dataSetId } = dataSet.dataValues;
+  await db.dataSetHistory.create({
+    dataSetId,
+    dateCreated,
+    content,
+  });
 
-	return {
-		success: true,
-		dataSetId,
-		savedDate: dateCreated
-	};
+  return {
+    success: true,
+    dataSetId,
+    savedDate: dateCreated,
+  };
 };
 
 const renameDataSet = async (root, { dataSetId, dataSetName }, { token }) => {
-	authUtils.authenticate(token);
+  authUtils.authenticate(token);
 
-	// TODO security. Check user can update this data set
+  // TODO security. Check user can update this data set
 
-	const dataSet = await db.dataSets.findByPk(dataSetId);
+  const dataSet = await db.dataSets.findByPk(dataSetId);
 
-	await dataSet.update({ dataSetName });
+  await dataSet.update({ dataSetName });
 
-	return {
-		success: true
-	};
+  return {
+    success: true,
+  };
 };
 
 const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
-	authUtils.authenticate(token);
+  authUtils.authenticate(token);
 
-	// now check the user is able to access and change this data set
-	let hasAccess = false;
+  // now check the user is able to access and change this data set
+  let hasAccess = false;
+  const dataSet = db.dataSets.findByPk(dataSetId);
 
-	if (user.accountType === 'user') {
-		const dataSet = db.dataSets.findByPk(dataSetId);
-		return;
-	}
+  console.log(datSet);
 
-	const dateCreated = new Date().getTime();
-	await db.dataSetHistory.create({
-		dataSetId,
-		dateCreated,
-		content
-	});
+  const dateCreated = new Date().getTime();
+  await db.dataSetHistory.create({
+    dataSetId,
+    dateCreated,
+    content,
+  });
 
-	return {
-		success: true,
-		dataSetId,
-		savedDate: dateCreated
-	};
+  return {
+    success: true,
+    dataSetId,
+    savedDate: dateCreated,
+  };
 };
 
 const deleteDataSet = async (root, { dataSetId, content }, { token, user }) => {
-	if (!authUtils.authenticate(token)) {
-		return { success: false };
-	}
+  if (!authUtils.authenticate(token)) {
+    return { success: false };
+  }
 
-	// TODO check access
+  // TODO check access
 
-	if (user.accountType === 'user') {
-		return;
-	}
+  console.log("????", user);
 
-	db.dataSets.destroy({ where: { dataSetId } });
-	db.dataSetHistory.destroy({ where: { dataSetId } });
+  if (user.accountType === "user") {
+    return;
+  }
 
-	return {
-		success: true
-	};
+  db.dataSets.destroy({ where: { dataSetId } });
+  db.dataSetHistory.destroy({ where: { dataSetId } });
+
+  return {
+    success: true,
+  };
 };
 
-const updateDataSetGenerationCount = async (root, { dataSetId, generatedRows }, { token, user }) => {
-	if (!authUtils.authenticate(token)) {
-		return { success: false };
-	}
+const updateDataSetGenerationCount = async (
+  root,
+  { dataSetId, generatedRows },
+  { token, user },
+) => {
+  if (!authUtils.authenticate(token)) {
+    return { success: false };
+  }
 
-	let addRows = generatedRows;
-	if (/\D/.test(generatedRows)) {
-		addRows = 0;
-	}
+  let addRows = generatedRows;
+  if (/\D/.test(generatedRows)) {
+    addRows = 0;
+  }
 
-	const dataSet = await db.dataSets.findByPk(dataSetId);
-	const { accountId, numRowsGenerated } = dataSet.dataValues;
+  const dataSet = await db.dataSets.findByPk(dataSetId);
+  const { accountId, numRowsGenerated } = dataSet.dataValues;
 
-	if (user.accountId !== accountId) {
-		return { success: false };
-	}
+  if (user.accountId !== accountId) {
+    return { success: false };
+  }
 
-	await dataSet.update({
-		numRowsGenerated: numRowsGenerated + addRows
-	});
+  await dataSet.update({
+    numRowsGenerated: numRowsGenerated + addRows,
+  });
 
-	return {
-		success: true
-	};
+  return {
+    success: true,
+  };
 };
-
 
 module.exports = {
-	saveNewDataSet,
-	saveDataSet,
-	renameDataSet,
-	deleteDataSet,
-	updateDataSetGenerationCount
+  saveNewDataSet,
+  saveDataSet,
+  renameDataSet,
+  deleteDataSet,
+  updateDataSetGenerationCount,
 };

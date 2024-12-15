@@ -6,7 +6,7 @@ const theme = createTheme({
 		fontFamily: '"Open Sans", serif',
 		button: {
 			fontSize: 'inherit'
-		},
+		}
 	},
 	palette: {
 		primary: {

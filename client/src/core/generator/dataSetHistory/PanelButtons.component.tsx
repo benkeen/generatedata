@@ -16,10 +16,7 @@ export const PanelButtons = ({ selectVersion, selectedDataSetHistoryItem, i18n }
 
 	return (
 		<div>
-			<PreviewPanelButton
-				onClick={selectVersion}
-				className={styles.dataSetHistoryBtnClass}
-				disabled={isLatest}>
+			<PreviewPanelButton onClick={selectVersion} className={styles.dataSetHistoryBtnClass} disabled={isLatest}>
 				{i18n.revertToVersion}
 			</PreviewPanelButton>
 		</div>

@@ -4,9 +4,8 @@ import { getSortedRowsArray } from '~store/generator/generator.selectors';
 import { REMOVE_ROW, SELECT_DATA_TYPE } from '~store/generator/generator.actions';
 import { CityState, CityStateRegionRow, RegionSourceEnum } from './City.state';
 
-const getRegionRows = createSelector(
-	getSortedRowsArray,
-	(rows) => rows.map((row, index) => ({ ...row, index })).filter(({ dataType }) => dataType === 'Region')
+const getRegionRows = createSelector(getSortedRowsArray, (rows) =>
+	rows.map((row, index) => ({ ...row, index })).filter(({ dataType }) => dataType === 'Region')
 );
 
 export const customProps: DTCustomProps = {

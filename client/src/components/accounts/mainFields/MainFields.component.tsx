@@ -21,8 +21,16 @@ export type MainFieldsProps = {
 };
 
 const MainFields = ({
-	data, accountHasChanges, updateAccount, onSave, onCancel, submitButtonLabel, i18n, showRequiredFieldError,
-	isAddingUser, className = ''
+	data,
+	accountHasChanges,
+	updateAccount,
+	onSave,
+	onCancel,
+	submitButtonLabel,
+	i18n,
+	showRequiredFieldError,
+	isAddingUser,
+	className = ''
 }: MainFieldsProps): JSX.Element => {
 	const emailFieldRef = useRef(null);
 
@@ -94,8 +102,8 @@ const MainFields = ({
 		onSave();
 	};
 
-	const firstNameError = (showRequiredFieldError && data.firstName.trim() === '') ? i18n.requiredField : '';
-	const lastNameError = (showRequiredFieldError && data.lastName.trim() === '') ? i18n.requiredField : '';
+	const firstNameError = showRequiredFieldError && data.firstName.trim() === '' ? i18n.requiredField : '';
+	const lastNameError = showRequiredFieldError && data.lastName.trim() === '' ? i18n.requiredField : '';
 
 	let cancelLinkClasses = sharedStyles.cancelLink;
 	if (!saveButtonEnabled) {
@@ -155,17 +163,13 @@ const MainFields = ({
 			</div>
 
 			<div>
-				<Button
-					type="submit"
-					color="primary"
-					variant="contained"
-					disableElevation
-					disabled={!saveButtonEnabled}
-				>
+				<Button type="submit" color="primary" variant="contained" disableElevation disabled={!saveButtonEnabled}>
 					{submitButtonLabel}
 				</Button>
 
-				<span onClick={onCancel} className={cancelLinkClasses}>{i18n.cancel}</span>
+				<span onClick={onCancel} className={cancelLinkClasses}>
+					{i18n.cancel}
+				</span>
 			</div>
 		</form>
 	);

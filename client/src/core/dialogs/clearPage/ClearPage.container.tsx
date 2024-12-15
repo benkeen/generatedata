@@ -11,12 +11,9 @@ const mapStateToProps = (state: any): Partial<ClearPageDialogProps> => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<ClearPageDialogProps> => ({
 	onClose: (): any => dispatch(actions.hideClearPageDialog()),
-	onClear: (): any => dispatch(actions.clearPage()),
+	onClear: (): any => dispatch(actions.clearPage())
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ClearPageDialog);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(ClearPageDialog);
 
 export default container;

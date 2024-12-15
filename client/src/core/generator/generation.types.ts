@@ -72,19 +72,19 @@ export type PauseAction = {
 	data: {
 		action: GenerationWorkerActionType.Pause;
 	};
-}
+};
 
 export type AbortAction = {
 	data: {
 		action: GenerationWorkerActionType.Abort;
 	};
-}
+};
 
 export type ContinueAction = {
 	data: {
 		action: GenerationWorkerActionType.Continue;
 	};
-}
+};
 
 export type SetSpeedAction = {
 	data: {
@@ -93,5 +93,11 @@ export type SetSpeedAction = {
 	};
 };
 
-export type GenerationActions = ProcessDataTypesOnlyAction | ProcessExportTypeOnlyAction | GenerateAction |
-	AbortAction | PauseAction | ContinueAction | SetSpeedAction;
+export type GenerationActions =
+	| ProcessDataTypesOnlyAction
+	| ProcessExportTypeOnlyAction
+	| GenerateAction
+	| AbortAction
+	| PauseAction
+	| ContinueAction
+	| SetSpeedAction;

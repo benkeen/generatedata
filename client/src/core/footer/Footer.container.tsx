@@ -39,7 +39,4 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
 	showTourDialog: (history: any): any => dispatch(mainActions.showTourIntroDialog(history))
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Footer);
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

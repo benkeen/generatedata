@@ -25,5 +25,5 @@ export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 
-// @ts-ignore
+	// @ts-ignore
 )(PreviewSettingsTab);

@@ -1,6 +1,6 @@
 import { generate } from '../BitcoinAddress.generate';
 import { BitcoinAddressFormat, BitcoinAddressState } from '../BitcoinAddress.state';
-import { DTGenerationData } from "~types/dataTypes";
+import { DTGenerationData } from '~types/dataTypes';
 
 describe('generate', () => {
 	it('generates', () => {

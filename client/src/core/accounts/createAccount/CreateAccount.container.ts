@@ -2,7 +2,11 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as selectors from '~store/generator/generator.selectors';
 import * as accountActions from '~store/account/account.actions';
-import ManageAccount, { ManageAccountState, ManageAccountProps, ExpiryOption } from '../../../components/accounts/manageAccount/ManageAccount.component';
+import ManageAccount, {
+	ManageAccountState,
+	ManageAccountProps,
+	ExpiryOption
+} from '../../../components/accounts/manageAccount/ManageAccount.component';
 import { Store } from '~types/general';
 
 const initialState: ManageAccountState = {
@@ -32,9 +36,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<ManageAccountProps> => 
 	onSave: (data: any): any => dispatch(accountActions.createAccount(data))
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ManageAccount);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(ManageAccount);
 
 export default container;

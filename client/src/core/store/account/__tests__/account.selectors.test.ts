@@ -13,7 +13,7 @@ const defaultState: any = {
 			lastName: 'Buttercup',
 			email: 'pim@whatever.net',
 			country: 'Mali',
-			region: 'Timbuktu',
+			region: 'Timbuktu'
 		}
 	}
 };
@@ -57,5 +57,4 @@ describe('accountHasChanges', () => {
 
 		expect(accountHasChanges(state)).toEqual(true);
 	});
-
 });

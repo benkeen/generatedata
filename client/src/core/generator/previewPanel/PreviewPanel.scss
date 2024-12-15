@@ -14,7 +14,7 @@
 	left: 400px;
 	bottom: 0;
 	z-index: 1400;
-	&>div {
+	& > div {
 		height: 100%;
 	}
 }
@@ -28,21 +28,21 @@
 }
 
 .controls {
-    z-index: 1300;
+	z-index: 1300;
 	justify-content: flex-end;
 
-    button {
-        cursor: pointer;
-        &:hover svg {
-            fill: #999999;
-        }
-    }
+	button {
+		cursor: pointer;
+		&:hover svg {
+			fill: #999999;
+		}
+	}
 }
 
 .previewPanelContent {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .panelContent {
@@ -53,16 +53,17 @@
 
 .preview {
 	display: flex;
-    flex: 1;
-    flex-direction: column;
+	flex: 1;
+	flex-direction: column;
 	overflow: hidden;
 
-    & > div, & > div > div {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
+	& > div,
+	& > div > div {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
 		overflow: hidden;
-    }
+	}
 
 	.loading {
 		align-items: center;
@@ -71,7 +72,7 @@
 }
 
 .noResults {
-    color: white;
+	color: white;
 	margin: auto;
 	position: relative;
 	text-align: center;

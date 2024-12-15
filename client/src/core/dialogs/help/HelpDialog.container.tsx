@@ -18,9 +18,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<HelpDialogProps> => ({
 	onSelectDataType: (dataType: DataTypeFolder): any => dispatch(actions.onSelectDataType(dataType))
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(HelpDialog);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(HelpDialog);
 
 export default container;

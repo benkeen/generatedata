@@ -27,7 +27,14 @@ export type LoginDialogProps = {
  * logging in via external vendors: Google, Facebook and Github.
  */
 const LoginDialog = ({
-	visible, defaultEmail, onClose, dialogProcessing, onSubmit, onExited, showPasswordResetDialog, i18n
+	visible,
+	defaultEmail,
+	onClose,
+	dialogProcessing,
+	onSubmit,
+	onExited,
+	showPasswordResetDialog,
+	i18n
 }: LoginDialogProps): JSX.Element => {
 	const history = useHistory();
 
@@ -123,9 +130,7 @@ const LoginDialog = ({
 				<div className={styles.separator}>
 					<div>{i18n.or}</div>
 				</div>
-				<div className={styles.col}>
-					{buttons}
-				</div>
+				<div className={styles.col}>{buttons}</div>
 			</>
 		);
 	};
@@ -153,7 +158,8 @@ const LoginDialog = ({
 				TransitionProps={{
 					onEntered,
 					onExited
-				}}>
+				}}
+			>
 				<form onSubmit={onLogin}>
 					<div style={{ width }}>
 						<DialogTitle onClose={onClose}>{i18n.login}</DialogTitle>

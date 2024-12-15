@@ -17,21 +17,21 @@ export type BitcoinAddressState = {
 		enabled: boolean;
 		weight: number;
 	};
-}
+};
 
 export type GenerationOptionsType = BitcoinAddressState;
 
 export const initialState: BitcoinAddressState = {
 	[BitcoinAddressFormat.Legacy]: {
 		enabled: true,
-		weight: 1,
+		weight: 1
 	},
 	[BitcoinAddressFormat.Compatibility]: {
 		enabled: true,
-		weight: 1,
+		weight: 1
 	},
 	[BitcoinAddressFormat.Segwit]: {
 		enabled: true,
-		weight: 1,
+		weight: 1
 	}
 };

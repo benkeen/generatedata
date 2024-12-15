@@ -1,6 +1,6 @@
 import generatorUtils from '~utils/generatorUtils';
 import { GenerationActions, GenerationWorkerActionType } from '~core/generator/generation.types';
-import {DataTypeBatchGeneratedPayload, DataTypeWorkerInterface, WorkerInterface} from '~types/generator';
+import { DataTypeBatchGeneratedPayload, DataTypeWorkerInterface, WorkerInterface } from '~types/generator';
 import { DataTypeMap } from '~types/dataTypes';
 
 const context: Worker = self as any;
@@ -19,27 +19,43 @@ context.onmessage = (e: GenerationActions) => {
 		generatorUtils.generateDataTypes({
 			...e.data,
 			onBatchComplete: (data: DataTypeBatchGeneratedPayload) => {
-				context.postMessage({ event: GenerationWorkerActionType.DataTypesProcessed, data });
+				context.postMessage({
+					event: GenerationWorkerActionType.DataTypesProcessed,
+					data
+				});
 			},
-			dataTypeInterface: getDataTypeWorkerInterface(e.data.dataTypeWorkerMap),
+			dataTypeInterface: getDataTypeWorkerInterface(e.data.dataTypeWorkerMap)
 		});
 	} else if (e.data.action === GenerationWorkerActionType.ProcessExportTypeOnly) {
 		generatorUtils.generateExportTypes({
 			...e.data,
 			settings: e.data.exportTypeSettings,
 			onComplete: (data: string) => {
-				context.postMessage({ event: GenerationWorkerActionType.ExportTypeProcessed, data });
+				context.postMessage({
+					event: GenerationWorkerActionType.ExportTypeProcessed,
+					data
+				});
 			},
 			exportTypeInterface: getWorkerInterface(e.data.exportTypeWorkerUrl)
 		});
 
-	// this worker action combines the two above for easier usage. Used in the generator where it doesn't need such
-	// granular control as with the preview panel
+		// this worker action combines the two above for easier usage. Used in the generator where it doesn't need such
+		// granular control as with the preview panel
 	} else if (e.data.action === GenerationWorkerActionType.Generate) {
 		// TODO move whole chunk to generatorUtils ...
 		const {
-			columns, numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData, stripWhitespace,
-			exportTypeSettings, exportTypeWorkerUrl, dataTypeWorkerMap
+			columns,
+			numResults,
+			batchSize,
+			i18n,
+			template,
+			countryNames,
+			workerUtilsUrl,
+			countryData,
+			stripWhitespace,
+			exportTypeSettings,
+			exportTypeWorkerUrl,
+			dataTypeWorkerMap
 		} = e.data;
 
 		const onBatchComplete = ({ completedBatchNum, numGeneratedRows, generatedData }: any): void => {
@@ -69,7 +85,13 @@ context.onmessage = (e: GenerationActions) => {
 		};
 
 		generatorUtils.generateDataTypes({
-			numResults, batchSize, i18n, template, countryNames, workerUtilsUrl, countryData,
+			numResults,
+			batchSize,
+			i18n,
+			template,
+			countryNames,
+			workerUtilsUrl,
+			countryData,
 			onBatchComplete,
 			dataTypeInterface: getDataTypeWorkerInterface(dataTypeWorkerMap)
 		});
@@ -102,15 +124,16 @@ const getWorkerInterface = (workerPath: string): WorkerInterface => {
 		const worker = new Worker(workerPath);
 
 		let onSuccess: any;
-		const onRegisterSuccess = (f: any) => onSuccess = f;
-		worker.onmessage = (resp: any) => { // TODO typings
+		const onRegisterSuccess = (f: any) => (onSuccess = f);
+		worker.onmessage = (resp: any) => {
+			// TODO typings
 			if (onSuccess) {
 				onSuccess(resp);
 			}
 		};
 
 		let onError: any;
-		const onRegisterError = (f: any) => onError = f;
+		const onRegisterError = (f: any) => (onError = f);
 		worker.onerror = (resp: any) => {
 			if (onError) {
 				onError(resp);

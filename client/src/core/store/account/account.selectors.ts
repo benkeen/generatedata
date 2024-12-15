@@ -27,11 +27,10 @@ export const accountHasChanges = createSelector(
 	getCountry,
 	getRegion,
 	getEditingData,
-	(firstName, lastName, email, country, region, editingData): boolean => (
+	(firstName, lastName, email, country, region, editingData): boolean =>
 		firstName !== editingData.firstName ||
 		lastName !== editingData.lastName ||
 		email !== editingData.email ||
 		country !== editingData.country ||
 		region !== editingData.region
-	)
 );

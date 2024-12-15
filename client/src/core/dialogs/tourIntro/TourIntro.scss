@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@import '../../../styles/variables.scss';
 
 .cols {
 	display: flex;
@@ -35,7 +35,8 @@ svg.tourMask {
 	color: #b2bed3;
 }
 
-.introDialog, .tourPage {
+.introDialog,
+.tourPage {
 	font-size: 13px;
 
 	p {
@@ -55,7 +56,7 @@ svg.tourMask {
 	}
 }
 
-div[data-tour-elem="controls"] {
+div[data-tour-elem='controls'] {
 	display: flex;
 	justify-content: center;
 }

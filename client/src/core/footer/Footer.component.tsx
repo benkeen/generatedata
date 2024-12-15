@@ -36,8 +36,18 @@ export type FooterProps = {
 };
 
 const Footer = ({
-	i18n, locale, actionButtonsEnabled, scriptVersion, onSave, onGenerate, currentPage,
-	currentDataSetId, onSaveNewDataSet, onSaveAs, showTourDialog, customFooterLinks
+	i18n,
+	locale,
+	actionButtonsEnabled,
+	scriptVersion,
+	onSave,
+	onGenerate,
+	currentPage,
+	currentDataSetId,
+	onSaveNewDataSet,
+	onSaveAs,
+	showTourDialog,
+	customFooterLinks
 }: FooterProps): JSX.Element => {
 	const history = useHistory();
 	const saveAsButtonRef = React.useRef(null);
@@ -53,7 +63,6 @@ const Footer = ({
 
 	// we always show the login button. It'll show a "you must login in" dialog if they're not logged in/registered
 	const getSaveButton = (): JSX.Element | null => {
-
 		// if the data set has already been saved, we give them a split button: the main button immediately saves,
 		// the arrow gives them the option to create a new data set via the "Save as" option
 		if (currentDataSetId) {
@@ -66,7 +75,8 @@ const Footer = ({
 						ref={anchorRef}
 						disableElevation
 						aria-label="split button"
-						disabled={!actionButtonsEnabled}>
+						disabled={!actionButtonsEnabled}
+					>
 						<Button onClick={onSave} className={styles.saveButtonAsMainBtn}>
 							<SaveIcon />
 							{i18n.save}
@@ -95,12 +105,11 @@ const Footer = ({
 							e.preventDefault();
 							e.stopPropagation();
 							onSaveAs();
-						}}>
+						}}
+					>
 						{({ TransitionProps }): any => (
 							<Grow {...TransitionProps}>
-								<div>
-									{i18n.saveAs}
-								</div>
+								<div>{i18n.saveAs}</div>
 							</Grow>
 						)}
 					</Popper>
@@ -114,7 +123,8 @@ const Footer = ({
 				className={`${styles.saveButton} tour-saveButton`}
 				variant="contained"
 				disableElevation
-				disabled={!actionButtonsEnabled}>
+				disabled={!actionButtonsEnabled}
+			>
 				<SaveIcon />
 				{i18n.save}
 			</Button>

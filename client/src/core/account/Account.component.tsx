@@ -37,7 +37,7 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 
 	const getTab = (): JSX.Element | null => {
 		if (selectedTab === SelectedAccountTab.dataSets) {
-			return <DataSets className={dataSetsClasses}/>;
+			return <DataSets className={dataSetsClasses} />;
 		}
 		if (selectedTab === SelectedAccountTab.yourAccount) {
 			return <YourAccount className={yourAccountClasses} />;
@@ -70,21 +70,9 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 					</li>
 				</ul>
 			</nav>
-			<div className={sharedStyles.tab}>
-				{getTab()}
-			</div>
+			<div className={sharedStyles.tab}>{getTab()}</div>
 		</section>
 	);
 };
 
 export default AccountPage;
-
-
-
-
-
-
-
-
-
-

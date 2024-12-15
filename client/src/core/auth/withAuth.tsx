@@ -35,9 +35,7 @@ export const withAuth = (Component: any): any => {
 			return null;
 		}
 
-		return (
-			<Component {...props} />
-		);
+		return <Component {...props} />;
 	};
 
 	ComponentWithAuth.displayName = 'ComponentWithAuth';

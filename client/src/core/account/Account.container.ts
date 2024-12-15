@@ -17,9 +17,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountPageProps> => ({
 	onChangeTab: (tab: SelectedAccountTab): any => dispatch(accountActions.onChangeTab(tab))
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(AccountPage);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(AccountPage);
 
 export default withAuth(container);

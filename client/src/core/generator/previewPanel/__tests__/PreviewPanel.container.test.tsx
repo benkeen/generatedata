@@ -4,9 +4,7 @@ import { renderWithStoreAndRouter } from '../../../../../tests/testHelpers';
 
 describe('PreviewPanel', () => {
 	it('renders', () => {
-		const { baseElement } = renderWithStoreAndRouter(
-			<PreviewPanel />
-		);
+		const { baseElement } = renderWithStoreAndRouter(<PreviewPanel />);
 
 		expect(baseElement.querySelector('div')).toBeTruthy();
 	});

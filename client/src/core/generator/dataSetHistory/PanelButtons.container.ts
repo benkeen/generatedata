@@ -6,7 +6,7 @@ import * as actions from '~store/generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<PanelButtonsProps> => ({
 	i18n: selectors.getCoreI18n(state),
-	selectedDataSetHistoryItem: selectors.getSelectedDataSetHistoryItem(state),
+	selectedDataSetHistoryItem: selectors.getSelectedDataSetHistoryItem(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PanelButtonsProps> => ({
@@ -14,7 +14,4 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<PanelButtonsProps> => (
 	selectVersion: (): any => dispatch(actions.revertToHistoryVersion())
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(PanelButtons);
+export default connect(mapStateToProps, mapDispatchToProps)(PanelButtons);

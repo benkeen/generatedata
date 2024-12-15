@@ -5,11 +5,7 @@ export type LoginPageProps = {
 };
 
 const LoginPage = ({ i18n }: LoginPageProps): JSX.Element => {
-	return (
-		<div>
-			{i18n.login}
-		</div>
-	);
+	return <div>{i18n.login}</div>;
 };
 
 export default LoginPage;

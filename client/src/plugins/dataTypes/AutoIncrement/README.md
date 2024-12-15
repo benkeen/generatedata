@@ -1,10 +1,10 @@
 # [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; AutoIncrement
 
-This Data Type generates auto-increment sequences in a variety of different ways.  
+This Data Type generates auto-increment sequences in a variety of different ways.
 
 > Note: if you're generating a database table and are looking for a simple _auto-increment primary key_ field, that option
-actually already exists in the [SQL Export Type](../../exportTypes/SQL/README.md) - you don't need a separate field for
-that.
+> actually already exists in the [SQL Export Type](../../exportTypes/SQL/README.md) - you don't need a separate field for
+> that.
 
 ## Typings
 
@@ -24,15 +24,15 @@ properties. But providing a totally custom placeholder is optional. That lets yo
 outputted.
 
 The `{{INCR}}` string has special meaning within that field. That string gets switched out for whatever the auto-increment
-number has been calculated. That lets you use that value within the context of an entire string. 
-
+number has been calculated. That lets you use that value within the context of an entire string.
 
 # Examples
 
 This example generates four separate fields with different auto-increment values, like so:
+
 - 1, 2, 3, 4, ...
 - A-10, A-20, A-30, A-40, ...
-- 100B, 95B, 90B, 85B, ... 
+- 100B, 95B, 90B, 85B, ...
 - 10-20, 11-22, 12-24, 13-35...
 
 ```javascript
@@ -86,7 +86,7 @@ This example generates four separate fields with different auto-increment values
 }
 ```
 
-Sample output: 
+Sample output:
 
 ```
 [

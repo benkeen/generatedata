@@ -5,7 +5,7 @@ import styles from './AccountStatusPill.scss';
 type AccountStatusPillProps = {
 	status: AccountStatus;
 	i18n: any;
-}
+};
 
 const AccountStatusPill = ({ status, i18n }: AccountStatusPillProps): JSX.Element => {
 	let label;
@@ -17,9 +17,7 @@ const AccountStatusPill = ({ status, i18n }: AccountStatusPillProps): JSX.Elemen
 		label = i18n.disabled;
 	}
 
-	return (
-		<span className={`${styles.pill} ${styles[status]}`}>{label}</span>
-	);
+	return <span className={`${styles.pill} ${styles[status]}`}>{label}</span>;
 };
 
 export default AccountStatusPill;

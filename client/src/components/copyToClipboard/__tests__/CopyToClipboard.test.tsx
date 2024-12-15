@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { render } from '@testing-library/react';
 import CopyToClipboard from '../CopyToClipboard';
 
@@ -15,11 +15,7 @@ const defaultProps = {
 
 describe('CopyToClipboard', () => {
 	it('renders copy icon with tooltip', () => {
-		const { baseElement } = render(
-			<CopyToClipboard
-				{...defaultProps}
-			/>
-		);
+		const { baseElement } = render(<CopyToClipboard {...defaultProps} />);
 
 		expect(baseElement.querySelector('.copyIcon')).toBeTruthy();
 		expect(baseElement.innerHTML).toContain(defaultProps.tooltip);

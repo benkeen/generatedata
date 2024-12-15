@@ -28,7 +28,9 @@ const DataTypeList = ({ onSelect, filterString }: any): any => {
 			list = list.filter(({ value, label }: DropdownOption) => regex.test(value) || regex.test(label));
 		}
 		list = list.map(({ value, label }: DropdownOption) => (
-			<li key={value} onClick={(): void => onSelect(value)}>{label}</li>
+			<li key={value} onClick={(): void => onSelect(value)}>
+				{label}
+			</li>
 		));
 
 		if (list.length) {
@@ -44,7 +46,14 @@ const DataTypeList = ({ onSelect, filterString }: any): any => {
 	return content;
 };
 
-const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps): JSX.Element => {
+const HelpDialog = ({
+	visible,
+	initialDataType,
+	onClose,
+	coreI18n,
+	dataTypeI18n,
+	onSelectDataType
+}: HelpDialogProps): JSX.Element => {
 	const [dataType, setDataType] = useState<DataTypeFolder | null>(null);
 	const [filterString, setFilterString] = useState('');
 
@@ -75,7 +84,8 @@ const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n,
 				onExited: (): void => {
 					setFilterString('');
 				}
-			}}>
+			}}
+		>
 			<div className={`${styles.dialog} tour-helpDialog`}>
 				<DialogTitle onClose={onClose}>{i18n.NAME}</DialogTitle>
 				<DialogContent dividers className={styles.contentPanel}>
@@ -88,17 +98,11 @@ const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n,
 							onChange={(e): void => setFilterString(e.target.value)}
 						/>
 						<div className={styles.list}>
-							<DataTypeList
-								filterString={filterString}
-								onSelect={selectDataType}
-							/>
+							<DataTypeList filterString={filterString} onSelect={selectDataType} />
 						</div>
 					</div>
 					<div className={styles.helpContent}>
-						{Help ? <Help
-							coreI18n={coreI18n}
-							i18n={i18n}
-						/> : null}
+						{Help ? <Help coreI18n={coreI18n} i18n={i18n} /> : null}
 						<MediumSpinner className={spinnerStyles} />
 					</div>
 				</DialogContent>

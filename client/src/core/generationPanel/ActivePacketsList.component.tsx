@@ -45,8 +45,11 @@ const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps): 
 						outerRadius="100%"
 						startAngle={90}
 						endAngle={-270}
-						paddingAngle={0}>
-						{pieChartData.map((entry, index) => <Cell key={index} fill={pieChartData[index].color} />)}
+						paddingAngle={0}
+					>
+						{pieChartData.map((entry, index) => (
+							<Cell key={index} fill={pieChartData[index].color} />
+						))}
 					</Pie>
 				</PieChart>
 			);
@@ -73,11 +76,7 @@ const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps): 
 		);
 	});
 
-	return (
-		<div className={styles.root}>
-			{chips}
-		</div>
-	);
+	return <div className={styles.root}>{chips}</div>;
 };
 
 export default ActivePacketsList;

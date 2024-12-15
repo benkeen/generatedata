@@ -7,8 +7,6 @@ const mapStateToProps = (state: Store): Partial<EmailProps> => ({
 	i18n: selectors.getCoreI18n(state)
 });
 
-const container: any = connect(
-	mapStateToProps
-)(Email);
+const container: any = connect(mapStateToProps)(Email);
 
 export default container;

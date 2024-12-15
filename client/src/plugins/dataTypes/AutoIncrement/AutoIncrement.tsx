@@ -30,13 +30,7 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 		{ value: '2,4,{{INCR}}i', label: '2i, 4i, 6i, 8i...' }
 	];
 
-	return (
-		<Dropdown
-			value={data.example}
-			onChange={(i: any): void => onChange(i.value)}
-			options={options}
-		/>
-	);
+	return <Dropdown value={data.example} onChange={(i: any): void => onChange(i.value)} options={options} />;
 };
 
 export const Options = ({ coreI18n, i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
@@ -84,19 +78,22 @@ export const Options = ({ coreI18n, i18n, data, onUpdate }: DTOptionsProps): JSX
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
-		<p>
-			{i18n.helpIntro}
-		</p>
+		<p>{i18n.helpIntro}</p>
 		<p dangerouslySetInnerHTML={{ __html: i18n.helpPara2 }} />
 		<ul>
-			<li><b>ROW-{'{{INCR}}'}</b> -&gt; ROW-1, ROW-2, ROW-3, ROW-4, ...</li>
-			<li><b>{'{{INCR}}'}F</b> -&gt; 1F, 2F, 3F, 4F, ...</li>
+			<li>
+				<b>ROW-{'{{INCR}}'}</b> -&gt; ROW-1, ROW-2, ROW-3, ROW-4, ...
+			</li>
+			<li>
+				<b>{'{{INCR}}'}F</b> -&gt; 1F, 2F, 3F, 4F, ...
+			</li>
 		</ul>
 	</>
 );
 
 export const getMetadata = (rowData: AutoIncrementState): DTMetadata => {
-	let dataType: DTMetadataType = isNumeric(rowData.incrementStart) && isNumeric(rowData.incrementValue) ? 'number' : 'string';
+	let dataType: DTMetadataType =
+		isNumeric(rowData.incrementStart) && isNumeric(rowData.incrementValue) ? 'number' : 'string';
 
 	// if there's a placeholder defined, set it to a string if it contains any chars besides numbers & {{INCR}}, even spaces
 	if (rowData.incrementPlaceholder.trim()) {
@@ -118,8 +115,8 @@ export const getMetadata = (rowData: AutoIncrementState): DTMetadata => {
 };
 
 export const rowStateReducer = (state: AutoIncrementState): GenerationOptionsType => {
-	const incrementStart = (state.incrementStart) ? parseFloat(state.incrementStart) : 0;
-	const incrementValue = (state.incrementValue) ? parseFloat(state.incrementValue) : 0;
+	const incrementStart = state.incrementStart ? parseFloat(state.incrementStart) : 0;
+	const incrementValue = state.incrementValue ? parseFloat(state.incrementValue) : 0;
 
 	return {
 		incrementStart,

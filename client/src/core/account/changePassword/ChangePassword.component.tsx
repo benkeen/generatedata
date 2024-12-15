@@ -79,7 +79,13 @@ const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: 
 		return (
 			<>
 				<label>{i18n.currentPassword}</label>
-				<div style={{ marginBottom: 15, paddingBottom: 20, borderBottom: '1px solid #dddddd' }}>
+				<div
+					style={{
+						marginBottom: 15,
+						paddingBottom: 20,
+						borderBottom: '1px solid #dddddd'
+					}}
+				>
 					<TextField
 						type="password"
 						error={currentPasswordError}
@@ -141,13 +147,7 @@ const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: 
 			</div>
 
 			<div>
-				<Button
-					type="submit"
-					color="primary"
-					variant="contained"
-					disabled={!submitButtonEnabled}
-					disableElevation
-				>
+				<Button type="submit" color="primary" variant="contained" disabled={!submitButtonEnabled} disableElevation>
 					{i18n.update}
 				</Button>
 			</div>
@@ -160,4 +160,3 @@ ChangePassword.defaultProps = {
 };
 
 export default ChangePassword;
-

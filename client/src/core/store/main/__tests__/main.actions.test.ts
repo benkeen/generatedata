@@ -10,9 +10,11 @@ import { AuthMethod } from '~types/general';
 describe('main actions', () => {
 	let store: any;
 	beforeEach(() => {
-		store = createStore(combineReducers({
-			main: reducer
-		}));
+		store = createStore(
+			combineReducers({
+				main: reducer
+			})
+		);
 	});
 
 	it('the locale file is not loaded by default', () => {
@@ -30,22 +32,24 @@ describe('main actions', () => {
 		expect(selectors.isLoggedIn(store.getState())).toEqual(false);
 		expect(selectors.getAuthToken(store.getState())).toEqual('');
 
-		store.dispatch(setAuthenticationData({
-			authMethod: AuthMethod.google,
-			token: '123456',
-			accountId: 5,
-			firstName: 'Jim',
-			lastName: 'Beam',
-			email: 'jim@beam.net',
-			country: 'United States',
-			region: 'Montana',
-			profileImage: 'image-here.jpg',
-			expiryDate: '1000010101001',
-			dateCreated: '1000010101001',
-			accountType: 'admin',
-			accountStatus: AccountStatus.live,
-			numRowsGenerated: 50000
-		}));
+		store.dispatch(
+			setAuthenticationData({
+				authMethod: AuthMethod.google,
+				token: '123456',
+				accountId: 5,
+				firstName: 'Jim',
+				lastName: 'Beam',
+				email: 'jim@beam.net',
+				country: 'United States',
+				region: 'Montana',
+				profileImage: 'image-here.jpg',
+				expiryDate: '1000010101001',
+				dateCreated: '1000010101001',
+				accountType: 'admin',
+				accountStatus: AccountStatus.live,
+				numRowsGenerated: 50000
+			})
+		);
 
 		expect(selectors.getAuthMethod(store.getState())).toEqual('google');
 		expect(selectors.isLoggedIn(store.getState())).toEqual(true);

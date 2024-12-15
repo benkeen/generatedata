@@ -49,30 +49,11 @@ export default {
 		DIALOG: 5005
 	},
 
-	DATA_TYPE_GROUPS: [
-		'humanData',
-		'geo',
-		'text',
-		'numeric',
-		'other',
-		'financial',
-		'countrySpecific'
-	],
+	DATA_TYPE_GROUPS: ['humanData', 'geo', 'text', 'numeric', 'other', 'financial', 'countrySpecific'],
 
-	EXPORT_TYPE_GROUPS: [
-		'core',
-		'programmingLanguage'
-	],
+	EXPORT_TYPE_GROUPS: ['core', 'programmingLanguage'],
 
-	CONTINENTS: [
-		'africa',
-		'asia',
-		'centralAmerica',
-		'europe',
-		'northAmerica',
-		'oceania',
-		'southAmerica'
-	],
+	CONTINENTS: ['africa', 'asia', 'centralAmerica', 'europe', 'northAmerica', 'oceania', 'southAmerica'],
 
 	DATE_FORMAT: 'MMM d, y',
 	DATETIME_FORMAT: 'MMM d, y h:mm a',

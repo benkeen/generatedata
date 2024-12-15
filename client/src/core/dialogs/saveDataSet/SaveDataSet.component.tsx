@@ -19,7 +19,14 @@ export type SaveDataSetDialogProps = {
 };
 
 const SaveDataSetDialog = ({
-	visible, isLoggedIn, dialogType, onClose, onSave, showRegistration, onRedirectToLogin, i18n
+	visible,
+	isLoggedIn,
+	dialogType,
+	onClose,
+	onSave,
+	showRegistration,
+	onRedirectToLogin,
+	i18n
 }: SaveDataSetDialogProps): JSX.Element => {
 	const history = useHistory();
 
@@ -66,9 +73,7 @@ const SaveDataSetDialog = ({
 		history.push('/register');
 	}, []);
 
-	let buttons = (
-		<PrimaryButton type="submit">{i18n.save}</PrimaryButton>
-	);
+	let buttons = <PrimaryButton type="submit">{i18n.save}</PrimaryButton>;
 
 	if (!isLoggedIn) {
 		title = i18n.pleaseLogin;
@@ -95,9 +100,7 @@ const SaveDataSetDialog = ({
 					<DialogContent dividers className={styles.contentPanel}>
 						{content}
 					</DialogContent>
-					<DialogActions>
-						{buttons}
-					</DialogActions>
+					<DialogActions>{buttons}</DialogActions>
 				</div>
 			</form>
 		</Dialog>

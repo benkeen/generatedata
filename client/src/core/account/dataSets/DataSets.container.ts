@@ -17,9 +17,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetsProps> => ({
 	onLoadDataSet: (dataSet: DataSetListItem): any => dispatch(actions.loadDataSet(dataSet))
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(DataSets);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(DataSets);
 
 export default withAuth(container);

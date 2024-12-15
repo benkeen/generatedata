@@ -1,4 +1,4 @@
-@import "../../../styles/variables";
+@import '../../../styles/variables';
 
 .loginDialog {
 	label {
@@ -25,7 +25,7 @@
 	align-items: center;
 	border-left: 1px solid #efefef;
 
-	&>div {
+	& > div {
 		position: absolute;
 		left: -8px;
 		background-color: white;

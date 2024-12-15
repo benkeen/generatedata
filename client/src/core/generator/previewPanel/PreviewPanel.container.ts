@@ -42,7 +42,7 @@ const container: any = connect(
 	mapStateToProps,
 	mapDispatchToProps
 
-// @ts-ignore
+	// @ts-ignore
 )(PreviewPanel);
 
 export default container;

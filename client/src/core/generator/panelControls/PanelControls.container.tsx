@@ -16,12 +16,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<PanelControlsProps> => 
 	togglePreview: (): any => dispatch(actions.togglePreview()),
 	toggleLayout: (): any => dispatch(actions.toggleLayout()),
 	showClearPageDialog: (): any => dispatch(actions.showClearPageDialog()),
-	showDataTemplateDialog: (): any => dispatch(actions.showDataTemplateDialog()),
+	showDataTemplateDialog: (): any => dispatch(actions.showDataTemplateDialog())
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(PanelControls);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(PanelControls);
 
 export default container;

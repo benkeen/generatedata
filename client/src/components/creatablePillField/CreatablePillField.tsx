@@ -46,8 +46,7 @@ const selectStyles = {
 		padding: '0px 2px'
 	}),
 	container: (base: React.CSSProperties): React.CSSProperties => ({
-		...base,
-
+		...base
 	}),
 	input: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
@@ -62,7 +61,7 @@ const selectStyles = {
 
 export const createOption = (label: string): DropdownOption => ({
 	label,
-	value: label,
+	value: label
 });
 
 const SortableCreatableSelect: any = SortableContainer(CreatableSelect);
@@ -75,7 +74,7 @@ export type CreatablePillFieldProps = {
 	onValidateNewItem?: (value: string) => boolean;
 	className?: string;
 	isClearable?: boolean;
-}
+};
 
 const CreatablePillField = ({
 	onChange,

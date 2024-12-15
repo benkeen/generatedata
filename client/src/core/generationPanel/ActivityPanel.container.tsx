@@ -9,7 +9,8 @@ import { getGenerationActivityPanel } from '~core/generationPanel/generation.hel
 
 const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: string | null } => {
 	const packet = packetSelectors.getCurrentPacket(state);
-	const largePacketSize = !!packet && getGenerationActivityPanel(packet.config.numRowsToGenerate) === GenerationActivityPanel.large;
+	const largePacketSize =
+		!!packet && getGenerationActivityPanel(packet.config.numRowsToGenerate) === GenerationActivityPanel.large;
 
 	const props: Partial<ActivityPanelProps> & { packetId: string | null } = {
 		visible: largePacketSize && packetSelectors.isGenerating(state),
@@ -49,8 +50,4 @@ const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): Activi
 	};
 };
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-	mergeProps
-)(ActivityPanel);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ActivityPanel);

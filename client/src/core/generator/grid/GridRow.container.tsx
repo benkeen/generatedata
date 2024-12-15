@@ -47,11 +47,10 @@ const mapStateToProps = (state: Store, ownProps: OwnProps): Partial<GridRowProps
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GridRowProps> => ({
 	onRemove: (id: string): any => dispatch(actions.removeRow(id)),
 	onChangeTitle: (id: string, value: string): any => dispatch(actions.onChangeTitle(id, value)),
-	onConfigureDataType: (id: string, data: any, metadata?: DTOptionsMetadata): any => dispatch(actions.onConfigureDataType(id, data, metadata)),
-	onSelectDataType: (dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions): any => dispatch(actions.onSelectDataType(dataType, opts)),
+	onConfigureDataType: (id: string, data: any, metadata?: DTOptionsMetadata): any =>
+		dispatch(actions.onConfigureDataType(id, data, metadata)),
+	onSelectDataType: (dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions): any =>
+		dispatch(actions.onSelectDataType(dataType, opts))
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(GridRow);
+export default connect(mapStateToProps, mapDispatchToProps)(GridRow);

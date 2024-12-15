@@ -46,9 +46,7 @@ const Accounts = ({ selectedTab, onChangeTab, onDestroy, i18n }: AccountsPagePro
 					</li>
 				</ul>
 			</nav>
-			<div className={sharedStyles.tab}>
-				{getTab()}
-			</div>
+			<div className={sharedStyles.tab}>{getTab()}</div>
 		</section>
 	);
 };

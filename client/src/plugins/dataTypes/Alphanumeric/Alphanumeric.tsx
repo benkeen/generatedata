@@ -9,11 +9,7 @@ import sharedStyles from '../../../styles/shared.scss';
 
 const Copy = ({ content, tooltip, message }: any): JSX.Element => (
 	<span className={styles.copy}>
-		<CopyToClipboard
-			content={content}
-			message={message}
-			tooltip={tooltip}
-		/>
+		<CopyToClipboard content={content} message={message} tooltip={tooltip} />
 	</span>
 );
 
@@ -31,13 +27,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 		{ value: 'LLLxxLLLxLL', label: `eZg29gdF5K1 ${i18n.examplePassword}` }
 	];
 
-	return (
-		<Dropdown
-			value={data.example}
-			onChange={(i: any): void => onChange(i.value)}
-			options={options}
-		/>
-	);
+	return <Dropdown value={data.example} onChange={(i: any): void => onChange(i.value)} options={options} />;
 };
 
 export const Options = ({ coreI18n, data, throttle, onUpdate }: DTOptionsProps): JSX.Element => {
@@ -59,9 +49,7 @@ Options.defaultProps = {
 
 export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 	<>
-		<p>
-			{i18n.helpIntro}
-		</p>
+		<p>{i18n.helpIntro}</p>
 
 		<div className={styles.row}>
 			<div className={styles.col1}>

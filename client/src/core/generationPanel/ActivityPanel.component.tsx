@@ -41,8 +41,21 @@ export type ActivityPanelProps = {
 const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
-	visible, onClose, packet, onContinue, onPause, batchLoadTimes, onAbort, onDownload, onChangeSpeed, dataSize,
-	estimatedSize, estimatedTime, countUpSpeed, estimatedTimeRemaining, fullI18n
+	visible,
+	onClose,
+	packet,
+	onContinue,
+	onPause,
+	batchLoadTimes,
+	onAbort,
+	onDownload,
+	onChangeSpeed,
+	dataSize,
+	estimatedSize,
+	estimatedTime,
+	countUpSpeed,
+	estimatedTimeRemaining,
+	fullI18n
 }: ActivityPanelProps): any => {
 	if (packet === null || fullI18n === null) {
 		return null;
@@ -52,7 +65,10 @@ const ActivityPanel = ({
 	const { isPaused, config, generationWorkerId, numGeneratedRows, speed } = packet;
 	const { numRowsToGenerate } = config;
 
-	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
+	const [dimensions, setDimensions] = React.useState<any>({
+		height: 0,
+		width: 0
+	});
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
 	const generationWorker = coreUtils.getGenerationWorker(generationWorkerId);
 
@@ -143,16 +159,13 @@ const ActivityPanel = ({
 		);
 	};
 
-	const panel1Width = dimensions.width / 100 * 20;
+	const panel1Width = (dimensions.width / 100) * 20;
 	const pieSize = Math.floor(panel1Width * 0.9);
 	const countUpDuration = countUpSpeed;
 
 	return (
 		<>
-			<Measure
-				bounds
-				onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
-			>
+			<Measure bounds onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}>
 				{({ measureRef }): any => (
 					<Dialog className={styles.activityPanel} onClose={onClose} open={visible}>
 						<div style={{ width: '100%', height: '100%' }} ref={measureRef}>
@@ -179,13 +192,16 @@ const ActivityPanel = ({
 														dataKey="value"
 														isAnimationActive={false}
 														data={pieChartData}
-														cx={pieSize/2}
-														cy={pieSize/2}
-														innerRadius={pieSize/4}
-														outerRadius={pieSize/2 - 5}
+														cx={pieSize / 2}
+														cy={pieSize / 2}
+														innerRadius={pieSize / 4}
+														outerRadius={pieSize / 2 - 5}
 														startAngle={90}
-														endAngle={-270}>
-														{pieChartData.map((entry, index) => <Cell key={index} fill={pieChartData[index].color} />)}
+														endAngle={-270}
+													>
+														{pieChartData.map((entry, index) => (
+															<Cell key={index} fill={pieChartData[index].color} />
+														))}
 													</Pie>
 												</PieChart>
 											</div>
@@ -216,7 +232,8 @@ const ActivityPanel = ({
 												width={dimensions.width - pieSize}
 												height={dimensions.height - 185}
 												data={batchLoadTimes}
-												margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
+												margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+											>
 												<CartesianGrid strokeDasharray="3 3" />
 												<XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
 													<Label value={coreI18n.seconds} offset={0} position="insideBottom" />

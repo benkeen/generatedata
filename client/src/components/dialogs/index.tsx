@@ -37,13 +37,13 @@ export const DialogTitle = withStyles(dialogStyles)((props: any): any => {
 	);
 });
 
-export const DialogContent = withStyles(theme => ({
+export const DialogContent = withStyles((theme) => ({
 	root: {
 		padding: theme.spacing(2)
 	}
 }))(MuiDialogContent);
 
-export const DialogActions = withStyles(theme => ({
+export const DialogActions = withStyles((theme) => ({
 	root: {
 		margin: 0,
 		padding: theme.spacing(1)
@@ -65,12 +65,5 @@ const useDialogStyles = makeStyles({
 export const Dialog = (props: any): JSX.Element => {
 	const { root, paper } = useDialogStyles(props);
 
-	return (
-		<MuiDialog
-			className={root}
-			classes={{ paper }}
-			scroll="paper"
-			{...props}
-		/>
-	);
+	return <MuiDialog className={root} classes={{ paper }} scroll="paper" {...props} />;
 };
