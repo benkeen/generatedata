@@ -1,5 +1,8 @@
 ## Changelog
 
+- `4.1.8` - Dec 16, 2024
+  - Bug fix
+  - https://github.com/benkeen/generatedata/milestone/52?closed=1
 - `4.1.7` - Dec 14, 2024
   - Mostly bug fixes and package updates
   - https://github.com/benkeen/generatedata/milestone/51?closed=1
