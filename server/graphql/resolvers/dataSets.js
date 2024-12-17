@@ -33,7 +33,11 @@ const saveNewDataSet = async (
 	};
 };
 
-const renameDataSet = async (_root, { dataSetId, dataSetName }, { token }) => {
+const renameDataSet = async (
+	_root,
+	{ dataSetId, dataSetName },
+	{ token, user }
+) => {
 	authUtils.authenticate(token);
 
 	const dataSet = await db.dataSets.findByPk(dataSetId);
