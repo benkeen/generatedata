@@ -12,89 +12,150 @@ import {
 	getCodeMirrorMode as exportTypeUtilsGetCodeMirrorMode,
 	getExportTypeTitleValidationFunction as exportTypeGetExportTypeTitleValidation
 } from '~utils/exportTypeUtils';
-import { ColumnData, GDLocale, GenerationTemplate, Store } from '~types/general';
+import {
+	ColumnData,
+	GDLocale,
+	GenerationTemplate,
+	Store
+} from '~types/general';
 
-export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
-export const getLoadedExportTypes = (state: Store): any => state.generator.loadedExportTypes;
-export const getExportType = (state: Store): ExportTypeFolder => state.generator.exportType;
+export const getLoadedDataTypes = (state: Store): any =>
+	state.generator.loadedDataTypes;
+export const getLoadedExportTypes = (state: Store): any =>
+	state.generator.loadedExportTypes;
+export const getExportType = (state: Store): ExportTypeFolder =>
+	state.generator.exportType;
 export const getRows = (state: Store): DataRows => state.generator.rows;
-export const getSortedRows = (state: Store): string[] => state.generator.sortedRows;
-export const isGridVisible = (state: Store): boolean => state.generator.showGrid;
-export const isPreviewVisible = (state: Store): boolean => state.generator.showPreview;
-export const getSmallScreenVisiblePanel = (state: Store): GeneratorPanel => state.generator.smallScreenVisiblePanel;
-export const getGeneratorLayout = (state: Store): GeneratorLayout => state.generator.generatorLayout;
-export const getNumPreviewRows = (state: Store): number => state.generator.numPreviewRows;
-export const shouldShowLineNumbers = (state: Store): boolean => state.generator.showLineNumbers;
-export const shouldEnableLineWrapping = (state: Store): boolean => state.generator.enableLineWrapping;
+export const getSortedRows = (state: Store): string[] =>
+	state.generator.sortedRows;
+export const isGridVisible = (state: Store): boolean =>
+	state.generator.showGrid;
+export const isPreviewVisible = (state: Store): boolean =>
+	state.generator.showPreview;
+export const getSmallScreenVisiblePanel = (state: Store): GeneratorPanel =>
+	state.generator.smallScreenVisiblePanel;
+export const getGeneratorLayout = (state: Store): GeneratorLayout =>
+	state.generator.generatorLayout;
+export const getNumPreviewRows = (state: Store): number =>
+	state.generator.numPreviewRows;
+export const shouldShowLineNumbers = (state: Store): boolean =>
+	state.generator.showLineNumbers;
+export const shouldEnableLineWrapping = (state: Store): boolean =>
+	state.generator.enableLineWrapping;
 export const getTheme = (state: Store): string => state.generator.theme;
-export const getPreviewTextSize = (state: Store): number => state.generator.previewTextSize;
-export const getDataTypePreviewData = (state: Store): any => state.generator.dataTypePreviewData;
-export const shouldShowExportSettings = (state: Store): boolean => state.generator.showExportSettings;
-export const shouldShowDataSetHistory = (state: Store): boolean => state.generator.showDataSetHistory;
-export const getSelectedDataSetHistoryItem = (state: Store): any => state.generator.selectedDataSetHistory;
-export const getExportTypeSettings = (state: Store): any => state.generator.exportTypeSettings;
-export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
-export const isGenerationSettingsPanelVisible = (state: Store): boolean => state.generator.showGenerationSettingsPanel;
-export const isHelpDialogVisible = (state: Store): boolean => state.generator.showHelpDialog;
-export const isSchemaDialogVisible = (state: Store): boolean => state.generator.showSchemaDialog;
-export const isClearPageDialogVisible = (state: Store): boolean => state.generator.showClearPageDialog;
-export const getHelpDialogSection = (state: Store): DataTypeFolder | null => state.generator.helpDialogSection;
-export const getNumRowsToGenerate = (state: Store): number => state.generator.numRowsToGenerate;
-export const getLastLayoutWidth = (state: Store): number | null => state.generator.lastLayoutWidth;
-export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
-export const isInitialDependenciesLoaded = (state: Store): boolean => state.generator.initialDependenciesLoaded;
-export const shouldStripWhitespace = (state: Store): boolean => state.generator.stripWhitespace;
-export const getCurrentDataSetId = (state: Store): number | null => state.generator.currentDataSet.dataSetId;
-export const getCurrentDataSet = (state: Store): CurrentDataSet => state.generator.currentDataSet;
-export const hasBulkActionPending = (state: Store): boolean => state.generator.bulkActionPending;
-export const isCountryNamesLoading = (state: Store): boolean => state.generator.isCountryNamesLoading;
-export const isCountryNamesLoaded = (state: Store): boolean => state.generator.isCountryNamesLoaded;
+export const getPreviewTextSize = (state: Store): number =>
+	state.generator.previewTextSize;
+export const getDataTypePreviewData = (state: Store): any =>
+	state.generator.dataTypePreviewData;
+export const shouldShowExportSettings = (state: Store): boolean =>
+	state.generator.showExportSettings;
+export const shouldShowDataSetHistory = (state: Store): boolean =>
+	state.generator.showDataSetHistory;
+export const getSelectedDataSetHistoryItem = (state: Store): any =>
+	state.generator.selectedDataSetHistory;
+export const getExportTypeSettings = (state: Store): any =>
+	state.generator.exportTypeSettings;
+export const getExportSettingsTab = (state: Store): any =>
+	state.generator.exportSettingsTab;
+export const isGenerationSettingsPanelVisible = (state: Store): boolean =>
+	state.generator.showGenerationSettingsPanel;
+export const isHelpDialogVisible = (state: Store): boolean =>
+	state.generator.showHelpDialog;
+export const isSchemaDialogVisible = (state: Store): boolean =>
+	state.generator.showSchemaDialog;
+export const isClearPageDialogVisible = (state: Store): boolean =>
+	state.generator.showClearPageDialog;
+export const getHelpDialogSection = (state: Store): DataTypeFolder | null =>
+	state.generator.helpDialogSection;
+export const getNumRowsToGenerate = (state: Store): number =>
+	state.generator.numRowsToGenerate;
+export const getLastLayoutWidth = (state: Store): number | null =>
+	state.generator.lastLayoutWidth;
+export const getLastLayoutHeight = (state: Store): number | null =>
+	state.generator.lastLayoutHeight;
+export const isInitialDependenciesLoaded = (state: Store): boolean =>
+	state.generator.initialDependenciesLoaded;
+export const shouldStripWhitespace = (state: Store): boolean =>
+	state.generator.stripWhitespace;
+export const getCurrentDataSetId = (state: Store): number | null =>
+	state.generator.currentDataSet.dataSetId;
+export const getCurrentDataSet = (state: Store): CurrentDataSet =>
+	state.generator.currentDataSet;
+export const hasBulkActionPending = (state: Store): boolean =>
+	state.generator.bulkActionPending;
+export const isCountryNamesLoading = (state: Store): boolean =>
+	state.generator.isCountryNamesLoading;
+export const isCountryNamesLoaded = (state: Store): boolean =>
+	state.generator.isCountryNamesLoaded;
 
 export const getCurrentExportTypeWorkerUrl = createSelector(
 	getExportType,
 	getLoadedExportTypes,
 	(exportType, loadedExportTypes) => {
-		const exportTypeWorkerMap = coreUtils.getExportTypeWorkerMap(loadedExportTypes);
+		const exportTypeWorkerMap =
+			coreUtils.getExportTypeWorkerMap(loadedExportTypes);
 		return exportTypeWorkerMap[exportType] || '';
 	}
 );
 
 export const getNumRows = createSelector(getSortedRows, (rows) => rows.length);
 
-export const getSortedRowsArray = createSelector(getRows, getSortedRows, (rows, sorted) =>
-	sorted.map((id: string) => rows[id])
+export const getSortedRowsArray = createSelector(
+	getRows,
+	getSortedRows,
+	(rows, sorted) => sorted.map((id: string) => rows[id])
 );
 
-export const getSortedRowsArrayWithIds = createSelector(getRows, getSortedRows, (rows, sorted) =>
-	sorted.map((id: string) => ({ ...rows[id], id }))
+export const getSortedRowsArrayWithIds = createSelector(
+	getRows,
+	getSortedRows,
+	(rows, sorted) => sorted.map((id: string) => ({ ...rows[id], id }))
 );
 
-export const getTitles = createSelector(getSortedRowsArray, (rows) => rows.map(({ title }) => title));
-
-export const getNonEmptySortedRows = createSelector(getSortedRowsArray, (rows) =>
-	rows.filter((row: DataRow) => row.title.trim() !== '' && row.dataType !== null && row.dataType.trim() !== '')
+export const getTitles = createSelector(getSortedRowsArray, (rows) =>
+	rows.map(({ title }) => title)
 );
 
-export const getSortedRowsWithDataTypeSelected = createSelector(getSortedRowsArrayWithIds, (rows) =>
-	rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
+export const getNonEmptySortedRows = createSelector(
+	getSortedRowsArray,
+	(rows) =>
+		rows.filter(
+			(row: DataRow) =>
+				row.title.trim() !== '' &&
+				row.dataType !== null &&
+				row.dataType.trim() !== ''
+		)
+);
+
+export const getSortedRowsWithDataTypeSelected = createSelector(
+	getSortedRowsArrayWithIds,
+	(rows) =>
+		rows.filter(
+			(row: DataRow) => row.dataType !== null && row.dataType.trim() !== ''
+		)
 );
 
 // returns everything in the grid where a Data Type has been selected
-export const getColumns = createSelector(getSortedRowsWithDataTypeSelected, (rows): (ColumnData & { id: string })[] => {
-	return rows
-		.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
-		.map(({ dataType, title, data, id }: any) => {
-			const { getMetadata } = getDataType(dataType);
-			const metadata = getMetadata ? getMetadata(data) : null;
+export const getColumns = createSelector(
+	getSortedRowsWithDataTypeSelected,
+	(rows): (ColumnData & { id: string })[] => {
+		return rows
+			.filter(
+				(row: DataRow) => row.dataType !== null && row.dataType.trim() !== ''
+			)
+			.map(({ dataType, title, data, id }: any) => {
+				const { getMetadata } = getDataType(dataType);
+				const metadata = getMetadata ? getMetadata(data) : null;
 
-			return {
-				title,
-				dataType,
-				metadata,
-				id
-			};
-		});
-});
+				return {
+					title,
+					dataType,
+					metadata,
+					id
+				};
+			});
+	}
+);
 
 export const getRowDataTypes = createSelector(getRows, (rows) =>
 	Object.keys(rows)
@@ -130,7 +191,9 @@ export const getPreviewRows = createSelector(
 );
 
 // TODO types for rows!
-export const convertRowsToGenerationTemplate = (rows: any): GenerationTemplate => {
+export const convertRowsToGenerationTemplate = (
+	rows: any
+): GenerationTemplate => {
 	const templateByProcessOrder: GenerationTemplate = {};
 	rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
 		const processOrder = processBatches[dataType as DataTypeFolder] as number;
@@ -161,7 +224,10 @@ export const getGenerationTemplate = createSelector(
 	convertRowsToGenerationTemplate
 );
 
-export const hasData = createSelector(getPreviewRows, (rows) => rows.length > 0);
+export const hasData = createSelector(
+	getPreviewRows,
+	(rows) => rows.length > 0
+);
 
 export const selectedExportTypeLoaded = createSelector(
 	getExportType,
@@ -169,8 +235,10 @@ export const selectedExportTypeLoaded = createSelector(
 	(exportType, loadedExportTypes) => loadedExportTypes[exportType]
 );
 
-export const getLoadedExportTypesArray = createSelector(getLoadedExportTypes, (exportTypes) =>
-	Object.keys(exportTypes).filter((et: ExportTypeFolder) => exportTypes[et])
+export const getLoadedExportTypesArray = createSelector(
+	getLoadedExportTypes,
+	(exportTypes) =>
+		Object.keys(exportTypes).filter((et: ExportTypeFolder) => exportTypes[et])
 );
 
 // returns the entire i18n content
@@ -186,15 +254,21 @@ export const getI18n = createSelector(
 );
 
 // TODO hmm.. this kinda belongs in `main` not `generator`
-export const getCoreI18n = createSelector(mainSelectors.getLocale, (locale): any | null => {
-	const strings = langUtils.getStrings(locale);
-	return strings ? strings.core : null;
-});
+export const getCoreI18n = createSelector(
+	mainSelectors.getLocale,
+	(locale): any | null => {
+		const strings = langUtils.getStrings(locale);
+		return strings ? strings.core : null;
+	}
+);
 
-export const getCountryI18n = createSelector(mainSelectors.getLocale, (locale): any | null => {
-	const strings = langUtils.getStrings(locale);
-	return strings ? strings.countries : null;
-});
+export const getCountryI18n = createSelector(
+	mainSelectors.getLocale,
+	(locale): any | null => {
+		const strings = langUtils.getStrings(locale);
+		return strings ? strings.countries : null;
+	}
+);
 
 export const getDataTypeI18n = createSelector(
 	mainSelectors.localeFileLoaded,
@@ -217,7 +291,10 @@ export const getExportTypeI18n = createSelector(
 	}
 );
 
-export const getExportTypeColumnTitle = createSelector(getExportTypeI18n, (i18n) => i18n.COL_TITLE);
+export const getExportTypeColumnTitle = createSelector(
+	getExportTypeI18n,
+	(i18n) => i18n.COL_TITLE
+);
 
 // Export Types can optionally override the label that appears in the Preview panel. For example, instead of
 // just showing "Programming Language", they can show "PHP" or "Programming Language: Perl" or whatever they
@@ -257,7 +334,10 @@ export const getCodeMirrorMode = createSelector(
 		if (!loadedExportTypes[exportType]) {
 			return '';
 		}
-		return exportTypeUtilsGetCodeMirrorMode(exportType, exportTypeSettings[exportType]);
+		return exportTypeUtilsGetCodeMirrorMode(
+			exportType,
+			exportTypeSettings[exportType]
+		);
 	}
 );
 
@@ -272,19 +352,57 @@ export const getExportTypeTitleValidationFunction = createSelector(
 	}
 );
 
+export const getDataSetSavePackage = createSelector(
+	getExportType,
+	getCurrentExportTypeSettings,
+	getRows,
+	getSortedRows,
+	(exportType, exportTypeSettings, rows, sortedRows) => ({
+		exportType,
+		exportTypeSettings,
+		rows,
+		sortedRows
+	})
+);
+
+export const currentDataSetNeedsCountryNames = createSelector(
+	getSortedRowsArray,
+	(rows) =>
+		rows.reduce((needsCountryNames, { metadata }) => {
+			return needsCountryNames ? true : !!metadata?.useCountryNames;
+		}, false)
+);
+
 export const previewPanelDependenciesLoaded = createSelector(
 	getRowDataTypes,
 	getExportType,
 	getLoadedDataTypes,
 	getLoadedExportTypes,
 	mainSelectors.localeFileLoaded,
-	(dataTypes, exportType, loadedDataTypes, loadedExportTypes, localeFileLoaded) => {
+	isCountryNamesLoaded,
+	currentDataSetNeedsCountryNames,
+	(
+		dataTypes,
+		exportType,
+		loadedDataTypes,
+		loadedExportTypes,
+		localeFileLoaded,
+		countryNamesLoaded,
+		needsCountryNames
+	) => {
 		if (!localeFileLoaded || !loadedExportTypes[exportType]) {
 			return false;
 		}
 
-		const allDataTypesLoaded = dataTypes.every((i: DataTypeFolder) => loadedDataTypes[i]);
+		const allDataTypesLoaded = dataTypes.every(
+			(i: DataTypeFolder) => loadedDataTypes[i]
+		);
 		if (!allDataTypesLoaded) {
+			return false;
+		}
+
+		// if the data set has Names set, check the regional names have been loaded
+		if (needsCountryNames && !countryNamesLoaded) {
 			return false;
 		}
 
@@ -305,32 +423,15 @@ export const shouldGeneratePreviewRows = createSelector(
 			return false;
 		}
 
-		const alreadyGenerated = Object.keys(rowsObj).every((key: string) => !!previewData[key]);
+		const alreadyGenerated = Object.keys(rowsObj).every(
+			(key: string) => !!previewData[key]
+		);
 		if (alreadyGenerated) {
 			return false;
 		}
 
 		return true;
 	}
-);
-
-export const getDataSetSavePackage = createSelector(
-	getExportType,
-	getCurrentExportTypeSettings,
-	getRows,
-	getSortedRows,
-	(exportType, exportTypeSettings, rows, sortedRows) => ({
-		exportType,
-		exportTypeSettings,
-		rows,
-		sortedRows
-	})
-);
-
-export const currentDataSetNeedsCountryNames = createSelector(getSortedRowsArray, (rows) =>
-	rows.reduce((needsCountryNames, { metadata }) => {
-		return needsCountryNames ? true : !!metadata?.useCountryNames;
-	}, false)
 );
 
 // generates a schema of all the data needed to recreate the current data set

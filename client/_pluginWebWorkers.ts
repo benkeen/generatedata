@@ -20,7 +20,7 @@ export default {
 		"IBAN": "DT-IBAN.worker-adbb63c98f1a1bd8d2588f354c2aa965.js",
 		"LatLng": "DT-LatLng.worker-f3a156b108e0a74ef60385ff383a9e7a.js",
 		"List": "DT-List.worker-a599fa49e7fa4d989bdc942e535df934.js",
-		"Names": "DT-Names.worker-1dc3394ae519a323f812f7deb0b98ded.js",
+		"Names": "DT-Names.worker-1445e01cdccfcd32a7baecbf757c594f.js",
 		"NormalDistribution": "DT-NormalDistribution.worker-34b078989c3ea781a1a3cb8e8cfba27a.js",
 		"NumberRange": "DT-NumberRange.worker-f4dfbe5a9b49c0962d8515ff5f18f905.js",
 		"OrganizationNumber": "DT-OrganizationNumber.worker-c73635c7d12396f308b42aab35ed4abb.js",
