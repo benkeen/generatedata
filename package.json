@@ -150,6 +150,7 @@
 		"@esbuild-plugins/tsconfig-paths": "^0.0.4",
 		"@rollup/plugin-commonjs": "^15.1.0",
 		"@rollup/plugin-node-resolve": "^8.4.0",
+		"@stylistic/eslint-plugin-js": "^3.1.0",
 		"@teamsupercell/typings-for-css-modules-loader": "^2.5.2",
 		"@testing-library/react": "^10.4.7",
 		"@types/codemirror": "^0.0.99",

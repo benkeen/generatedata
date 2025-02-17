@@ -9,8 +9,7 @@
   },
   "scripts": {
     "build": "npx grunt && tsc",
-    "test": "jest",
-    "test-old": "node bin/generatedata --config=../__tests__/test-data1.json"
+    "test": "jest"
   },
   "files": [
     "dist/*",

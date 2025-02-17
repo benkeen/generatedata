@@ -40,4 +40,4 @@ In addition to the many fine folk who submit bug reports, a big thanks to the fo
 https://github.com/benkeen/generatedata/graphs/contributors
 
 Ben Keen
-[@vancouverben](https://twitter.com/#!/vancouverben)
+https://github.com/benkeen

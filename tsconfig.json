@@ -1,26 +1,26 @@
 {
-	"compilerOptions": {
-		"lib": ["es6", "dom", "esnext", "webworker"],
-		"outDir": "./dist/",
-		"sourceMap": true,
-		"esModuleInterop": true,
-		"noImplicitAny": true,
-		"noImplicitThis": true,
-		"strictNullChecks": true,
-		"moduleResolution": "node",
-		"module": "esnext",
-		"target": "es6",
-		"jsx": "react-jsx",
-		"allowSyntheticDefaultImports": true,
-		"removeComments": false,
-		"baseUrl": "./",
-		"paths": {
-			"~components/*": ["client/src/components/*"],
-			"~utils/*": ["client/src/utils/*"],
-			"~store/*": ["client/src/core/store/*"],
-			"~core/*": ["client/src/core/*"],
-			"~types/*": ["client/types/*"]
-		}
-	},
-	"exclude": ["node_modules"]
+  "compilerOptions": {
+    "lib": ["es6", "dom", "esnext", "webworker"],
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es6",
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
+    "removeComments": false,
+    "baseUrl": "./",
+    "paths": {
+      "~components/*": ["client/src/components/*"],
+      "~utils/*": ["client/src/utils/*"],
+      "~store/*": ["client/src/core/store/*"],
+      "~core/*": ["client/src/core/*"],
+      "~types/*": ["client/types/*"]
+    }
+  },
+  "exclude": ["node_modules"]
 }
