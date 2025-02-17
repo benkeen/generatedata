@@ -1,7 +1,7 @@
 declare namespace GlobalScssNamespace {
   export interface IGlobalScss {
-    "recharts-area": string;
-    "recharts-wrapper": string;
+    'recharts-area': string;
+    'recharts-wrapper': string;
   }
 }
 

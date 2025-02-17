@@ -14,7 +14,7 @@ module.exports = {
     node: true
   },
   plugins: ['react'],
-  extends: ['plugin:react/recommended', 'plugin:@typescript-eslint/recommended', '@stylistic/js'],
+  extends: ['plugin:react/recommended', 'plugin:@typescript-eslint/recommended'],
   rules: {
     semi: [2, 'always'],
     indent: [
@@ -24,7 +24,7 @@ module.exports = {
         SwitchCase: 1
       }
     ],
-    '@stylistic/js/indent/max-len': ['warning', 140],
+    // '@stylistic/js/indent/max-len': ['warning', 140],
     'object-curly-spacing': ['error', 'always'],
     allowIndentationTabs: 0,
     'no-extra-parens': ['off'],

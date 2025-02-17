@@ -4,12 +4,7 @@ import Cookies from 'js-cookie';
 import env from '../../../../_env';
 import { apolloClient } from '../../apolloClient';
 import store from '../../store';
-import {
-	onLoginSuccess,
-	setAuthenticated,
-	setAuthenticationData,
-	setOnloadAuthDetermined
-} from '~store/main/main.actions';
+import { onLoginSuccess, setAuthenticated, setAuthenticationData, setOnloadAuthDetermined } from '~store/main/main.actions';
 import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';
 import { addToast } from '~utils/generalUtils';

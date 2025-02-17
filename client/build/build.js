@@ -161,16 +161,17 @@ const createPluginsListFile = () => {
 	fs.writeFileSync(file, content);
 };
 
+// see if we can deprecate all this once cli is a separate package
 const createCliTypesFile = () => {
-	let content = banner + '\n\nimport { DataType, ExportType } from \'../client/_plugins\';\n';
+	let content = banner + '\n\nimport { DataType, ExportType } from \'../../../client/_plugins\';\n';
 
 	const blacklistedDataTypes = process.env.GD_DATA_TYPE_BLACKLIST.split(',');
 	const dataTypes = helpers.getPlugins('dataTypes', []);
 	const dtList = dataTypes.filter((dt) => blacklistedDataTypes.indexOf(dt) === -1); // TODO can this be in the prev lines, second param?
 
 	dtList.forEach((dt) => {
-		content += `import { generate as ${dt}G } from '../client/src/plugins/dataTypes/${dt}/${dt}.generate';\n`
-		content += `import { defaultGenerationOptions as ${dt}DGO } from '../client/src/plugins/dataTypes/${dt}/${dt}.state';\n`
+		content += `import { generate as ${dt}G } from '../../../client/src/plugins/dataTypes/${dt}/${dt}.generate';\n`
+		content += `import { defaultGenerationOptions as ${dt}DGO } from '../../../client/src/plugins/dataTypes/${dt}/${dt}.state';\n`
 	});
 
 	content += `\n\nexport const dataTypeNodeData = {\n`;
@@ -181,8 +182,8 @@ const createCliTypesFile = () => {
 	const etList = helpers.getPlugins('exportTypes', blacklistedExportTypes);
 
 	etList.forEach((et) => {
-		content += `import { generate as ${et}G } from '../client/src/plugins/exportTypes/${et}/${et}.generate';\n`
-		content += `import { defaultGenerationOptions as ${et}DGO } from '../client/src/plugins/exportTypes/${et}/${et}.state';\n`
+		content += `import { generate as ${et}G } from '../../../client/src/plugins/exportTypes/${et}/${et}.generate';\n`
+		content += `import { defaultGenerationOptions as ${et}DGO } from '../../../client/src/plugins/exportTypes/${et}/${et}.state';\n`
 	});
 
 	content += `\n\nexport const exportTypeNodeData = {\n`;

@@ -26,16 +26,16 @@
       "\\.(ts|tsx)$": "ts-jest"
     },
     "setupFilesAfterEnv": [
-      "<rootDir>/../client/tests/jestSetup.ts"
+      "<rootDir>/../../client/tests/jestSetup.ts"
     ],
     "testRegex": "/__tests__/.*\\.(ts|tsx)$",
     "moduleNameMapper": {
-      "\\.(css|less|scss|sss|styl)$": "<rootDir>/../node_modules/jest-css-modules",
-      "^~components(.*)$": "../client/src/components$1",
-      "^~types(.*)$": "<rootDir>/../client/types$1",
-      "^~utils(.*)$": "<rootDir>/../client/src/utils$1",
-      "^~store(.*)$": "<rootDir>/../client/src/core/store$1",
-      "^~core(.*)$": "<rootDir>/../client/src/core$1"
+      "\\.(css|less|scss|sss|styl)$": "<rootDir>/../../node_modules/jest-css-modules",
+      "^~components(.*)$": "../../client/src/components$1",
+      "^~types(.*)$": "<rootDir>/../../client/types$1",
+      "^~utils(.*)$": "<rootDir>/../../client/src/utils$1",
+      "^~store(.*)$": "<rootDir>/../../client/src/core/store$1",
+      "^~core(.*)$": "<rootDir>/../../client/src/core$1"
     }
   },
   "devDependencies": {
