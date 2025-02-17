@@ -1,0 +1,8 @@
+{
+  "name": "@generatedata/cli-test",
+  "description": "Private package to test consumption and execution of the published @generatedata/cli package",
+  "private": true,
+  "dependencies": {
+    "@generatedata/cli": "*"
+  }
+}

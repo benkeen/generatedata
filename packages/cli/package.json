@@ -1,7 +1,7 @@
 {
   "name": "@generatedata/cli",
   "version": "0.0.3",
-  "description": "The npm package version of generatedata.com. Currently in development only.",
+  "description": "The CLI version of generatedata.com. Currently in development only.",
   "license": "GPL3",
   "main": "dist/cli/index.js",
   "bin": {

@@ -161,7 +161,6 @@ const createPluginsListFile = () => {
 	fs.writeFileSync(file, content);
 };
 
-
 const createCliTypesFile = () => {
 	let content = banner + '\n\nimport { DataType, ExportType } from \'../client/_plugins\';\n';
 
@@ -190,7 +189,7 @@ const createCliTypesFile = () => {
 	const etRows = etList.map((et) => `\t[ExportType.${et}]: { generate: ${et}G, defaultGenerationOptions: ${et}DGO }`);
 	content += `${etRows.join(',\n')}\n};\n\n`
 
-	const file = path.join(__dirname, '../../cli', '_cliTypes.ts');
+	const file = path.join(__dirname, '../../packages/cli/src', '_cliTypes.ts');
 	if (fs.existsSync(file)) {
 		fs.unlinkSync(file);
 	}

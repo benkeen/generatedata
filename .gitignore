@@ -13,6 +13,3 @@ coverage
 yarn-error.log
 cypress/
 server/database/_dbStructure.sql
-cli/dist/
-cli/src/_i18n/*
-cli/node_modules/*
