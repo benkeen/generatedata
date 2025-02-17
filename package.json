@@ -1,7 +1,7 @@
 {
 	"name": "generatedata",
 	"description": "Free, MIT-licensed tool for generating random test data. Have at it.",
-	"version": "4.1.8",
+	"version": "4.1.9",
 	"author": "Ben Keen <ben.keen@gmail.com>",
 	"main": "index.js",
 	"license": "GPL-3.0+",
