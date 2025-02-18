@@ -1,5 +1,4 @@
-// @ts-ignore
-import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '@generatedata/cli';
 
 describe('CLI data generation', () => {
 	const getTemplate = (): GDTemplate => ({
@@ -8,19 +7,27 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: 'Constant',
-				title: 'ones-and-twos',
+				plugin: 'LatLng',
+				title: 'lat',
 				settings: {
-					loopCount: 1,
-					values: ["One", "Two"]
+					lat: true,
+					lng: false
 				}
 			},
 			{
-				plugin: 'Constant',
-				title: 'ABCs',
+				plugin: 'LatLng',
+				title: 'lng',
 				settings: {
-					loopCount: 2,
-					values: ["A", "B", "C"]
+					lat: false,
+					lng: true
+				}
+			},
+			{
+				plugin: 'LatLng',
+				title: 'both-lat-and-lng',
+				settings: {
+					lat: true,
+					lng: true
 				}
 			}
 		],
@@ -32,14 +39,11 @@ describe('CLI data generation', () => {
 		}
 	});
 
-	it('Confirm generates correctly', async () => {
+	it('Confirm simple export format', async () => {
 		const data = await generate(getTemplate());
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual([
-			'ones-and-twos',
-			'ABCs'
-		]);
+		expect(Object.keys(generatedJSON[0])).toEqual(['lat', 'lng', 'both-lat-and-lng']);
 	});
 });

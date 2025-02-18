@@ -1,5 +1,4 @@
-// @ts-ignore
-import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '@generatedata/cli';
 
 describe('CLI data generation', () => {
 	const getTemplate = (): GDTemplate => ({
@@ -8,8 +7,8 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: 'Company',
-				title: 'company-name',
+				plugin: 'IBAN',
+				title: 'iban',
 				settings: {}
 			}
 		],
@@ -21,13 +20,11 @@ describe('CLI data generation', () => {
 		}
 	});
 
-	it('Confirm generates correctly', async () => {
+	it('Confirm simple export format', async () => {
 		const data = await generate(getTemplate());
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual([
-			'company-name'
-		]);
+		expect(Object.keys(generatedJSON[0])).toEqual(['iban']);
 	});
 });

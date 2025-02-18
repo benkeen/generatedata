@@ -1,5 +1,4 @@
-// @ts-ignore
-import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '@generatedata/cli';
 
 describe('CLI data generation', () => {
 	const getTemplate = (): GDTemplate => ({
@@ -8,12 +7,10 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: 'Date',
-				title: 'date1',
+				plugin: 'Alphanumeric',
+				title: 'Zip',
 				settings: {
-					fromDate: 1672531200,
-					toDate: 1702511999,
-					format: 'MMM d, y'
+					value: 'Xxxxx'
 				}
 			}
 		],
@@ -25,13 +22,11 @@ describe('CLI data generation', () => {
 		}
 	});
 
-	it('Confirm generates correctly', async () => {
+	it('Confirm simple export format', async () => {
 		const data = await generate(getTemplate());
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual([
-			'date1'
-		]);
+		expect(Object.keys(generatedJSON[0])).toEqual(['Zip']);
 	});
 });

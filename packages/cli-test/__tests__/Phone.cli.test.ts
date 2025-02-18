@@ -1,5 +1,4 @@
-// @ts-ignore
-import generate, { DataType, ExportType, GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '@generatedata/cli';
 
 describe('CLI data generation', () => {
 	const getTemplate = (dataStructureFormat: 'simple' | 'complex'): GDTemplate => ({
@@ -18,11 +17,7 @@ describe('CLI data generation', () => {
 				plugin: 'Phone',
 				title: 'phoneNum2',
 				settings: {
-					option: [
-						'(Xxx) Xxx-xxxx',
-						'1 (Xxx) Xxx-xxxx',
-						'Xxx Xxx-xxxx'
-					]
+					option: ['(Xxx) Xxx-xxxx', '1 (Xxx) Xxx-xxxx', 'Xxx Xxx-xxxx']
 				}
 			}
 		],
@@ -42,4 +37,3 @@ describe('CLI data generation', () => {
 		expect(Object.keys(generatedJSON[0])).toEqual(['phoneNum1', 'phoneNum2']);
 	});
 });
-

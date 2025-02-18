@@ -1,5 +1,4 @@
-// @ts-ignore
-import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '@generatedata/cli';
 
 describe('CLI data generation', () => {
 	const getTemplate = (): GDTemplate => ({
@@ -8,14 +7,21 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: 'Time',
-				title: 'time',
+				plugin: 'Constant',
+				title: 'ones-and-twos',
 				settings: {
-					fromTime: 1678944164,
-					toTime: 1679030564,
-					format: 'h:mm a'
+					loopCount: 1,
+					values: ['One', 'Two']
 				}
 			},
+			{
+				plugin: 'Constant',
+				title: 'ABCs',
+				settings: {
+					loopCount: 2,
+					values: ['A', 'B', 'C']
+				}
+			}
 		],
 		exportSettings: {
 			plugin: 'JSON',
@@ -25,11 +31,11 @@ describe('CLI data generation', () => {
 		}
 	});
 
-	it('Confirm simple export format', async () => {
+	it('Confirm generates correctly', async () => {
 		const data = await generate(getTemplate());
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual(['time']);
+		expect(Object.keys(generatedJSON[0])).toEqual(['ones-and-twos', 'ABCs']);
 	});
 });

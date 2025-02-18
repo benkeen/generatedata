@@ -1,5 +1,4 @@
-// @ts-ignore
-import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '@generatedata/cli';
 
 describe('CLI data generation', () => {
 	const getTemplate = (): GDTemplate => ({
@@ -8,9 +7,12 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: 'CVV',
-				title: 'cvv',
-				settings: {}
+				plugin: 'TextFixed',
+				title: 'text1',
+				settings: {
+					numWordsToGenerate: 2,
+					words: ['One', 'Two', 'Three', 'Four']
+				}
 			}
 		],
 		exportSettings: {
@@ -21,13 +23,11 @@ describe('CLI data generation', () => {
 		}
 	});
 
-	it('Confirm generates correctly', async () => {
+	it('Confirm simple export format', async () => {
 		const data = await generate(getTemplate());
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual([
-			'cvv'
-		]);
+		expect(Object.keys(generatedJSON[0])).toEqual(['text1']);
 	});
 });

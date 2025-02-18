@@ -1,5 +1,4 @@
-// @ts-ignore
-import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '@generatedata/cli';
 
 describe('CLI data generation', () => {
 	const getTemplate = (): GDTemplate => ({
@@ -15,15 +14,15 @@ describe('CLI data generation', () => {
 				}
 			},
 			{
-				plugin: "Boolean",
-				title: "boolean2",
+				plugin: 'Boolean',
+				title: 'boolean2',
 				settings: {
 					values: ['0', '1']
 				}
 			},
 			{
-				plugin: "Boolean",
-				title: "boolean3",
+				plugin: 'Boolean',
+				title: 'boolean3',
 				settings: {
 					values: ['true', 'false']
 				}
@@ -49,11 +48,6 @@ describe('CLI data generation', () => {
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual([
-			'boolean1',
-			'boolean2',
-			'boolean3',
-			'notReallyABoolean'
-		]);
+		expect(Object.keys(generatedJSON[0])).toEqual(['boolean1', 'boolean2', 'boolean3', 'notReallyABoolean']);
 	});
 });

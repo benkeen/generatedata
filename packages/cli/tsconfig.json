@@ -19,7 +19,7 @@
 		"importsNotUsedAsValues": "remove",
 		"skipLibCheck": true,
 		"paths": {
-			"~components/*": ["../client/src/components/*"],
+			"~components/*": ["client/src/components/*"],
 			"~utils/*": ["client/src/utils/*"],
 			"~store/*": ["client/src/core/store/*"],
 			"~core/*": ["client/src/core/*"],

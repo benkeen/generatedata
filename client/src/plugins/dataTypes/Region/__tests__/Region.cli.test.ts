@@ -1,5 +1,5 @@
 // @ts-ignore
-import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '../../../../../types/generator';
 
 describe('CLI data generation', () => {
 	const getTemplate = (): GDTemplate => ({
@@ -100,16 +100,6 @@ describe('CLI data generation', () => {
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual([
-			'Full Region',
-			'Short Region Code',
-			'Short/Full Region Code',
-			'Region from 2 countries',
-			'country1',
-			'Full Region mapped to Country Row #1',
-			'Short Region mapped to Country Row #1',
-			'country2',
-			'Full Region mapped to Country Subset row'
-		]);
+		expect(Object.keys(generatedJSON[0])).toEqual(['Full Region', 'Short Region Code', 'Short/Full Region Code', 'Region from 2 countries', 'country1', 'Full Region mapped to Country Row #1', 'Short Region mapped to Country Row #1', 'country2', 'Full Region mapped to Country Subset row']);
 	});
 });

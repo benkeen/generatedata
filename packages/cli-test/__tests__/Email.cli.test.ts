@@ -1,5 +1,4 @@
-// @ts-ignore
-import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '@generatedata/cli';
 
 describe('CLI data generation', () => {
 	const getTemplate = (): GDTemplate => ({
@@ -8,11 +7,10 @@ describe('CLI data generation', () => {
 		},
 		dataTemplate: [
 			{
-				plugin: 'TextFixed',
-				title: 'text1',
+				plugin: 'Email',
+				title: 'email',
 				settings: {
-					numWordsToGenerate: 2,
-					words: ['One', 'Two', 'Three', 'Four']
+					source: 'random'
 				}
 			}
 		],
@@ -29,6 +27,6 @@ describe('CLI data generation', () => {
 		const generatedJSON = JSON.parse(data);
 
 		expect(generatedJSON.length).toEqual(10);
-		expect(Object.keys(generatedJSON[0])).toEqual(['text1']);
+		expect(Object.keys(generatedJSON[0])).toEqual(['email']);
 	});
 });

@@ -1,5 +1,4 @@
-// @ts-ignore
-import generate, { GDTemplate } from '../../../../../../cli/dist/cli/src';
+import generate, { GDTemplate } from '@generatedata/cli';
 
 describe('CLI data generation', () => {
 	const getTemplate = (dataStructureFormat: 'simple' | 'complex'): GDTemplate => ({
@@ -46,6 +45,4 @@ describe('CLI data generation', () => {
 		expect(generatedJSON.data.length).toEqual(10);
 		expect(generatedJSON.data[0].length).toEqual(2);
 	});
-
 });
-

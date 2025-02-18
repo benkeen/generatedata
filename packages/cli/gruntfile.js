@@ -1,13 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-const result = require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+const result = require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 if (result.error) {
-	console.error("\nMissing .env file.... Please see the documentation about setting up your environment.\n", result);
+	console.error('\nMissing .env file.... Please see the documentation about setting up your environment.\n', result);
 	return;
 }
 
-const BASE_PATH = path.join(__dirname, '../client');
+const BASE_PATH = path.join(__dirname, '../../client');
 const locales = process.env.GD_LOCALES.split(',');
 
 module.exports = function (grunt) {
@@ -29,7 +29,7 @@ module.exports = function (grunt) {
 			const etImports = getPluginLocaleFiles(grunt, locale, exportTypesFolder);
 			const countryImports = getPluginLocaleFiles(grunt, locale, countriesFolder);
 
-			generateLocaleFileTemplate(locale, coreLocaleStrings, dtImports, etImports, countryImports)
+			generateLocaleFileTemplate(locale, coreLocaleStrings, dtImports, etImports, countryImports);
 		});
 	};
 
@@ -75,7 +75,7 @@ module.exports = function (grunt) {
 						dest: 'dist/cli/src/_i18n'
 					}
 				]
-			},
+			}
 		}
 	});
 
@@ -85,5 +85,5 @@ module.exports = function (grunt) {
 	grunt.registerTask('default', ['clean', 'createEmptyDist', 'copyI18nFiles', 'i18n']);
 	grunt.registerTask('i18n', generateI18nBundles);
 	grunt.registerTask('createEmptyDist', createI18nFolder);
-	grunt.registerTask('copyI18nFiles', ['copy:i18n'])
+	grunt.registerTask('copyI18nFiles', ['copy:i18n']);
 };
