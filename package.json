@@ -224,7 +224,7 @@
 		"sass-loader": "^8.0.0",
 		"sinon": "^8.0.4",
 		"style-loader": "^1.0.0",
-		"ts-jest": "^29..5",
+		"ts-jest": "^29.0.5",
 		"ts-loader": "^9.4.2",
 		"ts-node": "^10.9.2",
 		"tsconfig-paths": "4.1.1",
