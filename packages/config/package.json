@@ -2,12 +2,15 @@
   "name": "@generatedata/config",
   "version": "1.0.0",
   "description": "This package contains the settings for your generatedata installation.",
+  "module": "./dist/index.ts",
+  "typings": "./typings/index.d.ts",
   "scripts": {
     "tsc": "tsc",
     "build": "run-s confirm-setup tsc",
     "confirm-setup": "node ./scripts/confirm-setup.js"
   },
   "devDependencies": {
+    "@types/node": "^20.19.11",
     "npm-run-all": "^4.1.5",
     "typescript": "5.9.2"
   }

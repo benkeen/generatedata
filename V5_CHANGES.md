@@ -27,6 +27,10 @@ Logical units of the code are now going to be split into standard _npm packages_
 - `packages/plugins` - the countries, Data Types and Export Types. Perhaps I'll split them into separate packages for each, but for now they're lumped in the same package.
 - `packages/types` - global types.
 
+## Other changes
+
+- moved to pnpm
+
 ## Bootstrap process for new clones
 
 (Need instructions):

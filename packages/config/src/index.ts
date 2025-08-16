@@ -3,4 +3,3 @@ export * from './client.config';
 export * from './server.config';
 
 export * as constants from './constants';
-export * from '../typings';

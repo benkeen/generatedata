@@ -1,5 +1,7 @@
-# this are created by the user and should never be checked in
+# these 2 files are created by the user and should never be checked in
 src/client.config.ts
 src/server.config.ts
+
+# standard folders to ignore
 node_modules/*
 dist/*
