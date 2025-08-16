@@ -26,21 +26,21 @@ trade-off I had to make.
     right node version specified in the `.nvmrc` file. If you're not running the correct version of node it will
     throw an error during startup.
 
-- `yarn install`
-- After starting Docker, in one tab run: `yarn startAndBuildDevServer` - this boots up the server + database containers.
-  For subsequent runs you can just use `yarn startDevServer` and it'll be faster.
-- In a second tab, `yarn start` - this boots up the client-side code. Be warned: this does a _LOT_ of stuff and the
+- `pnpm install`
+- After starting Docker, in one tab run: `npm run startAndBuildDevServer` - this boots up the server + database containers.
+  For subsequent runs you can just use `npm run startDevServer` and it'll be faster.
+- In a second tab, `npm run start` - this boots up the client-side code. Be warned: this does a _LOT_ of stuff and the
   first time you run it it'll take a very long time to run.
 
 After running the second command it should open up `http://localhost:9000` in your browser.
 
 #### Shutting down dev env
 
-`yarn stopDevServer` - shuts down docker.
+`npm run stopDevServer` - shuts down docker.
 
 I've found that sometimes that command chokes and you have to wait a few minutes before it runs properly. Presumably
 it's because the docker container was still in the process of booting up. If there are still problems, you might want to just run
-`yarn dockerCleanup`. I do this on the live server every time I update it. It completely clears everything out so you
+`npm run dockerCleanup`. I do this on the live server every time I update it. It completely clears everything out so you
 can start from scratch. It WON'T, however, delete your
 
 ### Troubleshooting
@@ -73,8 +73,8 @@ These are found in `src/i18n`. They contain all the core i18n files.
 
 Local dev, general steps:
 
-- `yarn start` - builds the client-side code and
-- `yarn startDevServer` -
+- `npm run start` - builds and rubs the client-side code
+- `npm run startDevServer` - starts the dev server
 
 ### Common problems
 

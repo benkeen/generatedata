@@ -1,3 +1,4 @@
 node_modules/*
 src/_i18n
 src/_cliTypes.ts
+dist/

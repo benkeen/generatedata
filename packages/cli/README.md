@@ -117,15 +117,15 @@ all of these rows contain the same properties:
 
 ### Local dev
 
-`yarn build`
+`npm run build`
 
 -
 - This generates the build artifacts.
 
-Note: requires the main client/ application to have been built first. To do that just run `yarn build` in the root of the repo.
+Note: requires the main client/ application to have been built first. To do that just run `npm run build` in the root of the repo.
 
-- `yarn dev` - runs index.ts for testing purposes
-- `yarn test`
+- `npm run dev` - runs index.ts for testing purposes
+- `npm run test`
 
 ### Other scenarios
 

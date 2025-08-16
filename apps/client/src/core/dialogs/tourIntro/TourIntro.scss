@@ -1,0 +1,62 @@
+@use '../../../styles/variables.scss' as c;
+
+.cols {
+	display: flex;
+	flex-direction: row;
+}
+
+.col {
+	flex: 1;
+
+	h3 {
+		margin-top: 0;
+	}
+
+	:global(.MuiButtonBase-root) {
+		margin-bottom: 10px;
+
+		svg {
+			margin-left: -4px;
+			margin-right: 6px;
+		}
+	}
+}
+
+.separator {
+	margin: 0 25px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	border-left: 1px solid #efefef;
+}
+
+svg.tourMask {
+	opacity: 0.7;
+	color: #b2bed3;
+}
+
+.introDialog,
+.tourPage {
+	font-size: 13px;
+
+	p {
+		line-height: 20px;
+	}
+
+	button {
+		font-size: 12px;
+	}
+}
+
+.buttonCol {
+	font-size: 12px;
+
+	b {
+		color: c.$primary-color;
+	}
+}
+
+div[data-tour-elem='controls'] {
+	display: flex;
+	justify-content: center;
+}

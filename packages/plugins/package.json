@@ -1,0 +1,13 @@
+{
+  "name": "@generatedata/plugins",
+  "version": "1.0.0",
+  "description": "generatedata.com plugins",
+  "module": "./dist/",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@generatedata/types": "workspace:*",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,15 +1,8 @@
-cache/*
 .DS_Store
-.buildpath
-.idea*
 node_modules/*
-dist/
 .config
 .env
 data/db
 !data/db/nodelete.txt
-client/_env.ts
-coverage
-yarn-error.log
-cypress/
-server/database/_dbStructure.sql
+.turbo
+.npm

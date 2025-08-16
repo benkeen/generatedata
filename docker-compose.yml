@@ -9,7 +9,7 @@ services:
     container_name: server
     build:
       context: ./
-      dockerfile: ./server/Dockerfile
+      dockerfile: ./apps/server/Dockerfile
     depends_on:
       - db
     networks:
@@ -21,7 +21,8 @@ services:
     restart: on-failure
     volumes:
       - .:/home/app/generatedata
-      - /home/app/generatedata/node_modules
+      # - /home/app/generatedata/apps/client/node_modules
+      # - /home/app/generatedata/apps/server/node_modules
 
   db:
     container_name: db
@@ -39,5 +40,5 @@ services:
       MYSQL_DATABASE: ${GD_DB_NAME}
       MYSQL_ALLOW_EMPTY_PASSWORD: ok
     volumes:
-      - ./server/database/_dbStructure.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./apps/server/database/_dbStructure.sql:/docker-entrypoint-initdb.d/setup.sql
       - ./data/db:/var/lib/mysql

@@ -1,0 +1,3 @@
+database/_dbStructure.sql
+.turbo
+node_modules/*

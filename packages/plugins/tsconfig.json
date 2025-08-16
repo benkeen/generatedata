@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es6",
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["node_modules"]
+}

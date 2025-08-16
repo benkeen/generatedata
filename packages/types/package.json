@@ -1,0 +1,6 @@
+{
+  "name": "@generatedata/types",
+  "description": "Shared types for the suite of @generatedata packages",
+  "version": "1.0.0",
+  "module": "./index.d.ts"
+}
