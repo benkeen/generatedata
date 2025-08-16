@@ -1,10 +1,9 @@
-import { ETBundle } from '~types/exportTypes';
+import { ETBundle } from '@generatedata/types';
 import { getCodeMirrorMode, getDownloadFileInfo } from './Python';
 
 const bundle: ETBundle = {
-	getCodeMirrorMode,
-	getDownloadFileInfo
+  getCodeMirrorMode,
+  getDownloadFileInfo
 };
 
 export default bundle;
-

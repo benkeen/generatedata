@@ -1,7 +1,7 @@
 test.skip('skip', () => {});
 
 // import { generateSimple, isNested } from '../JSON.generator';
-// import { ETMessageData } from '~types/exportTypes';
+// import { ETMessageData } from '@generatedata/types';
 //
 //
 // describe('isNested', () => {

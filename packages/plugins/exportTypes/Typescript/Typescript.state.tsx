@@ -1,18 +1,18 @@
-import { ETState } from '~types/exportTypes';
+import { ETState } from '@generatedata/types';
 
 export type GenerationOptionsType = {
-	typeName: string;
-	varName: string;
-}
+  typeName: string;
+  varName: string;
+};
 
 export const defaultGenerationOptions: GenerationOptionsType = {
-	typeName: 'RandomData',
-	varName: 'data'
+  typeName: 'RandomData',
+  varName: 'data'
 };
 
 export interface TypescriptSettings extends ETState, GenerationOptionsType {}
 
 export const initialState: TypescriptSettings = {
-	...defaultGenerationOptions,
-	isValid: true
+  ...defaultGenerationOptions,
+  isValid: true
 };

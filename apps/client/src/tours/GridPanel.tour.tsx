@@ -6,7 +6,7 @@ import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
 import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
-import { GeneratorLayout } from '~core/generator/Generator.component';
+import { GeneratorLayout } from '@generatedata/types';
 import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 
 const Step1 = (): JSX.Element => {
@@ -15,12 +15,8 @@ const Step1 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.theGridPanel}</h2>
-			<p>
-				{i18n.gridPanelTourIntroDesc1}
-			</p>
-			<p>
-				{i18n.gridPanelTourIntroDesc2}
-			</p>
+			<p>{i18n.gridPanelTourIntroDesc1}</p>
+			<p>{i18n.gridPanelTourIntroDesc2}</p>
 		</>
 	);
 };
@@ -32,9 +28,7 @@ const Step2 = (): JSX.Element => {
 		<>
 			<h2>{i18n.columns}</h2>
 
-			<p>
-				{i18n.columnsDesc}
-			</p>
+			<p>{i18n.columnsDesc}</p>
 		</>
 	);
 };
@@ -45,12 +39,8 @@ const Step3 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.rowNumber}</h2>
-			<p>
-				{i18n.rowNumDesc1}
-			</p>
-			<p>
-				{i18n.rowNumDesc2}
-			</p>
+			<p>{i18n.rowNumDesc1}</p>
+			<p>{i18n.rowNumDesc2}</p>
 		</>
 	);
 };
@@ -61,9 +51,7 @@ const Step4 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.dataType}</h2>
-			<p>
-				{i18n.dataTypeDesc}
-			</p>
+			<p>{i18n.dataTypeDesc}</p>
 		</>
 	);
 };
@@ -74,9 +62,7 @@ const Step5 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.helpIcon}</h2>
-			<p>
-				{i18n.helpIconDesc}
-			</p>
+			<p>{i18n.helpIconDesc}</p>
 		</>
 	);
 };
@@ -87,9 +73,7 @@ const Step6 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.nameColumn}</h2>
-			<p>
-				{i18n.nameColumnDesc}
-			</p>
+			<p>{i18n.nameColumnDesc}</p>
 		</>
 	);
 };
@@ -100,9 +84,7 @@ const Step7 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.exampleColumn}</h2>
-			<p>
-				{i18n.exampleColumnDesc}
-			</p>
+			<p>{i18n.exampleColumnDesc}</p>
 		</>
 	);
 };
@@ -113,12 +95,8 @@ const Step8 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.optionsColumn}</h2>
-			<p>
-				{i18n.optionsColumnDesc1}
-			</p>
-			<p>
-				{i18n.optionsColumnDesc2}
-			</p>
+			<p>{i18n.optionsColumnDesc1}</p>
+			<p>{i18n.optionsColumnDesc2}</p>
 		</>
 	);
 };
@@ -129,9 +107,7 @@ const Step9 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.deleteRow}</h2>
-			<p>
-				{i18n.deleteRowDesc}
-			</p>
+			<p>{i18n.deleteRowDesc}</p>
 		</>
 	);
 };
@@ -142,19 +118,15 @@ const Step10 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.addRows}</h2>
-			<p>
-				{i18n.addRowsDesc}
-			</p>
+			<p>{i18n.addRowsDesc}</p>
 		</>
 	);
 };
-
 
 const commonStyles = {
 	borderRadius: 6,
 	margin: 12
 };
-
 
 const steps = [
 	{
@@ -195,7 +167,7 @@ const steps = [
 					Country: false,
 					LatLng: false,
 					Alphanumeric: false,
-					Boolean: false,
+					Boolean: false
 				};
 
 				const onLoadComplete = (plugin: DataTypeFolder | ExportTypeFolder): void => {
@@ -208,36 +180,76 @@ const steps = [
 				};
 
 				const shouldRefreshPreviewPanel = false;
-				store.dispatch(actions.onSelectDataType('Names', {
-					gridRowId: ids[0], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('Phone', {
-					gridRowId: ids[1], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('Email', {
-					gridRowId: ids[2], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('StreetAddress', {
-					gridRowId: ids[3], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('City', {
-					gridRowId: ids[4], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('Region', {
-					gridRowId: ids[5], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('Country', {
-					gridRowId: ids[6], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('LatLng', {
-					gridRowId: ids[7], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('Alphanumeric', {
-					gridRowId: ids[8], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('Boolean', {
-					gridRowId: ids[8], shouldRefreshPreviewPanel, onLoadComplete
-				}));
+				store.dispatch(
+					actions.onSelectDataType('Names', {
+						gridRowId: ids[0],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('Phone', {
+						gridRowId: ids[1],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('Email', {
+						gridRowId: ids[2],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('StreetAddress', {
+						gridRowId: ids[3],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('City', {
+						gridRowId: ids[4],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('Region', {
+						gridRowId: ids[5],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('Country', {
+						gridRowId: ids[6],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('LatLng', {
+						gridRowId: ids[7],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('Alphanumeric', {
+						gridRowId: ids[8],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('Boolean', {
+						gridRowId: ids[8],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
 
 				document.querySelector('.tour-scrollableGridRows')!.scrollTop = 0;
 			}, 10);

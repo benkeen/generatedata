@@ -18,7 +18,7 @@ import mainReducer from '~store/main/main.reducer';
 import packetsReducer from '~store/packets/packets.reducer';
 import accountReducer from '~store/account/account.reducer';
 import actionsInterceptor from '~core/actionInterceptor';
-import { GeneratorLayout } from '~core/generator/Generator.component';
+import { GeneratorLayout } from '@generatedata/types';
 import { ETSettings } from '~types/exportTypes';
 
 const i18n = require('../src/i18n/en.json');
@@ -31,7 +31,15 @@ export const rootReducer = combineReducers({
 	account: accountReducer
 });
 
-export const renderWithStoreAndRouter = (component: any, { initialState = getTestState(), store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk, actionsInterceptor))), route = '/', history = createMemoryHistory({ initialEntries: [route] }) }: any = {}) => {
+export const renderWithStoreAndRouter = (
+	component: any,
+	{
+		initialState = getTestState(),
+		store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk, actionsInterceptor))),
+		route = '/',
+		history = createMemoryHistory({ initialEntries: [route] })
+	}: any = {}
+) => {
 	langUtils.setLocale('en', {
 		core: i18n,
 		dataTypes: {},

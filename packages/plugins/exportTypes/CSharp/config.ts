@@ -1,11 +1,8 @@
-import { ETDefinition } from '~types/exportTypes';
+import { ETDefinition } from '@generatedata/types';
 
 const definition: ETDefinition = {
-	fieldGroup: 'programmingLanguage',
-	codeMirrorModes: [
-		'javascript/javascript',
-		'clike/clike'
-	]
+  fieldGroup: 'programmingLanguage',
+  codeMirrorModes: ['javascript/javascript', 'clike/clike']
 };
 
 export default definition;

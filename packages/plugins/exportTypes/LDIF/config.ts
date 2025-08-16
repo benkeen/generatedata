@@ -1,10 +1,8 @@
-import { ETDefinition } from '~types/exportTypes';
+import { ETDefinition } from '@generatedata/types';
 
 const definition: ETDefinition = {
-	fieldGroup: 'core',
-	codeMirrorModes: [
-		'yaml/yaml'
-	]
+  fieldGroup: 'core',
+  codeMirrorModes: ['yaml/yaml']
 };
 
 export default definition;

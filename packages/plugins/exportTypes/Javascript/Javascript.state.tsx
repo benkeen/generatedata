@@ -1,18 +1,18 @@
-import { ETState } from '~types/exportTypes';
+import { ETState } from '@generatedata/types';
 
 export type JavascriptExportFormat = 'variable' | 'es6' | 'commonJs';
 
 export type GenerationOptionsType = {
-	jsExportFormat: JavascriptExportFormat;
-}
+  jsExportFormat: JavascriptExportFormat;
+};
 
 export const defaultGenerationOptions: GenerationOptionsType = {
-	jsExportFormat: 'variable',
+  jsExportFormat: 'variable'
 };
 
 export interface ProgrammingLanguageState extends ETState, GenerationOptionsType {}
 
 export const initialState: ProgrammingLanguageState = {
-	...defaultGenerationOptions,
-	isValid: true
+  ...defaultGenerationOptions,
+  isValid: true
 };

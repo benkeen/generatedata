@@ -1,8 +1,8 @@
-import { ETDefinition } from '~types/exportTypes';
+import { ETDefinition } from '@generatedata/types';
 
 const definition: ETDefinition = {
-	fieldGroup: 'core',
-	codeMirrorModes: []
+  fieldGroup: 'core',
+  codeMirrorModes: []
 };
 
 export default definition;

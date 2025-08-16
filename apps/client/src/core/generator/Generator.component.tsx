@@ -12,13 +12,9 @@ import DataSetHistory from './dataSetHistory/DataSetHistory.container';
 import HelpDialog from '../dialogs/help/HelpDialog.container';
 import ClearPageDialog from '../dialogs/clearPage/ClearPage.container';
 import SchemaDialog from '../dialogs/schema/Schema.container';
+import { GeneratorLayout } from '@generatedata/types';
 import C from '../constants';
 import './Generator.scss';
-
-export const enum GeneratorLayout {
-	horizontal = 'horizontal',
-	vertical = 'vertical'
-}
 
 export type GeneratorProps = {
 	i18n: any;

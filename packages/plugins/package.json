@@ -6,8 +6,13 @@
   "scripts": {
     "build": "tsc"
   },
+  "dependencies": {
+    "react": "^16.13.1"
+  },
   "devDependencies": {
     "@generatedata/types": "workspace:*",
+    "@testing-library/react": "^10.4.7",
+    "jest": "^29.4.3",
     "typescript": "^5.7.3"
   }
 }

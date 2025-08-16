@@ -9,7 +9,7 @@ import SwapVert from '@material-ui/icons/SwapVert';
 import CodeIcon from '@material-ui/icons/Code';
 import { toSentenceCase } from '~utils/stringUtils';
 import { Tooltip } from '~components/tooltips';
-import { GeneratorLayout } from '../Generator.component';
+import { GeneratorLayout } from '@generatedata/types';
 import FeatureToggles from '~core/featureToggles';
 import * as styles from './PanelControls.scss';
 
@@ -90,11 +90,7 @@ export const PanelControls = ({
 
 		return (
 			<ButtonGroup aria-label="" size="small" className={`${className} ${styles.dataTemplateControls}`}>
-				<Tooltip
-					title={<span dangerouslySetInnerHTML={{ __html: 'Export / import template' }} />}
-					placement="bottom"
-					arrow
-				>
+				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: 'Export / import template' }} />} placement="bottom" arrow>
 					<Button onClick={showDataTemplateDialog} startIcon={<CodeIcon />} />
 				</Tooltip>
 			</ButtonGroup>

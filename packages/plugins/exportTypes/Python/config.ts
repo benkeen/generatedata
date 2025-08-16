@@ -1,10 +1,8 @@
-import { ETDefinition } from '~types/exportTypes';
+import { ETDefinition } from '@generatedata/types';
 
 const definition: ETDefinition = {
-	fieldGroup: 'programmingLanguage',
-	codeMirrorModes: [
-		'python/python'
-	]
+  fieldGroup: 'programmingLanguage',
+  codeMirrorModes: ['python/python']
 };
 
 export default definition;

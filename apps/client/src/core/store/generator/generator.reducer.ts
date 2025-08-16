@@ -7,7 +7,7 @@ import * as accountActions from '../account/account.actions';
 import * as packetActions from '../packets/packets.actions';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, dataTypes, ExportTypeFolder, exportTypes } from '../../../../_plugins';
-import { GeneratorLayout } from '../../generator/Generator.component';
+import { GeneratorLayout } from '@generatedata/types';
 import env from '../../../../_env';
 import C from '../../constants';
 import { GeneratorPanel } from '~types/general';
@@ -164,10 +164,7 @@ export type GeneratorState = {
 export const getInitialState = (): GeneratorState => ({
 	// the extra check for existence on these vars is just to placate the tests (not sure why needed)
 	loadedDataTypes: Object.keys(dataTypes).reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
-	loadedExportTypes: Object.keys(exportTypes).reduce(
-		(acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }),
-		{}
-	),
+	loadedExportTypes: Object.keys(exportTypes).reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
 	initialDependenciesLoaded: false,
 	exportType: env.defaultExportType,
 	rows: {},
@@ -385,8 +382,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.TOGGLE_LAYOUT:
-			draft.generatorLayout =
-				draft.generatorLayout === GeneratorLayout.horizontal ? GeneratorLayout.vertical : GeneratorLayout.horizontal;
+			draft.generatorLayout = draft.generatorLayout === GeneratorLayout.horizontal ? GeneratorLayout.vertical : GeneratorLayout.horizontal;
 			break;
 
 		case actions.TOGGLE_LINE_WRAPPING:
@@ -442,8 +438,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL:
-			draft.smallScreenVisiblePanel =
-				draft.smallScreenVisiblePanel === GeneratorPanel.grid ? GeneratorPanel.preview : GeneratorPanel.grid;
+			draft.smallScreenVisiblePanel = draft.smallScreenVisiblePanel === GeneratorPanel.grid ? GeneratorPanel.preview : GeneratorPanel.grid;
 			break;
 
 		case actions.SET_BULK_ACTION:

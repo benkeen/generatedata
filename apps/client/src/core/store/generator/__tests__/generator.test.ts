@@ -3,7 +3,7 @@ import * as actions from '../generator.actions';
 import * as selectors from '../generator.selectors';
 import generatorReducer from '../generator.reducer';
 import mainReducer from '../../main/main.reducer';
-import { GeneratorLayout } from '~core/generator/Generator.component';
+import { GeneratorLayout } from '@generatedata/types';
 
 describe('generator section', () => {
 	let store: any;

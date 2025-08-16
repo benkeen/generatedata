@@ -1,16 +1,16 @@
 // Original author: Marco Corona <coronam@allegheny.edu>
-import { ETMessageData } from '~types/exportTypes';
+import { ETMessageData } from '@generatedata/types';
 
 export const generate = (data: ETMessageData): string => {
-	const { columns, rows } = data;
+  const { columns, rows } = data;
 
-	let content = '';
-	rows.forEach((row) => {
-		columns.forEach((col, index) => {
-			content += `${col.title}: ${row[index]}\n`;
-		});
-		content += '\n';
-	});
+  let content = '';
+  rows.forEach((row) => {
+    columns.forEach((col, index) => {
+      content += `${col.title}: ${row[index]}\n`;
+    });
+    content += '\n';
+  });
 
-	return content;
+  return content;
 };

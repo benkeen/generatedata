@@ -1,8 +1,8 @@
-import { ETDownloadPacket, ETDownloadPacketResponse } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse } from '@generatedata/types';
 
 export const getCodeMirrorMode = (): string => 'text/x-yaml';
 
 export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadPacketResponse => ({
-	filename: `data-${packetId}.ldf`,
-	fileType: 'application/csv'
+  filename: `data-${packetId}.ldf`,
+  fileType: 'application/csv'
 });

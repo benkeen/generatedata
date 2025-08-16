@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import * as coreUtils from '~utils/coreUtils';
 import { getCountryData } from '~utils/countryUtils';
-import { GeneratorLayout } from '~core/generator/Generator.component';
+import { GeneratorLayout } from '@generatedata/types';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
 import C from '~core/constants';
 

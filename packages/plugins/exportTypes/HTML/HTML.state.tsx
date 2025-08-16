@@ -1,18 +1,18 @@
-import { ETState } from '~types/exportTypes';
+import { ETState } from '@generatedata/types';
 
 export type ExportFormat = 'table' | 'ul' | 'dl';
 
 export type GenerationOptionsType = {
-	exportFormat: ExportFormat;
-}
+  exportFormat: ExportFormat;
+};
 
 export const defaultGenerationOptions: GenerationOptionsType = {
-	exportFormat: 'table'
+  exportFormat: 'table'
 };
 
 export interface HTMLSettings extends ETState, GenerationOptionsType {}
 
 export const initialState: HTMLSettings = {
-	...defaultGenerationOptions,
-	isValid: true // there's no way the config settings for the HTML ET can be misconfigured, so this is always true
+  ...defaultGenerationOptions,
+  isValid: true // there's no way the config settings for the HTML ET can be misconfigured, so this is always true
 };

@@ -1,8 +1,8 @@
-import { ETDownloadPacket, ETDownloadPacketResponse } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse } from '@generatedata/types';
 
 export const getCodeMirrorMode = (): string => 'text/x-csharp';
 
 export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadPacketResponse => ({
-	filename: `data-${packetId}.cs`,
-	fileType: ''
+  filename: `data-${packetId}.cs`,
+  fileType: ''
 });
