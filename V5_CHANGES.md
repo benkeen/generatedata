@@ -26,3 +26,10 @@ Logical units of the code are now going to be split into standard _npm packages_
 - `packages/config` - this'll house the main configuration settings and replace the old `.env` file. For simplicity and backward compatibility, I've left the same uppercase names from the old .env variables.
 - `packages/plugins` - the countries, Data Types and Export Types. Perhaps I'll split them into separate packages for each, but for now they're lumped in the same package.
 - `packages/types` - global types.
+
+## Bootstrap process for new clones
+
+(Need instructions):
+
+- install turborepo CLI, nvm, pnpm globals
+- `pnpm install` - this bootstraps the whole repo

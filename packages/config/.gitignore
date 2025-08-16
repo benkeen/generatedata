@@ -1,0 +1,5 @@
+# this are created by the user and should never be checked in
+src/client.config.ts
+src/server.config.ts
+node_modules/*
+dist/*
