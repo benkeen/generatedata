@@ -1,4 +1,4 @@
-import * as numberUtils from '../..';
+import * as numberUtils from '../numberUtils';
 
 describe('isNumeric', () => {
   it('evaluates numeric values correctly', () => {

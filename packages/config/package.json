@@ -1,0 +1,12 @@
+{
+  "name": "@generatedata/config",
+  "version": "1.0.0",
+  "description": "This package contains the settings for your generatedata installation.",
+  "scripts": {
+    "build": "",
+    "check-config-file-exists": ""
+  },
+  "devDependencies": {
+    "typescript": "5.9.2"
+  }
+}

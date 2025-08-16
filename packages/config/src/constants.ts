@@ -4,11 +4,13 @@ export default {
   // incompatibility problems with the latest code
   APP_STATE_VERSION: 8,
 
+  // the number of default empty rows that appear in the generator
   NUM_DEFAULT_ROWS: 4,
+
   GITHUB_URL: 'https://github.com/benkeen/generatedata',
   CHANGELOG_URL: 'https://github.com/benkeen/generatedata/blob/master/CHANGELOG.md',
 
-  // these map to the GD_APP_TYPE env var. They're the different available configurations for this GD installation
+  // these map to the GD_APP_TYPE type. They're the different available configurations for this GD installation
   APP_TYPES: {
     LOGIN: 'login',
     SINGLE: 'single',
@@ -23,6 +25,21 @@ export default {
     { value: 'darcula', label: 'Darcula' },
     { value: 'lucario', label: 'Lucario' }
   ],
+
+  GD_ALL_SUPPORTED_LOCALES: {
+    ar: 'عربى',
+    de: 'Deutsch',
+    en: 'English',
+    es: 'Español',
+    fr: 'Français',
+    hi: 'हिंदी',
+    ja: '日本人',
+    nl: 'Nederlands',
+    pt: 'Português',
+    ru: 'Русский',
+    ta: 'தமிழ்',
+    zh: '中文'
+  },
 
   MIN_PREVIEW_ROWS: 5,
   MAX_PREVIEW_ROWS: 20,

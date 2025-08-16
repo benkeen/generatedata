@@ -1,6 +1,6 @@
 {
-  "name": "@generatedata/common",
-  "description": "Shared utility methods, constants",
+  "name": "@generatedata/utils",
+  "description": "Utility methods and code",
   "module": "./dist/index.js",
   "scripts": {
     "build": "tsc"
