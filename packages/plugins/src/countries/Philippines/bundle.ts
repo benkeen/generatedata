@@ -19,7 +19,19 @@ const Philippines: GetCountryData = (i18n) => ({
       regionShort: 'NCR',
       regionSlug: 'national_capital_region',
       weight: 139,
-      cities: ['Quezon City', 'Manila', 'Caloocan', 'Taguig', 'Pasig', 'Valenzuela', 'Parañaque', 'Makati', 'Las Piñas', 'Muntinlupa', 'Marikina']
+      cities: [
+        'Quezon City',
+        'Manila',
+        'Caloocan',
+        'Taguig',
+        'Pasig',
+        'Valenzuela',
+        'Parañaque',
+        'Makati',
+        'Las Piñas',
+        'Muntinlupa',
+        'Marikina'
+      ]
     },
     {
       regionName: 'Cordillera Administrative Region',
@@ -47,14 +59,42 @@ const Philippines: GetCountryData = (i18n) => ({
       regionShort: 'regionIII',
       regionSlug: 'central_luzon',
       weight: 123,
-      cities: ['Angeles City', 'Balanga', 'Cabanatuan', 'Gapan', 'Mabalacat', 'Malolos', 'Meycauayan', 'Muñoz', 'Olongapo', 'Palayan', 'San Fernando', 'San Jose', 'San Jose del Monte', 'Tarlac City']
+      cities: [
+        'Angeles City',
+        'Balanga',
+        'Cabanatuan',
+        'Gapan',
+        'Mabalacat',
+        'Malolos',
+        'Meycauayan',
+        'Muñoz',
+        'Olongapo',
+        'Palayan',
+        'San Fernando',
+        'San Jose',
+        'San Jose del Monte',
+        'Tarlac City'
+      ]
     },
     {
       regionName: 'Calabarzon',
       regionShort: 'regionIV-A',
       regionSlug: 'calabarzon',
       weight: 161,
-      cities: ['Antipolo', 'Dasmariñas', 'Bacoor', 'Calamba', 'Imus', 'General Trias', 'Santa Rosa', 'Biñan', 'Lipa', 'Cabuyao', 'Batangas City', 'San Pedro']
+      cities: [
+        'Antipolo',
+        'Dasmariñas',
+        'Bacoor',
+        'Calamba',
+        'Imus',
+        'General Trias',
+        'Santa Rosa',
+        'Biñan',
+        'Lipa',
+        'Cabuyao',
+        'Batangas City',
+        'San Pedro'
+      ]
     },
     {
       regionName: 'Southwestern Tagalog Region',
@@ -75,14 +115,48 @@ const Philippines: GetCountryData = (i18n) => ({
       regionShort: 'regionVI',
       regionSlug: 'western_visayas',
       weight: 80,
-      cities: ['Bacolod', 'Bago', 'Cadiz', 'Escalante', 'Himamaylan', 'Iloilo City', 'Kabankalan', 'La Carlota', 'Passi', 'Roxas', 'Sagay', 'San Carlos', 'Silay', 'Sipalay', 'Talisay', 'Victorias']
+      cities: [
+        'Bacolod',
+        'Bago',
+        'Cadiz',
+        'Escalante',
+        'Himamaylan',
+        'Iloilo City',
+        'Kabankalan',
+        'La Carlota',
+        'Passi',
+        'Roxas',
+        'Sagay',
+        'San Carlos',
+        'Silay',
+        'Sipalay',
+        'Talisay',
+        'Victorias'
+      ]
     },
     {
       regionName: 'Central Visayas',
       regionShort: 'regionVII',
       regionSlug: 'central_visayas',
       weight: 74,
-      cities: ['Bais', 'Bayawan', 'Bogo', 'Canlaon', 'Carcar', 'Cebu City', 'Danao', 'Dumaguete', 'Guihulngan', 'Lapu-Lapu City', 'Mandaue', 'Naga', 'Tagbilaran', 'Talisay', 'Tanjay', 'Toledo']
+      cities: [
+        'Bais',
+        'Bayawan',
+        'Bogo',
+        'Canlaon',
+        'Carcar',
+        'Cebu City',
+        'Danao',
+        'Dumaguete',
+        'Guihulngan',
+        'Lapu-Lapu City',
+        'Mandaue',
+        'Naga',
+        'Tagbilaran',
+        'Talisay',
+        'Tanjay',
+        'Toledo'
+      ]
     },
     {
       regionName: 'Eastern Visayas',

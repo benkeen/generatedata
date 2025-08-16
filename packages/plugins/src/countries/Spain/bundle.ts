@@ -22,7 +22,20 @@ const Spain: GetCountryData = (i18n) => ({
       regionShort: 'AN',
       regionSlug: 'andalucia',
       weight: 1788,
-      cities: ['Almería', 'Cádiz', 'Córdoba', 'Granada', 'Sevilla', 'Huelva', 'Jaén', 'Málaga', 'Jerez de la Frontera', 'Marbella', 'Dos Hermanas', 'Algeciras']
+      cities: [
+        'Almería',
+        'Cádiz',
+        'Córdoba',
+        'Granada',
+        'Sevilla',
+        'Huelva',
+        'Jaén',
+        'Málaga',
+        'Jerez de la Frontera',
+        'Marbella',
+        'Dos Hermanas',
+        'Algeciras'
+      ]
     },
     {
       regionName: 'Aragón',
@@ -64,7 +77,19 @@ const Spain: GetCountryData = (i18n) => ({
       regionShort: 'CA',
       regionSlug: 'cataluña',
       weight: 1602,
-      cities: ['Barcelona', 'Tarragona', 'Girona', 'Lleida', "L'Hospitalet de Llobregat", 'Badalona', 'Tarrasa', 'Sabadell', 'Mataró', 'Santa Coloma de Gramenet', 'Reus']
+      cities: [
+        'Barcelona',
+        'Tarragona',
+        'Girona',
+        'Lleida',
+        "L'Hospitalet de Llobregat",
+        'Badalona',
+        'Tarrasa',
+        'Sabadell',
+        'Mataró',
+        'Santa Coloma de Gramenet',
+        'Reus'
+      ]
     },
     {
       regionName: 'Ceuta',
@@ -113,7 +138,18 @@ const Spain: GetCountryData = (i18n) => ({
       regionShort: 'MA',
       regionSlug: 'madrid',
       weight: 1375,
-      cities: ['Madrid', 'Móstoles', 'Alcalá de Henares', 'Fuenlabrada', 'Leganés', 'Getafe', 'Alcorcón', 'Torrejón de Ardoz', 'Parla', 'Alcobendas']
+      cities: [
+        'Madrid',
+        'Móstoles',
+        'Alcalá de Henares',
+        'Fuenlabrada',
+        'Leganés',
+        'Getafe',
+        'Alcorcón',
+        'Torrejón de Ardoz',
+        'Parla',
+        'Alcobendas'
+      ]
     },
     {
       regionName: 'Melilla',

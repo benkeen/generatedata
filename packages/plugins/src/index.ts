@@ -196,8 +196,80 @@ import CountryUS from './countries/US/bundle';
 import CountryUkraine from './countries/Ukraine/bundle';
 import CountryVietnam from './countries/Vietnam/bundle';
 
-export const countryList = ['Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile', 'China', 'Colombia', 'CostaRica', 'France', 'Germany', 'India', 'Indonesia', 'Ireland', 'Italy', 'Mexico', 'Netherlands', 'NewZealand', 'Nigeria', 'Norway', 'Pakistan', 'Peru', 'Philippines', 'Poland', 'Russia', 'Singapore', 'SouthAfrica', 'SouthKorea', 'Spain', 'Sweden', 'Turkey', 'UK', 'US', 'Ukraine', 'Vietnam'];
-export const countries = ['Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile', 'China', 'Colombia', 'CostaRica', 'France', 'Germany', 'India', 'Indonesia', 'Ireland', 'Italy', 'Mexico', 'Netherlands', 'NewZealand', 'Nigeria', 'Norway', 'Pakistan', 'Peru', 'Philippines', 'Poland', 'Russia', 'Singapore', 'SouthAfrica', 'SouthKorea', 'Spain', 'Sweden', 'Turkey', 'UK', 'US', 'Ukraine', 'Vietnam'] as const;
+export const countryList = [
+  'Australia',
+  'Austria',
+  'Belgium',
+  'Brazil',
+  'Canada',
+  'Chile',
+  'China',
+  'Colombia',
+  'CostaRica',
+  'France',
+  'Germany',
+  'India',
+  'Indonesia',
+  'Ireland',
+  'Italy',
+  'Mexico',
+  'Netherlands',
+  'NewZealand',
+  'Nigeria',
+  'Norway',
+  'Pakistan',
+  'Peru',
+  'Philippines',
+  'Poland',
+  'Russia',
+  'Singapore',
+  'SouthAfrica',
+  'SouthKorea',
+  'Spain',
+  'Sweden',
+  'Turkey',
+  'UK',
+  'US',
+  'Ukraine',
+  'Vietnam'
+];
+export const countries = [
+  'Australia',
+  'Austria',
+  'Belgium',
+  'Brazil',
+  'Canada',
+  'Chile',
+  'China',
+  'Colombia',
+  'CostaRica',
+  'France',
+  'Germany',
+  'India',
+  'Indonesia',
+  'Ireland',
+  'Italy',
+  'Mexico',
+  'Netherlands',
+  'NewZealand',
+  'Nigeria',
+  'Norway',
+  'Pakistan',
+  'Peru',
+  'Philippines',
+  'Poland',
+  'Russia',
+  'Singapore',
+  'SouthAfrica',
+  'SouthKorea',
+  'Spain',
+  'Sweden',
+  'Turkey',
+  'UK',
+  'US',
+  'Ukraine',
+  'Vietnam'
+] as const;
 export const countryMethods = {
   Australia: CountryAustralia,
   Austria: CountryAustria,
@@ -512,7 +584,41 @@ interface WeightedListDataTypeRow {
   id?: string;
 }
 
-export type DataTemplateRow = AlphanumericDataTypeRow | AutoIncrementDataTypeRow | BooleanDataTypeRow | CVVDataTypeRow | CityDataTypeRow | ColourDataTypeRow | CompanyDataTypeRow | ComputedDataTypeRow | ConstantDataTypeRow | CountryDataTypeRow | CurrencyDataTypeRow | DateDataTypeRow | EmailDataTypeRow | GUIDDataTypeRow | IBANDataTypeRow | LatLngDataTypeRow | ListDataTypeRow | NamesDataTypeRow | NormalDistributionDataTypeRow | NumberRangeDataTypeRow | PANDataTypeRow | PINDataTypeRow | PhoneDataTypeRow | PostalZipDataTypeRow | RegionDataTypeRow | RutDataTypeRow | StreetAddressDataTypeRow | TextFixedDataTypeRow | TextRandomDataTypeRow | TimeDataTypeRow | Track1DataTypeRow | Track2DataTypeRow | URLsDataTypeRow | WeightedListDataTypeRow;
+export type DataTemplateRow =
+  | AlphanumericDataTypeRow
+  | AutoIncrementDataTypeRow
+  | BooleanDataTypeRow
+  | CVVDataTypeRow
+  | CityDataTypeRow
+  | ColourDataTypeRow
+  | CompanyDataTypeRow
+  | ComputedDataTypeRow
+  | ConstantDataTypeRow
+  | CountryDataTypeRow
+  | CurrencyDataTypeRow
+  | DateDataTypeRow
+  | EmailDataTypeRow
+  | GUIDDataTypeRow
+  | IBANDataTypeRow
+  | LatLngDataTypeRow
+  | ListDataTypeRow
+  | NamesDataTypeRow
+  | NormalDistributionDataTypeRow
+  | NumberRangeDataTypeRow
+  | PANDataTypeRow
+  | PINDataTypeRow
+  | PhoneDataTypeRow
+  | PostalZipDataTypeRow
+  | RegionDataTypeRow
+  | RutDataTypeRow
+  | StreetAddressDataTypeRow
+  | TextFixedDataTypeRow
+  | TextRandomDataTypeRow
+  | TimeDataTypeRow
+  | Track1DataTypeRow
+  | Track2DataTypeRow
+  | URLsDataTypeRow
+  | WeightedListDataTypeRow;
 
 import { GenerationOptionsType as CSVGenerationOptions } from './exportTypes/CSV/CSV.state';
 import { GenerationOptionsType as CSharpGenerationOptions } from './exportTypes/CSharp/CSharp.state';
@@ -580,7 +686,20 @@ interface XMLExportTypeConfig {
   settings: XMLGenerationOptions;
 }
 
-export type ExportTypeConfig = CSVExportTypeConfig | CSharpExportTypeConfig | HTMLExportTypeConfig | JSONExportTypeConfig | JavascriptExportTypeConfig | LDIFExportTypeConfig | PHPExportTypeConfig | PerlExportTypeConfig | PythonExportTypeConfig | RubyExportTypeConfig | SQLExportTypeConfig | TypescriptExportTypeConfig | XMLExportTypeConfig;
+export type ExportTypeConfig =
+  | CSVExportTypeConfig
+  | CSharpExportTypeConfig
+  | HTMLExportTypeConfig
+  | JSONExportTypeConfig
+  | JavascriptExportTypeConfig
+  | LDIFExportTypeConfig
+  | PHPExportTypeConfig
+  | PerlExportTypeConfig
+  | PythonExportTypeConfig
+  | RubyExportTypeConfig
+  | SQLExportTypeConfig
+  | TypescriptExportTypeConfig
+  | XMLExportTypeConfig;
 
 export enum ExportType {
   CSV = 'CSV',

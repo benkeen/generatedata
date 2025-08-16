@@ -1,9 +1,9 @@
-import { DTDefinition } from '~types/dataTypes';
+import { DTDefinition } from '@generatedata/types';
 
 const definition: DTDefinition = {
-	fieldGroup: 'geo',
-	fieldGroupOrder: 30,
-	dependencies: ['Country', 'Region']
+  fieldGroup: 'geo',
+  fieldGroupOrder: 30,
+  dependencies: ['Country', 'Region']
 };
 
 export default definition;

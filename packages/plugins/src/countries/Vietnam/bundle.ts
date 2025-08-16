@@ -131,7 +131,20 @@ const Vietnam: GetCountryData = (i18n) => ({
       regionShort: 'Hải Dương',
       regionSlug: 'hai_duong',
       weight: 1,
-      cities: ['Hải Dương', 'Chí Linh', 'Kẻ Sặt', 'Lai Cách', 'Gia Lộc', 'Phú Thái', 'Kinh Môn', 'Nam Sách', 'Ninh Giang', 'Thanh Hà', 'Thanh Miện', 'Tứ Kỳ']
+      cities: [
+        'Hải Dương',
+        'Chí Linh',
+        'Kẻ Sặt',
+        'Lai Cách',
+        'Gia Lộc',
+        'Phú Thái',
+        'Kinh Môn',
+        'Nam Sách',
+        'Ninh Giang',
+        'Thanh Hà',
+        'Thanh Miện',
+        'Tứ Kỳ'
+      ]
     },
     {
       regionName: 'Hưng Yên',

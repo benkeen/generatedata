@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "esModuleInterop": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "esnext",
+    "module": "es6",
     "moduleResolution": "node",
-    "module": "esnext",
-    "target": "es6",
-    "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true
-  }
+    "declaration": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src/*.ts", "./typings"],
+  "exclude": ["node_modules"]
 }

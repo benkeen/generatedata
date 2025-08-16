@@ -538,7 +538,25 @@ const UK: GetCountryData = (i18n) => ({
       regionShort: 'YK',
       regionSlug: 'yorkshire',
       weight: 1,
-      cities: ['Northallerton', 'Middlesbrough', 'Scarborough', 'Whitby', 'Beverley', 'Hull', 'Bridlington', 'Driffield', 'Hornsea', 'Filey', 'Wakefield', 'Leeds', 'Sheffield', 'Bradford', 'Halifax', 'Harrogate', 'York']
+      cities: [
+        'Northallerton',
+        'Middlesbrough',
+        'Scarborough',
+        'Whitby',
+        'Beverley',
+        'Hull',
+        'Bridlington',
+        'Driffield',
+        'Hornsea',
+        'Filey',
+        'Wakefield',
+        'Leeds',
+        'Sheffield',
+        'Bradford',
+        'Halifax',
+        'Harrogate',
+        'York'
+      ]
     },
     {
       regionName: 'Durham',

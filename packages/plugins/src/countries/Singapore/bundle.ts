@@ -19,7 +19,30 @@ const Singapore: GetCountryData = (i18n) => ({
       regionShort: 'SG-01',
       regionSlug: 'centralregion',
       weight: 92,
-      cities: ['Bishan', 'Bukit Merah', 'Bukit Timah', 'Downtown Core', 'Geylang', 'Kallang', 'Marina East', 'Marina South', 'Marine Parade', 'Museum', 'Newton', 'Novena', 'Orchard', 'Outram', 'Queenstown', 'River Valley', 'Rochor', 'Singapore River', 'Southern Islands', 'Straits View', 'Tanglin', 'Toa Payoh']
+      cities: [
+        'Bishan',
+        'Bukit Merah',
+        'Bukit Timah',
+        'Downtown Core',
+        'Geylang',
+        'Kallang',
+        'Marina East',
+        'Marina South',
+        'Marine Parade',
+        'Museum',
+        'Newton',
+        'Novena',
+        'Orchard',
+        'Outram',
+        'Queenstown',
+        'River Valley',
+        'Rochor',
+        'Singapore River',
+        'Southern Islands',
+        'Straits View',
+        'Tanglin',
+        'Toa Payoh'
+      ]
     },
     {
       regionName: 'East Region',
@@ -47,7 +70,20 @@ const Singapore: GetCountryData = (i18n) => ({
       regionShort: 'CR',
       regionSlug: 'westregion',
       weight: 92,
-      cities: ['Boon Lay', 'Bukit Batok', 'Bukit Panjang', 'Choa Chu Kang', 'Clementi', 'Jurong East', 'Jurong West', 'Pioneer', 'Tengah', 'Tuas', 'Western Islands', 'Western Water Catchment']
+      cities: [
+        'Boon Lay',
+        'Bukit Batok',
+        'Bukit Panjang',
+        'Choa Chu Kang',
+        'Clementi',
+        'Jurong East',
+        'Jurong West',
+        'Pioneer',
+        'Tengah',
+        'Tuas',
+        'Western Islands',
+        'Western Water Catchment'
+      ]
     }
   ]
 });

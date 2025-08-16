@@ -44,7 +44,38 @@ const SouthKorea: GetCountryData = (i18n) => ({
       regionShort: 'Gyeonggi',
       regionSlug: 'gyeonggi',
       weight: 122,
-      cities: ['Seoul', 'Incheon', 'Gwangju', 'Suwon', 'Goyang', 'Yongin', 'Seongnam', 'Bucheon', 'Ansan', 'Namyangju', 'Hwaseong', 'Anyang', 'Pyeongtaek', 'Siheung', 'Uijeongbu', 'Paju', 'Gimpo', 'Gwangmyeong', 'Gwangju', 'Gunpo', 'Osan', 'Icheon', 'Yangju', 'Anseong', 'Guri', 'Pocheon', 'Uiwang', 'Hanam', 'Yeoju', 'Dongducheon']
+      cities: [
+        'Seoul',
+        'Incheon',
+        'Gwangju',
+        'Suwon',
+        'Goyang',
+        'Yongin',
+        'Seongnam',
+        'Bucheon',
+        'Ansan',
+        'Namyangju',
+        'Hwaseong',
+        'Anyang',
+        'Pyeongtaek',
+        'Siheung',
+        'Uijeongbu',
+        'Paju',
+        'Gimpo',
+        'Gwangmyeong',
+        'Gwangju',
+        'Gunpo',
+        'Osan',
+        'Icheon',
+        'Yangju',
+        'Anseong',
+        'Guri',
+        'Pocheon',
+        'Uiwang',
+        'Hanam',
+        'Yeoju',
+        'Dongducheon'
+      ]
     },
     {
       regionName: 'North Gyeongsang',
@@ -58,7 +89,21 @@ const SouthKorea: GetCountryData = (i18n) => ({
       regionShort: 'Gyeongnam',
       regionSlug: 'gyeongnam',
       weight: 34,
-      cities: ['Busan', 'Daegu', 'Ulsan', 'Changwon', 'Cheonan', 'Gimhae', 'Jinju', 'Yangsan', 'Geoje', 'Seosan', 'Tongyeong', 'Sacheon', 'Miryang']
+      cities: [
+        'Busan',
+        'Daegu',
+        'Ulsan',
+        'Changwon',
+        'Cheonan',
+        'Gimhae',
+        'Jinju',
+        'Yangsan',
+        'Geoje',
+        'Seosan',
+        'Tongyeong',
+        'Sacheon',
+        'Miryang'
+      ]
     },
     {
       regionName: 'North Jeolla',

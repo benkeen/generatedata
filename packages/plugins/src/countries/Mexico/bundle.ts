@@ -10,7 +10,15 @@ const Mexico: GetCountryData = (i18n) => ({
       format: 'xxxxx-xxxxx'
     },
     phoneFormat: {
-      displayFormats: ['045 Xx Xxxx xxx', '045 Xx Xxxx xxxx', '045 Xxx Xxxx xxx', '045 Xxx Xxxx xxxx', 'Xxx-Xxxx xxx', '55–Xxxx xxxx', '55–Xxxx xxx']
+      displayFormats: [
+        '045 Xx Xxxx xxx',
+        '045 Xx Xxxx xxxx',
+        '045 Xxx Xxxx xxx',
+        '045 Xxx Xxxx xxxx',
+        'Xxx-Xxxx xxx',
+        '55–Xxxx xxxx',
+        '55–Xxxx xxx'
+      ]
     }
   },
   regions: [
@@ -61,7 +69,15 @@ const Mexico: GetCountryData = (i18n) => ({
       regionShort: 'N.L.',
       regionSlug: 'nuevoleon',
       weight: 47,
-      cities: ['Monterrey', 'Guadalupe', 'San Nicolás de los Garza', 'Ciudad Apodaca', 'General Escobedo', 'Ciudad Santa Catarina', 'San Pedro Garza García']
+      cities: [
+        'Monterrey',
+        'Guadalupe',
+        'San Nicolás de los Garza',
+        'Ciudad Apodaca',
+        'General Escobedo',
+        'Ciudad Santa Catarina',
+        'San Pedro Garza García'
+      ]
     },
     {
       regionName: 'Michoacán',

@@ -26,7 +26,29 @@ const Australia: GetCountryData = (i18n) => ({
       regionShort: 'NSW',
       regionSlug: 'new_south_wales',
       weight: 69,
-      cities: ['Sydney', 'Albury', 'Armidale', 'Bathurst', 'Blue Mountains', 'Broken Hill', 'Campbelltown', 'Cessnock', 'Dubbo', 'Goulburn', 'Grafton', 'Lithgow', 'Liverpool', 'Newcastle', 'Orange', 'Parramatta', 'Penrith', 'Queanbeyan', 'Tamworth', 'Wagga Wagga', 'Wollongong']
+      cities: [
+        'Sydney',
+        'Albury',
+        'Armidale',
+        'Bathurst',
+        'Blue Mountains',
+        'Broken Hill',
+        'Campbelltown',
+        'Cessnock',
+        'Dubbo',
+        'Goulburn',
+        'Grafton',
+        'Lithgow',
+        'Liverpool',
+        'Newcastle',
+        'Orange',
+        'Parramatta',
+        'Penrith',
+        'Queanbeyan',
+        'Tamworth',
+        'Wagga Wagga',
+        'Wollongong'
+      ]
     },
     {
       regionName: 'Northern Territory',
@@ -40,7 +62,26 @@ const Australia: GetCountryData = (i18n) => ({
       regionShort: 'QLD',
       regionSlug: 'queensland',
       weight: 42,
-      cities: ['Brisbane', 'Bundaberg', 'Cairns', 'Caloundra', 'Charters Towers', 'Gladstone', 'Gold Coast', 'Hervey Bay', 'Ipswich', 'Logan City', 'Mackay', 'Maryborough', 'Mount Isa', 'Redcliffe', 'Redlands', 'Rockhampton', 'Toowoomba', 'Townsville']
+      cities: [
+        'Brisbane',
+        'Bundaberg',
+        'Cairns',
+        'Caloundra',
+        'Charters Towers',
+        'Gladstone',
+        'Gold Coast',
+        'Hervey Bay',
+        'Ipswich',
+        'Logan City',
+        'Mackay',
+        'Maryborough',
+        'Mount Isa',
+        'Redcliffe',
+        'Redlands',
+        'Rockhampton',
+        'Toowoomba',
+        'Townsville'
+      ]
     },
     {
       regionName: 'South Australia',
@@ -61,14 +102,61 @@ const Australia: GetCountryData = (i18n) => ({
       regionShort: 'VIC',
       regionSlug: 'victoria',
       weight: 52,
-      cities: ['Melbourne', 'Ararat', 'Bairnsdale', 'Benalla', 'Ballarat', 'Bendigo', 'Belgrave', 'Dandenong', 'Frankston', 'Geelong', 'Hamilton', 'Horsham', 'Melton', 'Moe', 'Morwell', 'Mildura', 'Sale', 'Shepparton', 'Swan Hill', 'Traralgon', 'Wangaratta', 'Warrnambool', 'Wodonga']
+      cities: [
+        'Melbourne',
+        'Ararat',
+        'Bairnsdale',
+        'Benalla',
+        'Ballarat',
+        'Bendigo',
+        'Belgrave',
+        'Dandenong',
+        'Frankston',
+        'Geelong',
+        'Hamilton',
+        'Horsham',
+        'Melton',
+        'Moe',
+        'Morwell',
+        'Mildura',
+        'Sale',
+        'Shepparton',
+        'Swan Hill',
+        'Traralgon',
+        'Wangaratta',
+        'Warrnambool',
+        'Wodonga'
+      ]
     },
     {
       regionName: 'Western Australia',
       regionShort: 'WA',
       regionSlug: 'western_australia',
       weight: 21,
-      cities: ['Perth', 'Albany', 'Armadale', 'Bayswater', 'Belmont', 'Bunbury', 'Canning', 'Cockburn', 'Fremantle', 'Geraldton-Greenough', 'Gosnells', 'Joondalup', 'Kalgoorlie-Boulder', 'Mandurah', 'Melville', 'Nedlands', 'Rockingham', 'South Perth', 'Stirling', 'Subiaco', 'Swan', 'Wanneroo']
+      cities: [
+        'Perth',
+        'Albany',
+        'Armadale',
+        'Bayswater',
+        'Belmont',
+        'Bunbury',
+        'Canning',
+        'Cockburn',
+        'Fremantle',
+        'Geraldton-Greenough',
+        'Gosnells',
+        'Joondalup',
+        'Kalgoorlie-Boulder',
+        'Mandurah',
+        'Melville',
+        'Nedlands',
+        'Rockingham',
+        'South Perth',
+        'Stirling',
+        'Subiaco',
+        'Swan',
+        'Wanneroo'
+      ]
     }
   ]
 });

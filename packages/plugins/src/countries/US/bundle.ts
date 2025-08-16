@@ -21,7 +21,18 @@ const US: GetCountryData = (i18n) => ({
       regionShort: 'AL',
       regionSlug: 'alabama',
       weight: 2,
-      cities: ['Birmingham', 'Montgomery', 'Mobile', 'Huntsville', 'Tuscaloosa', 'Birmingham', 'Montgomery', 'Mobile', 'Huntsville', 'Tuscaloosa'],
+      cities: [
+        'Birmingham',
+        'Montgomery',
+        'Mobile',
+        'Huntsville',
+        'Tuscaloosa',
+        'Birmingham',
+        'Montgomery',
+        'Mobile',
+        'Huntsville',
+        'Tuscaloosa'
+      ],
       extendedData: {
         zipFormat: {
           format: 'ZYxxx',

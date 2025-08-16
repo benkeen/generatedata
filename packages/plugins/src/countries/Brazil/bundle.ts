@@ -29,7 +29,18 @@ const Brazil: GetCountryData = (i18n) => ({
       regionShort: 'SP',
       regionSlug: 'sau_paulo',
       weight: 41,
-      cities: ['Guarulhos', 'Campinas', 'Osasco', 'Ribeirão Preto', 'Mauá', 'Mogi das Cruzes', 'Diadema', 'Jundiaí', 'Carapicuíba', 'Piracicaba'],
+      cities: [
+        'Guarulhos',
+        'Campinas',
+        'Osasco',
+        'Ribeirão Preto',
+        'Mauá',
+        'Mogi das Cruzes',
+        'Diadema',
+        'Jundiaí',
+        'Carapicuíba',
+        'Piracicaba'
+      ],
       extendedData: {
         zipFormat: {
           format: '1Xxxx-xxx'
@@ -41,7 +52,21 @@ const Brazil: GetCountryData = (i18n) => ({
       regionShort: 'MG',
       regionSlug: 'minas_gerais',
       weight: 20,
-      cities: ['Belo Horizonte', 'Uberlândia', 'Contagem', 'Juiz de Fora', 'Betim', 'Montes Claros', 'Ribeirão das Neves', 'Uberaba', 'Governador Valadares', 'Ipatinga', 'Sete Lagoas', 'Divinópolis', 'Santa Luzia'],
+      cities: [
+        'Belo Horizonte',
+        'Uberlândia',
+        'Contagem',
+        'Juiz de Fora',
+        'Betim',
+        'Montes Claros',
+        'Ribeirão das Neves',
+        'Uberaba',
+        'Governador Valadares',
+        'Ipatinga',
+        'Sete Lagoas',
+        'Divinópolis',
+        'Santa Luzia'
+      ],
       extendedData: {
         zipFormat: {
           format: '3xxxxxxx'
@@ -53,7 +78,17 @@ const Brazil: GetCountryData = (i18n) => ({
       regionShort: 'RJ',
       regionSlug: 'rio',
       weight: 16,
-      cities: ['Rio de Janeiro', 'São Gonçalo', 'Duque de Caxias', 'Nova Iguaçu', 'Niterói', 'Belford Roxo', 'Campos dos Goytacazes', 'São João de Meriti', 'Petrópolis'],
+      cities: [
+        'Rio de Janeiro',
+        'São Gonçalo',
+        'Duque de Caxias',
+        'Nova Iguaçu',
+        'Niterói',
+        'Belford Roxo',
+        'Campos dos Goytacazes',
+        'São João de Meriti',
+        'Petrópolis'
+      ],
       extendedData: {
         zipFormat: {
           format: '2Yxxx-xxx'
@@ -89,7 +124,18 @@ const Brazil: GetCountryData = (i18n) => ({
       regionShort: 'PR',
       regionSlug: 'parana',
       weight: 11,
-      cities: ['Curitiba', 'Londrina', 'Maringá', 'Ponta Grossa', 'Cascavel', 'São José dos Pinhais', 'Foz do Iguaçu', 'Colombo', 'Guarapuava', 'Paranaguá'],
+      cities: [
+        'Curitiba',
+        'Londrina',
+        'Maringá',
+        'Ponta Grossa',
+        'Cascavel',
+        'São José dos Pinhais',
+        'Foz do Iguaçu',
+        'Colombo',
+        'Guarapuava',
+        'Paranaguá'
+      ],
       extendedData: {
         zipFormat: {
           format: '8Wxxx-xxx'
@@ -137,7 +183,20 @@ const Brazil: GetCountryData = (i18n) => ({
       regionShort: 'MA',
       regionSlug: 'maranhao',
       weight: 7,
-      cities: ['São Luís', 'Imperatriz', 'Timon', 'Caxias', 'Codó', 'Paço do Lumiar', 'Açailândia', 'Bacabal', 'Santa Inês', 'Balsas', 'Chapadinha', 'Barra do Corda'],
+      cities: [
+        'São Luís',
+        'Imperatriz',
+        'Timon',
+        'Caxias',
+        'Codó',
+        'Paço do Lumiar',
+        'Açailândia',
+        'Bacabal',
+        'Santa Inês',
+        'Balsas',
+        'Chapadinha',
+        'Barra do Corda'
+      ],
       extendedData: {
         zipFormat: {
           format: '65xxx-xxx'

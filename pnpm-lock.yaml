@@ -522,11 +522,7 @@ importers:
         specifier: ^5.7.3
         version: 5.7.3
 
-  packages/cli-test:
-    dependencies:
-      '@generatedata/cli':
-        specifier: workspace:*
-        version: link:../cli
+  packages/cli-test: {}
 
   packages/config:
     devDependencies:
@@ -542,6 +538,9 @@ importers:
 
   packages/plugins:
     dependencies:
+      date-fns:
+        specifier: ^2.17.0
+        version: 2.30.0
       react:
         specifier: ^16.13.1
         version: 16.14.0
@@ -549,6 +548,9 @@ importers:
       '@generatedata/types':
         specifier: workspace:*
         version: link:../types
+      '@generatedata/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@testing-library/react':
         specifier: ^10.4.7
         version: 10.4.9(react-dom@16.14.0(react@16.14.0))(react@16.14.0)

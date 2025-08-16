@@ -19,21 +19,60 @@ const SouthAfrica: GetCountryData = (i18n) => ({
       regionShort: 'EC',
       regionSlug: 'easterncape',
       weight: 6,
-      cities: ['Alice', 'Butterworth', 'East London', 'Graaff-Reinet', 'Grahamstown', "King William's Town", 'Mthatha', 'Port Elizabeth', 'Queenstown', 'Uitenhage', 'Zwelitsha']
+      cities: [
+        'Alice',
+        'Butterworth',
+        'East London',
+        'Graaff-Reinet',
+        'Grahamstown',
+        "King William's Town",
+        'Mthatha',
+        'Port Elizabeth',
+        'Queenstown',
+        'Uitenhage',
+        'Zwelitsha'
+      ]
     },
     {
       regionName: 'Free State',
       regionShort: 'FS',
       regionSlug: 'freestate',
       weight: 3,
-      cities: ['Bethlehem', 'Bloemfontein', 'Jagersfontein', 'Kroonstad', 'Odendaalsrus', 'Parys', 'Phuthaditjhaba', 'Sasolburg', 'Virginia', 'Welkom']
+      cities: [
+        'Bethlehem',
+        'Bloemfontein',
+        'Jagersfontein',
+        'Kroonstad',
+        'Odendaalsrus',
+        'Parys',
+        'Phuthaditjhaba',
+        'Sasolburg',
+        'Virginia',
+        'Welkom'
+      ]
     },
     {
       regionName: 'Gauteng',
       regionShort: 'GP',
       regionSlug: 'gauteng',
       weight: 12,
-      cities: ['Benoni', 'Boksburg', 'Brakpan', 'Carletonville', 'Germiston', 'Johannesburg', 'Krugersdorp', 'Pretoria', 'Randburg', 'Randfontein', 'Roodepoort', 'Soweto', 'Springs', 'Vanderbijlpark', 'Vereeniging']
+      cities: [
+        'Benoni',
+        'Boksburg',
+        'Brakpan',
+        'Carletonville',
+        'Germiston',
+        'Johannesburg',
+        'Krugersdorp',
+        'Pretoria',
+        'Randburg',
+        'Randfontein',
+        'Roodepoort',
+        'Soweto',
+        'Springs',
+        'Vanderbijlpark',
+        'Vereeniging'
+      ]
     },
     {
       regionName: 'KwaZulu-Natal',
@@ -75,7 +114,19 @@ const SouthAfrica: GetCountryData = (i18n) => ({
       regionShort: 'WC',
       regionSlug: 'westerncape',
       weight: 6,
-      cities: ['Bellville', 'Cape Town', 'Constantia', 'George', 'Hopefield', 'Oudtshoorn', 'Paarl', "Simon's Town", 'Stellenbosch', 'Swellendam', 'Worcester']
+      cities: [
+        'Bellville',
+        'Cape Town',
+        'Constantia',
+        'George',
+        'Hopefield',
+        'Oudtshoorn',
+        'Paarl',
+        "Simon's Town",
+        'Stellenbosch',
+        'Swellendam',
+        'Worcester'
+      ]
     }
   ]
 });

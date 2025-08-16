@@ -16,35 +16,129 @@ const France: GetCountryData = (i18n) => ({
       regionShort: 'IL',
       regionSlug: 'ile_de_france',
       weight: 18.3,
-      cities: ['Paris', 'Boulogne-Billancourt', 'Saint-Denis', 'Argenteuil', 'Montreuil', 'Créteil', 'Nanterre', 'Courbevoie', 'Versailles', 'Vitry-sur-Seine', 'Colombes', 'Asnières-sur-Seine', 'Aulnay-sous-Bois', 'Rueil-Malmaison', 'Aubervilliers', 'Champigny-sur-Marne', 'Saint-Maur-des-Fossés', 'Drancy', 'Issy-les-Moulineaux', 'Levallois-Perret', 'Noisy-le-Grand']
+      cities: [
+        'Paris',
+        'Boulogne-Billancourt',
+        'Saint-Denis',
+        'Argenteuil',
+        'Montreuil',
+        'Créteil',
+        'Nanterre',
+        'Courbevoie',
+        'Versailles',
+        'Vitry-sur-Seine',
+        'Colombes',
+        'Asnières-sur-Seine',
+        'Aulnay-sous-Bois',
+        'Rueil-Malmaison',
+        'Aubervilliers',
+        'Champigny-sur-Marne',
+        'Saint-Maur-des-Fossés',
+        'Drancy',
+        'Issy-les-Moulineaux',
+        'Levallois-Perret',
+        'Noisy-le-Grand'
+      ]
     },
     {
       regionName: "Provence-Alpes-Côte d'Azur",
       regionShort: 'PR',
       regionSlug: 'provence_alpes',
       weight: 9.6,
-      cities: ['Marseille', 'Nice', 'Toulon', 'Aix-en-Provence', 'Avignon', 'Antibes', 'Cannes', 'La Seyne-sur-Mer', 'Hyères', 'Arles', 'Fréjus', 'Grasse', 'Martigues', 'Cagnes-sur-Mer', 'Aubagne', 'Salon-de-Provence', 'Istres', 'Le Cannet', 'Gap', 'Draguignan', 'Vitrolles']
+      cities: [
+        'Marseille',
+        'Nice',
+        'Toulon',
+        'Aix-en-Provence',
+        'Avignon',
+        'Antibes',
+        'Cannes',
+        'La Seyne-sur-Mer',
+        'Hyères',
+        'Arles',
+        'Fréjus',
+        'Grasse',
+        'Martigues',
+        'Cagnes-sur-Mer',
+        'Aubagne',
+        'Salon-de-Provence',
+        'Istres',
+        'Le Cannet',
+        'Gap',
+        'Draguignan',
+        'Vitrolles'
+      ]
     },
     {
       regionName: 'Nord-Pas-de-Calais',
       regionShort: 'NO',
       regionSlug: 'nord_pas_de_calais',
       weight: 7.6,
-      cities: ['Lille', 'Roubaix', 'Dunkerque', 'Tourcoing', 'Calais', "Villeneuve-d'Ascq", 'Valenciennes', 'Boulogne-sur-Mer', 'Douai', 'Arras', 'Wattrelos', 'Marcq-en-Baroeul', 'Lens', 'Cambrai', 'Liévin', 'Maubeuge', 'Lambersart', 'Hénin-Beaumont', 'Béthune']
+      cities: [
+        'Lille',
+        'Roubaix',
+        'Dunkerque',
+        'Tourcoing',
+        'Calais',
+        "Villeneuve-d'Ascq",
+        'Valenciennes',
+        'Boulogne-sur-Mer',
+        'Douai',
+        'Arras',
+        'Wattrelos',
+        'Marcq-en-Baroeul',
+        'Lens',
+        'Cambrai',
+        'Liévin',
+        'Maubeuge',
+        'Lambersart',
+        'Hénin-Beaumont',
+        'Béthune'
+      ]
     },
     {
       regionName: 'Pays de la Loire',
       regionShort: 'PA',
       regionSlug: 'pays_de_la_loire',
       weight: 6.3,
-      cities: ['Nantes', 'Angers', 'Le Mans', 'Saint-Nazaire', 'Cholet', 'La Roche-sur-Yon', 'Laval', 'Saint-Herblain', 'Rezé', 'Saumur', 'Saint-Sébastien-sur-Loire', 'Orvault', 'Vertou']
+      cities: [
+        'Nantes',
+        'Angers',
+        'Le Mans',
+        'Saint-Nazaire',
+        'Cholet',
+        'La Roche-sur-Yon',
+        'Laval',
+        'Saint-Herblain',
+        'Rezé',
+        'Saumur',
+        'Saint-Sébastien-sur-Loire',
+        'Orvault',
+        'Vertou'
+      ]
     },
     {
       regionName: 'Aquitaine',
       regionShort: 'AQ',
       regionSlug: 'aquitaine',
       weight: 5.5,
-      cities: ['Bordeaux', 'Pau', 'Mérignac', 'Pessac', 'Bayonne', 'Talence', 'Anglet', 'Agen', 'Mont-de-Marsan', 'Périgueux', "Villenave-d'Ornon", 'Saint-Médard-en-Jalles', 'Bergerac', 'Biarritz', 'Bègles']
+      cities: [
+        'Bordeaux',
+        'Pau',
+        'Mérignac',
+        'Pessac',
+        'Bayonne',
+        'Talence',
+        'Anglet',
+        'Agen',
+        'Mont-de-Marsan',
+        'Périgueux',
+        "Villenave-d'Ornon",
+        'Saint-Médard-en-Jalles',
+        'Bergerac',
+        'Biarritz',
+        'Bègles'
+      ]
     },
     {
       regionName: 'Bretagne',
@@ -79,7 +173,17 @@ const France: GetCountryData = (i18n) => ({
       regionShort: 'LO',
       regionSlug: 'lorraine',
       weight: 3.7,
-      cities: ['Metz', 'Nancy', 'Thionville', 'Épinal', 'Vandoeuvre-lès-Nancy', 'Montigny-lès-Metz', 'Sarreguemines', 'Forbach', 'Saint-Dié-des-Vosges']
+      cities: [
+        'Metz',
+        'Nancy',
+        'Thionville',
+        'Épinal',
+        'Vandoeuvre-lès-Nancy',
+        'Montigny-lès-Metz',
+        'Sarreguemines',
+        'Forbach',
+        'Saint-Dié-des-Vosges'
+      ]
     },
     {
       regionName: 'Picardie',
@@ -100,7 +204,17 @@ const France: GetCountryData = (i18n) => ({
       regionShort: 'HA',
       regionSlug: 'haute_normandie',
       weight: 2.8,
-      cities: ['Le Havre', 'Rouen', 'Évreux', 'Dieppe', 'Sotteville-lès-Rouen', 'Saint-Étienne-du-Rouvray', 'Vernon', 'Le Grand-Quevilly', 'Le Petit-Quevilly']
+      cities: [
+        'Le Havre',
+        'Rouen',
+        'Évreux',
+        'Dieppe',
+        'Sotteville-lès-Rouen',
+        'Saint-Étienne-du-Rouvray',
+        'Vernon',
+        'Le Grand-Quevilly',
+        'Le Petit-Quevilly'
+      ]
     },
     {
       regionName: 'Poitou-Charentes',
