@@ -47,10 +47,20 @@ const config: GDClientConfig = {
     // used for extension purposes only. TODO
     GD_IMPORT_FILES: []
   },
+
+  auth: {
+    // controls the lifespan of the JWT. Suggest you leave this setting alone
+    GD_JWT_LIFESPAN_MINS: 15,
+
+    // if you want to enable the "Login with Google" feature, this contains the google auth client ID
+    GD_GOOGLE_AUTH_CLIENT_ID: ''
+  },
+
   api: {
     // the server port for the graphql server
     GD_API_SERVER_PORT: 3001
   },
+
   webServer: {
     // controls the URL you'll load up in the browser to see the app
     GD_WEB_DOMAIN: 'localhost',

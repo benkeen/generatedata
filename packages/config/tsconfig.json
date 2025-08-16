@@ -5,7 +5,9 @@
     "target": "esnext",
     "module": "es6",
     "moduleResolution": "node",
-    "skipLibCheck": true
+    "declaration": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx"
   },
   "include": ["src/*.ts", "./typings"],
   "exclude": ["node_modules"]

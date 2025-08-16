@@ -1,10 +1,9 @@
-import * as constants from './constants';
-import * as arrayUtils from './utils/arrayUtils';
-import * as countryUtils from './utils/countryUtils';
-import * as generalUtils from './utils/generalUtils';
-import * as randomUtils from './utils/randomUtils';
-import * as stringUtils from './utils/stringUtils';
-import * as numberUtils from './utils/numberUtils';
+import * as arrayUtils from './arrayUtils';
+import * as countryUtils from './countryUtils';
+import * as generalUtils from './generalUtils';
+import * as randomUtils from './randomUtils';
+import * as stringUtils from './stringUtils';
+import * as numberUtils from './numberUtils';
 
 export default {
   arrayUtils: { ...arrayUtils },
@@ -14,5 +13,3 @@ export default {
   stringUtils: { ...stringUtils },
   numberUtils: { ...numberUtils }
 };
-
-export { constants };

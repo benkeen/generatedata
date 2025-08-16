@@ -5,8 +5,12 @@
  * This script runs during the build command to verify that they've set up the config files. If not, it'll halt the build
  * process and output a message telling them what do do.
  */
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 if (
   !fs.existsSync(path.resolve(__dirname, '../src/client.config.ts')) ||

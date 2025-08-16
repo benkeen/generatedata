@@ -11,6 +11,10 @@ export type GDClientConfig = {
     GD_WEB_SERVER_PORT: number;
     GD_WEB_USE_HTTPS: boolean;
   };
+  auth: {
+    GD_JWT_LIFESPAN_MINS: number;
+    GD_GOOGLE_AUTH_CLIENT_ID: string;
+  };
   appSettings: {
     GD_APP_TYPE: AppType;
     GD_GENERATOR_PATH: string;
@@ -34,9 +38,7 @@ export type GDServerConfig = {
   };
   auth: {
     GD_JWT_SECRET: string;
-    GD_JWT_LIFESPAN_MINS: number;
     GD_JWT_REFRESH_TOKEN_SECRET: string;
-    GD_GOOGLE_AUTH_CLIENT_ID: string;
     GD_GOOGLE_AUTH_CLIENT_SECRET: string;
   };
   defaultAdminAccount: {

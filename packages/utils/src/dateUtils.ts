@@ -1,5 +1,5 @@
 import { format, fromUnixTime } from 'date-fns';
-import C from '../constants';
+import C from '@generatedata/config/constants';
 
 export const formatDuration = (duration: number): string => {
   const secondsStr = Math.floor(duration % 60).toString();

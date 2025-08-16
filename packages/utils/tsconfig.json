@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
-    "lib": ["es6", "dom", "esnext", "webworker"],
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
-    "moduleResolution": "node",
-    "module": "esnext",
-    "target": "es6"
-  },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules/*"]
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "declaration": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "types": ["node", "jest"],
+    "jsx": "react-jsx"
+  }
 }

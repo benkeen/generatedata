@@ -8,11 +8,8 @@ const serverConfig: GDServerConfig = {
     // PLEASE UPDATE. Any random string is fine
     GD_JWT_REFRESH_TOKEN_SECRET: 'Also change this string to something else.',
 
-    // controls the lifespan of the JWT. Suggest you leave this setting alone
-    GD_JWT_LIFESPAN_MINS: 15,
-
-    // (optional) Sign-in with Google settings for - oath2.
-    GD_GOOGLE_AUTH_CLIENT_ID: '',
+    // (optional) Sign-in with Google settings for - oath2. This requires `GD_GOOGLE_AUTH_CLIENT_ID` to have been set in the
+    // client.config.ts file
     GD_GOOGLE_AUTH_CLIENT_SECRET: ''
   },
 

@@ -70,10 +70,20 @@ const config: GDClientConfig = {
     // used for extension purposes only. TODO
     GD_IMPORT_FILES: []
   },
+
+  auth: {
+    // controls the lifespan of the JWT. Suggest you leave this setting alone
+    GD_JWT_LIFESPAN_MINS: 15,
+
+    // if you want to enable the "Login with Google" feature, this contains the google auth client ID
+    GD_GOOGLE_AUTH_CLIENT_ID: ''
+  },
+
   api: {
     // the server port for the graphql server
     GD_API_SERVER_PORT: 3001
   },
+
   webServer: {
     // controls the URL you'll load up in the browser to see the app
     GD_WEB_DOMAIN: 'localhost',
@@ -102,11 +112,8 @@ const serverConfig: GDServerConfig = {
     // PLEASE UPDATE. Any random string is fine
     GD_JWT_REFRESH_TOKEN_SECRET: 'Also change this string to something else.',
 
-    // controls the lifespan of the JWT. Suggest you leave this setting alone
-    GD_JWT_LIFESPAN_MINS: 15,
-
-    // (optional) Sign-in with Google settings for - oath2.
-    GD_GOOGLE_AUTH_CLIENT_ID: '',
+    // (optional) Sign-in with Google settings for - oath2. This requires `GD_GOOGLE_AUTH_CLIENT_ID` to have been set in the
+    // client.config.ts file
     GD_GOOGLE_AUTH_CLIENT_SECRET: ''
   },
 
