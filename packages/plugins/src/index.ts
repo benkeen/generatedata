@@ -79,7 +79,7 @@ export type CountryNamesMap = {
   [country in CountryType]?: CountryNames;
 };
 
-interface ETOnMessage extends MessageEvent {
+export interface ETOnMessage extends MessageEvent {
   data: ETMessageData;
 }
 

@@ -1,4 +1,4 @@
-import { ETMessageData } from '@generatedata/types';
+import { ETMessageData } from '../../';
 import { XMLSettings } from './XML.state';
 
 export const generate = (data: ETMessageData): string => {

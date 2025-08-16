@@ -1,5 +1,5 @@
 import utils from '../../../utils';
-import { ETOnMessage } from '@generatedata/types';
+import { ETOnMessage } from '../../';
 import { generate } from './Typescript.generate';
 
 const context: Worker = self as any;
