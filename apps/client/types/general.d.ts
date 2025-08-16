@@ -66,12 +66,6 @@ export type GDAction = {
 	triggeredByInterceptor?: boolean;
 };
 
-export type ColumnData = {
-	title: string;
-	dataType: DataTypeFolder;
-	metadata: DTMetadata;
-};
-
 export type TourProps = {
 	isOpen: boolean;
 	onClose: () => void;

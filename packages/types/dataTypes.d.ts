@@ -4,10 +4,6 @@ import { AnyObject, GenerationTemplate } from './general.d';
 import { DataTypeFolder } from '../_plugins';
 import { CountryNamesMap, CountryType } from './countries'; // TODO
 
-export type DataTypeMap = {
-  [dataType in DataTypeFolder]?: string;
-};
-
 export type DTBundle = {
   initialState?: any;
 

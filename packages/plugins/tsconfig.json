@@ -10,6 +10,5 @@
     "target": "es6",
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true
-  },
-  "exclude": ["node_modules"]
+  }
 }

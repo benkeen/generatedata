@@ -4,10 +4,6 @@ import { CountryMap } from './countries'; // TODO
 import { DataTypeMap } from './dataTypes';
 import { ExportTypeFolder } from '../_plugins';
 
-export type ExportTypeMap = {
-  [exportType in ExportTypeFolder]?: string;
-};
-
 export interface ETValidateTitleField {
   (title: string, i18n: any, settings?: any): string | null;
 }
@@ -46,27 +42,6 @@ export type ETSettings = {
   i18n: any;
   coreI18n: any;
 };
-
-export type ETMessageData = {
-  action: 'generate' | 'pause' | 'continue' | 'abort';
-  columns: ColumnData[];
-  rows: any[];
-  isFirstBatch: boolean;
-  isLastBatch: boolean;
-  currentBatch: number;
-  batchSize: number;
-  settings: any; // TODO generic possible? This is the export type settings
-  stripWhitespace: boolean;
-  rowState: any;
-  workerUtilsUrl: string;
-  exportTypes: ExportTypeMap;
-  dataTypes: DataTypeMap;
-  countries: CountryMap;
-};
-
-interface ETOnMessage extends MessageEvent {
-  data: ETMessageData;
-}
 
 export type ETDownloadPacket = {
   packetId: string;
