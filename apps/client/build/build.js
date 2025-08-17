@@ -1,9 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const dateFns = require('date-fns');
-const rootPackage = require('../../../package.json');
 const helpers = require('./helpers');
-const authUtils = require('../../server/utils/authUtils'); // TODO move to shared code package
 
 const result = require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
 
@@ -62,25 +59,6 @@ export type EnvSettings = {
 	jwtDurationMins: number;
 };
 `;
-
-const envFile = {
-	version: rootPackage.version,
-	...envSettings
-};
-
-const generateEnvFile = (filename, content) => {
-	const fullContent = `${envSettingsFile}\nconst envSettings: EnvSettings = ${content};\n\nexport default envSettings;\n`;
-
-	const buildFolder = path.join(__dirname, '..');
-	if (!fs.existsSync(buildFolder)) {
-		fs.mkdirSync(buildFolder, { recursive: true });
-	}
-	const file = path.join(__dirname, '..', filename);
-	if (fs.existsSync(file)) {
-		fs.unlinkSync(file);
-	}
-	fs.writeFileSync(file, fullContent);
-};
 
 const createPluginsListFile = () => {
 	let content = '/* eslint max-len:0 */\n' + banner + '\n\n';
@@ -224,31 +202,6 @@ const createImportFile = () => {
 };
 
 
-const createDatabaseInitFile = async () => {
-	const now = Math.round(new Date().getTime() / 1000);
-	const newPasswordHash = await authUtils.getPasswordHash(process.env.GD_DEFAULT_ADMIN_PASSWORD);
-
-	const mysqlDateTime = dateFns.format(dateFns.fromUnixTime(now), 'yyyy-LL-dd HH:mm:ss');
-
-	const placeholders = {
-		'%FIRST_NAME%': process.env.GD_DEFAULT_ADMIN_FIRST_NAME,
-		'%LAST_NAME%': process.env.GD_DEFAULT_ADMIN_LAST_NAME,
-		'%EMAIL%': process.env.GD_DEFAULT_ADMIN_EMAIL,
-		'%PASSWORD%': newPasswordHash,
-		'%DATE_CREATED%': mysqlDateTime,
-		'%LAST_UPDATED%': mysqlDateTime
-	};
-
-	const dbStructureTemplate = fs.readFileSync(path.join(__dirname, '../../server/database/dbStructure.template.sql'), 'utf8');
-	let newFile = dbStructureTemplate;
-	Object.keys(placeholders).forEach((placeholder) => {
-		newFile = newFile.replace(placeholder, placeholders[placeholder]);
-	});
-
-	console.log(path.join(__dirname, '../../server/database/_dbStructure.sql'));
-	fs.writeFileSync(path.join(__dirname, '../../server/database/_dbStructure.sql'), newFile);
-};
-
 const generateNamesFile = () => {
 	const namePlugins = helpers.getNamePlugins();
 
@@ -268,10 +221,9 @@ const generateNamesFile = () => {
 	fs.writeFileSync(file, content);
 };
 
-generateEnvFile('_env.ts', JSON.stringify(envFile, null, '\t'));
-generateNamesFile();
+// generateEnvFile('_env.ts', JSON.stringify(envFile, null, '\t'));
+// generateNamesFile();
 
-createDatabaseInitFile();
 createPluginsListFile();
 createCliTypesFile();
 createImportFile();

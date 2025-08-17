@@ -1,4 +1,4 @@
-import * as arrayUtils from '../arrayUtils';
+import * as arrayUtils from '../array';
 
 describe('getUnique', () => {
   it('generates expected characters', () => {

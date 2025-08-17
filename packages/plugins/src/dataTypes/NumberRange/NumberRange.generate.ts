@@ -1,10 +1,10 @@
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
-import { WorkerUtils } from '~utils/workerUtils';
+import { WorkerUtils } from '../../';
 
 export const generate = ({ rowState }: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
-	const { min, max } = rowState;
+  const { min, max } = rowState;
 
-	return {
-		display: utils.randomUtils.getRandomNum(min, max)
-	};
+  return {
+    display: utils.randomUtils.getRandomNum(min, max)
+  };
 };

@@ -1,4 +1,4 @@
-import { ETMessageData } from '@generatedata/types';
+import { ETMessageData } from '../../';
 
 export const generate = ({ stripWhitespace, isFirstBatch, isLastBatch, rows, columns }: ETMessageData): string => {
   const newline = stripWhitespace ? '' : '\n';

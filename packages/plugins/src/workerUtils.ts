@@ -5,23 +5,28 @@
  * Web Workers are fussy. To share these utility methods, the core script generates a worker file which is loaded
  * via importScripts() within any plugin worker and the methods are loaded as a global within the worker scope.
  */
-import utilities from '@generatedata/utils';
+import arrayUtils from '@generatedata/utils/array';
+import countryUtils from '@generatedata/utils/country';
+import generalUtils from '@generatedata/utils/general';
+import randomUtils from '@generatedata/utils/random';
+import stringUtils from '@generatedata/utils/string';
+import numberUtils from '@generatedata/utils/number';
 
 export type WorkerUtils = {
-  arrayUtils: typeof utilities.arrayUtils;
-  countryUtils: typeof utilities.countryUtils;
-  generalUtils: typeof utilities.generalUtils;
-  randomUtils: typeof utilities.randomUtils;
-  stringUtils: typeof utilities.stringUtils;
-  numberUtils: typeof utilities.numberUtils;
+  arrayUtils: typeof arrayUtils;
+  countryUtils: typeof countryUtils;
+  generalUtils: typeof generalUtils;
+  randomUtils: typeof randomUtils;
+  stringUtils: typeof stringUtils;
+  numberUtils: typeof numberUtils;
 };
 
 // all utility methods are exposed to web worker generation files on the global scope under `utils`
 const utils = {
-  arrayUtils: { ...utilities.arrayUtils },
-  countryUtils: { ...utilities.countryUtils },
-  generalUtils: { ...utilities.generalUtils },
-  randomUtils: { ...utilities.randomUtils },
-  stringUtils: { ...utilities.stringUtils },
-  numberUtils: { ...utilities.numberUtils }
+  arrayUtils: { ...arrayUtils },
+  countryUtils: { ...countryUtils },
+  generalUtils: { ...generalUtils },
+  randomUtils: { ...randomUtils },
+  stringUtils: { ...stringUtils },
+  numberUtils: { ...numberUtils }
 };

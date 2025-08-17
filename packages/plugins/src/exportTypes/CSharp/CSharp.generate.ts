@@ -1,5 +1,5 @@
-import { ETMessageData } from '@generatedata/types';
-import { WorkerUtils } from '~utils/workerUtils';
+import { ETMessageData } from '../../';
+import { WorkerUtils } from '../../workerUtils';
 
 export const generate = (data: ETMessageData, utils: WorkerUtils): string => {
   const { stripWhitespace } = data;
@@ -20,7 +20,13 @@ export const generate = (data: ETMessageData, utils: WorkerUtils): string => {
       let value = row[colIndex];
 
       // if a DT has explicitly said it's a number, use a number
-      if (metadata && metadata.general && metadata.general.dataType && metadata.general.dataType === 'number' && utils.numberUtils.isNumeric(value)) {
+      if (
+        metadata &&
+        metadata.general &&
+        metadata.general.dataType &&
+        metadata.general.dataType === 'number' &&
+        utils.numberUtils.isNumeric(value)
+      ) {
         // do nothin'!
       } else {
         value = `"${value}"`;

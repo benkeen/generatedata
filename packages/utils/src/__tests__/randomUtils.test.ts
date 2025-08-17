@@ -1,5 +1,5 @@
 import * as sinon from 'sinon';
-import * as randomUtils from '../randomUtils';
+import * as randomUtils from '../random';
 
 describe('getRandomNum', () => {
   it('generates numbers in expected range #1', () => {

@@ -1,6 +1,6 @@
-import { ETMessageData } from '@generatedata/types';
+import { ETMessageData } from '../../';
 import { ColumnData } from '~types/general';
-import { WorkerUtils } from '~utils/workerUtils';
+import { WorkerUtils } from '../../';
 
 let utils: WorkerUtils;
 const maybeEnquote = (value: any) => {
@@ -18,7 +18,10 @@ const maybeEnquote = (value: any) => {
   return value;
 };
 
-export const generate = ({ stripWhitespace, isFirstBatch, isLastBatch, settings, columns, rows }: ETMessageData, workerUtils: WorkerUtils): string => {
+export const generate = (
+  { stripWhitespace, isFirstBatch, isLastBatch, settings, columns, rows }: ETMessageData,
+  workerUtils: WorkerUtils
+): string => {
   let content = '';
   let comma = '';
   utils = workerUtils;

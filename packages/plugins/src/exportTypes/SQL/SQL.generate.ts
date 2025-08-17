@@ -1,4 +1,4 @@
-import { ETMessageData } from '@generatedata/types';
+import { ETMessageData } from '../../';
 import { ColumnData } from '~types/general';
 import { SQLSettings } from './SQL.state';
 

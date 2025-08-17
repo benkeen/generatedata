@@ -1,14 +1,5 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const path = require('path');
-
-require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
-
-const saltRounds = 10;
-const getPasswordHash = async (plainTextPassword) => {
-  const salt = await bcrypt.genSalt(saltRounds);
-  return await bcrypt.hash(plainTextPassword, salt);
-};
 
 const isValidPassword = async (plainTextPassword, hash) => await bcrypt.compare(plainTextPassword, hash);
 

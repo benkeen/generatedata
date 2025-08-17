@@ -1,14 +1,13 @@
 {
   "name": "@generatedata/utils",
   "description": "Utility methods and code",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
     "@material-ui/core": "^4.7.0",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "bcrypt": "^5.0.0",
     "date-fns": "^2.17.0",
     "nanoid": "^3.3.4"
   },
@@ -22,5 +21,39 @@
     "jest": "^29.4.3",
     "sinon": "^8.0.4",
     "typescript": "^5.7.3"
+  },
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./array": {
+      "default": "./dist/array.js",
+      "types": "./dist/array.d.ts"
+    },
+    "./auth": {
+      "default": "./dist/auth.js",
+      "types": "./dist/auth.d.ts"
+    },
+    "./country": {
+      "default": "./dist/country.js",
+      "types": "./dist/country.d.ts"
+    },
+    "./general": {
+      "default": "./dist/general.js",
+      "types": "./dist/general.d.ts"
+    },
+    "./random": {
+      "default": "./dist/random.js",
+      "types": "./dist/random.d.ts"
+    },
+    "./number": {
+      "default": "./dist/number.js",
+      "types": "./dist/number.d.ts"
+    },
+    "./string": {
+      "default": "./dist/string.js",
+      "types": "./dist/string.d.ts"
+    }
   }
 }

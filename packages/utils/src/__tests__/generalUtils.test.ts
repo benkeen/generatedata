@@ -1,4 +1,4 @@
-import * as generalUtils from '../generalUtils';
+import * as generalUtils from '../general';
 
 describe('isBoolean', () => {
   it('evaluates as booleans', () => {

@@ -2,7 +2,7 @@
  * @author Ben Keen <ben.keen@gmail.com>, original code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
  */
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { WorkerUtils } from '~utils/workerUtils';
+import { WorkerUtils } from '../../';
 
 /*
 	Source - http://en.wikipedia.org/wiki/Magnetic_stripe_card#Financial_cards
@@ -22,36 +22,36 @@ import { WorkerUtils } from '~utils/workerUtils';
 		use it only to verify the input internally to the reader.
 */
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
-	const { panSource, targetPanRowId } = data.rowState;
+  const { panSource, targetPanRowId } = data.rowState;
 
-	let pan = '';
-	if (panSource === 'random') {
-		pan = utils.randomUtils.generateRandomAlphanumericStr('Xxxxxxxxxxxxxxxx');
-	} else {
-		const found = data.existingRowData.find(({ id }) => id === targetPanRowId);
-		if (found) {
-			pan = found.data.display as string;
-		}
-	}
+  let pan = '';
+  if (panSource === 'random') {
+    pan = utils.randomUtils.generateRandomAlphanumericStr('Xxxxxxxxxxxxxxxx');
+  } else {
+    const found = data.existingRowData.find(({ id }) => id === targetPanRowId);
+    if (found) {
+      pan = found.data.display as string;
+    }
+  }
 
-	const panWithoutSpaces = pan.replace(/[^\d]/g, '');
+  const panWithoutSpaces = pan.replace(/[^\d]/g, '');
 
-	const randYear = utils.stringUtils.padString(utils.randomUtils.getRandomNum(0, 99), 2);
-	const randMonth = utils.stringUtils.padString(utils.randomUtils.getRandomNum(1, 12), 2);
-	const date = `${randYear}${randMonth}`;
-	const serviceCode = utils.randomUtils.getRandomNum(111, 999);
+  const randYear = utils.stringUtils.padString(utils.randomUtils.getRandomNum(0, 99), 2);
+  const randMonth = utils.stringUtils.padString(utils.randomUtils.getRandomNum(1, 12), 2);
+  const date = `${randYear}${randMonth}`;
+  const serviceCode = utils.randomUtils.getRandomNum(111, 999);
 
-	// could be more efficient
-	const discretionaryData = [
-		utils.randomUtils.getRandomNum(1, 9),
-		utils.randomUtils.getRandomNum(111, 999),
-		utils.randomUtils.getRandomNum(1111, 9999)
-	];
-	const index = utils.randomUtils.getRandomNum(0, 2);
-	const dataItem = discretionaryData[index];
-	const lrc = utils.randomUtils.getRandomCharInString(' 123456789');
+  // could be more efficient
+  const discretionaryData = [
+    utils.randomUtils.getRandomNum(1, 9),
+    utils.randomUtils.getRandomNum(111, 999),
+    utils.randomUtils.getRandomNum(1111, 9999)
+  ];
+  const index = utils.randomUtils.getRandomNum(0, 2);
+  const dataItem = discretionaryData[index];
+  const lrc = utils.randomUtils.getRandomCharInString(' 123456789');
 
-	return {
-		display: `%B${panWithoutSpaces}=${date}${serviceCode}${dataItem}?${lrc}`
-	};
+  return {
+    display: `%B${panWithoutSpaces}=${date}${serviceCode}${dataItem}?${lrc}`
+  };
 };

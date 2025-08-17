@@ -3,8 +3,8 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "target": "esnext",
-    "module": "es6",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "declaration": true,
     "skipLibCheck": true,
     "jsx": "react-jsx"

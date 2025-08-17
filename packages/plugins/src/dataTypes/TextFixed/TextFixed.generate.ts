@@ -1,11 +1,11 @@
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { WorkerUtils } from '~utils/workerUtils';
+import { WorkerUtils } from '../../';
 
 export const generate = ({ rowState }: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
-	const { words, numWordsToGenerate } = rowState;
-	const textStr = utils.randomUtils.generateRandomTextStr(words, false, numWordsToGenerate);
+  const { words, numWordsToGenerate } = rowState;
+  const textStr = utils.randomUtils.generateRandomTextStr(words, false, numWordsToGenerate);
 
-	return {
-		display: textStr
-	};
+  return {
+    display: textStr
+  };
 };

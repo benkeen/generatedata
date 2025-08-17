@@ -1,24 +1,24 @@
 import { creditCardFormats, CreditCardFormatType, CreditCardType, creditCardTypes } from './formats';
-import { cloneObj } from '~utils/generalUtils';
+import { cloneObj } from '@generatedata/utils/general';
 
 export type PanState = {
-	example: string;
-	cardTypes: CreditCardType[];
-	cardFormats: CreditCardFormatType;
+  example: string;
+  cardTypes: CreditCardType[];
+  cardFormats: CreditCardFormatType;
 };
 
 export type GenerationOptionsType = {
-	cardFormats: CreditCardFormatType;
-	ccCard: CreditCardType | 'any';
-}
+  cardFormats: CreditCardFormatType;
+  ccCard: CreditCardType | 'any';
+};
 
 export const defaultGenerationOptions = {
-	cardFormats: Object.values(CreditCardType),
-	ccCard: 'any'
+  cardFormats: Object.values(CreditCardType),
+  ccCard: 'any'
 };
 
 export const initialState: PanState = {
-	example: 'any',
-	cardTypes: creditCardTypes,
-	cardFormats: cloneObj(creditCardFormats)
+  example: 'any',
+  cardTypes: creditCardTypes,
+  cardFormats: cloneObj(creditCardFormats)
 };

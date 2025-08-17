@@ -1,5 +1,5 @@
-import { ETMessageData } from '@generatedata/types';
-import { WorkerUtils } from '~utils/workerUtils';
+import { ETMessageData } from '../../';
+import { WorkerUtils } from '../../';
 
 let utils: WorkerUtils;
 export const generate = (data: any, workerUtils: WorkerUtils): string => {

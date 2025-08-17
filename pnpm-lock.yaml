@@ -490,6 +490,12 @@ importers:
         specifier: ^6.29.0
         version: 6.37.5(mysql2@2.3.3)
     devDependencies:
+      '@generatedata/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+      '@generatedata/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       dotenv:
         specifier: ^8.2.0
         version: 8.6.0
@@ -575,6 +581,9 @@ importers:
       '@material-ui/lab':
         specifier: ^4.0.0-alpha.56
         version: 4.0.0-alpha.61(@material-ui/core@4.12.4(@types/react@16.14.62)(react-dom@16.14.0(react@16.14.0))(react@16.14.0))(@types/react@16.14.62)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      bcrypt:
+        specifier: ^5.0.0
+        version: 5.1.1
       date-fns:
         specifier: ^2.17.0
         version: 2.30.0

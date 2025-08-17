@@ -1,4 +1,4 @@
-import { ETMessageData } from '@generatedata/types';
+import { ETMessageData } from '../../';
 
 export const generate = (data: ETMessageData): string => {
   const { stripWhitespace } = data;

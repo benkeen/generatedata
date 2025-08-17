@@ -1,4 +1,4 @@
-import * as stringUtils from '../stringUtils';
+import * as stringUtils from '../string';
 
 describe('uppercaseWords', () => {
   it('uppercases a single word', () => {

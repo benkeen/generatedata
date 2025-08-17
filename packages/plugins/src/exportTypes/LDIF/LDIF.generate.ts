@@ -1,5 +1,5 @@
 // Original author: Marco Corona <coronam@allegheny.edu>
-import { ETMessageData } from '@generatedata/types';
+import { ETMessageData } from '../../';
 
 export const generate = (data: ETMessageData): string => {
   const { columns, rows } = data;

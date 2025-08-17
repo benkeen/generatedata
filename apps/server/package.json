@@ -3,6 +3,7 @@
   "description": "Server-side code for generatedata app",
   "private": true,
   "scripts": {
+    "build": "node scripts/build.js",
     "start": "nodemon ./app.js"
   },
   "dependencies": {
@@ -22,6 +23,8 @@
     "sequelize": "^6.29.0"
   },
   "devDependencies": {
+    "@generatedata/config": "workspace:*",
+    "@generatedata/utils": "workspace:*",
     "dotenv": "^8.2.0"
   }
 }
