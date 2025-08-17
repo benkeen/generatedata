@@ -23,7 +23,7 @@ export default (cmdLineArgs) => {
 	const { 'config-src': src, 'config-target': target } = cmdLineArgs;
 
 	if (!src || !target) {
-		console.error("\n*** Missing command line args. See file for usage. ***\n");
+		console.error('\n*** Missing command line args. See file for usage. ***\n');
 		return;
 	}
 
@@ -35,7 +35,7 @@ export default (cmdLineArgs) => {
 		terserCompressProps.top_retain = ['utils', 'onmessage'];
 	} else if (/src\/plugins\/countries/.test(src)) {
 		const folder = path.dirname(src).split(path.sep);
-		terserCompressProps.top_retain = [folder[folder.length-1]];
+		terserCompressProps.top_retain = [folder[folder.length - 1]];
 	} else {
 		terserCompressProps.unused = true;
 		terserCompressProps.top_retain = ['utils', 'onmessage'];
@@ -68,5 +68,5 @@ export default (cmdLineArgs) => {
 			removeExports(),
 			workerHash()
 		]
-	}
+	};
 };

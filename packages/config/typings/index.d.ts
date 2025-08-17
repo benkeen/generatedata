@@ -2,6 +2,10 @@ export type AppType = 'login' | 'open' | 'closed' | 'prod';
 
 export type GDLocale = 'ar' | 'de' | 'en' | 'es' | 'es' | 'fr' | 'hi' | 'ja' | 'nl' | 'pt' | 'ru' | 'ta' | 'zh';
 
+export type GDLocaleMap = {
+  [locale in GDLocale]: string;
+};
+
 export type GDClientConfig = {
   api: {
     GD_API_SERVER_PORT: number;

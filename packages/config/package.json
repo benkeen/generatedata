@@ -2,6 +2,7 @@
   "name": "@generatedata/config",
   "version": "1.0.0",
   "description": "This package contains the settings for your generatedata installation.",
+  "types": "./typings/index.d.ts",
   "scripts": {
     "tsc": "tsc",
     "build": "run-s confirm-setup tsc",

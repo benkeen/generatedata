@@ -115,6 +115,7 @@
 		"@esbuild-plugins/tsconfig-paths": "^0.0.4",
 		"@generatedata/config": "workspace:*",
 		"@generatedata/plugins": "workspace:*",
+		"@generatedata/utils": "workspace:*",
 		"@generatedata/types": "workspace:*",
 		"@rollup/plugin-commonjs": "^15.1.0",
 		"@rollup/plugin-node-resolve": "^8.4.0",

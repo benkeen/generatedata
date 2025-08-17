@@ -1,7 +1,7 @@
-import generatorUtils from '~utils/generatorUtils';
+import generatorUtils from '../../utils/generatorUtils';
 import { GenerationActions, GenerationWorkerActionType } from '~core/generator/generation.types';
 import { DataTypeBatchGeneratedPayload, DataTypeWorkerInterface, WorkerInterface } from '~types/generator';
-import { DataTypeMap } from '~types/dataTypes';
+import { DataTypeMap } from '@generatedata/plugins';
 
 const context: Worker = self as any;
 const workerCache: any = {};

@@ -174,6 +174,9 @@ importers:
       '@generatedata/types':
         specifier: workspace:*
         version: link:../../packages/types
+      '@generatedata/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@rollup/plugin-commonjs':
         specifier: ^15.1.0
         version: 15.1.0(rollup@2.79.2)

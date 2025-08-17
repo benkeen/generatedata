@@ -118,25 +118,24 @@ module.exports = function (grunt) {
 		const fileHashMap = locales.reduce((acc, locale) => {
 			const coreLocaleStrings = JSON.parse(fs.readFileSync(`src/i18n/${locale}.json`, 'utf8'));
 			const dtImports = getPluginLocaleFiles(grunt, locale, dataTypesFolder);
-			// const etImports = getPluginLocaleFiles(grunt, locale, exportTypesFolder);
-			// const countryImports = getPluginLocaleFiles(grunt, locale, countriesFolder);
+			const etImports = getPluginLocaleFiles(grunt, locale, exportTypesFolder);
+			const countryImports = getPluginLocaleFiles(grunt, locale, countriesFolder);
 
-			console.log('....', dtImports);
-			// acc = {
-			// 	...acc,
-			// 	...generateLocaleFileTemplate(locale, coreLocaleStrings, dtImports, etImports, countryImports)
-			// };
-			// return acc;
+			acc = {
+				...acc,
+				...generateLocaleFileTemplate(locale, coreLocaleStrings, dtImports, etImports, countryImports)
+			};
+			return acc;
 		}, {});
 
 		// generate the i18n hashmap file. This is imported by the source code to know what files to load
-		// generateI18nHashMap(fileHashMap);
+		generateI18nHashMap(fileHashMap);
 	};
 
 	const generateI18nHashMap = (content) => {
 		const filename = './_localeFileMap.ts';
 		const tsContent = `/* eslint quotes:0 */
-import { GDLocaleMap } from '~types/general';
+import { GDLocaleMap } from '@generatedata/types';
 
 export const localeFileMap: GDLocaleMap = ${JSON.stringify(content, null, '\t')};`;
 		fs.writeFileSync(filename, tsContent);
@@ -188,21 +187,24 @@ window.gd.localeLoaded(i18n);
 	};
 
 	// looks through the plugins and finds the plugins that have a generator web worker file
-	// const dataTypeWebWorkerMap = (() => {
-	// 	const baseFolder = path.join(__dirname, '/src/plugins/dataTypes');
-	// 	const folders = fs.readdirSync(baseFolder);
+	const dataTypeWebWorkerMap = (() => {
+		const baseFolder = path.join(__dirname, 'node_modules/@generatedata/plugins/dist/dataTypes');
+		const folders = fs.readdirSync(baseFolder);
 
-	// 	const map = {};
-	// 	folders.forEach((folder) => {
-	// 		const webworkerFile = path.join(__dirname, `/src/plugins/dataTypes/${folder}/${folder}.worker.ts`);
-	// 		if (!fs.existsSync(webworkerFile)) {
-	// 			return;
-	// 		}
-	// 		map[`dist/workers/DT-${folder}.worker.js`] = [`src/plugins/dataTypes/${folder}/${folder}.worker.ts`];
-	// 	});
+		const map = {};
+		folders.forEach((folder) => {
+			const webworkerFile = path.join(`${baseFolder}/${folder}/${folder}.worker.ts`);
+			if (!fs.existsSync(webworkerFile)) {
+				return;
+			}
+			// map[`dist/workers/DT-${folder}.worker.js`] = [`src/plugins/dataTypes/${folder}/${folder}.worker.ts`];
+			map[`dist/workers/DT-${folder}.worker.js`] = [`${baseFolder}/${folder}/${folder}.worker.ts`];
+		});
 
-	// 	return map;
-	// })();
+		return map;
+	})();
+
+	console.log(dataTypeWebWorkerMap);
 
 	// const exportTypeWebWorkerMap = (() => {
 	// 	const baseFolder = path.join(__dirname, '/src/plugins/exportTypes');
@@ -220,10 +222,10 @@ window.gd.localeLoaded(i18n);
 	// 	return map;
 	// })();
 
-	// const webWorkerFileListWithType = [
-	// 	{ file: 'src/core/generator/generation.worker.ts', type: 'core' },
-	// 	{ file: 'src/utils/workerUtils.ts', type: 'core' }
-	// ];
+	const webWorkerFileListWithType = [
+		{ file: 'src/core/generator/generation.worker.ts', type: 'core' },
+		{ file: 'src/utils/workerUtils.ts', type: 'core' }
+	];
 	// Object.values(dataTypeWebWorkerMap).forEach((dt) => {
 	// 	webWorkerFileListWithType.push({ file: dt[0], type: 'dataType' });
 	// });
@@ -237,32 +239,31 @@ window.gd.localeLoaded(i18n);
 	// 	fs.writeFileSync('./_pluginWebWorkers.ts', `/* eslint quotes:0 */\nexport default ${JSON.stringify(webWorkerMap, null, '\t')};`);
 	// };
 
-	// const getWebWorkerShellCommands = (omitFiles = {}) => {
-	// 	const commands = {};
+	const getWebWorkerShellCommands = (omitFiles = {}) => {
+		const commands = {};
 
-	// 	webWorkerFileListWithType.forEach(({ file, type }, index) => {
-	// 		if (omitFiles[file]) {
-	// 			return;
-	// 		}
+		webWorkerFileListWithType.forEach(({ file, type }, index) => {
+			if (omitFiles[file]) {
+				return;
+			}
 
-	// 		const filename = path.basename(file, path.extname(file));
-	// 		let target = `dist/workers/${filename}.js`;
+			const filename = path.basename(file, path.extname(file));
+			let target = `dist/workers/${filename}.js`;
 
-	// 		if (['dataType', 'exportType'].indexOf(type) !== -1) {
-	// 			// 'country'
-	// 			const filename = helpers.getScopedWorkerFilename(file, type);
-	// 			target = `dist/workers/${filename}`;
-	// 		}
+			if (['dataType', 'exportType'].indexOf(type) !== -1) {
+				// 'country'
+				const filename = helpers.getScopedWorkerFilename(file, type);
+				target = `dist/workers/${filename}`;
+			}
 
-	// 		// TODO detect when the command is run and look for the generated __hash-[filename] content, then update
-	// 		// __
-	// 		commands[`buildWebWorker${index}`] = {
-	// 			command: `npx rollup -c --config-src=${file} --config-target=${target}`
-	// 		};
-	// 	});
+			// TODO detect when the command is run and look for the generated __hash-[filename] content, then update
+			commands[`buildWebWorker${index}`] = {
+				command: `npx rollup -c --config-src=${file} --config-target=${target}`
+			};
+		});
 
-	// 	return commands;
-	// };
+		return commands;
+	};
 
 	// generating every web worker bundle takes time. To get around that, rollup generates a file in the dist/workers
 	// file for each bundle, with the filename of form:
@@ -275,19 +276,19 @@ window.gd.localeLoaded(i18n);
 	//          __hash-generation.worker
 	//          __hash-workerUtils
 	// we then use that information here to check to see if we need to regenerate or not
-	// const getWebWorkerBuildCommandNames = () => {
-	// 	const omitFiles = {};
-	// 	webWorkerFileListWithType.forEach(({ file, type }) => {
-	// 		const filename = helpers.getScopedWorkerFilename(file, type);
-	// 		const filenameHash = helpers.getHashFilename(filename);
+	const getWebWorkerBuildCommandNames = () => {
+		const omitFiles = {};
+		webWorkerFileListWithType.forEach(({ file, type }) => {
+			const filename = helpers.getScopedWorkerFilename(file, type);
+			const filenameHash = helpers.getHashFilename(filename);
 
-	// 		if (!helpers.hasWorkerFileChanged(`${workersFolder}/${filename}`, `${workersFolder}/${filenameHash}`)) {
-	// 			omitFiles[file] = true;
-	// 		}
-	// 	});
+			if (!helpers.hasWorkerFileChanged(`${workersFolder}/${filename}`, `${workersFolder}/${filenameHash}`)) {
+				omitFiles[file] = true;
+			}
+		});
 
-	// 	return Object.keys(getWebWorkerShellCommands(omitFiles)).map((cmdName) => `shell:${cmdName}`);
-	// };
+		return Object.keys(getWebWorkerShellCommands(omitFiles)).map((cmdName) => `shell:${cmdName}`);
+	};
 
 	// const webWorkerWatchers = (() => {
 	// 	const tasks = {};
@@ -401,10 +402,10 @@ window.gd.localeLoaded(i18n);
 		shell: {
 			webpackProd: {
 				command: 'npm run prod'
-			}
+			},
 
 			// note these aren't executed right away, so they contain ALL web workers, even those don't need regeneration
-			// ...getWebWorkerShellCommands()
+			...getWebWorkerShellCommands()
 		},
 
 		watch: {
@@ -513,11 +514,11 @@ window.gd.localeLoaded(i18n);
 	grunt.loadNpmTasks('grunt-md5');
 
 	// grunt.registerTask('sortI18nFiles', sortI18nFiles);
-	grunt.registerTask('default', ['cssmin', 'copy', 'generateI18nBundles']); // 'webWorkers'
+	grunt.registerTask('default', ['cssmin', 'copy', 'generateI18nBundles', 'webWorkers']);
 	// grunt.registerTask('dev', ['cssmin', 'copy', 'generateI18nBundles', 'webWorkers', 'watch']);
 	// grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('generateI18nBundles', generateI18nBundles);
 	// grunt.registerTask('validateI18n', validateI18n);
 
-	// grunt.registerTask('webWorkers', [...getWebWorkerBuildCommandNames(), ...getWebWorkerMd5TaskNames(), 'generateWorkerMapFile']);
+	grunt.registerTask('webWorkers', [...getWebWorkerBuildCommandNames()]); // , ...getWebWorkerMd5TaskNames(), 'generateWorkerMapFile'
 };
