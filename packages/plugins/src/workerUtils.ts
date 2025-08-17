@@ -3,7 +3,7 @@
  * type which is used by both the node + web worker code.
  *
  * Web Workers are fussy. To share these utility methods, the core script generates a worker file which is loaded
- * via importScripts() within any plugin worker and the methods are loaded as a global within the worker scope.
+ * via importScripts() within any plugin worker and the methods are loaded as a global in the worker scope.
  */
 import arrayUtils from '@generatedata/utils/array';
 import countryUtils from '@generatedata/utils/country';

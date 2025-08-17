@@ -1,5 +1,3 @@
 dist/
 build/
-client/_pluginWebWorkers.ts
 client/_localeFileMap.ts
-client/_env.ts

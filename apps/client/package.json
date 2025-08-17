@@ -3,11 +3,10 @@
 	"description": "Client-side code for generatedata app",
 	"private": true,
 	"scripts": {
-		"build": "node ./build/build.js",
+		"build": "grunt && npm run webpackProd",
 		"clean": "npx rimraf client/dist",
 		"coverage": "npx jest --coverage",
 		"i18n": "grunt && grunt i18n",
-		"prod": "npm run build && grunt && npm run webpackProd",
 		"start": "grunt dev & npm run build & npm run webpackDev",
 		"test": "env NODE_ENV=test jest",
 		"webWorkers": "grunt && grunt webWorkers",
@@ -48,8 +47,7 @@
 		"coveragePathIgnorePatterns": [
 			"bundle.ts",
 			".*.scss.d.ts",
-			".*.types.d.ts",
-			"src/plugins/dataTypes/_.*/*.ts"
+			".*.types.d.ts"
 		],
 		"modulePathIgnorePatterns": [
 			"<rootDir>/cli/dist"
@@ -115,6 +113,8 @@
 		"@babel/preset-env": "^7.7.4",
 		"@babel/preset-react": "^7.7.4",
 		"@esbuild-plugins/tsconfig-paths": "^0.0.4",
+		"@generatedata/config": "workspace:*",
+		"@generatedata/plugins": "workspace:*",
 		"@generatedata/types": "workspace:*",
 		"@rollup/plugin-commonjs": "^15.1.0",
 		"@rollup/plugin-node-resolve": "^8.4.0",

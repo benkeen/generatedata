@@ -3,21 +3,23 @@ const md5File = require('md5-file');
 const path = require('path');
 
 const getPlugins = (pluginType, blacklist, checkConfigFileExistence = true) => {
-	const baseFolder = path.join(__dirname, '..', `/src/plugins/${pluginType}`);
-	const folders = fs.readdirSync(baseFolder);
+	console.log(require.resolve(`@generatedata/plugins/dist/plugins/${pluginType}`));
 
-	return folders.filter((folder) => {
-		if (blacklist.indexOf(folder) !== -1) {
-			return false;
-		}
-		const bundle = `${baseFolder}/${folder}/bundle.ts`;
-		const config = `${baseFolder}/${folder}/config.ts`;
-		if (checkConfigFileExistence) {
-			return fs.existsSync(bundle) && fs.existsSync(config);
-		} else {
-			return fs.existsSync(bundle);
-		}
-	});
+	// const baseFolder = path.join(__dirname, '..', `/src/plugins/${pluginType}`);
+	// const folders = fs.readdirSync(baseFolder);
+
+	// return folders.filter((folder) => {
+	// 	if (blacklist.indexOf(folder) !== -1) {
+	// 		return false;
+	// 	}
+	// 	const bundle = `${baseFolder}/${folder}/bundle.ts`;
+	// 	const config = `${baseFolder}/${folder}/config.ts`;
+	// 	if (checkConfigFileExistence) {
+	// 		return fs.existsSync(bundle) && fs.existsSync(config);
+	// 	} else {
+	// 		return fs.existsSync(bundle);
+	// 	}
+	// });
 };
 
 // const getNamePlugins = () => {

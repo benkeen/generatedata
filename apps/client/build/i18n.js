@@ -225,8 +225,6 @@ const getMissingStrMessage = (missing, baseLocale, prefix) => {
 	return str;
 };
 
-
-
 module.exports = {
 	locales,
 	getCoreLocaleFileStrings,
