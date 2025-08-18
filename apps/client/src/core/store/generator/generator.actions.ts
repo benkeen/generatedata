@@ -2,23 +2,23 @@ import { Dispatch } from 'redux';
 import * as selectors from './generator.selectors';
 import { getCurrentDataSet, isCountryNamesLoaded, isCountryNamesLoading } from './generator.selectors';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
 import { registerInterceptors } from '../../actionInterceptor';
 import { requestDataTypeBundle } from '~utils/dataTypeUtils';
-import * as coreUtils from '~utils/coreUtils';
-import { getStrings } from '~utils/langUtils';
+import * as coreUtils from '@generatedata/utils/dist/core';
+import { getStrings } from '@generatedata/utils/dist/lang';
 import { getUniqueString } from '~utils/stringUtils';
-import { getExportTypeInitialState, loadExportTypeBundle } from '~utils/exportTypeUtils';
-import { addToast } from '~utils/generalUtils';
+import { getExportTypeInitialState, loadExportTypeBundle } from '~utils/exportTypes';
+import { addToast } from '@generatedata/utils/dist/general';
 import { DTBundle, DTOptionsMetadata } from '~types/dataTypes';
 import { GDAction } from '~types/general';
-import C from '../../constants';
+import C from '@generatedata/config/dist/constants';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
 import * as accountActions from '~store/account/account.actions';
 import { DataSetListItem } from '~types/dataSets';
 import { getUnique } from '~utils/arrayUtils';
-import { getCountryNamesBundle } from '~utils/coreUtils';
-import { getCountryData } from '~utils/countryUtils';
+import { getCountryNamesBundle } from '@generatedata/utils/dist/core';
+import { getCountryData } from '@generatedata/utils/dist/country';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
 
 export const ADD_ROWS = 'ADD_ROWS';
@@ -138,12 +138,7 @@ export const requestCountryNames =
 		};
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
-export const onConfigureDataType = (
-	id: string,
-	data: any,
-	metadata?: DTOptionsMetadata,
-	triggeredByInterceptor = false
-): any => {
+export const onConfigureDataType = (id: string, data: any, metadata?: DTOptionsMetadata, triggeredByInterceptor = false): any => {
 	return (dispatch: any, getState: any): any => {
 		if (metadata && metadata.useCountryNames) {
 			const state = getState();
@@ -445,9 +440,7 @@ export const loadDataSet =
 			const i18n = getStrings();
 			const { exportType, exportTypeSettings, rows, sortedRows } = JSON.parse(dataSet.content);
 
-			const dataTypes = sortedRows
-				.map((hash: string) => rows[hash].dataType)
-				.filter((dataType: DataTypeFolder | null) => dataType !== null);
+			const dataTypes = sortedRows.map((hash: string) => rows[hash].dataType).filter((dataType: DataTypeFolder | null) => dataType !== null);
 			const uniqueDataTypes = getUnique(dataTypes);
 
 			dispatch({

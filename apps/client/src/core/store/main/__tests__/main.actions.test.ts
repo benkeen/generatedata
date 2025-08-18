@@ -3,7 +3,7 @@ import reducer from '../main.reducer';
 import * as selectors from '../main.selectors';
 import * as actions from '../main.actions';
 import { setAuthenticationData } from '../main.actions';
-import C from '../../../constants';
+import C from '@generatedata/config/dist/constants';
 import { AccountStatus } from '~types/account';
 import { AuthMethod } from '~types/general';
 

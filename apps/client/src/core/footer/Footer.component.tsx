@@ -15,7 +15,7 @@ import AboutDialog from '~core/dialogs/about/About.component';
 import useOnClickOutside from 'use-onclickoutside';
 import styles from './Footer.scss';
 import { useWindowSize } from 'react-hooks-window-size';
-import C from '~core/constants';
+import C from '@generatedata/config/dist/constants';
 import { isGeneratorPage } from '~utils/routeUtils';
 import { GDLocale } from '~types/general';
 import { useHistory } from 'react-router';

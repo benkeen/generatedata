@@ -8,7 +8,7 @@ import * as mainSelectors from '../store/main/main.selectors';
 import * as mainActions from '../store/main/main.actions';
 import * as accountActions from '../store/account/account.actions';
 import * as coreUtils from '../../utils/coreUtils';
-import { isExportTypeValid } from '~utils/exportTypeUtils';
+import { isExportTypeValid } from '~utils/exportTypes';
 import { getCustomFooterLinks } from '~utils/extensionUtils';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 

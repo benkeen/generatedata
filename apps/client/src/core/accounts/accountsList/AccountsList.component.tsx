@@ -3,16 +3,14 @@ import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { format, fromUnixTime } from 'date-fns';
 import { useMutation, useQuery } from '@apollo/client';
-import { addToast } from '~utils/generalUtils';
+import { addToast } from '@generatedata/utils/dist/general';
 import Pagination from '~components/Pagination';
-import TableHeader, {
-	ColSortDir
-} from '~components/tables/TableHeader.component';
+import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
 import { SmallSpinner } from '~components/loaders/loaders';
 import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
 import DeleteAccountDialog from '~core/dialogs/deleteAccount/DeleteAccount.component';
 import SearchFilter from './SearchFilter.component';
-import C from '~core/constants';
+import C from '@generatedata/config/dist/constants';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { AccountStatusFilter } from '~types/general';
 import * as queries from '~core/queries';
@@ -34,16 +32,7 @@ export type AccountsListProps = {
 	i18n: any;
 };
 
-const Row = ({
-	i18n,
-	firstName,
-	lastName,
-	onEdit,
-	onDelete,
-	accountStatus,
-	lastLoggedIn,
-	expiryDate
-}: any): JSX.Element => {
+const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastLoggedIn, expiryDate }: any): JSX.Element => {
 	let expiryDateVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
 	try {
 		if (expiryDate) {
@@ -51,9 +40,7 @@ const Row = ({
 		}
 	} catch (e) {}
 
-	let lastLoggedInVal: any = (
-		<span className={sharedStyles.blank}>&#8212;</span>
-	);
+	let lastLoggedInVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
 	try {
 		lastLoggedInVal = format(fromUnixTime(lastLoggedIn), C.DATE_FORMAT);
 	} catch (lastLoggedInVal) {}
@@ -68,13 +55,7 @@ const Row = ({
 			<div className={styles.lastLoggedIn}>{lastLoggedInVal}</div>
 			<div className={styles.expiryDate}>{expiryDateVal}</div>
 			<div className={styles.edit}>
-				<Button
-					size="small"
-					type="submit"
-					color="primary"
-					variant="outlined"
-					onClick={onEdit}
-				>
+				<Button size="small" type="submit" color="primary" variant="outlined" onClick={onEdit}>
 					{i18n.edit}
 				</Button>
 			</div>
@@ -127,10 +108,7 @@ const AccountsList = ({
 	}, [data]);
 
 	const numItemsOnPage = lastData?.accounts?.results?.length || 0;
-	const afterDeletePage =
-		numItemsOnPage === 1 && accountsCurrentPage > 1
-			? accountsCurrentPage - 1
-			: accountsCurrentPage;
+	const afterDeletePage = numItemsOnPage === 1 && accountsCurrentPage > 1 ? accountsCurrentPage - 1 : accountsCurrentPage;
 
 	const [deleteAccount] = useMutation(queries.DELETE_ACCOUNT, {
 		refetchQueries: [
@@ -199,11 +177,7 @@ const AccountsList = ({
 
 	let content;
 	if (totalCount === 0) {
-		content = (
-			<div className={`${styles.page} ${sharedStyles.emptyText}`}>
-				{i18n.noAccountsCreated}
-			</div>
-		);
+		content = <div className={`${styles.page} ${sharedStyles.emptyText}`}>{i18n.noAccountsCreated}</div>;
 	} else {
 		const paginationRow =
 			totalCount > NUM_PER_PAGE ? (
@@ -211,9 +185,7 @@ const AccountsList = ({
 					<Pagination
 						numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
 						currentPage={accountsCurrentPage}
-						onChange={(e: any, pageNum: number): void =>
-							setAccountsCurrentPage(pageNum)
-						}
+						onChange={(e: any, pageNum: number): void => setAccountsCurrentPage(pageNum)}
 					/>
 				</div>
 			) : null;
@@ -253,16 +225,11 @@ const AccountsList = ({
 	return (
 		<>
 			<div className={styles.filtersRow}>
-				<SearchFilter
-					value={accountsFilterStr}
-					onChange={setAccountsFilterString}
-				/>
+				<SearchFilter value={accountsFilterStr} onChange={setAccountsFilterString} />
 				<Dropdown
 					className={styles.accountsFilter}
 					value={accountStatusFilter}
-					onChange={(selected: DropdownOption): void =>
-						setAccountStatusFilter(selected.value as AccountStatusFilter)
-					}
+					onChange={(selected: DropdownOption): void => setAccountStatusFilter(selected.value as AccountStatusFilter)}
 					options={[
 						{ value: AccountStatusFilter.all, label: 'Any status' },
 						{ value: AccountStatusFilter.live, label: i18n.live },

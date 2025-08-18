@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import * as selectors from '~store/generator/generator.selectors';
 import * as actions from '~store/generator/generator.actions';
 import HelpDialog, { HelpDialogProps } from './HelpDialog.component';
-import { DataTypeFolder } from '../../../../_plugins';
+import { DataTypeFolder } from '@generatedata/plugins';
 
 const mapStateToProps = (state: any): Partial<HelpDialogProps> => ({
 	visible: selectors.isHelpDialogVisible(state),

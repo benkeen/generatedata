@@ -22,8 +22,6 @@ describe('Link', () => {
 			</Link>
 		);
 
-		expect(container.innerHTML).toEqual(
-			'<a href="http://google.com" target="_blank" rel="noopener noreferrer">Link here</a>'
-		);
+		expect(container.innerHTML).toEqual('<a href="http://google.com" target="_blank" rel="noopener noreferrer">Link here</a>');
 	});
 });

@@ -6,10 +6,10 @@ import * as mainActions from '../main/main.actions';
 import * as accountActions from '../account/account.actions';
 import * as packetActions from '../packets/packets.actions';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
-import { DataTypeFolder, dataTypes, ExportTypeFolder, exportTypes } from '../../../../_plugins';
+import { DataTypeFolder, dataTypes, ExportTypeFolder, exportTypes } from '@generatedata/plugins';
 import { GeneratorLayout } from '@generatedata/types';
 import env from '../../../../_env';
-import C from '../../constants';
+import C from '@generatedata/config/dist/constants';
 import { GeneratorPanel } from '~types/general';
 import { DTOptionsMetadata } from '~types/dataTypes';
 

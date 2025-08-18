@@ -4,7 +4,7 @@ import { AccountEditingData } from '~store/account/account.reducer';
 import { getFormattedNum } from '~utils/numberUtils';
 import { formatUnixTime } from '~utils/dateUtils';
 import styles from '../Account.scss';
-import C from '../../constants';
+import C from '@generatedata/config/dist/constants';
 
 export type YourAccountProps = {
 	data: AccountEditingData;

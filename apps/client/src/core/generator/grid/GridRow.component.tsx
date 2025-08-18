@@ -6,7 +6,7 @@ import InfoIcon from '@material-ui/icons/InfoOutlined';
 import Dropdown from '~components/dropdown/Dropdown';
 import { DataRow } from '~store/generator/generator.reducer';
 import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
-import { DataTypeFolder } from '../../../../_plugins';
+import { DataTypeFolder } from '@generatedata/plugins';
 import * as styles from './Grid.scss';
 import * as sharedStyles from '../../../styles/shared.scss';
 import TextField from '~components/TextField';
@@ -52,12 +52,8 @@ export type GridRowProps = {
 	countryNamesMap: CountryNamesMap | null;
 };
 
-const NoExample = ({ coreI18n, emptyColClass }: any): JSX.Element => (
-	<div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>
-);
-const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => (
-	<div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>
-);
+const NoExample = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>;
+const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>;
 
 export const GridRow = ({
 	row,
@@ -162,9 +158,7 @@ export const GridRow = ({
 								onChange={(i: any): void => onSelectDataType(i.value, { gridRowId: row.id })}
 								options={dtDropdownOptions}
 							/>
-							<div className={styles.dataTypeHelp}>
-								{row.dataType ? <InfoIcon fontSize="inherit" onClick={onClickShowHelp} /> : null}
-							</div>
+							<div className={styles.dataTypeHelp}>{row.dataType ? <InfoIcon fontSize="inherit" onClick={onClickShowHelp} /> : null}</div>
 						</div>
 						<div className={styles.titleCol}>
 							<TextField

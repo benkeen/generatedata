@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
-import { createGenerationWorker } from '~utils/coreUtils';
+import { createGenerationWorker } from '@generatedata/utils/dist/core';
 import * as selectors from '../generator/generator.selectors';
 import * as packetSelectors from './packets.selectors';
-import { getDownloadFileInfo } from '~utils/exportTypeUtils';
+import { getDownloadFileInfo } from '~utils/exportTypes';
 import { getGeneratorPageRoute } from '~utils/routeUtils';
 import { GDAction } from '~types/general';
 import { downloadFile } from '../../generationPanel/generation.helpers';

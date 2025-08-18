@@ -4,7 +4,7 @@ import * as actions from '../store/generator/generator.actions';
 import * as packetActions from '../store/packets/packets.actions';
 import * as selectors from '../store/generator/generator.selectors';
 import GenerationSettings, { GenerationSettingsProps } from './GenerationSettings.component';
-import C from '~core/constants';
+import C from '@generatedata/config/dist/constants';
 import * as packetSelectors from '~store/packets/packets.selectors';
 import { GDAction } from '~types/general';
 import { isLoggedIn } from '~store/main/main.selectors';

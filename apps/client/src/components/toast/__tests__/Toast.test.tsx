@@ -1,7 +1,7 @@
 import React from 'react';
 import Toast from '../Toast.component';
 import { render, act } from '@testing-library/react';
-import { addToast } from '~utils/generalUtils';
+import { addToast } from '@generatedata/utils/dist/general';
 
 describe('Toast', () => {
 	it('renders', () => {

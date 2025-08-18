@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format';
 import env from '../../../_env';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import { getI18nString } from '~utils/langUtils';
+import { getI18nString } from '@generatedata/utils/dist/lang';
 import { getFormattedNum } from '~utils/numberUtils';
 import styles from './ActivityPanel.scss';
 import sharedStyles from '../../styles/shared.scss';
@@ -11,7 +11,7 @@ import { ErrorTooltip } from '~components/tooltips';
 import { MediumSpinner } from '~components/loaders/loaders';
 import Engine from './Engine.container';
 import { DataPacket } from '~store/packets/packets.reducer';
-import * as coreUtils from '~utils/coreUtils';
+import * as coreUtils from '@generatedata/utils/dist/core';
 import CheckIcon from '@material-ui/icons/Check';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
 
@@ -154,12 +154,7 @@ const GenerationSettingsPanel = ({
 							{i18n.rows}
 						</div>
 						<div className={styles.row} style={{ marginBottom: 16 }}>
-							<input
-								type="checkbox"
-								id="stripWhitespace"
-								checked={stripWhitespace}
-								onChange={onToggleStripWhitespace}
-							/>
+							<input type="checkbox" id="stripWhitespace" checked={stripWhitespace} onChange={onToggleStripWhitespace} />
 							<label htmlFor="stripWhitespace">{i18n.stripWhitespace}</label>
 						</div>
 					</DialogContent>

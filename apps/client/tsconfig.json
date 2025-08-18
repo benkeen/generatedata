@@ -8,6 +8,7 @@
 		"noImplicitThis": true,
 		"strictNullChecks": true,
 		"moduleResolution": "node",
+		"resolveJsonModule": true,
 		"module": "esnext",
 		"target": "es6",
 		"jsx": "react-jsx",

@@ -1,32 +1,20 @@
 import { Dispatch } from 'redux';
 import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
-import {
-	AccountStatusFilter,
-	AuthMethod,
-	GDAction,
-	GDLocale
-} from '~types/general';
-import * as langUtils from '~utils/langUtils';
-import { getStrings, getCurrentLocalizedPath } from '~utils/langUtils';
+import { AccountStatusFilter, AuthMethod, GDAction, GDLocale } from '~types/general';
+import * as langUtils from '@generatedata/utils/dist/lang';
+import { getStrings, getCurrentLocalizedPath } from '@generatedata/utils/dist/lang';
 import { apolloClient } from '../../apolloClient';
 import { getCurrentPage, getLocale } from '~store/main/main.selectors';
-import { setAuthTokenRefresh } from '~utils/authUtils';
+import { setAuthTokenRefresh } from '@generatedata/utils/dist/auth';
 import { AccountStatus, AccountType, SelectedAccountTab } from '~types/account';
 import store from '~core/store';
-import {
-	onChangeTab,
-	showSaveDataSetDialog
-} from '~store/account/account.actions';
-import { addToast, setTourComponents } from '~utils/generalUtils';
-import {
-	getGeneratorPageRoute,
-	isGeneratorPage,
-	updateBodyClass
-} from '~utils/routeUtils';
+import { onChangeTab, showSaveDataSetDialog } from '~store/account/account.actions';
+import { addToast, setTourComponents } from '@generatedata/utils/dist/general';
+import { getGeneratorPageRoute, isGeneratorPage, updateBodyClass } from '~utils/routeUtils';
 import * as actions from '~store/generator/generator.actions';
 import { CLEAR_GRID } from '~store/generator/generator.actions';
-import C from '~core/constants';
+import C from '@generatedata/config/dist/constants';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 import { localeFileMap } from '../../../../_localeFileMap';
 import { ColSortDir } from '~components/tables/TableHeader.component';
@@ -83,10 +71,7 @@ export const initRouteListener = (history: any): void => {
 };
 
 export const SET_LOGIN_DIALOG_VISIBILITY = 'SET_LOGIN_DIALOG_VISIBILITY';
-export const setLoginDialogVisibility = (
-	visible: boolean,
-	email = ''
-): GDAction => ({
+export const setLoginDialogVisibility = (visible: boolean, email = ''): GDAction => ({
 	type: SET_LOGIN_DIALOG_VISIBILITY,
 	payload: {
 		visible,
@@ -94,12 +79,8 @@ export const setLoginDialogVisibility = (
 	}
 });
 
-export const SET_PASSWORD_RESET_DIALOG_VISIBILITY =
-	'SET_PASSWORD_RESET_DIALOG_VISIBILITY';
-export const setPasswordResetDialogVisibility = (
-	visible: boolean,
-	email = ''
-): GDAction => ({
+export const SET_PASSWORD_RESET_DIALOG_VISIBILITY = 'SET_PASSWORD_RESET_DIALOG_VISIBILITY';
+export const setPasswordResetDialogVisibility = (visible: boolean, email = ''): GDAction => ({
 	type: SET_PASSWORD_RESET_DIALOG_VISIBILITY,
 	payload: {
 		visible,
@@ -169,12 +150,7 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const setLoginError = (): GDAction => ({ type: LOGIN_ERROR });
 
 // default authentication
-export const login = (
-	email: string,
-	password: string,
-	history: any,
-	onLoginError: any
-): any => {
+export const login = (email: string, password: string, history: any, onLoginError: any): any => {
 	return async (dispatch: Dispatch): Promise<any> => {
 		dispatch(startDialogProcessing());
 
@@ -231,11 +207,7 @@ export const login = (
 	};
 };
 
-export const onLoginSuccess = (
-	tokenExpiry: number | null,
-	onPageRender: boolean,
-	dispatch: Dispatch
-): void => {
+export const onLoginSuccess = (tokenExpiry: number | null, onPageRender: boolean, dispatch: Dispatch): void => {
 	const i18n = getStrings();
 
 	if (tokenExpiry) {
@@ -263,12 +235,7 @@ export const setOneTimePassword = (password: string): GDAction => ({
 	payload: { password }
 });
 
-export const onOneTimeLoginSuccess = (
-	tokenExpiry: number,
-	password: string,
-	history: any,
-	dispatch: Dispatch
-): void => {
+export const onOneTimeLoginSuccess = (tokenExpiry: number, password: string, history: any, dispatch: Dispatch): void => {
 	const i18n = getStrings();
 	setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
 	dispatch(setLoginDialogVisibility(false));
@@ -355,9 +322,7 @@ export const updateRefreshToken =
 					expires: new Date(tokenExpiry)
 				});
 
-				setAuthTokenRefresh(tokenExpiry, (): any =>
-					updateRefreshToken()(dispatch)
-				);
+				setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
 				dispatch(setAuthenticationData(response.data.refreshToken));
 				dispatch(setAuthToken(token));
 			} else {

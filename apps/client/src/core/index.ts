@@ -1,15 +1,15 @@
 /* istanbul ignore file */
 import store from './store';
-import C from './constants';
+import C from '@generatedata/config/dist/constants';
 import * as actions from './store/generator/generator.actions';
 import * as mainActions from './store/main/main.actions';
 import * as selectors from './store/generator/generator.selectors';
 import * as mainSelectors from './store/main/main.selectors';
 import { requestCountryNames } from '~store/generator/generator.actions';
-import { DataTypeFolder } from '../../_plugins';
-import { createGenerationWorker } from '~utils/coreUtils';
-import { initAuthVendors } from '~utils/authUtils';
-import { getCurrentPageLocale } from '~utils/langUtils';
+import { DataTypeFolder } from '@generatedata/plugins';
+import { createGenerationWorker } from '@generatedata/utils/dist/core';
+import { initAuthVendors } from '@generatedata/utils/dist/auth';
+import { getCurrentPageLocale } from '@generatedata/utils/dist/lang';
 import '../../_imports';
 
 export const init = (): void => {
@@ -26,9 +26,7 @@ export const init = (): void => {
 	const numRows = selectors.getNumRows(state);
 
 	store.dispatch(mainActions.selectLocale(pageLocale));
-	store.dispatch(
-		actions.onSelectExportType(exportType, { shouldRefreshPreviewPanel: false })
-	);
+	store.dispatch(actions.onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
 
 	const loadCountryNames = selectors.currentDataSetNeedsCountryNames(state);
 	if (loadCountryNames) {

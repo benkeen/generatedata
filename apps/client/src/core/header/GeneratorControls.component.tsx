@@ -10,7 +10,7 @@ import { HtmlTooltip } from '~components/tooltips';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import useOnClickOutside from 'use-onclickoutside';
-import { addToast } from '~utils/generalUtils';
+import { addToast } from '@generatedata/utils/dist/general';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import * as queries from '~core/queries';
 import { CurrentDataSet } from '~store/generator/generator.reducer';
@@ -173,12 +173,7 @@ const GeneratorControls = ({
 					}
 				>
 					<span>
-						<IconButton
-							size="small"
-							aria-label={i18n.dataSetOptions}
-							disabled={disabled}
-							onClick={(): void => setMenuVisibility(true)}
-						>
+						<IconButton size="small" aria-label={i18n.dataSetOptions} disabled={disabled} onClick={(): void => setMenuVisibility(true)}>
 							<ArrowDropDownIcon fontSize="large" />
 						</IconButton>
 					</span>

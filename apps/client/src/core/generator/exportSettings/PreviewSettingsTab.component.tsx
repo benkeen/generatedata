@@ -3,7 +3,7 @@ import Dropdown from '~components/dropdown/Dropdown';
 import Switch from '@material-ui/core/Switch';
 import { getArrayOfSize } from '~utils/arrayUtils';
 import * as styles from './ExportSettings.scss';
-import C from '../../constants';
+import C from '@generatedata/config/dist/constants';
 
 export type PreviewSettingsTabProps = {
 	theme: string;
@@ -51,23 +51,13 @@ export const PreviewSettingsTab = ({
 			<div className={styles.row}>
 				<div className={styles.label}>{i18n.showLineNumbers}</div>
 				<div className={styles.field}>
-					<Switch
-						checked={showLineNumbers}
-						value="checked"
-						color="primary"
-						onChange={(): void => toggleLineNumbers()}
-					/>
+					<Switch checked={showLineNumbers} value="checked" color="primary" onChange={(): void => toggleLineNumbers()} />
 				</div>
 			</div>
 			<div className={styles.row}>
 				<div className={styles.label}>{i18n.lineWrapping}</div>
 				<div className={styles.field}>
-					<Switch
-						checked={enableLineWrapping}
-						value="checked"
-						color="primary"
-						onChange={(): void => toggleLineWrapping()}
-					/>
+					<Switch checked={enableLineWrapping} value="checked" color="primary" onChange={(): void => toggleLineWrapping()} />
 				</div>
 			</div>
 			<div className={styles.row}>
@@ -85,11 +75,7 @@ export const PreviewSettingsTab = ({
 				<div className={styles.label}>{i18n.previewRows}</div>
 				<div className={styles.field}>
 					<div style={{ width: 120 }}>
-						<Dropdown
-							value={numPreviewRows}
-							onChange={(item: any): any => updateNumPreviewRows(item.value)}
-							options={previewRowOptions}
-						/>
+						<Dropdown value={numPreviewRows} onChange={(item: any): any => updateNumPreviewRows(item.value)} options={previewRowOptions} />
 					</div>
 				</div>
 			</div>

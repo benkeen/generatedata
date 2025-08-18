@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import { format, fromUnixTime, add } from 'date-fns';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import {
-	LocalizedDatePicker,
-	LocalizedDatePickerProvider
-} from '~components/datePicker/LocalizedDatePicker.component';
+import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
 import { getFormattedNum } from '~utils/numberUtils';
 import * as dateStyles from '../../../plugins/dataTypes/Date/Date.scss';
-import C from '../../../core/constants';
+import C from '@generatedata/config/dist/constants';
 import styles from './ManageAccount.scss';
 
 export type ManageAccountProps = {
@@ -40,22 +37,12 @@ export type ManageAccountState = {
 
 const yearFromNow = Number(format(add(new Date(), { years: 1 }), 't'));
 
-const ManageAccount = ({
-	i18n,
-	onCancel,
-	onSave,
-	initialState,
-	submitButtonLabel
-}: ManageAccountProps): JSX.Element => {
+const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel }: ManageAccountProps): JSX.Element => {
 	const [data, setData] = useState(initialState);
 	const [showDatepicker, setShowDatepicker] = useState(false);
 	const [showErrors] = useState(false);
 
-	let accountHasChanges =
-		data.firstName !== '' &&
-		data.lastName !== '' &&
-		data.email !== '' &&
-		data.country !== '';
+	let accountHasChanges = data.firstName !== '' && data.lastName !== '' && data.email !== '' && data.country !== '';
 	if (data.country === 'CA' && data.region === '') {
 		accountHasChanges = false;
 	}
@@ -112,10 +99,7 @@ const ManageAccount = ({
 	let expiryLabel = i18n.selectExpiryDate;
 
 	if (data.expiryDate) {
-		expiryLabel = format(
-			fromUnixTime(Math.round(data.expiryDate / 1000)),
-			C.DATE_FORMAT
-		);
+		expiryLabel = format(fromUnixTime(Math.round(data.expiryDate / 1000)), C.DATE_FORMAT);
 	}
 
 	return (
@@ -181,11 +165,7 @@ const ManageAccount = ({
 						autoOk
 						open={showDatepicker}
 						className={dateStyles.dateField}
-						value={
-							data.expiryDate === null
-								? fromUnixTime(yearFromNow)
-								: fromUnixTime(data.expiryDate / 1000)
-						}
+						value={data.expiryDate === null ? fromUnixTime(yearFromNow) : fromUnixTime(data.expiryDate / 1000)}
 						onChange={(val: any): void => onSelectDate(format(val, 'T'))}
 						onClose={(): void => setShowDatepicker(false)}
 					/>

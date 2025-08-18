@@ -12,7 +12,7 @@ import { PreviewPanelButton } from '~components/Buttons.component';
 import Portal from '~components/Portal';
 import { PreviewPanelLoader } from './PreviewPanelLoader.component';
 import PanelButtons from '~core/generator/dataSetHistory/PanelButtons.container';
-import C from '../../constants';
+import C from '@generatedata/config/dist/constants';
 import * as styles from './PreviewPanel.scss';
 
 export type PreviewPanelProps = {

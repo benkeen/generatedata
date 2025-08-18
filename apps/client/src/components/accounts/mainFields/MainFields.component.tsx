@@ -6,13 +6,10 @@ import Dropdown from '~components/dropdown/Dropdown';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import {
-	canadianProvinceOptions,
-	countryDropdownOptions
-} from '~utils/countryUtils';
+import { canadianProvinceOptions, countryDropdownOptions } from '@generatedata/utils/dist/country';
 import Refresh from '@material-ui/icons/Refresh';
 import { AccountEditingData } from '~store/account/account.reducer';
-import { isValidEmail } from '~utils/generalUtils';
+import { isValidEmail } from '@generatedata/utils/dist/general';
 import { generateRandomAlphanumericStr } from '~utils/randomUtils';
 import sharedStyles from '../../../styles/shared.scss';
 
@@ -42,8 +39,7 @@ const MainFields = ({
 	className = ''
 }: MainFieldsProps): JSX.Element => {
 	const emailFieldRef = useRef(null);
-	const [oneTimePasswordFieldVisible, setOneTimePasswordFieldVisible] =
-		useState(false);
+	const [oneTimePasswordFieldVisible, setOneTimePasswordFieldVisible] = useState(false);
 
 	// very fussy indeed!
 	const [emailFieldHasFocus, setEmailFieldHasFocus] = useState(false);
@@ -97,11 +93,7 @@ const MainFields = ({
 			<>
 				<label>{i18n.province}</label>
 				<div style={{ marginBottom: 15 }}>
-					<Dropdown
-						value={data.region}
-						onChange={(item: any): any => update('region', item.value)}
-						options={canadianProvinceOptions}
-					/>
+					<Dropdown value={data.region} onChange={(item: any): any => update('region', item.value)} options={canadianProvinceOptions} />
 				</div>
 			</>
 		);
@@ -122,14 +114,8 @@ const MainFields = ({
 		update('oneTimePassword', pwd);
 	};
 
-	const firstNameError =
-		showRequiredFieldError && data.firstName.trim() === ''
-			? i18n.requiredField
-			: '';
-	const lastNameError =
-		showRequiredFieldError && data.lastName.trim() === ''
-			? i18n.requiredField
-			: '';
+	const firstNameError = showRequiredFieldError && data.firstName.trim() === '' ? i18n.requiredField : '';
+	const lastNameError = showRequiredFieldError && data.lastName.trim() === '' ? i18n.requiredField : '';
 
 	let cancelLinkClasses = sharedStyles.cancelLink;
 	if (!saveButtonEnabled) {
@@ -178,11 +164,7 @@ const MainFields = ({
 
 				<label>{i18n.country}</label>
 				<div style={{ marginBottom: 15 }}>
-					<Dropdown
-						value={data.country}
-						onChange={(item: any): any => update('country', item.value)}
-						options={countryDropdownOptions}
-					/>
+					<Dropdown value={data.country} onChange={(item: any): any => update('country', item.value)} options={countryDropdownOptions} />
 				</div>
 
 				{getCanadianRegions()}
@@ -195,11 +177,7 @@ const MainFields = ({
 									<Checkbox
 										checked={oneTimePasswordFieldVisible}
 										color="primary"
-										onClick={() =>
-											setOneTimePasswordFieldVisible(
-												!oneTimePasswordFieldVisible
-											)
-										}
+										onClick={() => setOneTimePasswordFieldVisible(!oneTimePasswordFieldVisible)}
 									/>
 								}
 								label="Set one-time password"
@@ -217,9 +195,7 @@ const MainFields = ({
 										error={oneTimePasswordError}
 										value={data.oneTimePassword}
 										name="oneTimePassword"
-										onChange={(e: any): void =>
-											update('oneTimePassword', e.target.value)
-										}
+										onChange={(e: any): void => update('oneTimePassword', e.target.value)}
 										style={{ width: '100%', marginRight: 8 }}
 									/>
 									<IconButton size="small" onClick={generatePassword}>
@@ -233,13 +209,7 @@ const MainFields = ({
 			</div>
 
 			<div>
-				<Button
-					type="submit"
-					color="primary"
-					variant="contained"
-					disableElevation
-					disabled={!saveButtonEnabled}
-				>
+				<Button type="submit" color="primary" variant="contained" disableElevation disabled={!saveButtonEnabled}>
 					{submitButtonLabel}
 				</Button>
 

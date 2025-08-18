@@ -9,7 +9,7 @@ import { PrimaryButton, SecondaryButton } from '~components/Buttons.component';
 import { Tooltip } from '~components/tooltips';
 import * as queries from '~core/queries';
 import * as styles from './DataSetHistory.scss';
-import C from '~core/constants';
+import C from '@generatedata/config/dist/constants';
 import { CurrentDataSet } from '~store/generator/generator.reducer';
 
 export type DataSetHistoryProps = {
@@ -29,15 +29,7 @@ export type DataSetHistoryProps = {
 const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
-const Row = ({
-	rowLabel,
-	dateCreated,
-	content,
-	loadHistoryVersion,
-	isSelected,
-	i18n,
-	Btn
-}: any): React.ReactElement => {
+const Row = ({ rowLabel, dateCreated, content, loadHistoryVersion, isSelected, i18n, Btn }: any): React.ReactElement => {
 	let classes = styles.row;
 	if (isSelected) {
 		classes += ` ${styles.selectedRow}`;

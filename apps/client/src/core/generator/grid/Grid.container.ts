@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
 import Grid, { GridProps } from './Grid.component';
-import { DataTypeFolder } from '../../../../_plugins';
+import { DataTypeFolder } from '@generatedata/plugins';
 
 const mapStateToProps = (state: any): Partial<GridProps> => ({
 	i18n: selectors.getCoreI18n(state),

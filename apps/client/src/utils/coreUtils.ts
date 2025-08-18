@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid';
 // import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 // import env from '../../_env';
 
-import { version as rootPackageVersion } from '../../../package.json'; // TODO see if the bundle includes the full package.json content
+import { version as rootPackageVersion } from '../../../../package.json'; // TODO see if the bundle includes the full package.json content
 
 // import { ExportTypeMap } from '~types/exportTypes';
 // import { DataTypeMap } from '~types/dataTypes';
@@ -15,20 +15,20 @@ import { version as rootPackageVersion } from '../../../package.json'; // TODO s
 export const getScriptVersion = (): string => rootPackageVersion;
 
 type WorkerMap = {
-  [workerId: string]: Worker;
+	[workerId: string]: Worker;
 };
 
 const generationWorkers: WorkerMap = {};
 
 export const createGenerationWorker = (customId: string | null = null): string => {
-  const workerId = customId ? customId : nanoid();
-  // generationWorkers[workerId] = new Worker(`./workers/${webWorkers.generationWorker}`);
-  return workerId;
+	const workerId = customId ? customId : nanoid();
+	// generationWorkers[workerId] = new Worker(`./workers/${webWorkers.generationWorker}`);
+	return workerId;
 };
 
 export const getGenerationWorker = (id: string): Worker => generationWorkers[id];
 export const destroyGenerationWorker = (id: string): void => {
-  delete generationWorkers[id];
+	delete generationWorkers[id];
 };
 
 // TODO perhaps move to @generatedata/plugins  ?
@@ -59,24 +59,24 @@ const messageIds: any = {};
 // sent to the worker. It's up to the worker to handle aborting it however it sees fit, but the important part is
 // that it doesn't post back any data from stale requests
 export const performTask = (workerName: string, worker: any, postMessagePayload: any, onMessage: any): void => {
-  if (!messageIds[workerName]) {
-    messageIds[workerName] = 1;
-  } else {
-    messageIds[workerName]++;
-  }
+	if (!messageIds[workerName]) {
+		messageIds[workerName] = 1;
+	} else {
+		messageIds[workerName]++;
+	}
 
-  worker.postMessage({
-    ...postMessagePayload,
-    _messageId: 1 // TODO
-  });
+	worker.postMessage({
+		...postMessagePayload,
+		_messageId: 1 // TODO
+	});
 
-  worker.onmessage = (data: any): void => {
-    onMessage(data);
-  };
+	worker.onmessage = (data: any): void => {
+		onMessage(data);
+	};
 };
 
 export const easeInOutSine = (t: any, b: any, c: any, d: any): number => {
-  return (-c / 2) * (Math.cos((Math.PI * t) / d) - 1) + b;
+	return (-c / 2) * (Math.cos((Math.PI * t) / d) - 1) + b;
 };
 
 // let namesPlugins: any = null;

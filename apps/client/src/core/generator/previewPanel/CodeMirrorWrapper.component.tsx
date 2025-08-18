@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import * as coreUtils from '~utils/coreUtils';
-import { getCountryData } from '~utils/countryUtils';
+import * as coreUtils from '@generatedata/utils/dist/core';
+import { getCountryData } from '@generatedata/utils/dist/country';
 import { GeneratorLayout } from '@generatedata/types';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
-import C from '~core/constants';
+import C from '@generatedata/config/dist/constants';
 
 export type CodeMirrorWrapperProps = {
 	previewRows: any;

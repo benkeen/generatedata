@@ -8,9 +8,9 @@ import * as styles from './Grid.scss';
 import { Tooltip } from '~components/tooltips';
 import { PrimaryButton } from '~components/Buttons.component';
 import { DataRow } from '~store/generator/generator.reducer';
-import { DataTypeFolder } from '../../../../_plugins';
+import { DataTypeFolder } from '@generatedata/plugins';
 import GridRow from './GridRow.container';
-import C from '../../constants';
+import C from '@generatedata/config/dist/constants';
 
 export type GridProps = {
 	rows: DataRow[];
@@ -93,9 +93,7 @@ const Grid = ({
 						</div>
 						<div className={`${styles.scrollableGridRows} tour-scrollableGridRows`}>
 							<div className={`${styles.gridRowsWrapper} tour-gridRows`}>
-								<DragDropContext
-									onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}
-								>
+								<DragDropContext onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}>
 									<Droppable droppableId="droppable">
 										{(provided: any): any => (
 											<div className={styles.grid} {...provided.droppableProps} ref={provided.innerRef}>

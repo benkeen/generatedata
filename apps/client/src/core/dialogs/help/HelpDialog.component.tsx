@@ -5,7 +5,7 @@ import { DropdownOption } from '~components/dropdown/Dropdown';
 import { MediumSpinner } from '~components/loaders/loaders';
 import { getSortedGroupedDataTypes, getDataType } from '~utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
-import { DataTypeFolder } from '../../../../_plugins';
+import { DataTypeFolder } from '@generatedata/plugins';
 
 export type HelpDialogProps = {
 	visible: boolean;
@@ -46,14 +46,7 @@ const DataTypeList = ({ onSelect, filterString }: any): any => {
 	return content;
 };
 
-const HelpDialog = ({
-	visible,
-	initialDataType,
-	onClose,
-	coreI18n,
-	dataTypeI18n,
-	onSelectDataType
-}: HelpDialogProps): JSX.Element => {
+const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps): JSX.Element => {
 	const [dataType, setDataType] = useState<DataTypeFolder | null>(null);
 	const [filterString, setFilterString] = useState('');
 

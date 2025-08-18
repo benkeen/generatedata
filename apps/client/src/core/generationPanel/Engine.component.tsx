@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import * as coreUtils from '~utils/coreUtils';
-import C from '~core/constants';
+import * as coreUtils from '@generatedata/utils/dist/core';
+import C from '@generatedata/config/dist/constants';
 import useDidUpdate from '../../hooks/useDidUpdate';
 import { DataPacket } from '~store/packets/packets.reducer';
 import { CountryDataType, CountryNamesMap } from '~types/countries';

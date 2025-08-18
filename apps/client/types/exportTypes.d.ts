@@ -1,8 +1,4 @@
 import { GeneratorLayout } from '@generatedata/types/generator';
-// import { ColumnData } from './general';
-// import { CountryMap } from '@generatedata/types/countries'; // TODO
-// import { DataTypeMap } from './dataTypes';
-// import { ExportTypeFolder } from '@generatedata/plugins';
 
 export interface ETValidateTitleField {
 	(title: string, i18n: any, settings?: any): string | null;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PrimaryButton } from '~components/Buttons.component';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
-import { getTourComponents } from '~utils/generalUtils';
+import { getTourComponents } from '@generatedata/utils/dist/general';
 import styles from './TourIntro.scss';
 import { useWindowSize } from 'react-hooks-window-size';
 
@@ -137,9 +137,7 @@ const TourDialog = ({
 									<PrimaryButton onClick={(): void => selectTour('gridPanel')}>2. {i18n.theGridPanel}</PrimaryButton>
 								</div>
 								<div>
-									<PrimaryButton onClick={(): void => selectTour('previewPanel')}>
-										3. {i18n.thePreviewPanel}
-									</PrimaryButton>
+									<PrimaryButton onClick={(): void => selectTour('previewPanel')}>3. {i18n.thePreviewPanel}</PrimaryButton>
 								</div>
 								<div>
 									<PrimaryButton disabled={true} onClick={(): void => selectTour('yourAccount')}>

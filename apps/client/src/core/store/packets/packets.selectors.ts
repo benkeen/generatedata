@@ -3,8 +3,8 @@ import { LoadTimeGraphDuration, Store } from '~types/general';
 import { createSelector } from 'reselect';
 import { DataPackets } from './packets.reducer';
 import prettyBytes from 'pretty-bytes';
-import { getFormattedNum } from '~utils/numberUtils';
-import { formatDuration } from '~utils/dateUtils';
+import { getFormattedNum } from '@generatedata/utils/dist/number';
+import { formatDuration } from '@generatedata/utils/dist/date';
 import { getLocale } from '../main/main.selectors';
 import C from '@generatedata/config/dist/constants';
 

@@ -2,9 +2,9 @@ import { AnyAction } from 'redux';
 import { nanoid } from 'nanoid';
 import produce from 'immer';
 import * as actions from './packets.actions';
-import { ExportTypeFolder } from '../../../../_plugins';
+import { ExportTypeFolder } from '@generatedata/plugins';
 import { getByteSize, getGraphDuration, getRowGenerationRatePerSecond } from '../../generationPanel/generation.helpers';
-import C from '../../constants';
+import C from '@generatedata/config/dist/constants';
 import * as mainActions from '../main/main.actions';
 import { LoadTimeGraphDuration } from '~types/general';
 
@@ -121,16 +121,8 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			break;
 
 		case actions.START_GENERATION: {
-			const {
-				generationWorkerId,
-				numRowsToGenerate,
-				template,
-				dataTypes,
-				columns,
-				exportType,
-				exportTypeSettings,
-				stripWhitespace
-			} = action.payload;
+			const { generationWorkerId, numRowsToGenerate, template, dataTypes, columns, exportType, exportTypeSettings, stripWhitespace } =
+				action.payload;
 
 			const packetId = nanoid();
 			draft.packetIds.push(packetId);
@@ -208,8 +200,7 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 
 			let newAverageSpeed = duration;
 			if (numExistingPackets > 0) {
-				newAverageSpeed =
-					(draft.packets[packetId].stats.averageSpeed * numExistingPackets + duration) / (numExistingPackets + 1);
+				newAverageSpeed = (draft.packets[packetId].stats.averageSpeed * numExistingPackets + duration) / (numExistingPackets + 1);
 			}
 
 			draft.packets[packetId].stats.averageSpeed = newAverageSpeed;
@@ -223,12 +214,7 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				endTime: now
 			});
 
-			const result = getRowGenerationRatePerSecond(
-				draft.packets[packetId].resumeTime,
-				startTime,
-				now,
-				C.GENERATION_BATCH_SIZE
-			);
+			const result = getRowGenerationRatePerSecond(draft.packets[packetId].resumeTime, startTime, now, C.GENERATION_BATCH_SIZE);
 
 			const seconds = Object.keys(result);
 			seconds.forEach((second) => {

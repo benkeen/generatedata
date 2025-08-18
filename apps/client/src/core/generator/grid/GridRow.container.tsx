@@ -2,13 +2,13 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { GridRow, GridRowProps } from './GridRow.component';
 import { getCustomProps, getDataType, getSortedGroupedDataTypes } from '~utils/dataTypeUtils';
-import { getCountryNames } from '~utils/coreUtils';
+import { getCountryNames } from '@generatedata/utils/dist/core';
 import { Store } from '~types/general';
 import { DataRow } from '~store/generator/generator.reducer';
 import * as actions from '~store/generator/generator.actions';
 import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
-import { DataTypeFolder } from '../../../../_plugins';
+import { DataTypeFolder } from '@generatedata/plugins';
 import { DTOptionsMetadata } from '~types/dataTypes';
 
 type OwnProps = {
@@ -49,8 +49,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GridRowProps> => ({
 	onChangeTitle: (id: string, value: string): any => dispatch(actions.onChangeTitle(id, value)),
 	onConfigureDataType: (id: string, data: any, metadata?: DTOptionsMetadata): any =>
 		dispatch(actions.onConfigureDataType(id, data, metadata)),
-	onSelectDataType: (dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions): any =>
-		dispatch(actions.onSelectDataType(dataType, opts))
+	onSelectDataType: (dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions): any => dispatch(actions.onSelectDataType(dataType, opts))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridRow);

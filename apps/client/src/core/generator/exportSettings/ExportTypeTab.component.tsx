@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
-import { getGroupedExportTypes } from '~utils/exportTypeUtils';
+import { getGroupedExportTypes } from '~utils/exportTypes';
 import * as styles from './ExportSettings.scss';
 import { ExportSettingsTab } from './ExportSettings.types';
 import { MediumSpinner } from '~components/loaders/loaders';
