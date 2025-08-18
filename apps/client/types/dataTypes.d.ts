@@ -1,5 +1,5 @@
 // TODO rename to dataTypePlugins.ts
-import { DatabaseTypes } from './exportTypes';
+import { DatabaseTypes } from '@generatedata/types';
 import { AnyObject, GenerationTemplate } from './general.d';
 import { CountryNamesMap, CountryType, DataTypeFolder } from '@generatedata/plugins';
 
@@ -33,25 +33,6 @@ export interface DTActionInterceptor {
 export type DTInterceptorSingleAction = {
 	dataType: DataTypeFolder;
 	interceptor: DTActionInterceptor;
-};
-
-export type DTDefinition = {
-	fieldGroup: DTFieldGroup;
-	fieldGroupOrder: number;
-	dependencies?: DataTypeFolder[];
-};
-
-export type DTFieldGroup = 'numeric' | 'geo' | 'humanData' | 'other' | 'financial' | 'text' | 'countrySpecific';
-
-export type DTMetadataType = 'number' | 'string' | 'boolean' | 'date' | 'infer';
-
-export type GeneralMetadataTypes = {
-	dataType: DTMetadataType;
-};
-
-export type DTMetadata = {
-	general?: GeneralMetadataTypes;
-	sql?: DatabaseTypes;
 };
 
 export type Dimensions = {

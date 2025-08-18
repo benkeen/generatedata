@@ -566,6 +566,9 @@ importers:
         specifier: ^16.13.1
         version: 16.14.0
     devDependencies:
+      '@generatedata/config':
+        specifier: workspace:*
+        version: link:../config
       '@generatedata/types':
         specifier: workspace:*
         version: link:../types

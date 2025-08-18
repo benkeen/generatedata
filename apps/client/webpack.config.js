@@ -7,8 +7,8 @@ const Dotenv = require('dotenv-webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const envPath = path.resolve(__dirname, '../../.env');
-require('dotenv').config({ path: envPath });
+// const envPath = path.resolve(__dirname, '../../.env');
+// require('dotenv').config({ path: envPath });
 
 module.exports = (env, argv) => {
 	const mode = argv.mode === 'production' ? 'production' : 'development'; // TODO not working with package.json commands
@@ -81,8 +81,8 @@ module.exports = (env, argv) => {
 			new CaseSensitivePathsPlugin(),
 			new HtmlWebpackPlugin({
 				template: path.join(__dirname, 'src/index.html')
-			}),
-			new Dotenv({ path: envPath })
+			})
+			// new Dotenv({ path: envPath })
 		],
 
 		resolve: {

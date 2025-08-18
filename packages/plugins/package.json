@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@generatedata/types": "workspace:*",
+    "@generatedata/config": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@testing-library/react": "^10.4.7",
     "copyfiles": "2.4.1",

@@ -1,4 +1,4 @@
-import { formatDuration } from '../dateUtils';
+import { formatDuration } from '../date';
 
 describe('formatDuration', () => {
   it('displays < 60 seconds as seconds only', () => {

@@ -6,10 +6,9 @@ import AccountsPage from '~core/accounts/Accounts.container';
 import { GDHeaderLink, GDLocale, GDRoute } from '~types/general';
 import { AccountType } from '~types/account';
 import { PAGE_CHANGE } from '~store/main/main.actions';
-import { trimChars } from '~utils/stringUtils';
-import env from '../../_env';
-import C from '../core/constants';
-
+import { trimChars } from '@generatedata/utils/dist/string';
+import clientConfig from '@generatedata/config/dist/client.config';
+import C from '@generatedata/config/dist/constants';
 
 // TODO move this under `extensionUtils`
 let customRoutes: GDRoute[] = [];
@@ -42,7 +41,7 @@ export const getRoutes = (): GDRoute[] => {
 	// lastly, add or overwrite any existing routes (e.g. register) with the custom routes
 	customRoutes.forEach(({ path, component }: GDRoute) => {
 		let found = false;
-		for (let i=0; i<routes.length; i++) {
+		for (let i = 0; i < routes.length; i++) {
 			if (routes[i].path === path) {
 				routes[i].component = component;
 				found = true;
@@ -60,7 +59,7 @@ export const getRoutes = (): GDRoute[] => {
 	return routes;
 };
 
-export const getUnlocalizedGeneratorRoute = (): string => process.env.GD_GENERATOR_PATH || '';
+export const getUnlocalizedGeneratorRoute = (): string => clientConfig.appSettings.GD_GENERATOR_PATH || '';
 
 export const getGeneratorPageRoute = (locale: GDLocale): string => {
 	let path = getUnlocalizedGeneratorRoute();
@@ -79,7 +78,6 @@ export const isGeneratorPage = (currentPage: string, locale: GDLocale) => {
 	return trimChars(currentPage, '/') === trimChars(generatorRoute, '/');
 };
 
-
 export interface CustomHeaderLinkGetter {
 	(isLoggedIn: boolean, accountType: AccountType): GDHeaderLink[];
 }
@@ -92,7 +90,7 @@ export const registerCustomHeaderLinksGetter = (getter: CustomHeaderLinkGetter):
 };
 
 export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): GDHeaderLink[] => {
-	const appType = process.env.GD_APP_TYPE;
+	const appType = clientConfig.appSettings.GD_APP_TYPE;
 
 	if (customHeaderLinkGetter) {
 		return customHeaderLinkGetter(isLoggedIn, accountType);
@@ -100,7 +98,6 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 
 	let links: GDHeaderLink[] = [];
 	switch (appType) {
-
 		// login - allows anonymous access but without logging in they can't save their data sets or generate more than
 		// GD_MAX_DEMO_MODE_ROWS at a time. Only the admin account can create new accounts
 		case C.APP_TYPES.LOGIN:
@@ -145,7 +142,7 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 export const updateBodyClass = (store: any, pathname: string): void => {
 	let pageId = pathname.replace(/\//g, '');
 
-	const rootLocale = env.availableLocales.indexOf(pageId as GDLocale);
+	const rootLocale = clientConfig.appSettings.GD_LOCALES.indexOf(pageId as GDLocale);
 	if (pageId === '' || rootLocale !== -1) {
 		pageId = process.env.GD_GENERATOR_PATH === '/generator' ? 'home' : 'generator';
 	}
@@ -163,7 +160,7 @@ export const updateBodyClass = (store: any, pathname: string): void => {
 };
 
 export const removeLocale = (path: string): string => {
-	const regexStr = `^/?(${env.availableLocales.join('|')})`;
+	const regexStr = `^/?(${clientConfig.appSettings.GD_LOCALES.join('|')})`;
 	const regex = new RegExp(regexStr);
 	return path.replace(regex, '');
 };

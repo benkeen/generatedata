@@ -1,4 +1,4 @@
-import { DTDefinition } from '@generatedata/types';
+import { DTDefinition } from '../../';
 
 const definition: DTDefinition = {
   fieldGroup: 'countrySpecific',

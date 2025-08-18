@@ -11,7 +11,7 @@ import { getInitialState } from '~store/generator/generator.reducer';
 import { initialState as initialMainState } from '~store/main/main.reducer';
 import { initialState as initialPacketState } from '~store/packets/packets.reducer';
 import { initialState as initialAccountState } from '~store/account/account.reducer';
-import * as langUtils from '~utils/langUtils';
+import langUtils from '@generatedata/utils/dist/lang';
 import { setLocaleFileLoaded } from '~store/main/main.actions';
 import generatorReducer from '~store/generator/generator.reducer';
 import mainReducer from '~store/main/main.reducer';

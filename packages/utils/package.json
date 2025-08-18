@@ -2,6 +2,7 @@
   "name": "@generatedata/utils",
   "description": "Utility methods and code",
   "scripts": {
+    "clean": "",
     "build": "tsc"
   },
   "dependencies": {

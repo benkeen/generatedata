@@ -36,7 +36,7 @@ import Track1 from './dataTypes/Track1/config';
 import Track2 from './dataTypes/Track2/config';
 import URLs from './dataTypes/URLs/config';
 import WeightedList from './dataTypes/WeightedList/config';
-import { CountryNames, DTMetadata } from '@generatedata/types';
+import { CountryNames, DatabaseTypes } from '@generatedata/types';
 
 export type ETMessageData = {
   action: 'generate' | 'pause' | 'continue' | 'abort';
@@ -59,6 +59,25 @@ export type ColumnData = {
   title: string;
   dataType: DataTypeFolder;
   metadata: DTMetadata;
+};
+
+export type DTDefinition = {
+  fieldGroup: DTFieldGroup;
+  fieldGroupOrder: number;
+  dependencies?: DataTypeFolder[];
+};
+
+export type DTFieldGroup = 'numeric' | 'geo' | 'humanData' | 'other' | 'financial' | 'text' | 'countrySpecific';
+
+export type DTMetadataType = 'number' | 'string' | 'boolean' | 'date' | 'infer';
+
+export type GeneralMetadataTypes = {
+  dataType: DTMetadataType;
+};
+
+export type DTMetadata = {
+  general?: GeneralMetadataTypes;
+  sql?: DatabaseTypes;
 };
 
 export type ExportTypeMap = {

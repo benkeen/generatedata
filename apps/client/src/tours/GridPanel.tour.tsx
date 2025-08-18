@@ -1,13 +1,13 @@
 import React from 'react';
 import Reactour, { ReactourStepPosition } from 'reactour';
-import { getStrings } from '~utils/langUtils';
+import { getStrings } from '@generatedata/utils/dist/lang';
 import store from '~core/store';
 import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
 import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
 import { GeneratorLayout } from '@generatedata/types';
-import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
 
 const Step1 = (): JSX.Element => {
 	const { core: i18n } = getStrings();

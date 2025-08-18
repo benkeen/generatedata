@@ -1,14 +1,13 @@
 import React from 'react';
 import Reactour, { ReactourStepPosition } from 'reactour';
-import env from '../../_env';
 import store from '~core/store';
-import { getI18nString, getStrings } from '~utils/langUtils';
+import { getI18nString, getStrings } from '@generatedata/utils/dist/lang';
 import * as selectors from '~store/generator/generator.selectors';
 import * as actions from '~store/generator/generator.actions';
 import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
-import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
-
+import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
+import clientConfig from '@generatedata/config/dist/client.config';
 
 const Step1 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
@@ -17,9 +16,7 @@ const Step1 = (): JSX.Element => {
 		<>
 			<h2>{i18n.introToGenerator}</h2>
 
-			<p>
-				{i18n.introToGeneratorDesc}
-			</p>
+			<p>{i18n.introToGeneratorDesc}</p>
 		</>
 	);
 };
@@ -31,12 +28,8 @@ const Step2 = (): JSX.Element => {
 		<>
 			<h2>{i18n.theGridPanel}</h2>
 
-			<p>
-				{i18n.gridPanelTourDesc1}
-			</p>
-			<p>
-				{i18n.gridPanelTourDesc2}
-			</p>
+			<p>{i18n.gridPanelTourDesc1}</p>
+			<p>{i18n.gridPanelTourDesc2}</p>
 		</>
 	);
 };
@@ -47,12 +40,8 @@ const Step3 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.thePreviewPanel}</h2>
-			<p>
-				{i18n.previewPanelDesc}
-			</p>
-			<p>
-				{i18n.previewPanelMoreInfo}
-			</p>
+			<p>{i18n.previewPanelDesc}</p>
+			<p>{i18n.previewPanelMoreInfo}</p>
 		</>
 	);
 };
@@ -64,9 +53,7 @@ const Step4 = (): JSX.Element => {
 		<>
 			<h2>{i18n.theDataSetName}</h2>
 
-			<p>
-				{i18n.dataSetNameDesc}
-			</p>
+			<p>{i18n.dataSetNameDesc}</p>
 		</>
 	);
 };
@@ -78,28 +65,22 @@ const Step5 = (): JSX.Element => {
 		<>
 			<h2>{i18n.panelControls}</h2>
 
-			<p>
-				{i18n.panelControlsDesc}
-			</p>
+			<p>{i18n.panelControlsDesc}</p>
 
-			<p>
-				{i18n.panelControlsClearIconDesc}
-			</p>
+			<p>{i18n.panelControlsClearIconDesc}</p>
 		</>
 	);
 };
 
 const Step6 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
-	const saveBtnDesc = getI18nString(i18n.saveButtonDesc, [env.maxDataSetHistorySize]);
+	const saveBtnDesc = getI18nString(i18n.saveButtonDesc, [clientConfig.appSettings.GD_MAX_DATASET_HISTORY_SIZE]);
 
 	return (
 		<>
 			<h2>{i18n.theSaveButton}</h2>
 
-			<p>
-				{saveBtnDesc}
-			</p>
+			<p>{saveBtnDesc}</p>
 		</>
 	);
 };
@@ -111,9 +92,7 @@ const Step7 = (): JSX.Element => {
 		<>
 			<h2>{i18n.theGenerateButton}</h2>
 
-			<p>
-				{i18n.generateBtnDesc}
-			</p>
+			<p>{i18n.generateBtnDesc}</p>
 		</>
 	);
 };
@@ -137,7 +116,7 @@ const steps = [
 				Phone: false,
 				Email: false,
 				StreetAddress: false,
-				City: false,
+				City: false
 			};
 
 			store.dispatch(actions.clearPage(false));
@@ -157,24 +136,47 @@ const steps = [
 			};
 
 			const shouldRefreshPreviewPanel = false;
-			store.dispatch(actions.onSelectDataType('Names', {
-				gridRowId: ids[0], shouldRefreshPreviewPanel, onLoadComplete
-			}));
-			store.dispatch(actions.onSelectDataType('Phone', {
-				gridRowId: ids[1], shouldRefreshPreviewPanel, onLoadComplete
-			}));
-			store.dispatch(actions.onSelectDataType('Email', {
-				gridRowId: ids[2], shouldRefreshPreviewPanel, onLoadComplete
-			}));
-			store.dispatch(actions.onSelectDataType('StreetAddress', {
-				gridRowId: ids[3], shouldRefreshPreviewPanel, onLoadComplete
-			}));
-			store.dispatch(actions.onSelectDataType('City', {
-				gridRowId: ids[4], shouldRefreshPreviewPanel, onLoadComplete
-			}));
-			store.dispatch(actions.onSelectExportType('JSON', {
-				shouldRefreshPreviewPanel, onLoadComplete
-			}));
+			store.dispatch(
+				actions.onSelectDataType('Names', {
+					gridRowId: ids[0],
+					shouldRefreshPreviewPanel,
+					onLoadComplete
+				})
+			);
+			store.dispatch(
+				actions.onSelectDataType('Phone', {
+					gridRowId: ids[1],
+					shouldRefreshPreviewPanel,
+					onLoadComplete
+				})
+			);
+			store.dispatch(
+				actions.onSelectDataType('Email', {
+					gridRowId: ids[2],
+					shouldRefreshPreviewPanel,
+					onLoadComplete
+				})
+			);
+			store.dispatch(
+				actions.onSelectDataType('StreetAddress', {
+					gridRowId: ids[3],
+					shouldRefreshPreviewPanel,
+					onLoadComplete
+				})
+			);
+			store.dispatch(
+				actions.onSelectDataType('City', {
+					gridRowId: ids[4],
+					shouldRefreshPreviewPanel,
+					onLoadComplete
+				})
+			);
+			store.dispatch(
+				actions.onSelectExportType('JSON', {
+					shouldRefreshPreviewPanel,
+					onLoadComplete
+				})
+			);
 
 			const layout = selectors.getGeneratorLayout(state);
 			if (layout === 'horizontal') {

@@ -1,4 +1,4 @@
-import { getI18nString, getCurrentLocalizedPath } from '../langUtils';
+import { getI18nString, getCurrentLocalizedPath } from '../lang';
 
 describe('getI18nString', () => {
   it('bounds checking', () => {

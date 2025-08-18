@@ -5,7 +5,7 @@ import { TourCompleteStep } from '../Components.tour';
 import GridPanelTour from '../GridPanel.tour';
 import IntroToGenerator from '../IntroToGenerator.tour';
 import PreviewPanel from '../PreviewPanel.tour';
-import * as langUtils from '~utils/langUtils';
+import langUtils from '@generatedata/utils/dist/lang';
 
 const i18n = require('../../i18n/en.json');
 
@@ -20,11 +20,7 @@ describe('TourCompleteStep', () => {
 			dataTypes: {}
 		});
 
-		const { container } = render(
-			<TourCompleteStep
-				close={() => {}}
-			/>
-		);
+		const { container } = render(<TourCompleteStep close={() => {}} />);
 
 		// there should be two buttons
 		expect(container.querySelectorAll('button').length).toEqual(2);
@@ -52,11 +48,7 @@ describe('GriaPanel tour', () => {
 			dataTypes: {}
 		});
 
-		const { baseElement } = render(
-			<GridPanelTour
-				{...tourProps}
-			/>
-		);
+		const { baseElement } = render(<GridPanelTour {...tourProps} />);
 
 		expect(baseElement.querySelector('svg')).toBeTruthy();
 	});
@@ -73,11 +65,7 @@ describe('IntroToGenerator tour', () => {
 			dataTypes: {}
 		});
 
-		const { baseElement } = render(
-			<IntroToGenerator
-				{...tourProps}
-			/>
-		);
+		const { baseElement } = render(<IntroToGenerator {...tourProps} />);
 
 		expect(baseElement.querySelector('svg')).toBeTruthy();
 	});
@@ -94,11 +82,7 @@ describe('PreviewPanel tour', () => {
 			dataTypes: {}
 		});
 
-		const { baseElement } = render(
-			<PreviewPanel
-				{...tourProps}
-			/>
-		);
+		const { baseElement } = render(<PreviewPanel {...tourProps} />);
 
 		expect(baseElement.querySelector('svg')).toBeTruthy();
 	});

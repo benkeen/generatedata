@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { generateRandomAlphanumericStr } from '~utils/randomUtils';
+import { generateRandomAlphanumericStr } from '@generatedata/utils/dist/random';
 import * as selectors from '~store/generator/generator.selectors';
 import * as accountActions from '~store/account/account.actions';
 import ManageAccount, {
@@ -33,16 +33,11 @@ const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {
 	};
 };
 
-const mapDispatchToProps = (
-	dispatch: Dispatch
-): Partial<ManageAccountProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Partial<ManageAccountProps> => ({
 	// @ts-ignore-line
 	onSave: (data: any): any => dispatch(accountActions.createAccount(data))
 });
 
-const container: any = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ManageAccount);
+const container: any = connect(mapStateToProps, mapDispatchToProps)(ManageAccount);
 
 export default container;

@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
 import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
-import env from '../../../../_env';
 import { apolloClient } from '../../apolloClient';
 import store from '../../store';
 import { onLoginSuccess, setAuthenticated, setAuthenticationData, setOnloadAuthDetermined } from '~store/main/main.actions';
 import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';
-import { addToast } from '~utils/generalUtils';
-import * as langUtils from '~utils/langUtils';
+import { addToast } from '@generatedata/utils/dist/general';
+import langUtils from '@generatedata/utils/dist/langUtils';
+import clientConfig from '@generatedata/config/dist/client.config';
 
 const googleBtnId = 'google-signin-button';
 
@@ -111,7 +111,7 @@ export const SignInWithGoogleButton = (): JSX.Element => {
 				if (document.contains(document.getElementById(googleBtnId)) && window.google) {
 					window.google.accounts.id.initialize({
 						/* eslint-disable @typescript-eslint/camelcase */
-						client_id: env.googleAuthClientId,
+						client_id: clientConfig.auth.GD_GOOGLE_AUTH_CLIENT_ID,
 						callback: onAuthenticated
 					});
 					window.google.accounts.id.renderButton(document.getElementById(googleBtnId), { type: 'standard' });

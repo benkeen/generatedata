@@ -6,7 +6,7 @@ import prettyBytes from 'pretty-bytes';
 import { getFormattedNum } from '~utils/numberUtils';
 import { formatDuration } from '~utils/dateUtils';
 import { getLocale } from '../main/main.selectors';
-import C from '../../constants';
+import C from '@generatedata/config/dist/constants';
 
 export const getCurrentPacketId = (state: Store): string | null => state.packets.currentPacketId;
 export const getPacketIds = (state: Store): string[] => state.packets.packetIds;

@@ -1,12 +1,12 @@
 import React from 'react';
 import Reactour, { ReactourStepPosition } from 'reactour';
-import { getStrings } from '~utils/langUtils';
+import { getStrings } from '@generatedata/utils/dist/lang';
 import store from '~core/store';
 import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
 import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
-import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
 
 const Step1 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
@@ -14,9 +14,7 @@ const Step1 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.thePreviewPanel}</h2>
-			<p>
-				{i18n.previewPanelTourDesc}
-			</p>
+			<p>{i18n.previewPanelTourDesc}</p>
 		</>
 	);
 };
@@ -27,9 +25,7 @@ const Step2 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.panelContents}</h2>
-			<p>
-				{i18n.panelContentsDesc}
-			</p>
+			<p>{i18n.panelContentsDesc}</p>
 		</>
 	);
 };
@@ -40,9 +36,7 @@ const Step3 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.panelControls}</h2>
-			<p>
-				{i18n.previewPanelControlsDesc}
-			</p>
+			<p>{i18n.previewPanelControlsDesc}</p>
 		</>
 	);
 };
@@ -53,12 +47,8 @@ const Step4 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.theExportTypeBtn}</h2>
-			<p>
-				{i18n.exportTypeBtnDesc}
-			</p>
-			<p>
-				{i18n.clickExportTypeBtn}
-			</p>
+			<p>{i18n.exportTypeBtnDesc}</p>
+			<p>{i18n.clickExportTypeBtn}</p>
 		</>
 	);
 };
@@ -69,12 +59,8 @@ const Step5 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.editingExportTypes}</h2>
-			<p>
-				{i18n.editExportTypePage}
-			</p>
-			<p>
-				{i18n.editExportTypePageConfig}
-			</p>
+			<p>{i18n.editExportTypePage}</p>
+			<p>{i18n.editExportTypePageConfig}</p>
 		</>
 	);
 };
@@ -85,9 +71,7 @@ const Step6 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.exportTypeSelection}</h2>
-			<p>
-				{i18n.exportTypeSelectionDesc}
-			</p>
+			<p>{i18n.exportTypeSelectionDesc}</p>
 		</>
 	);
 };
@@ -98,12 +82,8 @@ const Step7 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.exportTypeOptionsTs}</h2>
-			<p>
-				{i18n.exportTypeOptionsTsDesc}
-			</p>
-			<p>
-				{i18n.exportTypeOptionsTsDesc2}
-			</p>
+			<p>{i18n.exportTypeOptionsTsDesc}</p>
+			<p>{i18n.exportTypeOptionsTsDesc2}</p>
 		</>
 	);
 };
@@ -114,9 +94,7 @@ const Step8 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.exportTypeOptionsSql}</h2>
-			<p>
-				{i18n.exportTypeOptionsSqlDesc}
-			</p>
+			<p>{i18n.exportTypeOptionsSqlDesc}</p>
 		</>
 	);
 };
@@ -127,9 +105,7 @@ const Step9 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.panelTabs}</h2>
-			<p>
-				{i18n.panelTabsDesc}
-			</p>
+			<p>{i18n.panelTabsDesc}</p>
 		</>
 	);
 };
@@ -138,7 +114,6 @@ const commonStyles = {
 	borderRadius: 6,
 	margin: 12
 };
-
 
 const steps = [
 	{
@@ -174,7 +149,7 @@ const steps = [
 					Region: false,
 					City: false,
 					StreetAddress: false,
-					PostalZip: false,
+					PostalZip: false
 				};
 
 				const onLoadComplete = (plugin: DataTypeFolder | ExportTypeFolder): void => {
@@ -187,21 +162,41 @@ const steps = [
 				};
 
 				const shouldRefreshPreviewPanel = false;
-				store.dispatch(actions.onSelectDataType('Country', {
-					gridRowId: ids[0], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('Region', {
-					gridRowId: ids[1], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('City', {
-					gridRowId: ids[2], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('StreetAddress', {
-					gridRowId: ids[3], shouldRefreshPreviewPanel, onLoadComplete
-				}));
-				store.dispatch(actions.onSelectDataType('PostalZip', {
-					gridRowId: ids[4], shouldRefreshPreviewPanel, onLoadComplete
-				}));
+				store.dispatch(
+					actions.onSelectDataType('Country', {
+						gridRowId: ids[0],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('Region', {
+						gridRowId: ids[1],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('City', {
+						gridRowId: ids[2],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('StreetAddress', {
+						gridRowId: ids[3],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
+				store.dispatch(
+					actions.onSelectDataType('PostalZip', {
+						gridRowId: ids[4],
+						shouldRefreshPreviewPanel,
+						onLoadComplete
+					})
+				);
 				store.dispatch(actions.onSelectExportType('Typescript', { shouldRefreshPreviewPanel, onLoadComplete }));
 			}, 10);
 		}

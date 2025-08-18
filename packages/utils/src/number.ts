@@ -1,5 +1,5 @@
 import { GDLocale } from '@generatedata/types';
-import { getLocale } from './langUtils';
+import { getLocale } from './lang';
 
 export const getFormattedNum = (num: number, locale: GDLocale = getLocale()): string => {
   return Intl.NumberFormat(locale).format(num);
