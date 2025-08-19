@@ -521,6 +521,9 @@ importers:
         specifier: ^17.6.2
         version: 17.7.2
     devDependencies:
+      '@generatedata/plugins':
+        specifier: workspace:*
+        version: link:../plugins
       '@types/jest':
         specifier: ^26.0.15
         version: 26.0.24

@@ -9,7 +9,7 @@ import * as mainActions from '../store/main/main.actions';
 import * as accountActions from '../store/account/account.actions';
 import * as coreUtils from '../../utils/coreUtils';
 import { isExportTypeValid } from '~utils/exportTypes';
-import { getCustomFooterLinks } from '~utils/extensionUtils';
+import { getCustomFooterLinks } from '@generatedata/utils/dist/extension';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 
 const mapStateToProps = (state: any): Partial<FooterProps> => {
