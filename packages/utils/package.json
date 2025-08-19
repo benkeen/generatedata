@@ -44,6 +44,10 @@
       "default": "./dist/general.js",
       "types": "./dist/general.d.ts"
     },
+    "./lang": {
+      "default": "./dist/lang.js",
+      "types": "./dist/lang.d.ts"
+    },
     "./random": {
       "default": "./dist/random.js",
       "types": "./dist/random.d.ts"

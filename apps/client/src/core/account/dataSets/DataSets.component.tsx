@@ -3,37 +3,25 @@ import { useMutation, useQuery } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Pagination from '~components/Pagination';
-import TableHeader, {
-	ColSortDir
-} from '~components/tables/TableHeader.component';
+import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
 import * as queries from '~core/queries';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
 import * as sharedStyles from '../../../styles/shared.scss';
 import { DataSetListItem } from '~types/dataSets';
-import { formatUnixTime } from '~utils/dateUtils';
+import { formatUnixTime } from '@generatedata/utils/dist/date';
 import { getGeneratorPageRoute } from '~utils/routeUtils';
 import { useHistory } from 'react-router';
-import { getFormattedNum } from '~utils/numberUtils';
+import { getFormattedNum } from '@generatedata/utils/dist/number';
 import { GDLocale } from '~types/general';
 
 const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 	<div className={styles.row}>
 		<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
-		<div className={styles.dateCreated}>
-			{formatUnixTime(dataSet.historyDateCreatedUnix)}
-		</div>
-		<div className={styles.numRowsGenerated}>
-			{getFormattedNum(dataSet.numRowsGenerated)}
-		</div>
+		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
+		<div className={styles.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated)}</div>
 		<div className={styles.open}>
-			<Button
-				size="small"
-				type="submit"
-				color="primary"
-				variant="outlined"
-				onClick={onLoad}
-			>
+			<Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>
 				{i18n.open}
 			</Button>
 		</div>
@@ -106,8 +94,7 @@ const DataSets = ({
 			setDeleteDialogVisibility(false);
 
 			if (currentDataSetId) {
-				const { dataSetId: deletedDataSetId } =
-					selectedDataSet as DataSetListItem;
+				const { dataSetId: deletedDataSetId } = selectedDataSet as DataSetListItem;
 
 				// double == intentional. Maybe a string
 				if (currentDataSetId == deletedDataSetId) {

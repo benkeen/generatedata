@@ -13,7 +13,7 @@ import TextField from '~components/TextField';
 import { SmallSpinner } from '~components/loaders/loaders';
 import { SmallScreenSettingsIcon } from './SmallScreenSettingsIcon';
 import { DTOptionsMetadata } from '~types/dataTypes';
-import { CountryNamesMap } from '~types/countries';
+import { CountryNamesMap } from '@generatedata/plugins';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {

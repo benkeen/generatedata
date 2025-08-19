@@ -2,9 +2,9 @@ import { AnyAction } from 'redux';
 import produce from 'immer';
 import * as actions from './main.actions';
 import C from '@generatedata/config/dist/constants';
-import env from '../../../../_env';
 import { AccountStatusFilter, AuthMethod, GDLocale } from '~types/general';
 import { ColSortDir } from '~components/tables/TableHeader.component';
+import clientConfig from '@generatedata/config/dist/client.config';
 
 export type MainState = {
 	appStateVersion: number;
@@ -38,7 +38,7 @@ export const initialState: MainState = {
 	authMethod: AuthMethod.default,
 	localeFileLoading: false,
 	localeFileLoaded: false,
-	locale: env.defaultLocale,
+	locale: clientConfig.appSettings.GD_DEFAULT_LOCALE,
 	showLoginDialog: false,
 	loginDialogDefaultEmail: '',
 	showPasswordResetDialog: false,

@@ -1,19 +1,19 @@
 import * as React from 'react';
 import NumberFormat from 'react-number-format';
-import env from '../../../_env';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { getI18nString } from '@generatedata/utils/dist/lang';
-import { getFormattedNum } from '~utils/numberUtils';
+import { getFormattedNum } from '@generatedata/utils/dist/number';
 import styles from './ActivityPanel.scss';
 import sharedStyles from '../../styles/shared.scss';
 import { ErrorTooltip } from '~components/tooltips';
 import { MediumSpinner } from '~components/loaders/loaders';
 import Engine from './Engine.container';
 import { DataPacket } from '~store/packets/packets.reducer';
-import * as coreUtils from '@generatedata/utils/dist/core';
+import * as coreUtils from '../../utils/coreUtils';
 import CheckIcon from '@material-ui/icons/Check';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
+import clientConfig from '@generatedata/config/dist/client.config';
 
 export type GenerationSettingsProps = {
 	visible: boolean;
@@ -51,8 +51,8 @@ const GenerationSettingsPanel = ({
 
 	if (!numRowsToGenerate) {
 		error = i18n.requiredField;
-	} else if (!isLoggedIn && numRowsToGenerate > env.maxDemoModeRows) {
-		error = getI18nString(i18n.overMaxAnonRows, [getFormattedNum(env.maxDemoModeRows)]);
+	} else if (!isLoggedIn && numRowsToGenerate > clientConfig.appSettings.GD_MAX_DEMO_MODE_ROWS) {
+		error = getI18nString(i18n.overMaxAnonRows, [getFormattedNum(clientConfig.appSettings.GD_MAX_DEMO_MODE_ROWS)]);
 	}
 
 	const getEngine = (): JSX.Element | null => {

@@ -8,10 +8,10 @@ import * as packetActions from '../packets/packets.actions';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, dataTypes, ExportTypeFolder, exportTypes } from '@generatedata/plugins';
 import { GeneratorLayout } from '@generatedata/types';
-import env from '../../../../_env';
 import C from '@generatedata/config/dist/constants';
 import { GeneratorPanel } from '~types/general';
 import { DTOptionsMetadata } from '~types/dataTypes';
+import clientConfig from '@generatedata/config/dist/client.config';
 
 export type DataRow = {
 	id: string;
@@ -166,7 +166,7 @@ export const getInitialState = (): GeneratorState => ({
 	loadedDataTypes: Object.keys(dataTypes).reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
 	loadedExportTypes: Object.keys(exportTypes).reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
 	initialDependenciesLoaded: false,
-	exportType: env.defaultExportType,
+	exportType: clientConfig.appSettings.GD_DEFAULT_EXPORT_TYPE as ExportTypeFolder,
 	rows: {},
 	sortedRows: [],
 	showGrid: true,
@@ -189,7 +189,7 @@ export const getInitialState = (): GeneratorState => ({
 	showSchemaDialog: false,
 	showClearPageDialog: false,
 	helpDialogSection: null,
-	numRowsToGenerate: env.defaultNumRows,
+	numRowsToGenerate: clientConfig.appSettings.GD_DEFAULT_NUM_ROWS,
 	stripWhitespace: false,
 	lastLayoutWidth: null,
 	lastLayoutHeight: null,

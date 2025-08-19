@@ -235,9 +235,9 @@ window.gd.localeLoaded(i18n);
 
 	// const webWorkerFileList = webWorkerFileListWithType.map((i) => i.file);
 
-	// const generateWorkerMapFile = () => {
-	// 	fs.writeFileSync('./_pluginWebWorkers.ts', `/* eslint quotes:0 */\nexport default ${JSON.stringify(webWorkerMap, null, '\t')};`);
-	// };
+	const generateWorkerMapFile = () => {
+		fs.writeFileSync('./_pluginWebWorkers.ts', `/* eslint quotes:0 */\nexport default ${JSON.stringify(webWorkerMap, null, '\t')};`);
+	};
 
 	const getWebWorkerShellCommands = (omitFiles = {}) => {
 		const commands = {};
@@ -327,24 +327,24 @@ window.gd.localeLoaded(i18n);
 	};
 
 	// these tasks execute individually AFTER the worker has already been generated in the dist/workers folder
-	// const webWorkerMd5Tasks = (() => {
-	// 	const tasks = {};
-	// 	webWorkerFileListWithType.forEach(({ file, type }, index) => {
-	// 		const fileName = helpers.getScopedWorkerFilename(file, type);
-	// 		const newFileLocation = `dist/workers/${fileName}`; // N.B. here it's now a JS file, not TS
+	const webWorkerMd5Tasks = (() => {
+		const tasks = {};
+		webWorkerFileListWithType.forEach(({ file, type }, index) => {
+			const fileName = helpers.getScopedWorkerFilename(file, type);
+			const newFileLocation = `dist/workers/${fileName}`; // N.B. here it's now a JS file, not TS
 
-	// 		tasks[`webWorkerMd5Task${index}`] = {
-	// 			files: {
-	// 				[newFileLocation]: newFileLocation
-	// 			},
-	// 			options: {
-	// 				after: (fileChanges) => processMd5Change(fileChanges, webWorkerMap)
-	// 			}
-	// 		};
-	// 	});
+			tasks[`webWorkerMd5Task${index}`] = {
+				files: {
+					[newFileLocation]: newFileLocation
+				},
+				options: {
+					after: (fileChanges) => processMd5Change(fileChanges, webWorkerMap)
+				}
+			};
+		});
 
-	// 	return tasks;
-	// })();
+		return tasks;
+	})();
 
 	const getWebWorkerMd5TaskNames = () => {
 		return Object.keys(webWorkerMd5Tasks).map((cmdName) => `md5:${cmdName}`);
@@ -413,7 +413,7 @@ window.gd.localeLoaded(i18n);
 		},
 
 		md5: {
-			// ...webWorkerMd5Tasks
+			...webWorkerMd5Tasks
 		}
 	});
 
@@ -516,9 +516,9 @@ window.gd.localeLoaded(i18n);
 	// grunt.registerTask('sortI18nFiles', sortI18nFiles);
 	grunt.registerTask('default', ['cssmin', 'copy', 'generateI18nBundles', 'webWorkers']);
 	// grunt.registerTask('dev', ['cssmin', 'copy', 'generateI18nBundles', 'webWorkers', 'watch']);
-	// grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
+	grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('generateI18nBundles', generateI18nBundles);
 	// grunt.registerTask('validateI18n', validateI18n);
 
-	grunt.registerTask('webWorkers', [...getWebWorkerBuildCommandNames()]); // , ...getWebWorkerMd5TaskNames(), 'generateWorkerMapFile'
+	grunt.registerTask('webWorkers', [...getWebWorkerBuildCommandNames(), ...getWebWorkerMd5TaskNames(), 'generateWorkerMapFile']);
 };

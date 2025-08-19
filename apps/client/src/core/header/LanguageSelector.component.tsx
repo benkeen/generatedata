@@ -9,13 +9,13 @@ import { Dialog, DialogContent, DialogTitle } from '~components/dialogs';
 import { Tooltip } from '~components/tooltips';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import { GDLocale } from '~types/general';
-import env from '../../../_env';
 import * as styles from '~core/header/Header.scss';
 import { useHistory } from 'react-router';
+import clientConfig from '@generatedata/config/dist/client.config';
 
-const allLocaleOptions = Object.keys(env.allSupportedLocales).map((shortCode) => ({
+const allLocaleOptions = Object.keys(clientConfig.appSettings.GD_LOCALES).map((shortCode) => ({
 	value: shortCode,
-	label: env.allSupportedLocales[shortCode as GDLocale]
+	label: clientConfig.appSettings.GD_LOCALES[shortCode as GDLocale]
 }));
 
 export type SelectorDialogProps = {
@@ -28,15 +28,7 @@ export type SelectorDialogProps = {
 	i18n: any;
 };
 
-const SelectorDialog = ({
-	visible,
-	currentLocale,
-	onSelect,
-	onClose,
-	onExited,
-	loading,
-	i18n
-}: SelectorDialogProps): JSX.Element => {
+const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, loading, i18n }: SelectorDialogProps): JSX.Element => {
 	const history = useHistory();
 
 	return (

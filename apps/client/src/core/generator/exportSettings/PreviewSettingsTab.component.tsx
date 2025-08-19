@@ -1,7 +1,7 @@
 import React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
 import Switch from '@material-ui/core/Switch';
-import { getArrayOfSize } from '~utils/arrayUtils';
+import { getArrayOfSize } from '@generatedata/utils/dist/array';
 import * as styles from './ExportSettings.scss';
 import C from '@generatedata/config/dist/constants';
 
@@ -19,7 +19,7 @@ export type PreviewSettingsTabProps = {
 	i18n: any;
 };
 
-const previewRowOptions = getArrayOfSize(C.MAX_PREVIEW_ROWS - C.MIN_PREVIEW_ROWS + 1).map((i, index) => {
+const previewRowOptions = getArrayOfSize(C.MAX_PREVIEW_ROWS - C.MIN_PREVIEW_ROWS + 1).map((_i: any, index: number) => {
 	const rowNum = index + C.MIN_PREVIEW_ROWS;
 	return {
 		value: rowNum,

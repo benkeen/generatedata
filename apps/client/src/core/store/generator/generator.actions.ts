@@ -4,10 +4,10 @@ import { getCurrentDataSet, isCountryNamesLoaded, isCountryNamesLoading } from '
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
 import { registerInterceptors } from '../../actionInterceptor';
-import { requestDataTypeBundle } from '~utils/dataTypeUtils';
-import * as coreUtils from '@generatedata/utils/dist/core';
+import { requestDataTypeBundle } from '~utils/dataTypes';
+import * as coreUtils from '../../../utils/coreUtils';
 import { getStrings } from '@generatedata/utils/dist/lang';
-import { getUniqueString } from '~utils/stringUtils';
+import { getUniqueString } from '@generatedata/utils/dist/string';
 import { getExportTypeInitialState, loadExportTypeBundle } from '~utils/exportTypes';
 import { addToast } from '@generatedata/utils/dist/general';
 import { DTBundle, DTOptionsMetadata } from '~types/dataTypes';
@@ -15,10 +15,10 @@ import { GDAction } from '~types/general';
 import C from '@generatedata/config/dist/constants';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
 import * as accountActions from '~store/account/account.actions';
-import { DataSetListItem } from '~types/dataSets';
-import { getUnique } from '~utils/arrayUtils';
-import { getCountryNamesBundle } from '@generatedata/utils/dist/core';
-import { getCountryData } from '@generatedata/utils/dist/country';
+import { DataSetListItem } from '@generatedata/types';
+import { getUnique } from '@generatedata/utils/dist/array';
+import { getCountryNamesBundle } from '../../../utils/coreUtils';
+import { getCountryData } from '@generatedata/plugins';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
 
 export const ADD_ROWS = 'ADD_ROWS';

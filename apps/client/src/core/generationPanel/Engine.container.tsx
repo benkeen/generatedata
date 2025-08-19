@@ -4,7 +4,7 @@ import * as packetActions from '../store/packets/packets.actions';
 import * as selectors from '../store/generator/generator.selectors';
 import * as packetSelectors from '../store/packets/packets.selectors';
 import Engine, { EngineProps } from './Engine.component';
-import * as coreUtils from '@generatedata/utils/dist/core';
+import * as coreUtils from '../../utils/coreUtils';
 import { GDAction } from '~types/general';
 import { getCountryData } from '@generatedata/utils/dist/country';
 

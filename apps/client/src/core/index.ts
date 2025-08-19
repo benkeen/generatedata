@@ -7,13 +7,13 @@ import * as selectors from './store/generator/generator.selectors';
 import * as mainSelectors from './store/main/main.selectors';
 import { requestCountryNames } from '~store/generator/generator.actions';
 import { DataTypeFolder } from '@generatedata/plugins';
-import { createGenerationWorker } from '@generatedata/utils/dist/core';
+import * as coreUtils from '../utils/coreUtils';
 import { initAuthVendors } from '@generatedata/utils/dist/auth';
 import { getCurrentPageLocale } from '@generatedata/utils/dist/lang';
 import '../../_imports';
 
 export const init = (): void => {
-	createGenerationWorker('preview');
+	coreUtils.createGenerationWorker('preview');
 
 	const state = store.getState();
 	const pageLocale = getCurrentPageLocale();

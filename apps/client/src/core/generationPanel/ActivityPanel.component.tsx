@@ -12,7 +12,7 @@ import { Dialog, DialogContent, DialogTitle, DialogActions } from '~components/d
 import usePrevious from '../../hooks/usePrevious';
 import styles from './ActivityPanel.scss';
 import { DataPacket } from '~store/packets/packets.reducer';
-import * as coreUtils from '@generatedata/utils/dist/core';
+import * as coreUtils from '../../utils/coreUtils';
 import { Tooltip } from '~components/tooltips';
 import { getPercentageLabel } from './generation.helpers';
 import Engine from './Engine.container';

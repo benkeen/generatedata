@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
 import { AccountEditingData } from '~store/account/account.reducer';
-import { getFormattedNum } from '~utils/numberUtils';
-import { formatUnixTime } from '~utils/dateUtils';
+import { getFormattedNum } from '@generatedata/utils/dist/number';
+import { formatUnixTime } from '@generatedata/utils/dist/date';
 import styles from '../Account.scss';
 import C from '@generatedata/config/dist/constants';
 

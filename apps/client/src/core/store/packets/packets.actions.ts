@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { createGenerationWorker } from '@generatedata/utils/dist/core';
+import * as coreUtils from '../../../utils/coreUtils';
 import * as selectors from '../generator/generator.selectors';
 import * as packetSelectors from './packets.selectors';
 import { getDownloadFileInfo } from '~utils/exportTypes';
@@ -22,7 +22,7 @@ export const startGeneration =
 			dispatch({
 				type: START_GENERATION,
 				payload: {
-					generationWorkerId: createGenerationWorker(),
+					generationWorkerId: coreUtils.createGenerationWorker(),
 					numRowsToGenerate: selectors.getNumRowsToGenerate(state),
 					stripWhitespace: selectors.shouldStripWhitespace(state),
 					template: selectors.getGenerationTemplate(state),
