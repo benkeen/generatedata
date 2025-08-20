@@ -1,6 +1,6 @@
 import React from 'react';
 import Reactour, { ReactourStepPosition } from 'reactour';
-import { getStrings } from '@generatedata/utils/dist/lang';
+import { getStrings } from '@generatedata/utils/lang';
 import store from '~core/store';
 import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';

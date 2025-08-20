@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
-import { isValidEmail, addToast } from '@generatedata/utils/dist/general';
+import { isValidEmail, addToast } from '@generatedata/utils/general';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
-import { hasVendorLogin, getVendorLoginButtons } from '@generatedata/utils/dist/auth';
+import { hasVendorLogin, getVendorLoginButtons } from '@generatedata/utils/auth';
 import styles from './Login.scss';
 import { useHistory } from 'react-router';
 

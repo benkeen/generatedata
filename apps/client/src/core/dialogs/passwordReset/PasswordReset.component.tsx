@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
-import { isValidEmail } from '@generatedata/utils/dist/general';
+import { isValidEmail } from '@generatedata/utils/general';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import styles from './PasswordReset.scss';
 

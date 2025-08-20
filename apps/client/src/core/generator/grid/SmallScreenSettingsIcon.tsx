@@ -5,7 +5,7 @@ import * as styles from './Grid.scss';
 import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import { HtmlTooltip } from '~components/tooltips';
 import useOnClickOutside from 'use-onclickoutside';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 
 export const SmallScreenSettingsIcon = ({
 	id,

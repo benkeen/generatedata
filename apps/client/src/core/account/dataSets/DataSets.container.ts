@@ -7,7 +7,7 @@ import * as generatorActions from '~store/generator/generator.actions';
 import DataSets, { DataSetsProps } from './DataSets.component';
 import { Store } from '~types/general';
 import { withAuth } from '~core/auth/withAuth';
-import { DataSetListItem } from '~types/dataSets';
+import { DataSetListItem } from '@generatedata/types';
 
 const mapStateToProps = (state: Store): Partial<DataSetsProps> => ({
 	locale: mainSelectors.getLocale(state),

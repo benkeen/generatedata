@@ -6,7 +6,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import LoginDialog from '../dialogs/login/Login.container';
 import PasswordResetDialog from '../dialogs/passwordReset/PasswordReset.container';
 import GeneratorControls from './GeneratorControls.container';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 import HeaderLinks, { MobileLinks } from './HeaderLinks.component';
 import { getHeaderLinks, getGeneratorPageRoute, isGeneratorPage } from '~utils/routeUtils';
 import { AccountType } from '~types/account';

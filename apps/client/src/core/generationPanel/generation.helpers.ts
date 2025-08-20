@@ -1,7 +1,7 @@
 import { GenerationActivityPanel, LoadTimeGraphDuration } from '~types/general';
 import { ColumnData } from '@generatedata/plugins';
 import { affectedDataTypes } from '~utils/dataTypes';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 import { UnchangedGenerationData } from '~types/generator';
 
 export const getPercentageLabel = (percentage: number, numRowsToGenerate: number): string => {

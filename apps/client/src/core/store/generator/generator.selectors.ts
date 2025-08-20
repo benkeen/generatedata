@@ -5,7 +5,7 @@ import { GeneratorPanel } from '~types/general';
 import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
 import * as mainSelectors from '../main/main.selectors';
 import * as coreUtils from '../../../utils/coreUtils';
-import * as langUtils from '@generatedata/utils/dist/lang';
+import * as langUtils from '@generatedata/utils/lang';
 import { processBatches, getDataType } from '~utils/dataTypes';
 import {
 	getExportTypeLabel as exportTypeUtilsGetExportTypeLabel,

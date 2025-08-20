@@ -1,6 +1,6 @@
 import React from 'react';
 import { PrimaryButton, NullButton } from '~components/Buttons.component';
-import { getStrings } from '@generatedata/utils/dist/lang';
+import { getStrings } from '@generatedata/utils/lang';
 
 export const TourCompleteStep = ({ close }: any): JSX.Element => {
 	const { core: i18n } = getStrings();

@@ -8,10 +8,10 @@ import * as packetActions from '../packets/packets.actions';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, dataTypes, ExportTypeFolder, exportTypes } from '@generatedata/plugins';
 import { GeneratorLayout } from '@generatedata/types';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 import { GeneratorPanel } from '~types/general';
 import { DTOptionsMetadata } from '~types/dataTypes';
-import clientConfig from '@generatedata/config/dist/client.config';
+import clientConfig from '@generatedata/config/clientConfig';
 
 export type DataRow = {
 	id: string;

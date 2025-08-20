@@ -7,7 +7,7 @@ import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 import SwapHoriz from '@material-ui/icons/SwapHoriz';
 import SwapVert from '@material-ui/icons/SwapVert';
 import CodeIcon from '@material-ui/icons/Code';
-import { toSentenceCase } from '@generatedata/utils/dist/string';
+import { toSentenceCase } from '@generatedata/utils/string';
 import { Tooltip } from '~components/tooltips';
 import { GeneratorLayout } from '@generatedata/types';
 import FeatureToggles from '~core/featureToggles';

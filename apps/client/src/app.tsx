@@ -14,11 +14,11 @@ import ErrorBoundary from '~core/ErrorBoundary.component';
 import theme from '~core/theme';
 import SaveDataSetDialog from '~core/dialogs/saveDataSet/SaveDataSet.container';
 import Toast from '~components/toast/Toast.component';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 import { getAppStateVersion } from '~store/main/main.selectors';
 import { resetStore, initRouteListener } from '~store/main/main.actions';
 import { getRoutes } from '~utils/routeUtils';
-import { getLocaleMap } from '@generatedata/utils/dist/lang';
+import { getLocaleMap } from '@generatedata/utils/lang';
 import '~store/generator/generator.reducer';
 import './styles/global.scss';
 

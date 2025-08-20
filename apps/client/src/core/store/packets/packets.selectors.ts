@@ -3,10 +3,10 @@ import { LoadTimeGraphDuration, Store } from '~types/general';
 import { createSelector } from 'reselect';
 import { DataPackets } from './packets.reducer';
 import prettyBytes from 'pretty-bytes';
-import { getFormattedNum } from '@generatedata/utils/dist/number';
-import { formatDuration } from '@generatedata/utils/dist/date';
+import { getFormattedNum } from '@generatedata/utils/number';
+import { formatDuration } from '@generatedata/utils/date';
 import { getLocale } from '../main/main.selectors';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 
 export const getCurrentPacketId = (state: Store): string | null => state.packets.currentPacketId;
 export const getPacketIds = (state: Store): string[] => state.packets.packetIds;

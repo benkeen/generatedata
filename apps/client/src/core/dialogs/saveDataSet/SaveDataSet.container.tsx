@@ -6,7 +6,7 @@ import * as accountSelectors from '~store/account/account.selectors';
 import * as actions from '~store/account/account.actions';
 import * as mainActions from '~store/main/main.actions';
 import * as mainSelectors from '~store/main/main.selectors';
-import clientConfig from '@generatedata/config/dist/client.config';
+import clientConfig from '@generatedata/config/clientConfig';
 
 const mapStateToProps = (state: any): Partial<SaveDataSetDialogProps> => ({
 	i18n: selectors.getCoreI18n(state),

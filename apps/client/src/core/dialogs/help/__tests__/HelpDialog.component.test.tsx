@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import { render, fireEvent } from '@testing-library/react';
 import HelpDialog from '../HelpDialog.component';
 import { DataTypeFolder } from '@generatedata/plugins';
-import * as langUtils from '@generatedata/utils/dist/lang';
+import * as langUtils from '@generatedata/utils/lang';
 import * as dataTypeUtils from '~utils/dataTypes';
 const i18n = require('../../../../i18n/en.json');
 const NamesI18n = require('../../../../plugins/dataTypes/Names/i18n/en.json');

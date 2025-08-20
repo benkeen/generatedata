@@ -6,8 +6,8 @@ import { getEditingData, getSelectedAccountsPageTab } from '~store/account/accou
 import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
 import { AccountStatus, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
 import { GDAction } from '~types/general';
-import { addToast } from '@generatedata/utils/dist/general';
-import { getStrings } from '@generatedata/utils/dist/lang';
+import { addToast } from '@generatedata/utils/general';
+import { getStrings } from '@generatedata/utils/lang';
 import * as queries from '~core/queries';
 import { SET_ONE_TIME_PASSWORD } from '~store/main/main.actions';
 

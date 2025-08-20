@@ -2,8 +2,8 @@ import * as React from 'react';
 import NumberFormat from 'react-number-format';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import { getI18nString } from '@generatedata/utils/dist/lang';
-import { getFormattedNum } from '@generatedata/utils/dist/number';
+import { getI18nString } from '@generatedata/utils/lang';
+import { getFormattedNum } from '@generatedata/utils/number';
 import styles from './ActivityPanel.scss';
 import sharedStyles from '../../styles/shared.scss';
 import { ErrorTooltip } from '~components/tooltips';
@@ -13,7 +13,7 @@ import { DataPacket } from '~store/packets/packets.reducer';
 import * as coreUtils from '../../utils/coreUtils';
 import CheckIcon from '@material-ui/icons/Check';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
-import clientConfig from '@generatedata/config/dist/client.config';
+import clientConfig from '@generatedata/config/clientConfig';
 
 export type GenerationSettingsProps = {
 	visible: boolean;

@@ -40,6 +40,14 @@
       "default": "./dist/country.js",
       "types": "./dist/country.d.ts"
     },
+    "./date": {
+      "default": "./dist/date.js",
+      "types": "./dist/date.d.ts"
+    },
+    "./extension": {
+      "default": "./dist/extension.js",
+      "types": "./dist/extension.d.ts"
+    },
     "./general": {
       "default": "./dist/general.js",
       "types": "./dist/general.d.ts"

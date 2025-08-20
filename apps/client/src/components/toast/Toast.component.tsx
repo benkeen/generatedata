@@ -2,7 +2,7 @@ import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert';
 import Snackbar, { SnackbarOrigin } from '@material-ui/core/Snackbar';
 import Portal from '~components/Portal';
-import { initToast, ToastType } from '@generatedata/utils/dist/general';
+import { initToast, ToastType } from '@generatedata/utils/general';
 import './Toast.scss';
 
 const defaultMessage: ToastType = {

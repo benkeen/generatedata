@@ -5,7 +5,7 @@ import { GDLocale } from '~types/general';
 import * as selectors from '../store/generator/generator.selectors';
 import * as mainSelectors from '../store/main/main.selectors';
 import * as mainActions from '../store/main/main.actions';
-import clientConfig from '@generatedata/config/dist/client.config';
+import clientConfig from '@generatedata/config/clientConfig';
 
 const mapStateToProps = (state: any): Partial<LanguageSelectorProps> => ({
 	i18n: selectors.getCoreI18n(state),

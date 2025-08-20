@@ -1,7 +1,7 @@
 import { exportTypes, ExportTypeFolder } from '@generatedata/plugins';
 import { ETBrowserBundle, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
-import C from '@generatedata/config/dist/constants';
-import { getLocale, getStrings } from '@generatedata/utils/dist/lang';
+import C from '@generatedata/config/constants';
+import { getLocale, getStrings } from '@generatedata/utils/lang';
 import * as React from 'react';
 
 export type LoadedExportTypes = {

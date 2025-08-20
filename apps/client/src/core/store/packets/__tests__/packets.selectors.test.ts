@@ -3,7 +3,7 @@ import * as selectors from '../packets.selectors';
 import { getInitialState } from '../../generator/generator.reducer';
 import { initialState as initialMainState } from '../../main/main.reducer';
 import { initialState as initialAccountState } from '../../account/account.reducer';
-import * as generalUtils from '@generatedata/utils/dist/general';
+import * as generalUtils from '@generatedata/utils/general';
 import { Store } from '~types/general';
 
 describe('getCurrentPacket', () => {

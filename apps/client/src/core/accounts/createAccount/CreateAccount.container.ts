@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { generateRandomAlphanumericStr } from '@generatedata/utils/dist/random';
+import { generateRandomAlphanumericStr } from '@generatedata/utils/random';
 import * as selectors from '~store/generator/generator.selectors';
 import * as accountActions from '~store/account/account.actions';
 import ManageAccount, {

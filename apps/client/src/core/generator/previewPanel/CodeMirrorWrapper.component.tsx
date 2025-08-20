@@ -4,7 +4,7 @@ import * as coreUtils from '../../../utils/coreUtils';
 import { getCountryData } from '@generatedata/plugins';
 import { GeneratorLayout } from '@generatedata/types';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 
 export type CodeMirrorWrapperProps = {
 	previewRows: any;

@@ -6,11 +6,11 @@ import Dropdown from '~components/dropdown/Dropdown';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { canadianProvinceOptions, countryDropdownOptions } from '@generatedata/utils/dist/country';
+import { canadianProvinceOptions, countryDropdownOptions } from '@generatedata/plugins';
 import Refresh from '@material-ui/icons/Refresh';
 import { AccountEditingData } from '~store/account/account.reducer';
-import { isValidEmail } from '@generatedata/utils/dist/general';
-import { generateRandomAlphanumericStr } from '~utils/randomUtils';
+import { isValidEmail } from '@generatedata/utils/general';
+import { generateRandomAlphanumericStr } from '@generatedata/utils/random';
 import sharedStyles from '../../../styles/shared.scss';
 
 export type MainFieldsProps = {

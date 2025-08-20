@@ -6,9 +6,9 @@ import store from '../../store';
 import { onLoginSuccess, setAuthenticated, setAuthenticationData, setOnloadAuthDetermined } from '~store/main/main.actions';
 import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';
-import { addToast } from '@generatedata/utils/dist/general';
-import langUtils from '@generatedata/utils/dist/langUtils';
-import clientConfig from '@generatedata/config/dist/client.config';
+import { addToast } from '@generatedata/utils/general';
+import langUtils from '@generatedata/utils/langUtils';
+import clientConfig from '@generatedata/config/clientConfig';
 
 const googleBtnId = 'google-signin-button';
 

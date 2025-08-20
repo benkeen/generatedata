@@ -5,12 +5,12 @@
  * Web Workers are fussy. To share these utility methods, the core script generates a worker file which is loaded
  * via importScripts() within any plugin worker and the methods are loaded as a global in the worker scope.
  */
-import arrayUtils from '@generatedata/utils/dist/array';
-import countryUtils from '@generatedata/utils/dist/country';
-import generalUtils from '@generatedata/utils/dist/general';
-import randomUtils from '@generatedata/utils/dist/random';
-import stringUtils from '@generatedata/utils/dist/string';
-import numberUtils from '@generatedata/utils/dist/number';
+import arrayUtils from '@generatedata/utils/array';
+import countryUtils from '@generatedata/utils/country';
+import generalUtils from '@generatedata/utils/general';
+import randomUtils from '@generatedata/utils/random';
+import stringUtils from '@generatedata/utils/string';
+import numberUtils from '@generatedata/utils/number';
 
 export type WorkerUtils = {
 	arrayUtils: typeof arrayUtils;

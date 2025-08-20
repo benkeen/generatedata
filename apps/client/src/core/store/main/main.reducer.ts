@@ -1,10 +1,10 @@
 import { AnyAction } from 'redux';
 import produce from 'immer';
 import * as actions from './main.actions';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 import { AccountStatusFilter, AuthMethod, GDLocale } from '~types/general';
 import { ColSortDir } from '~components/tables/TableHeader.component';
-import clientConfig from '@generatedata/config/dist/client.config';
+import clientConfig from '@generatedata/config/clientConfig';
 
 export type MainState = {
 	appStateVersion: number;

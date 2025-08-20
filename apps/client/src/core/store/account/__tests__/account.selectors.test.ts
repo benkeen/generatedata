@@ -1,5 +1,5 @@
 import { accountHasChanges } from '~store/account/account.selectors';
-import { cloneObj } from '@generatedata/utils/dist/general';
+import { cloneObj } from '@generatedata/utils/general';
 
 const defaultState: any = {
 	account: {

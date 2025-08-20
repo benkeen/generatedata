@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { Router } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/main.cjs';
 import { apolloClient } from '~core/apolloClient';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
@@ -11,7 +11,7 @@ import { getInitialState } from '~store/generator/generator.reducer';
 import { initialState as initialMainState } from '~store/main/main.reducer';
 import { initialState as initialPacketState } from '~store/packets/packets.reducer';
 import { initialState as initialAccountState } from '~store/account/account.reducer';
-import langUtils from '@generatedata/utils/dist/lang';
+import langUtils from '@generatedata/utils/lang';
 import { setLocaleFileLoaded } from '~store/main/main.actions';
 import generatorReducer from '~store/generator/generator.reducer';
 import mainReducer from '~store/main/main.reducer';
@@ -21,8 +21,8 @@ import actionsInterceptor from '~core/actionInterceptor';
 import { GeneratorLayout } from '@generatedata/types';
 import { ETSettings } from '~types/exportTypes';
 
-const i18n = require('../src/i18n/en.json');
-const jsonI18n = require('../src/plugins/exportTypes/JSON/i18n/en.json');
+import i18n from '../src/i18n/en.json';
+import jsonI18n from '@generatedata/plugins/dist/exportTypes/JSON/i18n/en.json';
 
 export const rootReducer = combineReducers({
 	generator: generatorReducer,

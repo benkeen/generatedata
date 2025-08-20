@@ -8,11 +8,11 @@ import * as queries from '~core/queries';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
 import * as sharedStyles from '../../../styles/shared.scss';
-import { DataSetListItem } from '~types/dataSets';
-import { formatUnixTime } from '@generatedata/utils/dist/date';
+import { DataSetListItem } from '@generatedata/types';
+import { formatUnixTime } from '@generatedata/utils/date';
 import { getGeneratorPageRoute } from '~utils/routeUtils';
 import { useHistory } from 'react-router';
-import { getFormattedNum } from '@generatedata/utils/dist/number';
+import { getFormattedNum } from '@generatedata/utils/number';
 import { GDLocale } from '~types/general';
 
 const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (

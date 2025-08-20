@@ -10,7 +10,7 @@ import { HtmlTooltip } from '~components/tooltips';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import useOnClickOutside from 'use-onclickoutside';
-import { addToast } from '@generatedata/utils/dist/general';
+import { addToast } from '@generatedata/utils/general';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import * as queries from '~core/queries';
 import { CurrentDataSet } from '~store/generator/generator.reducer';

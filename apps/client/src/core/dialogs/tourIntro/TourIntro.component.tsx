@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PrimaryButton } from '~components/Buttons.component';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
-import { getTourComponents } from '@generatedata/utils/dist/general';
+import { getTourComponents } from '@generatedata/utils/general';
 import styles from './TourIntro.scss';
 import { useWindowSize } from 'react-hooks-window-size';
 

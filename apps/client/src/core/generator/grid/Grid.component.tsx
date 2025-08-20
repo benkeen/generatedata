@@ -10,7 +10,7 @@ import { PrimaryButton } from '~components/Buttons.component';
 import { DataRow } from '~store/generator/generator.reducer';
 import { DataTypeFolder } from '@generatedata/plugins';
 import GridRow from './GridRow.container';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 
 export type GridProps = {
 	rows: DataRow[];

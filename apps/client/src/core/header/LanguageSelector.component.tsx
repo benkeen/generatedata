@@ -11,7 +11,7 @@ import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import { GDLocale } from '~types/general';
 import * as styles from '~core/header/Header.scss';
 import { useHistory } from 'react-router';
-import clientConfig from '@generatedata/config/dist/client.config';
+import clientConfig from '@generatedata/config/clientConfig';
 
 const allLocaleOptions = Object.keys(clientConfig.appSettings.GD_LOCALES).map((shortCode) => ({
 	value: shortCode,

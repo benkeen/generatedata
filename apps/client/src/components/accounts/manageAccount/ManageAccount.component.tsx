@@ -3,9 +3,9 @@ import { format, fromUnixTime, add } from 'date-fns';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
-import { getFormattedNum } from '@generatedata/utils/dist/number';
+import { getFormattedNum } from '@generatedata/utils/number';
 import * as dateStyles from '../../../plugins/dataTypes/Date/Date.scss';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 import styles from './ManageAccount.scss';
 
 export type ManageAccountProps = {

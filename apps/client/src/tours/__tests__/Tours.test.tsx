@@ -5,7 +5,7 @@ import { TourCompleteStep } from '../Components.tour';
 import GridPanelTour from '../GridPanel.tour';
 import IntroToGenerator from '../IntroToGenerator.tour';
 import PreviewPanel from '../PreviewPanel.tour';
-import langUtils from '@generatedata/utils/dist/lang';
+import langUtils from '@generatedata/utils/lang';
 
 const i18n = require('../../i18n/en.json');
 

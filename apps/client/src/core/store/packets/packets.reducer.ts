@@ -4,7 +4,7 @@ import produce from 'immer';
 import * as actions from './packets.actions';
 import { ExportTypeFolder } from '@generatedata/plugins';
 import { getByteSize, getGraphDuration, getRowGenerationRatePerSecond } from '../../generationPanel/generation.helpers';
-import C from '@generatedata/config/dist/constants';
+import C from '@generatedata/config/constants';
 import * as mainActions from '../main/main.actions';
 import { LoadTimeGraphDuration } from '~types/general';
 
