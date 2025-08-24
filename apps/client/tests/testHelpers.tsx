@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { Router } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/client/main.cjs';
+import { ApolloProvider } from '@apollo/client/react';
 import { apolloClient } from '~core/apolloClient';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';

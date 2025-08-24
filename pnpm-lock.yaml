@@ -15,8 +15,8 @@ importers:
   apps/client:
     dependencies:
       '@apollo/client':
-        specifier: ^3.12.11
-        version: 3.13.1(@types/react@16.14.62)(graphql@15.10.1)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(subscriptions-transport-ws@0.9.19(graphql@15.10.1))
+        specifier: ^4.0.0
+        version: 4.0.0(graphql@15.10.1)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(rxjs@6.6.7)(subscriptions-transport-ws@0.9.19(graphql@15.10.1))
       '@date-io/date-fns':
         specifier: ^1.3.13
         version: 1.3.13(date-fns@2.30.0)
@@ -99,8 +99,8 @@ importers:
         specifier: ^4.4.1
         version: 4.9.4(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       react-redux:
-        specifier: ^7.2.2
-        version: 7.2.9(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+        specifier: ^9.2.0
+        version: 9.2.0(@types/react@16.14.62)(react@16.14.0)(redux@5.0.1)
       react-router:
         specifier: ^5.2.0
         version: 5.3.4(react@16.14.0)
@@ -123,14 +123,14 @@ importers:
         specifier: ^1.8.5
         version: 1.8.6(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       redux:
-        specifier: ^4.0.4
-        version: 4.2.1
+        specifier: ^5.0.1
+        version: 5.0.1
       redux-persist:
         specifier: ^6.0.0
-        version: 6.0.0(react@16.14.0)(redux@4.2.1)
+        version: 6.0.0(react@16.14.0)(redux@5.0.1)
       redux-thunk:
-        specifier: ^2.3.0
-        version: 2.4.2(redux@4.2.1)
+        specifier: ^3.1.0
+        version: 3.1.0(redux@5.0.1)
       rollup:
         specifier: ^2.31.0
         version: 2.79.2
@@ -225,9 +225,6 @@ importers:
       '@types/react-measure':
         specifier: ^2.0.12
         version: 2.0.12
-      '@types/react-redux':
-        specifier: ^7.1.33
-        version: 7.1.34
       '@types/react-router':
         specifier: ^5.1.20
         version: 5.1.20
@@ -652,13 +649,14 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@apollo/client@3.13.1':
-    resolution: {integrity: sha512-HaAt62h3jNUXpJ1v5HNgUiCzPP1c5zc2Q/FeTb2cTk/v09YlhoqKKHQFJI7St50VCJ5q8JVIc03I5bRcBrQxsg==}
+  '@apollo/client@4.0.0':
+    resolution: {integrity: sha512-VMJXFLAro7ZF8ckEyeP8Wvtez7G+7LAq/SHfk3JpyZbuODtBujaqFwMFlFOdXKC8eejzuS6DfvoaiUquAFWUZw==}
     peerDependencies:
-      graphql: ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
       graphql-ws: ^5.5.5 || ^6.0.3
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
+      react: ^17.0.0 || ^18.0.0 || >=19.0.0-rc
+      react-dom: ^17.0.0 || ^18.0.0 || >=19.0.0-rc
+      rxjs: ^7.3.0
       subscriptions-transport-ws: ^0.9.0 || ^0.11.0
     peerDependenciesMeta:
       graphql-ws:
@@ -2402,6 +2400,9 @@ packages:
 
   '@types/tough-cookie@4.0.5':
     resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
+
+  '@types/use-sync-external-store@0.0.6':
+    resolution: {integrity: sha512-zFDAD+tlpf2r4asuHEj0XH6pY6i0g5NeAHPn+15wk3BV6JA69eERFXC1gyGThDkVa1zCyKr5jox1+2LbV/AMLg==}
 
   '@types/validator@13.12.2':
     resolution: {integrity: sha512-6SlHBzUW8Jhf3liqrGGXyTJSIFe4nqlJ5A5KaMZ2l/vbM3Wh3KSybots/wfWVzNLK4D1NZluDlSQIbIEPx6oyA==}
@@ -7112,6 +7113,18 @@ packages:
       react-native:
         optional: true
 
+  react-redux@9.2.0:
+    resolution: {integrity: sha512-ROY9fvHhwOD9ySfrF0wmvu//bKCQ6AeZZq1nJNtbDC+kk5DuSuNX/n6YWYF/SYy7bSba4D4FSz8DJeKY/S/r+g==}
+    peerDependencies:
+      '@types/react': ^18.2.25 || ^19
+      react: ^18.0 || ^19
+      redux: ^5.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      redux:
+        optional: true
+
   react-resize-detector@2.3.0:
     resolution: {integrity: sha512-oCAddEWWeFWYH5FAcHdBYcZjAw9fMzRUK9sWSx6WvSSOPVRxcHd5zTIGy/mOus+AhN/u6T4TMiWxvq79PywnJQ==}
     peerDependencies:
@@ -7248,13 +7261,16 @@ packages:
   redux-testkit@1.0.6:
     resolution: {integrity: sha512-Poym2JNvwLE1ie0v+vQ6CcvGvjOumDbEwcdree3BW7Ct2wiEVqa+fzgrprowT6Vdb2QjjrLrXOWBlOLDK8L6tA==}
 
-  redux-thunk@2.4.2:
-    resolution: {integrity: sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==}
+  redux-thunk@3.1.0:
+    resolution: {integrity: sha512-NW2r5T6ksUKXCabzhL9z+h206HQw/NJkcLm1GPImRQ8IzfXwRGqjVhKJGauHirT0DAuyy6hjdnMZaRoAcy0Klw==}
     peerDependencies:
-      redux: ^4
+      redux: ^5.0.0
 
   redux@4.2.1:
     resolution: {integrity: sha512-LAUYz4lc+Do8/g7aeRa8JkyDErK6ekstQaqWQrNRW//MY1TvCEpMtpTWvlQ+FPbWCx+Xixu/6SHt5N0HR+SB4w==}
+
+  redux@5.0.1:
+    resolution: {integrity: sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==}
 
   reflect.getprototypeof@1.0.10:
     resolution: {integrity: sha512-00o4I+DVrefhv+nX0ulyi3biSHCPDe+yLv5o/p6d/UVlirijB8E16FtfwSAi4g3tcqrQ4lRAqQSoFEZJehYEcw==}
@@ -7297,17 +7313,6 @@ packages:
   regjsparser@0.12.0:
     resolution: {integrity: sha512-cnE+y8bz4NhMjISKbgeVJtqNbtf5QpjZP+Bslo+UqkIt9QPnX9q095eiRRASJG1/tz6dlNr6Z5NsBiWYokp6EQ==}
     hasBin: true
-
-  rehackt@0.1.0:
-    resolution: {integrity: sha512-7kRDOuLHB87D/JESKxQoRwv4DzbIdwkAGQ7p6QKGdVlY1IZheUnVhlk/4UZlNUVxdAXpyxikE3URsG067ybVzw==}
-    peerDependencies:
-      '@types/react': '*'
-      react: '*'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
 
   relateurl@0.2.7:
     resolution: {integrity: sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==}
@@ -8072,10 +8077,6 @@ packages:
     resolution: {integrity: sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==}
     engines: {node: '>=0.10.0'}
 
-  symbol-observable@4.0.0:
-    resolution: {integrity: sha512-b19dMThMV4HVFynSAM1++gBHAbk2Tc/osgLIBZMKsyqh34jb2e8Os7T6ZW/Bt3pJFdBTd2JwAnAAEQV7rSNvcQ==}
-    engines: {node: '>=0.10'}
-
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
 
@@ -8223,10 +8224,6 @@ packages:
     engines: {node: '>=16'}
     peerDependencies:
       typescript: '>=4.2.0'
-
-  ts-invariant@0.10.3:
-    resolution: {integrity: sha512-uivwYcQaxAucv1CzRp2n/QdYPo4ILf9VXgH19zEIjFx2EJufV16P0JtJVpYHy89DItG6Kwj2oIUjrcK5au+4tQ==}
-    engines: {node: '>=8'}
 
   ts-invariant@0.4.4:
     resolution: {integrity: sha512-uEtWkFM/sdZvRNNDL3Ehu4WVpwaulhwQszV8mrtcdeE8nN00BV9mAmQ88RkrBhFgl9gMgvjJLAQcZbnPXI9mlA==}
@@ -8560,6 +8557,11 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  use-sync-external-store@1.5.0:
+    resolution: {integrity: sha512-Rb46I4cGGVBmjamjphe8L/UnvJD+uPPtTkNvX5mZgqdbavhI4EbgIWJiIHXJ8bc/i9EQGPRh4DwEURJ552Do0A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   use@3.1.1:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
@@ -8990,9 +8992,6 @@ packages:
   zen-observable-ts@0.8.21:
     resolution: {integrity: sha512-Yj3yXweRc8LdRMrCC8nIc4kkjWecPAUVh0TI0OUrWXx6aX790vLcDlWca6I4vsyCGH3LpWxq0dJRcMOFoVqmeg==}
 
-  zen-observable-ts@1.2.5:
-    resolution: {integrity: sha512-QZWQekv6iB72Naeake9hS1KxHlotfRpe+WGNbNx5/ta+R3DNjVO2bswf63gXlWDcs+EMd7XY8HfVQyP1X6T4Zg==}
-
   zen-observable@0.8.15:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
 
@@ -9003,7 +9002,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@apollo/client@3.13.1(@types/react@16.14.62)(graphql@15.10.1)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(subscriptions-transport-ws@0.9.19(graphql@15.10.1))':
+  '@apollo/client@4.0.0(graphql@15.10.1)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(rxjs@6.6.7)(subscriptions-transport-ws@0.9.19(graphql@15.10.1))':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@15.10.1)
       '@wry/caches': 1.0.1
@@ -9011,20 +9010,13 @@ snapshots:
       '@wry/trie': 0.5.0
       graphql: 15.10.1
       graphql-tag: 2.12.6(graphql@15.10.1)
-      hoist-non-react-statics: 3.3.2
       optimism: 0.18.1
-      prop-types: 15.8.1
-      rehackt: 0.1.0(@types/react@16.14.62)(react@16.14.0)
-      symbol-observable: 4.0.0
-      ts-invariant: 0.10.3
+      rxjs: 6.6.7
       tslib: 2.8.1
-      zen-observable-ts: 1.2.5
     optionalDependencies:
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
       subscriptions-transport-ws: 0.9.19(graphql@15.10.1)
-    transitivePeerDependencies:
-      - '@types/react'
 
   '@apollo/protobufjs@1.2.2':
     dependencies:
@@ -11192,8 +11184,8 @@ snapshots:
 
   '@types/redux-testkit@1.0.8':
     dependencies:
-      redux: 4.2.1
-      redux-thunk: 2.4.2(redux@4.2.1)
+      redux: 5.0.1
+      redux-thunk: 3.1.0(redux@5.0.1)
 
   '@types/resolve@1.17.1':
     dependencies:
@@ -11241,6 +11233,8 @@ snapshots:
       '@types/estree': 1.0.6
 
   '@types/tough-cookie@4.0.5': {}
+
+  '@types/use-sync-external-store@0.0.6': {}
 
   '@types/validator@13.12.2': {}
 
@@ -17209,6 +17203,15 @@ snapshots:
     optionalDependencies:
       react-dom: 16.14.0(react@16.14.0)
 
+  react-redux@9.2.0(@types/react@16.14.62)(react@16.14.0)(redux@5.0.1):
+    dependencies:
+      '@types/use-sync-external-store': 0.0.6
+      react: 16.14.0
+      use-sync-external-store: 1.5.0(react@16.14.0)
+    optionalDependencies:
+      '@types/react': 16.14.62
+      redux: 5.0.1
+
   react-resize-detector@2.3.0(react@16.14.0):
     dependencies:
       lodash.debounce: 4.0.8
@@ -17418,9 +17421,9 @@ snapshots:
     dependencies:
       balanced-match: 1.0.2
 
-  redux-persist@6.0.0(react@16.14.0)(redux@4.2.1):
+  redux-persist@6.0.0(react@16.14.0)(redux@5.0.1):
     dependencies:
-      redux: 4.2.1
+      redux: 5.0.1
     optionalDependencies:
       react: 16.14.0
 
@@ -17429,13 +17432,15 @@ snapshots:
       babel-polyfill: 6.26.0
       lodash: 4.17.21
 
-  redux-thunk@2.4.2(redux@4.2.1):
+  redux-thunk@3.1.0(redux@5.0.1):
     dependencies:
-      redux: 4.2.1
+      redux: 5.0.1
 
   redux@4.2.1:
     dependencies:
       '@babel/runtime': 7.26.9
+
+  redux@5.0.1: {}
 
   reflect.getprototypeof@1.0.10:
     dependencies:
@@ -17492,11 +17497,6 @@ snapshots:
   regjsparser@0.12.0:
     dependencies:
       jsesc: 3.0.2
-
-  rehackt@0.1.0(@types/react@16.14.62)(react@16.14.0):
-    optionalDependencies:
-      '@types/react': 16.14.62
-      react: 16.14.0
 
   relateurl@0.2.7: {}
 
@@ -18356,8 +18356,6 @@ snapshots:
 
   symbol-observable@1.2.0: {}
 
-  symbol-observable@4.0.0: {}
-
   symbol-tree@3.2.4: {}
 
   tapable@2.2.1: {}
@@ -18515,10 +18513,6 @@ snapshots:
   ts-api-utils@1.4.3(typescript@5.7.3):
     dependencies:
       typescript: 5.7.3
-
-  ts-invariant@0.10.3:
-    dependencies:
-      tslib: 2.8.1
 
   ts-invariant@0.4.4:
     dependencies:
@@ -18865,6 +18859,10 @@ snapshots:
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 16.14.62
+
+  use-sync-external-store@1.5.0(react@16.14.0):
+    dependencies:
+      react: 16.14.0
 
   use@3.1.1: {}
 
@@ -19411,10 +19409,6 @@ snapshots:
   zen-observable-ts@0.8.21:
     dependencies:
       tslib: 1.14.1
-      zen-observable: 0.8.15
-
-  zen-observable-ts@1.2.5:
-    dependencies:
       zen-observable: 0.8.15
 
   zen-observable@0.8.15: {}

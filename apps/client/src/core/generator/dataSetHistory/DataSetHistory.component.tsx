@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { format, fromUnixTime } from 'date-fns';
-import { useQuery } from '@apollo/client/main.cjs';
+import { useQuery } from '@apollo/client/react';
 import Drawer from '@material-ui/core/Drawer';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';

@@ -30,8 +30,8 @@ export const getGroupedExportTypes = (): any => {
 	lastLocale = locale;
 	cachedGroupedExportTypes = C.EXPORT_TYPE_GROUPS.map((group: string) => {
 		const options = Object.keys(exportTypes)
-			.filter((exportType: ExportTypeFolder) => exportTypes[exportType].fieldGroup === group)
-			.map((exportType: ExportTypeFolder) => ({
+			.filter((exportType) => exportTypes[exportType as ExportTypeFolder].fieldGroup === group)
+			.map((exportType) => ({
 				value: exportType,
 				label: i18n.exportTypes[exportType] ? i18n.exportTypes[exportType].EXPORT_TYPE_NAME : ''
 			}));

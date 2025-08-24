@@ -28,11 +28,11 @@ export const getSortedGroupedDataTypes = (): any => {
 	lastLocale = locale;
 	cachedSortedGroupedDataTypes = C.DATA_TYPE_GROUPS.map((group: string) => {
 		const options = Object.keys(dataTypes)
-			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)
-			.filter((dataType: DataTypeFolder) => blacklistedDataTypeFolders.indexOf(dataType) === -1)
-			.map((dataType: DataTypeFolder) => ({
+			.filter((dataType) => dataTypes[dataType as DataTypeFolder].fieldGroup === group)
+			.filter((dataType) => blacklistedDataTypeFolders.indexOf(dataType) === -1)
+			.map((dataType) => ({
 				dataType,
-				sortOrder: dataTypes[dataType].fieldGroupOrder
+				sortOrder: dataTypes[dataType as DataTypeFolder].fieldGroupOrder
 			}));
 
 		options.sort((a: any, b: any) => {
@@ -44,7 +44,7 @@ export const getSortedGroupedDataTypes = (): any => {
 			return 0;
 		});
 
-		const sortedOptions = options.map(({ dataType }: { dataType: DataTypeFolder }) => ({
+		const sortedOptions = options.map(({ dataType }: { dataType: string }) => ({
 			value: dataType,
 			label: i18n.dataTypes[dataType].NAME
 		}));
