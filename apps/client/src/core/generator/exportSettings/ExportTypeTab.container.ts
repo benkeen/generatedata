@@ -26,7 +26,7 @@ const mapStateToProps = (state: any): Partial<ExportTypeTabProps> => {
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<ExportTypeTabProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): ExportTypeTabProps['onChangeExportType'] & ExportTypeTabProps['onUpdate'] => ({
 	onChangeExportType: (exportType: ExportTypeFolder): any => dispatch(actions.onSelectExportType(exportType)),
 	onUpdate: (data: any): any => dispatch(actions.configureExportType(data))
 });

@@ -40,8 +40,8 @@ export const getDataTypeWorkerMap = (dataTypes: DataTypeFolder[]): DataTypeMap =
 export const getExportTypeWorkerMap = (exportTypes: ExportTypeMap): ExportTypeMap => {
 	const map: ExportTypeMap = {};
 	const dataTypeMap: any = webWorkers.exportTypes;
-	Object.keys(exportTypes).forEach((exportType: ExportTypeFolder) => {
-		map[exportType] = dataTypeMap[exportType];
+	Object.keys(exportTypes).forEach((exportType) => {
+		map[exportType as ExportTypeFolder] = dataTypeMap[exportType];
 	});
 	return map;
 };

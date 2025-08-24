@@ -11,7 +11,7 @@ const mapStateToProps = (state: any): Partial<SchemaDialogProps> => ({
 	theme: selectors.getTheme(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<SchemaDialogProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): SchemaDialogProps['onClose'] => ({
 	onClose: (): any => dispatch(actions.hideSchemaDialog())
 });
 

@@ -10,6 +10,7 @@
 		"strictNullChecks": true,
 		"moduleResolution": "nodenext",
 		"resolveJsonModule": true,
+		"skipLibCheck": true,
 		"module": "nodenext",
 		"target": "es6",
 		"jsx": "react-jsx",

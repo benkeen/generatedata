@@ -1,6 +1,7 @@
 import { applyMiddleware, createStore, Store } from 'redux';
 import thunk from 'redux-thunk';
 import { FlushThunks } from 'redux-testkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from '../../../../../tests/testHelpers';
 import * as actions from '../account.actions';
 import * as selectors from '../account.selectors';
@@ -15,7 +16,10 @@ describe('accounts section', () => {
 
 	beforeEach(() => {
 		flushThunks = FlushThunks.createMiddleware();
-		store = createStore(rootReducer, applyMiddleware(flushThunks, thunk));
+		store = configureStore({
+			reducer: rootReducer,
+			middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk)
+		});
 	});
 
 	it('updates an account', () => {

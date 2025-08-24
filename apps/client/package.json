@@ -117,6 +117,7 @@
 		"@generatedata/plugins": "workspace:*",
 		"@generatedata/utils": "workspace:*",
 		"@generatedata/types": "workspace:*",
+		"@reduxjs/toolkit": "^2.8.2",
 		"@rollup/plugin-commonjs": "^15.1.0",
 		"@rollup/plugin-node-resolve": "^8.4.0",
 		"@stylistic/eslint-plugin-js": "^3.1.0",

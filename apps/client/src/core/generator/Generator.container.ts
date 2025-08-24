@@ -5,7 +5,7 @@ import * as selectors from '~store/generator/generator.selectors';
 import * as actions from '~store/generator/generator.actions';
 import { GDAction } from '~types/general';
 
-const mapStateToProps = (state: any): Partial<GeneratorProps> => ({
+const mapStateToProps = (state: any): Omit<GeneratorProps, 'onResizePanels'> => ({
 	i18n: selectors.getCoreI18n(state),
 	isGridVisible: selectors.isGridVisible(state),
 	isPreviewVisible: selectors.isPreviewVisible(state),
@@ -16,7 +16,7 @@ const mapStateToProps = (state: any): Partial<GeneratorProps> => ({
 	showDataSetHistory: selectors.shouldShowDataSetHistory(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<GeneratorProps, 'onResizePanels'> => ({
 	onResizePanels: (size: number): GDAction => dispatch(actions.setPanelSize(size))
 });
 

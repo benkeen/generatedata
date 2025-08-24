@@ -163,8 +163,8 @@ export type GeneratorState = {
 
 export const getInitialState = (): GeneratorState => ({
 	// the extra check for existence on these vars is just to placate the tests (not sure why needed)
-	loadedDataTypes: Object.keys(dataTypes).reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
-	loadedExportTypes: Object.keys(exportTypes).reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
+	loadedDataTypes: Object.keys(dataTypes).reduce((acc: any, name) => ({ ...acc, [name]: false }), {}),
+	loadedExportTypes: Object.keys(exportTypes).reduce((acc: any, name) => ({ ...acc, [name]: false }), {}),
 	initialDependenciesLoaded: false,
 	exportType: clientConfig.appSettings.GD_DEFAULT_EXPORT_TYPE as ExportTypeFolder,
 	rows: {},
@@ -274,8 +274,8 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 				draft[setting] = initialState[setting];
 			});
 
-			Object.keys(action.payload.exportTypeInitialStates).forEach((et: ExportTypeFolder) => {
-				draft.exportTypeSettings[et] = action.payload.exportTypeInitialStates[et];
+			Object.keys(action.payload.exportTypeInitialStates).forEach((et) => {
+				draft.exportTypeSettings[et as ExportTypeFolder] = action.payload.exportTypeInitialStates[et];
 			});
 			break;
 		}
