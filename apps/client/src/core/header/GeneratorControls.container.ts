@@ -7,13 +7,15 @@ import * as actions from '~store/account/account.actions';
 import * as mainSelectors from '~store/main/main.selectors';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 
-const mapStateToProps = (state: any): Partial<GeneratorControlsProps> => ({
+const mapStateToProps = (state: any): Pick<GeneratorControlsProps, 'i18n' | 'isLoggedIn' | 'dataSet'> => ({
 	i18n: selectors.getCoreI18n(state),
 	isLoggedIn: mainSelectors.isLoggedIn(state),
 	dataSet: selectors.getCurrentDataSet(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorControlsProps> => ({
+const mapDispatchToProps = (
+	dispatch: Dispatch
+): Pick<GeneratorControlsProps, 'onUpdate' | 'onSaveDataSet' | 'onSaveAs' | 'onClearGrid' | 'showClearPageDialog' | 'onShowHistory'> => ({
 	onUpdate: (dataSetName: string): any => dispatch(actions.renameDataSet(dataSetName)),
 	onSaveDataSet: (): any => dispatch(actions.showSaveDataSetDialog(SaveDataDialogType.save)),
 	onSaveAs: (): any => dispatch(actions.showSaveDataSetDialog(SaveDataDialogType.saveAs)),

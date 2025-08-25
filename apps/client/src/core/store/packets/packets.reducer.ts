@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 // @ts-ignore
 import { nanoid } from 'nanoid';
-import produce from 'immer';
+import { produce } from 'immer';
 import * as actions from './packets.actions';
 import { ExportTypeFolder } from '@generatedata/plugins';
 import { getByteSize, getGraphDuration, getRowGenerationRatePerSecond } from '../../generationPanel/generation.helpers';

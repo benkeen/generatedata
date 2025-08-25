@@ -1,9 +1,5 @@
 import React, { useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
+import { IconButton, List, ListItemButton, ListItemText, MenuItem } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Dialog, DialogContent, DialogTitle } from '~components/dialogs';
 import { Tooltip } from '~components/tooltips';
@@ -41,14 +37,13 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, l
 				<DialogContent dividers>
 					<List disablePadding>
 						{allLocaleOptions.map((currLocale: any) => (
-							<ListItem
-								button
+							<ListItemButton
 								key={currLocale.value}
 								className={currentLocale === currLocale.value ? styles.selectedLocale : ''}
 								onClick={(): void => onSelect(currLocale.value, history)}
 							>
 								<ListItemText primary={currLocale.label} />
-							</ListItem>
+							</ListItemButton>
 						))}
 					</List>
 				</DialogContent>

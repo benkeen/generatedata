@@ -3,7 +3,7 @@ import { ErrorTooltip } from '~components/tooltips';
 import sharedStyles from '../styles/shared.scss';
 import { useThrottle } from '../hooks/useThrottle';
 
-const TextField = React.forwardRef(({ throttle, error, value, onChange, tooltipPlacement, className, ...props }: any, ref: any) => {
+const TextField = React.forwardRef(({ throttle, error, value, onChange, tooltipPlacement, className, ...props }: any, ref) => {
 	let classes = className ? className : '';
 	if (error) {
 		classes += ' ' + sharedStyles.errorField;

@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 // @ts-ignore
 import { nanoid } from 'nanoid';
-import produce from 'immer';
+import { produce } from 'immer';
 import * as actions from './generator.actions';
 import * as mainActions from '../main/main.actions';
 import * as accountActions from '../account/account.actions';

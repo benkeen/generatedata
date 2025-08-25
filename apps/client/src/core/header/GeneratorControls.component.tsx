@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useMutation } from '@apollo/client/react';
 import Measure from 'react-measure';
 import AutoSizer from 'react-input-autosize';
-import { Divider, IconButton, List, ListItem, ListItemText } from '@mui/material';
+import { Divider, IconButton, List, ListItemButton, ListItemText } from '@mui/material';
 import { HtmlTooltip } from '~components/tooltips';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import useOnClickOutside from 'use-onclickoutside';
@@ -121,8 +121,7 @@ const GeneratorControls = ({
 					title={
 						<div ref={popoverRef}>
 							<List disablePadding>
-								<ListItem
-									button
+								<ListItemButton
 									key="saveAs"
 									onClick={(): any => {
 										setMenuVisibility(false);
@@ -130,9 +129,8 @@ const GeneratorControls = ({
 									}}
 								>
 									<ListItemText primary={i18n.saveAs} />
-								</ListItem>
-								<ListItem
-									button
+								</ListItemButton>
+								<ListItemButton
 									key="delete"
 									onClick={(): any => {
 										setMenuVisibility(false);
@@ -140,9 +138,8 @@ const GeneratorControls = ({
 									}}
 								>
 									<ListItemText primary={i18n.delete} />
-								</ListItem>
-								<ListItem
-									button
+								</ListItemButton>
+								<ListItemButton
 									key="history"
 									onClick={(): void => {
 										setMenuVisibility(false);
@@ -150,12 +147,11 @@ const GeneratorControls = ({
 									}}
 								>
 									<ListItemText primary={i18n.history} />
-								</ListItem>
+								</ListItemButton>
 							</List>
 							<Divider />
 							<List disablePadding>
-								<ListItem
-									button
+								<ListItemButton
 									key="newDataSet"
 									onClick={(): any => {
 										setMenuVisibility(false);
@@ -163,7 +159,7 @@ const GeneratorControls = ({
 									}}
 								>
 									<ListItemText primary={i18n.newDataSet} />
-								</ListItem>
+								</ListItemButton>
 							</List>
 						</div>
 					}

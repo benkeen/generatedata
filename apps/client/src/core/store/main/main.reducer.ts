@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import produce from 'immer';
+import { produce } from 'immer';
 import * as actions from './main.actions';
 import C from '@generatedata/config/constants';
 import { AccountStatusFilter, AuthMethod, GDLocale } from '~types/general';

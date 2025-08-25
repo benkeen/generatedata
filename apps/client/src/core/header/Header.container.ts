@@ -18,8 +18,8 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
-	// @ts-ignore
-	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
+	// @ts-ignore - this looks invalid
+	onChangeLocale: (locale: GDLocale) => dispatch(mainActions.selectLocale(locale)),
 	showLoginDialog: (): any => dispatch(mainActions.setLoginDialogVisibility(true)),
 	onLogout: (): any => dispatch(mainActions.logout())
 });
