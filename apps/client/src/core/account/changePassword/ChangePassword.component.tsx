@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import Alert from '@material-ui/lab/Alert';
-import Button from '@material-ui/core/Button';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
 import TextField from '~components/TextField';
 
 export type ChangePasswordProps = {
@@ -11,7 +11,7 @@ export type ChangePasswordProps = {
 	throttle?: boolean;
 };
 
-const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: ChangePasswordProps): JSX.Element => {
+const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: ChangePasswordProps) => {
 	const currentPasswordField = useRef<HTMLInputElement>();
 	const [currentPassword, setCurrentPassword] = useState('');
 	const [currentPasswordError, setCurrentPasswordError] = useState('');
@@ -67,7 +67,7 @@ const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: 
 
 	const submitButtonEnabled = isValid();
 
-	const getCurrentPasswordBlock = (): JSX.Element => {
+	const getCurrentPasswordBlock = () => {
 		if (oneTimePassword) {
 			return (
 				<Alert severity="warning" style={{ marginBottom: 15 }}>

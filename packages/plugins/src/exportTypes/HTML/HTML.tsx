@@ -4,7 +4,7 @@ import etShared from '../../../styles/etShared.scss';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
 import { ExportFormat } from './HTML.state';
 
-export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element => {
+export const Settings = ({ i18n, id, data, onUpdate }: ETSettings) => {
   const onChange = (exportFormat: ExportFormat): void => {
     onUpdate({
       ...data,
@@ -16,7 +16,12 @@ export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element 
     <div className={etShared.settingRow}>
       <label>{i18n.dataFormat}</label>
       <RadioPillRow>
-        <RadioPill label="table" onClick={(): void => onChange('table')} name={`${id}-dataFormat`} checked={data.exportFormat === 'table'} />
+        <RadioPill
+          label="table"
+          onClick={(): void => onChange('table')}
+          name={`${id}-dataFormat`}
+          checked={data.exportFormat === 'table'}
+        />
         <RadioPill label="ul" onClick={(): void => onChange('ul')} name={`${id}-dataFormat`} checked={data.exportFormat === 'ul'} />
         <RadioPill label="dl" onClick={(): void => onChange('dl')} name={`${id}-dataFormat`} checked={data.exportFormat === 'dl'} />
       </RadioPillRow>

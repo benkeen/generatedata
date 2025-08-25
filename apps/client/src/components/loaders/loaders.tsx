@@ -1,5 +1,5 @@
 import React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 import * as styles from './loaders.scss';
 
 export const SmallSpinner = (props: any): any => (
@@ -10,7 +10,7 @@ export const MediumSpinner = (props: any): any => (
 	<CircularProgress disableShrink size={40} style={{ color: '#999999', margin: 5 }} {...props} />
 );
 
-export const DefaultSpinner = (): JSX.Element => <CircularProgress />;
+export const DefaultSpinner = () => <CircularProgress />;
 
 export type DialogLoadingSpinnerProps = {
 	visible: boolean;
@@ -28,7 +28,7 @@ export const DialogLoadingSpinner = ({ visible }: DialogLoadingSpinnerProps): JS
 	);
 };
 
-export const Centered = ({ children }: any): JSX.Element => (
+export const Centered = ({ children }: any) => (
 	<div
 		style={{
 			display: 'flex',
@@ -42,7 +42,7 @@ export const Centered = ({ children }: any): JSX.Element => (
 	</div>
 );
 
-export const FullPageLoadingSpinner = (): JSX.Element => (
+export const FullPageLoadingSpinner = () => (
 	<>
 		<div
 			style={{

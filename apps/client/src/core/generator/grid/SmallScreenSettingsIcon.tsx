@@ -2,7 +2,7 @@ import React from 'react';
 import * as sharedStyles from '../../../styles/shared.scss';
 import { SmallSpinner } from '~components/loaders/loaders';
 import * as styles from './Grid.scss';
-import SettingsIcon from '@material-ui/icons/SettingsOutlined';
+import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import { HtmlTooltip } from '~components/tooltips';
 import useOnClickOutside from 'use-onclickoutside';
 import C from '@generatedata/config/constants';

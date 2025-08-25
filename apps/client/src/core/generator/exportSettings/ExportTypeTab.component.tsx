@@ -24,7 +24,7 @@ export const ExportTypeTab = ({
 	SettingsComponent,
 	onUpdate,
 	exportTypeSettings
-}: ExportTypeTabProps): JSX.Element => {
+}: ExportTypeTabProps) => {
 	let spinnerStyles = styles.spinner;
 	if (SettingsComponent) {
 		spinnerStyles += ` ${styles.fadeOut}`;

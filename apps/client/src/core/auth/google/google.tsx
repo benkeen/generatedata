@@ -7,7 +7,7 @@ import { onLoginSuccess, setAuthenticated, setAuthenticationData, setOnloadAuthD
 import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';
 import { addToast } from '@generatedata/utils/general';
-import langUtils from '@generatedata/utils/langUtils';
+import langUtils from '@generatedata/utils/lang';
 import clientConfig from '@generatedata/config/clientConfig';
 
 const googleBtnId = 'google-signin-button';
@@ -96,7 +96,7 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 	}
 };
 
-export const SignInWithGoogleButton = (): JSX.Element => {
+export const SignInWithGoogleButton = () => {
 	const divRef = useRef(null);
 	const [loaded, setLoaded] = React.useState(false);
 

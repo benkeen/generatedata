@@ -45,7 +45,7 @@ export const getGroupedExportTypes = (): any => {
 	return cachedGroupedExportTypes;
 };
 
-export const DefaultSettings = ({ coreI18n }: ETSettings): JSX.Element => <div>{coreI18n.noAdditionalSettings}</div>;
+export const DefaultSettings = ({ coreI18n }: ETSettings) => <div>{coreI18n.noAdditionalSettings}</div>;
 
 // TODO error scenarios
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {

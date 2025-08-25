@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { format, fromUnixTime } from 'date-fns';
 import { useQuery } from '@apollo/client/react';
-import Drawer from '@material-ui/core/Drawer';
-import InfoIcon from '@material-ui/icons/InfoOutlined';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import Drawer from '@mui/material/Drawer';
+import InfoIcon from '@mui/icons-material/InfoOutlined';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { DefaultSpinner, Centered } from '~components/loaders/loaders';
 import { PrimaryButton, SecondaryButton } from '~components/Buttons.component';
 import { Tooltip } from '~components/tooltips';

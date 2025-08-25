@@ -1,14 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 import Measure from 'react-measure';
 import AutoSizer from 'react-input-autosize';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+import { Divider, IconButton, List, ListItem, ListItemText } from '@mui/material';
 import { HtmlTooltip } from '~components/tooltips';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import useOnClickOutside from 'use-onclickoutside';
 import { addToast } from '@generatedata/utils/general';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
@@ -39,7 +35,7 @@ const GeneratorControls = ({
 	onShowHistory,
 	disabled,
 	showClearPageDialog
-}: GeneratorControlsProps): JSX.Element => {
+}: GeneratorControlsProps) => {
 	const popoverRef = useRef(null);
 	const inputFieldRef = useRef(null);
 

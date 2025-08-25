@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import { DropdownOption } from '~components/dropdown/Dropdown';
 import { MediumSpinner } from '~components/loaders/loaders';
@@ -46,7 +46,7 @@ const DataTypeList = ({ onSelect, filterString }: any): any => {
 	return content;
 };
 
-const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps): JSX.Element => {
+const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps) => {
 	const [dataType, setDataType] = useState<DataTypeFolder | null>(null);
 	const [filterString, setFilterString] = useState('');
 

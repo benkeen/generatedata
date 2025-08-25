@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@material-ui/core/Button';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import Button from '@mui/material/Button';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { format, fromUnixTime } from 'date-fns';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client/react';
 import { addToast } from '@generatedata/utils/general';
 import Pagination from '~components/Pagination';
 import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
@@ -32,7 +32,7 @@ export type AccountsListProps = {
 	i18n: any;
 };
 
-const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastLoggedIn, expiryDate }: any): JSX.Element => {
+const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastLoggedIn, expiryDate }: any) => {
 	let expiryDateVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
 	try {
 		if (expiryDate) {

@@ -30,7 +30,7 @@ const TourDialog = ({
 	restoreGeneratorState,
 	saveGeneratorState,
 	i18n
-}: TourDialogProps): JSX.Element => {
+}: TourDialogProps) => {
 	const windowSize = useWindowSize();
 
 	const [loadingBundle, setLoadingBundle] = useState(false);

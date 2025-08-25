@@ -1,8 +1,8 @@
 import React from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import LoginDialog from '../dialogs/login/Login.container';
 import PasswordResetDialog from '../dialogs/passwordReset/PasswordReset.container';
 import GeneratorControls from './GeneratorControls.container';
@@ -37,7 +37,7 @@ const Header = ({
 	accountType,
 	isOnloadAuthDetermined,
 	currentPage
-}: HeaderProps): JSX.Element => {
+}: HeaderProps) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const windowSize = useWindowSize();
 

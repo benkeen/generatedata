@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useHistory } from 'react-router';
-import CheckCircle from '@material-ui/icons/CheckCircle';
-import Chip from '@material-ui/core/Chip';
+import CheckCircle from '@mui/icons-material/CheckCircle';
+import Chip from '@mui/material/Chip';
 import styles from './ActivityPacketsList.scss';
 import { Cell, Pie, PieChart } from 'recharts';
 import { Tooltip } from '~components/tooltips';
@@ -20,7 +20,7 @@ export type ActivePacketsListProps = {
 	openPacket: (packetId: string, history: any) => void;
 };
 
-const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps): JSX.Element => {
+const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps) => {
 	const history = useHistory();
 
 	const chips = packetList.map(({ packetId, label, percentage, numRowsToGenerate, isPaused }, index) => {

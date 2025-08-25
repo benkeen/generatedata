@@ -165,7 +165,7 @@ export const selectedExportTypeLoaded = createSelector(
 );
 
 export const getLoadedExportTypesArray = createSelector(getLoadedExportTypes, (exportTypes) =>
-	Object.keys(exportTypes).filter((et: ExportTypeFolder) => exportTypes[et])
+	Object.keys(exportTypes).filter((et) => exportTypes[et])
 );
 
 // returns the entire i18n content
@@ -289,7 +289,7 @@ export const previewPanelDependenciesLoaded = createSelector(
 			return false;
 		}
 
-		const allDataTypesLoaded = dataTypes.every((i: DataTypeFolder) => loadedDataTypes[i]);
+		const allDataTypesLoaded = dataTypes.every((i) => loadedDataTypes[i as DataTypeFolder]);
 		if (!allDataTypesLoaded) {
 			return false;
 		}

@@ -8,7 +8,7 @@ import { TourCompleteStep } from './Components.tour';
 import { TourProps } from '~types/general';
 import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
 
-const Step1 = (): JSX.Element => {
+const Step1 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -19,7 +19,7 @@ const Step1 = (): JSX.Element => {
 	);
 };
 
-const Step2 = (): JSX.Element => {
+const Step2 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -30,7 +30,7 @@ const Step2 = (): JSX.Element => {
 	);
 };
 
-const Step3 = (): JSX.Element => {
+const Step3 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -41,7 +41,7 @@ const Step3 = (): JSX.Element => {
 	);
 };
 
-const Step4 = (): JSX.Element => {
+const Step4 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -53,7 +53,7 @@ const Step4 = (): JSX.Element => {
 	);
 };
 
-const Step5 = (): JSX.Element => {
+const Step5 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -65,7 +65,7 @@ const Step5 = (): JSX.Element => {
 	);
 };
 
-const Step6 = (): JSX.Element => {
+const Step6 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -76,7 +76,7 @@ const Step6 = (): JSX.Element => {
 	);
 };
 
-const Step7 = (): JSX.Element => {
+const Step7 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -88,7 +88,7 @@ const Step7 = (): JSX.Element => {
 	);
 };
 
-const Step8 = (): JSX.Element => {
+const Step8 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -99,7 +99,7 @@ const Step8 = (): JSX.Element => {
 	);
 };
 
-const Step9 = (): JSX.Element => {
+const Step9 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -282,7 +282,7 @@ const steps = [
 	}
 ];
 
-const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteraction, accentColor, className }: TourProps): JSX.Element => (
+const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteraction, accentColor, className }: TourProps) => (
 	<Reactour
 		steps={steps}
 		isOpen={isOpen}

@@ -38,7 +38,7 @@ const Builder = ({
 	smallScreenVisiblePanel,
 	showDataSetHistory,
 	i18n
-}: GeneratorProps): JSX.Element => {
+}: GeneratorProps) => {
 	const windowSize = useWindowSize();
 	const onResize = (size: number): void => onResizePanels(size);
 
@@ -59,7 +59,7 @@ const Builder = ({
 		}
 	}
 
-	const getContent = (): JSX.Element => {
+	const getContent = () => {
 		if (windowSize.width < C.SMALL_SCREEN_WIDTH) {
 			return smallScreenVisiblePanel === 'grid' ? <Grid /> : <Preview />;
 		}

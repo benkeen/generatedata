@@ -1,13 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import TextField from '~components/TextField';
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from '@mui/material/IconButton';
 import Dropdown from '~components/dropdown/Dropdown';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import { canadianProvinceOptions, countryDropdownOptions } from '@generatedata/plugins';
-import Refresh from '@material-ui/icons/Refresh';
+import Refresh from '@mui/icons-material/Refresh';
 import { AccountEditingData } from '~store/account/account.reducer';
 import { isValidEmail } from '@generatedata/utils/general';
 import { generateRandomAlphanumericStr } from '@generatedata/utils/random';
@@ -37,7 +37,7 @@ const MainFields = ({
 	showRequiredFieldError,
 	isAddingUser,
 	className = ''
-}: MainFieldsProps): JSX.Element => {
+}: MainFieldsProps) => {
 	const emailFieldRef = useRef(null);
 	const [oneTimePasswordFieldVisible, setOneTimePasswordFieldVisible] = useState(false);
 
@@ -84,7 +84,7 @@ const MainFields = ({
 
 	const saveButtonEnabled = accountHasChanges && fieldsValid;
 
-	const getCanadianRegions = (): JSX.Element | null => {
+	const getCanadianRegions = () => {
 		if (data.country !== 'CA') {
 			return null;
 		}

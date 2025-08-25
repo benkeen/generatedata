@@ -12,7 +12,7 @@ export type AccountPageProps = {
 	i18n: any;
 };
 
-const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.Element => {
+const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps) => {
 	const [dataSetsClasses, setDataSetsClasses] = useState(styles.hidden);
 	const [yourAccountClasses, setYourAccountClasses] = useState(styles.hidden);
 	const [changePasswordClasses, setChangePasswordClasses] = useState(styles.hidden);

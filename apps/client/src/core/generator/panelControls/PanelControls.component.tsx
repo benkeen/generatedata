@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Delete from '@material-ui/icons/Delete';
-import CheckBox from '@material-ui/icons/CheckBox';
-import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
-import SwapHoriz from '@material-ui/icons/SwapHoriz';
-import SwapVert from '@material-ui/icons/SwapVert';
-import CodeIcon from '@material-ui/icons/Code';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Delete from '@mui/icons-material/Delete';
+import CheckBox from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank';
+import SwapHoriz from '@mui/icons-material/SwapHoriz';
+import SwapVert from '@mui/icons-material/SwapVert';
+import CodeIcon from '@mui/icons-material/Code';
 import { toSentenceCase } from '@generatedata/utils/string';
 import { Tooltip } from '~components/tooltips';
 import { GeneratorLayout } from '@generatedata/types';
@@ -37,7 +37,7 @@ export const PanelControls = ({
 	generatorLayout,
 	showDataTemplateDialog,
 	i18n
-}: PanelControlsProps): JSX.Element => {
+}: PanelControlsProps) => {
 	const toggleLayoutEnabled = isGridVisible && isPreviewVisible;
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
 	const PreviewIcon = isPreviewVisible ? CheckBox : CheckBoxOutlineBlank;
@@ -56,7 +56,7 @@ export const PanelControls = ({
 	// Material UI throws an error when it comes to having a tooltip on a disabled button, and within a ButtonGroup
 	// context it messes up the styles wrapping <Button> in a <span> like we do elsewhere. So this just constructs
 	// the JSX differently for the enabled/disabled state
-	const getToggleLayoutBtn = (): JSX.Element => {
+	const getToggleLayoutBtn = () => {
 		if (toggleLayoutEnabled) {
 			return (
 				<Tooltip

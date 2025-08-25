@@ -6,7 +6,7 @@ export type LinkParams = {
 	offSite?: boolean;
 };
 
-const Link = ({ url, children = null, offSite = false }: LinkParams): JSX.Element => {
+const Link = ({ url, children = null, offSite = false }: LinkParams) => {
 	const props: any = {
 		href: url
 	};

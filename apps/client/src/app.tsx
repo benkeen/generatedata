@@ -2,10 +2,10 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 import * as codemirror from 'codemirror';
 import { PersistGate } from 'redux-persist/integration/react';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { apolloClient } from '~core/apolloClient';
 import store, { persistor } from '~core/store';
 import Page from '~core/page/Page.container';
@@ -41,7 +41,7 @@ const checkState = async (state: any): Promise<any> => {
 const routes = getRoutes();
 
 // there's probably a cleaner way to do this, but this seems performant and not too complicated
-const LocalizationWrapper = (args: any): JSX.Element => {
+const LocalizationWrapper = (args: any) => {
 	const availableLocalesMap = getLocaleMap();
 	const lang = args.match?.params?.lang;
 	let localizedRoutes = routes;
@@ -85,12 +85,12 @@ const App = withRouter(({ history }: any) => {
 	);
 });
 
-const AppWrapper = (): JSX.Element => (
+const AppWrapper = () => (
 	<Provider store={store}>
 		<ApolloProvider client={apolloClient}>
 			<ThemeProvider theme={theme}>
 				<PersistGate loading={null} persistor={persistor} onBeforeLift={(): Promise<any> => checkState(store)}>
-					{(bootstrapped): JSX.Element => {
+					{(bootstrapped) => {
 						// PersistGate handles repopulating the redux store; core.init() re-initializes everything else we
 						// need, including checking auth and loading the appropriate locale file
 						if (bootstrapped) {

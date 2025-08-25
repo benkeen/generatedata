@@ -1,6 +1,6 @@
 import React from 'react';
 import { PrimaryButton, NullButton } from '~components/Buttons.component';
-import WarningIcon from '@material-ui/icons/Warning';
+import WarningIcon from '@mui/icons-material/Warning';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import styles from './DeleteDataSetDialog.scss';
 
@@ -12,13 +12,7 @@ export type DeleteDataSetDialogProps = {
 	dataSetName?: string | null;
 };
 
-const DeleteDataSetDialog = ({
-	visible,
-	dataSetName,
-	onClose,
-	onDelete,
-	i18n
-}: DeleteDataSetDialogProps): JSX.Element => (
+const DeleteDataSetDialog = ({ visible, dataSetName, onClose, onDelete, i18n }: DeleteDataSetDialogProps) => (
 	<Dialog onClose={onClose} open={visible}>
 		<div style={{ width: 420 }}>
 			<DialogTitle onClose={onClose}>{i18n.deleteDataSet}</DialogTitle>

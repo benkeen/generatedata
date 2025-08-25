@@ -6,7 +6,7 @@ import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps
 import { AutoIncrementState, GenerationOptionsType } from './AutoIncrement.state';
 import styles from './AutoIncrement.scss';
 
-export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
+export const Example = ({ data, onUpdate }: DTExampleProps) => {
   const onChange = (value: string): void => {
     const [incrementStart, incrementValue, incrementPlaceholder] = value.split(',');
 
@@ -33,7 +33,7 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
   return <Dropdown value={data.example} onChange={(i: any): void => onChange(i.value)} options={options} />;
 };
 
-export const Options = ({ coreI18n, i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ coreI18n, i18n, data, onUpdate }: DTOptionsProps) => {
   const onChange = (field: string, value: number | string): void => {
     onUpdate({
       ...data,
@@ -76,7 +76,7 @@ export const Options = ({ coreI18n, i18n, data, onUpdate }: DTOptionsProps): JSX
   );
 };
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps) => (
   <>
     <p>{i18n.helpIntro}</p>
     <p dangerouslySetInnerHTML={{ __html: i18n.helpPara2 }} />

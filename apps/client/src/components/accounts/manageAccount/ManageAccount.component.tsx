@@ -37,7 +37,7 @@ export type ManageAccountState = {
 
 const yearFromNow = Number(format(add(new Date(), { years: 1 }), 't'));
 
-const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel }: ManageAccountProps): JSX.Element => {
+const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel }: ManageAccountProps) => {
 	const [data, setData] = useState(initialState);
 	const [showDatepicker, setShowDatepicker] = useState(false);
 	const [showErrors] = useState(false);

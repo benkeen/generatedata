@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
-import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import LogoutIcon from '@mui/icons-material/PowerSettingsNew';
 import { GDCustomHeaderLink, GDHeaderLink, GDLocale } from '~types/general';
 import { getUnlocalizedGeneratorRoute, removeLocale } from '~utils/routeUtils';
 import { Tooltip } from '~components/tooltips';
@@ -32,14 +32,7 @@ const getClassName = (path: string, currentPage: string): string => {
 
 const getLink = (link: string, locale: GDLocale): string => (locale === 'en' ? link : `/${locale}${link}`);
 
-export const MobileLinks = ({
-	locale,
-	currentPage,
-	headerLinks,
-	showLoginDialog,
-	onLogout,
-	i18n
-}: HeaderLinksProps): JSX.Element => {
+export const MobileLinks = ({ locale, currentPage, headerLinks, showLoginDialog, onLogout, i18n }: HeaderLinksProps) => {
 	const links: any = [];
 	const generatorPath = getUnlocalizedGeneratorRoute();
 
@@ -47,34 +40,19 @@ export const MobileLinks = ({
 		if (typeof headerLink === 'object' && headerLink.path) {
 			const link = headerLink as GDCustomHeaderLink;
 			links.push(
-				<MenuItem
-					key={link.path}
-					component={Link}
-					className={getClassName(link.path, currentPage)}
-					to={getLink(link.path, locale)}
-				>
+				<MenuItem key={link.path} component={Link} className={getClassName(link.path, currentPage)} to={getLink(link.path, locale)}>
 					{i18n[link.labelI18nKey]}
 				</MenuItem>
 			);
 		} else if (headerLink === 'generator') {
 			links.push(
-				<MenuItem
-					key="generator"
-					component={Link}
-					className={getClassName(generatorPath, currentPage)}
-					to={getLink(generatorPath, locale)}
-				>
+				<MenuItem key="generator" component={Link} className={getClassName(generatorPath, currentPage)} to={getLink(generatorPath, locale)}>
 					{i18n.generator}
 				</MenuItem>
 			);
 		} else if (headerLink === 'dataSets') {
 			links.push(
-				<MenuItem
-					key="dataSets"
-					component={Link}
-					className={getClassName('datasets', currentPage)}
-					to={getLink('/datasets', locale)}
-				>
+				<MenuItem key="dataSets" component={Link} className={getClassName('datasets', currentPage)} to={getLink('/datasets', locale)}>
 					{i18n.dataSets}
 				</MenuItem>
 			);
@@ -87,12 +65,7 @@ export const MobileLinks = ({
 			);
 		} else if (headerLink === 'accounts') {
 			links.push(
-				<MenuItem
-					key="accounts"
-					component={Link}
-					className={getClassName('accounts', currentPage)}
-					to={getLink('/accounts', locale)}
-				>
+				<MenuItem key="accounts" component={Link} className={getClassName('accounts', currentPage)} to={getLink('/accounts', locale)}>
 					{i18n.accounts}
 				</MenuItem>
 			);
@@ -104,12 +77,7 @@ export const MobileLinks = ({
 			);
 		} else if (headerLink === 'register') {
 			links.push(
-				<MenuItem
-					key="register"
-					component={Link}
-					className={getClassName('register', currentPage)}
-					to={getLink('/register', locale)}
-				>
+				<MenuItem key="register" component={Link} className={getClassName('register', currentPage)} to={getLink('/register', locale)}>
 					{i18n.register}
 				</MenuItem>
 			);
@@ -130,15 +98,7 @@ export const MobileLinks = ({
 	);
 };
 
-export const HeaderLinks = ({
-	locale,
-	currentPage,
-	headerLinks,
-	showLoginDialog,
-	profileImage,
-	onLogout,
-	i18n
-}: HeaderLinksProps): JSX.Element => {
+export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps) => {
 	const links: any = [];
 	const generatorPath = getUnlocalizedGeneratorRoute();
 

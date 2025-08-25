@@ -1,5 +1,5 @@
+// @ts-ignore
 import { nanoid } from 'nanoid';
-
 import webWorkers from '../../_pluginWebWorkers';
 
 import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';

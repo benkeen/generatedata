@@ -9,7 +9,7 @@ export type PageProps = {
 	children: any;
 };
 
-const Page = ({ localeFileLoaded, children }: PageProps): JSX.Element => {
+const Page = ({ localeFileLoaded, children }: PageProps) => {
 	const content = localeFileLoaded ? (
 		<>
 			<Header />

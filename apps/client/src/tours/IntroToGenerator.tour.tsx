@@ -9,7 +9,7 @@ import { TourProps } from '~types/general';
 import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
 import clientConfig from '@generatedata/config/clientConfig';
 
-const Step1 = (): JSX.Element => {
+const Step1 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -21,7 +21,7 @@ const Step1 = (): JSX.Element => {
 	);
 };
 
-const Step2 = (): JSX.Element => {
+const Step2 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -34,7 +34,7 @@ const Step2 = (): JSX.Element => {
 	);
 };
 
-const Step3 = (): JSX.Element => {
+const Step3 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -46,7 +46,7 @@ const Step3 = (): JSX.Element => {
 	);
 };
 
-const Step4 = (): JSX.Element => {
+const Step4 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -58,7 +58,7 @@ const Step4 = (): JSX.Element => {
 	);
 };
 
-const Step5 = (): JSX.Element => {
+const Step5 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -72,7 +72,7 @@ const Step5 = (): JSX.Element => {
 	);
 };
 
-const Step6 = (): JSX.Element => {
+const Step6 = () => {
 	const { core: i18n } = getStrings();
 	const saveBtnDesc = getI18nString(i18n.saveButtonDesc, [clientConfig.appSettings.GD_MAX_DATASET_HISTORY_SIZE]);
 
@@ -85,7 +85,7 @@ const Step6 = (): JSX.Element => {
 	);
 };
 
-const Step7 = (): JSX.Element => {
+const Step7 = () => {
 	const { core: i18n } = getStrings();
 
 	return (
@@ -248,7 +248,7 @@ const steps = [
 	}
 ];
 
-const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteraction, accentColor, className }: TourProps): JSX.Element => (
+const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteraction, accentColor, className }: TourProps) => (
 	<Reactour
 		steps={steps}
 		isOpen={isOpen}

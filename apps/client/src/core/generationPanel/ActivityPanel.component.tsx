@@ -2,12 +2,12 @@ import React from 'react';
 import { PieChart, Pie, Cell, BarChart, CartesianGrid, XAxis, YAxis, Bar, Label } from 'recharts';
 import CountUp from 'react-countup';
 import Measure from 'react-measure';
-import IconButton from '@material-ui/core/IconButton';
-import Slider from '@material-ui/core/Slider';
-import Button from '@material-ui/core/Button';
-import Pause from '@material-ui/icons/Pause';
-import PlayArrow from '@material-ui/icons/PlayArrow';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import IconButton from '@mui/material/IconButton';
+import Slider from '@mui/material/Slider';
+import Button from '@mui/material/Button';
+import Pause from '@mui/icons-material/Pause';
+import PlayArrow from '@mui/icons-material/PlayArrow';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Dialog, DialogContent, DialogTitle, DialogActions } from '~components/dialogs';
 import usePrevious from '../../hooks/usePrevious';
 import styles from './ActivityPanel.scss';
@@ -101,7 +101,7 @@ const ActivityPanel = ({
 		{ value: 100, label: coreI18n.cpuMeltinglyFast }
 	];
 
-	const getActionButtons = (): JSX.Element => {
+	const getActionButtons = () => {
 		if (isComplete) {
 			return (
 				<div>

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import MuiDialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import { withStyles, makeStyles } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
+import MuiDialog from '@mui/material/Dialog';
+import MuiDialogTitle from '@mui/material/DialogTitle';
+import MuiDialogContent from '@mui/material/DialogContent';
+import MuiDialogActions from '@mui/material/DialogActions';
+import { withStyles, makeStyles } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from '@mui/material/Typography';
 
 const dialogStyles = (theme: any): any => ({
 	root: {
@@ -62,7 +62,7 @@ const useDialogStyles = makeStyles({
 	}
 });
 
-export const Dialog = (props: any): JSX.Element => {
+export const Dialog = (props: any) => {
 	const { root, paper } = useDialogStyles(props);
 
 	return <MuiDialog className={root} classes={{ paper }} scroll="paper" {...props} />;

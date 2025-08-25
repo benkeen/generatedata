@@ -58,7 +58,7 @@
 //   return cachedSortedGroupedDataTypes;
 // };
 
-// export const DefaultHelpComponent = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
+// export const DefaultHelpComponent = ({ i18n }: DTHelpProps) => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
 
 // const showNothing = (): null => null;
 

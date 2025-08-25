@@ -1,6 +1,6 @@
 import React from 'react';
-import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUp from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import * as styles from './TableHeader.scss';
 
 export type TableCol = {
@@ -22,7 +22,7 @@ export type TableHeaderProps = {
 	onSort?: (col: string, dir: ColSortDir) => void;
 };
 
-const TableHeader = ({ cols, sortCol, sortDir, onSort }: TableHeaderProps): JSX.Element => {
+const TableHeader = ({ cols, sortCol, sortDir, onSort }: TableHeaderProps) => {
 	const columns = cols.map((col: TableCol, index: number) => {
 		let colClasses = styles.colHeader;
 		if (col.className) {

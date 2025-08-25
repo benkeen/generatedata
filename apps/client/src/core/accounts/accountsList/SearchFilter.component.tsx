@@ -7,7 +7,7 @@ export type SearchFilterProps = {
 	onChange: (val: string) => void;
 };
 
-const SearchFilter = ({ value, onChange }: SearchFilterProps): JSX.Element => (
+const SearchFilter = ({ value, onChange }: SearchFilterProps) => (
 	<div className={styles.searchFilter}>
 		<TextField placeholder="Filter accounts" value={value} onChange={(e: any): void => onChange(e.target.value)} />
 	</div>

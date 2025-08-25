@@ -18,7 +18,7 @@ export type CodeMirrorWrapperProps = {
 	generatorLayout: GeneratorLayout;
 };
 
-const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
+const CodeMirrorWrapper = (props: CodeMirrorWrapperProps) => {
 	const {
 		previewRows,
 		columns,

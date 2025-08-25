@@ -1,17 +1,19 @@
 import { createStore, applyMiddleware, Store } from 'redux';
-import thunk from 'redux-thunk';
-import { FlushThunks } from 'redux-testkit';
+// import { FlushThunks } from 'redux-testkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from '../../../../../tests/testHelpers';
 import * as actions from '../main.actions';
 import * as selectors from '../main.selectors';
 
 describe('accounts section', () => {
-	let flushThunks;
+	// let flushThunks;
 	let store: Store;
 
 	beforeEach(() => {
-		flushThunks = FlushThunks.createMiddleware();
-		store = createStore(rootReducer, applyMiddleware(flushThunks, thunk));
+		// flushThunks = FlushThunks.createMiddleware();
+		store = configureStore({
+			reducer: rootReducer
+		});
 	});
 
 	it('resetting store returns data to default state', () => {

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import Button from '@material-ui/core/Button';
-import Drawer from '@material-ui/core/Drawer';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import PreviewSettingsTab from './PreviewSettingsTab.container';
 import ExportTypeTab from './ExportTypeTab.container';
 import * as styles from './ExportSettings.scss';
@@ -14,11 +14,7 @@ export type ExportSettingsProps = {
 	toggleExportSettings: any;
 };
 
-export const ExportSettings = ({
-	i18n,
-	showExportSettings,
-	toggleExportSettings
-}: ExportSettingsProps): React.ReactElement => {
+export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings }: ExportSettingsProps): React.ReactElement => {
 	const [selectedTabIndex, setSelectedTabIndex] = React.useState(0);
 	const handleChange = (e: React.ChangeEvent<{}>, newValue: number): void => setSelectedTabIndex(newValue);
 	const getTab = (): JSX.Element | null => {

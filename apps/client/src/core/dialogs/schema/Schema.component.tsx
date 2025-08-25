@@ -1,8 +1,8 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@mui/material/styles';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import { PrimaryButton } from '~components/Buttons.component';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import FeatureToggles from '../../featureToggles';
@@ -33,13 +33,7 @@ function TabPanel(props: TabPanelProps) {
 	const { children, value, index, ...other } = props;
 
 	return (
-		<div
-			role="tabpanel"
-			hidden={value !== index}
-			id={`vertical-tabpanel-${index}`}
-			aria-labelledby={`vertical-tab-${index}`}
-			{...other}
-		>
+		<div role="tabpanel" hidden={value !== index} id={`vertical-tabpanel-${index}`} aria-labelledby={`vertical-tab-${index}`} {...other}>
 			{value === index && children}
 		</div>
 	);
@@ -91,8 +85,8 @@ const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogPro
 						</Tabs>
 						<TabPanel value={value} index={0}>
 							<div className={classes.tabPanel}>
-								The data you create here in the UI can be downloaded as a template for use with the generatedata CLI,
-								letting you generate data
+								The data you create here in the UI can be downloaded as a template for use with the generatedata CLI, letting you generate
+								data
 							</div>
 						</TabPanel>
 						<TabPanel value={value} index={1}>

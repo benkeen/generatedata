@@ -7,7 +7,7 @@ type AccountStatusPillProps = {
 	i18n: any;
 };
 
-const AccountStatusPill = ({ status, i18n }: AccountStatusPillProps): JSX.Element => {
+const AccountStatusPill = ({ status, i18n }: AccountStatusPillProps) => {
 	let label;
 	if (status === 'live') {
 		label = i18n.live;

@@ -3,7 +3,7 @@ import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import etShared from '../../../styles/etShared.scss';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
 
-export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element => {
+export const Settings = ({ i18n, id, data, onUpdate }: ETSettings) => {
   const onChange = (prop: string, value: any): void => {
     onUpdate({
       ...data,
@@ -15,9 +15,24 @@ export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element 
     <div className={etShared.settingRow}>
       <label>{i18n.format}</label>
       <RadioPillRow>
-        <RadioPill label={i18n.variable} onClick={(): void => onChange('jsExportFormat', 'variable')} name={`${id}-js-export-format`} checked={data.jsExportFormat === 'variable'} />
-        <RadioPill label={i18n.es6Format} onClick={(): void => onChange('jsExportFormat', 'es6')} name={`${id}-js-export-format`} checked={data.jsExportFormat === 'es6'} />
-        <RadioPill label={i18n.commonJsFormat} onClick={(): void => onChange('jsExportFormat', 'commonJs')} name={`${id}-js-export-format`} checked={data.jsExportFormat === 'commonJs'} />
+        <RadioPill
+          label={i18n.variable}
+          onClick={(): void => onChange('jsExportFormat', 'variable')}
+          name={`${id}-js-export-format`}
+          checked={data.jsExportFormat === 'variable'}
+        />
+        <RadioPill
+          label={i18n.es6Format}
+          onClick={(): void => onChange('jsExportFormat', 'es6')}
+          name={`${id}-js-export-format`}
+          checked={data.jsExportFormat === 'es6'}
+        />
+        <RadioPill
+          label={i18n.commonJsFormat}
+          onClick={(): void => onChange('jsExportFormat', 'commonJs')}
+          name={`${id}-js-export-format`}
+          checked={data.jsExportFormat === 'commonJs'}
+        />
       </RadioPillRow>
     </div>
   );

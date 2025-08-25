@@ -8,7 +8,9 @@ import * as mainActions from '~store/main/main.actions';
 import * as mainSelectors from '~store/main/main.selectors';
 import clientConfig from '@generatedata/config/clientConfig';
 
-const mapStateToProps = (state: any): Partial<SaveDataSetDialogProps> => ({
+const mapStateToProps = (
+	state: any
+): Pick<SaveDataSetDialogProps, 'i18n' | 'visible' | 'isLoggedIn' | 'dialogType' | 'showRegistration'> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: accountSelectors.shouldShowSaveDataSetDialog(state),
 	isLoggedIn: mainSelectors.isLoggedIn(state),
@@ -18,7 +20,7 @@ const mapStateToProps = (state: any): Partial<SaveDataSetDialogProps> => ({
 	showRegistration: clientConfig.appSettings.GD_APP_TYPE === 'prod'
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<SaveDataSetDialogProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<SaveDataSetDialogProps, 'onClose' | 'onRedirectToLogin' | 'onSave'> => ({
 	onClose: (): any => dispatch(actions.hideSaveDataSetDialog()),
 	onRedirectToLogin: (): any => {
 		dispatch(actions.hideSaveDataSetDialog());

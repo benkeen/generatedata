@@ -1,9 +1,9 @@
 /* istanbul ignore file */
-import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import { Persistor } from 'redux-persist/es/types';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import actionsInterceptor from '../actionInterceptor';
+import { combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+// import actionsInterceptor from '../actionInterceptor'; // TODO
 import storage from 'redux-persist/lib/storage';
 import mainReducer from './main/main.reducer';
 import generatorReducer from './generator/generator.reducer';
@@ -12,16 +12,6 @@ import accountReducer from './account/account.reducer';
 
 let persistor: Persistor;
 function initStore(state: any): any {
-	const enhancers: any = [];
-	let composeEnhancers = compose;
-
-	if (process.env.NODE_ENV === 'development') {
-		const composeWithDevToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-		if (typeof composeWithDevToolsExtension === 'function') {
-			composeEnhancers = composeWithDevToolsExtension;
-		}
-	}
-
 	const rootPersistConfig = {
 		key: 'root',
 		storage,
@@ -81,11 +71,12 @@ function initStore(state: any): any {
 
 	const persistedRootReducer = persistReducer(rootPersistConfig, rootReducer);
 
-	const store = createStore(
-		persistedRootReducer,
-		state,
-		composeEnhancers(applyMiddleware(thunk, actionsInterceptor), ...enhancers)
-	);
+	const store = configureStore({
+		reducer: persistedRootReducer,
+		preloadedState: state
+		// composeEnhancers(applyMiddleware(thunk, actionsInterceptor), ...enhancers)
+	});
+
 	persistor = persistStore(store);
 
 	return store;

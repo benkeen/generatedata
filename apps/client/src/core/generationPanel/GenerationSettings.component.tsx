@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NumberFormat from 'react-number-format';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { getI18nString } from '@generatedata/utils/lang';
 import { getFormattedNum } from '@generatedata/utils/number';
@@ -11,7 +11,7 @@ import { MediumSpinner } from '~components/loaders/loaders';
 import Engine from './Engine.container';
 import { DataPacket } from '~store/packets/packets.reducer';
 import * as coreUtils from '../../utils/coreUtils';
-import CheckIcon from '@material-ui/icons/Check';
+import CheckIcon from '@mui/icons-material/Check';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
 import clientConfig from '@generatedata/config/clientConfig';
 
@@ -46,7 +46,7 @@ const GenerationSettingsPanel = ({
 	packet,
 	onAbort,
 	onDownload
-}: GenerationSettingsProps): JSX.Element => {
+}: GenerationSettingsProps) => {
 	let error = '';
 
 	if (!numRowsToGenerate) {

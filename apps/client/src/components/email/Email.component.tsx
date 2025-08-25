@@ -8,7 +8,7 @@ export type EmailProps = {
 	text?: string;
 };
 
-const Email = ({ email, text = '', i18n }: EmailProps): JSX.Element => {
+const Email = ({ email, text = '', i18n }: EmailProps) => {
 	const textString = text || email;
 
 	return (

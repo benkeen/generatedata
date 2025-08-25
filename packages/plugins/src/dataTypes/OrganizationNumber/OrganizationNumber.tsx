@@ -2,84 +2,83 @@ import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 
-export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
-	const onChange = (value: any): void => {
-		onUpdate({
-			example: value,
-			value: value
-		});
-	};
+export const Example = ({ i18n, data, onUpdate }: DTExampleProps) => {
+  const onChange = (value: any): void => {
+    onUpdate({
+      example: value,
+      value: value
+    });
+  };
 
-	const options = [
-		{ value: 'OrganisationNumberWithoutHyphen', label: i18n.example_OrganisationNumberWithoutHyphen },
-		{ value: 'OrganisationNumberWithHyphen', label: i18n.example_OrganisationNumberWithHyphen }
-	];
+  const options = [
+    { value: 'OrganisationNumberWithoutHyphen', label: i18n.example_OrganisationNumberWithoutHyphen },
+    { value: 'OrganisationNumberWithHyphen', label: i18n.example_OrganisationNumberWithHyphen }
+  ];
 
-	return (
-		<Dropdown
-			value={data.example}
-			onChange={(i: any): void => onChange(i.value)}
-			options={options}
-		/>
-	);
+  return <Dropdown value={data.example} onChange={(i: any): void => onChange(i.value)} options={options} />;
 };
 
-export const Options = ({ id, data, onUpdate, i18n }: DTOptionsProps): JSX.Element => {
-	const onChange = (separator: string): void => {
-		onUpdate({
-			...data,
-			separator
-		});
-	};
+export const Options = ({ id, data, onUpdate, i18n }: DTOptionsProps) => {
+  const onChange = (separator: string): void => {
+    onUpdate({
+      ...data,
+      separator
+    });
+  };
 
-	return (
-		<span>
-			{i18n.separators}
-			<input type="text" id={`${id}-separator`}
-				style={{ width: 78 }}
-				value={data.separator}
-				title={i18n.separator_help}
-				onChange={(e): void => onChange(e.target.value)}
-			/>
-		</span>
-	);
+  return (
+    <span>
+      {i18n.separators}
+      <input
+        type="text"
+        id={`${id}-separator`}
+        style={{ width: 78 }}
+        value={data.separator}
+        title={i18n.separator_help}
+        onChange={(e): void => onChange(e.target.value)}
+      />
+    </span>
+  );
 };
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
-	<>
-		<p>
-			{i18n.DESC}
-			{i18n.help_text}
-		</p>
+export const Help = ({ i18n }: DTHelpProps) => (
+  <>
+    <p>
+      {i18n.DESC}
+      {i18n.help_text}
+    </p>
 
-		<table cellPadding="0" cellSpacing="1">
-			<tbody>
-				<tr>
-					<td><h4>OrganisationNumberWithoutHyphen</h4></td>
-					<td>{i18n.type_OrganisationNumberWithoutHyphen}</td>
-				</tr>
-				<tr>
-					<td><h4>OrganisationNumberWithHyphen</h4></td>
-					<td>{i18n.type_OrganisationNumberWithHyphen}</td>
-				</tr>
-			</tbody>
-		</table>
-	</>
+    <table cellPadding="0" cellSpacing="1">
+      <tbody>
+        <tr>
+          <td>
+            <h4>OrganisationNumberWithoutHyphen</h4>
+          </td>
+          <td>{i18n.type_OrganisationNumberWithoutHyphen}</td>
+        </tr>
+        <tr>
+          <td>
+            <h4>OrganisationNumberWithHyphen</h4>
+          </td>
+          <td>{i18n.type_OrganisationNumberWithHyphen}</td>
+        </tr>
+      </tbody>
+    </table>
+  </>
 );
 
 export const getMetadata = (): DTMetadata => {
-	// Called before separator is set, so margin should be used
-	// $len = 10 + strlen(static::$sep);
-	const len = 11; // Should be enough, allow for max one char sep
-	return {
-		sql: {
-			field: `varchar(${len}) default NULL`,
-			field_Oracle: `varchar2(${len}) default NULL`,
-			field_MSSQL: `VARCHAR(${len}) NULL`
-		}
-	};
+  // Called before separator is set, so margin should be used
+  // $len = 10 + strlen(static::$sep);
+  const len = 11; // Should be enough, allow for max one char sep
+  return {
+    sql: {
+      field: `varchar(${len}) default NULL`,
+      field_Oracle: `varchar2(${len}) default NULL`,
+      field_MSSQL: `VARCHAR(${len}) NULL`
+    }
+  };
 };
-
 
 // var _exampleChange = function (msg) {
 // 	var rowID = msg.rowID;

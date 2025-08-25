@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
-import Switch from '@material-ui/core/Switch';
+import Switch from '@mui/material/Switch';
 import { getArrayOfSize } from '@generatedata/utils/array';
 import * as styles from './ExportSettings.scss';
 import C from '@generatedata/config/constants';
@@ -39,7 +39,7 @@ export const PreviewSettingsTab = ({
 	onChangePreviewTextSize,
 	updateNumPreviewRows,
 	i18n
-}: PreviewSettingsTabProps): JSX.Element => {
+}: PreviewSettingsTabProps) => {
 	return (
 		<div className={styles.tabContent}>
 			<div className={styles.row}>

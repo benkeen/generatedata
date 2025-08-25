@@ -1,6 +1,6 @@
 import React from 'react';
 import { persistor } from './store';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { Cockroach } from '~components/icons';
 import Header from './header/Header.container';
 import Footer from './footer/Footer.container';
@@ -49,8 +49,8 @@ class ErrorBoundary extends React.Component<any, any> {
 							</div>
 							<div>
 								<p style={{ fontSize: 13, color: '#999999', marginBottom: 20 }}>
-									Sorry! Some sort of error occurred. This project is still in alpha so you may see this page a little
-									more than you'd like. Feel free to complain about it via a{' '}
+									Sorry! Some sort of error occurred. This project is still in alpha so you may see this page a little more than you'd like.
+									Feel free to complain about it via a{' '}
 									<a href="https://github.com/benkeen/generatedata/issues" target="_blank" rel="noopener noreferrer">
 										github issue
 									</a>{' '}

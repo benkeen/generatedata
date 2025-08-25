@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import DragIndicator from '@material-ui/icons/DragIndicator';
-import InfoIcon from '@material-ui/icons/InfoOutlined';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import DragIndicator from '@mui/icons-material/DragIndicator';
+import InfoIcon from '@mui/icons-material/InfoOutlined';
 import Dropdown from '~components/dropdown/Dropdown';
 import { DataRow } from '~store/generator/generator.reducer';
 import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
@@ -52,8 +52,8 @@ export type GridRowProps = {
 	countryNamesMap: CountryNamesMap | null;
 };
 
-const NoExample = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>;
-const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>;
+const NoExample = ({ coreI18n, emptyColClass }: any) => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>;
+const NoOptions = ({ coreI18n, emptyColClass }: any) => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>;
 
 export const GridRow = ({
 	row,
@@ -75,7 +75,7 @@ export const GridRow = ({
 	isCountryNamesLoading,
 	isCountryNamesLoaded,
 	countryNamesMap
-}: GridRowProps): JSX.Element => {
+}: GridRowProps) => {
 	let example: any = null;
 	let options: any = null;
 

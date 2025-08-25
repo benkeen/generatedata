@@ -4,7 +4,7 @@ import { TypescriptSettings } from './Typescript.state';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
 import styles from './Typescript.scss';
 
-export const Settings = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings): JSX.Element => {
+export const Settings = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings) => {
   const onChange = (field: string, value: string): void => {
     const newValues = {
       ...data,
@@ -21,10 +21,22 @@ export const Settings = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings): JS
   return (
     <div className={styles.settingsBlock}>
       <label htmlFor={`${id}-typeName`}>{i18n.typeName}</label>
-      <TextField id={`${id}-typeName`} error={data.typeName !== '' ? '' : coreI18n.requiredField} value={data.typeName} style={{ width: '100%', marginBottom: 10 }} onChange={(e: any): void => onChange('typeName', e.target.value)} />
+      <TextField
+        id={`${id}-typeName`}
+        error={data.typeName !== '' ? '' : coreI18n.requiredField}
+        value={data.typeName}
+        style={{ width: '100%', marginBottom: 10 }}
+        onChange={(e: any): void => onChange('typeName', e.target.value)}
+      />
 
       <label htmlFor={`${id}-exportedVarName`}>{i18n.exportedVarName}</label>
-      <TextField id={`${id}-exportedVarName`} error={data.varName !== '' ? '' : coreI18n.requiredField} value={data.varName} style={{ width: '100%' }} onChange={(e: any): void => onChange('varName', e.target.value)} />
+      <TextField
+        id={`${id}-exportedVarName`}
+        error={data.varName !== '' ? '' : coreI18n.requiredField}
+        value={data.varName}
+        style={{ width: '100%' }}
+        onChange={(e: any): void => onChange('varName', e.target.value)}
+      />
     </div>
   );
 };

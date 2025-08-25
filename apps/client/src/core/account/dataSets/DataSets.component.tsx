@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
-import Button from '@material-ui/core/Button';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import { useMutation, useQuery } from '@apollo/client/react';
+import Button from '@mui/material/Button';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Pagination from '~components/Pagination';
 import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
 import * as queries from '~core/queries';
@@ -15,7 +15,7 @@ import { useHistory } from 'react-router';
 import { getFormattedNum } from '@generatedata/utils/number';
 import { GDLocale } from '~types/general';
 
-const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
+const Row = ({ onDelete, onLoad, dataSet, i18n }: any) => (
 	<div className={styles.row}>
 		<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
 		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>

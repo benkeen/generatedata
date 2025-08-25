@@ -30,7 +30,7 @@ const YourAccount = ({
 	i18n,
 	onInit,
 	expiryDate
-}: YourAccountProps): JSX.Element => {
+}: YourAccountProps) => {
 	useEffect(() => {
 		onInit();
 	}, []);

@@ -22,9 +22,9 @@ export const initialState: ConstantState = {
   values: ['1', '2']
 };
 
-export const Example = ({ coreI18n }: DTExampleProps): JSX.Element => <div className={sharedStyles.emptyCol}>{coreI18n.seeHelpDialog}</div>;
+export const Example = ({ coreI18n }: DTExampleProps) => <div className={sharedStyles.emptyCol}>{coreI18n.seeHelpDialog}</div>;
 
-export const Options = ({ i18n, coreI18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ i18n, coreI18n, data, onUpdate }: DTOptionsProps) => {
   const onChange = (field: string, value: string): void => {
     onUpdate({
       ...data,
@@ -60,7 +60,7 @@ export const Options = ({ i18n, coreI18n, data, onUpdate }: DTOptionsProps): JSX
   );
 };
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps) => (
   <>
     <p>{i18n.help1}</p>
     <ul>

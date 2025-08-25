@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import { combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { Router } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client/react';
 import { apolloClient } from '~core/apolloClient';
@@ -31,15 +31,16 @@ export const rootReducer = combineReducers({
 	account: accountReducer
 });
 
-export const renderWithStoreAndRouter = (
-	component: any,
-	{
-		initialState = getTestState(),
-		store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk, actionsInterceptor))),
-		route = '/',
-		history = createMemoryHistory({ initialEntries: [route] })
-	}: any = {}
-) => {
+export const renderWithStoreAndRouter = (component: any) => {
+	const initialState = getTestState();
+	const store = configureStore({
+		reducer: rootReducer,
+		preloadedState: initialState
+		// compose(applyMiddleware(thunk, actionsInterceptor
+	});
+	const route = '/';
+	const history = createMemoryHistory({ initialEntries: [route] });
+
 	langUtils.setLocale('en', {
 		core: i18n,
 		dataTypes: {},

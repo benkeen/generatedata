@@ -1,11 +1,11 @@
 import React, { useEffect, CSSProperties } from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
-import CloseIcon from '@material-ui/icons/Close';
-import ErrorIcon from '@material-ui/icons/ErrorOutline';
-import ErrorSolidIcon from '@material-ui/icons/Error';
-import Refresh from '@material-ui/icons/Refresh';
-import AddCircle from '@material-ui/icons/AddCircle';
-import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import ErrorIcon from '@mui/icons-material/ErrorOutline';
+import ErrorSolidIcon from '@mui/icons-material/Error';
+import Refresh from '@mui/icons-material/Refresh';
+import AddCircle from '@mui/icons-material/AddCircle';
+import IconButton from '@mui/material/IconButton';
 import CodeMirrorWrapper from './CodeMirrorWrapper.container';
 import { Tooltip } from '~components/tooltips';
 import { PreviewPanelButton } from '~components/Buttons.component';
@@ -38,7 +38,7 @@ export type PreviewPanelProps = {
 
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
-const NoResultsBlock = ({ i18n, type }: any): JSX.Element => {
+const NoResultsBlock = ({ i18n, type }: any) => {
 	const map: any = {
 		invalidSettings: {
 			icon: ErrorSolidIcon,
@@ -154,7 +154,7 @@ const PreviewPanel = ({
 		exportTypeButtonClasses += ` ${styles.error}`;
 	}
 
-	const getExportSettingsBtn = (): React.ReactNode => {
+	const getExportSettingsBtn = () => {
 		if (exportSettingsVisible) {
 			return <div />;
 		}

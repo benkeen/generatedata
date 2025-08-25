@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { format, fromUnixTime } from 'date-fns';
 import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import Dropdown from '~components/dropdown/Dropdown';
-import Event from '@material-ui/icons/Event';
-import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
+import Event from '@mui/icons-material/Event';
+import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { ErrorTooltip } from '~components/tooltips';
 import TextField from '~components/TextField';
@@ -63,7 +63,7 @@ export const getOptions = (): any[] => {
   ]);
 };
 
-export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
+export const Example = ({ i18n, data, onUpdate }: DTExampleProps) => {
   const onChange = ({ value }: { value: string }): void => {
     onUpdate({
       ...data,
@@ -81,7 +81,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 // the right value. I couldn't find any doc about this issue & I don't recall it occurring with earlier versions of this
 // code. Upgrading is probably the best option but that's a lot of work, so for now there are two pickers, one for From and
 // To each. Klutzy, but functional.
-export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX.Element => {
+export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
   const [fromDatePickerOpen, setFromDatePickerOpen] = React.useState(false);
   const [toDatePickerOpen, setToDatePickerOpen] = React.useState(false);
   const [selectedDatePicker, setDatePicker] = React.useState('fromDate');
@@ -172,29 +172,27 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
   );
 };
 
-const Copy = ({ content, tooltip, message }: any): JSX.Element => (
+const Copy = ({ content, tooltip, message }: any) => (
   <span className={styles.copy}>
     <CopyToClipboard content={content} message={message} tooltip={tooltip} />
   </span>
 );
 
 const generateRows = (letters: string[], i18n: any, coreI18n: any): JSX.Element[] =>
-  letters.map(
-    (letter: string): JSX.Element => (
-      <div className={styles.row} key={letter}>
-        <div className={styles.col1}>
-          <label>{letter}</label>
-        </div>
-        <div className={sharedStyles.copyCol}>
-          <Copy content={letter} message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
-        </div>
-        <div className={styles.col2}>{i18n[`${letter}Format`]}</div>
-        <div className={styles.col3}>{i18n[`${letter}FormatExample`]}</div>
+  letters.map((letter: string) => (
+    <div className={styles.row} key={letter}>
+      <div className={styles.col1}>
+        <label>{letter}</label>
       </div>
-    )
-  );
+      <div className={sharedStyles.copyCol}>
+        <Copy content={letter} message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
+      </div>
+      <div className={styles.col2}>{i18n[`${letter}Format`]}</div>
+      <div className={styles.col3}>{i18n[`${letter}FormatExample`]}</div>
+    </div>
+  ));
 
-export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
+export const Help = ({ coreI18n, i18n }: DTHelpProps) => (
   <>
     <p dangerouslySetInnerHTML={{ __html: i18n.helpIntro }} />
 

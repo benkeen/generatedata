@@ -1,14 +1,14 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button, { ButtonProps } from '@material-ui/core/Button';
+import { withStyles } from '@mui/material/styles';
+import Button, { ButtonProps } from '@mui/material/Button';
 
-export const PrimaryButton = ({ children, ...props }: ButtonProps): JSX.Element => (
+export const PrimaryButton = ({ children, ...props }: ButtonProps) => (
 	<Button color="primary" variant="outlined" disableElevation {...props}>
 		{children}
 	</Button>
 );
 
-export const NullButton = ({ children, ...props }: ButtonProps): JSX.Element => (
+export const NullButton = ({ children, ...props }: ButtonProps) => (
 	<Button color="default" variant="outlined" disableElevation {...props}>
 		{children}
 	</Button>
@@ -26,7 +26,7 @@ const SecondaryStyledButton = withStyles({
 	}
 })(Button);
 
-export const SecondaryButton = ({ children, ...props }: ButtonProps): JSX.Element => (
+export const SecondaryButton = ({ children, ...props }: ButtonProps) => (
 	<SecondaryStyledButton color="secondary" variant="outlined" {...props}>
 		{children}
 	</SecondaryStyledButton>
@@ -45,7 +45,7 @@ export const StyledPreviewPanelButton = withStyles({
 	}
 })(Button);
 
-export const PreviewPanelButton = ({ children, ...props }: ButtonProps): JSX.Element => (
+export const PreviewPanelButton = ({ children, ...props }: ButtonProps) => (
 	<StyledPreviewPanelButton color="primary" variant="outlined" size="medium" {...props}>
 		{children}
 	</StyledPreviewPanelButton>

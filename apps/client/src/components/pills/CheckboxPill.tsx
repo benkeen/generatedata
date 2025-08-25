@@ -11,7 +11,7 @@ type CheckboxPillProps = {
 	style?: any;
 };
 
-const CheckboxPill = ({ label, onClick, name, checked, disabled, tooltip, style }: CheckboxPillProps): JSX.Element => (
+const CheckboxPill = ({ label, onClick, name, checked, disabled, tooltip, style }: CheckboxPillProps) => (
 	<BasePill
 		type={PillType.checkbox}
 		label={label}

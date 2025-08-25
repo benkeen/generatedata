@@ -13,7 +13,7 @@ export type AboutProps = {
 	i18n: any;
 };
 
-const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps): JSX.Element => (
+const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps) => (
 	<Dialog onClose={onClose} open={visible} className={styles.aboutDialog}>
 		<div style={{ width: 460 }}>
 			<DialogTitle onClose={onClose}>{i18n.about}</DialogTitle>

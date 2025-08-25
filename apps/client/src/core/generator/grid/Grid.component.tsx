@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Measure from 'react-measure';
 import { useWindowSize } from 'react-hooks-window-size';
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 import * as styles from './Grid.scss';
 import { Tooltip } from '~components/tooltips';
 import { PrimaryButton } from '~components/Buttons.component';
@@ -23,16 +23,7 @@ export type GridProps = {
 	showHelpDialog: (section: DataTypeFolder) => void;
 };
 
-const Grid = ({
-	rows,
-	onAddRows,
-	onSort,
-	i18n,
-	columnTitle,
-	toggleGrid,
-	changeSmallScreenVisiblePanel,
-	showHelpDialog
-}: GridProps): JSX.Element => {
+const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel, showHelpDialog }: GridProps) => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [dimensions, setDimensions] = React.useState<any>({
 		height: 0,

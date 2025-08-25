@@ -2,7 +2,7 @@ import React from 'react';
 import { PrimaryButton, NullButton } from '~components/Buttons.component';
 import { getStrings } from '@generatedata/utils/lang';
 
-export const TourCompleteStep = ({ close }: any): JSX.Element => {
+export const TourCompleteStep = ({ close }: any) => {
 	const { core: i18n } = getStrings();
 
 	const onExit = (): void => {

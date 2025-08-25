@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Grow from '@material-ui/core/Grow';
-import Popper from '@material-ui/core/Popper';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import SaveIcon from '@material-ui/icons/Save';
-import GearIcon from '@material-ui/icons/Settings';
-import Person from '@material-ui/icons/EmojiPeople';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Grow from '@mui/material/Grow';
+import Popper from '@mui/material/Popper';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import SaveIcon from '@mui/icons-material/Save';
+import GearIcon from '@mui/icons-material/Settings';
+import Person from '@mui/icons-material/EmojiPeople';
 import { Tooltip } from '~components/tooltips';
 import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
@@ -48,7 +48,7 @@ const Footer = ({
 	onSaveAs,
 	showTourDialog,
 	customFooterLinks
-}: FooterProps): JSX.Element => {
+}: FooterProps) => {
 	const history = useHistory();
 	const saveAsButtonRef = React.useRef(null);
 	const anchorRef = React.useRef<HTMLDivElement>(null);

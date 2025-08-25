@@ -12,14 +12,7 @@ export type DeleteAccountDialogProps = {
 	i18n: any;
 };
 
-const DeleteAccountDialog = ({
-	visible,
-	name,
-	onClose,
-	onDelete,
-	onExited,
-	i18n
-}: DeleteAccountDialogProps): JSX.Element => (
+const DeleteAccountDialog = ({ visible, name, onClose, onDelete, onExited, i18n }: DeleteAccountDialogProps) => (
 	<Dialog
 		onClose={onClose}
 		open={visible}

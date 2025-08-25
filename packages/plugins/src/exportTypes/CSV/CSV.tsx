@@ -12,7 +12,7 @@ const options = [
   { value: 'Mac', label: 'Mac' }
 ];
 
-export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element => {
+export const Settings = ({ i18n, id, data, onUpdate }: ETSettings) => {
   const onChange = (prop: string, value: string): void => {
     onUpdate({
       ...data,
@@ -24,11 +24,22 @@ export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element 
     <div className={`${etShared.settingRow} ${styles.settings}`}>
       <div>
         <label htmlFor={`${id}-delimiter`}>{i18n.delimiterChars}</label>
-        <TextField error={data.delimiter ? '' : i18n.validationNoDelimiter} style={{ width: 30 }} id={`${id}-delimiter`} value={data.delimiter} onChange={(e: any): void => onChange('delimiter', e.target.value)} />
+        <TextField
+          error={data.delimiter ? '' : i18n.validationNoDelimiter}
+          style={{ width: 30 }}
+          id={`${id}-delimiter`}
+          value={data.delimiter}
+          onChange={(e: any): void => onChange('delimiter', e.target.value)}
+        />
       </div>
       <div>
         <label htmlFor={`${id}-eolChar`}>{i18n.eolChar}</label>
-        <Dropdown id={`${id}-eolChar`} value={data.lineEndings} options={options} onChange={({ value }: DropdownOption): void => onChange('lineEndings', value)} />
+        <Dropdown
+          id={`${id}-eolChar`}
+          value={data.lineEndings}
+          options={options}
+          onChange={({ value }: DropdownOption): void => onChange('lineEndings', value)}
+        />
       </div>
     </div>
   );

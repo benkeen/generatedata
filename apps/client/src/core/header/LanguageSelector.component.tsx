@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import LanguageIcon from '@material-ui/icons/Language';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+import LanguageIcon from '@mui/icons-material/Language';
 import { Dialog, DialogContent, DialogTitle } from '~components/dialogs';
 import { Tooltip } from '~components/tooltips';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
@@ -28,7 +28,7 @@ export type SelectorDialogProps = {
 	i18n: any;
 };
 
-const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, loading, i18n }: SelectorDialogProps): JSX.Element => {
+const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, loading, i18n }: SelectorDialogProps) => {
 	const history = useHistory();
 
 	return (
@@ -40,18 +40,16 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, l
 				</DialogTitle>
 				<DialogContent dividers>
 					<List disablePadding>
-						{allLocaleOptions.map(
-							(currLocale: any): JSX.Element => (
-								<ListItem
-									button
-									key={currLocale.value}
-									className={currentLocale === currLocale.value ? styles.selectedLocale : ''}
-									onClick={(): void => onSelect(currLocale.value, history)}
-								>
-									<ListItemText primary={currLocale.label} />
-								</ListItem>
-							)
-						)}
+						{allLocaleOptions.map((currLocale: any) => (
+							<ListItem
+								button
+								key={currLocale.value}
+								className={currentLocale === currLocale.value ? styles.selectedLocale : ''}
+								onClick={(): void => onSelect(currLocale.value, history)}
+							>
+								<ListItemText primary={currLocale.label} />
+							</ListItem>
+						))}
 					</List>
 				</DialogContent>
 			</div>

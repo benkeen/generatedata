@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Button from '@material-ui/core/Button';
-import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+import Button from '@mui/material/Button';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import { isValidEmail } from '@generatedata/utils/general';
@@ -25,7 +25,7 @@ const PasswordResetDialog = ({
 	showLoginDialog,
 	defaultEmail,
 	i18n
-}: PasswordResetDialogProps): JSX.Element => {
+}: PasswordResetDialogProps) => {
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');

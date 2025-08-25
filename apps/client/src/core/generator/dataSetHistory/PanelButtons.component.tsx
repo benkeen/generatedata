@@ -11,7 +11,7 @@ export type PanelButtonsProps = {
 	i18n: any;
 };
 
-export const PanelButtons = ({ selectVersion, selectedDataSetHistoryItem, i18n }: PanelButtonsProps): JSX.Element => {
+export const PanelButtons = ({ selectVersion, selectedDataSetHistoryItem, i18n }: PanelButtonsProps) => {
 	const { isLatest } = selectedDataSetHistoryItem;
 
 	return (

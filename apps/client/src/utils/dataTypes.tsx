@@ -58,7 +58,7 @@ export const getSortedGroupedDataTypes = (): any => {
 	return cachedSortedGroupedDataTypes;
 };
 
-export const DefaultHelpComponent = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
+export const DefaultHelpComponent = ({ i18n }: DTHelpProps) => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
 
 const showNothing = (): null => null;
 
@@ -179,7 +179,7 @@ export const processBatches = getProcessBatches(dataTypes);
 export const getAffectedDataTypes = (dataTypes: any): any => {
 	const affectedDataTypes: any = {};
 
-	Object.keys(dataTypes).forEach((dataType: DataTypeFolder) => {
+	Object.keys(dataTypes).forEach((dataType) => {
 		if (!affectedDataTypes[dataType]) {
 			affectedDataTypes[dataType] = [];
 		}

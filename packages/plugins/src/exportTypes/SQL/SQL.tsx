@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Switch from '@material-ui/core/Switch';
+import Switch from '@mui/material/Switch';
 import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
 import { SQLSettings } from './SQL.state';
@@ -29,7 +29,13 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
 
     return (
       <div>
-        <Switch checked={data.encloseInBackQuotes} id={`${id}-encloseInBackQuotes`} value="checked" color="primary" onChange={(): void => onChange('encloseInBackQuotes', !data.encloseInBackQuotes)} />
+        <Switch
+          checked={data.encloseInBackQuotes}
+          id={`${id}-encloseInBackQuotes`}
+          value="checked"
+          color="primary"
+          onChange={(): void => onChange('encloseInBackQuotes', !data.encloseInBackQuotes)}
+        />
         <label htmlFor={`${id}-encloseInBackQuotes`}>{i18n.encloseTableBackquotes}</label>
       </div>
     );
@@ -41,7 +47,13 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
     }
     return (
       <li>
-        <input type="radio" value="insertIgnore" id={`${id}-insertIgnore`} onChange={(): void => onChange('statementType', 'insertIgnore')} checked={data.statementType === 'insertIgnore'} />
+        <input
+          type="radio"
+          value="insertIgnore"
+          id={`${id}-insertIgnore`}
+          onChange={(): void => onChange('statementType', 'insertIgnore')}
+          checked={data.statementType === 'insertIgnore'}
+        />
         <label htmlFor={`${id}-insertIgnore`}>INSERT IGNORE</label>
       </li>
     );
@@ -71,7 +83,17 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
         <label htmlFor={`${id}_insertBatchSize`} id={`${id}_insertBatchSize`}>
           {label}
         </label>
-        <TextField type="number" id={`${id}-insertBatchSize`} value={data.insertBatchSize} style={{ width: 60 }} disabled={data.statementType === 'update'} error={data.insertBatchSize ? '' : coreI18n.requiredField} min={1} max={1000} onChange={(e: any): void => onChange('insertBatchSize', parseInt(e.target.value, 10))} />
+        <TextField
+          type="number"
+          id={`${id}-insertBatchSize`}
+          value={data.insertBatchSize}
+          style={{ width: 60 }}
+          disabled={data.statementType === 'update'}
+          error={data.insertBatchSize ? '' : coreI18n.requiredField}
+          min={1}
+          max={1000}
+          onChange={(e: any): void => onChange('insertBatchSize', parseInt(e.target.value, 10))}
+        />
       </div>
     );
   };
@@ -90,11 +112,25 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
           <div className={styles.row}>
             <ul>
               <li>
-                <input type="radio" value="single" name={`${id}-quotes`} id={`${id}-quotesSingle`} onChange={(): void => onChange('quotes', 'single')} checked={data.quotes === 'single'} />
+                <input
+                  type="radio"
+                  value="single"
+                  name={`${id}-quotes`}
+                  id={`${id}-quotesSingle`}
+                  onChange={(): void => onChange('quotes', 'single')}
+                  checked={data.quotes === 'single'}
+                />
                 <label htmlFor={`${id}-quotesSingle`}>Single</label>
               </li>
               <li>
-                <input type="radio" value="double" name={`${id}-quotes`} id={`${id}-quotesDouble`} onChange={(): void => onChange('quotes', 'double')} checked={data.quotes === 'double'} />
+                <input
+                  type="radio"
+                  value="double"
+                  name={`${id}-quotes`}
+                  id={`${id}-quotesDouble`}
+                  onChange={(): void => onChange('quotes', 'double')}
+                  checked={data.quotes === 'double'}
+                />
                 <label htmlFor={`${id}-quotesDouble`}>Double</label>
               </li>
             </ul>
@@ -115,13 +151,23 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
           <div>
             <label htmlFor={`${id}-tableName`}>{i18n.dbTableName}</label>
             <div>
-              <TextField error={data.tableName.trim() !== '' ? '' : coreI18n.requiredField} id={`${id}-tableName`} value={data.tableName} onChange={(e: any): void => onChange('tableName', e.target.value)} />
+              <TextField
+                error={data.tableName.trim() !== '' ? '' : coreI18n.requiredField}
+                id={`${id}-tableName`}
+                value={data.tableName}
+                onChange={(e: any): void => onChange('tableName', e.target.value)}
+              />
             </div>
           </div>
           <div>
             <label htmlFor={`${id}-databaseType`}>{i18n.dbType}</label>
             <div>
-              <Dropdown id={`${id}-databaseType`} value={data.databaseType} options={options} onChange={(i: any): void => onChange('databaseType', i.value)} />
+              <Dropdown
+                id={`${id}-databaseType`}
+                value={data.databaseType}
+                options={options}
+                onChange={(i: any): void => onChange('databaseType', i.value)}
+              />
             </div>
           </div>
         </div>
@@ -132,16 +178,34 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
           </div>
           <div>
             <div>
-              <Switch checked={data.dropTable} id={`${id}-dropTable`} value="checked" color="primary" onChange={(): void => onChange('dropTable', !data.dropTable)} />
+              <Switch
+                checked={data.dropTable}
+                id={`${id}-dropTable`}
+                value="checked"
+                color="primary"
+                onChange={(): void => onChange('dropTable', !data.dropTable)}
+              />
               <label htmlFor={`${id}-dropTable`}>{i18n.includeDropTableQuery}</label>
             </div>
             <div>
-              <Switch checked={data.createTable} id={`${id}-createTable`} value="checked" color="primary" onChange={(): void => onChange('createTable', !data.createTable)} />
+              <Switch
+                checked={data.createTable}
+                id={`${id}-createTable`}
+                value="checked"
+                color="primary"
+                onChange={(): void => onChange('createTable', !data.createTable)}
+              />
               <label htmlFor={`${id}-createTable`}>{i18n.includeCreateTableQuery}</label>
             </div>
             {getBackQuotesOption()}
             <div>
-              <Switch checked={data.addPrimaryKey} id={`${id}-addPrimaryKey`} value="checked" color="primary" onChange={(): void => onChange('addPrimaryKey', !data.addPrimaryKey)} />
+              <Switch
+                checked={data.addPrimaryKey}
+                id={`${id}-addPrimaryKey`}
+                value="checked"
+                color="primary"
+                onChange={(): void => onChange('addPrimaryKey', !data.addPrimaryKey)}
+              />
               <label htmlFor={`${id}-addPrimaryKey`}>{i18n.addDefaultAutoIncrementPrimaryKey}</label>
             </div>
           </div>
@@ -156,12 +220,24 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
           <div className={styles.row}>
             <ul>
               <li>
-                <input type="radio" value="insert" id={`${id}-insert`} onChange={(): void => onChange('statementType', 'insert')} checked={data.statementType === 'insert'} />
+                <input
+                  type="radio"
+                  value="insert"
+                  id={`${id}-insert`}
+                  onChange={(): void => onChange('statementType', 'insert')}
+                  checked={data.statementType === 'insert'}
+                />
                 <label htmlFor={`${id}-insert`}>INSERT</label>
               </li>
               {getInsertIgnoreOption()}
               <li>
-                <input type="radio" value="update" id={`${id}-update`} onChange={(): void => onChange('statementType', 'update')} checked={data.statementType === 'update'} />
+                <input
+                  type="radio"
+                  value="update"
+                  id={`${id}-update`}
+                  onChange={(): void => onChange('statementType', 'update')}
+                  checked={data.statementType === 'update'}
+                />
                 <label htmlFor={`${id}-update`}>UPDATE</label>
               </li>
             </ul>

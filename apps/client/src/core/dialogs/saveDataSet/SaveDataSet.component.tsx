@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useHistory } from 'react-router';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import TextField from '~components/TextField';
 import { PrimaryButton } from '~components/Buttons.component';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
@@ -27,7 +27,7 @@ const SaveDataSetDialog = ({
 	showRegistration,
 	onRedirectToLogin,
 	i18n
-}: SaveDataSetDialogProps): JSX.Element => {
+}: SaveDataSetDialogProps) => {
 	const history = useHistory();
 
 	const newDataSetNameField = useRef<HTMLInputElement>();

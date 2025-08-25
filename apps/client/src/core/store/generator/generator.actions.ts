@@ -397,8 +397,8 @@ export const clearPage =
 			const loadedExportTypes = selectors.getLoadedExportTypesArray(getState());
 
 			const exportTypeInitialStates: any = {};
-			loadedExportTypes.forEach((et: ExportTypeFolder) => {
-				exportTypeInitialStates[et] = getExportTypeInitialState(et);
+			loadedExportTypes.forEach((et) => {
+				exportTypeInitialStates[et] = getExportTypeInitialState(et as ExportTypeFolder);
 			});
 
 			dispatch({
@@ -452,8 +452,8 @@ export const loadDataSet =
 
 			// load all the datasets and export type
 			dispatch(onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
-			uniqueDataTypes.forEach((dataType: DataTypeFolder) =>
-				loadDataTypeBundle(dispatch, getState, dataType, {
+			uniqueDataTypes.forEach((dataType) =>
+				loadDataTypeBundle(dispatch, getState, dataType as DataTypeFolder, {
 					shouldRefreshPreviewPanel: false
 				})
 			);

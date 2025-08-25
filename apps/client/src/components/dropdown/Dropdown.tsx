@@ -26,7 +26,7 @@ const selectStyles = {
 	menuPortal: (base: any): any => ({ ...base, zIndex: C.ZINDEXES.DIALOG })
 };
 
-const Dropdown = ({ value, isGrouped, options, hasError, placeholder, ...props }: any): JSX.Element => {
+const Dropdown = ({ value, isGrouped, options, hasError, placeholder, ...props }: any) => {
 	const i18n = getStrings();
 
 	// react-select has a terrible API. You need to pass the entire selected object as the `value` prop to prefill it.

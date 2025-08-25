@@ -84,7 +84,7 @@ const CreatablePillField = ({
 	placeholder,
 	className,
 	isClearable = true
-}: CreatablePillFieldProps): JSX.Element => {
+}: CreatablePillFieldProps) => {
 	const [tempValue, setTempValue] = React.useState('');
 	const options = value.map(createOption);
 
