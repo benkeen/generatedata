@@ -81,7 +81,7 @@ const NamesDialog = ({
     onUpdateSelectedCountries(countries ? countries.map(({ value }: DropdownOption) => value) : []);
   };
 
-  const getCountryContent = (): JSX.Element | null => {
+  const getCountryContent = () => {
     if (data.source !== NamesSource.countries) {
       return null;
     }

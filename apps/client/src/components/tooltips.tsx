@@ -1,7 +1,7 @@
 import MuiTooltip from '@mui/material/Tooltip';
-import { withStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
-export const HtmlTooltip = withStyles(() => ({
+export const HtmlTooltip = styled(MuiTooltip)(() => ({
 	tooltip: {
 		backgroundColor: '#ffffff',
 		color: 'rgba(0, 0, 0, 0.87)',
@@ -12,9 +12,9 @@ export const HtmlTooltip = withStyles(() => ({
 	arrow: {
 		color: '#ffffff'
 	}
-}))(MuiTooltip);
+}));
 
-export const Tooltip = withStyles(() => ({
+export const Tooltip = styled(MuiTooltip)(() => ({
 	tooltip: {
 		backgroundColor: '#333333',
 		maxWidth: 220,
@@ -26,9 +26,9 @@ export const Tooltip = withStyles(() => ({
 	arrow: {
 		color: '#333333'
 	}
-}))(MuiTooltip);
+}));
 
-export const ErrorTooltip = withStyles(() => ({
+export const ErrorTooltip = styled(MuiTooltip)(() => ({
 	tooltip: {
 		backgroundColor: '#D80000',
 		maxWidth: 220,
@@ -40,4 +40,4 @@ export const ErrorTooltip = withStyles(() => ({
 	arrow: {
 		color: '#D80000'
 	}
-}))(MuiTooltip);
+}));

@@ -69,7 +69,7 @@ const LanguageSelector = ({
 	onChangeLocale,
 	isLocaleFileLoading,
 	i18n
-}: LanguageSelectorProps): JSX.Element | null => {
+}: LanguageSelectorProps) => {
 	const [dialogVisible, setSelectorDialogVisible] = React.useState(false);
 	const [lastI18n, setLastI18n] = React.useState(i18n);
 

@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { format, fromUnixTime } from 'date-fns';
+import { TypedDocumentNode } from '@apollo/client';
 import { useQuery } from '@apollo/client/react';
 import Drawer from '@mui/material/Drawer';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
@@ -29,7 +30,7 @@ export type DataSetHistoryProps = {
 const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
-const Row = ({ rowLabel, dateCreated, content, loadHistoryVersion, isSelected, i18n, Btn }: any): React.ReactElement => {
+const Row = ({ rowLabel, dateCreated, content, loadHistoryVersion, isSelected, i18n, Btn }: any) => {
 	let classes = styles.row;
 	if (isSelected) {
 		classes += ` ${styles.selectedRow}`;
@@ -62,8 +63,9 @@ export const DataSetHistory = ({
 }: DataSetHistoryProps): React.ReactElement | null => {
 	const { dataSetId, dataSetName, lastSaved } = dataSet;
 	const { historyId } = selectedDataSetHistoryItem;
+	const [called, setCalled] = useState(false);
 
-	const { data, loading, called, refetch } = useQuery(queries.GET_DATA_SET_HISTORY, {
+	const { data, loading, error, refetch } = useQuery(queries.GET_DATA_SET_HISTORY, {
 		fetchPolicy: 'cache-and-network',
 		variables: {
 			dataSetId,
@@ -72,6 +74,12 @@ export const DataSetHistory = ({
 		},
 		skip: !dataSetId || !showPanel
 	});
+
+	useEffect(() => {
+		if (!loading && !error) {
+			setCalled(true);
+		}
+	}, [loading, error]);
 
 	// need to clear the cache whenever the lastSaved changes
 	useEffect(() => {

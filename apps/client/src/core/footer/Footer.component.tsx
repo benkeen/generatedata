@@ -62,7 +62,7 @@ const Footer = ({
 	});
 
 	// we always show the login button. It'll show a "you must login in" dialog if they're not logged in/registered
-	const getSaveButton = (): JSX.Element | null => {
+	const getSaveButton = () => {
 		// if the data set has already been saved, we give them a split button: the main button immediately saves,
 		// the arrow gives them the option to create a new data set via the "Save as" option
 		if (currentDataSetId) {

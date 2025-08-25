@@ -109,7 +109,7 @@ const PreviewPanel = ({
 		}
 	}, [hasBulkActionPending, previewPanelDependenciesLoaded]);
 
-	const getNoResults = (): JSX.Element | null => {
+	const getNoResults = () => {
 		if (!hasValidExportTypeSettings) {
 			return <NoResultsBlock i18n={i18n} type="invalidSettings" />;
 		}

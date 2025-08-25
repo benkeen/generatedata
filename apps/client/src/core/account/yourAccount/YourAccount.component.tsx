@@ -35,7 +35,7 @@ const YourAccount = ({
 		onInit();
 	}, []);
 
-	const getExpiryDate = (): JSX.Element | null => {
+	const getExpiryDate = () => {
 		if (!expiryDate) {
 			return null;
 		}

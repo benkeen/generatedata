@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Button, { ButtonProps } from '@mui/material/Button';
 
 export const PrimaryButton = ({ children, ...props }: ButtonProps) => (
@@ -9,12 +9,12 @@ export const PrimaryButton = ({ children, ...props }: ButtonProps) => (
 );
 
 export const NullButton = ({ children, ...props }: ButtonProps) => (
-	<Button color="default" variant="outlined" disableElevation {...props}>
+	<Button variant="outlined" disableElevation {...props}>
 		{children}
 	</Button>
 );
 
-const SecondaryStyledButton = withStyles({
+const SecondaryStyledButton = styled(Button)(() => ({
 	root: {
 		border: '1px solid #047a12',
 		color: '#047a12',
@@ -24,7 +24,7 @@ const SecondaryStyledButton = withStyles({
 			backgroundColor: '#f6fff7'
 		}
 	}
-})(Button);
+}));
 
 export const SecondaryButton = ({ children, ...props }: ButtonProps) => (
 	<SecondaryStyledButton color="secondary" variant="outlined" {...props}>
@@ -32,7 +32,7 @@ export const SecondaryButton = ({ children, ...props }: ButtonProps) => (
 	</SecondaryStyledButton>
 );
 
-export const StyledPreviewPanelButton = withStyles({
+export const StyledPreviewPanelButton = styled(Button)(() => ({
 	root: {
 		borderColor: '#ffffff',
 		color: '#ffffff',
@@ -43,7 +43,7 @@ export const StyledPreviewPanelButton = withStyles({
 			boxShadow: 'none'
 		}
 	}
-})(Button);
+}));
 
 export const PreviewPanelButton = ({ children, ...props }: ButtonProps) => (
 	<StyledPreviewPanelButton color="primary" variant="outlined" size="medium" {...props}>

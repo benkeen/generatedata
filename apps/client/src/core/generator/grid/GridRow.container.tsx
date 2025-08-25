@@ -21,7 +21,23 @@ type OwnProps = {
 	showHelpDialog: (dataType: DataTypeFolder) => void;
 };
 
-const mapStateToProps = (state: Store, ownProps: OwnProps): Partial<GridRowProps> => {
+const mapStateToProps = (
+	state: Store,
+	ownProps: OwnProps
+): Pick<
+	GridRowProps,
+	| 'dtDropdownOptions'
+	| 'i18n'
+	| 'countryI18n'
+	| 'selectedDataTypeI18n'
+	| 'Example'
+	| 'Options'
+	| 'isDataTypeLoaded'
+	| 'isCountryNamesLoading'
+	| 'isCountryNamesLoaded'
+	| 'countryNamesMap'
+	| 'dtCustomProps'
+> => {
 	const { dataType } = ownProps.row;
 
 	const { Example, Options, customProps, isLoaded } = getDataType(dataType);
@@ -44,7 +60,9 @@ const mapStateToProps = (state: Store, ownProps: OwnProps): Partial<GridRowProps
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<GridRowProps> => ({
+const mapDispatchToProps = (
+	dispatch: Dispatch
+): Pick<GridRowProps, 'onRemove' | 'onChangeTitle' | 'onConfigureDataType' | 'onSelectDataType'> => ({
 	onRemove: (id: string): any => dispatch(actions.removeRow(id)),
 	onChangeTitle: (id: string, value: string): any => dispatch(actions.onChangeTitle(id, value)),
 	onConfigureDataType: (id: string, data: any, metadata?: DTOptionsMetadata): any =>

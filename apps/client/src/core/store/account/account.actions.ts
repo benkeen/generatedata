@@ -248,7 +248,7 @@ export const renameDataSet =
 		async (dispatch: Dispatch, getState: any): Promise<any> => {
 			const dataSetId = getCurrentDataSetId(getState());
 
-			const response = await apolloClient.mutate({
+			const { data } = await apolloClient.mutate({
 				mutation: queries.RENAME_DATA_SET,
 				variables: {
 					dataSetId,
@@ -256,7 +256,7 @@ export const renameDataSet =
 				}
 			});
 
-			if (response.data.renameDataSet.success) {
+			if (data.renameDataSet.success) {
 				dispatch({
 					type: UPDATE_CURRENT_DATA_SET_NAME,
 					payload: {

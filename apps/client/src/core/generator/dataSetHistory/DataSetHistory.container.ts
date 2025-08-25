@@ -4,14 +4,16 @@ import { DataSetHistory, DataSetHistoryProps } from './DataSetHistory.component'
 import * as selectors from '~store/generator/generator.selectors';
 import * as actions from '~store/generator/generator.actions';
 
-const mapStateToProps = (state: any): Partial<DataSetHistoryProps> => ({
+const mapStateToProps = (state: any): Pick<DataSetHistoryProps, 'i18n' | 'dataSet' | 'selectedDataSetHistoryItem' | 'showPanel'> => ({
 	i18n: selectors.getCoreI18n(state),
 	dataSet: selectors.getCurrentDataSet(state),
 	selectedDataSetHistoryItem: selectors.getSelectedDataSetHistoryItem(state),
 	showPanel: selectors.shouldShowDataSetHistory(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetHistoryProps> => ({
+const mapDispatchToProps = (
+	dispatch: Dispatch
+): Pick<DataSetHistoryProps, 'closePanel' | 'setSelectedDataHistoryItem' | 'loadHistoryVersion' | 'loadStashedVersion'> => ({
 	closePanel: (): any => {
 		dispatch(actions.popStashedState());
 		dispatch(actions.hideDataSetHistory());

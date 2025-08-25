@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Centered, DefaultSpinner } from '~components/loaders/loaders';
 import Header from '../header/Header.container';
 import Footer from '../footer/Footer.container';
@@ -9,7 +9,7 @@ export type PageProps = {
 	children: any;
 };
 
-const Page = ({ localeFileLoaded, children }: PageProps) => {
+const Page = ({ localeFileLoaded, children }: PropsWithChildren<PageProps>) => {
 	const content = localeFileLoaded ? (
 		<>
 			<Header />

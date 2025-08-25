@@ -11,7 +11,7 @@ import { StringSourceEnum, EmailState, defaultDomainSuffixes, defaultDomains, Ge
 import { Tooltip } from '~components/tooltips';
 
 const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOptions, i18n }: any) => {
-  const getFieldsRow = (): JSX.Element | null => {
+  const getFieldsRow = () => {
     if (data.source === StringSourceEnum.random) {
       return null;
     }

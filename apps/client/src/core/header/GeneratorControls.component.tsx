@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useMutation } from '@apollo/client/react';
-import Measure from 'react-measure';
 import AutoSizer from 'react-input-autosize';
 import { Divider, IconButton, List, ListItemButton, ListItemText } from '@mui/material';
 import { HtmlTooltip } from '~components/tooltips';
@@ -10,6 +9,7 @@ import { addToast } from '@generatedata/utils/general';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import * as queries from '~core/queries';
 import { CurrentDataSet } from '~store/generator/generator.reducer';
+import { useMeasure } from '@uidotdev/usehooks';
 
 export type GeneratorControlsProps = {
 	i18n: any;
@@ -38,10 +38,10 @@ const GeneratorControls = ({
 }: GeneratorControlsProps) => {
 	const popoverRef = useRef(null);
 	const inputFieldRef = useRef(null);
+	const [measureRef, { width = 0 }] = useMeasure();
 
 	const { dataSetId, dataSetName } = dataSet;
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
-	const [dimensions, setDimensions] = useState<any>({ height: 0, width: 0 });
 	const [newDataSetName, setNewDataSetName] = useState(dataSetName);
 	const [dataSetMenuVisible, setMenuVisibility] = useState(false);
 
@@ -94,7 +94,7 @@ const GeneratorControls = ({
 		}
 	};
 
-	const getMenu = (): JSX.Element | null => {
+	const getMenu = () => {
 		if (!isLoggedIn || dataSetId === null) {
 			return null;
 		}
@@ -185,29 +185,25 @@ const GeneratorControls = ({
 		}
 	};
 
-	const maxInputFieldWidth = dimensions.width - 30;
+	const maxInputFieldWidth = (width || 0) - 30;
 
 	return (
 		<>
-			<Measure bounds onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}>
-				{({ measureRef }): any => (
-					<div ref={measureRef} style={{ display: 'flex' }}>
-						<AutoSizer
-							className="tour-dataSetName"
-							ref={inputFieldRef}
-							inputStyle={{ fontSize: 18, maxWidth: maxInputFieldWidth }}
-							placeholder={i18n.newDataSet}
-							onFocus={onFocus}
-							onChange={onChange}
-							onKeyUp={onKeyUp}
-							onBlur={onBlur}
-							value={newDataSetName}
-							disabled={disabled}
-						/>
-						{getMenu()}
-					</div>
-				)}
-			</Measure>
+			<div ref={measureRef} style={{ display: 'flex' }}>
+				<AutoSizer
+					className="tour-dataSetName"
+					ref={inputFieldRef}
+					inputStyle={{ fontSize: 18, maxWidth: maxInputFieldWidth }}
+					placeholder={i18n.newDataSet}
+					onFocus={onFocus}
+					onChange={onChange}
+					onKeyUp={onKeyUp}
+					onBlur={onBlur}
+					value={newDataSetName}
+					disabled={disabled}
+				/>
+				{getMenu()}
+			</div>
 
 			<DeleteDataSetDialog
 				visible={dialogVisible}

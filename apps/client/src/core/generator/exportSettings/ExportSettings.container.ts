@@ -4,12 +4,12 @@ import { ExportSettings, ExportSettingsProps } from './ExportSettings.component'
 import * as selectors from '~store/generator/generator.selectors';
 import * as actions from '~store/generator/generator.actions';
 
-const mapStateToProps = (state: any): Partial<ExportSettingsProps> => ({
+const mapStateToProps = (state: any): Pick<ExportSettingsProps, 'i18n' | 'showExportSettings'> => ({
 	i18n: selectors.getCoreI18n(state),
 	showExportSettings: selectors.shouldShowExportSettings(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<ExportSettingsProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<ExportSettingsProps, 'toggleExportSettings'> => ({
 	toggleExportSettings: (): any => dispatch(actions.toggleExportSettings())
 });
 

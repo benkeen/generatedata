@@ -3,7 +3,7 @@ import MuiDialog from '@mui/material/Dialog';
 import MuiDialogTitle from '@mui/material/DialogTitle';
 import MuiDialogContent from '@mui/material/DialogContent';
 import MuiDialogActions from '@mui/material/DialogActions';
-import { withStyles, makeStyles } from '@mui/material';
+import { styled, withStyles, makeStyles } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
@@ -37,18 +37,18 @@ export const DialogTitle = withStyles(dialogStyles)((props: any): any => {
 	);
 });
 
-export const DialogContent = withStyles((theme) => ({
+export const DialogContent = styled(MuiDialogContent)((theme) => ({
 	root: {
 		padding: theme.spacing(2)
 	}
-}))(MuiDialogContent);
+}));
 
-export const DialogActions = withStyles((theme) => ({
+export const DialogActions = styled(MuiDialogActions)((theme) => ({
 	root: {
 		margin: 0,
 		padding: theme.spacing(1)
 	}
-}))(MuiDialogActions);
+}));
 
 const useDialogStyles = makeStyles({
 	root: {

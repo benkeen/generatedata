@@ -47,8 +47,8 @@ export const init = (): void => {
 
 	const preloadDataTypes = selectors.getRowDataTypes(state);
 
-	preloadDataTypes.forEach((dataType: DataTypeFolder) =>
-		actions.loadDataTypeBundle(store.dispatch, store.getState, dataType, {
+	preloadDataTypes.forEach((dataType) =>
+		actions.loadDataTypeBundle(store.dispatch, store.getState, dataType as DataTypeFolder, {
 			shouldRefreshPreviewPanel: false
 		})
 	);

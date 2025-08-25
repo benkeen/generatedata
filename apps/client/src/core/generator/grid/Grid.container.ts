@@ -5,13 +5,15 @@ import * as selectors from '~store/generator/generator.selectors';
 import Grid, { GridProps } from './Grid.component';
 import { DataTypeFolder } from '@generatedata/plugins';
 
-const mapStateToProps = (state: any): Partial<GridProps> => ({
+const mapStateToProps = (state: any): Pick<GridProps, 'i18n' | 'columnTitle' | 'rows'> => ({
 	i18n: selectors.getCoreI18n(state),
 	columnTitle: selectors.getExportTypeColumnTitle(state),
 	rows: selectors.getSortedRowsArray(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
+const mapDispatchToProps = (
+	dispatch: Dispatch
+): Pick<GridProps, 'onAddRows' | 'onSort' | 'toggleGrid' | 'changeSmallScreenVisiblePanel' | 'showHelpDialog'> => ({
 	onAddRows: (numRows: number): any => dispatch(actions.addRows(numRows)),
 	onSort: (id: string, newIndex: number): any => dispatch(actions.repositionRow(id, newIndex)),
 	toggleGrid: (): any => dispatch(actions.toggleGrid()),

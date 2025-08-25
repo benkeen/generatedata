@@ -35,7 +35,7 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps) => {
 		setYourAccountClasses(yaClasses);
 	}, [selectedTab]);
 
-	const getTab = (): JSX.Element | null => {
+	const getTab = () => {
 		if (selectedTab === SelectedAccountTab.dataSets) {
 			return <DataSets className={dataSetsClasses} />;
 		}

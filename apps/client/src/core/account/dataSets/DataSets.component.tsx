@@ -43,14 +43,7 @@ export type DataSetsProps = {
 // to be moved to a user setting at some point
 const NUM_PER_PAGE = 10;
 
-const DataSets = ({
-	onLoadDataSet,
-	locale,
-	i18n,
-	currentDataSetId,
-	className = '',
-	onClearCurrentDataSet
-}: DataSetsProps): JSX.Element | null => {
+const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '', onClearCurrentDataSet }: DataSetsProps) => {
 	const history = useHistory();
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [currentPage, setCurrentPage] = useState(1);

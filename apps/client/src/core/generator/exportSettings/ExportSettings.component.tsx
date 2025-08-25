@@ -17,7 +17,7 @@ export type ExportSettingsProps = {
 export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings }: ExportSettingsProps): React.ReactElement => {
 	const [selectedTabIndex, setSelectedTabIndex] = React.useState(0);
 	const handleChange = (e: React.ChangeEvent<{}>, newValue: number): void => setSelectedTabIndex(newValue);
-	const getTab = (): JSX.Element | null => {
+	const getTab = () => {
 		if (selectedTabIndex === 0) {
 			return <ExportTypeTab />;
 		} else {

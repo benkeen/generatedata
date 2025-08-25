@@ -80,7 +80,7 @@ const AccountsList = ({
 	setAccountsFilterString,
 	setAccountStatusFilter,
 	i18n
-}: AccountsListProps): JSX.Element | null => {
+}: AccountsListProps) => {
 	const [dialogVisible, setDialogVisible] = useState(false);
 	const [deleteAccountInfo, setDeleteAccountInfo] = useState<any>(null);
 	const [lastData, setLastData] = useState<any>(null);

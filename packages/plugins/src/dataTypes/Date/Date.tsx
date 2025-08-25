@@ -178,7 +178,7 @@ const Copy = ({ content, tooltip, message }: any) => (
   </span>
 );
 
-const generateRows = (letters: string[], i18n: any, coreI18n: any): JSX.Element[] =>
+const generateRows = (letters: string[], i18n: any, coreI18n: any) =>
   letters.map((letter: string) => (
     <div className={styles.row} key={letter}>
       <div className={styles.col1}>

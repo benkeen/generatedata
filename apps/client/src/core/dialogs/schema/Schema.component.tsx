@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	tabs: {}
 }));
 
-const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogProps): JSX.Element | null => {
+const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogProps) => {
 	const classes = useStyles();
 	const [code, setCode] = React.useState(schema);
 	const [value, setValue] = React.useState(0);
@@ -113,9 +113,7 @@ const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogPro
 					</div>
 				</DialogContent>
 				<DialogActions className={styles.actions}>
-					<PrimaryButton onClick={onClose} color="default">
-						{i18n.close}
-					</PrimaryButton>
+					<PrimaryButton onClick={onClose}>{i18n.close}</PrimaryButton>
 				</DialogActions>
 			</div>
 		</Dialog>

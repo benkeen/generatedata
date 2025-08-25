@@ -8,12 +8,12 @@ import { withAuth } from '../auth/withAuth';
 import { Store } from '~types/general';
 import { SelectedAccountTab } from '~types/account';
 
-const mapStateToProps = (state: Store): Partial<AccountPageProps> => ({
+const mapStateToProps = (state: Store): Pick<AccountPageProps, 'i18n' | 'selectedTab'> => ({
 	i18n: selectors.getCoreI18n(state),
 	selectedTab: accountSelectors.getSelectedTab(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountPageProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<AccountPageProps, 'onChangeTab'> => ({
 	onChangeTab: (tab: SelectedAccountTab): any => dispatch(accountActions.onChangeTab(tab))
 });
 

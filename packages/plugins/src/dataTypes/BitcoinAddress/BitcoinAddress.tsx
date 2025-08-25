@@ -128,7 +128,7 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
   );
 };
 
-export const Options = ({ data, id, i18n, coreI18n, onUpdate }: DTOptionsProps): JSX.Element | null => {
+export const Options = ({ data, id, i18n, coreI18n, onUpdate }: DTOptionsProps) => {
   const [dialogVisible, setDialogVisibility] = React.useState(false);
 
   let count = 0;

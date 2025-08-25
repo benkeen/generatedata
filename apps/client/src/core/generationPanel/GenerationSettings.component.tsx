@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NumberFormat from 'react-number-format';
+import { NumericFormat } from 'react-number-format';
 import Button from '@mui/material/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { getI18nString } from '@generatedata/utils/lang';
@@ -55,7 +55,7 @@ const GenerationSettingsPanel = ({
 		error = getI18nString(i18n.overMaxAnonRows, [getFormattedNum(clientConfig.appSettings.GD_MAX_DEMO_MODE_ROWS)]);
 	}
 
-	const getEngine = (): JSX.Element | null => {
+	const getEngine = () => {
 		if (!visible || !isGenerating) {
 			return null;
 		}
@@ -63,7 +63,7 @@ const GenerationSettingsPanel = ({
 		return <Engine />;
 	};
 
-	const getGenerationOverlay = (): JSX.Element | null => {
+	const getGenerationOverlay = () => {
 		if (!isGenerating || !packet) {
 			return null;
 		}
@@ -124,7 +124,7 @@ const GenerationSettingsPanel = ({
 	};
 
 	let cancelButton: any = (
-		<Button onClick={closeModal} color="default">
+		<Button onClick={closeModal} variant="text">
 			{i18n.cancel}
 		</Button>
 	);
@@ -142,7 +142,7 @@ const GenerationSettingsPanel = ({
 						<div className={`${styles.row} ${styles.generationRow}`}>
 							{i18n.generate}
 							<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
-								<NumberFormat
+								<NumericFormat
 									className={error ? sharedStyles.errorField : ''}
 									value={numRowsToGenerate}
 									displayType="input"

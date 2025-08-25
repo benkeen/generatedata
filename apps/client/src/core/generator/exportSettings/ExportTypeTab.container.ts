@@ -6,7 +6,12 @@ import * as actions from '~store/generator/generator.actions';
 import { getExportTypeSettingsComponent } from '~utils/exportTypes';
 import { ExportTypeFolder } from '@generatedata/plugins';
 
-const mapStateToProps = (state: any): Partial<ExportTypeTabProps> => {
+const mapStateToProps = (
+	state: any
+): Pick<
+	ExportTypeTabProps,
+	'exportType' | 'exportSettingsTab' | 'i18n' | 'exportTypeI18n' | 'exportTypeSettings' | 'SettingsComponent'
+> => {
 	const exportType = selectors.getExportType(state);
 	let exportTypeI18n = selectors.getExportTypeI18n(state);
 
@@ -26,8 +31,8 @@ const mapStateToProps = (state: any): Partial<ExportTypeTabProps> => {
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): ExportTypeTabProps['onChangeExportType'] & ExportTypeTabProps['onUpdate'] => ({
-	onChangeExportType: (exportType: ExportTypeFolder): any => dispatch(actions.onSelectExportType(exportType)),
+const mapDispatchToProps = (dispatch: Dispatch): Pick<ExportTypeTabProps, 'onChangeExportType' | 'onUpdate'> => ({
+	onChangeExportType: (exportType: string) => dispatch(actions.onSelectExportType(exportType as ExportTypeFolder)),
 	onUpdate: (data: any): any => dispatch(actions.configureExportType(data))
 });
 

@@ -16,7 +16,7 @@ export type DialogLoadingSpinnerProps = {
 	visible: boolean;
 };
 
-export const DialogLoadingSpinner = ({ visible }: DialogLoadingSpinnerProps): JSX.Element | null => {
+export const DialogLoadingSpinner = ({ visible }: DialogLoadingSpinnerProps) => {
 	if (!visible) {
 		return null;
 	}

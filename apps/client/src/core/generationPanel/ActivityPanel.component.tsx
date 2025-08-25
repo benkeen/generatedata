@@ -1,7 +1,6 @@
 import React from 'react';
 import { PieChart, Pie, Cell, BarChart, CartesianGrid, XAxis, YAxis, Bar, Label } from 'recharts';
 import CountUp from 'react-countup';
-import Measure from 'react-measure';
 import IconButton from '@mui/material/IconButton';
 import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
@@ -18,6 +17,7 @@ import { getPercentageLabel } from './generation.helpers';
 import Engine from './Engine.container';
 import { LoadTimeGraphDuration } from '~types/general';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
+import { useMeasure } from '@uidotdev/usehooks';
 
 export type ActivityPanelProps = {
 	visible: boolean;
@@ -57,6 +57,8 @@ const ActivityPanel = ({
 	estimatedTimeRemaining,
 	fullI18n
 }: ActivityPanelProps): any => {
+	const [measureRef, { width = 0, height = 0 }] = useMeasure(); // TODO check defaults are ok
+
 	if (packet === null || fullI18n === null) {
 		return null;
 	}
@@ -65,10 +67,6 @@ const ActivityPanel = ({
 	const { isPaused, config, generationWorkerId, numGeneratedRows, speed } = packet;
 	const { numRowsToGenerate } = config;
 
-	const [dimensions, setDimensions] = React.useState<any>({
-		height: 0,
-		width: 0
-	});
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
 	const generationWorker = coreUtils.getGenerationWorker(generationWorkerId);
 
@@ -105,7 +103,7 @@ const ActivityPanel = ({
 		if (isComplete) {
 			return (
 				<div>
-					<Button onClick={onAbort} color="default" variant="outlined" style={{ marginRight: 10 }}>
+					<Button onClick={onAbort} variant="outlined" style={{ marginRight: 10 }}>
 						{coreI18n.clear}
 					</Button>
 					<Button onClick={onDownload} color="primary" variant="outlined" style={{ marginRight: 10 }}>
@@ -117,7 +115,7 @@ const ActivityPanel = ({
 
 		return (
 			<div>
-				<Button onClick={onClose} color="default" variant="outlined" style={{ marginRight: 10 }}>
+				<Button onClick={onClose} variant="outlined" style={{ marginRight: 10 }}>
 					{coreI18n.hide}
 				</Button>
 				<Button onClick={abortPacket} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
@@ -159,100 +157,99 @@ const ActivityPanel = ({
 		);
 	};
 
-	const panel1Width = (dimensions.width / 100) * 20;
+	const panel1Width = ((width || 0) / 100) * 20;
 	const pieSize = Math.floor(panel1Width * 0.9);
 	const countUpDuration = countUpSpeed;
 
 	return (
 		<>
-			<Measure bounds onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}>
-				{({ measureRef }): any => (
-					<Dialog className={styles.activityPanel} onClose={onClose} open={visible}>
-						<div style={{ width: '100%', height: '100%' }} ref={measureRef}>
-							<DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
-								{coreI18n.generatedC}
-								<CountUp
-									start={prevGeneratedRows}
-									end={numGeneratedRows}
-									separator=","
-									easingFn={coreUtils.easeInOutSine}
-									className={styles.counter}
-									duration={countUpDuration}
-								/>
-								{coreI18n.rows}
-							</DialogTitle>
-							<DialogContent dividers style={{ padding: 0 }}>
-								<div className={styles.overlayWrapper}>
-									<div style={{ display: 'flex' }}>
-										<div className={styles.panel1} style={{ width: panel1Width }}>
-											<div className={styles.pie}>
-												<h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
-												<PieChart width={pieSize} height={pieSize}>
-													<Pie
-														dataKey="value"
-														isAnimationActive={false}
-														data={pieChartData}
-														cx={pieSize / 2}
-														cy={pieSize / 2}
-														innerRadius={pieSize / 4}
-														outerRadius={pieSize / 2 - 5}
-														startAngle={90}
-														endAngle={-270}
-													>
-														{pieChartData.map((entry, index) => (
-															<Cell key={index} fill={pieChartData[index].color} />
-														))}
-													</Pie>
-												</PieChart>
-											</div>
-
-											<div className={styles.dataPanel}>
-												<div className={styles.dataRow}>
-													<div className={styles.dataRowLabel}>{coreI18n.estimatedTime}</div>
-													<div className={styles.dataRowValue}>{estimatedTime}</div>
-												</div>
-												<div className={styles.dataRow}>
-													<div className={styles.dataRowLabel}>{coreI18n.remainingTime}</div>
-													<div className={styles.dataRowValue}>{estimatedTimeRemaining}</div>
-												</div>
-												<div className={styles.dataRow}>
-													<div className={styles.dataRowLabel}>{coreI18n.estimatedSize}</div>
-													<div className={styles.dataRowValue}>{estimatedSize}</div>
-												</div>
-												<div className={styles.dataRow}>
-													<div className={styles.dataRowLabel}>{coreI18n.size}</div>
-													<div className={styles.dataRowValue}>{dataSize}</div>
-												</div>
-											</div>
-										</div>
-
-										<div className={styles.panel2}>
-											<h4>{coreI18n.rowsGeneratedPerSecond}</h4>
-											<BarChart
-												width={dimensions.width - pieSize}
-												height={dimensions.height - 185}
-												data={batchLoadTimes}
-												margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+			<Dialog className={styles.activityPanel} onClose={onClose} open={visible}>
+				<div style={{ width: '100%', height: '100%' }} ref={measureRef}>
+					<DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
+						{coreI18n.generatedC}
+						<CountUp
+							start={prevGeneratedRows}
+							end={numGeneratedRows}
+							separator=","
+							easingFn={coreUtils.easeInOutSine}
+							className={styles.counter}
+							duration={countUpDuration}
+						/>
+						{coreI18n.rows}
+					</DialogTitle>
+					<DialogContent dividers style={{ padding: 0 }}>
+						<div className={styles.overlayWrapper}>
+							<div style={{ display: 'flex' }}>
+								<div className={styles.panel1} style={{ width: panel1Width }}>
+									<div className={styles.pie}>
+										<h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
+										<PieChart width={pieSize} height={pieSize}>
+											<Pie
+												dataKey="value"
+												isAnimationActive={false}
+												data={pieChartData}
+												cx={pieSize / 2}
+												cy={pieSize / 2}
+												innerRadius={pieSize / 4}
+												outerRadius={pieSize / 2 - 5}
+												startAngle={90}
+												endAngle={-270}
 											>
-												<CartesianGrid strokeDasharray="3 3" />
-												<XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
-													<Label value={coreI18n.seconds} offset={0} position="insideBottom" />
-												</XAxis>
-												<YAxis dataKey="rowsPerSecond" />
-												<Bar dataKey="rowsPerSecond" stroke="#275eb5" fill="#275eb5" isAnimationActive={false} />
-											</BarChart>
+												{pieChartData.map((entry, index) => (
+													<Cell key={index} fill={pieChartData[index].color} />
+												))}
+											</Pie>
+										</PieChart>
+									</div>
+
+									<div className={styles.dataPanel}>
+										<div className={styles.dataRow}>
+											<div className={styles.dataRowLabel}>{coreI18n.estimatedTime}</div>
+											<div className={styles.dataRowValue}>{estimatedTime}</div>
+										</div>
+										<div className={styles.dataRow}>
+											<div className={styles.dataRowLabel}>{coreI18n.remainingTime}</div>
+											<div className={styles.dataRowValue}>{estimatedTimeRemaining}</div>
+										</div>
+										<div className={styles.dataRow}>
+											<div className={styles.dataRowLabel}>{coreI18n.estimatedSize}</div>
+											<div className={styles.dataRowValue}>{estimatedSize}</div>
+										</div>
+										<div className={styles.dataRow}>
+											<div className={styles.dataRowLabel}>{coreI18n.size}</div>
+											<div className={styles.dataRowValue}>{dataSize}</div>
 										</div>
 									</div>
 								</div>
-							</DialogContent>
-							<DialogActions className={styles.actionsRow}>
-								{getGenerationControls()}
-								{getActionButtons()}
-							</DialogActions>
+
+								<div className={styles.panel2}>
+									<h4>{coreI18n.rowsGeneratedPerSecond}</h4>
+
+									{width && height && (
+										<BarChart
+											width={width - pieSize}
+											height={height - 185}
+											data={batchLoadTimes}
+											margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+										>
+											<CartesianGrid strokeDasharray="3 3" />
+											<XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
+												<Label value={coreI18n.seconds} offset={0} position="insideBottom" />
+											</XAxis>
+											<YAxis dataKey="rowsPerSecond" />
+											<Bar dataKey="rowsPerSecond" stroke="#275eb5" fill="#275eb5" isAnimationActive={false} />
+										</BarChart>
+									)}
+								</div>
+							</div>
 						</div>
-					</Dialog>
-				)}
-			</Measure>
+					</DialogContent>
+					<DialogActions className={styles.actionsRow}>
+						{getGenerationControls()}
+						{getActionButtons()}
+					</DialogActions>
+				</div>
+			</Dialog>
 			{visible && <Engine />}
 		</>
 	);

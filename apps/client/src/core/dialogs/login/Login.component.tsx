@@ -117,7 +117,7 @@ const LoginDialog = ({
 		layoutClass = styles.withSecondCol;
 	}
 
-	const getSecondColumn = (): JSX.Element | null => {
+	const getSecondColumn = () => {
 		if (!showVendorLoginColumn) {
 			return null;
 		}

@@ -90,7 +90,7 @@ const TourDialog = ({
 		}
 	};
 
-	const getCurrentTour = (): JSX.Element | null => {
+	const getCurrentTour = () => {
 		if (tourIntroDialogVisible || !currentTour || !tourBundleLoaded) {
 			return null;
 		}

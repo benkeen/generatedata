@@ -83,7 +83,7 @@ export const PanelControls = ({
 		);
 	};
 
-	const getDataTemplateButton = (): JSX.Element | null => {
+	const getDataTemplateButton = () => {
 		if (!FeatureToggles.DATA_TEMPLATE_GENERATION_UI) {
 			return null;
 		}
