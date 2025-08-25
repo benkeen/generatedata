@@ -5,7 +5,9 @@ import * as actions from '~store/generator/generator.actions';
 import HelpDialog, { HelpDialogProps } from './HelpDialog.component';
 import { DataTypeFolder } from '@generatedata/plugins';
 
-const mapStateToProps = (state: any): Partial<HelpDialogProps> => ({
+const mapStateToProps = (
+	state: any
+): Pick<HelpDialogProps, 'visible' | 'coreI18n' | 'dataTypeI18n' | 'initialDataType' | 'loadedDataTypes'> => ({
 	visible: selectors.isHelpDialogVisible(state),
 	coreI18n: selectors.getCoreI18n(state),
 	dataTypeI18n: selectors.getDataTypeI18n(state),
@@ -13,7 +15,7 @@ const mapStateToProps = (state: any): Partial<HelpDialogProps> => ({
 	loadedDataTypes: selectors.getLoadedDataTypes(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<HelpDialogProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<HelpDialogProps, 'onClose' | 'onSelectDataType'> => ({
 	onClose: (): any => dispatch(actions.hideHelpDialog()),
 	onSelectDataType: (dataType: DataTypeFolder): any => dispatch(actions.onSelectDataType(dataType))
 });

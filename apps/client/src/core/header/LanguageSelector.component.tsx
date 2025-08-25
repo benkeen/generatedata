@@ -6,7 +6,7 @@ import { Tooltip } from '~components/tooltips';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import { GDLocale } from '~types/general';
 import * as styles from '~core/header/Header.scss';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import clientConfig from '@generatedata/config/clientConfig';
 
 const allLocaleOptions = Object.keys(clientConfig.appSettings.GD_LOCALES).map((shortCode) => ({
@@ -17,7 +17,7 @@ const allLocaleOptions = Object.keys(clientConfig.appSettings.GD_LOCALES).map((s
 export type SelectorDialogProps = {
 	visible: boolean;
 	currentLocale: GDLocale;
-	onSelect: (locale: GDLocale, history: any) => void;
+	onSelect: (locale: GDLocale, navigate: any) => void;
 	onClose: () => void;
 	loading: boolean;
 	onExited: () => void;
@@ -25,7 +25,7 @@ export type SelectorDialogProps = {
 };
 
 const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, loading, i18n }: SelectorDialogProps) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	return (
 		<Dialog onClose={onClose} open={visible} TransitionProps={{ onExited }}>
@@ -40,7 +40,7 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, l
 							<ListItemButton
 								key={currLocale.value}
 								className={currentLocale === currLocale.value ? styles.selectedLocale : ''}
-								onClick={(): void => onSelect(currLocale.value, history)}
+								onClick={(): void => onSelect(currLocale.value, navigate)}
 							>
 								<ListItemText primary={currLocale.label} />
 							</ListItemButton>

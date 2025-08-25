@@ -19,7 +19,7 @@ interface DispatchProps {
 }
 
 const mapDispatchToProps: DispatchProps = (dispatch) => ({
-	onChangeLocale: (locale: GDLocale, history: any): any => dispatch(mainActions.selectLocale(locale, history))
+	onChangeLocale: (locale: GDLocale, navigate: any): any => dispatch(mainActions.selectLocale(locale, navigate))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LanguageSelector);

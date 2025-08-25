@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme } from '@mui/material/styles';
+import { Theme, styled } from '@mui/material/styles';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -39,21 +39,19 @@ function TabPanel(props: TabPanelProps) {
 	);
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-	root: {
-		flexGrow: 1,
-		backgroundColor: theme.palette.background.paper,
-		display: 'flex',
-		height: 224
-	},
-	tabPanel: {
-		padding: '5px 15px 0'
-	},
-	tabs: {}
+const Root = styled('div')(({ theme }) => ({
+	flexGrow: 1,
+	backgroundColor: theme.palette.background.paper,
+	display: 'flex',
+	height: 224
+}));
+
+const TabPanelContent = styled('div')(() => ({
+	padding: '5px 15px 0'
 }));
 
 const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogProps) => {
-	const classes = useStyles();
+	// const classes = useStyles();
 	const [code, setCode] = React.useState(schema);
 	const [value, setValue] = React.useState(0);
 
@@ -70,7 +68,7 @@ const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogPro
 			<div className={styles.dataTemplateDialogInner}>
 				<DialogTitle onClose={onClose}>Data Template</DialogTitle>
 				<DialogContent dividers>
-					<div className={classes.root}>
+					<Root>
 						<Tabs
 							orientation="vertical"
 							variant="scrollable"
@@ -84,13 +82,13 @@ const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogPro
 							<Tab label="Export" {...a11yProps(2)} />
 						</Tabs>
 						<TabPanel value={value} index={0}>
-							<div className={classes.tabPanel}>
+							<TabPanelContent>
 								The data you create here in the UI can be downloaded as a template for use with the generatedata CLI, letting you generate
 								data
-							</div>
+							</TabPanelContent>
 						</TabPanel>
 						<TabPanel value={value} index={1}>
-							<div className={classes.tabPanel}>
+							<TabPanelContent>
 								<div className={`${styles.content} themeLucario`}>
 									Javascript Typescript JSON template only
 									<CodeMirror
@@ -105,12 +103,12 @@ const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogPro
 										}}
 									/>
 								</div>
-							</div>
+							</TabPanelContent>
 						</TabPanel>
 						<TabPanel value={value} index={2}>
 							<div className={classes.tabPanel}>Import.</div>
 						</TabPanel>
-					</div>
+					</Root>
 				</DialogContent>
 				<DialogActions className={styles.actions}>
 					<PrimaryButton onClick={onClose}>{i18n.close}</PrimaryButton>

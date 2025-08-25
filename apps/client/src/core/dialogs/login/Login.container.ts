@@ -5,18 +5,20 @@ import * as mainSelectors from '~store/main/main.selectors';
 import LoginDialog, { LoginDialogProps } from './Login.component';
 import * as mainActions from '~store/main/main.actions';
 
-const mapStateToProps = (state: any): Partial<LoginDialogProps> => ({
+const mapStateToProps = (state: any): Pick<LoginDialogProps, 'i18n' | 'visible' | 'dialogProcessing' | 'defaultEmail'> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: mainSelectors.shouldShowLoginDialog(state),
 	dialogProcessing: mainSelectors.isDialogProcessing(state),
 	defaultEmail: mainSelectors.getLoginDefaultEmail(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<LoginDialogProps> => ({
+const mapDispatchToProps = (
+	dispatch: Dispatch
+): Pick<LoginDialogProps, 'onClose' | 'onExited' | 'onSubmit' | 'showPasswordResetDialog'> => ({
 	onClose: (): any => dispatch(mainActions.setLoginDialogVisibility(false)),
 	onExited: (): any => dispatch(mainActions.clearLoginFlow()),
-	onSubmit: (email: string, password: string, history: any, onLoginError: any): any => {
-		dispatch(mainActions.login(email, password, history, onLoginError));
+	onSubmit: (email: string, password: string, navigate: any, onLoginError: any): any => {
+		dispatch(mainActions.login(email, password, navigate, onLoginError));
 	},
 	showPasswordResetDialog: (email: string): void => {
 		dispatch(mainActions.setLoginDialogVisibility(false));

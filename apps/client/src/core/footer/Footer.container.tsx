@@ -12,7 +12,12 @@ import { isExportTypeValid } from '~utils/exportTypes';
 import { getCustomFooterLinks } from '@generatedata/utils/extension';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 
-const mapStateToProps = (state: any): Partial<FooterProps> => {
+const mapStateToProps = (
+	state: any
+): Pick<
+	FooterProps,
+	'i18n' | 'locale' | 'scriptVersion' | 'actionButtonsEnabled' | 'currentPage' | 'currentDataSetId' | 'customFooterLinks'
+> => {
 	const exportType = selectors.getExportType(state);
 	const exportTypeSettings = selectors.getCurrentExportTypeSettings(state);
 
@@ -27,7 +32,9 @@ const mapStateToProps = (state: any): Partial<FooterProps> => {
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
+const mapDispatchToProps = (
+	dispatch: Dispatch
+): Pick<FooterProps, 'onSave' | 'onSaveNewDataSet' | 'onSaveAs' | 'onGenerate' | 'showTourDialog'> => ({
 	// @ts-ignore-line
 	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
 	onSave: (): any => dispatch(accountActions.saveCurrentDataSet()),
@@ -36,7 +43,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
 	onGenerate: (): any => dispatch(actions.showGenerationSettingsPanel()),
 
 	// @ts-ignore-line
-	showTourDialog: (history: any): any => dispatch(mainActions.showTourIntroDialog(history))
+	showTourDialog: (navigate: any): any => dispatch(mainActions.showTourIntroDialog(navigate))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

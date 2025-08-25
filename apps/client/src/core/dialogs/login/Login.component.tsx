@@ -6,7 +6,7 @@ import { isValidEmail, addToast } from '@generatedata/utils/general';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import { hasVendorLogin, getVendorLoginButtons } from '@generatedata/utils/auth';
 import styles from './Login.scss';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const showVendorLoginColumn = hasVendorLogin();
 const vendorLoginButtons = getVendorLoginButtons();
@@ -17,7 +17,7 @@ export type LoginDialogProps = {
 	dialogProcessing: boolean;
 	onClose: () => void;
 	onExited: () => void;
-	onSubmit: (email: string, password: string, history: any, onError: Function) => void;
+	onSubmit: (email: string, password: string, navigate: any, onError: Function) => void;
 	showPasswordResetDialog: (email: string) => void;
 	i18n: any;
 };
@@ -36,7 +36,7 @@ const LoginDialog = ({
 	showPasswordResetDialog,
 	i18n
 }: LoginDialogProps) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
@@ -76,7 +76,7 @@ const LoginDialog = ({
 		setPasswordError(pError);
 
 		if (!eError && !pError) {
-			onSubmit(email, password, history, (error: string) => {
+			onSubmit(email, password, navigate, (error: string) => {
 				let errorMessage = i18n.userNotFound;
 				if (error === 'accountExpired') {
 					errorMessage = i18n.accountExpiredMsg;

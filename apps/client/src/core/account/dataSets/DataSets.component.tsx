@@ -11,7 +11,7 @@ import * as sharedStyles from '../../../styles/shared.scss';
 import { DataSetListItem } from '@generatedata/types';
 import { formatUnixTime } from '@generatedata/utils/date';
 import { getGeneratorPageRoute } from '~utils/routeUtils';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { getFormattedNum } from '@generatedata/utils/number';
 import { GDLocale } from '~types/general';
 
@@ -44,7 +44,7 @@ export type DataSetsProps = {
 const NUM_PER_PAGE = 10;
 
 const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '', onClearCurrentDataSet }: DataSetsProps) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [currentPage, setCurrentPage] = useState(1);
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
@@ -63,7 +63,7 @@ const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '
 
 	const loadDataSet = (dataSet: DataSetListItem): void => {
 		onLoadDataSet(dataSet);
-		history.push(getGeneratorPageRoute(locale));
+		navigate(getGeneratorPageRoute(locale));
 	};
 
 	const numItemsOnPage = data?.dataSets?.results?.length || 0;

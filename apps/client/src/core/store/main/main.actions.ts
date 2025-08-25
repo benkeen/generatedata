@@ -33,7 +33,7 @@ export const setLocaleFileLoading = (): GDAction => ({
 });
 
 export const selectLocale =
-	(locale: GDLocale, history?: any): any =>
+	(locale: GDLocale, navigate?: any): any =>
 		(dispatch: Dispatch): any => {
 			dispatch(setLocaleFileLoading());
 
@@ -48,8 +48,8 @@ export const selectLocale =
 					htmlTag.setAttribute('lang', locale);
 				}
 
-				if (history) {
-					history.push(getCurrentLocalizedPath(locale));
+				if (navigate) {
+					navigate(getCurrentLocalizedPath(locale));
 				}
 			};
 			const s = document.createElement('script');
@@ -150,7 +150,7 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const setLoginError = (): GDAction => ({ type: LOGIN_ERROR });
 
 // default authentication
-export const login = (email: string, password: string, history: any, onLoginError: any): any => {
+export const login = (email: string, password: string, navigate: any, onLoginError: any): any => {
 	return async (dispatch: Dispatch): Promise<any> => {
 		dispatch(startDialogProcessing());
 
@@ -196,7 +196,7 @@ export const login = (email: string, password: string, history: any, onLoginErro
 			});
 
 			if (response.data.login.wasOneTimeLogin) {
-				onOneTimeLoginSuccess(tokenExpiry, password, history, dispatch);
+				onOneTimeLoginSuccess(tokenExpiry, password, navigate, dispatch);
 			} else {
 				onLoginSuccess(tokenExpiry, false, dispatch);
 			}
@@ -235,13 +235,13 @@ export const setOneTimePassword = (password: string): GDAction => ({
 	payload: { password }
 });
 
-export const onOneTimeLoginSuccess = (tokenExpiry: number, password: string, history: any, dispatch: Dispatch): void => {
+export const onOneTimeLoginSuccess = (tokenExpiry: number, password: string, navigate: any, dispatch: Dispatch): void => {
 	const i18n = getStrings();
 	setAuthTokenRefresh(tokenExpiry, (): any => updateRefreshToken()(dispatch));
 	dispatch(setLoginDialogVisibility(false));
 	dispatch(setOneTimePassword(password));
 
-	history.push('/account');
+	navigate('/account');
 	dispatch(onChangeTab(SelectedAccountTab.changePassword));
 
 	addToast({
@@ -340,7 +340,7 @@ export const setOnloadAuthDetermined = (): GDAction => ({
 
 export const SHOW_TOUR_INTRO_DIALOG = 'SHOW_TOUR_INTRO_DIALOG';
 export const showTourIntroDialog =
-	(history?: any) =>
+	(navigate?: any) =>
 		(dispatch: Dispatch, getState: any): any => {
 			const state = getState();
 			const currentPage = getCurrentPage(state);
@@ -348,8 +348,8 @@ export const showTourIntroDialog =
 			const generatorRoute = getGeneratorPageRoute(locale);
 
 			// the tour is specific to the generator page, so always redirect there when showing/hiding it
-			if (history && !isGeneratorPage(currentPage, locale)) {
-				history.push(generatorRoute);
+			if (navigate && !isGeneratorPage(currentPage, locale)) {
+				navigate(generatorRoute);
 			}
 
 			dispatch({ type: SHOW_TOUR_INTRO_DIALOG });

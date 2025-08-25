@@ -4,12 +4,12 @@ import * as selectors from '~store/generator/generator.selectors';
 import * as actions from '~store/generator/generator.actions';
 import ClearPageDialog, { ClearPageDialogProps } from './ClearPage.component';
 
-const mapStateToProps = (state: any): Partial<ClearPageDialogProps> => ({
+const mapStateToProps = (state: any): Pick<ClearPageDialogProps, 'i18n' | 'visible'> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: selectors.isClearPageDialogVisible(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<ClearPageDialogProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<ClearPageDialogProps, 'onClose' | 'onClear'> => ({
 	onClose: (): any => dispatch(actions.hideClearPageDialog()),
 	onClear: (): any => dispatch(actions.clearPage())
 });

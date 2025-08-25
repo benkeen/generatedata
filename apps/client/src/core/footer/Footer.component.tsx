@@ -18,7 +18,7 @@ import { useWindowSize } from 'react-hooks-window-size';
 import C from '@generatedata/config/constants';
 import { isGeneratorPage } from '~utils/routeUtils';
 import { GDLocale } from '~types/general';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 export type FooterProps = {
 	i18n: any;
@@ -31,7 +31,7 @@ export type FooterProps = {
 	actionButtonsEnabled: boolean;
 	currentPage: string; // isGeneratorPage?
 	currentDataSetId: number | null;
-	showTourDialog: (history: any) => void;
+	showTourDialog: (navigate: any) => void;
 	customFooterLinks: JSX.Element[];
 };
 
@@ -49,7 +49,7 @@ const Footer = ({
 	showTourDialog,
 	customFooterLinks
 }: FooterProps) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 	const saveAsButtonRef = React.useRef(null);
 	const anchorRef = React.useRef<HTMLDivElement>(null);
 	const [saveAsMenuOpen, setSaveAsMenuOpen] = useState(false);
@@ -154,7 +154,7 @@ const Footer = ({
 							</Tooltip>
 						</li>
 						<li className={styles.showTourLink}>
-							<Button className={styles.tourBtn} onClick={() => showTourDialog(history)}>
+							<Button className={styles.tourBtn} onClick={() => showTourDialog(navigate)}>
 								<Person />
 								<span>{i18n.help}</span>
 							</Button>
