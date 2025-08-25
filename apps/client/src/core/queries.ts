@@ -1,6 +1,6 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
 
-type GetAccounts = {
+export type GetAccounts = {
 	accounts: {
 		totalCount: number;
 		results: {
@@ -42,7 +42,7 @@ export const GET_ACCOUNTS: TypedDocumentNode<GetAccounts> = gql`
 	}
 `;
 
-type DeleteAccount = {
+export type DeleteAccount = {
 	deleteAccount: {
 		success: boolean;
 		error: string;

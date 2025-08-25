@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import CheckCircle from '@mui/icons-material/CheckCircle';
 import Chip from '@mui/material/Chip';
 import styles from './ActivityPacketsList.scss';
@@ -17,11 +17,11 @@ export type ActivePacketList = {
 
 export type ActivePacketsListProps = {
 	packetList: ActivePacketList[];
-	openPacket: (packetId: string, history: any) => void;
+	openPacket: (packetId: string, navigate: any) => void;
 };
 
 const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const chips = packetList.map(({ packetId, label, percentage, numRowsToGenerate, isPaused }, index) => {
 		const color = isPaused ? 'default' : 'primary';
@@ -68,7 +68,7 @@ const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps) =
 					className={styles.chip}
 					clickable
 					color={color}
-					onClick={(): void => openPacket(packetId, history)}
+					onClick={(): void => openPacket(packetId, navigate)}
 					variant="outlined"
 					style={{ marginLeft: 10 }}
 				/>

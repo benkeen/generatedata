@@ -12,7 +12,6 @@ type Tour = 'intro' | 'gridPanel' | 'previewPanel' | 'yourAccount';
 export type TourDialogProps = {
 	tourIntroDialogVisible: boolean;
 	showTourIntroDialog: () => void;
-	currentTour: Tour;
 	onClose: () => void;
 	tourBundleLoaded: boolean;
 	loadTourBundle: () => void;

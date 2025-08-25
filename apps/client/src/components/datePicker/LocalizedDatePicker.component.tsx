@@ -1,6 +1,7 @@
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker, MuiPickersUtilsProvider } from '@mui/lab';
+// import { DatePicker, MuiPickersUtilsProvider } from '@mui/lab';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { getLocale, getStrings } from '@generatedata/utils/lang';
 import { arDZ, de, enUS, es, fr, ja, hi, nl, pt, ru, ta, zhCN } from 'date-fns/locale';
 

@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigation } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client/react';
 import * as codemirror from 'codemirror';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -21,13 +21,6 @@ import { getRoutes } from '~utils/routeUtils';
 import { getLocaleMap } from '@generatedata/utils/lang';
 import '~store/generator/generator.reducer';
 import './styles/global.scss';
-
-// if (process.env.NODE_ENV === 'development') {
-// 	const whyDidYouRender = require('@welldone-software/why-did-you-render');
-// 	whyDidYouRender(React, {
-// 		trackAllPureComponents: true,
-// 	});
-// }
 
 window.CodeMirror = codemirror;
 
@@ -59,25 +52,29 @@ const LocalizationWrapper = (args: any) => {
 	}
 
 	return (
-		<Switch>
+		<Routes>
 			{localizedRoutes.map(({ path, component: Component }, index) => (
 				<Route key={index} path={path}>
 					<Component />
 				</Route>
 			))}
-		</Switch>
+		</Routes>
 	);
 };
 
-const App = withRouter(({ history }: any) => {
+const App = () => {
+	const navigation = useNavigation();
+	
 	useEffect(() => {
-		initRouteListener(history);
+		initRouteListener(navigation);
 	}, []);
 
 	return (
 		<ErrorBoundary>
 			<Page>
-				<Route path="/:lang?">{LocalizationWrapper}</Route>
+				<Route path="/:lang?">
+					<LocalizationWrapper />
+				</Route>
 				<Toast />
 				<SaveDataSetDialog />
 			</Page>

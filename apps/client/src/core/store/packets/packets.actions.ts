@@ -51,7 +51,7 @@ export const logDataBatch =
 
 			// if the packet has been fully generated track the generated row count
 			if (isLoggedIn && currentDataSetId !== null && numRowsToGenerate === numGeneratedRows) {
-				const resp = await apolloClient.mutate({
+				const { data } = await apolloClient.mutate({
 					mutation: gql`
 					mutation UpdateDataSetGenerationCount($dataSetId: ID!, $generatedRows: Int!) {
 						updateDataSetGenerationCount(dataSetId: $dataSetId, generatedRows: $generatedRows) {
@@ -66,7 +66,7 @@ export const logDataBatch =
 					}
 				});
 
-				if (resp.data.updateDataSetGenerationCount.success) {
+				if (data?.updateDataSetGenerationCount?.success) {
 					dispatch(updateTotalGenerationCount(numGeneratedRows));
 				}
 			}

@@ -9,6 +9,7 @@ import { GDAction } from '~types/general';
 import { addToast } from '@generatedata/utils/general';
 import { getStrings } from '@generatedata/utils/lang';
 import * as queries from '~core/queries';
+import type { RenameDataSet } from '~core/queries';
 import { SET_ONE_TIME_PASSWORD } from '~store/main/main.actions';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
@@ -256,7 +257,7 @@ export const renameDataSet =
 				}
 			});
 
-			if (data.renameDataSet.success) {
+			if ((data as RenameDataSet).renameDataSet.success) {
 				dispatch({
 					type: UPDATE_CURRENT_DATA_SET_NAME,
 					payload: {
