@@ -18,7 +18,7 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^2.2.5",
     "nanoid": "^3.3.4",
-    "nodemailer": "^6.9.9",
+    "nodemailer": "^7.0.7",
     "nodemon": "^2.0.6",
     "sequelize": "^6.29.0"
   },
