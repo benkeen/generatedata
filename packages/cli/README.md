@@ -1,6 +1,6 @@
 # @generatedata/cli
 
-> In active development (Feb 2025).
+> In active development (Nov 2025).
 
 Since 4.2.0, the generatedata.com site is now available as a CLI. You can generate all the same data as you
 can via the website, only via the command line from your own machine. There are two ways to do this:

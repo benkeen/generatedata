@@ -1,0 +1,19 @@
+{
+  "name": "@generatedata/graphql-schema",
+  "version": "1.0.0",
+  "description": "A private package containing the graphql schema and auto-generated typings",
+  "private": true,
+  "types": "./dist/resolvers-types.ts",
+  "scripts": {
+    "generate": "graphql-codegen --config codegen.yml"
+  },
+  "devDependencies": {
+    "graphql": "^16.12.0",
+    "@graphql-codegen/cli": "^6.1.0",
+    "@graphql-codegen/typescript": "^5.0.5",
+    "@graphql-codegen/typescript-resolvers": "^5.1.3"
+  },
+  "exports": {
+    "types": "./dist/resolvers-types.ts"
+  }
+}

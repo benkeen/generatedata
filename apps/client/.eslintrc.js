@@ -24,7 +24,7 @@ module.exports = {
         SwitchCase: 1
       }
     ],
-    'max-len': [1, { code: 140 }],
+    // 'max-len': [1, { code: 140 }],
     // '@stylistic/js/indent/max-len': ['warning', 140],
     'object-curly-spacing': ['error', 'always'],
     allowIndentationTabs: 0,
