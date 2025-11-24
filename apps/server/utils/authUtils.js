@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const isValidPassword = async (plainTextPassword, hash) => await bcrypt.compare(plainTextPassword, hash);
 

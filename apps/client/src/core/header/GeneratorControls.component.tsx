@@ -37,8 +37,8 @@ const GeneratorControls = ({
 	disabled,
 	showClearPageDialog
 }: GeneratorControlsProps) => {
-	const popoverRef = useRef<HTMLElement>(null);
-	const inputFieldRef = useRef(undefined);
+	const popoverRef = useRef<HTMLElement>(undefined);
+	const inputFieldRef = useRef(null);
 	const [measureRef, { width = 0 }] = useMeasure();
 
 	const { dataSetId, dataSetName } = dataSet;
@@ -120,7 +120,7 @@ const GeneratorControls = ({
 						}
 					}}
 					title={
-						<div ref={popoverRef}>
+						<div ref={popoverRef as RefObject<HTMLDivElement>}>
 							<List disablePadding>
 								<ListItemButton
 									key="saveAs"

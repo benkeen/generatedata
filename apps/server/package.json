@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@types/nanoid": "3.0.0",
-    "apollo-server-express": "^2.19.0",
-    "bcrypt": "^5.0.0",
+    "apollo-server-express": "^3.13.0",
+    "bcryptjs": "^3.0.3",
     "codemirror": "^5.58.2",
     "cookie-parser": "^1.4.5",
     "date-fns": "^2.17.0",

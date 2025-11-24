@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs'; // TODO was bcrypt
 import clientConfig from '@generatedata/config/clientConfig';
 
 // TODO maybe invert this?
