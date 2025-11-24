@@ -11,7 +11,7 @@ import ManageAccount, {
 import { Store } from '~types/general';
 import { SelectedAccountsTab } from '~types/account';
 
-const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {
+const mapStateToProps = (state: Store): Pick<ManageAccountProps, 'initialState' | 'i18n' | 'submitButtonLabel'> => {
 	const i18n = selectors.getCoreI18n(state);
 	const initialState = actionSelectors.getEditingData(state);
 
@@ -26,8 +26,7 @@ const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<ManageAccountProps> => ({
-	// @ts-ignore-line
+const mapDispatchToProps = (dispatch: Dispatch): Pick<ManageAccountProps, 'onSave' | 'onCancel'> => ({
 	onSave: (data: any): any => dispatch(accountActions.saveAccount(data)),
 	onCancel: (): any => dispatch(accountActions.onChangeAccountsTab(SelectedAccountsTab.accounts))
 });

@@ -1,33 +1,33 @@
 {
-	"name": "@generatedata/config",
-	"version": "1.0.0",
-	"description": "This package contains the settings for your generatedata installation.",
-	"scripts": {
-		"tsc": "tsc",
-		"build": "run-s confirm-setup tsc",
-		"confirm-setup": "node ./scripts/confirm-setup.js"
-	},
-	"devDependencies": {
-		"@types/node": "^20.19.11",
-		"npm-run-all": "^4.1.5",
-		"typescript": "5.9.2"
-	},
-	"exports": {
-		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
-		},
-		"./constants": {
-			"default": "./dist/constants.js",
-			"types": "./dist/constants.d.ts"
-		},
-		"./clientConfig": {
-			"default": "./dist/client.config.js",
-			"types": "./dist/client.config.d.ts"
-		},
-		"./serverConfig": {
-			"default": "./dist/server.config.js",
-			"types": "./dist/server.config.d.ts"
-		}
-	}
+  "name": "@generatedata/config",
+  "version": "1.0.0",
+  "description": "This package contains the settings for your generatedata installation.",
+  "scripts": {
+    "tsc": "tsc",
+    "build": "run-s confirm-setup tsc",
+    "confirm-setup": "node ./scripts/confirm-setup.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.11",
+    "npm-run-all": "^4.1.5",
+    "typescript": "5.9.3"
+  },
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./constants": {
+      "default": "./dist/constants.js",
+      "types": "./dist/constants.d.ts"
+    },
+    "./clientConfig": {
+      "default": "./dist/client.config.js",
+      "types": "./dist/client.config.d.ts"
+    },
+    "./serverConfig": {
+      "default": "./dist/server.config.js",
+      "types": "./dist/server.config.d.ts"
+    }
+  }
 }

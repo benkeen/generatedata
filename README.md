@@ -1,5 +1,7 @@
 # generatedata.com
 
+> Nov 2025: Warning: master is currently being refactored, so it'll be in a broken state for a while.
+
 This is the repo for the downloadable version of [generatedata.com](https://generatedata.com). The script is essentially
 an _engine_ to generate any sort of random data in any format. It currently comes with 30 or
 so _Data Types_ (types of data it generates), 12 _Export Types_ (formats for the data, like CSV, SQL, JSON), plus

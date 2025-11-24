@@ -21,7 +21,7 @@ export const SmallScreenSettingsIcon = ({
 	onConfigureDataType,
 	dtCustomProps
 }: any): any => {
-	const popoverRef = React.useRef(null);
+	const popoverRef = React.useRef<HTMLElement>(undefined);
 	const [open, setOpen] = React.useState(false);
 
 	useOnClickOutside(popoverRef, (e) => {

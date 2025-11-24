@@ -38,7 +38,7 @@ const MainFields = ({
 	isAddingUser,
 	className = ''
 }: MainFieldsProps) => {
-	const emailFieldRef = useRef(null);
+	const emailFieldRef = useRef(undefined);
 	const [oneTimePasswordFieldVisible, setOneTimePasswordFieldVisible] = useState(false);
 
 	// very fussy indeed!
@@ -193,7 +193,7 @@ const MainFields = ({
 								>
 									<TextField
 										error={oneTimePasswordError}
-										value={data.oneTimePassword}
+										value={data.oneTimePassword || ''}
 										name="oneTimePassword"
 										onChange={(e: any): void => update('oneTimePassword', e.target.value)}
 										style={{ width: '100%', marginRight: 8 }}

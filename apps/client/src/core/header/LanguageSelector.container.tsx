@@ -7,7 +7,7 @@ import * as mainSelectors from '../store/main/main.selectors';
 import * as mainActions from '../store/main/main.actions';
 import clientConfig from '@generatedata/config/clientConfig';
 
-const mapStateToProps = (state: any): Partial<LanguageSelectorProps> => ({
+const mapStateToProps = (state: any): Pick<LanguageSelectorProps, 'i18n' | 'locale' | 'availableLocales' | 'isLocaleFileLoading'> => ({
 	i18n: selectors.getCoreI18n(state),
 	locale: mainSelectors.getLocale(state),
 	availableLocales: clientConfig.appSettings.GD_LOCALES,
@@ -15,7 +15,7 @@ const mapStateToProps = (state: any): Partial<LanguageSelectorProps> => ({
 });
 
 interface DispatchProps {
-	(dispatch: Dispatch, ownProps: any): Partial<LanguageSelectorProps>;
+	(dispatch: Dispatch, ownProps: any): Pick<LanguageSelectorProps, 'onChangeLocale'>;
 }
 
 const mapDispatchToProps: DispatchProps = (dispatch) => ({

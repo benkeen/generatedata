@@ -32,7 +32,7 @@ export type FooterProps = {
 	currentPage: string; // isGeneratorPage?
 	currentDataSetId: number | null;
 	showTourDialog: (navigate: any) => void;
-	customFooterLinks: JSX.Element[];
+	customFooterLinks: React.ReactNode[];
 };
 
 const Footer = ({

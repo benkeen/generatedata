@@ -117,7 +117,7 @@ export const SAVE_NEW_DATA_SET = gql`
 	}
 `;
 
-type RenameDataSet = {
+export type RenameDataSet = {
 	renameDataSet: {
 		success: boolean;
 		error: string;

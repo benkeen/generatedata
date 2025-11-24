@@ -26,7 +26,7 @@ const PasswordResetDialog = ({
 	defaultEmail,
 	i18n
 }: PasswordResetDialogProps) => {
-	const textFieldRef = useRef<any>();
+	const textFieldRef = useRef<any>(null);
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');
 

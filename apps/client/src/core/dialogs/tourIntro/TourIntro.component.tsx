@@ -147,7 +147,7 @@ const TourDialog = ({
 						</div>
 					</DialogContent>
 					<DialogActions>
-						<PrimaryButton onClick={closeIntroDialog} color="default">
+						<PrimaryButton onClick={closeIntroDialog} color="primary">
 							{i18n.close}
 						</PrimaryButton>
 					</DialogActions>

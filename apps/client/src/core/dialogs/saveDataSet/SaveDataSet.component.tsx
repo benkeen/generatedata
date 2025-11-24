@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import TextField from '~components/TextField';
 import { PrimaryButton } from '~components/Buttons.component';
@@ -28,9 +28,9 @@ const SaveDataSetDialog = ({
 	onRedirectToLogin,
 	i18n
 }: SaveDataSetDialogProps) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 
-	const newDataSetNameField = useRef<HTMLInputElement>();
+	const newDataSetNameField = useRef<HTMLInputElement>(undefined);
 	const [newDataSetName, setNewDataSetName] = useState('');
 	const [newDataSetNameError, setNewDataSetErrorName] = useState('');
 
@@ -70,7 +70,7 @@ const SaveDataSetDialog = ({
 
 	const gotoRegistration = useCallback(() => {
 		onClose();
-		history.push('/register');
+		navigate('/register');
 	}, []);
 
 	let buttons = <PrimaryButton type="submit">{i18n.save}</PrimaryButton>;

@@ -64,7 +64,7 @@ const LocalizationWrapper = (args: any) => {
 
 const App = () => {
 	const navigation = useNavigation();
-	
+
 	useEffect(() => {
 		initRouteListener(navigation);
 	}, []);
@@ -80,7 +80,7 @@ const App = () => {
 			</Page>
 		</ErrorBoundary>
 	);
-});
+};
 
 const AppWrapper = () => (
 	<Provider store={store}>

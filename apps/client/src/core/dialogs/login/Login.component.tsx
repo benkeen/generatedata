@@ -38,13 +38,13 @@ const LoginDialog = ({
 }: LoginDialogProps) => {
 	const navigate = useNavigate();
 
-	const textFieldRef = useRef<any>();
+	const textFieldRef = useRef<any>(undefined);
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');
 	const [password, setPassword] = useState('');
 	const [passwordError, setPasswordError] = useState('');
 	const [autoFocusPasswordField, shouldAutoFocusPasswordField] = useState(false);
-	const passwordFieldRef = useRef<HTMLInputElement>();
+	const passwordFieldRef = useRef<HTMLInputElement>(undefined);
 
 	useEffect(() => {
 		if (!visible) {
@@ -194,7 +194,7 @@ const LoginDialog = ({
 											disabled={dialogProcessing}
 											throttle={false}
 											onPaste={onPastePassword}
-											autoComplete="false"
+											autoComplete={false}
 										/>
 									</div>
 								</div>

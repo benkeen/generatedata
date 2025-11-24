@@ -31,9 +31,12 @@ export const LocalizedDatePickerProvider = ({ children }: any) => {
 		zh: zhCN
 	};
 
-	return (
-		<MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}>
-			{children}
-		</MuiPickersUtilsProvider>
-	);
+	// TODO REFACTOR
+	// return (
+	// 	<MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}>
+	// 		{children}
+	// 	</MuiPickersUtilsProvider>
+	// );
+
+	return null;
 };

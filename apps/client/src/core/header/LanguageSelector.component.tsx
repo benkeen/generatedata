@@ -56,19 +56,19 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, l
 export type LanguageSelectorProps = {
 	i18n: any;
 	locale: GDLocale;
-	isMobile: boolean;
 	availableLocales: GDLocale[];
 	onChangeLocale: (locale: GDLocale, history: any) => void;
 	isLocaleFileLoading: boolean;
+	isMobile?: boolean;
 };
 
 const LanguageSelector = ({
 	locale,
-	isMobile = false,
 	availableLocales,
 	onChangeLocale,
 	isLocaleFileLoading,
-	i18n
+	i18n,
+	isMobile = false
 }: LanguageSelectorProps) => {
 	const [dialogVisible, setSelectorDialogVisible] = React.useState(false);
 	const [lastI18n, setLastI18n] = React.useState(i18n);

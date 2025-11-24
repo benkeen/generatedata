@@ -9,13 +9,13 @@ import { Store } from '~types/general';
 import { withAuth } from '~core/auth/withAuth';
 import { DataSetListItem } from '@generatedata/types';
 
-const mapStateToProps = (state: Store): Partial<DataSetsProps> => ({
+const mapStateToProps = (state: Store): Pick<DataSetsProps, 'locale' | 'i18n' | 'currentDataSetId'> => ({
 	locale: mainSelectors.getLocale(state),
 	i18n: selectors.getCoreI18n(state),
 	currentDataSetId: selectors.getCurrentDataSetId(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetsProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<DataSetsProps, 'onLoadDataSet' | 'onClearCurrentDataSet'> => ({
 	onLoadDataSet: (dataSet: DataSetListItem): any => dispatch(actions.loadDataSet(dataSet)),
 	onClearCurrentDataSet: (): any => dispatch(generatorActions.clearPage())
 });

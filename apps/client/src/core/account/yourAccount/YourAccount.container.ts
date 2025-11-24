@@ -7,7 +7,9 @@ import YourAccount, { YourAccountProps } from './YourAccount.component';
 import { Store } from '~types/general';
 import { AccountEditingData } from '~store/account/account.reducer';
 
-const mapStateToProps = (state: Store): Partial<YourAccountProps> => ({
+const mapStateToProps = (
+	state: Store
+): Pick<YourAccountProps, 'data' | 'numGeneratedRows' | 'accountHasChanges' | 'expiryDate' | 'i18n'> => ({
 	data: accountSelectors.getEditingData(state),
 	numGeneratedRows: accountSelectors.getNumGeneratedRows(state),
 	accountHasChanges: accountSelectors.accountHasChanges(state),
@@ -15,7 +17,7 @@ const mapStateToProps = (state: Store): Partial<YourAccountProps> => ({
 	i18n: selectors.getCoreI18n(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<YourAccountProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<YourAccountProps, 'updateAccount' | 'onInit' | 'onCancel' | 'onSave'> => ({
 	updateAccount: (data: AccountEditingData): any => dispatch(accountActions.updateAccount(data)),
 	onInit: (): any => dispatch(accountActions.onEditYourAccount()),
 	onCancel: (): any => dispatch(accountActions.cancelChanges()),

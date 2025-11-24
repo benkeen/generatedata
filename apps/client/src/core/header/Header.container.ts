@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import Header, { HeaderProps } from './Header.component';
-import { GDLocale } from '~types/general';
 import * as selectors from '../store/generator/generator.selectors';
 import * as accountSelectors from '../store/account/account.selectors';
 import * as mainSelectors from '../store/main/main.selectors';
 import * as mainActions from '../store/main/main.actions';
 
-const mapStateToProps = (state: any): Partial<HeaderProps> => ({
+const mapStateToProps = (
+	state: any
+): Pick<HeaderProps, 'locale' | 'i18n' | 'currentPage' | 'isLoggedIn' | 'accountType' | 'isOnloadAuthDetermined' | 'profileImage'> => ({
 	locale: mainSelectors.getLocale(state),
 	i18n: selectors.getCoreI18n(state),
 	currentPage: mainSelectors.getCurrentPage(state),
@@ -17,9 +18,7 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	profileImage: accountSelectors.getProfileImage(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
-	// @ts-ignore - this looks invalid
-	onChangeLocale: (locale: GDLocale) => dispatch(mainActions.selectLocale(locale)),
+const mapDispatchToProps = (dispatch: Dispatch): Pick<HeaderProps, 'showLoginDialog' | 'onLogout'> => ({
 	showLoginDialog: (): any => dispatch(mainActions.setLoginDialogVisibility(true)),
 	onLogout: (): any => dispatch(mainActions.logout())
 });

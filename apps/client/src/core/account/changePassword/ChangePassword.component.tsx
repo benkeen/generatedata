@@ -12,14 +12,14 @@ export type ChangePasswordProps = {
 };
 
 const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: ChangePasswordProps) => {
-	const currentPasswordField = useRef<HTMLInputElement>();
+	const currentPasswordField = useRef<HTMLInputElement>(undefined);
 	const [currentPassword, setCurrentPassword] = useState('');
 	const [currentPasswordError, setCurrentPasswordError] = useState('');
 
-	const passwordField = useRef<HTMLInputElement>();
+	const passwordField = useRef<HTMLInputElement>(undefined);
 	const [password, setPassword] = useState('');
 
-	const password2Field = useRef<HTMLInputElement>();
+	const password2Field = useRef<HTMLInputElement>(undefined);
 	const [password2, setPassword2] = useState('');
 	const [password2Error, setPassword2Error] = useState('');
 

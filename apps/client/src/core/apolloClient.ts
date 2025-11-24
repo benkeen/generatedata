@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache, NormalizedCacheObject, ApolloLink, HttpLink, concat } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloLink, HttpLink, concat } from '@apollo/client';
 import fetch from 'cross-fetch';
 import store from './store';
 import * as mainSelectors from './store/main/main.selectors';

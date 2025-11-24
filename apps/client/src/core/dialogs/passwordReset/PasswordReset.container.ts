@@ -5,14 +5,14 @@ import * as mainSelectors from '~store/main/main.selectors';
 import PasswordReset, { PasswordResetDialogProps } from './PasswordReset.component';
 import * as mainActions from '~store/main/main.actions';
 
-const mapStateToProps = (state: any): Partial<PasswordResetDialogProps> => ({
+const mapStateToProps = (state: any): Pick<PasswordResetDialogProps, 'i18n' | 'visible' | 'dialogProcessing' | 'defaultEmail'> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: mainSelectors.shouldShowPasswordResetDialog(state),
 	dialogProcessing: mainSelectors.isDialogProcessing(state),
 	defaultEmail: mainSelectors.getPasswordResetDialogDefaultEmail(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<PasswordResetDialogProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<PasswordResetDialogProps, 'onClose' | 'onSubmit' | 'showLoginDialog'> => ({
 	onClose: (): any => dispatch(mainActions.setPasswordResetDialogVisibility(false)),
 	onSubmit: (email: string, onLoginError: any): any => {
 		dispatch(mainActions.sendPasswordResetEmail(email, onLoginError));

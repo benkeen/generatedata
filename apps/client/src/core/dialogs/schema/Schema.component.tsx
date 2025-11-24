@@ -1,5 +1,5 @@
 import React from 'react';
-import { Theme, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -51,7 +51,6 @@ const TabPanelContent = styled('div')(() => ({
 }));
 
 const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogProps) => {
-	// const classes = useStyles();
 	const [code, setCode] = React.useState(schema);
 	const [value, setValue] = React.useState(0);
 
@@ -69,14 +68,7 @@ const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogPro
 				<DialogTitle onClose={onClose}>Data Template</DialogTitle>
 				<DialogContent dividers>
 					<Root>
-						<Tabs
-							orientation="vertical"
-							variant="scrollable"
-							value={value}
-							onChange={handleChange}
-							aria-label="Vertical tabs example"
-							className={classes.tabs}
-						>
+						<Tabs orientation="vertical" variant="scrollable" value={value} onChange={handleChange} aria-label="Vertical tabs example">
 							<Tab label="About" {...a11yProps(0)} />
 							<Tab label="Import" {...a11yProps(1)} />
 							<Tab label="Export" {...a11yProps(2)} />
@@ -106,7 +98,7 @@ const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogPro
 							</TabPanelContent>
 						</TabPanel>
 						<TabPanel value={value} index={2}>
-							<div className={classes.tabPanel}>Import.</div>
+							<div>Import.</div>
 						</TabPanel>
 					</Root>
 				</DialogContent>

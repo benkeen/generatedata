@@ -34,7 +34,7 @@ const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps) => (
 				<p>{i18n.aboutInfoPara2}</p>
 			</DialogContent>
 			<DialogActions className={styles.actions}>
-				<PrimaryButton onClick={onClose} color="default">
+				<PrimaryButton onClick={onClose} color="primary">
 					{i18n.close}
 				</PrimaryButton>
 				<PrimaryButton

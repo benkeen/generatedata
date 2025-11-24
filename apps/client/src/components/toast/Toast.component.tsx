@@ -1,12 +1,12 @@
 import React, { useEffect, useImperativeHandle, useRef } from 'react';
-import MuiAlert, { AlertProps, Color } from '@mui/material/Alert';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import Portal from '~components/Portal';
 import { initToast, ToastType } from '@generatedata/utils/general';
 import './Toast.scss';
 
 const defaultMessage: ToastType = {
-	type: 'success' as Color,
+	type: 'success',
 	message: '',
 	verticalPosition: 'top' as SnackbarOrigin['vertical'],
 	horizontalPosition: 'center' as SnackbarOrigin['horizontal'],
@@ -17,7 +17,7 @@ const Alert = (props: AlertProps) => <MuiAlert elevation={6} variant="filled" {.
 
 let timeout: any;
 const Toast = () => {
-	const snackbarRef = useRef();
+	const snackbarRef = useRef(null);
 	const [open, setOpen] = React.useState(false);
 	const [payload, setPayload] = React.useState<ToastType>(defaultMessage);
 

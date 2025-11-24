@@ -46,7 +46,7 @@
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
     "jest-css-modules": "^2.1.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "ansi-colors": "^4.1.3",

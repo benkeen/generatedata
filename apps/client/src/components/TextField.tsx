@@ -17,8 +17,11 @@ type TextFieldProps = {
 	style?: React.CSSProperties;
 	disabled?: boolean;
 	type?: string;
+	onFocus?: (e: any) => void;
+	onBlur?: (e: any) => void;
 	onPaste?: (e: any) => void;
 	onKeyDown?: (e: any) => void;
+	autoComplete?: string | boolean;
 };
 
 const TextField = ({ throttle, error, value, onChange, tooltipPlacement, className, ref, ...props }: TextFieldProps) => {

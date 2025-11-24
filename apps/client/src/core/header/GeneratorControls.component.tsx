@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import type { RefObject } from 'react';
 import { useMutation } from '@apollo/client/react';
 import AutoSizer from 'react-input-autosize';
 import { Divider, IconButton, List, ListItemButton, ListItemText } from '@mui/material';
@@ -36,8 +37,8 @@ const GeneratorControls = ({
 	disabled,
 	showClearPageDialog
 }: GeneratorControlsProps) => {
-	const popoverRef = useRef(null);
-	const inputFieldRef = useRef(null);
+	const popoverRef = useRef<HTMLElement>(null);
+	const inputFieldRef = useRef(undefined);
 	const [measureRef, { width = 0 }] = useMeasure();
 
 	const { dataSetId, dataSetName } = dataSet;
@@ -45,7 +46,7 @@ const GeneratorControls = ({
 	const [newDataSetName, setNewDataSetName] = useState(dataSetName);
 	const [dataSetMenuVisible, setMenuVisibility] = useState(false);
 
-	useOnClickOutside(popoverRef, () => {
+	useOnClickOutside(popoverRef as RefObject<HTMLElement>, () => {
 		setMenuVisibility(false);
 	});
 

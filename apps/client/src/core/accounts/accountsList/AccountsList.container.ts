@@ -8,7 +8,12 @@ import AccountsList, { AccountsListProps } from './AccountsList.component';
 import { AccountStatusFilter, Store } from '~types/general';
 import { ColSortDir } from '~components/tables/TableHeader.component';
 
-const mapStateToProps = (state: Store): Partial<AccountsListProps> => ({
+const mapStateToProps = (
+	state: Store
+): Pick<
+	AccountsListProps,
+	'accountsCurrentPage' | 'accountsSortCol' | 'accountsSortDir' | 'accountsFilterStr' | 'accountStatusFilter' | 'i18n'
+> => ({
 	accountsCurrentPage: mainSelectors.getAccountsCurrentPage(state),
 	accountsSortCol: mainSelectors.getAccountsSortCol(state),
 	accountsSortDir: mainSelectors.getAccountsSortDir(state),
@@ -17,7 +22,17 @@ const mapStateToProps = (state: Store): Partial<AccountsListProps> => ({
 	i18n: selectors.getCoreI18n(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountsListProps> => ({
+const mapDispatchToProps = (
+	dispatch: Dispatch
+): Pick<
+	AccountsListProps,
+	| 'onEditAccount'
+	| 'setAccountsSortCol'
+	| 'setAccountsSortDir'
+	| 'setAccountsCurrentPage'
+	| 'setAccountStatusFilter'
+	| 'setAccountsFilterString'
+> => ({
 	onEditAccount: (accountInfo: any): any => dispatch(accountActions.editAccount(accountInfo)),
 	setAccountsSortDir: (sortDir: ColSortDir): void => dispatch(mainActions.setAccountsSortDir(sortDir)),
 	setAccountsSortCol: (sortCol: string): void => dispatch(mainActions.setAccountsSortCol(sortCol)),

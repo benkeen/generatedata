@@ -24,7 +24,7 @@ const initialState: ManageAccountState = {
 	isAddingUser: true
 };
 
-const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {
+const mapStateToProps = (state: Store): Pick<ManageAccountProps, 'initialState' | 'i18n' | 'submitButtonLabel'> => {
 	const i18n = selectors.getCoreI18n(state);
 	return {
 		initialState,
@@ -33,7 +33,7 @@ const mapStateToProps = (state: Store): Partial<ManageAccountProps> => {
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<ManageAccountProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<ManageAccountProps, 'onSave'> => ({
 	// @ts-ignore-line
 	onSave: (data: any): any => dispatch(accountActions.createAccount(data))
 });
