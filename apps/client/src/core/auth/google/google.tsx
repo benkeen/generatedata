@@ -9,6 +9,7 @@ import * as mainSelectors from '~store/main/main.selectors';
 import { addToast } from '@generatedata/utils/general';
 import langUtils from '@generatedata/utils/lang';
 import clientConfig from '@generatedata/config/clientConfig';
+import { LOGIN_WITH_GOOGLE } from '../../mutations';
 
 const googleBtnId = 'google-signin-button';
 
@@ -41,52 +42,32 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
     store.dispatch(setOnloadAuthDetermined());
   } else {
     const googleToken = googleUser.credential;
-    const response = await apolloClient.mutate({
-      mutation: gql`
-        mutation LoginWithGoogle($googleToken: String!) {
-          loginWithGoogle(googleToken: $googleToken) {
-            token
-            refreshToken
-            tokenExpiry
-            success
-            error
-            firstName
-            lastName
-            expiryDate
-            accountType
-            dateCreated
-            email
-            numRowsGenerated
-            profileImage
-            country
-            region
-          }
-        }
-      `,
+    const { data } = await apolloClient.mutate({
+      mutation: LOGIN_WITH_GOOGLE,
       variables: { googleToken }
     });
 
-    if (response.data.loginWithGoogle.success) {
-      const { tokenExpiry, refreshToken } = response.data.loginWithGoogle;
+    if (data?.loginWithGoogle?.success) {
+      const { tokenExpiry, refreshToken } = data.loginWithGoogle;
 
       store.dispatch(
         setAuthenticationData({
-          ...response.data.loginWithGoogle,
+          ...data.loginWithGoogle,
           authMethod: AuthMethod.google
         })
       );
 
-      Cookies.set('refreshToken', refreshToken, {
-        expires: new Date(tokenExpiry)
+      Cookies.set('refreshToken', refreshToken!, {
+        expires: new Date(tokenExpiry!)
       });
-      onLoginSuccess(tokenExpiry, options.onPageRender, store.dispatch);
+      onLoginSuccess(tokenExpiry!, options.onPageRender, store.dispatch);
     } else {
-      if (response.data.loginWithGoogle.error === 'accountExpired') {
+      if (data?.loginWithGoogle?.error === 'accountExpired') {
         addToast({
           type: 'error',
           message: i18n.core.accountExpiredMsg
         });
-      } else if (response.data.loginWithGoogle.error === 'noUserAccount') {
+      } else if (data?.loginWithGoogle?.error === 'noUserAccount') {
         addToast({
           type: 'error',
           message: i18n.core.userAccountNotFound

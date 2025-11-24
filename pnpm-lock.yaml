@@ -570,6 +570,10 @@ importers:
         version: 5.9.3
 
   packages/graphql-schema:
+    dependencies:
+      graphql:
+        specifier: ^16.12.0
+        version: 16.12.0
     devDependencies:
       '@graphql-codegen/cli':
         specifier: ^6.1.0
@@ -580,9 +584,6 @@ importers:
       '@graphql-codegen/typescript-resolvers':
         specifier: ^5.1.3
         version: 5.1.3(graphql@16.12.0)
-      graphql:
-        specifier: ^16.12.0
-        version: 16.12.0
 
   packages/plugins:
     dependencies:

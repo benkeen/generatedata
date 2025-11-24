@@ -18,7 +18,8 @@ import C from '@generatedata/config/constants';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 import { localeFileMap } from '../../../../_localeFileMap';
 import { ColSortDir } from '~components/tables/TableHeader.component';
-import { REFRESH_TOKEN, SEND_PASSWORD_RESET_EMAIL_MUTATION } from '~core/mutations';
+import { REFRESH_TOKEN, SEND_PASSWORD_RESET_EMAIL_MUTATION, LOGIN_MUTATION } from '~core/mutations';
+import type { AuthResponse } from '@generatedata/graphql-schema';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -91,20 +92,7 @@ export const setPasswordResetDialogVisibility = (visible: boolean, email = ''): 
 
 export const SET_AUTHENTICATION_DATA = 'SET_AUTHENTICATION_DATA';
 
-export type AuthData = {
-  token: string;
-  accountId: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  country: string;
-  region: string;
-  profileImage: string;
-  expiryDate: string;
-  dateCreated: string;
-  accountType: AccountType;
-  accountStatus: AccountStatus;
-  numRowsGenerated: number;
+export type AuthData = AuthResponse & {
   authMethod?: AuthMethod;
 };
 
@@ -155,55 +143,32 @@ export const login = (email: string, password: string, navigate: any, onLoginErr
   return async (dispatch: Dispatch): Promise<any> => {
     dispatch(startDialogProcessing());
 
-    const response = await apolloClient.mutate({
-      mutation: gql`
-        mutation LoginMutation($email: String!, $password: String!) {
-          login(email: $email, password: $password) {
-            token
-            tokenExpiry
-            error
-            refreshToken
-            success
-            accountId
-            firstName
-            lastName
-            email
-            country
-            region
-            expiryDate
-            accountType
-            accountStatus
-            dateCreated
-            numRowsGenerated
-            profileImage
-            wasOneTimeLogin
-          }
-        }
-      `,
+    const { data } = await apolloClient.mutate({
+      mutation: LOGIN_MUTATION,
       variables: { email, password }
     });
 
-    if (response.data.login.success) {
-      const { tokenExpiry, refreshToken } = response.data.login;
+    if (data?.login?.success) {
+      const { tokenExpiry, refreshToken } = data.login;
       dispatch(
         setAuthenticationData({
-          ...response.data.login,
-          authMethod: 'default'
+          ...data.login,
+          authMethod: AuthMethod.default
         })
       );
 
-      Cookies.set('refreshToken', refreshToken, {
-        expires: new Date(tokenExpiry)
+      Cookies.set('refreshToken', refreshToken!, {
+        expires: new Date(tokenExpiry!)
       });
 
-      if (response.data.login.wasOneTimeLogin) {
-        onOneTimeLoginSuccess(tokenExpiry, password, navigate, dispatch);
+      if (data.login.wasOneTimeLogin) {
+        onOneTimeLoginSuccess(tokenExpiry!, password, navigate, dispatch);
       } else {
-        onLoginSuccess(tokenExpiry, false, dispatch);
+        onLoginSuccess(tokenExpiry!, false, dispatch);
       }
     } else {
       dispatch(setLoginError());
-      onLoginError(response.data.login.error);
+      onLoginError(data?.login?.error);
     }
   };
 };
@@ -296,9 +261,8 @@ export const updateRefreshToken =
       mutation: REFRESH_TOKEN
     });
 
-    const success = data?.refreshToken?.success;
-    if (success) {
-      const { token, tokenExpiry, refreshToken } = data.refreshToken!;
+    if (data?.refreshToken?.success) {
+      const { token, tokenExpiry, refreshToken } = data.refreshToken;
 
       Cookies.set('refreshToken', refreshToken!, {
         expires: new Date(tokenExpiry!)
@@ -311,7 +275,7 @@ export const updateRefreshToken =
       // console.log('token NOT refreshed -- user logged out');
     }
 
-    dispatch(setAuthenticated(!!success));
+    dispatch(setAuthenticated(!!data?.refreshToken?.success));
     dispatch(setOnloadAuthDetermined());
   };
 
