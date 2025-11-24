@@ -1,4 +1,5 @@
 import React from 'react';
+import type { RefObject } from 'react';
 import * as sharedStyles from '../../../styles/shared.scss';
 import { SmallSpinner } from '~components/loaders/loaders';
 import * as styles from './Grid.scss';
@@ -24,7 +25,7 @@ export const SmallScreenSettingsIcon = ({
 	const popoverRef = React.useRef<HTMLElement>(undefined);
 	const [open, setOpen] = React.useState(false);
 
-	useOnClickOutside(popoverRef, (e) => {
+	useOnClickOutside(popoverRef as RefObject<HTMLElement>, (e) => {
 		// the `gd-is-portal` part is added in case Data Types use other portal-based content besides react select. If
 		// that's the case, clicking it will always close the tooltip here. So to get around it, give the portal a class
 		// of gd-is-portal. That'll suppress the close event here,
@@ -106,7 +107,7 @@ export const SmallScreenSettingsIcon = ({
 			disableTouchListener
 			interactive
 			title={
-				<div ref={popoverRef} className={styles.smallScreenSettingsTooltip}>
+				<div ref={popoverRef as RefObject<HTMLDivElement>} className={styles.smallScreenSettingsTooltip}>
 					{example}
 					{options}
 				</div>

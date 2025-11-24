@@ -93,6 +93,11 @@ module.exports = (env, argv) => {
 				'~store': path.join(__dirname, 'src/core/store'),
 				'~core': path.join(__dirname, 'src/core'),
 				'~types': path.join(__dirname, 'types')
+			},
+			fallback: {
+				assert: require.resolve('assert'),
+				path: require.resolve('path-browserify'),
+				crypto: require.resolve('crypto-browserify')
 			}
 		},
 

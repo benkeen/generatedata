@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, type RefObject } from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Grow from '@mui/material/Grow';
@@ -50,14 +50,14 @@ const Footer = ({
 	customFooterLinks
 }: FooterProps) => {
 	const navigate = useNavigate();
-	const saveAsButtonRef = React.useRef(null);
+	const saveAsButtonRef = React.useRef<HTMLElement>(undefined);
 	const anchorRef = React.useRef<HTMLDivElement>(null);
 	const [saveAsMenuOpen, setSaveAsMenuOpen] = useState(false);
 	const [showAboutDialog, setAboutDialogVisibility] = useState(false);
 
 	const windowSize = useWindowSize();
 
-	useOnClickOutside(saveAsButtonRef, () => {
+	useOnClickOutside(saveAsButtonRef as RefObject<HTMLElement>, () => {
 		setSaveAsMenuOpen(false);
 	});
 
@@ -67,7 +67,7 @@ const Footer = ({
 		// the arrow gives them the option to create a new data set via the "Save as" option
 		if (currentDataSetId) {
 			return (
-				<div ref={saveAsButtonRef} style={{ position: 'relative' }}>
+				<div ref={saveAsButtonRef as RefObject<HTMLDivElement>} style={{ position: 'relative' }}>
 					<ButtonGroup
 						variant="contained"
 						color="primary"
