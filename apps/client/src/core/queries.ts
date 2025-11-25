@@ -34,3 +34,20 @@ export const GET_DATA_SET_HISTORY: TypedDocumentNode<Query> = gql`
     }
   }
 `;
+
+export const GET_DATA_SETS: TypedDocumentNode<Query> = gql`
+  query GetDataSets($limit: Int, $offset: Int, $sortCol: String, $sortDir: SortDir) {
+    dataSets(limit: $limit, offset: $offset, sortCol: $sortCol, sortDir: $sortDir) {
+      totalCount
+      results {
+        dataSetId
+        dataSetName
+        status
+        dateCreated
+        content
+        numRowsGenerated
+        historyDateCreatedUnix
+      }
+    }
+  }
+`;

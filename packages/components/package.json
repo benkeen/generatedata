@@ -1,0 +1,10 @@
+{
+  "name": "@generatedata/component",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@generatedata/config": "workspace:*",
+    "@generatedata/utils": "workspace:*",
+    "react-select": "^5.10.2"
+  }
+}

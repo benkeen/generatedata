@@ -7,7 +7,7 @@ import { getStrings, getCurrentLocalizedPath } from '@generatedata/utils/lang';
 import { apolloClient } from '../../apolloClient';
 import { getCurrentPage, getLocale } from '~store/main/main.selectors';
 import { setAuthTokenRefresh } from '@generatedata/utils/auth';
-import { AccountStatus, AccountType, SelectedAccountTab } from '~types/account';
+import { SelectedAccountTab } from '~types/account';
 import store from '~core/store';
 import { onChangeTab, showSaveDataSetDialog } from '~store/account/account.actions';
 import { addToast, setTourComponents } from '@generatedata/utils/general';

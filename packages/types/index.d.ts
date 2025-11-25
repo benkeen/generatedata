@@ -4,4 +4,4 @@ export * from './dataSets';
 export * from '../../apps/client/types/exportTypes';
 export * from './generator';
 
-// export { GDLocale, GDLocaleMap } from '@generatedata/config';
+export { GDLocale, GDLocaleMap } from '@generatedata/config';

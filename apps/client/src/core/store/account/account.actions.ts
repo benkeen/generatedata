@@ -4,12 +4,19 @@ import { apolloClient } from '../../apolloClient';
 import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
 import { getEditingData, getSelectedAccountsPageTab } from '~store/account/account.selectors';
 import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
-import { AccountStatus, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
+import { SelectedAccountsTab, SelectedAccountTab } from '~types/account';
+import { AccountStatus } from '@generatedata/graphql-schema';
 import { GDAction } from '~types/general';
 import { addToast } from '@generatedata/utils/general';
 import { getStrings } from '@generatedata/utils/lang';
-import * as queries from '~core/queries';
-import type { RenameDataSet } from '~core/queries';
+import {
+  SAVE_ACCOUNT,
+  SAVE_CURRENT_ACCOUNT,
+  RENAME_DATA_SET,
+  UPDATE_PASSWORD,
+  SAVE_NEW_DATA_SET,
+  SAVE_CURRENT_DATA_SET
+} from '~core/mutations';
 import { SET_ONE_TIME_PASSWORD } from '~store/main/main.actions';
 import { CREATE_USER_ACCOUNT } from '~core/mutations';
 
@@ -78,7 +85,7 @@ export const saveYourAccount =
     const { firstName, lastName, email, country, region } = getEditingData(getState());
 
     await apolloClient.mutate({
-      mutation: queries.SAVE_CURRENT_ACCOUNT,
+      mutation: SAVE_CURRENT_ACCOUNT,
       variables: { firstName, lastName, email, country, region }
     });
 
@@ -105,7 +112,7 @@ export const saveAccount =
     }
 
     await apolloClient.mutate({
-      mutation: queries.SAVE_ACCOUNT,
+      mutation: SAVE_ACCOUNT,
       variables: {
         accountId,
         accountStatus,
@@ -139,11 +146,11 @@ export const savePassword =
     const i18n = getStrings();
 
     const { data } = await apolloClient.mutate({
-      mutation: queries.UPDATE_PASSWORD,
+      mutation: UPDATE_PASSWORD,
       variables: { currentPassword, newPassword }
     });
 
-    if (!data.updatePassword.success) {
+    if (!data?.updatePassword?.success) {
       onError();
       return;
     }
@@ -181,19 +188,19 @@ export const saveNewDataSet =
     const data: any = getDataSetSavePackage(getState());
 
     const response = await apolloClient.mutate({
-      mutation: queries.SAVE_NEW_DATA_SET,
+      mutation: SAVE_NEW_DATA_SET,
       variables: {
         dataSetName,
         content: JSON.stringify(data)
       }
     });
 
-    if (response.data.saveNewDataSet.success) {
+    if (response.data?.saveNewDataSet?.success) {
       dispatch({
         type: SET_CURRENT_DATA_SET,
         payload: {
           dataSetName,
-          dataSetId: parseInt(response.data.saveNewDataSet.dataSetId, 10)
+          dataSetId: parseInt(response.data.saveNewDataSet.dataSetId!, 10)
         }
       });
 
@@ -227,7 +234,7 @@ export const saveCurrentDataSet =
     const dataSetId = getCurrentDataSetId(state);
 
     const response = await apolloClient.mutate({
-      mutation: queries.SAVE_CURRENT_DATA_SET,
+      mutation: SAVE_CURRENT_DATA_SET,
       variables: {
         dataSetId,
         content: JSON.stringify(data)
@@ -251,14 +258,14 @@ export const renameDataSet =
     const dataSetId = getCurrentDataSetId(getState());
 
     const { data } = await apolloClient.mutate({
-      mutation: queries.RENAME_DATA_SET,
+      mutation: RENAME_DATA_SET,
       variables: {
         dataSetId,
         dataSetName
       }
     });
 
-    if ((data as RenameDataSet).renameDataSet.success) {
+    if (data?.renameDataSet?.success) {
       dispatch({
         type: UPDATE_CURRENT_DATA_SET_NAME,
         payload: {
@@ -306,9 +313,9 @@ export const createAccount =
   };
 
 export const getAccountStatus = (disabled: boolean, expiryDate: number): AccountStatus => {
-  let accountStatus = AccountStatus.live;
+  let accountStatus = AccountStatus.Live;
   if (disabled) {
-    accountStatus = AccountStatus.disabled;
+    accountStatus = AccountStatus.Disabled;
   } else {
     // check the expiry date hasn't already passed
     if (expiryDate) {
@@ -316,7 +323,7 @@ export const getAccountStatus = (disabled: boolean, expiryDate: number): Account
       const expiryDateNum = parseInt(expiryDate.toString()); // ensure it's a number
 
       if (expiryDateNum < now) {
-        accountStatus = AccountStatus.expired;
+        accountStatus = AccountStatus.Expired;
       }
     }
   }
