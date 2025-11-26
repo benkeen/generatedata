@@ -1,0 +1,11 @@
+export const primaryColor = '#275eb5';
+export const primaryPaleColor = '#e0ebfd';
+export const primarySubmit = '#30aadc';
+export const primarySubmitHover = '#148ec0';
+export const primaryPaleBg = '#d4e6f7';
+export const secondaryColor = '#006f0d';
+export const secondaryPaleColor = '#e8fceb';
+export const secondaryDarkColor = '#002a05';
+export const fieldFocusColor = '#2684FF';
+export const bgColor = '#f2f2f2';
+export const error = '#db0000';

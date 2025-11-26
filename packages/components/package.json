@@ -1,10 +1,21 @@
 {
-  "name": "@generatedata/component",
+  "name": "@generatedata/components",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
     "@generatedata/config": "workspace:*",
     "@generatedata/utils": "workspace:*",
-    "react-select": "^5.10.2"
+    "react-select": "^5.10.2",
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   }
 }

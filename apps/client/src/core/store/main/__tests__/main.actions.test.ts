@@ -36,7 +36,7 @@ describe('main actions', () => {
       setAuthenticationData({
         authMethod: AuthMethod.google,
         token: '123456',
-        accountId: 5,
+        accountId: '5',
         firstName: 'Jim',
         lastName: 'Beam',
         email: 'jim@beam.net',

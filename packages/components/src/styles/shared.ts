@@ -1,0 +1,148 @@
+// @use './variables.scss' as c;
+
+// .tip {
+// 	color: #999999;
+// }
+
+// .emptyCol {
+// 	padding: 7px 2px;
+// 	color: #999999;
+// }
+
+// .blank {
+// 	color: #cccccc;
+// }
+
+// .emptyText {
+// 	color: #666666;
+// 	font-style: italic;
+// }
+
+// input.errorField,
+// textarea.errorField,
+// select.errorField,
+// button.errorField {
+// 	border: 1px solid c.$error;
+
+// 	&:focus {
+// 		border: 1px solid c.$error;
+// 	}
+// }
+
+// .pill {
+// 	background-color: #dfecfc;
+// 	border-radius: 3px;
+// 	padding: 1px 6px;
+// }
+
+// .copyCol {
+// 	flex: 0 0 26px;
+// }
+
+// :global(div.MuiAlert-root) {
+// 	font-size: 13px;
+// }
+
+// .twoColPage {
+// 	max-width: 1024px;
+// 	margin: 15px auto 0;
+// 	width: 100%;
+// 	padding: 0 10px;
+// 	height: 100%;
+// 	flex: 1;
+// 	display: flex;
+// 	flex-direction: row;
+// 	font-size: 12px;
+
+// 	input {
+// 		font-size: 14px;
+// 	}
+
+// 	nav {
+// 		flex: 0 0 240px;
+
+// 		ul {
+// 			list-style: none;
+// 			padding-left: 0;
+
+// 			li {
+// 				padding: 10px 10px;
+// 				font-size: 14px;
+// 				cursor: pointer;
+// 				transition: color 0.2s ease-in-out;
+
+// 				&:hover {
+// 					color: c.$primary-color;
+// 				}
+
+// 				&.selected {
+// 					color: c.$primary-color;
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	.tab {
+// 		flex: 1;
+// 		padding: 20px 0;
+// 		overflow: scroll;
+// 	}
+
+// 	label {
+// 		color: #999999;
+// 	}
+
+// 	:global(.react-select__placeholder),
+// 	:global(.react-select__single-value) {
+// 		font-size: 14px;
+// 	}
+// }
+
+// .cancelLink {
+// 	margin-left: 15px;
+// 	font-size: 13px;
+// 	color: #999999;
+// 	cursor: pointer;
+// 	transition: visibility 200ms ease-in-out;
+
+// 	&:hover {
+// 		color: c.$primary-color;
+// 	}
+
+// 	&.hidden {
+// 		visibility: hidden;
+// 	}
+// }
+
+// .fadeIn {
+// 	opacity: 0;
+// 	transition: opacity 200ms ease-in-out;
+// }
+
+// .mainLogo {
+// 	opacity: 0;
+// 	position: absolute;
+// 	left: 55px;
+// 	top: 17px;
+// 	transition: opacity 200ms ease-in-out;
+// 	user-select: none;
+
+// 	img {
+// 		width: 200px;
+// 	}
+
+// 	&.visible {
+// 		opacity: 1;
+// 	}
+// }
+
+// @media (max-width: 600px) {
+// 	.twoColPage {
+// 		flex-direction: column;
+
+// 		nav {
+// 			flex: 0 0 auto;
+// 			border-bottom: 1px solid #efefef;
+// 		}
+// 	}
+// }
