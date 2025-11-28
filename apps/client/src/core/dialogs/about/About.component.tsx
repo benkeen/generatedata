@@ -1,8 +1,8 @@
 import React from 'react';
 import { PrimaryButton } from '@generatedata/core';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
-import { Github } from '~components/icons';
-import Link from '~components/Link.component';
+import { GithubIcon } from '@generatedata/core';
+import { Link } from '~components/Link.component';
 import { Tooltip } from '@generatedata/core';
 import styles from './About.scss';
 
@@ -42,7 +42,7 @@ const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps) => (
             window.open('https://github.com/benkeen/generatedata', '_blank');
           }}
         >
-          <Github />
+          <GithubIcon />
           {i18n.viewOnGithub}
         </PrimaryButton>
       </DialogActions>

@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import CodeMirrorWrapper from './CodeMirrorWrapper.container';
 import { Tooltip } from '@generatedata/core';
 import { PreviewPanelButton } from '@generatedata/core';
-import Portal from '~components/Portal';
+import { Portal } from '@generatedata/core';
 import { PreviewPanelLoader } from './PreviewPanelLoader.component';
 import PanelButtons from '~core/generator/dataSetHistory/PanelButtons.container';
 import C from '@generatedata/config/constants';

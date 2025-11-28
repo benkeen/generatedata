@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const Github = () => (
+export const GithubIcon = () => (
   <svg height="24" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true">
     <path
       fillRule="evenodd"
@@ -10,7 +10,7 @@ export const Github = () => (
 );
 
 // Cockroach by Michael Thompson from the Noun Project
-export const Cockroach = ({ size = 100 }) => (
+export const CockroachIcon = ({ size = 100 }) => (
   <svg width={size} height={size} viewBox="0 0 100 100">
     <g transform="translate(50 50) scale(0.69 0.69) rotate(30) translate(-50 -50)" style={{ fill: '#000000' }}>
       <svg fill="#000000" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enableBackground="new 0 0 100 100">

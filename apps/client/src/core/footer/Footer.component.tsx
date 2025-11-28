@@ -1,24 +1,22 @@
-import React, { useState, type RefObject } from 'react';
+import C from '@generatedata/config/constants';
+import { GithubIcon, Tooltip } from '@generatedata/core';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Person from '@mui/icons-material/EmojiPeople';
+import SaveIcon from '@mui/icons-material/Save';
+import GearIcon from '@mui/icons-material/Settings';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import SaveIcon from '@mui/icons-material/Save';
-import GearIcon from '@mui/icons-material/Settings';
-import Person from '@mui/icons-material/EmojiPeople';
-import { Tooltip } from '@generatedata/core';
-import { Github } from '~components/icons';
+import React, { useState, type RefObject } from 'react';
+import { useWindowSize } from 'react-hooks-window-size';
+import { useNavigate } from 'react-router';
+import useOnClickOutside from 'use-onclickoutside';
+import AboutDialog from '~core/dialogs/about/About.component';
+import { GDLocale } from '~types/general';
+import { isGeneratorPage } from '~utils/routeUtils';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
-import AboutDialog from '~core/dialogs/about/About.component';
-import useOnClickOutside from 'use-onclickoutside';
-import styles from './Footer.scss';
-import { useWindowSize } from 'react-hooks-window-size';
-import C from '@generatedata/config/constants';
-import { isGeneratorPage } from '~utils/routeUtils';
-import { GDLocale } from '~types/general';
-import { useNavigate } from 'react-router';
 
 export type FooterProps = {
   i18n: any;
@@ -149,7 +147,7 @@ const Footer = ({
             <li className={styles.aboutIconEl}>
               <Tooltip title={i18n.aboutThisScript} arrow>
                 <span onClick={(): void => setAboutDialogVisibility(true)}>
-                  <Github />
+                  <GithubIcon />
                 </span>
               </Tooltip>
             </li>

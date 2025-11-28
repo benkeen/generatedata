@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { CenteredSpinner, DefaultSpinner } from '@generatedata/core';
 import Header from '../header/Header.container';
 import Footer from '../footer/Footer.container';
-import * as styles from './Page.scss';
+import { useClasses } from './Page.styles';
 
 export type PageProps = {
   localeFileLoaded: boolean;
@@ -10,10 +10,12 @@ export type PageProps = {
 };
 
 const Page = ({ localeFileLoaded, children }: PropsWithChildren<PageProps>) => {
+  const classNames = useClasses();
+
   const content = localeFileLoaded ? (
     <>
       <Header />
-      <div className={styles.content}>{children}</div>
+      <div className={classNames.content}>{children}</div>
       <Footer />
     </>
   ) : (
@@ -22,7 +24,7 @@ const Page = ({ localeFileLoaded, children }: PropsWithChildren<PageProps>) => {
     </CenteredSpinner>
   );
 
-  return <div className={styles.page}>{content}</div>;
+  return <div className={classNames.page}>{content}</div>;
 };
 
 export default Page;

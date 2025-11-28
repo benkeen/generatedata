@@ -1,7 +1,7 @@
 import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
-import Portal from '../portal/Portal';
+import { Portal } from '../portal/Portal';
 import { initToast, ToastType } from '@generatedata/utils/general';
 // import './Toast.styles.ts';
 

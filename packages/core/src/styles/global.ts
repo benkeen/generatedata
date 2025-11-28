@@ -2,17 +2,47 @@ import { makeStaticStyles } from '@griffel/react';
 import { primaryColor } from './variables';
 
 export const useGlobalStyles = makeStaticStyles({
-  h3: {
-    margin: '10px 0 8px'
+  '*': {
+    boxSizing: 'border-box'
+  },
+  html: {
+    height: '100%',
+    padding: 0,
+    margin: 0,
+    fontFamily: '"Open Sans", serif',
+    fontSize: '12px'
+  },
+  body: {
+    height: '100%',
+    padding: 0,
+    margin: 0,
+    fontFamily: '"Open Sans", serif',
+    fontSize: '12px'
+  },
+  input: {
+    fontFamily: '"Open Sans", serif',
+    fontSize: '12px'
+  },
+  select: {
+    fontFamily: '"Open Sans", serif',
+    fontSize: '12px'
+  },
+  textarea: {
+    fontFamily: '"Open Sans", serif',
+    fontSize: '12px'
   },
 
   a: {
     textDecoration: 'none',
     color: primaryColor,
-
     '&:hover': {
-      textDecoration: 'underline'
+      textDecoration: 'underline',
+      color: `1px solid color.adjust(c.$primary-color, $lightness: -30%)` // TODO
     }
+  },
+
+  h3: {
+    margin: '10px 0 8px'
   },
 
   '.Select-menu-outer': {

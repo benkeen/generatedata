@@ -1,6 +1,27 @@
-import { makeStyles } from '@griffel/react';
+import { makeStyles, shorthands } from '@griffel/react';
 
-export const useClasses = makeStyles({});
+export const useClasses = makeStyles({
+  dataSetHistoryBtnClass: {
+    // button.dataSetHistoryBtnClass
+    color: 'white',
+    ...shorthands.borderColor('#ffffff'),
+
+    ':disabled': {
+      color: 'white',
+      ...shorthands.borderColor('#ffffff'),
+      opacity: 0.2
+    }
+  },
+  rows: {
+    flex: 1,
+    overflow: 'auto'
+  },
+  rowWrapper: {
+    display: 'flex',
+    fontSize: '13px',
+    alignItems: 'center'
+  }
+});
 
 // .panel {
 // 	display: flex;
@@ -44,17 +65,6 @@ export const useClasses = makeStyles({});
 // 			}
 // 		}
 // 	}
-// }
-
-// .rows {
-// 	flex: 1;
-// 	overflow: auto;
-// }
-
-// .rowWrapper {
-// 	display: flex;
-// 	font-size: 13px;
-// 	align-items: center;
 // }
 
 // div.selectedRow {
@@ -111,17 +121,6 @@ export const useClasses = makeStyles({});
 // 				fill: #990000;
 // 			}
 // 		}
-// 	}
-// }
-
-// button.dataSetHistoryBtnClass {
-// 	color: white;
-// 	border-color: white;
-
-// 	&:disabled {
-// 		color: white;
-// 		border-color: white;
-// 		opacity: 0.2;
 // 	}
 // }
 

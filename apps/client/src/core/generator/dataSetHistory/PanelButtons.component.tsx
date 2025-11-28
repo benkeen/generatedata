@@ -1,6 +1,6 @@
 import React from 'react';
 import { PreviewPanelButton } from '@generatedata/core';
-import * as styles from './DataSetHistory.styles.ts';
+import { useClasses } from './DataSetHistory.styles';
 
 export type PanelButtonsProps = {
   selectVersion: () => void;
@@ -13,10 +13,11 @@ export type PanelButtonsProps = {
 
 export const PanelButtons = ({ selectVersion, selectedDataSetHistoryItem, i18n }: PanelButtonsProps) => {
   const { isLatest } = selectedDataSetHistoryItem;
+  const classNames = useClasses();
 
   return (
     <div>
-      <PreviewPanelButton onClick={selectVersion} className={styles.dataSetHistoryBtnClass} disabled={isLatest}>
+      <PreviewPanelButton onClick={selectVersion} className={classNames.dataSetHistoryBtnClass} disabled={isLatest}>
         {i18n.revertToVersion}
       </PreviewPanelButton>
     </div>

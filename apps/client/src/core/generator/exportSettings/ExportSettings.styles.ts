@@ -19,7 +19,6 @@ export const useClasses = makeStyles({
   panelHorizontal: {
     width: '100%'
   },
-
   panel: {
     display: 'flex',
     flexDirection: 'column',
@@ -41,28 +40,29 @@ export const useClasses = makeStyles({
         }
       }
     }
+  },
+
+  exportFormatRow: {
+    backgroundImage: 'url("./images/bg.png")',
+    padding: '10px',
+    marginBottom: '10px',
+    borderRadius: '5px',
+    height: 'inherit'
+
+    // label: {
+    // fontSize: '14px',
+    // flex: '0 0 140px'
+    // }
+  },
+
+  spinner: {
+    position: 'absolute',
+    top: 'calc(50% - 40px)',
+    left: 'calc(50% - 40px)'
+
+    // 	&.fadeOut {
+    // 		opacity: 0;
+    // 		transition: opacity 0.25s ease-in-out;
+    // 	}
   }
 });
-
-// .exportFormatRow {
-// 	background-image: url('./images/bg.png');
-// 	padding: 10px;
-// 	margin-bottom: 10px;
-// 	border-radius: 5px;
-// 	height: inherit;
-// 	.label {
-// 		font-size: 14px;
-// 		flex: 0 0 140px;
-// 	}
-// }
-
-// .spinner {
-// 	position: absolute;
-// 	top: calc(50% - 40px);
-// 	left: calc(50% - 40px);
-
-// 	&.fadeOut {
-// 		opacity: 0;
-// 		transition: opacity 0.25s ease-in-out;
-// 	}
-// }

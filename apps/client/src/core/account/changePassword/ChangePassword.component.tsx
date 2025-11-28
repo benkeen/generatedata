@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import { TextField } from '@generatedata/core';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
-import { TextField } from '@generatedata/core';
+import { useRef, useState } from 'react';
 
 export type ChangePasswordProps = {
   oneTimePassword: string;

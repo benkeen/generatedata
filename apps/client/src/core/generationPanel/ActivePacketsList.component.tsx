@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useNavigate } from 'react-router';
 import CheckCircle from '@mui/icons-material/CheckCircle';
 import Chip from '@mui/material/Chip';
-import styles from './ActivityPacketsList.scss';
+import { useClasses } from './ActivePacketsList.styles';
 import { Cell, Pie, PieChart } from 'recharts';
 import { Tooltip } from '@generatedata/core';
 import { getPercentageLabel } from './generation.helpers';
@@ -22,6 +22,7 @@ export type ActivePacketsListProps = {
 
 const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps) => {
   const navigate = useNavigate();
+  const classNames = useClasses();
 
   const chips = packetList.map(({ packetId, label, percentage, numRowsToGenerate, isPaused }, index) => {
     const color = isPaused ? 'default' : 'primary';
@@ -60,12 +61,12 @@ const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps) =
         <Chip
           size="medium"
           label={
-            <span className={styles.chipLabel}>
+            <span className={classNames.chipLabel}>
               <span>{label}</span>
               {icon}
             </span>
           }
-          className={styles.chip}
+          className={classNames.chip}
           clickable
           color={color}
           onClick={(): void => openPacket(packetId, navigate)}
@@ -76,7 +77,7 @@ const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps) =
     );
   });
 
-  return <div className={styles.root}>{chips}</div>;
+  return <div className={classNames.root}>{chips}</div>;
 };
 
 export default ActivePacketsList;

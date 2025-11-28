@@ -9,7 +9,7 @@ import { DefaultSpinner, CenteredSpinner } from '@generatedata/core';
 import { PrimaryButton, SecondaryButton } from '@generatedata/core';
 import { Tooltip } from '@generatedata/core';
 import * as queries from '~core/queries';
-import * as styles from './DataSetHistory.styles';
+import { useClasses } from './DataSetHistory.styles';
 import C from '@generatedata/config/constants';
 import { CurrentDataSet } from '~store/generator/generator.reducer';
 
@@ -31,17 +31,18 @@ const NUM_PER_PAGE = 200;
 const currentPage = 1;
 
 const Row = ({ rowLabel, dateCreated, content, loadHistoryVersion, isSelected, i18n, Btn }: any) => {
-  let classes = styles.row;
+  const classNames = useClasses();
+  let classes = classNames.row;
   if (isSelected) {
-    classes += ` ${styles.selectedRow}`;
+    classes += ` ${classNames.selectedRow}`;
   }
 
   return (
     <div className={classes}>
       {rowLabel && <label>{rowLabel}</label>}
-      <div className={styles.rowWrapper}>
-        <div className={styles.dateCreated}>{format(fromUnixTime(dateCreated / 1000), C.DATETIME_FORMAT)}</div>
-        <div className={styles.edit}>
+      <div className={classNames.rowWrapper}>
+        <div className={classNames.dateCreated}>{format(fromUnixTime(dateCreated / 1000), C.DATETIME_FORMAT)}</div>
+        <div className={classNames.edit}>
           <Btn size="small" disabled={isSelected} onClick={(): void => loadHistoryVersion(content)}>
             {i18n.view}
           </Btn>

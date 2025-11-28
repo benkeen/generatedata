@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { format, fromUnixTime, add } from 'date-fns';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
-import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
+import { RadioPill, RadioPillRow } from '@generatedata/core';
 import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
 import { getFormattedNum } from '@generatedata/utils/number';
 // import * as dateStyles from '@generatedata/plugins/dist/dataTypes/Date/Date.scss';

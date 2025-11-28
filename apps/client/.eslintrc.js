@@ -29,6 +29,7 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     allowIndentationTabs: 0,
     'no-extra-parens': ['off'],
+    'no-duplicate-imports': ['error'],
     'no-multi-spaces': 'error',
     'react/prop-types': ['off'],
     'comma-dangle': 'off',

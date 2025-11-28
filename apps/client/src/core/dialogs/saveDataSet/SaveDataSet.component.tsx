@@ -4,7 +4,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { TextField } from '@generatedata/core';
 import { PrimaryButton } from '@generatedata/core';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import styles from './SaveDataSet.scss';
+import { useClasses } from './SaveDataSet.styles';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 
 export type SaveDataSetDialogProps = {
@@ -29,6 +29,7 @@ const SaveDataSetDialog = ({
   i18n
 }: SaveDataSetDialogProps) => {
   const navigate = useNavigate();
+  const classNames = useClasses();
 
   const newDataSetNameField = useRef<HTMLInputElement>(undefined);
   const [newDataSetName, setNewDataSetName] = useState('');
@@ -41,7 +42,7 @@ const SaveDataSetDialog = ({
 
   let title = dialogType === SaveDataDialogType.save ? i18n.save : i18n.saveAs;
   let content = (
-    <div className={styles.newDataSet}>
+    <div className={classNames.newDataSet}>
       <TextField
         ref={newDataSetNameField}
         error={newDataSetNameError}
@@ -79,7 +80,7 @@ const SaveDataSetDialog = ({
     title = i18n.pleaseLogin;
     const msg = showRegistration ? i18n.loginOrRegisterToSave : i18n.loginToSave;
     content = (
-      <div className={styles.notLoggedIn}>
+      <div className={classNames.notLoggedIn}>
         <PersonAddIcon />
         {msg}
       </div>
@@ -97,7 +98,7 @@ const SaveDataSetDialog = ({
       <form onSubmit={saveDataSet}>
         <div style={{ width: 420 }}>
           <DialogTitle onClose={onClose}>{title}</DialogTitle>
-          <DialogContent dividers className={styles.contentPanel}>
+          <DialogContent dividers className={classNames.contentPanel}>
             {content}
           </DialogContent>
           <DialogActions>{buttons}</DialogActions>

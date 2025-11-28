@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dropdown, type DropdownOption } from '@generatedata/core';
 import { getGroupedExportTypes } from '~utils/exportTypes';
-import * as styles from './ExportSettings.styles.ts';
+import { useClasses } from './ExportSettings.styles';
 import { ExportSettingsTab } from './ExportSettings.types';
 import { MediumSpinner } from '@generatedata/core';
 
@@ -25,16 +25,17 @@ export const ExportTypeTab = ({
   onUpdate,
   exportTypeSettings
 }: ExportTypeTabProps) => {
-  let spinnerStyles = styles.spinner;
+  const classNames = useClasses();
+  let spinnerStyles = classNames.spinner;
   if (SettingsComponent) {
-    spinnerStyles += ` ${styles.fadeOut}`;
+    // spinnerStyles += ` ${classNames.fadeOut}`;
   }
 
   return (
-    <div className={`${styles.tabContent} tour-exportTypeTabContent`}>
-      <div className={`${styles.row} ${styles.exportFormatRow}`}>
-        <div className={styles.label}>{i18n.format}</div>
-        <div className={`${styles.field} tour-exportTypeDropdown`}>
+    <div className={`${classNames.tabContent} tour-exportTypeTabContent`}>
+      <div className={`${classNames.row} ${classNames.exportFormatRow}`}>
+        <div className={classNames.label}>{i18n.format}</div>
+        <div className={`${classNames.field} tour-exportTypeDropdown`}>
           <div style={{ width: 180 }}>
             <Dropdown
               isGrouped={true}

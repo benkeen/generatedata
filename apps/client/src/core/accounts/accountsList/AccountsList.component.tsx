@@ -15,7 +15,7 @@ import Dropdown, { DropdownOption } from '@generatedata/core';
 import { AccountStatusFilter } from '~types/general';
 import { DELETE_ACCOUNT } from '~core/mutations';
 import * as queries from '~core/queries';
-import * as styles from './AccountsList.styles.ts';
+import { useClasses } from './AccountsList.styles';
 import { useSharedClasses } from '@generatedata/core';
 
 export type AccountsListProps = {
@@ -35,6 +35,8 @@ export type AccountsListProps = {
 
 const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastLoggedIn, expiryDate }: any) => {
   const sharedClasses = useSharedClasses();
+  const classNames = useClasses();
+
   let expiryDateVal: any = <span className={sharedClasses.blank}>&#8212;</span>;
   try {
     if (expiryDate) {
@@ -48,20 +50,20 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastL
   } catch (lastLoggedInVal) {}
 
   return (
-    <div className={styles.row}>
-      <div className={styles.firstName}>{firstName}</div>
-      <div className={styles.lastName}>{lastName}</div>
-      <div className={styles.status}>
+    <div className={classNames.row}>
+      <div className={classNames.firstName}>{firstName}</div>
+      <div className={classNames.lastName}>{lastName}</div>
+      <div className={classNames.status}>
         <AccountStatusPill status={accountStatus} i18n={i18n} />
       </div>
-      <div className={styles.lastLoggedIn}>{lastLoggedInVal}</div>
-      <div className={styles.expiryDate}>{expiryDateVal}</div>
-      <div className={styles.edit}>
+      <div className={classNames.lastLoggedIn}>{lastLoggedInVal}</div>
+      <div className={classNames.expiryDate}>{expiryDateVal}</div>
+      <div className={classNames.edit}>
         <Button size="small" type="submit" color="primary" variant="outlined" onClick={onEdit}>
           {i18n.edit}
         </Button>
       </div>
-      <div className={styles.del} onClick={onDelete}>
+      <div className={classNames.del} onClick={onDelete}>
         <HighlightOffIcon />
       </div>
     </div>
@@ -87,6 +89,7 @@ const AccountsList = ({
   const [deleteAccountInfo, setDeleteAccountInfo] = useState<any>(null);
   const [lastData, setLastData] = useState<any>(null);
   const sharedClasses = useSharedClasses();
+  const classNames = useClasses();
 
   const { data, loading, refetch } = useQuery(queries.GET_ACCOUNTS, {
     fetchPolicy: 'cache-and-network',
@@ -146,45 +149,45 @@ const AccountsList = ({
   const cols = [
     {
       label: i18n.firstName,
-      className: styles.firstName,
+      className: classNames.firstName,
       field: 'firstName',
       sortable: true
     },
     {
       label: i18n.lastName,
-      className: styles.lastName,
+      className: classNames.lastName,
       field: 'lastName',
       sortable: true
     },
     {
       label: i18n.status,
-      className: styles.status,
+      className: classNames.status,
       field: 'accountStatus',
       sortable: true
     },
     {
       label: i18n.lastLoggedIn,
-      className: styles.lastLoggedIn,
+      className: classNames.lastLoggedIn,
       field: 'lastLoggedIn',
       sortable: true
     },
     {
       label: i18n.expiryDate,
-      className: styles.expiryDate,
+      className: classNames.expiryDate,
       field: 'expiryDate',
       sortable: true
     },
-    { label: i18n.edit, className: styles.edit },
-    { label: '', className: styles.del }
+    { label: i18n.edit, className: classNames.edit },
+    { label: '', className: classNames.del }
   ];
 
   let content;
   if (totalCount === 0) {
-    content = <div className={`${styles.page} ${sharedClasses.emptyText}`}>{i18n.noAccountsCreated}</div>;
+    content = <div className={`${classNames.page} ${sharedClasses.emptyText}`}>{i18n.noAccountsCreated}</div>;
   } else {
     const paginationRow =
       totalCount > NUM_PER_PAGE ? (
-        <div className={styles.paginationRow}>
+        <div className={classNames.paginationRow}>
           <Pagination
             numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
             currentPage={accountsCurrentPage}
@@ -195,7 +198,7 @@ const AccountsList = ({
 
     content = (
       <>
-        <div className={styles.accountsListTable}>
+        <div className={classNames.accountsListTable}>
           <TableHeader
             cols={cols}
             sortDir={accountsSortDir}
@@ -205,7 +208,7 @@ const AccountsList = ({
               setAccountsSortDir(dir);
             }}
           />
-          <div className={styles.body}>
+          <div className={classNames.body}>
             {results.map((row: any) => (
               <Row
                 key={row.accountId}
@@ -227,10 +230,10 @@ const AccountsList = ({
 
   return (
     <>
-      <div className={styles.filtersRow}>
+      <div className={classNames.filtersRow}>
         <SearchFilter value={accountsFilterStr} onChange={setAccountsFilterString} />
         <Dropdown
-          className={styles.accountsFilter}
+          className={classNames.accountsFilter}
           value={accountStatusFilter}
           onChange={(selected: DropdownOption): void => setAccountStatusFilter(selected.value as AccountStatusFilter)}
           options={[

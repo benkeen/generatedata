@@ -9,7 +9,7 @@ import PlayArrow from '@mui/icons-material/PlayArrow';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Dialog, DialogContent, DialogTitle, DialogActions } from '@generatedata/core';
 import usePrevious from '../../hooks/usePrevious';
-import styles from './ActivityPanel.scss';
+import { useClasses } from './ActivityPanel.styles';
 import { DataPacket } from '~store/packets/packets.reducer';
 import * as coreUtils from '../../utils/coreUtils';
 import { Tooltip } from '@generatedata/core';
@@ -57,6 +57,7 @@ const ActivityPanel = ({
   estimatedTimeRemaining,
   fullI18n
 }: ActivityPanelProps): any => {
+  const classNames = useClasses();
   const [measureRef, { width = 0, height = 0 }] = useMeasure(); // TODO check defaults are ok
 
   if (packet === null || fullI18n === null) {
@@ -163,7 +164,7 @@ const ActivityPanel = ({
 
   return (
     <>
-      <Dialog className={styles.activityPanel} onClose={onClose} open={visible}>
+      <Dialog className={classNames.activityPanel} onClose={onClose} open={visible}>
         <div style={{ width: '100%', height: '100%' }} ref={measureRef}>
           <DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
             {coreI18n.generatedC}
@@ -172,16 +173,16 @@ const ActivityPanel = ({
               end={numGeneratedRows}
               separator=","
               easingFn={coreUtils.easeInOutSine}
-              className={styles.counter}
+              className={classNames.counter}
               duration={countUpDuration}
             />
             {coreI18n.rows}
           </DialogTitle>
           <DialogContent dividers style={{ padding: 0 }}>
-            <div className={styles.overlayWrapper}>
+            <div className={classNames.overlayWrapper}>
               <div style={{ display: 'flex' }}>
-                <div className={styles.panel1} style={{ width: panel1Width }}>
-                  <div className={styles.pie}>
+                <div className={classNames.panel1} style={{ width: panel1Width }}>
+                  <div className={classNames.pie}>
                     <h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
                     <PieChart width={pieSize} height={pieSize}>
                       <Pie
@@ -202,27 +203,27 @@ const ActivityPanel = ({
                     </PieChart>
                   </div>
 
-                  <div className={styles.dataPanel}>
-                    <div className={styles.dataRow}>
-                      <div className={styles.dataRowLabel}>{coreI18n.estimatedTime}</div>
-                      <div className={styles.dataRowValue}>{estimatedTime}</div>
+                  <div className={classNames.dataPanel}>
+                    <div className={classNames.dataRow}>
+                      <div className={classNames.dataRowLabel}>{coreI18n.estimatedTime}</div>
+                      <div className={classNames.dataRowValue}>{estimatedTime}</div>
                     </div>
-                    <div className={styles.dataRow}>
-                      <div className={styles.dataRowLabel}>{coreI18n.remainingTime}</div>
-                      <div className={styles.dataRowValue}>{estimatedTimeRemaining}</div>
+                    <div className={classNames.dataRow}>
+                      <div className={classNames.dataRowLabel}>{coreI18n.remainingTime}</div>
+                      <div className={classNames.dataRowValue}>{estimatedTimeRemaining}</div>
                     </div>
-                    <div className={styles.dataRow}>
-                      <div className={styles.dataRowLabel}>{coreI18n.estimatedSize}</div>
-                      <div className={styles.dataRowValue}>{estimatedSize}</div>
+                    <div className={classNames.dataRow}>
+                      <div className={classNames.dataRowLabel}>{coreI18n.estimatedSize}</div>
+                      <div className={classNames.dataRowValue}>{estimatedSize}</div>
                     </div>
-                    <div className={styles.dataRow}>
-                      <div className={styles.dataRowLabel}>{coreI18n.size}</div>
-                      <div className={styles.dataRowValue}>{dataSize}</div>
+                    <div className={classNames.dataRow}>
+                      <div className={classNames.dataRowLabel}>{coreI18n.size}</div>
+                      <div className={classNames.dataRowValue}>{dataSize}</div>
                     </div>
                   </div>
                 </div>
 
-                <div className={styles.panel2}>
+                <div className={classNames.panel2}>
                   <h4>{coreI18n.rowsGeneratedPerSecond}</h4>
 
                   {width && height && (
@@ -244,7 +245,7 @@ const ActivityPanel = ({
               </div>
             </div>
           </DialogContent>
-          <DialogActions className={styles.actionsRow}>
+          <DialogActions className={classNames.actionsRow}>
             {getGenerationControls()}
             {getActionButtons()}
           </DialogActions>
