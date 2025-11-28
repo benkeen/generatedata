@@ -5,7 +5,7 @@
   "private": true,
   "types": "./dist/resolvers-types.ts",
   "scripts": {
-    "generate": "graphql-codegen --config codegen.yml"
+    "build": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "graphql": "^16.12.0"
