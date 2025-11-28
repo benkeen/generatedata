@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '~components/TextField';
-import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import { Dropdown, type DropdownOption } from '@generatedata/core';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
 import { CSVSettings } from './CSV.state';
 import etShared from '../../../styles/etShared.scss';

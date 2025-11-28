@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import Dropdown from '~components/dropdown/Dropdown';
+import { Dropdown } from '@generatedata/core';
 
 // TODO: figure out what this component IS. Is it for specific countries? Sweden has 12 chars...
 // https://en.wikipedia.org/wiki/Personal_identity_number_%28Sweden%29

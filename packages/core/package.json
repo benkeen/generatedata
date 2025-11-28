@@ -1,0 +1,27 @@
+{
+  "name": "@generatedata/core",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@griffel/react": "^1.5.32",
+    "@generatedata/config": "workspace:*",
+    "@generatedata/utils": "workspace:*",
+    "@mui/material": "^7.3.5",
+    "@mui/icons-material": "^7.3.5",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-select": "^5.10.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/react-copy-to-clipboard": "^5.0.7"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  }
+}

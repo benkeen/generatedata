@@ -1,9 +1,9 @@
 import React from 'react';
-import { Dropdown, type DropdownOption } from '@generatedata/components';
+import { Dropdown, type DropdownOption } from '@generatedata/core';
 import { getGroupedExportTypes } from '~utils/exportTypes';
-import * as styles from './ExportSettings.scss';
+import * as styles from './ExportSettings.styles.ts';
 import { ExportSettingsTab } from './ExportSettings.types';
-import { MediumSpinner } from '~components/loaders/loaders';
+import { MediumSpinner } from '../../../../../../packages/components/src/components/loaders/loaders.js';
 
 export type ExportTypeTabProps = {
   exportType: string;

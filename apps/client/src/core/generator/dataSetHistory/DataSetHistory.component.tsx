@@ -5,11 +5,11 @@ import { useQuery } from '@apollo/client/react';
 import Drawer from '@mui/material/Drawer';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { DefaultSpinner, Centered } from '~components/loaders/loaders';
+import { DefaultSpinner, Centered } from '../../../../../../packages/components/src/components/loaders/loaders';
 import { PrimaryButton, SecondaryButton } from '~components/Buttons.component';
 import { Tooltip } from '~components/tooltips';
 import * as queries from '~core/queries';
-import * as styles from './DataSetHistory.scss';
+import * as styles from './DataSetHistory.styles';
 import C from '@generatedata/config/constants';
 import { CurrentDataSet } from '~store/generator/generator.reducer';
 

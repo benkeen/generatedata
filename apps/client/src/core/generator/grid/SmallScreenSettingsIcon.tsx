@@ -1,12 +1,12 @@
 import React from 'react';
 import type { RefObject } from 'react';
-import { SmallSpinner } from '~components/loaders/loaders';
-import * as styles from './Grid.scss';
+import { SmallSpinner } from '../../../../../../packages/components/src/components/loaders/loaders.js';
+import * as styles from './Grid.styles.ts';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import { HtmlTooltip } from '~components/tooltips';
 import useOnClickOutside from 'use-onclickoutside';
 import C from '@generatedata/config/constants';
-import { useSharedClasses } from '@generatedata/components';
+import { useSharedClasses } from '@generatedata/core';
 
 export const SmallScreenSettingsIcon = ({
   id,

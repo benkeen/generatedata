@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import Dropdown from '~components/dropdown/Dropdown';
+import { Dropdown, type DropdownOption } from '@generatedata/core';
 import TextField from '~components/TextField';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { PrefixLocationEnum } from './Currency.state';

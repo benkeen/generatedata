@@ -1,5 +1,5 @@
 import { makeStyles } from '@griffel/react';
-import { vars } from '@generatedata/components';
+import { vars } from '@generatedata/core';
 
 export const useClasses = makeStyles({
   header: {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dropdown } from '@generatedata/components';
+import { Dropdown } from '@generatedata/core';
 import TextField from '~components/TextField';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTOptionsProps, DTHelpProps, DTMetadata } from '~types/dataTypes';

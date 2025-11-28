@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Slider from '@mui/material/Slider';
 import rc from 'randomcolor';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import { Dropdown, type DropdownOption } from '@generatedata/core';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { Tooltip } from '~components/tooltips';

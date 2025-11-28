@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import { Dropdown, type DropdownOption } from '@generatedata/core';
 import styles from './Track2.scss';
 
 const Track2Dialog = ({ visible, data, id, panRows, onClose, onUpdatePANSource, onUpdateRowSource, coreI18n, i18n }: any) => {

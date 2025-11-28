@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import Dropdown from '~components/dropdown/Dropdown';
+import { Dropdown } from '@generatedata/core';
 import TextField from '~components/TextField';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import * as styles from './Email.scss';

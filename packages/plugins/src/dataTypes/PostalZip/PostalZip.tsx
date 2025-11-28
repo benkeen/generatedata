@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import { Dropdown, type DropdownOption } from '@generatedata/core';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { countryList } from '../../../../_plugins';

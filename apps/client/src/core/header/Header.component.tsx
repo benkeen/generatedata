@@ -13,7 +13,7 @@ import { AccountType } from '~types/account';
 // import sharedStyles from '../../styles/shared.scss';
 import { GDLocale } from '~types/general';
 import { useClasses } from './Header.styles';
-import { useSharedClasses } from '@generatedata/components';
+import { useSharedClasses } from '@generatedata/core';
 
 export type HeaderProps = {
   locale: GDLocale;

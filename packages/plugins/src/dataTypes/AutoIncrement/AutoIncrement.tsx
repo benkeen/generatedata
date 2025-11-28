@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Dropdown from '~components/dropdown/Dropdown';
+import { Dropdown } from '@generatedata/core';
 import TextField from '~components/TextField';
 import { isNumeric } from '@generatedata/utils/number';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '~types/dataTypes';

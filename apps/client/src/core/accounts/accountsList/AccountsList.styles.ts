@@ -1,0 +1,114 @@
+import { makeStyles } from '@griffel/react';
+
+export const useClasses = makeStyles({
+  page: {
+    fontSize: '13px'
+  }
+});
+
+// body: { //.body
+// 	overflow: scroll,
+
+// 	.row {
+// 		&:hover {
+// 			background-color: #f9f9f9;
+// 		}
+// 	}
+// }
+
+// .paginationRow {
+// 	margin: 15px 0;
+// }
+
+// .accountsListTable {
+// 	width: 100%;
+// 	margin-bottom: 20px;
+
+// 	.row {
+// 		display: flex;
+// 		width: 100%;
+// 		padding: 6px;
+// 		align-items: center;
+// 		font-size: 13px;
+// 	}
+
+// 	.firstName {
+// 		flex: 1 0 110px;
+// 	}
+
+// 	.lastName {
+// 		flex: 1 0 110px;
+// 	}
+
+// 	.expiryDate {
+// 		flex: 1 0 90px;
+// 		overflow: hidden;
+// 		text-overflow: ellipsis;
+// 		white-space: nowrap;
+// 	}
+
+// 	.lastLoggedIn {
+// 		flex: 1 0 90px;
+// 		overflow: hidden;
+// 		text-overflow: ellipsis;
+// 		white-space: nowrap;
+// 	}
+
+// 	.status {
+// 		flex: 1 0 70px;
+// 	}
+
+// 	.edit {
+// 		flex: 0 0 90px;
+// 		text-align: center;
+// 	}
+
+// 	.del {
+// 		flex: 0 0 30px;
+// 		align-items: center;
+// 		cursor: pointer;
+
+// 		&:hover {
+// 			svg {
+// 				fill: #990000;
+// 			}
+// 		}
+// 	}
+// }
+
+// .filtersRow {
+// 	display: flex;
+// 	margin-bottom: 15px;
+// 	align-items: center;
+
+// 	h4 {
+// 		margin-left: auto;
+// 	}
+// }
+
+// .searchFilter {
+// 	display: flex;
+// 	margin-right: 8px;
+// }
+
+// .accountsFilter {
+// 	width: 130px;
+// }
+
+// @media (max-width: 720px) {
+// 	.status,
+// 	.lastLoggedIn,
+// 	.expiryDate {
+// 		display: none;
+// 	}
+
+// 	.paginationRow nav {
+// 		border-bottom: 0;
+// 	}
+// }
+
+// @media (max-width: 900px) {
+// 	.lastLoggedIn {
+// 		display: none;
+// 	}
+// }

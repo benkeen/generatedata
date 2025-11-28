@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import Dropdown from '~components/dropdown/Dropdown';
+import { Dropdown } from '@generatedata/core';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { BooleanState, GenerationOptionsType } from './Boolean.state';
 

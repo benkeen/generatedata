@@ -3,7 +3,7 @@ import AccountsList from './accountsList/AccountsList.container';
 import CreateAccount from './createAccount/CreateAccount.container';
 import EditAccount from './editAccount/EditAccount.container';
 import { SelectedAccountsTab } from '~types/account';
-import { useSharedClasses } from '@generatedata/components';
+import { useSharedClasses } from '@generatedata/core';
 
 export type AccountsPageProps = {
   i18n: any;

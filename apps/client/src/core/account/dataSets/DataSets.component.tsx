@@ -7,7 +7,7 @@ import TableHeader, { ColSortDir } from '~components/tables/TableHeader.componen
 import * as queries from '~core/queries';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
-import * as sharedStyles from '../../../styles/shared.scss';
+import { useSharedClasses } from '@generatedata/core';
 import { DataSetListItem } from '@generatedata/types';
 import { formatUnixTime } from '@generatedata/utils/date';
 import { getGeneratorPageRoute } from '~utils/routeUtils';
@@ -51,6 +51,7 @@ const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '
   const [dialogVisible, setDeleteDialogVisibility] = useState(false);
   const [sortCol, setSortCol] = useState('dataSetName');
   const [sortDir, setSortDir] = useState<ColSortDir>(ColSortDir.asc);
+  const sharedClasses = useSharedClasses();
 
   const { data } = useQuery(queries.GET_DATA_SETS, {
     fetchPolicy: 'cache-and-network',
@@ -113,7 +114,7 @@ const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '
   if (totalCount === 0) {
     return (
       <section className={`${className} ${styles.page}`}>
-        <div className={sharedStyles.emptyText}>{i18n.noDataSetsSaved}</div>
+        <div className={sharedClasses.emptyText}>{i18n.noDataSetsSaved}</div>
       </section>
     );
   }
@@ -166,7 +167,7 @@ const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '
             }}
           />
           <div className={styles.body}>
-            {results.map((dataSet: DataSetListItem) => (
+            {results!.map((dataSet: DataSetListItem) => (
               <Row
                 key={dataSet.dataSetId}
                 dataSet={dataSet}

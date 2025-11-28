@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { format, fromUnixTime, parse } from 'date-fns';
-import Dropdown from '~components/dropdown/Dropdown';
+import { Dropdown } from '@generatedata/core';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import TextField from '@mui/material/TextField';
 import CoreTextField from '~components/TextField';

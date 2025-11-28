@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Switch from '@mui/material/Switch';
-import Dropdown from '~components/dropdown/Dropdown';
+import { Dropdown } from '@generatedata/core';
 import TextField from '~components/TextField';
 import { SQLSettings } from './SQL.state';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';

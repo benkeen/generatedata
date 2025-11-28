@@ -3,7 +3,7 @@ import { IconButton, List, ListItemButton, ListItemText, MenuItem } from '@mui/m
 import LanguageIcon from '@mui/icons-material/Language';
 import { Dialog, DialogContent, DialogTitle } from '~components/dialogs';
 import { Tooltip } from '~components/tooltips';
-import { DialogLoadingSpinner } from '~components/loaders/loaders';
+import { DialogLoadingSpinner } from '../../../../../packages/components/src/components/loaders/loaders';
 import { GDLocale } from '~types/general';
 import { useClasses } from './Header.styles';
 import { useNavigate } from 'react-router';

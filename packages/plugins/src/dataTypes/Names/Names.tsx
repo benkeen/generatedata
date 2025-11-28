@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { SmallSpinner } from '~components/loaders/loaders';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import { Dropdown, type DropdownOption } from '@generatedata/core';
 import { Tooltip } from '~components/tooltips';
 import WorldIcon from '@mui/icons-material/Public';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';

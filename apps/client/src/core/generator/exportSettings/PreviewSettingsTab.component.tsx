@@ -1,8 +1,8 @@
 import React from 'react';
-import { Dropdown } from '@generatedata/components';
+import { Dropdown } from '@generatedata/core';
 import Switch from '@mui/material/Switch';
 import { getArrayOfSize } from '@generatedata/utils/array';
-import * as styles from './ExportSettings.scss';
+import * as styles from './ExportSettings.styles.ts';
 import C from '@generatedata/config/constants';
 
 export type PreviewSettingsTabProps = {

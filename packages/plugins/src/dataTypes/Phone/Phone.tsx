@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Dropdown from '~components/dropdown/Dropdown';
+import { Dropdown } from '@generatedata/core';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { PhoneState, GenerationOptionsType } from './Phone.state';

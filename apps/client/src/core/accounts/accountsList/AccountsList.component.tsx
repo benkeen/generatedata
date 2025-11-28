@@ -6,17 +6,17 @@ import { useMutation, useQuery } from '@apollo/client/react';
 import { addToast } from '@generatedata/utils/general';
 import Pagination from '~components/Pagination';
 import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
-import { SmallSpinner } from '~components/loaders/loaders';
+import { SmallSpinner } from '../../../../../../packages/components/src/components/loaders/loaders';
 import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
 import DeleteAccountDialog from '~core/dialogs/deleteAccount/DeleteAccount.component';
 import SearchFilter from './SearchFilter.component';
 import C from '@generatedata/config/constants';
-import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import Dropdown, { DropdownOption } from '@generatedata/core';
 import { AccountStatusFilter } from '~types/general';
 import { DELETE_ACCOUNT } from '~core/mutations';
 import * as queries from '~core/queries';
-import * as styles from './AccountsList.scss';
-import * as sharedStyles from '../../../styles/shared.scss';
+import * as styles from './AccountsList.styles.ts';
+import { useSharedClasses } from '@generatedata/core';
 
 export type AccountsListProps = {
   accountsCurrentPage: number;
@@ -34,14 +34,15 @@ export type AccountsListProps = {
 };
 
 const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastLoggedIn, expiryDate }: any) => {
-  let expiryDateVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
+  const sharedClasses = useSharedClasses();
+  let expiryDateVal: any = <span className={sharedClasses.blank}>&#8212;</span>;
   try {
     if (expiryDate) {
       expiryDateVal = format(fromUnixTime(expiryDate / 1000), C.DATE_FORMAT);
     }
   } catch (e) {}
 
-  let lastLoggedInVal: any = <span className={sharedStyles.blank}>&#8212;</span>;
+  let lastLoggedInVal: any = <span className={sharedClasses.blank}>&#8212;</span>;
   try {
     lastLoggedInVal = format(fromUnixTime(lastLoggedIn), C.DATE_FORMAT);
   } catch (lastLoggedInVal) {}
@@ -85,6 +86,7 @@ const AccountsList = ({
   const [dialogVisible, setDialogVisible] = useState(false);
   const [deleteAccountInfo, setDeleteAccountInfo] = useState<any>(null);
   const [lastData, setLastData] = useState<any>(null);
+  const sharedClasses = useSharedClasses();
 
   const { data, loading, refetch } = useQuery(queries.GET_ACCOUNTS, {
     fetchPolicy: 'cache-and-network',
@@ -178,7 +180,7 @@ const AccountsList = ({
 
   let content;
   if (totalCount === 0) {
-    content = <div className={`${styles.page} ${sharedStyles.emptyText}`}>{i18n.noAccountsCreated}</div>;
+    content = <div className={`${styles.page} ${sharedClasses.emptyText}`}>{i18n.noAccountsCreated}</div>;
   } else {
     const paginationRow =
       totalCount > NUM_PER_PAGE ? (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import { Dropdown, type DropdownOption } from '@generatedata/core';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { cloneObj } from '~utils/generalUtils';

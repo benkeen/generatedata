@@ -2,7 +2,7 @@ import * as React from 'react';
 import { format, fromUnixTime } from 'date-fns';
 import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
 import Button from '@mui/material/Button';
-import Dropdown from '~components/dropdown/Dropdown';
+import { Dropdown, type DropdownOption } from '@generatedata/core';
 import Event from '@mui/icons-material/Event';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';

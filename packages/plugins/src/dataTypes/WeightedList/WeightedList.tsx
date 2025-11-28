@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import Dropdown from '~components/dropdown/Dropdown';
+import { Dropdown } from '@generatedata/core';
 import TextField from '~components/TextField';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
