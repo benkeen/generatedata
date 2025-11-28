@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ErrorTooltip } from '~components/tooltips';
+import { ErrorTooltip } from '../tooltips';
 import { useSharedClasses } from '@generatedata/core';
-import { useThrottle } from '../hooks/useThrottle';
+import { useThrottle } from '../../hooks/useThrottle';
+import { TooltipProps } from '@mui/material/Tooltip';
 
 type TextFieldProps = {
   value: string;
@@ -12,7 +13,7 @@ type TextFieldProps = {
   placeholder?: string;
   autoFocus?: boolean;
   className?: string;
-  tooltipPlacement?: string;
+  tooltipPlacement?: TooltipProps['placement'];
   name?: string;
   style?: React.CSSProperties;
   disabled?: boolean;
@@ -21,7 +22,7 @@ type TextFieldProps = {
   onBlur?: (e: any) => void;
   onPaste?: (e: any) => void;
   onKeyDown?: (e: any) => void;
-  autoComplete?: string | boolean;
+  autoComplete?: string;
 };
 
 const TextField = ({ throttle, error, value, onChange, tooltipPlacement, className, ref, ...props }: TextFieldProps) => {

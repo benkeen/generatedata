@@ -5,8 +5,13 @@
     "target": "esnext",
     "module": "nodenext",
     "moduleResolution": "nodenext",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
     "declaration": true,
     "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx"
   },
   "include": ["src"],

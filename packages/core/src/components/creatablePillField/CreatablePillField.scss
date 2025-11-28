@@ -1,6 +1,0 @@
-@use '../../styles/variables' as c;
-
-.errorField > div,
-.errorField:hover > div {
-	border: 1px solid c.$error;
-}

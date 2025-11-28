@@ -38,8 +38,10 @@ export const DialogTitle = withStyles(dialogStyles)((props: any): any => {
   );
 });
 
+// @ts-ignore
 export const DialogContent = styled(MuiDialogContent)((theme) => ({
   root: {
+    // @ts-ignore
     padding: theme.spacing(2)
   }
 }));
@@ -47,6 +49,7 @@ export const DialogContent = styled(MuiDialogContent)((theme) => ({
 export const DialogActions = styled(MuiDialogActions)((theme) => ({
   root: {
     margin: 0,
+    // @ts-ignore
     padding: theme.spacing(1)
   }
 }));

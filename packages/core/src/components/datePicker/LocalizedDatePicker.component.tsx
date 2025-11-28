@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 // import { DatePicker, MuiPickersUtilsProvider } from '@mui/lab';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -7,36 +7,36 @@ import { arDZ, de, enUS, es, fr, ja, hi, nl, pt, ru, ta, zhCN } from 'date-fns/l
 
 // localized wrapper for the date picker provider
 export const LocalizedDatePicker = (props: any) => {
-	const { core: i18n } = getStrings();
+  const { core: i18n } = getStrings();
 
-	return <DatePicker {...props} cancelLabel={i18n.cancel} />;
+  return <DatePicker {...props} cancelLabel={i18n.cancel} />;
 };
 
 // localized wrapper for the date picker provider
-export const LocalizedDatePickerProvider = ({ children }: any) => {
-	const locale = getLocale();
+export const LocalizedDatePickerProvider: PropsWithChildren<FC> = () => {
+  const locale = getLocale();
 
-	const localeMap = {
-		ar: arDZ,
-		en: enUS,
-		fr,
-		de,
-		es,
-		ja,
-		hi,
-		nl,
-		pt,
-		ru,
-		ta,
-		zh: zhCN
-	};
+  const localeMap = {
+    ar: arDZ,
+    en: enUS,
+    fr,
+    de,
+    es,
+    ja,
+    hi,
+    nl,
+    pt,
+    ru,
+    ta,
+    zh: zhCN
+  };
 
-	// TODO REFACTOR
-	// return (
-	// 	<MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}>
-	// 		{children}
-	// 	</MuiPickersUtilsProvider>
-	// );
+  // TODO REFACTOR
+  // return (
+  // 	<MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}>
+  // 		{children}
+  // 	</MuiPickersUtilsProvider>
+  // );
 
-	return null;
+  return null;
 };

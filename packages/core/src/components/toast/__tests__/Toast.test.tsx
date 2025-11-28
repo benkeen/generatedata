@@ -1,24 +1,24 @@
 import React from 'react';
-import Toast from '../Toast.component';
+import { Toast } from '../Toast.component';
 import { render, act } from '@testing-library/react';
 import { addToast } from '@generatedata/utils/general';
 
 describe('Toast', () => {
-	it('renders', () => {
-		const { baseElement } = render(<Toast />);
-		expect(baseElement.querySelector('#gd-toast')).toBeTruthy();
-	});
+  it('renders', () => {
+    const { baseElement } = render(<Toast />);
+    expect(baseElement.querySelector('#gd-toast')).toBeTruthy();
+  });
 
-	it('shows a toast', () => {
-		const { baseElement } = render(<Toast />);
+  it('shows a toast', () => {
+    const { baseElement } = render(<Toast />);
 
-		act(() => {
-			addToast({
-				message: 'Hello world!',
-				type: 'success'
-			});
-		});
+    act(() => {
+      addToast({
+        message: 'Hello world!',
+        type: 'success'
+      });
+    });
 
-		expect(baseElement.innerHTML).toContain('Hello world!');
-	});
+    expect(baseElement.innerHTML).toContain('Hello world!');
+  });
 });
