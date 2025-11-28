@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { IconButton, List, ListItemButton, ListItemText, MenuItem } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
-import { Dialog, DialogContent, DialogTitle } from '~components/dialogs';
-import { Tooltip } from '~components/tooltips';
-import { DialogLoadingSpinner } from '../../../../../packages/components/src/components/loaders/loaders';
+import { Dialog, DialogContent, DialogTitle } from '@generatedata/core';
+import { Tooltip } from '@generatedata/core';
+import { DialogLoadingSpinner } from '@generatedata/core';
 import { GDLocale } from '~types/general';
 import { useClasses } from './Header.styles';
 import { useNavigate } from 'react-router';

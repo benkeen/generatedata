@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 import { getLipsumWords } from '~utils/stringUtils';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import { TextSource, TextFixedState, GenerationOptionsType } from './TextFixed.state';
 import styles from './TextFixed.scss';
 

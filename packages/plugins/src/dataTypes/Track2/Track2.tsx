@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { Dropdown, type DropdownOption } from '@generatedata/core';
 import styles from './Track2.scss';

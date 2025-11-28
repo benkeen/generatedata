@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 import { Dropdown, type DropdownOption } from '@generatedata/core';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
 import { CSVSettings } from './CSV.state';

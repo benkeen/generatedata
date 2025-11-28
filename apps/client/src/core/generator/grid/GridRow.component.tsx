@@ -7,9 +7,9 @@ import { Dropdown } from '@generatedata/core';
 import { DataRow } from '~store/generator/generator.reducer';
 import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
 import { DataTypeFolder } from '@generatedata/plugins';
-import * as styles from './Grid.styles.ts';
+import { useClasses } from './Grid.styles';
 import { useSharedClasses } from '@generatedata/core';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 import { SmallSpinner } from '../../../../../../packages/components/src/components/loaders/loaders.js';
 import { SmallScreenSettingsIcon } from './SmallScreenSettingsIcon';
 import { DTOptionsMetadata } from '~types/dataTypes';
@@ -76,7 +76,9 @@ export const GridRow = ({
   isCountryNamesLoaded,
   countryNamesMap
 }: GridRowProps) => {
-  const classNames = useSharedClasses();
+  const sharedClasses = useSharedClasses();
+  const classNames = useClasses();
+
   let example: any = null;
   let options: any = null;
 
@@ -90,12 +92,12 @@ export const GridRow = ({
           id={row.id}
           data={row.data}
           onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-          emptyColClass={classNames.emptyCol}
+          emptyColClass={sharedClasses.emptyCol}
           gridPanelDimensions={gridPanelDimensions}
         />
       );
     } else {
-      example = <NoExample coreI18n={i18n} emptyColClass={classNames.emptyCol} />;
+      example = <NoExample coreI18n={i18n} emptyColClass={sharedClasses.emptyCol} />;
     }
 
     if (Options) {
@@ -108,7 +110,7 @@ export const GridRow = ({
           data={row.data}
           onUpdate={(data: any, metadata?: DTOptionsMetadata): void => onConfigureDataType(row.id, data, metadata)}
           gridPanelDimensions={gridPanelDimensions}
-          emptyColClass={classNames.emptyCol}
+          emptyColClass={sharedClasses.emptyCol}
           isCountryNamesLoading={isCountryNamesLoading}
           isCountryNamesLoaded={isCountryNamesLoaded}
           countryNamesMap={countryNamesMap}
@@ -116,7 +118,7 @@ export const GridRow = ({
         />
       );
     } else {
-      options = <NoOptions coreI18n={i18n} emptyColClass={classNames.emptyCol} />;
+      options = <NoOptions coreI18n={i18n} emptyColClass={sharedClasses.emptyCol} />;
     }
   } else if (!isDataTypeLoaded && row.dataType) {
     example = <SmallSpinner />;
@@ -141,27 +143,29 @@ export const GridRow = ({
 
         return (
           <div
-            className={`${styles.gridRow} tour-gridRow`}
+            className={`${classNames.gridRow} tour-gridRow`}
             key={row.id}
             ref={provided.innerRef}
             {...provided.draggableProps}
             style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
           >
-            <div className={styles.orderCol} {...provided.dragHandleProps}>
+            <div className={classNames.orderCol} {...provided.dragHandleProps}>
               <DragIndicator fontSize="small" />
               {index + 1}
             </div>
-            <div className={styles.dataTypeCol}>
+            <div className={classNames.dataTypeCol}>
               <Dropdown
-                className={styles.dataTypeColDropdown}
+                className={classNames.dataTypeColDropdown}
                 isGrouped={true}
                 value={row.dataType}
                 onChange={(i: any): void => onSelectDataType(i.value, { gridRowId: row.id })}
                 options={dtDropdownOptions}
               />
-              <div className={styles.dataTypeHelp}>{row.dataType ? <InfoIcon fontSize="inherit" onClick={onClickShowHelp} /> : null}</div>
+              <div className={classNames.dataTypeHelp}>
+                {row.dataType ? <InfoIcon fontSize="inherit" onClick={onClickShowHelp} /> : null}
+              </div>
             </div>
-            <div className={styles.titleCol}>
+            <div className={classNames.titleCol}>
               <TextField
                 error={titleColError}
                 value={row.title}
@@ -169,10 +173,10 @@ export const GridRow = ({
                 throttle={false}
               />
             </div>
-            <div className={styles.examplesCol}>{example}</div>
-            <div className={styles.optionsCol}>{options}</div>
+            <div className={classNames.examplesCol}>{example}</div>
+            <div className={classNames.optionsCol}>{options}</div>
             <div
-              className={styles.settingsIconCol}
+              className={classNames.settingsIconCol}
               onClick={(): void => {
                 if (row.dataType === null) {
                   return;
@@ -194,7 +198,7 @@ export const GridRow = ({
                 dtCustomProps={dtCustomProps}
               />
             </div>
-            <div className={styles.deleteCol} onClick={(): void => onRemove(row.id)}>
+            <div className={classNames.deleteCol} onClick={(): void => onRemove(row.id)}>
               <HighlightOffIcon />
             </div>
           </div>

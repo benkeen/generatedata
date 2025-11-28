@@ -1,28 +1,28 @@
 import React from 'react';
-import { PrimaryButton, NullButton } from '~components/Buttons.component';
+import { PrimaryButton, NullButton } from '@generatedata/core';
 import { getStrings } from '@generatedata/utils/lang';
 
 export const TourCompleteStep = ({ close }: any) => {
-	const { core: i18n } = getStrings();
+  const { core: i18n } = getStrings();
 
-	const onExit = (): void => {
-		close(true);
-	};
+  const onExit = (): void => {
+    close(true);
+  };
 
-	return (
-		<>
-			<h2>{i18n.tourComplete}</h2>
+  return (
+    <>
+      <h2>{i18n.tourComplete}</h2>
 
-			<p>{i18n.tourCompleteDesc}</p>
+      <p>{i18n.tourCompleteDesc}</p>
 
-			<p>
-				<PrimaryButton size="medium" style={{ marginRight: 6 }} onClick={close}>
-					{i18n.tryDifferentTour}
-				</PrimaryButton>
-				<NullButton size="medium" onClick={onExit}>
-					Exit
-				</NullButton>
-			</p>
-		</>
-	);
+      <p>
+        <PrimaryButton size="medium" style={{ marginRight: 6 }} onClick={close}>
+          {i18n.tryDifferentTour}
+        </PrimaryButton>
+        <NullButton size="medium" onClick={onExit}>
+          Exit
+        </NullButton>
+      </p>
+    </>
+  );
 };

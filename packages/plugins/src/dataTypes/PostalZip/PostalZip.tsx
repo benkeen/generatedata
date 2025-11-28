@@ -4,7 +4,7 @@ import { Dropdown, type DropdownOption } from '@generatedata/core';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { countryList } from '../../../../_plugins';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import { PostalZipSource } from './PostalZip.state';
 import styles from './PostalZip.scss';
 

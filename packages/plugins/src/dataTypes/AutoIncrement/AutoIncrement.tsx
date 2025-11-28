@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Dropdown } from '@generatedata/core';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 import { isNumeric } from '@generatedata/utils/number';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '~types/dataTypes';
 import { AutoIncrementState, GenerationOptionsType } from './AutoIncrement.state';

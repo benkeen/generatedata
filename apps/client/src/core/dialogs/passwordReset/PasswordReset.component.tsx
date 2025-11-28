@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import TextField from '~components/TextField';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+import { TextField } from '@generatedata/core';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
 import { isValidEmail } from '@generatedata/utils/general';
 import { DialogLoadingSpinner } from '../../../../../../packages/components/src/components/loaders/loaders';
 import styles from './PasswordReset.scss';

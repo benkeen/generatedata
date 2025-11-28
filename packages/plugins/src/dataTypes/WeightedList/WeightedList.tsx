@@ -3,10 +3,10 @@ import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { Dropdown } from '@generatedata/core';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import { Tooltip } from '~components/tooltips';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
+import { Tooltip } from '@generatedata/core';
 import * as langUtils from '~utils/langUtils';
 import {
   presets,

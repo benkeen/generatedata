@@ -3,7 +3,7 @@ import type { RefObject } from 'react';
 import { SmallSpinner } from '../../../../../../packages/components/src/components/loaders/loaders.js';
 import * as styles from './Grid.styles.ts';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
-import { HtmlTooltip } from '~components/tooltips';
+import { HtmlTooltip } from '@generatedata/core';
 import useOnClickOutside from 'use-onclickoutside';
 import C from '@generatedata/config/constants';
 import { useSharedClasses } from '@generatedata/core';

@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { countryList } from '../../../../_plugins';
 import { Dropdown, type DropdownOption } from '@generatedata/core';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import styles from './Region.scss';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { removeItem } from '~utils/arrayUtils';

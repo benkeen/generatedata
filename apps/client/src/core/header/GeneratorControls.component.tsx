@@ -3,7 +3,7 @@ import type { RefObject } from 'react';
 import { useMutation } from '@apollo/client/react';
 import AutoSizer from 'react-input-autosize';
 import { Divider, IconButton, List, ListItemButton, ListItemText } from '@mui/material';
-import { HtmlTooltip } from '~components/tooltips';
+import { HtmlTooltip } from '@generatedata/core';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import useOnClickOutside from 'use-onclickoutside';
 import { addToast } from '@generatedata/utils/general';

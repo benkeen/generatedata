@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { DTExampleProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import { Dropdown } from '@generatedata/core';
 import CheckboxPill from '~components/pills/CheckboxPill';
 import { URLsState, GenerationOptionsType, initialState } from './URLs.state';

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { Dropdown, type DropdownOption } from '@generatedata/core';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { cloneObj } from '~utils/generalUtils';
 import { toSentenceCase } from '~utils/stringUtils';

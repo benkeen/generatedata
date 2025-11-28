@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import CoreTextField from '~components/TextField';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { ErrorTooltip } from '~components/tooltips';
+import { ErrorTooltip } from '@generatedata/core';
 import { DateState, GenerationOptionsType } from './Time.state';
 import * as styles from './Time.scss';
 import * as sharedStyles from '../../../styles/shared.scss';

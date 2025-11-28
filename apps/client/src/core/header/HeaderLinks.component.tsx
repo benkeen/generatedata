@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/PowerSettingsNew';
 import { GDCustomHeaderLink, GDHeaderLink, GDLocale } from '~types/general';
 import { getUnlocalizedGeneratorRoute, removeLocale } from '~utils/routeUtils';
-import { Tooltip } from '~components/tooltips';
+import { Tooltip } from '@generatedata/core';
 import LanguageSelector from './LanguageSelector.container';
 import { useClasses } from './Header.styles';
 

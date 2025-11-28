@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { getLipsumWords } from '~utils/stringUtils';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { TextSource, TextRandomState, GenerationOptionsType } from './TextRandom.state';
 import styles from './TextRandom.scss';

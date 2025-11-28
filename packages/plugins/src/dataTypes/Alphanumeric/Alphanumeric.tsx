@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Dropdown } from '@generatedata/core';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTOptionsProps, DTHelpProps, DTMetadata } from '~types/dataTypes';
 import { AlphanumericState, GenerationOptionsType } from './Alphanumeric.state';

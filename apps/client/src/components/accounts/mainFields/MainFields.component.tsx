@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 import IconButton from '@mui/material/IconButton';
 import { Dropdown } from '@generatedata/core';
 import FormGroup from '@mui/material/FormGroup';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 import { TypescriptSettings } from './Typescript.state';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
 import styles from './Typescript.scss';

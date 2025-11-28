@@ -1,11 +1,11 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/Info';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import TextField from '~components/TextField';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
+import { TextField } from '@generatedata/core';
 import CheckboxPill from '~components/pills/CheckboxPill';
 import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { Tooltip } from '~components/tooltips';
+import { Tooltip } from '@generatedata/core';
 import { BitcoinAddressFormat } from './BitcoinAddress.state';
 import styles from './BitcoinAddress.scss';
 

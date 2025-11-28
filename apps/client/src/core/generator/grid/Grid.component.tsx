@@ -3,9 +3,9 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useWindowSize } from 'react-hooks-window-size';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import * as styles from './Grid.styles';
-import { Tooltip } from '~components/tooltips';
-import { PrimaryButton } from '~components/Buttons.component';
+import { useClasses } from './Grid.styles';
+import { Tooltip } from '@generatedata/core';
+import { PrimaryButton } from '@generatedata/core';
 import { DataRow } from '~store/generator/generator.reducer';
 import { DataTypeFolder } from '@generatedata/plugins';
 import GridRow from './GridRow.container';
@@ -27,12 +27,13 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
   const [numRows, setNumRows] = React.useState(1);
   const windowSize = useWindowSize();
   const [measureRef, { width = 0, height = 0 }] = useMeasure();
+  const classNames = useClasses();
 
   let gridSizeClass = '';
   if (width && width < C.GRID.SMALL_BREAKPOINT) {
-    gridSizeClass = styles.gridSmall;
+    gridSizeClass = classNames.gridSmall;
   } else if (width && width < C.GRID.MEDIUM_BREAKPOINT) {
-    gridSizeClass = styles.gridMedium;
+    gridSizeClass = classNames.gridMedium;
   }
 
   const addRowsBtnLabel = numRows === 1 ? i18n.row : i18n.rows;
@@ -60,26 +61,26 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
         </span>
       </div>
 
-      <div className={`${styles.gridWrapper} ${gridSizeClass}`} ref={measureRef}>
+      <div className={`${classNames.gridWrapper} ${gridSizeClass}`} ref={measureRef}>
         <div>
-          <div className={styles.gridHeaderWrapper}>
-            <div className={`${styles.gridRow} ${styles.gridHeader} tour-gridHeader`} style={{ flex: '0 0 auto' }}>
-              <div className={styles.orderCol}>{rows.length}</div>
-              <div className={styles.dataTypeCol}>{i18n.dataType}</div>
-              <div className={styles.titleCol}>{columnTitle}</div>
-              <div className={styles.examplesCol}>{i18n.examples}</div>
-              <div className={styles.optionsCol}>{i18n.options}</div>
-              <div className={styles.settingsIconCol} />
-              <div className={styles.deleteCol} />
+          <div className={classNames.gridHeaderWrapper}>
+            <div className={`${classNames.gridRow} ${classNames.gridHeader} tour-gridHeader`} style={{ flex: '0 0 auto' }}>
+              <div className={classNames.orderCol}>{rows.length}</div>
+              <div className={classNames.dataTypeCol}>{i18n.dataType}</div>
+              <div className={classNames.titleCol}>{columnTitle}</div>
+              <div className={classNames.examplesCol}>{i18n.examples}</div>
+              <div className={classNames.optionsCol}>{i18n.options}</div>
+              <div className={classNames.settingsIconCol} />
+              <div className={classNames.deleteCol} />
             </div>
           </div>
         </div>
-        <div className={`${styles.scrollableGridRows} tour-scrollableGridRows`}>
-          <div className={`${styles.gridRowsWrapper} tour-gridRows`}>
+        <div className={`${classNames.scrollableGridRows} tour-scrollableGridRows`}>
+          <div className={`${classNames.gridRowsWrapper} tour-gridRows`}>
             <DragDropContext onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}>
               <Droppable droppableId="droppable">
                 {(provided: any): any => (
-                  <div className={styles.grid} {...provided.droppableProps} ref={provided.innerRef}>
+                  <div className={classNames.grid} {...provided.droppableProps} ref={provided.innerRef}>
                     {rows.map((row, index) => (
                       <GridRow
                         row={row}
@@ -95,7 +96,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
               </Droppable>
             </DragDropContext>
 
-            <form onSubmit={(e): any => e.preventDefault()} className={`${styles.addRows} tour-addRows`}>
+            <form onSubmit={(e): any => e.preventDefault()} className={`${classNames.addRows} tour-addRows`}>
               <span>{i18n.add}</span>
               <input
                 type="number"

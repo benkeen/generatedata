@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
 import { DropdownOption } from '@generatedata/core';
 import { MediumSpinner } from '../../../../../../packages/components/src/components/loaders/loaders';
 import { getSortedGroupedDataTypes, getDataType } from '~utils/dataTypes';

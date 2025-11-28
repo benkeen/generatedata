@@ -3,8 +3,8 @@ import Button from '@mui/material/Button';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { Dropdown, type DropdownOption } from '@generatedata/core';
-import TextField from '~components/TextField';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import { PrefixLocationEnum } from './Currency.state';
 import styles from './Currency.scss';
 

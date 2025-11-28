@@ -1,7 +1,7 @@
 import React from 'react';
-import { PrimaryButton, NullButton } from '~components/Buttons.component';
+import { PrimaryButton, NullButton } from '@generatedata/core';
 import WarningIcon from '@mui/icons-material/Warning';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
 import { useClasses } from './DeleteDataSetDialog.styles';
 
 export type DeleteDataSetDialogProps = {

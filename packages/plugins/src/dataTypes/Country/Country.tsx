@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import { Dropdown, type DropdownOption } from '@generatedata/core';
 import fullCountryList from './fullCountryList';
 import { countryList } from '../../../../_plugins';

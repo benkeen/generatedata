@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { PrimaryButton } from '~components/Buttons.component';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { PrimaryButton } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import { DialogLoadingSpinner } from '../../../../../../packages/components/src/components/loaders/loaders';
 import { getTourComponents } from '@generatedata/utils/general';
 import styles from './TourIntro.scss';

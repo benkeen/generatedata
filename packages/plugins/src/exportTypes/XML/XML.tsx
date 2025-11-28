@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './XML.scss';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETValidateTitleField } from '@generatedata/types';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 
 export const Settings = ({ data, i18n, coreI18n, id, onUpdate }: ETSettings) => {
   const onChange = (prop: string, value: any): void => {

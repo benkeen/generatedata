@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { NumericFormat } from 'react-number-format';
 import Button from '@mui/material/Button';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import { getI18nString } from '@generatedata/utils/lang';
 import { getFormattedNum } from '@generatedata/utils/number';
 import styles from './ActivityPanel.scss';
 import { useSharedClasses } from '@generatedata/core';
-import { ErrorTooltip } from '~components/tooltips';
+import { ErrorTooltip } from '@generatedata/core';
 import { MediumSpinner } from '../../../../../packages/components/src/components/loaders/loaders';
 import Engine from './Engine.container';
 import { DataPacket } from '~store/packets/packets.reducer';

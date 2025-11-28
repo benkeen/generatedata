@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { NumberRangeState } from './NumberRange.state';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 
 export const rowStateReducer = (state: NumberRangeState): NumberRangeState => state;
 

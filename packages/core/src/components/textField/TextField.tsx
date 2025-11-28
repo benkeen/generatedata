@@ -25,7 +25,7 @@ type TextFieldProps = {
   autoComplete?: string;
 };
 
-const TextField = ({ throttle, error, value, onChange, tooltipPlacement, className, ref, ...props }: TextFieldProps) => {
+export const TextField = ({ throttle, error, value, onChange, tooltipPlacement, className, ref, ...props }: TextFieldProps) => {
   const classNames = useSharedClasses();
   let classes = className ? className : '';
   if (error) {
@@ -80,5 +80,3 @@ TextField.defaultProps = {
   error: '',
   tooltipPlacement: 'bottom'
 };
-
-export default TextField;

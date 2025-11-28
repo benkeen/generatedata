@@ -2,13 +2,13 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import { Dropdown } from '@generatedata/core';
-import TextField from '~components/TextField';
+import { TextField } from '@generatedata/core';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import * as styles from './Email.scss';
 import { StringSourceEnum, EmailState, defaultDomainSuffixes, defaultDomains, GenerationOptionsType } from './Email.state';
-import { Tooltip } from '~components/tooltips';
+import { Tooltip } from '@generatedata/core';
 
 const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOptions, i18n }: any) => {
   const getFieldsRow = () => {

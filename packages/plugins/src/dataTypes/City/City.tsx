@@ -4,7 +4,7 @@ import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { getI18nString } from '~utils/langUtils';
 import { Dropdown, type DropdownOption } from '@generatedata/core';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
 import { countryList } from '../../../../_plugins';
 import { RegionSourceEnum, RegionSource } from './City.state';
 import styles from './City.scss';
