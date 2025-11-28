@@ -1,7 +1,7 @@
 import React from 'react';
 import type { RefObject } from 'react';
-import { SmallSpinner } from '../../../../../../packages/components/src/components/loaders/loaders.js';
-import * as styles from './Grid.styles.ts';
+import { SmallSpinner } from '@generatedata/core';
+import { useClasses } from './Grid.styles';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import { HtmlTooltip } from '@generatedata/core';
 import useOnClickOutside from 'use-onclickoutside';
@@ -25,6 +25,7 @@ export const SmallScreenSettingsIcon = ({
   const popoverRef = React.useRef<HTMLElement>(undefined);
   const [open, setOpen] = React.useState(false);
   const sharedClasses = useSharedClasses();
+  const classNames = useClasses();
 
   useOnClickOutside(popoverRef as RefObject<HTMLElement>, (e) => {
     // the `gd-is-portal` part is added in case Data Types use other portal-based content besides react select. If
@@ -45,7 +46,7 @@ export const SmallScreenSettingsIcon = ({
   }
 
   if (!isDataTypeLoaded) {
-    return <SmallSpinner className={styles.smallScreenSpinner} />;
+    return <SmallSpinner className={classNames.smallScreenSpinner} />;
   }
 
   let example = null;
@@ -92,7 +93,7 @@ export const SmallScreenSettingsIcon = ({
   }
 
   if (example === null && options === null) {
-    return <SettingsIcon className={styles.disabledBtn} />;
+    return <SettingsIcon className={classNames.disabledBtn} />;
   }
 
   if (!open) {
@@ -108,7 +109,7 @@ export const SmallScreenSettingsIcon = ({
       disableHoverListener
       disableTouchListener
       title={
-        <div ref={popoverRef as RefObject<HTMLDivElement>} className={styles.smallScreenSettingsTooltip}>
+        <div ref={popoverRef as RefObject<HTMLDivElement>} className={classNames.smallScreenSettingsTooltip}>
           {example}
           {options}
         </div>

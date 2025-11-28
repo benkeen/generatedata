@@ -2,7 +2,7 @@ import React from 'react';
 import { Dropdown } from '@generatedata/core';
 import Switch from '@mui/material/Switch';
 import { getArrayOfSize } from '@generatedata/utils/array';
-import * as styles from './ExportSettings.styles.ts';
+import { useClasses } from './ExportSettings.styles';
 import C from '@generatedata/config/constants';
 
 export type PreviewSettingsTabProps = {
@@ -40,29 +40,31 @@ export const PreviewSettingsTab = ({
   updateNumPreviewRows,
   i18n
 }: PreviewSettingsTabProps) => {
+  const classNames = useClasses();
+
   return (
-    <div className={styles.tabContent}>
-      <div className={styles.row}>
-        <div className={styles.label}>{i18n.theme}</div>
-        <div className={styles.field}>
+    <div className={classNames.tabContent}>
+      <div className={classNames.row}>
+        <div className={classNames.label}>{i18n.theme}</div>
+        <div className={classNames.field}>
           <Dropdown value={theme} options={C.THEMES} onChange={({ value }: any): void => onChangeTheme(value)} />
         </div>
       </div>
-      <div className={styles.row}>
-        <div className={styles.label}>{i18n.showLineNumbers}</div>
-        <div className={styles.field}>
+      <div className={classNames.row}>
+        <div className={classNames.label}>{i18n.showLineNumbers}</div>
+        <div className={classNames.field}>
           <Switch checked={showLineNumbers} value="checked" color="primary" onChange={(): void => toggleLineNumbers()} />
         </div>
       </div>
-      <div className={styles.row}>
-        <div className={styles.label}>{i18n.lineWrapping}</div>
-        <div className={styles.field}>
+      <div className={classNames.row}>
+        <div className={classNames.label}>{i18n.lineWrapping}</div>
+        <div className={classNames.field}>
           <Switch checked={enableLineWrapping} value="checked" color="primary" onChange={(): void => toggleLineWrapping()} />
         </div>
       </div>
-      <div className={styles.row}>
-        <div className={styles.label}>{i18n.textSize}</div>
-        <div className={styles.field}>
+      <div className={classNames.row}>
+        <div className={classNames.label}>{i18n.textSize}</div>
+        <div className={classNames.field}>
           <input
             type="number"
             value={previewTextSize}
@@ -71,9 +73,9 @@ export const PreviewSettingsTab = ({
           />
         </div>
       </div>
-      <div className={styles.row}>
-        <div className={styles.label}>{i18n.previewRows}</div>
-        <div className={styles.field}>
+      <div className={classNames.row}>
+        <div className={classNames.label}>{i18n.previewRows}</div>
+        <div className={classNames.field}>
           <div style={{ width: 120 }}>
             <Dropdown value={numPreviewRows} onChange={(item: any): any => updateNumPreviewRows(item.value)} options={previewRowOptions} />
           </div>

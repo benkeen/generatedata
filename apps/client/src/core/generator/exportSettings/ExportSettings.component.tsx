@@ -6,7 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PreviewSettingsTab from './PreviewSettingsTab.container';
 import ExportTypeTab from './ExportTypeTab.container';
-import * as styles from './ExportSettings.styles';
+import { useClasses } from './ExportSettings.styles';
 
 export type ExportSettingsProps = {
   i18n: any;
@@ -16,6 +16,7 @@ export type ExportSettingsProps = {
 
 export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings }: ExportSettingsProps): React.ReactElement => {
   const [selectedTabIndex, setSelectedTabIndex] = React.useState(0);
+  const classNames = useClasses();
   const handleChange = (e: React.ChangeEvent<{}>, newValue: number): void => setSelectedTabIndex(newValue);
   const getTab = () => {
     if (selectedTabIndex === 0) {
@@ -27,7 +28,7 @@ export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings 
 
   return (
     <Drawer open={showExportSettings} anchor="left" onClose={toggleExportSettings}>
-      <div className={`${styles.panel} tour-exportTypePanel`}>
+      <div className={`${classNames.panel} tour-exportTypePanel`}>
         <Tabs
           value={selectedTabIndex}
           indicatorColor="primary"

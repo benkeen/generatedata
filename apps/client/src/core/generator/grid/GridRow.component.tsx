@@ -10,7 +10,7 @@ import { DataTypeFolder } from '@generatedata/plugins';
 import { useClasses } from './Grid.styles';
 import { useSharedClasses } from '@generatedata/core';
 import { TextField } from '@generatedata/core';
-import { SmallSpinner } from '../../../../../../packages/components/src/components/loaders/loaders.js';
+import { SmallSpinner } from '@generatedata/core';
 import { SmallScreenSettingsIcon } from './SmallScreenSettingsIcon';
 import { DTOptionsMetadata } from '~types/dataTypes';
 import { CountryNamesMap } from '@generatedata/plugins';

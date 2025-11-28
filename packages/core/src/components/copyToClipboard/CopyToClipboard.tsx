@@ -1,10 +1,10 @@
 import React from 'react';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CopyToClipboard as Copy } from 'react-copy-to-clipboard';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { addToast } from '@generatedata/utils/general';
 import { useClasses, useStaticStyles } from './CopyToClipboard.styles';
 
-export const Copy = ({ message, tooltip, content }: any) => {
+export const CopyToClipboard = ({ message, tooltip, content }: any) => {
   const classNames = useClasses();
   useStaticStyles();
 
@@ -17,8 +17,8 @@ export const Copy = ({ message, tooltip, content }: any) => {
   };
 
   return (
-    <CopyToClipboard text={content} onCopy={onCopy}>
+    <Copy text={content} onCopy={onCopy}>
       <FileCopyIcon fontSize="small" className={classNames.copyIcon} titleAccess={tooltip} />
-    </CopyToClipboard>
+    </Copy>
   );
 };

@@ -1,24 +1,25 @@
 import React from 'react';
-import CopyToClipboard from '../copyToClipboard/CopyToClipboard';
-import styles from './Email.scss';
+import { CopyToClipboard } from '@generatedata/core';
+import { useClasses } from './Email.styles';
 
 export type EmailProps = {
-	email: string;
-	i18n: any;
-	text?: string;
+  email: string;
+  i18n: any;
+  text?: string;
 };
 
 const Email = ({ email, text = '', i18n }: EmailProps) => {
-	const textString = text || email;
+  const classNames = useClasses();
+  const textString = text || email;
 
-	return (
-		<>
-			<a href={`mailto:${email}`} target="_blank" rel="noreferrer">
-				{textString}
-			</a>
-			<CopyToClipboard className={styles.copy} content={email} message={i18n.emailCopiedToClipboard} tooltip={i18n.copiedToClipboard} />
-		</>
-	);
+  return (
+    <>
+      <a href={`mailto:${email}`} target="_blank" rel="noreferrer">
+        {textString}
+      </a>
+      <CopyToClipboard className={classNames.copy} content={email} message={i18n.emailCopiedToClipboard} tooltip={i18n.copiedToClipboard} />
+    </>
+  );
 };
 
 export default Email;

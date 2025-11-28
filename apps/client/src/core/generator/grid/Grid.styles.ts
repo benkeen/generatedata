@@ -105,36 +105,62 @@ export const useClasses = makeStyles({
   },
   optionsCol: {
     flex: 3
+  },
+
+  deleteCol: {
+    flex: '0 0 30px',
+    cursor: 'pointer',
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: '8px',
+    '& svg': {
+      fill: '#333333',
+      transition: 'fill 0.5s ease-in-out'
+    }
+  },
+  settingsIconCol: {
+    flex: '0 0 30px',
+    cursor: 'pointer',
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: '8px',
+    '& svg': {
+      fill: '#333333',
+      transition: 'fill 0.5s ease-in-out'
+    }
+  },
+
+  // div.settingsIconCol svg.disabledBtn {
+  //   fill: #eeeeee,
+  //   cursor: default,
+  // }
+
+  // deleteCol: { // div.deleteCol
+  //   marginRight: 0,
+  //   ':hover': {
+  //     '& svg': {
+  //       fill: '#990000'
+  //     }
+  //   }
+  // }
+
+  // div.settingsIconCol: {
+  //   display: 'none'
+  // }
+  disabledBtn: {
+    fill: '#eeeeee'
+  },
+
+  smallScreenSpinner: {
+    marginTop: '-2px !important'
+  },
+
+  gridOverlay: {
+    flex: 1,
+    height: '100%',
+    backgroundColor: '#f2f2f2'
   }
 });
-
-// div.deleteCol,
-// div.settingsIconCol {
-//   flex: 0 0 30px,
-//   cursor: pointer,
-//   display: flex,
-//   justify-content: center,
-//   padding-top: 8px,
-
-//   svg {
-//     fill: #333333,
-//     transition: fill 0.5s ease-in-out,
-//   }
-// }
-
-// div.settingsIconCol svg.disabledBtn {
-//   fill: #eeeeee,
-//   cursor: default,
-// }
-
-// div.deleteCol {
-//   margin-right: 0,
-//   &:hover {
-//     svg {
-//       fill: #990000,
-//     }
-//   }
-// }
 
 // .addRows {
 //   display: inline-flex,
@@ -161,10 +187,6 @@ export const useClasses = makeStyles({
 //   }
 // }
 
-// div.settingsIconCol {
-//   display: none,
-// }
-
 // .gridSmall {
 //   .examplesCol,
 //   .optionsCol {
@@ -185,14 +207,6 @@ export const useClasses = makeStyles({
 //   }
 // }
 
-// .disabledBtn {
-//   fill: #eeeeee,
-// }
-
-// .smallScreenSpinner {
-//   margin-top: -2px !important,
-// }
-
 // .smallScreenSettingsTooltip {
 //   padding: 10px,
 //   width: 280px,
@@ -204,10 +218,4 @@ export const useClasses = makeStyles({
 //       margin-top: 10px,
 //     }
 //   }
-// }
-
-// .gridOverlay {
-//   flex: 1,
-//   height: 100%,
-//   background-color: #f2f2f2,
 // }

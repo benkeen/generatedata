@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Copy } from '../CopyToClipboard';
+import { CopyToClipboard } from '../CopyToClipboard';
 
 jest.mock('copy-to-clipboard', () => {
   return jest.fn();
@@ -15,7 +15,7 @@ const defaultProps = {
 
 describe('CopyToClipboard', () => {
   it('renders copy icon with tooltip', () => {
-    const { baseElement } = render(<Copy {...defaultProps} />);
+    const { baseElement } = render(<CopyToClipboard {...defaultProps} />);
 
     expect(baseElement.querySelector('.copyIcon')).toBeTruthy();
     expect(baseElement.innerHTML).toContain(defaultProps.tooltip);

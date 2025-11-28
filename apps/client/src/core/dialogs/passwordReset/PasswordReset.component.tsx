@@ -4,7 +4,7 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { TextField } from '@generatedata/core';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
 import { isValidEmail } from '@generatedata/utils/general';
-import { DialogLoadingSpinner } from '../../../../../../packages/components/src/components/loaders/loaders';
+import { DialogLoadingSpinner } from '@generatedata/core';
 import styles from './PasswordReset.scss';
 
 export type PasswordResetDialogProps = {

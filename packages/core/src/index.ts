@@ -1,4 +1,5 @@
 export * from './components/buttons/Buttons.component';
+export { CopyToClipboard } from './components/copyToClipboard/CopyToClipboard';
 export { Dropdown } from './components/dropdown/Dropdown';
 export * from './components/dialogs';
 export type { DropdownOption } from './components/dropdown/Dropdown';

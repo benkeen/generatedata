@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Centered, DefaultSpinner } from '../../../../../packages/components/src/components/loaders/loaders';
+import { CenteredSpinner, DefaultSpinner } from '@generatedata/core';
 import Header from '../header/Header.container';
 import Footer from '../footer/Footer.container';
 import * as styles from './Page.scss';
@@ -17,9 +17,9 @@ const Page = ({ localeFileLoaded, children }: PropsWithChildren<PageProps>) => {
       <Footer />
     </>
   ) : (
-    <Centered>
+    <CenteredSpinner>
       <DefaultSpinner />
-    </Centered>
+    </CenteredSpinner>
   );
 
   return <div className={styles.page}>{content}</div>;

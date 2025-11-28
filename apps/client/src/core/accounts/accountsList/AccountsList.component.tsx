@@ -6,7 +6,7 @@ import { useMutation, useQuery } from '@apollo/client/react';
 import { addToast } from '@generatedata/utils/general';
 import Pagination from '~components/Pagination';
 import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
-import { SmallSpinner } from '../../../../../../packages/components/src/components/loaders/loaders';
+import { SmallSpinner } from '@generatedata/core';
 import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
 import DeleteAccountDialog from '~core/dialogs/deleteAccount/DeleteAccount.component';
 import SearchFilter from './SearchFilter.component';

@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client/react';
 import Drawer from '@mui/material/Drawer';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { DefaultSpinner, Centered } from '../../../../../../packages/components/src/components/loaders/loaders';
+import { DefaultSpinner, CenteredSpinner } from '@generatedata/core';
 import { PrimaryButton, SecondaryButton } from '@generatedata/core';
 import { Tooltip } from '@generatedata/core';
 import * as queries from '~core/queries';
@@ -140,9 +140,9 @@ export const DataSetHistory = ({
   let loader = null;
   if (loading) {
     loader = (
-      <Centered>
+      <CenteredSpinner>
         <DefaultSpinner />
-      </Centered>
+      </CenteredSpinner>
     );
   }
 

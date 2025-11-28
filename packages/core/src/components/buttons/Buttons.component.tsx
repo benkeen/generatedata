@@ -1,8 +1,7 @@
-import React, { FC, PropsWithChildren } from 'react';
 import { styled } from '@mui/material/styles';
 import Button, { ButtonProps } from '@mui/material/Button';
 
-export const PrimaryButton: PropsWithChildren<FC> = ({ children, ...props }: ButtonProps) => (
+export const PrimaryButton = ({ children, ...props }: ButtonProps) => (
   <Button color="primary" variant="outlined" disableElevation {...props}>
     {children}
   </Button>

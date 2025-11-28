@@ -3,7 +3,7 @@ import { Dropdown, type DropdownOption } from '@generatedata/core';
 import { getGroupedExportTypes } from '~utils/exportTypes';
 import * as styles from './ExportSettings.styles.ts';
 import { ExportSettingsTab } from './ExportSettings.types';
-import { MediumSpinner } from '../../../../../../packages/components/src/components/loaders/loaders.js';
+import { MediumSpinner } from '@generatedata/core';
 
 export type ExportTypeTabProps = {
   exportType: string;

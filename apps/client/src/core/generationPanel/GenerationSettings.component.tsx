@@ -7,7 +7,7 @@ import { getFormattedNum } from '@generatedata/utils/number';
 import styles from './ActivityPanel.scss';
 import { useSharedClasses } from '@generatedata/core';
 import { ErrorTooltip } from '@generatedata/core';
-import { MediumSpinner } from '../../../../../packages/components/src/components/loaders/loaders';
+import { MediumSpinner } from '@generatedata/core';
 import Engine from './Engine.container';
 import { DataPacket } from '~store/packets/packets.reducer';
 import * as coreUtils from '../../utils/coreUtils';

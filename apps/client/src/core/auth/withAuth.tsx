@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { isOnloadAuthDetermined, isLoggedIn, getLocale } from '~store/main/main.selectors';
-import { DefaultSpinner, Centered } from '../../../../../packages/components/src/components/loaders/loaders';
+import { DefaultSpinner, CenteredSpinner } from '@generatedata/core';
 
 // simple HOC to require authentication before rendering a component. If the onload auth isn't determined yet it shows a
 // loading spinner; if the auth is determined and they're not logged in it redirects to the homepage

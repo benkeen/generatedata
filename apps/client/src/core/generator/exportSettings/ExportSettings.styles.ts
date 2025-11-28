@@ -1,53 +1,48 @@
 import { makeStyles } from '@griffel/react';
 
-export const useClasses = makeStyles({});
+export const useClasses = makeStyles({
+  tabContent: {
+    padding: '20px'
+  },
+  row: {
+    display: 'flex',
+    flexDirection: 'row',
+    height: '40px',
+    alignItems: 'center'
+  },
+  label: {
+    flex: '0 0 180px'
+  },
+  field: {
+    flex: 1
+  },
+  panelHorizontal: {
+    width: '100%'
+  },
 
-// .tabContent {
-// 	padding: 20px;
-// }
+  panel: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '400px',
+    height: '100%',
 
-// .row {
-// 	display: flex;
-// 	flex-direction: row;
-// 	height: 40px;
-// 	align-items: center;
-// }
-
-// .label {
-// 	flex: 0 0 180px;
-// }
-
-// .field {
-// 	flex: 1;
-// }
-
-// .panelHorizontal {
-// 	width: 100%;
-// }
-
-// .panel {
-// 	display: flex;
-// 	flex-direction: column;
-// 	width: 400px;
-// 	height: 100%;
-
-// 	button {
-// 		width: 50%;
-// 	}
-// 	section {
-// 		flex: 1;
-// 	}
-// 	footer {
-// 		padding: 15px;
-// 		button {
-// 			width: 100%;
-
-// 			svg {
-// 				margin-right: 5px;
-// 			}
-// 		}
-// 	}
-// }
+    '& button': {
+      width: '50%'
+    },
+    '& section': {
+      flex: 1
+    },
+    '& footer': {
+      padding: '15px',
+      '& button': {
+        width: '100%',
+        '& svg': {
+          marginRight: '5px'
+        }
+      }
+    }
+  }
+});
 
 // .exportFormatRow {
 // 	background-image: url('./images/bg.png');

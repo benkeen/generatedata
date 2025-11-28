@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import { TextField } from '@generatedata/core';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
 import { isValidEmail, addToast } from '@generatedata/utils/general';
-import { DialogLoadingSpinner } from '../../../../../../packages/components/src/components/loaders/loaders';
+import { DialogLoadingSpinner } from '@generatedata/core';
 import { hasVendorLogin, getVendorLoginButtons } from '@generatedata/utils/auth';
 import styles from './Login.scss';
 import { useNavigate } from 'react-router';

@@ -29,7 +29,7 @@ export const DialogLoadingSpinner = ({ visible }: DialogLoadingSpinnerProps) => 
   );
 };
 
-export const Centered = ({ children }: any) => (
+export const CenteredSpinner = ({ children }: any) => (
   <div
     style={{
       display: 'flex',

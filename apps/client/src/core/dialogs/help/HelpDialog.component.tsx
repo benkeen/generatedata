@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
-import { DropdownOption } from '@generatedata/core';
-import { MediumSpinner } from '../../../../../../packages/components/src/components/loaders/loaders';
+import { DropdownOption, MediumSpinner } from '@generatedata/core';
 import { getSortedGroupedDataTypes, getDataType } from '~utils/dataTypes';
 import styles from './HelpDialog.scss';
 import { DataTypeFolder } from '@generatedata/plugins';
