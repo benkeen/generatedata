@@ -8,7 +8,7 @@ import { DataRow } from '~store/generator/generator.reducer';
 import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
 import { DataTypeFolder } from '@generatedata/plugins';
 import * as styles from './Grid.scss';
-import * as sharedStyles from '../../../styles/shared.scss';
+import { useSharedClasses } from '@generatedata/components';
 import TextField from '~components/TextField';
 import { SmallSpinner } from '~components/loaders/loaders';
 import { SmallScreenSettingsIcon } from './SmallScreenSettingsIcon';
@@ -76,6 +76,7 @@ export const GridRow = ({
   isCountryNamesLoaded,
   countryNamesMap
 }: GridRowProps) => {
+  const classNames = useSharedClasses();
   let example: any = null;
   let options: any = null;
 
@@ -89,12 +90,12 @@ export const GridRow = ({
           id={row.id}
           data={row.data}
           onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-          emptyColClass={sharedStyles.emptyCol}
+          emptyColClass={classNames.emptyCol}
           gridPanelDimensions={gridPanelDimensions}
         />
       );
     } else {
-      example = <NoExample coreI18n={i18n} emptyColClass={sharedStyles.emptyCol} />;
+      example = <NoExample coreI18n={i18n} emptyColClass={classNames.emptyCol} />;
     }
 
     if (Options) {
@@ -107,7 +108,7 @@ export const GridRow = ({
           data={row.data}
           onUpdate={(data: any, metadata?: DTOptionsMetadata): void => onConfigureDataType(row.id, data, metadata)}
           gridPanelDimensions={gridPanelDimensions}
-          emptyColClass={sharedStyles.emptyCol}
+          emptyColClass={classNames.emptyCol}
           isCountryNamesLoading={isCountryNamesLoading}
           isCountryNamesLoaded={isCountryNamesLoaded}
           countryNamesMap={countryNamesMap}
@@ -115,7 +116,7 @@ export const GridRow = ({
         />
       );
     } else {
-      options = <NoOptions coreI18n={i18n} emptyColClass={sharedStyles.emptyCol} />;
+      options = <NoOptions coreI18n={i18n} emptyColClass={classNames.emptyCol} />;
     }
   } else if (!isDataTypeLoaded && row.dataType) {
     example = <SmallSpinner />;

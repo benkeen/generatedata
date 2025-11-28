@@ -63,7 +63,6 @@
   "dependencies": {
     "@apollo/client": "^4.0.0",
     "@date-io/date-fns": "^1.3.13",
-    "@emotion/styled": "^11.14.1",
     "@generatedata/components": "workspace:*",
     "@mui/material": "^7.3.1",
     "@mui/icons-material": "^7.3.1",
@@ -128,6 +127,7 @@
     "@generatedata/utils": "workspace:*",
     "@generatedata/types": "workspace:*",
     "@generatedata/graphql-schema": "workspace:*",
+    "@griffel/react": "^1.5.32",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
     "@stylistic/eslint-plugin-js": "^3.1.0",

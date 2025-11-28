@@ -1,14 +1,16 @@
-import { css } from '@emotion/react';
+import { makeStyles } from '@griffel/react';
 
-export const settingRow = css({
-  marginTop: 10,
-  label: {
-    display: 'block',
-    marginBottom: 4,
-    color: '#666666'
-  },
-  button: {
-    marginRight: 6,
-    width: 'inherit'
+export const useETStyles = makeStyles({
+  settingRow: {
+    marginTop: '10px',
+    label: {
+      display: 'block',
+      marginBottom: '4',
+      color: '#666666'
+    },
+    button: {
+      marginRight: '6px',
+      width: 'inherit'
+    }
   }
 });

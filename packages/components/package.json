@@ -6,7 +6,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
+    "@griffel/react": "^1.5.32",
     "@generatedata/config": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "react-select": "^5.10.2",

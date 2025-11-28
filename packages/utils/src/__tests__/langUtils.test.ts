@@ -24,7 +24,7 @@ describe('getCurrentLocalizedPath', () => {
   });
 
   afterAll(() => {
-    window.location = location;
+    window.location = location as string & Location;
   });
 
   it('gets expected localized path from blank English path', () => {

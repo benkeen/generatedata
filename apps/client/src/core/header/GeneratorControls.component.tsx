@@ -111,15 +111,17 @@ const GeneratorControls = ({
           disableHoverListener
           disableTouchListener
           interactive
-          PopperProps={{
-            popperOptions: {
-              modifiers: {
-                offset: {
-                  offset: '0px, -6px'
-                }
-              }
+          PopperProps={
+            {
+              // popperOptions: {
+              //   modifiers: {
+              // offset: {
+              //   offset: '0px, -6px'
+              // }
+              //   }
+              // }
             }
-          }}
+          }
           title={
             <div ref={popoverRef as RefObject<HTMLDivElement>}>
               <List disablePadding>

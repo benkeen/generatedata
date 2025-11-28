@@ -22,6 +22,7 @@ Logical units of the code are now going to be split into standard _npm packages_
 **Packages**
 
 - `packages/cli` - this was the never-completed CLI package. Still **definitely** something I want to complete!
+- `packages/components` - contains shared components for use across the client application and plugins
 - `packages/cli-test` - testing for the CLI package. This might be temporary. Not sure it needs to be separate from `cli` itself.
 - `packages/config` - this'll house the main configuration settings and replace the old `.env` file. For simplicity and backward compatibility, I've left the same uppercase names from the old .env variables.
 - `packages/plugins` - the countries, Data Types and Export Types. Perhaps I'll split them into separate packages for each, but for now they're lumped in the same package.
@@ -30,6 +31,7 @@ Logical units of the code are now going to be split into standard _npm packages_
 ## Other changes
 
 - moved to pnpm
+- dropped Sass/CSS modules in favour of Griffel
 
 ## Bootstrap process for new clones
 

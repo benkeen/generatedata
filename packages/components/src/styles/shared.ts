@@ -1,62 +1,71 @@
-// @use './variables.scss' as c;
+import { makeStyles } from '@griffel/react';
+import { error, primaryColor } from './variables';
 
-// .tip {
-// 	color: #999999;
-// }
+export const useSharedClasses = makeStyles({
+  tip: {
+    color: '#999999'
+  },
 
-// .emptyCol {
-// 	padding: 7px 2px;
-// 	color: #999999;
-// }
+  emptyCol: {
+    padding: '7px 2px',
+    color: '#999999'
+  },
 
-// .blank {
-// 	color: #cccccc;
-// }
+  blank: {
+    color: '#cccccc'
+  },
 
-// .emptyText {
-// 	color: #666666;
-// 	font-style: italic;
-// }
+  emptyText: {
+    color: '#666666',
+    fontStyle: 'italic'
+  },
 
-// input.errorField,
-// textarea.errorField,
-// select.errorField,
-// button.errorField {
-// 	border: 1px solid c.$error;
+  errorField: {
+    // input, select, button
+    border: `1px solid ${error}`,
+    ':focus': {
+      border: `1px solid ${error}`
+    }
+  },
+  pill: {
+    backgroundColor: '#dfecfc',
+    borderRadius: '3px',
+    padding: '1px 6px'
+  },
+  copyCol: {
+    flex: '0 0 26px'
+  },
 
-// 	&:focus {
-// 		border: 1px solid c.$error;
-// 	}
-// }
+  tab: {
+    flex: '1',
+    padding: '20px 0',
+    overflow: 'scroll'
+  },
 
-// .pill {
-// 	background-color: #dfecfc;
-// 	border-radius: 3px;
-// 	padding: 1px 6px;
-// }
+  twoColPage: {
+    maxWidth: '1024px',
+    margin: '15px auto 0',
+    width: '100%',
+    padding: '0 10px',
+    height: '100%',
+    flex: '1',
+    display: 'flex',
+    flexDirection: 'row',
+    fontSize: '12px'
 
-// .copyCol {
-// 	flex: 0 0 26px;
-// }
+    // 	input {
+    // 		font-size: 14px;
+    // 	}
+  },
+
+  selected: {
+    color: primaryColor
+  }
+});
 
 // :global(div.MuiAlert-root) {
 // 	font-size: 13px;
 // }
-
-// .twoColPage {
-// 	max-width: 1024px;
-// 	margin: 15px auto 0;
-// 	width: 100%;
-// 	padding: 0 10px;
-// 	height: 100%;
-// 	flex: 1;
-// 	display: flex;
-// 	flex-direction: row;
-// 	font-size: 12px;
-
-// 	input {
-// 		font-size: 14px;
-// 	}
 
 // 	nav {
 // 		flex: 0 0 240px;
@@ -74,18 +83,8 @@
 // 				&:hover {
 // 					color: c.$primary-color;
 // 				}
-
-// 				&.selected {
-// 					color: c.$primary-color;
-// 				}
 // 			}
 // 		}
-// 	}
-
-// 	.tab {
-// 		flex: 1;
-// 		padding: 20px 0;
-// 		overflow: scroll;
 // 	}
 
 // 	label {
@@ -117,23 +116,6 @@
 // .fadeIn {
 // 	opacity: 0;
 // 	transition: opacity 200ms ease-in-out;
-// }
-
-// .mainLogo {
-// 	opacity: 0;
-// 	position: absolute;
-// 	left: 55px;
-// 	top: 17px;
-// 	transition: opacity 200ms ease-in-out;
-// 	user-select: none;
-
-// 	img {
-// 		width: 200px;
-// 	}
-
-// 	&.visible {
-// 		opacity: 1;
-// 	}
 // }
 
 // @media (max-width: 600px) {

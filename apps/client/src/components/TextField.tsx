@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ErrorTooltip } from '~components/tooltips';
-import sharedStyles from '../styles/shared.scss';
+import { useSharedClasses } from '@generatedata/components';
 import { useThrottle } from '../hooks/useThrottle';
 
 type TextFieldProps = {
@@ -25,9 +25,10 @@ type TextFieldProps = {
 };
 
 const TextField = ({ throttle, error, value, onChange, tooltipPlacement, className, ref, ...props }: TextFieldProps) => {
+  const classNames = useSharedClasses();
   let classes = className ? className : '';
   if (error) {
-    classes += ' ' + sharedStyles.errorField;
+    classes += ' ' + classNames.errorField;
   }
 
   const [innerValue, setInnerValue] = useState(value || '');

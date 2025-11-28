@@ -10,21 +10,10 @@ import C from '@generatedata/config/constants';
 import HeaderLinks, { MobileLinks } from './HeaderLinks.component';
 import { getHeaderLinks, getGeneratorPageRoute, isGeneratorPage } from '~utils/routeUtils';
 import { AccountType } from '~types/account';
-import sharedStyles from '../../styles/shared.scss';
-import styles from './Header.scss';
+// import sharedStyles from '../../styles/shared.scss';
 import { GDLocale } from '~types/general';
-
-// .generatorControls {
-// 	flex: 1;
-// 	overflow: hidden;
-// 	padding-right: 18px;
-// 	opacity: 0;
-// 	transition: opacity 200ms ease-in-out;
-
-// 	&.visible {
-// 		opacity: 1;
-// 	}
-// }
+import { useClasses } from './Header.styles';
+import { useSharedClasses } from '@generatedata/components';
 
 export type HeaderProps = {
   locale: GDLocale;
@@ -52,6 +41,7 @@ const Header = ({
 }: HeaderProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const windowSize = useWindowSize();
+  const classNames = useClasses();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -88,7 +78,7 @@ const Header = ({
     }
 
     return (
-      <ul className={styles.headerLinks}>
+      <ul className={classNames.headerLinks}>
         {isOnloadAuthDetermined ? (
           <HeaderLinks
             locale={locale}
@@ -104,22 +94,22 @@ const Header = ({
     );
   };
 
-  let generatorControlsClasses = `${sharedStyles.generatorControls} ${styles.controls}`;
+  let generatorControlsClasses = `${classNames.generatorControls} ${classNames.controls}`;
   let generatorControlsDisabled = true;
-  let logoClasses = sharedStyles.mainLogo;
+  let logoClasses = classNames.mainLogo;
 
   if (isGeneratorPage(currentPage, locale)) {
-    generatorControlsClasses += ` ${sharedStyles.visible}`;
+    generatorControlsClasses += ` ${classNames.visible}`;
     generatorControlsDisabled = false;
   } else {
-    logoClasses += ` ${sharedStyles.visible}`;
+    logoClasses += ` ${classNames.visible}`;
   }
 
   return (
     <>
-      <header className={styles.header}>
-        <div style={{ position: 'relative' }}>
-          <h1>
+      <header className={classNames.header}>
+        <div className={classNames.headerInner}>
+          <h1 className={classNames.headerLogo}>
             <img src="./images/dice80.png" width={40} height={40} alt={i18n.siteLogo} />
           </h1>
           <div className={logoClasses}>

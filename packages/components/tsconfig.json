@@ -7,8 +7,7 @@
     "moduleResolution": "nodenext",
     "declaration": true,
     "skipLibCheck": true,
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react"
+    "jsx": "react-jsx"
   },
   "include": ["src"],
   "exclude": ["node_modules"]

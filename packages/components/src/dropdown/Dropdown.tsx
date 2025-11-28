@@ -2,8 +2,7 @@ import * as React from 'react';
 import Select from 'react-select';
 import { getStrings } from '@generatedata/utils/lang';
 import C from '@generatedata/config/constants';
-import { css } from '@emotion/react';
-import { error } from '../styles/variables';
+import { useStyles } from './Dropdown.styles';
 
 export type DropdownOption = {
   value: string;
@@ -27,8 +26,9 @@ const selectStyles = {
   menuPortal: (base: any): any => ({ ...base, zIndex: C.ZINDEXES.DIALOG })
 };
 
-export const Dropdown = ({ value, isGrouped, options, hasError, placeholder, ...props }: any) => {
+export const Dropdown = ({ value, isGrouped, options, hasError, placeholder, ...props }: any): React.ReactNode => {
   const i18n = getStrings();
+  const classNames = useStyles();
 
   // react-select has a terrible API. You need to pass the entire selected object as the `value` prop to prefill it.
   // That's not something you'd normally save - you just want to save a single value, because, well, duh. This makes
@@ -68,12 +68,7 @@ export const Dropdown = ({ value, isGrouped, options, hasError, placeholder, ...
 
   let className = props.className || '';
   if (hasError) {
-    const errorClass = css`
-      > div {
-        border: 1px solid ${error} !important;
-      }
-    `;
-    className += ` ${errorClass}`;
+    className += ` ${classNames.error}`;
   }
 
   return (
