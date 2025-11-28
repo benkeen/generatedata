@@ -17,6 +17,7 @@ import { GDLocale } from '~types/general';
 import { isGeneratorPage } from '~utils/routeUtils';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
+import { useClasses } from './Footer.styles';
 
 export type FooterProps = {
   i18n: any;
@@ -48,6 +49,7 @@ const Footer = ({
   customFooterLinks
 }: FooterProps) => {
   const navigate = useNavigate();
+  const classNames = useClasses();
   const saveAsButtonRef = React.useRef<HTMLElement>(undefined);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const [saveAsMenuOpen, setSaveAsMenuOpen] = useState(false);
@@ -69,13 +71,13 @@ const Footer = ({
           <ButtonGroup
             variant="contained"
             color="primary"
-            className={`${styles.saveButtonAs} tour-saveButton`}
+            className={`${classNames.saveButtonAs} tour-saveButton`}
             ref={anchorRef}
             disableElevation
             aria-label="split button"
             disabled={!actionButtonsEnabled}
           >
-            <Button onClick={onSave} className={styles.saveButtonAsMainBtn}>
+            <Button onClick={onSave} className={classNames.saveButtonAsMainBtn}>
               <SaveIcon />
               {i18n.save}
             </Button>
@@ -86,7 +88,7 @@ const Footer = ({
               aria-expanded={saveAsMenuOpen ? 'true' : undefined}
               aria-label={i18n.saveDataSetNewName}
               aria-haspopup="menu"
-              className={styles.saveBtnArrow}
+              className={classNames.saveBtnArrow}
               onClick={(): void => setSaveAsMenuOpen(!saveAsMenuOpen)}
             >
               <ArrowDropDownIcon />
@@ -98,7 +100,7 @@ const Footer = ({
             anchorEl={anchorRef.current}
             transition
             placement="top-end"
-            className={styles.saveAsRow}
+            className={classNames.saveAsRow}
             onClick={(e): void => {
               e.preventDefault();
               e.stopPropagation();
@@ -118,7 +120,7 @@ const Footer = ({
     return (
       <Button
         onClick={onSaveNewDataSet}
-        className={`${styles.saveButton} tour-saveButton`}
+        className={`${classNames.saveButton} tour-saveButton`}
         variant="contained"
         disableElevation
         disabled={!actionButtonsEnabled}
@@ -129,30 +131,30 @@ const Footer = ({
     );
   };
 
-  let footerControlsClasses = styles.footerControls;
+  let footerControlsClasses = classNames.footerControls;
   if (isGeneratorPage(currentPage, locale)) {
-    footerControlsClasses += ` ${styles.visible}`;
+    footerControlsClasses += ` ${classNames.visible}`;
   }
 
   let panelControls;
   if (windowSize.width > C.SMALL_SCREEN_WIDTH) {
-    panelControls = <PanelControls className={`${styles.controls} tour-panelControls`} />;
+    panelControls = <PanelControls className={`${classNames.controls} tour-panelControls`} />;
   }
 
   return (
     <>
-      <footer className={styles.footer}>
+      <footer className={classNames.footer}>
         <div>
           <ul>
-            <li className={styles.aboutIconEl}>
+            <li className={classNames.aboutIconEl}>
               <Tooltip title={i18n.aboutThisScript} arrow>
                 <span onClick={(): void => setAboutDialogVisibility(true)}>
                   <GithubIcon />
                 </span>
               </Tooltip>
             </li>
-            <li className={styles.showTourLink}>
-              <Button className={styles.tourBtn} onClick={() => showTourDialog(navigate)}>
+            <li className={classNames.showTourLink}>
+              <Button className={classNames.tourBtn} onClick={() => showTourDialog(navigate)}>
                 <Person />
                 <span>{i18n.help}</span>
               </Button>
@@ -160,7 +162,7 @@ const Footer = ({
             {customFooterLinks}
           </ul>
 
-          <div className={styles.activePacketsList}>
+          <div className={classNames.activePacketsList}>
             <ActivePacketsList />
           </div>
 
@@ -169,7 +171,7 @@ const Footer = ({
             {getSaveButton()}
             <Button
               onClick={onGenerate}
-              className={`${styles.generateButton} tour-generateButton`}
+              className={`${classNames.generateButton} tour-generateButton`}
               variant="contained"
               color="primary"
               disableElevation

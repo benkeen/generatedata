@@ -1,10 +1,9 @@
-import * as React from 'react';
-import { useNavigate } from 'react-router';
+import { Tooltip } from '@generatedata/core';
 import CheckCircle from '@mui/icons-material/CheckCircle';
 import Chip from '@mui/material/Chip';
-import { useClasses } from './ActivePacketsList.styles';
+import { useNavigate } from 'react-router';
 import { Cell, Pie, PieChart } from 'recharts';
-import { Tooltip } from '@generatedata/core';
+import { useClasses } from './ActivePacketsList.styles';
 import { getPercentageLabel } from './generation.helpers';
 
 export type ActivePacketList = {

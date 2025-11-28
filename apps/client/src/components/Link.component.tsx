@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type LinkParams = {
   url: string;
   children?: any;

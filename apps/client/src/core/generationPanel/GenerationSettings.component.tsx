@@ -1,19 +1,15 @@
-import * as React from 'react';
-import { NumericFormat } from 'react-number-format';
-import Button from '@mui/material/Button';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
+import clientConfig from '@generatedata/config/clientConfig';
+import { Dialog, DialogActions, DialogContent, DialogTitle, ErrorTooltip, MediumSpinner, useSharedClasses } from '@generatedata/core';
 import { getI18nString } from '@generatedata/utils/lang';
 import { getFormattedNum } from '@generatedata/utils/number';
-import styles from './ActivityPanel.scss';
-import { useSharedClasses } from '@generatedata/core';
-import { ErrorTooltip } from '@generatedata/core';
-import { MediumSpinner } from '@generatedata/core';
-import Engine from './Engine.container';
+import CheckIcon from '@mui/icons-material/Check';
+import Button from '@mui/material/Button';
+import { NumericFormat } from 'react-number-format';
+import { GenerationWorkerActionType } from '~core/generator/generation.types';
 import { DataPacket } from '~store/packets/packets.reducer';
 import * as coreUtils from '../../utils/coreUtils';
-import CheckIcon from '@mui/icons-material/Check';
-import { GenerationWorkerActionType } from '~core/generator/generation.types';
-import clientConfig from '@generatedata/config/clientConfig';
+import { useClasses } from './ActivityPanel.styles';
+import Engine from './Engine.container';
 
 export type GenerationSettingsProps = {
   visible: boolean;
@@ -48,6 +44,7 @@ const GenerationSettingsPanel = ({
   onDownload
 }: GenerationSettingsProps) => {
   const sharedClasses = useSharedClasses();
+  const classNames = useClasses();
   let error = '';
 
   if (!numRowsToGenerate) {
@@ -74,8 +71,8 @@ const GenerationSettingsPanel = ({
     if (packet.numGeneratedRows === numRowsToGenerate) {
       return (
         <>
-          <div className={styles.generationOverlayBg} />
-          <div className={styles.generationComplete}>
+          <div className={classNames.generationOverlayBg} />
+          <div className={classNames.generationComplete}>
             <CheckIcon fontSize="large" />
             {i18n.dataGenerated}
           </div>
@@ -85,10 +82,10 @@ const GenerationSettingsPanel = ({
 
     return (
       <>
-        <div className={styles.generationOverlayBg} />
-        <div className={styles.generationOverlay}>
+        <div className={classNames.generationOverlayBg} />
+        <div className={classNames.generationOverlay}>
           <MediumSpinner style={{ margin: 15 }} />
-          <div className={styles.generationLabel}>
+          <div className={classNames.generationLabel}>
             {i18n.generated} <b>{numGeneratedRows}</b> / <b>{numRowsToGenerate}</b>
           </div>
         </div>
@@ -138,9 +135,9 @@ const GenerationSettingsPanel = ({
       <Dialog onClose={onClose} open={visible}>
         <div style={{ width: 400 }}>
           <DialogTitle onClose={closeModal}>{i18n.generate}</DialogTitle>
-          <DialogContent dividers className={styles.generationSettingsContent}>
+          <DialogContent dividers className={classNames.generationSettingsContent}>
             {getGenerationOverlay()}
-            <div className={`${styles.row} ${styles.generationRow}`}>
+            <div className={`${classNames.row} ${classNames.generationRow}`}>
               {i18n.generate}
               <ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
                 <NumericFormat
@@ -154,7 +151,7 @@ const GenerationSettingsPanel = ({
               </ErrorTooltip>
               {i18n.rows}
             </div>
-            <div className={styles.row} style={{ marginBottom: 16 }}>
+            <div className={classNames.row} style={{ marginBottom: 16 }}>
               <input type="checkbox" id="stripWhitespace" checked={stripWhitespace} onChange={onToggleStripWhitespace} />
               <label htmlFor="stripWhitespace">{i18n.stripWhitespace}</label>
             </div>

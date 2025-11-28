@@ -1,7 +1,7 @@
-import * as React from 'react';
-import Select from 'react-select';
-import { getStrings } from '@generatedata/utils/lang';
 import C from '@generatedata/config/constants';
+import { getStrings } from '@generatedata/utils/lang';
+import { FC } from 'react';
+import Select from 'react-select';
 import { useStyles } from './Dropdown.styles';
 
 export type DropdownOption = {
@@ -26,7 +26,7 @@ const selectStyles = {
   menuPortal: (base: any): any => ({ ...base, zIndex: C.ZINDEXES.DIALOG })
 };
 
-export const Dropdown = ({ value, isGrouped, options, hasError, placeholder, ...props }: any): React.ReactNode => {
+export const Dropdown: FC<any> = ({ value, isGrouped, options, hasError, placeholder, ...props }) => {
   const i18n = getStrings();
   const classNames = useStyles();
 

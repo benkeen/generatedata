@@ -1,9 +1,7 @@
-import React, { FC, PropsWithChildren } from 'react';
-import DateFnsUtils from '@date-io/date-fns';
 // import { DatePicker, MuiPickersUtilsProvider } from '@mui/lab';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { getLocale, getStrings } from '@generatedata/utils/lang';
-import { arDZ, de, enUS, es, fr, ja, hi, nl, pt, ru, ta, zhCN } from 'date-fns/locale';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { arDZ, de, enUS, es, fr, hi, ja, nl, pt, ru, ta, zhCN } from 'date-fns/locale';
 
 // localized wrapper for the date picker provider
 export const LocalizedDatePicker = (props: any) => {
@@ -13,7 +11,7 @@ export const LocalizedDatePicker = (props: any) => {
 };
 
 // localized wrapper for the date picker provider
-export const LocalizedDatePickerProvider: PropsWithChildren<FC> = () => {
+export const LocalizedDatePickerProvider = ({ children }: any) => {
   const locale = getLocale();
 
   const localeMap = {
@@ -38,5 +36,5 @@ export const LocalizedDatePickerProvider: PropsWithChildren<FC> = () => {
   // 	</MuiPickersUtilsProvider>
   // );
 
-  return null;
+  return children;
 };

@@ -1,5 +1,5 @@
-import { makeStyles } from '@griffel/react';
 import { vars } from '@generatedata/core';
+import { makeStyles } from '@griffel/react';
 
 export const useClasses = makeStyles({
   gridWrapper: {
@@ -159,63 +159,59 @@ export const useClasses = makeStyles({
     flex: 1,
     height: '100%',
     backgroundColor: '#f2f2f2'
+  },
+  smallScreenSettingsTooltip: {
+    padding: '10px',
+    width: '280px',
+
+    '& h4': {
+      margin: '0 0 5px'
+
+      // &:nth-child(2) {
+      //   margin-top: 10px,
+      // }
+    }
+  },
+  gridSmall: {
+    // .examplesCol,
+    // .optionsCol {
+    //   display: none,
+    // }
+    // .smallScreenMode,
+    // .settingsIconCol {
+    //   display: inherit,
+    // }
+  },
+  gridMedium: {
+    // .examplesCol {
+    //   display: none,
+    // }
+    // .smallScreenMode {
+    //   display: block,
+    // }
+  },
+  addRows: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    marginBottom: '12px',
+    fontSize: '12px'
+
+    //   span,
+    //   input {
+    //     margin-right: 6px,
+    //   }
+
+    //   input {
+    //     height: 28px,
+    //   }
+
+    //   input {
+    //     width: 42px,
+    //   }
+
+    //   button {
+    //     font-size: 11px,
+    //     min-width: 60px,
+    //   }
   }
 });
-
-// .addRows {
-//   display: inline-flex,
-//   align-items: center,
-//   margin-bottom: 12px,
-//   font-size: 12px,
-
-//   span,
-//   input {
-//     margin-right: 6px,
-//   }
-
-//   input {
-//     height: 28px,
-//   }
-
-//   input {
-//     width: 42px,
-//   }
-
-//   button {
-//     font-size: 11px,
-//     min-width: 60px,
-//   }
-// }
-
-// .gridSmall {
-//   .examplesCol,
-//   .optionsCol {
-//     display: none,
-//   }
-//   .smallScreenMode,
-//   .settingsIconCol {
-//     display: inherit,
-//   }
-// }
-
-// .gridMedium {
-//   .examplesCol {
-//     display: none,
-//   }
-//   .smallScreenMode {
-//     display: block,
-//   }
-// }
-
-// .smallScreenSettingsTooltip {
-//   padding: 10px,
-//   width: 280px,
-
-//   h4 {
-//     margin: 0 0 5px,
-
-//     &:nth-child(2) {
-//       margin-top: 10px,
-//     }
-//   }
-// }

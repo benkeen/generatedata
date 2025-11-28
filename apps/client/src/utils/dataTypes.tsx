@@ -1,12 +1,11 @@
-import React from 'react';
+import C from '@generatedata/config/constants';
+import { DataTypeFolder, blacklistedDataTypeFolders, dataTypes } from '@generatedata/plugins';
 import { getLocale, getStrings } from '@generatedata/utils/lang';
-import { dataTypes, DataTypeFolder, blacklistedDataTypeFolders } from '@generatedata/plugins';
 import { DTBundle, DTCustomProps, DTHelpProps } from '~types/dataTypes';
 import { Store } from '~types/general';
-import C from '@generatedata/config/constants';
 
 type LoadedDataTypes = {
-	[name in DataTypeFolder]: DTBundle;
+  [name in DataTypeFolder]: DTBundle;
 };
 
 // this houses all Export Type code loaded async after the application starts
@@ -18,44 +17,44 @@ export const dataTypeNames = Object.keys(dataTypes);
 let lastLocale: any;
 let cachedSortedGroupedDataTypes: any;
 export const getSortedGroupedDataTypes = (): any => {
-	const locale = getLocale();
-	const i18n = getStrings();
+  const locale = getLocale();
+  const i18n = getStrings();
 
-	if (cachedSortedGroupedDataTypes && lastLocale == locale) {
-		return cachedSortedGroupedDataTypes;
-	}
+  if (cachedSortedGroupedDataTypes && lastLocale == locale) {
+    return cachedSortedGroupedDataTypes;
+  }
 
-	lastLocale = locale;
-	cachedSortedGroupedDataTypes = C.DATA_TYPE_GROUPS.map((group: string) => {
-		const options = Object.keys(dataTypes)
-			.filter((dataType) => dataTypes[dataType as DataTypeFolder].fieldGroup === group)
-			.filter((dataType) => blacklistedDataTypeFolders.indexOf(dataType) === -1)
-			.map((dataType) => ({
-				dataType,
-				sortOrder: dataTypes[dataType as DataTypeFolder].fieldGroupOrder
-			}));
+  lastLocale = locale;
+  cachedSortedGroupedDataTypes = C.DATA_TYPE_GROUPS.map((group: string) => {
+    const options = Object.keys(dataTypes)
+      .filter((dataType) => dataTypes[dataType as DataTypeFolder].fieldGroup === group)
+      .filter((dataType) => blacklistedDataTypeFolders.indexOf(dataType) === -1)
+      .map((dataType) => ({
+        dataType,
+        sortOrder: dataTypes[dataType as DataTypeFolder].fieldGroupOrder
+      }));
 
-		options.sort((a: any, b: any) => {
-			if (a.sortOrder < b.sortOrder) {
-				return -1;
-			} else if (a.sortOrder > b.sortOrder) {
-				return 1;
-			}
-			return 0;
-		});
+    options.sort((a: any, b: any) => {
+      if (a.sortOrder < b.sortOrder) {
+        return -1;
+      } else if (a.sortOrder > b.sortOrder) {
+        return 1;
+      }
+      return 0;
+    });
 
-		const sortedOptions = options.map(({ dataType }: { dataType: string }) => ({
-			value: dataType,
-			label: i18n.dataTypes[dataType].NAME
-		}));
+    const sortedOptions = options.map(({ dataType }: { dataType: string }) => ({
+      value: dataType,
+      label: i18n.dataTypes[dataType].NAME
+    }));
 
-		return {
-			label: i18n.core[group],
-			options: sortedOptions
-		};
-	});
+    return {
+      label: i18n.core[group],
+      options: sortedOptions
+    };
+  });
 
-	return cachedSortedGroupedDataTypes;
+  return cachedSortedGroupedDataTypes;
 };
 
 export const DefaultHelpComponent = ({ i18n }: DTHelpProps) => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
@@ -63,59 +62,59 @@ export const DefaultHelpComponent = ({ i18n }: DTHelpProps) => <p dangerouslySet
 const showNothing = (): null => null;
 
 export const getDataType = (dataType: DataTypeFolder | null): any => {
-	// TODO return type is important here. Dense method!
-	if (!dataType || !loadedDataTypes[dataType]) {
-		return {
-			Example: !dataType ? showNothing : null,
-			Options: showNothing,
-			Help: null,
-			isLoaded: false
-		};
-	}
+  // TODO return type is important here. Dense method!
+  if (!dataType || !loadedDataTypes[dataType]) {
+    return {
+      Example: !dataType ? showNothing : null,
+      Options: showNothing,
+      Help: null,
+      isLoaded: false
+    };
+  }
 
-	let Example = null;
-	let Options = null;
-	let Help;
+  let Example = null;
+  let Options = null;
+  let Help;
 
-	if (loadedDataTypes[dataType]!.Example) {
-		Example = loadedDataTypes[dataType]!.Example;
-	}
+  if (loadedDataTypes[dataType]!.Example) {
+    Example = loadedDataTypes[dataType]!.Example;
+  }
 
-	if (loadedDataTypes[dataType]!.Options) {
-		Options = loadedDataTypes[dataType]!.Options;
-	}
+  if (loadedDataTypes[dataType]!.Options) {
+    Options = loadedDataTypes[dataType]!.Options;
+  }
 
-	if (dataType && loadedDataTypes[dataType]!.Help) {
-		Help = loadedDataTypes[dataType]!.Help;
-	} else {
-		Help = DefaultHelpComponent;
-	}
+  if (dataType && loadedDataTypes[dataType]!.Help) {
+    Help = loadedDataTypes[dataType]!.Help;
+  } else {
+    Help = DefaultHelpComponent;
+  }
 
-	const customProps = dataType && loadedDataTypes[dataType]!.customProps ? loadedDataTypes[dataType]!.customProps : {};
-	const actionInterceptors = dataType && loadedDataTypes[dataType]!.actionInterceptors ? loadedDataTypes[dataType]!.actionInterceptors : {};
+  const customProps = dataType && loadedDataTypes[dataType]!.customProps ? loadedDataTypes[dataType]!.customProps : {};
+  const actionInterceptors = dataType && loadedDataTypes[dataType]!.actionInterceptors ? loadedDataTypes[dataType]!.actionInterceptors : {};
 
-	const { getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
-	return {
-		isLoaded: true,
-		Options,
-		Help,
-		Example,
-		getMetadata,
-		rowStateReducer,
-		customProps,
-		actionInterceptors
-	};
+  const { getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
+  return {
+    isLoaded: true,
+    Options,
+    Help,
+    Example,
+    getMetadata,
+    rowStateReducer,
+    customProps,
+    actionInterceptors
+  };
 };
 
 export type ProcessBatches = {
-	[dt in DataTypeFolder]?: number;
+  [dt in DataTypeFolder]?: number;
 };
 
 export function RecursiveErrorException(remaining: string[]): void {
-	// @ts-ignore-line
-	this.possibleProblematicDataTypes = remaining;
-	// @ts-ignore-line
-	this.name = 'Recursive dependency';
+  // @ts-ignore-line
+  this.possibleProblematicDataTypes = remaining;
+  // @ts-ignore-line
+  this.name = 'Recursive dependency';
 }
 
 /**
@@ -132,44 +131,44 @@ export function RecursiveErrorException(remaining: string[]): void {
  * dependencies throw an error.
  */
 export const getProcessBatches = (dataTypes: any): ProcessBatches => {
-	let dataTypesToProcess = Object.keys(dataTypes);
+  let dataTypesToProcess = Object.keys(dataTypes);
 
-	const processBatches: ProcessBatches = {};
-	let previousLength = dataTypesToProcess.length;
-	let currentBatch = 1;
+  const processBatches: ProcessBatches = {};
+  let previousLength = dataTypesToProcess.length;
+  let currentBatch = 1;
 
-	while (dataTypesToProcess.length > 0) {
-		const resolvedDataTypes: any = [];
-		dataTypesToProcess.forEach((dataType) => {
-			// here, we're dealing with Data Types that have dependencies. Loop through them all and figure out if all
-			// of them have already been assigned to a process batch
-			const allDependenciesPositioned =
-				!dataTypes[dataType].dependencies ||
-				dataTypes[dataType].dependencies.every((dependency: string) => !!processBatches[dependency as DataTypeFolder]);
-			if (allDependenciesPositioned) {
-				resolvedDataTypes.push(dataType);
-			}
-		});
+  while (dataTypesToProcess.length > 0) {
+    const resolvedDataTypes: any = [];
+    dataTypesToProcess.forEach((dataType) => {
+      // here, we're dealing with Data Types that have dependencies. Loop through them all and figure out if all
+      // of them have already been assigned to a process batch
+      const allDependenciesPositioned =
+        !dataTypes[dataType].dependencies ||
+        dataTypes[dataType].dependencies.every((dependency: string) => !!processBatches[dependency as DataTypeFolder]);
+      if (allDependenciesPositioned) {
+        resolvedDataTypes.push(dataType);
+      }
+    });
 
-		if (resolvedDataTypes.length) {
-			resolvedDataTypes.forEach((dataType: string) => {
-				processBatches[dataType as DataTypeFolder] = currentBatch;
-			});
-			dataTypesToProcess = dataTypesToProcess.filter((dataType) => resolvedDataTypes.indexOf(dataType) === -1);
-			currentBatch++;
-		}
+    if (resolvedDataTypes.length) {
+      resolvedDataTypes.forEach((dataType: string) => {
+        processBatches[dataType as DataTypeFolder] = currentBatch;
+      });
+      dataTypesToProcess = dataTypesToProcess.filter((dataType) => resolvedDataTypes.indexOf(dataType) === -1);
+      currentBatch++;
+    }
 
-		// simple check: every single pass of the DataTypes should be able to resolve at least one of them to a
-		// new batch number. If none got resolved we have a problem.
-		if (dataTypesToProcess.length === previousLength) {
-			// @ts-ignore-line
-			throw new RecursiveErrorException(dataTypesToProcess);
-		}
+    // simple check: every single pass of the DataTypes should be able to resolve at least one of them to a
+    // new batch number. If none got resolved we have a problem.
+    if (dataTypesToProcess.length === previousLength) {
+      // @ts-ignore-line
+      throw new RecursiveErrorException(dataTypesToProcess);
+    }
 
-		previousLength = dataTypesToProcess.length;
-	}
+    previousLength = dataTypesToProcess.length;
+  }
 
-	return processBatches;
+  return processBatches;
 };
 
 export const processBatches = getProcessBatches(dataTypes);
@@ -177,55 +176,55 @@ export const processBatches = getProcessBatches(dataTypes);
 // returns a hash of { [data type] => [array of affected data types] }. This means that when the property Data Type
 // is changed, the Data Types in the key array could be affected
 export const getAffectedDataTypes = (dataTypes: any): any => {
-	const affectedDataTypes: any = {};
+  const affectedDataTypes: any = {};
 
-	Object.keys(dataTypes).forEach((dataType) => {
-		if (!affectedDataTypes[dataType]) {
-			affectedDataTypes[dataType] = [];
-		}
+  Object.keys(dataTypes).forEach((dataType) => {
+    if (!affectedDataTypes[dataType]) {
+      affectedDataTypes[dataType] = [];
+    }
 
-		if (dataTypes[dataType].dependencies) {
-			dataTypes[dataType].dependencies.forEach((dep: DataTypeFolder) => {
-				if (!affectedDataTypes[dep]) {
-					affectedDataTypes[dep] = [];
-				}
-				affectedDataTypes[dep].push(dataType);
-			});
-		}
-	});
+    if (dataTypes[dataType].dependencies) {
+      dataTypes[dataType].dependencies.forEach((dep: DataTypeFolder) => {
+        if (!affectedDataTypes[dep]) {
+          affectedDataTypes[dep] = [];
+        }
+        affectedDataTypes[dep].push(dataType);
+      });
+    }
+  });
 
-	return affectedDataTypes;
+  return affectedDataTypes;
 };
 
 export const affectedDataTypes = getAffectedDataTypes(dataTypes);
 
 export const requestDataTypeBundle = (dataType: DataTypeFolder): any => {
-	return new Promise((resolve, reject) => {
-		import(
-			/* webpackChunkName: "DT-[request]" */
-			/* webpackMode: "lazy" */
-			`../plugins/dataTypes/${dataType}/bundle`
-		)
-			.then((definition: any) => {
-				loadedDataTypes[dataType] = definition.default;
-				resolve(definition.default);
-			})
-			.catch((e) => {
-				reject(e);
-			});
-	});
+  return new Promise((resolve, reject) => {
+    import(
+      /* webpackChunkName: "DT-[request]" */
+      /* webpackMode: "lazy" */
+      `../plugins/dataTypes/${dataType}/bundle`
+    )
+      .then((definition: any) => {
+        loadedDataTypes[dataType] = definition.default;
+        resolve(definition.default);
+      })
+      .catch((e) => {
+        reject(e);
+      });
+  });
 };
 
 // TODO - this is causing a repaint on every method call, which is causing the most slowness in the UI. But using
 // noValue below doesn't help: when the DT selectors called here return different values, it doesn't get reflected in the UI
 // const noValue: any = {};
 export const getCustomProps = (customProps: DTCustomProps, state: Store): object => {
-	const values: any = {};
-	if (customProps) {
-		Object.keys(customProps).map((propName: string) => {
-			values[propName] = customProps[propName](state);
-		});
-	}
+  const values: any = {};
+  if (customProps) {
+    Object.keys(customProps).map((propName: string) => {
+      values[propName] = customProps[propName](state);
+    });
+  }
 
-	return values;
+  return values;
 };

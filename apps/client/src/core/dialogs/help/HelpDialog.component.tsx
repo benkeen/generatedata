@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
-import { DropdownOption, MediumSpinner } from '@generatedata/core';
-import { getSortedGroupedDataTypes, getDataType } from '~utils/dataTypes';
-import styles from './HelpDialog.scss';
+import { Dialog, DialogActions, DialogContent, DialogTitle, DropdownOption, MediumSpinner } from '@generatedata/core';
 import { DataTypeFolder } from '@generatedata/plugins';
+import Button from '@mui/material/Button';
+import React, { useState } from 'react';
+import { getDataType, getSortedGroupedDataTypes } from '~utils/dataTypes';
+import { useClasses } from './HelpDialog.styles';
 
 export type HelpDialogProps = {
   visible: boolean;
@@ -48,6 +47,7 @@ const DataTypeList = ({ onSelect, filterString }: any): any => {
 const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps) => {
   const [dataType, setDataType] = useState<DataTypeFolder | null>(null);
   const [filterString, setFilterString] = useState('');
+  const classNames = useClasses();
 
   const selectDataType = (dataType: DataTypeFolder): void => {
     onSelectDataType(dataType);
@@ -61,9 +61,9 @@ const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n,
   const i18n = dataType ? dataTypeI18n[dataType] : {};
   const { Help } = getDataType(dataType);
 
-  let spinnerStyles = styles.spinner;
+  let spinnerStyles = classNames.spinner;
   if (Help) {
-    spinnerStyles += ` ${styles.fadeOut}`;
+    spinnerStyles += ` ${classNames.fadeOut}`;
   }
 
   return (
@@ -71,17 +71,17 @@ const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n,
       onClose={onClose}
       aria-labelledby="customized-dialog-title"
       open={visible}
-      className={styles.helpDialog}
+      className={classNames.helpDialog}
       TransitionProps={{
         onExited: (): void => {
           setFilterString('');
         }
       }}
     >
-      <div className={`${styles.dialog} tour-helpDialog`}>
+      <div className={`${classNames.dialog} tour-helpDialog`}>
         <DialogTitle onClose={onClose}>{i18n.NAME}</DialogTitle>
-        <DialogContent dividers className={styles.contentPanel}>
-          <div className={styles.dataTypeList}>
+        <DialogContent dividers className={classNames.contentPanel}>
+          <div className={classNames.dataTypeList}>
             <input
               type="text"
               placeholder={coreI18n.filterDataTypes}
@@ -89,11 +89,11 @@ const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n,
               value={filterString}
               onChange={(e): void => setFilterString(e.target.value)}
             />
-            <div className={styles.list}>
+            <div className={classNames.list}>
               <DataTypeList filterString={filterString} onSelect={selectDataType} />
             </div>
           </div>
-          <div className={styles.helpContent}>
+          <div className={classNames.helpContent}>
             {Help ? <Help coreI18n={coreI18n} i18n={i18n} /> : null}
             <MediumSpinner className={spinnerStyles} />
           </div>

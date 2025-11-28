@@ -1,16 +1,19 @@
-import React from 'react';
 import { TextField } from '@generatedata/core';
-import styles from './AccountsList.styles.ts';
+import { useClasses } from './AccountsList.styles';
 
 export type SearchFilterProps = {
   value: string;
   onChange: (val: string) => void;
 };
 
-const SearchFilter = ({ value, onChange }: SearchFilterProps) => (
-  <div className={styles.searchFilter}>
-    <TextField placeholder="Filter accounts" value={value} onChange={(e: any): void => onChange(e.target.value)} />
-  </div>
-);
+const SearchFilter = ({ value, onChange }: SearchFilterProps) => {
+  const classNames = useClasses();
+
+  return (
+    <div className={classNames.searchFilter}>
+      <TextField placeholder="Filter accounts" value={value} onChange={(e: any): void => onChange(e.target.value)} />
+    </div>
+  );
+};
 
 export default SearchFilter;

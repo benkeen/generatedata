@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { PrimaryButton } from '@generatedata/core';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import { DialogLoadingSpinner } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, PrimaryButton } from '@generatedata/core';
 import { getTourComponents } from '@generatedata/utils/general';
-import styles from './TourIntro.scss';
+import { useEffect, useState } from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
+import { useClasses } from './TourIntro.styles';
 
 // TODO enum
 type Tour = 'intro' | 'gridPanel' | 'previewPanel' | 'yourAccount';
@@ -31,6 +29,7 @@ const TourDialog = ({
   i18n
 }: TourDialogProps) => {
   const windowSize = useWindowSize();
+  const classNames = useClasses();
 
   const [loadingBundle, setLoadingBundle] = useState(false);
   const [currentTour, setCurrentTour] = useState<Tour | null>(null);
@@ -102,10 +101,10 @@ const TourDialog = ({
         isOpen={true}
         onClose={onExit}
         i18n={i18n}
-        maskClassName={styles.tourMask}
+        maskClassName={classNames.tourMask}
         closeWithMask={false}
         disableInteraction={true}
-        className={styles.tourPage}
+        className={classNames.tourPage}
         accentColor="#275eb5"
       />
     );
@@ -116,9 +115,9 @@ const TourDialog = ({
       <Dialog onClose={closeIntroDialog} open={tourIntroDialogVisible}>
         <div style={{ width: 600 }}>
           <DialogTitle onClose={onClose}>{i18n.help}</DialogTitle>
-          <DialogContent dividers className={styles.introDialog}>
-            <div className={styles.cols}>
-              <div className={styles.col}>
+          <DialogContent dividers className={classNames.introDialog}>
+            <div className={classNames.cols}>
+              <div className={classNames.col}>
                 <h3>{i18n.welcomeToTheGenerator}</h3>
 
                 <p>{i18n.tourIntroPara1}</p>
@@ -126,9 +125,9 @@ const TourDialog = ({
                 <p>{i18n.tourIntroPara2}</p>
               </div>
 
-              <div className={styles.separator} />
+              <div className={classNames.separator} />
 
-              <div className={`${styles.col} ${styles.buttonCol}`}>
+              <div className={`${classNames.col} ${classNames.buttonCol}`}>
                 <div>
                   <PrimaryButton onClick={(): void => selectTour('intro')}>1. {i18n.introToGenerator}</PrimaryButton>
                 </div>

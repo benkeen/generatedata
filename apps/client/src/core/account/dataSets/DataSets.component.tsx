@@ -1,36 +1,40 @@
-import React, { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client/react';
-import Button from '@mui/material/Button';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import Pagination from '~components/Pagination';
-import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
-import * as queries from '~core/queries';
-import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
-import styles from './DataSets.scss';
 import { useSharedClasses } from '@generatedata/core';
 import { DataSetListItem } from '@generatedata/types';
 import { formatUnixTime } from '@generatedata/utils/date';
-import { getGeneratorPageRoute } from '~utils/routeUtils';
-import { useNavigate } from 'react-router';
 import { getFormattedNum } from '@generatedata/utils/number';
-import { GDLocale } from '~types/general';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import Button from '@mui/material/Button';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import Pagination from '~components/Pagination';
+import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
+import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import { DELETE_DATA_SET } from '~core/mutations';
+import * as queries from '~core/queries';
+import { GDLocale } from '~types/general';
+import { getGeneratorPageRoute } from '~utils/routeUtils';
+import { useClasses } from './DataSets.styles';
 
-const Row = ({ onDelete, onLoad, dataSet, i18n }: any) => (
-  <div className={styles.row}>
-    <div className={styles.dataSetName}>{dataSet.dataSetName}</div>
-    <div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
-    <div className={styles.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated)}</div>
-    <div className={styles.open}>
-      <Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>
-        {i18n.open}
-      </Button>
+const Row = ({ onDelete, onLoad, dataSet, i18n }: any) => {
+  const classNames = useClasses();
+
+  return (
+    <div className={classNames.row}>
+      <div className={classNames.dataSetName}>{dataSet.dataSetName}</div>
+      <div className={classNames.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
+      <div className={classNames.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated)}</div>
+      <div className={classNames.open}>
+        <Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>
+          {i18n.open}
+        </Button>
+      </div>
+      <div className={classNames.del} onClick={onDelete}>
+        <HighlightOffIcon />
+      </div>
     </div>
-    <div className={styles.del} onClick={onDelete}>
-      <HighlightOffIcon />
-    </div>
-  </div>
-);
+  );
+};
 
 export type DataSetsProps = {
   locale: GDLocale;
@@ -46,6 +50,8 @@ const NUM_PER_PAGE = 10;
 
 const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '', onClearCurrentDataSet }: DataSetsProps) => {
   const navigate = useNavigate();
+  const classNames = useClasses();
+
   const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
   const [currentPage, setCurrentPage] = useState(1);
   const [dialogVisible, setDeleteDialogVisibility] = useState(false);
@@ -113,17 +119,17 @@ const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '
 
   if (totalCount === 0) {
     return (
-      <section className={`${className} ${styles.page}`}>
+      <section className={`${className} ${classNames.page}`}>
         <div className={sharedClasses.emptyText}>{i18n.noDataSetsSaved}</div>
       </section>
     );
   }
 
   const paginationRow =
-    totalCount > NUM_PER_PAGE ? (
-      <div className={styles.paginationRow}>
+    totalCount! > NUM_PER_PAGE ? (
+      <div className={classNames.paginationRow}>
         <Pagination
-          numPages={Math.ceil(totalCount / NUM_PER_PAGE)}
+          numPages={Math.ceil(totalCount! / NUM_PER_PAGE)}
           currentPage={currentPage}
           onChange={(e: any, pageNum: number): void => setCurrentPage(pageNum)}
         />
@@ -133,30 +139,30 @@ const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '
   const cols = [
     {
       label: i18n.dataSetName,
-      className: styles.dataSetName,
+      className: classNames.dataSetName,
       field: 'dataSetName',
       sortable: true
     },
     {
       label: i18n.lastModified,
-      className: styles.lastModified,
+      className: classNames.lastModified,
       field: 'lastUpdated',
       sortable: true
     },
     {
       label: i18n.rowsGenerated,
-      className: styles.numRowsGenerated,
+      className: classNames.numRowsGenerated,
       field: 'numRowsGenerated',
       sortable: true
     },
-    { label: i18n.open, className: styles.open },
-    { label: '', className: styles.del }
+    { label: i18n.open, className: classNames.open },
+    { label: '', className: classNames.del }
   ];
 
   return (
     <>
-      <section className={`${className} ${styles.page}`}>
-        <div className={styles.table}>
+      <section className={`${className} ${classNames.page}`}>
+        <div className={classNames.table}>
           <TableHeader
             cols={cols}
             sortDir={sortDir}
@@ -166,8 +172,8 @@ const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '
               setSortDir(dir);
             }}
           />
-          <div className={styles.body}>
-            {results!.map((dataSet: DataSetListItem) => (
+          <div className={classNames.bodySection}>
+            {(results as unknown as DataSetListItem[])!.map((dataSet: DataSetListItem) => (
               <Row
                 key={dataSet.dataSetId}
                 dataSet={dataSet}

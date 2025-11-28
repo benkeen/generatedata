@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { format, fromUnixTime, add } from 'date-fns';
-import MainFields from '~components/accounts/mainFields/MainFields.component';
-import { RadioPill, RadioPillRow } from '@generatedata/core';
-import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
+import { LocalizedDatePicker, LocalizedDatePickerProvider, RadioPill, RadioPillRow } from '@generatedata/core';
 import { getFormattedNum } from '@generatedata/utils/number';
+import { add, format, fromUnixTime } from 'date-fns';
+import { useState } from 'react';
+import MainFields from '~components/accounts/mainFields/MainFields.component';
 // import * as dateStyles from '@generatedata/plugins/dist/dataTypes/Date/Date.scss';
 import C from '@generatedata/config/constants';
 import { useClasses } from './ManageAccount.styles';
@@ -44,6 +43,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
   const [data, setData] = useState(initialState);
   const [showDatepicker, setShowDatepicker] = useState(false);
   const [showErrors] = useState(false);
+  const classNames = useClasses();
 
   let accountHasChanges = data.firstName !== '' && data.lastName !== '' && data.email !== '' && data.country !== '';
   if (data.country === 'CA' && data.region === '') {
@@ -106,7 +106,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
   }
 
   return (
-    <div className={styles.root}>
+    <div className={classNames.root}>
       <div style={{ flex: 1 }}>
         <MainFields
           i18n={i18n}
@@ -125,9 +125,9 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
           isAddingUser={data.isAddingUser}
         />
       </div>
-      <div className={styles.rightCol}>
+      <div className={classNames.rightCol}>
         <div>
-          <div className={styles.disabledFieldRow}>
+          <div className={classNames.disabledFieldRow}>
             <input
               type="checkbox"
               checked={data.disabled}
@@ -156,7 +156,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
             </RadioPillRow>
           </div>
         </div>
-        <div className={styles.rightBlock}>
+        <div className={classNames.rightBlock}>
           <label>{i18n.totalNumGeneratedRows}</label>
           <div>{getFormattedNum(initialState.numRowsGenerated)}</div>
         </div>

@@ -52,18 +52,31 @@ export const useClasses = makeStyles({
         fill: '#990000'
       }
     }
+  },
+  tableBody: {
+    overflow: 'scroll'
+
+    // .row {
+    // 	&:hover {
+    // 		background-color: #f9f9f9;
+    // 	}
+    // }
+  },
+  row: {
+    '&:hover': {
+      backgroundColor: '#f9f9f9'
+    }
+  },
+  filtersRow: {
+    display: 'flex',
+    marginBottom: '15px',
+    alignItems: 'center',
+
+    '& h4': {
+      marginLeft: 'auto'
+    }
   }
 });
-
-// body: { //.body
-// 	overflow: scroll,
-
-// 	.row {
-// 		&:hover {
-// 			background-color: #f9f9f9;
-// 		}
-// 	}
-// }
 
 // 	.row {
 // 		display: flex;
@@ -71,16 +84,6 @@ export const useClasses = makeStyles({
 // 		padding: 6px;
 // 		align-items: center;
 // 		font-size: 13px;
-// 	}
-// }
-
-// .filtersRow {
-// 	display: flex;
-// 	margin-bottom: 15px;
-// 	align-items: center;
-
-// 	h4 {
-// 		margin-left: auto;
 // 	}
 // }
 

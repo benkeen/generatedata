@@ -1,4 +1,3 @@
-import React from 'react';
 import { CopyToClipboard } from '@generatedata/core';
 import { useClasses } from './Email.styles';
 

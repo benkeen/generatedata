@@ -1,6 +1,5 @@
-import React from 'react';
 import { AccountStatus } from '@generatedata/graphql-schema';
-import styles from './AccountStatusPill.scss';
+import { useClasses } from './AccountStatusPill.styles';
 
 type AccountStatusPillProps = {
   status: AccountStatus;
@@ -8,6 +7,7 @@ type AccountStatusPillProps = {
 };
 
 const AccountStatusPill = ({ status, i18n }: AccountStatusPillProps) => {
+  const classNames = useClasses();
   let label;
   if (status === 'live') {
     label = i18n.live;
@@ -17,7 +17,7 @@ const AccountStatusPill = ({ status, i18n }: AccountStatusPillProps) => {
     label = i18n.disabled;
   }
 
-  return <span className={`${styles.pill} ${styles[status]}`}>{label}</span>;
+  return <span className={`${classNames.pill} ${classNames[status]}`}>{label}</span>;
 };
 
 export default AccountStatusPill;

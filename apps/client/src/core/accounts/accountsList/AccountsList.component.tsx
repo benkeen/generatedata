@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { format, fromUnixTime } from 'date-fns';
 import { useMutation, useQuery } from '@apollo/client/react';
+import C from '@generatedata/config/constants';
+import Dropdown, { DropdownOption, SmallSpinner, useSharedClasses } from '@generatedata/core';
 import { addToast } from '@generatedata/utils/general';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import Button from '@mui/material/Button';
+import { format, fromUnixTime } from 'date-fns';
+import { useEffect, useState } from 'react';
+import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
 import Pagination from '~components/Pagination';
 import TableHeader, { ColSortDir } from '~components/tables/TableHeader.component';
-import { SmallSpinner } from '@generatedata/core';
-import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
 import DeleteAccountDialog from '~core/dialogs/deleteAccount/DeleteAccount.component';
-import SearchFilter from './SearchFilter.component';
-import C from '@generatedata/config/constants';
-import Dropdown, { DropdownOption } from '@generatedata/core';
-import { AccountStatusFilter } from '~types/general';
 import { DELETE_ACCOUNT } from '~core/mutations';
 import * as queries from '~core/queries';
+import { AccountStatusFilter } from '~types/general';
 import { useClasses } from './AccountsList.styles';
-import { useSharedClasses } from '@generatedata/core';
+import SearchFilter from './SearchFilter.component';
 
 export type AccountsListProps = {
   accountsCurrentPage: number;
@@ -208,7 +206,7 @@ const AccountsList = ({
               setAccountsSortDir(dir);
             }}
           />
-          <div className={classNames.body}>
+          <div className={classNames.tableBody}>
             {results.map((row: any) => (
               <Row
                 key={row.accountId}

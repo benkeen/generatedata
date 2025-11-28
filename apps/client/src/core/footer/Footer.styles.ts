@@ -1,141 +1,192 @@
+import { vars } from '@generatedata/core';
 import { makeStyles } from '@griffel/react';
+export const useClasses = makeStyles({
+  showTourLink: {
+    flex: '0 0 auto'
+  },
+  activePacketsList: {
+    flex: '1 1 auto',
+    overflow: 'scroll'
+  },
+  footerControls: {
+    display: 'flex',
+    alignItems: 'stretch',
+    flex: '0 0 auto',
+    paddingRight: '18px',
+    opacity: 0,
+    transition: 'opacity 200ms ease-in-out'
 
-export const useClasses = makeStyles({});
+    // &.visible {
+    // 	opacity: 1;
+    // }
+  },
 
-// .footer {
-// 	flex: 0 0 60px;
-// 	background-image: url('./images/bg.png');
-// 	padding: 16px 20px;
+  footer: {
+    flex: '0 0 60px',
+    backgroundImage: 'url("./images/bg.png")',
+    padding: '16px 20px',
 
-// 	& > div {
-// 		display: flex;
-// 		flex: 0 0 auto;
-// 		margin: 0 auto;
-// 		align-content: space-between;
-// 		max-width: 1400px;
-// 		height: 32px;
+    // 	& > div {
+    // 		display: flex;
+    // 		flex: 0 0 auto;
+    // 		margin: 0 auto;
+    // 		align-content: space-between;
+    // 		max-width: 1400px;
+    // 		height: 32px;
 
-// 		& > ul {
-// 			flex: 0 0 auto;
-// 			display: flex;
-// 			flex-direction: row;
-// 			list-style: none;
-// 			margin: 0;
-// 			padding: 0;
-// 			align-items: center;
+    // 		& > ul {
+    // 			flex: 0 0 auto;
+    // 			display: flex;
+    // 			flex-direction: row;
+    // 			list-style: none;
+    // 			margin: 0;
+    // 			padding: 0;
+    // 			align-items: center;
 
-// 			li {
-// 				display: flex;
-// 				margin-right: 10px;
+    // 			li {
+    // 				display: flex;
+    // 				margin-right: 10px;
 
-// 				&:hover {
-// 					svg {
-// 						fill: c.$primary-color;
-// 					}
-// 				}
-// 			}
+    // 				&:hover {
+    // 					svg {
+    // 						fill: c.$primary-color;
+    // 					}
+    // 				}
+    // 			}
 
-// 			svg {
-// 				cursor: pointer;
-// 				transition: fill 0.15s ease-in-out;
-// 			}
-// 		}
-// 	}
+    // 			svg {
+    // 				cursor: pointer;
+    // 				transition: fill 0.15s ease-in-out;
+    // 			}
+    // 		}
+    // 	}
 
-// 	a:hover {
-// 		border-bottom: 0;
-// 	}
+    '& a:hover': {
+      borderBottom: 0
+    }
 
-// 	svg {
-// 		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.6)));
-// 	}
+    // 	svg {
+    // 		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.6)));
+    // 	}
 
-// 	button.generateButton,
-// 	button.saveButton,
-// 	button.saveButtonAsMainBtn {
-// 		font-size: 13px;
+    // 	button.generateButton,
+    // 	button.saveButton,
+    // 	button.saveButtonAsMainBtn {
+    // 		font-size: 13px;
 
-// 		svg {
-// 			font-size: 15px;
-// 			margin: 0 5px 0 -5px;
-// 		}
+    // 		svg {
+    // 			font-size: 15px;
+    // 			margin: 0 5px 0 -5px;
+    // 		}
 
-// 		&:global(.Mui-disabled) {
-// 			border-color: #bbbbbb;
-// 		}
-// 	}
+    // 		&:global(.Mui-disabled) {
+    // 			border-color: #bbbbbb;
+    // 		}
+    // 	}
+    // .aboutIconEl {
+    // 	height: 24px;
+    // }
+  },
+  generateButton: {
+    fontSize: '13px',
+    '& svg': {
+      fontSize: '15px',
+      margin: '0 5px 0 -5px'
+    }
+    // &:global(.Mui-disabled) {
+    //   border-color: #bbbbbb;
+    // }
+  },
+  saveButton: {
+    fontSize: '13px',
+    '& svg': {
+      fontSize: '15px',
+      margin: '0 5px 0 -5px'
+    }
+    // &:global(.Mui-disabled) {
+    //   border-color: #bbbbbb;
+    // }
+  },
+  saveButtonAsMainBtn: {
+    fontSize: '13px',
+    '& svg': {
+      fontSize: '15px',
+      margin: '0 5px 0 -5px'
+    }
+    // &:global(.Mui-disabled) {
+    //   border-color: #bbbbbb;
+    // }
+  },
+  aboutIconEl: {
+    height: '24px'
+  },
+  saveButtonAs: {
+    // button.saveButtonAsMainBtn {
+    // 	border-color: #bde9fb;
+    // }
+  },
+  scriptVersion: {
+    '& a': {
+      marginRight: '30px',
+      color: '#333333',
 
-// 	.aboutIconEl {
-// 		height: 24px;
-// 	}
-// }
+      ':hover': {
+        textDecoration: 'none'
+      }
+    }
+  },
 
-// .saveButtonAs {
-// 	button.saveButtonAsMainBtn {
-// 		border-color: #bde9fb;
-// 	}
-// }
+  controls: {
+    // div.controls
+    marginRight: '15px'
+  },
+  saveButton: {
+    // button.saveButton
+    backgroundColor: vars.primarySubmit,
+    color: 'white',
+    marginRight: '15px',
 
-// .scriptVersion a {
-// 	margin-right: 30px;
-// 	color: #333333;
+    ':hover': {
+      backgroundColor: vars.primarySubmitHover
+    }
+  },
+  // div.saveButtonAs: {
+  //   height: '32px',
+  //   marginRight: '15px',
+  //   '& button': {
+  //     backgroundColor: vars.primarySubmit,
+  //     color: 'white',
 
-// 	&:hover {
-// 		text-decoration: none;
-// 	}
-// }
+  //     ':hover': {
+  //       backgroundColor: vars.primarySubmitHover
+  //     }
+  //   }
+  // },
+  saveBtnArrow: {
+    // button.saveBtnArrow
+    minWidth: 'inherit',
+    padding: '0 6px',
 
-// div.controls {
-// 	margin-right: 15px;
-// }
-
-// button.saveButton {
-// 	background-color: c.$primary-submit;
-// 	color: white;
-// 	margin-right: 15px;
-
-// 	&:hover {
-// 		background-color: c.$primary-submit-hover;
-// 	}
-// }
-
-// div.saveButtonAs {
-// 	height: 32px;
-// 	margin-right: 15px;
-// 	button {
-// 		background-color: c.$primary-submit;
-// 		color: white;
-
-// 		&:hover {
-// 			background-color: c.$primary-submit-hover;
-// 		}
-// 	}
-// }
-
-// button.saveBtnArrow {
-// 	min-width: inherit;
-// 	padding: 0 6px;
-
-// 	svg {
-// 		margin: 0;
-// 	}
-// }
-
-// .saveAsRow {
-// 	cursor: pointer;
-// 	background-color: c.$primary-submit;
-// 	margin-bottom: 2px;
-// 	border-radius: 2px;
-// 	color: white;
-// 	text-transform: uppercase;
-// 	font-size: 11px;
-// 	padding: 6px 12px;
-// 	z-index: 2;
-
-// 	&:hover {
-// 		background-color: c.$primary-submit-hover;
-// 	}
-// }
+    '& svg': {
+      margin: 0
+    }
+  },
+  saveAsRow: {
+    cursor: 'pointer',
+    backgroundColor: vars.primarySubmit,
+    marginBottom: '2px',
+    borderRadius: '2px',
+    color: 'white',
+    textTransform: 'uppercase',
+    fontSize: '11px',
+    padding: '6px 12px',
+    zIndex: 2,
+    ':hover': {
+      backgroundColor: vars.primarySubmitHover
+    }
+  },
+  tourBtn: {}
+});
 
 // .tourBtn:global(.MuiButtonBase-root) {
 // 	text-transform: none;
@@ -153,28 +204,6 @@ export const useClasses = makeStyles({});
 // @media (max-width: 900px) {
 // 	button.tourBtn {
 // 		display: none;
-// 	}
-// }
-
-// .showTourLink {
-// 	flex: 0 0 auto;
-// }
-
-// .activePacketsList {
-// 	flex: 1 1 auto;
-// 	overflow: scroll;
-// }
-
-// .footerControls {
-// 	display: flex;
-// 	align-items: stretch;
-// 	flex: 0 0 auto;
-// 	padding-right: 18px;
-// 	opacity: 0;
-// 	transition: opacity 200ms ease-in-out;
-
-// 	&.visible {
-// 		opacity: 1;
 // 	}
 // }
 

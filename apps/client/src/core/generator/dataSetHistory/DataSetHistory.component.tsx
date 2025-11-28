@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { format, fromUnixTime } from 'date-fns';
-import { TypedDocumentNode } from '@apollo/client';
 import { useQuery } from '@apollo/client/react';
-import Drawer from '@mui/material/Drawer';
-import InfoIcon from '@mui/icons-material/InfoOutlined';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { DefaultSpinner, CenteredSpinner } from '@generatedata/core';
-import { PrimaryButton, SecondaryButton } from '@generatedata/core';
-import { Tooltip } from '@generatedata/core';
-import * as queries from '~core/queries';
-import { useClasses } from './DataSetHistory.styles';
 import C from '@generatedata/config/constants';
+import { CenteredSpinner, DefaultSpinner, PrimaryButton, SecondaryButton, Tooltip } from '@generatedata/core';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import InfoIcon from '@mui/icons-material/InfoOutlined';
+import Drawer from '@mui/material/Drawer';
+import { format, fromUnixTime } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+import * as queries from '~core/queries';
 import { CurrentDataSet } from '~store/generator/generator.reducer';
+import { useClasses } from './DataSetHistory.styles';
 
 export type DataSetHistoryProps = {
   showPanel: boolean;
@@ -65,6 +62,7 @@ export const DataSetHistory = ({
   const { dataSetId, dataSetName, lastSaved } = dataSet;
   const { historyId } = selectedDataSetHistoryItem;
   const [called, setCalled] = useState(false);
+  const classNames = useClasses();
 
   const { data, loading, error, refetch } = useQuery(queries.GET_DATA_SET_HISTORY, {
     fetchPolicy: 'cache-and-network',
@@ -109,22 +107,22 @@ export const DataSetHistory = ({
 
       content = (
         <>
-          <div className={styles.currentVersionRow}>
+          <div className={classNames.currentVersionRow}>
             <Row
               {...latestRow}
               rowLabel={i18n.currentVersion}
-              key={latestRow.historyId}
+              key={latestRow!.historyId}
               loadHistoryVersion={loadStashedVersion}
               isSelected={historyId === null}
               i18n={i18n}
               Btn={SecondaryButton}
             />
           </div>
-          <div className={styles.rows}>
+          <div className={classNames.rows}>
             {data.dataSetHistory.results!.map((row: any) => (
               <Row
                 {...row}
-                className={styles.row}
+                className={classNames.row}
                 key={row.historyId}
                 loadHistoryVersion={(): void => loadVersion(row, false)}
                 isSelected={row.historyId === historyId}
@@ -149,7 +147,7 @@ export const DataSetHistory = ({
 
   return (
     <Drawer open={showPanel} anchor="left" onClose={closePanel}>
-      <div className={`${styles.panel} tour-dataSetHistoryPanel`}>
+      <div className={`${classNames.panel} tour-dataSetHistoryPanel`}>
         <h2>
           <span>{dataSetName}</span>
           <Tooltip title={i18n.historyPanelDesc} arrow>

@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, TextField } from '@generatedata/core';
+import { getVendorLoginButtons, hasVendorLogin } from '@generatedata/utils/auth';
+import { addToast, isValidEmail } from '@generatedata/utils/general';
 import Button from '@mui/material/Button';
-import { TextField } from '@generatedata/core';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
-import { isValidEmail, addToast } from '@generatedata/utils/general';
-import { DialogLoadingSpinner } from '@generatedata/core';
-import { hasVendorLogin, getVendorLoginButtons } from '@generatedata/utils/auth';
-import styles from './Login.scss';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useClasses } from './Login.styles';
 
 const showVendorLoginColumn = hasVendorLogin();
 const vendorLoginButtons = getVendorLoginButtons();
@@ -37,6 +35,7 @@ const LoginDialog = ({
   i18n
 }: LoginDialogProps) => {
   const navigate = useNavigate();
+  const classNames = useClasses();
 
   const textFieldRef = useRef<any>(undefined);
   const [email, setEmail] = useState('');
@@ -114,7 +113,7 @@ const LoginDialog = ({
 
   if (showVendorLoginColumn) {
     width = 500;
-    layoutClass = styles.withSecondCol;
+    layoutClass = classNames.withSecondCol;
   }
 
   const getSecondColumn = () => {
@@ -127,10 +126,10 @@ const LoginDialog = ({
 
     return (
       <>
-        <div className={styles.separator}>
+        <div className={classNames.separator}>
           <div>{i18n.or}</div>
         </div>
-        <div className={styles.col}>{buttons}</div>
+        <div className={classNames.col}>{buttons}</div>
       </>
     );
   };
@@ -154,7 +153,7 @@ const LoginDialog = ({
       <Dialog
         onClose={onClose}
         open={visible}
-        className={styles.loginDialog}
+        className={classNames.loginDialog}
         TransitionProps={{
           onEntered,
           onExited
@@ -165,7 +164,7 @@ const LoginDialog = ({
             <DialogTitle onClose={onClose}>{i18n.login}</DialogTitle>
             <DialogContent dividers>
               <div className={layoutClass}>
-                <div className={styles.col}>
+                <div className={classNames.col}>
                   <label>{i18n.email}</label>
                   <div style={{ marginBottom: 15 }}>
                     <TextField
@@ -194,15 +193,15 @@ const LoginDialog = ({
                       disabled={dialogProcessing}
                       throttle={false}
                       onPaste={onPastePassword}
-                      autoComplete={false}
+                      autoComplete="false"
                     />
                   </div>
                 </div>
                 {getSecondColumn()}
               </div>
             </DialogContent>
-            <DialogActions className={styles.actionsRow}>
-              <div className={styles.forgotPasswordLink} onClick={(): void => showPasswordResetDialog(email)}>
+            <DialogActions className={classNames.actionsRow}>
+              <div className={classNames.forgotPasswordLink} onClick={(): void => showPasswordResetDialog(email)}>
                 {i18n.forgottenYourPasswordQ}
               </div>
               <Button type="submit" color="primary" variant="outlined" disabled={dialogProcessing}>

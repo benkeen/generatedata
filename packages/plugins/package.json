@@ -2,7 +2,7 @@
   "name": "@generatedata/plugins",
   "version": "1.0.0",
   "description": "generatedata.com plugins",
-  "module": "./dist/index.js",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "tsc": "tsc",

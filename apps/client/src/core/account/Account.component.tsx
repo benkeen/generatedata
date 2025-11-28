@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useSharedClasses } from '@generatedata/core';
+import { useEffect, useState } from 'react';
 import { SelectedAccountTab } from '~types/account';
+import { useClasses } from './Account.styles';
+import ChangePassword from './changePassword/ChangePassword.container';
 import DataSets from './dataSets/DataSets.container';
 import YourAccount from './yourAccount/YourAccount.container';
-import ChangePassword from './changePassword/ChangePassword.container';
-import { useSharedClasses } from '@generatedata/core';
-import styles from './Account.scss';
 
 export type AccountPageProps = {
   selectedTab: SelectedAccountTab;
@@ -13,22 +13,23 @@ export type AccountPageProps = {
 };
 
 const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps) => {
-  const [dataSetsClasses, setDataSetsClasses] = useState(styles.hidden);
-  const [yourAccountClasses, setYourAccountClasses] = useState(styles.hidden);
-  const [changePasswordClasses, setChangePasswordClasses] = useState(styles.hidden);
+  const classNames = useClasses();
+  const [dataSetsClasses, setDataSetsClasses] = useState(classNames.hidden);
+  const [yourAccountClasses, setYourAccountClasses] = useState(classNames.hidden);
+  const [changePasswordClasses, setChangePasswordClasses] = useState(classNames.hidden);
   const sharedClasses = useSharedClasses();
 
   useEffect(() => {
-    let dsClasses = styles.hidden;
-    let cpClasses = styles.hidden;
-    let yaClasses = styles.hidden;
+    let dsClasses = classNames.hidden;
+    let cpClasses = classNames.hidden;
+    let yaClasses = classNames.hidden;
 
     if (selectedTab === SelectedAccountTab.yourAccount) {
-      yaClasses = styles.shown;
+      yaClasses = classNames.shown;
     } else if (selectedTab === SelectedAccountTab.dataSets) {
-      dsClasses = styles.shown;
+      dsClasses = classNames.shown;
     } else {
-      cpClasses = styles.shown;
+      cpClasses = classNames.shown;
     }
 
     setDataSetsClasses(dsClasses);

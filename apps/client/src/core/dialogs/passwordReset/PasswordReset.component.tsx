@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Button from '@mui/material/Button';
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import { TextField } from '@generatedata/core';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, TextField } from '@generatedata/core';
 import { isValidEmail } from '@generatedata/utils/general';
-import { DialogLoadingSpinner } from '@generatedata/core';
-import styles from './PasswordReset.scss';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import Button from '@mui/material/Button';
+import { useEffect, useRef, useState } from 'react';
+import { useClasses } from './PasswordReset.styles';
 
 export type PasswordResetDialogProps = {
   visible: boolean;
@@ -29,6 +27,7 @@ const PasswordResetDialog = ({
   const textFieldRef = useRef<any>(null);
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
+  const classNames = useClasses();
 
   useEffect(() => {
     if (!visible) {
@@ -75,7 +74,7 @@ const PasswordResetDialog = ({
   };
 
   return (
-    <Dialog onClose={onClose} open={visible} className={styles.loginDialog}>
+    <Dialog onClose={onClose} open={visible} className={classNames.loginDialog}>
       <form onSubmit={onLogin}>
         <div style={{ width: 380 }}>
           <DialogTitle onClose={onClose}>{i18n.passwordReset}</DialogTitle>
@@ -94,8 +93,8 @@ const PasswordResetDialog = ({
               />
             </div>
           </DialogContent>
-          <DialogActions className={styles.actionsRow}>
-            <div className={styles.loginLink} onClick={(): void => showLoginDialog(email)}>
+          <DialogActions className={classNames.actionsRow}>
+            <div className={classNames.loginLink} onClick={(): void => showLoginDialog(email)}>
               <div>
                 <ArrowLeftIcon />
                 {i18n.backToLogin}

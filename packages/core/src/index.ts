@@ -1,12 +1,13 @@
 export * from './components/buttons/Buttons.component';
 export { CopyToClipboard } from './components/copyToClipboard/CopyToClipboard';
-export { Dropdown } from './components/dropdown/Dropdown';
+export * from './components/datePicker/LocalizedDatePicker.component';
 export * from './components/dialogs';
+export { Dropdown } from './components/dropdown/Dropdown';
 export type { DropdownOption } from './components/dropdown/Dropdown';
 export * from './components/icons/icons';
 export * from './components/loaders/loaders';
-export * from './components/portal/Portal';
 export * from './components/pills';
+export * from './components/portal/Portal';
 export { TextField } from './components/textField/TextField';
 export { Toast } from './components/toast/Toast.component';
 export * from './components/tooltips';
