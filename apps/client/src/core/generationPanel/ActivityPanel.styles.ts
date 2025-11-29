@@ -61,13 +61,14 @@ export const useClasses = makeStyles({
   actionsRow: {
     height: '72px'
   },
-
-  // .activityPanel :global(.MuiDialog-paper) {
-  // 	width: 100%,
-  // 	max-width: 1000px,
-  // 	height: 100%,
-  // 	max-height: 600px,
-  // }
+  activityPanel: {
+    // :global(.MuiDialog-paper) {
+    // 	width: 100%,
+    // 	max-width: 1000px,
+    // 	height: 100%,
+    // 	max-height: 600px,
+    // }
+  },
 
   pie: {
     marginBottom: '20px',

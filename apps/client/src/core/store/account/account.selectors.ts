@@ -1,7 +1,7 @@
-import { Store } from '~types/general';
-import { AccountType, SelectedAccountTab, SelectedAccountsTab } from '~types/account';
-import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
 import { createSelector } from 'reselect';
+import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
+import { AccountType, SelectedAccountTab, SelectedAccountsTab } from '~types/account';
+import { Store } from '~types/general';
 
 export const getFirstName = (state: Store): string => state.account.firstName;
 export const getLastName = (state: Store): string => state.account.lastName;
@@ -21,16 +21,16 @@ export const getOneTimePassword = (state: Store): string => state.account.oneTim
 export const getExpiryDate = (state: Store): string => state.account.expiryDate;
 
 export const accountHasChanges = createSelector(
-	getFirstName,
-	getLastName,
-	getEmail,
-	getCountry,
-	getRegion,
-	getEditingData,
-	(firstName, lastName, email, country, region, editingData): boolean =>
-		firstName !== editingData.firstName ||
-		lastName !== editingData.lastName ||
-		email !== editingData.email ||
-		country !== editingData.country ||
-		region !== editingData.region
+  getFirstName,
+  getLastName,
+  getEmail,
+  getCountry,
+  getRegion,
+  getEditingData,
+  (firstName, lastName, email, country, region, editingData): boolean =>
+    firstName !== editingData.firstName ||
+    lastName !== editingData.lastName ||
+    email !== editingData.email ||
+    country !== editingData.country ||
+    region !== editingData.region
 );

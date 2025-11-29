@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client/react';
 import C from '@generatedata/config/constants';
-import Dropdown, { DropdownOption, SmallSpinner, useSharedClasses } from '@generatedata/core';
+import { Dropdown, DropdownOption, SmallSpinner, useSharedClasses } from '@generatedata/core';
 import { addToast } from '@generatedata/utils/general';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Button from '@mui/material/Button';

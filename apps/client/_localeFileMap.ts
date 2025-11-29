@@ -1,4 +1,3 @@
-/* eslint quotes:0 */
 import { GDLocaleMap } from '@generatedata/types';
 
 export const localeFileMap: GDLocaleMap = {

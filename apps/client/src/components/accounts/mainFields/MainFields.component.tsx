@@ -1,17 +1,15 @@
-import React, { useRef, useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
-import { TextField } from '@generatedata/core';
-import IconButton from '@mui/material/IconButton';
-import { Dropdown } from '@generatedata/core';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import { Dropdown, TextField, useSharedClasses } from '@generatedata/core';
 import { canadianProvinceOptions, countryDropdownOptions } from '@generatedata/plugins';
-import Refresh from '@mui/icons-material/Refresh';
-import { AccountEditingData } from '~store/account/account.reducer';
 import { isValidEmail } from '@generatedata/utils/general';
 import { generateRandomAlphanumericStr } from '@generatedata/utils/random';
-import { useSharedClasses } from '@generatedata/core';
+import Refresh from '@mui/icons-material/Refresh';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import IconButton from '@mui/material/IconButton';
+import { useRef, useState } from 'react';
+import { AccountEditingData } from '~store/account/account.reducer';
 
 export type MainFieldsProps = {
   data: AccountEditingData;

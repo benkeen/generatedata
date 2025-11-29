@@ -1,25 +1,24 @@
-import { Dispatch } from 'redux';
-import * as selectors from './generator.selectors';
-import { getCurrentDataSet, isCountryNamesLoaded, isCountryNamesLoading } from './generator.selectors';
-import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
-import { registerInterceptors } from '../../actionInterceptor';
-import { requestDataTypeBundle } from '~utils/dataTypes';
-import * as coreUtils from '../../../utils/coreUtils';
-import { getStrings } from '@generatedata/utils/lang';
-import { getUniqueString } from '@generatedata/utils/string';
-import { getExportTypeInitialState, loadExportTypeBundle } from '~utils/exportTypes';
-import { addToast } from '@generatedata/utils/general';
-import { DTBundle, DTOptionsMetadata } from '~types/dataTypes';
-import { GDAction } from '~types/general';
 import C from '@generatedata/config/constants';
-import { getUnchangedData } from '../../generationPanel/generation.helpers';
-import * as accountActions from '~store/account/account.actions';
+import { DataTypeFolder, ExportTypeFolder, getCountryData } from '@generatedata/plugins';
 import { DataSetListItem } from '@generatedata/types';
 import { getUnique } from '@generatedata/utils/array';
-import { getCountryNamesBundle } from '../../../utils/coreUtils';
-import { getCountryData } from '@generatedata/plugins';
+import { addToast } from '@generatedata/utils/general';
+import { getStrings } from '@generatedata/utils/lang';
+import { getUniqueString } from '@generatedata/utils/string';
+import { Dispatch } from 'redux';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
+import * as accountActions from '~store/account/account.actions';
+import { DTBundle, DTOptionsMetadata } from '~types/dataTypes';
+import { GDAction } from '~types/general';
+import { requestDataTypeBundle } from '~utils/dataTypes';
+import { getExportTypeInitialState, loadExportTypeBundle } from '~utils/exportTypes';
+import * as coreUtils from '../../../utils/coreUtils';
+import { getCountryNamesBundle } from '../../../utils/coreUtils';
+import { registerInterceptors } from '../../actionInterceptor';
+import { getUnchangedData } from '../../generationPanel/generation.helpers';
+import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
+import * as selectors from './generator.selectors';
+import { getCurrentDataSet, isCountryNamesLoaded, isCountryNamesLoading } from './generator.selectors';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -38,26 +37,26 @@ export const removeRow = (id: string): GDAction => ({
 export const CHANGE_TITLE = 'CHANGE_TITLE';
 export const onChangeTitle =
   (id: string, value: string): any =>
-  async (dispatch: Dispatch, getState: any): Promise<any> => {
-    const state = getState();
-    const validateTitle = selectors.getExportTypeTitleValidationFunction(state);
+    async (dispatch: Dispatch, getState: any): Promise<any> => {
+      const state = getState();
+      const validateTitle = selectors.getExportTypeTitleValidationFunction(state);
 
-    let titleError = null;
-    if (validateTitle) {
-      const i18n = selectors.getExportTypeI18n(state);
-      const settings = selectors.getCurrentExportTypeSettings(state);
-      titleError = validateTitle(value, i18n, settings);
-    }
-
-    dispatch({
-      type: CHANGE_TITLE,
-      payload: {
-        id,
-        value,
-        titleError
+      let titleError = null;
+      if (validateTitle) {
+        const i18n = selectors.getExportTypeI18n(state);
+        const settings = selectors.getCurrentExportTypeSettings(state);
+        titleError = validateTitle(value, i18n, settings);
       }
-    });
-  };
+
+      dispatch({
+        type: CHANGE_TITLE,
+        payload: {
+          id,
+          value,
+          titleError
+        }
+      });
+    };
 
 export type LoadDataTypeBundleOptions = {
   gridRowId?: string;
@@ -68,8 +67,8 @@ export type LoadDataTypeBundleOptions = {
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType =
   (dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions = {}): any =>
-  (dispatch: any, getState: any): any =>
-    loadDataTypeBundle(dispatch, getState, dataType, opts);
+    (dispatch: any, getState: any): any =>
+      loadDataTypeBundle(dispatch, getState, dataType, opts);
 
 export const loadDataTypeBundle = (
   dispatch: Dispatch,
@@ -129,13 +128,13 @@ export const REQUEST_COUNTRY_NAMES = 'REQUEST_COUNTRY_NAMES';
 export const COUNTRY_NAMES_LOADED = 'COUNTRY_NAMES_LOADED';
 export const requestCountryNames =
   (): any =>
-  (dispatch: any): any => {
-    dispatch({ type: REQUEST_COUNTRY_NAMES });
+    (dispatch: any): any => {
+      dispatch({ type: REQUEST_COUNTRY_NAMES });
 
-    getCountryNamesBundle().then(() => {
-      dispatch({ type: COUNTRY_NAMES_LOADED });
-    });
-  };
+      getCountryNamesBundle().then(() => {
+        dispatch({ type: COUNTRY_NAMES_LOADED });
+      });
+    };
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
 export const onConfigureDataType = (id: string, data: any, metadata?: DTOptionsMetadata, triggeredByInterceptor = false): any => {
@@ -393,25 +392,25 @@ export const CLEAR_GRID = 'CLEAR_GRID';
 export const RESET_GENERATOR = 'RESET_GENERATOR';
 export const clearPage =
   (addDefaultRows = true): any =>
-  (dispatch: Dispatch, getState: any): void => {
-    const loadedExportTypes = selectors.getLoadedExportTypesArray(getState());
+    (dispatch: Dispatch, getState: any): void => {
+      const loadedExportTypes = selectors.getLoadedExportTypesArray(getState());
 
-    const exportTypeInitialStates: any = {};
-    loadedExportTypes.forEach((et) => {
-      exportTypeInitialStates[et] = getExportTypeInitialState(et as ExportTypeFolder);
-    });
+      const exportTypeInitialStates: any = {};
+      loadedExportTypes.forEach((et) => {
+        exportTypeInitialStates[et] = getExportTypeInitialState(et as ExportTypeFolder);
+      });
 
-    dispatch({
-      type: RESET_GENERATOR,
-      payload: {
-        exportTypeInitialStates
+      dispatch({
+        type: RESET_GENERATOR,
+        payload: {
+          exportTypeInitialStates
+        }
+      });
+
+      if (addDefaultRows) {
+        dispatch(addRows(5));
       }
-    });
-
-    if (addDefaultRows) {
-      dispatch(addRows(5));
-    }
-  };
+    };
 
 export const SET_PANEL_SIZE = 'SET_PANEL_SIZE';
 export const setPanelSize = (size: number): GDAction => ({
@@ -436,47 +435,47 @@ export const LOAD_DATA_SET = 'LOAD_DATA_SET';
 
 export const loadDataSet =
   (dataSet: DataSetListItem, showToast = true): any =>
-  async (dispatch: Dispatch, getState: any): Promise<any> => {
-    const i18n = getStrings();
-    const { exportType, exportTypeSettings, rows, sortedRows } = JSON.parse(dataSet.content);
+    async (dispatch: Dispatch, getState: any): Promise<any> => {
+      const i18n = getStrings();
+      const { exportType, exportTypeSettings, rows, sortedRows } = JSON.parse(dataSet.content);
 
-    const dataTypes = sortedRows.map((hash: string) => rows[hash].dataType).filter((dataType: DataTypeFolder | null) => dataType !== null);
-    const uniqueDataTypes = getUnique(dataTypes);
+      const dataTypes = sortedRows.map((hash: string) => rows[hash].dataType).filter((dataType: DataTypeFolder | null) => dataType !== null);
+      const uniqueDataTypes = getUnique(dataTypes);
 
-    dispatch({
-      type: SET_BULK_ACTION,
-      payload: {
-        isComplete: false
-      }
-    });
-
-    // load all the datasets and export type
-    dispatch(onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
-    uniqueDataTypes.forEach((dataType) =>
-      loadDataTypeBundle(dispatch, getState, dataType as DataTypeFolder, {
-        shouldRefreshPreviewPanel: false
-      })
-    );
-
-    dispatch({
-      type: LOAD_DATA_SET,
-      payload: {
-        exportType,
-        exportTypeSettings,
-        rows,
-        sortedRows,
-        dataSetId: dataSet.dataSetId,
-        dataSetName: dataSet.dataSetName
-      }
-    });
-
-    if (showToast) {
-      addToast({
-        type: 'success',
-        message: i18n.core.dataSetLoaded
+      dispatch({
+        type: SET_BULK_ACTION,
+        payload: {
+          isComplete: false
+        }
       });
-    }
-  };
+
+      // load all the datasets and export type
+      dispatch(onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
+      uniqueDataTypes.forEach((dataType) =>
+        loadDataTypeBundle(dispatch, getState, dataType as DataTypeFolder, {
+          shouldRefreshPreviewPanel: false
+        })
+      );
+
+      dispatch({
+        type: LOAD_DATA_SET,
+        payload: {
+          exportType,
+          exportTypeSettings,
+          rows,
+          sortedRows,
+          dataSetId: dataSet.dataSetId,
+          dataSetName: dataSet.dataSetName
+        }
+      });
+
+      if (showToast) {
+        addToast({
+          type: 'success',
+          message: i18n.core.dataSetLoaded
+        });
+      }
+    };
 
 export const STASH_GENERATOR_STATE = 'STASH_GENERATOR_STATE';
 export const stashGeneratorState = (): GDAction => ({
@@ -501,21 +500,21 @@ export const hideDataSetHistory = (): GDAction => ({
 
 export const loadDataSetHistoryItem =
   (content: any): any =>
-  (dispatch: Dispatch, getState: any): any => {
-    const state = getState();
-    const { dataSetId, dataSetName } = getCurrentDataSet(state);
+    (dispatch: Dispatch, getState: any): any => {
+      const state = getState();
+      const { dataSetId, dataSetName } = getCurrentDataSet(state);
 
-    dispatch(
-      loadDataSet(
+      dispatch(
+        loadDataSet(
         {
           dataSetId,
           dataSetName,
           content
         } as DataSetListItem,
         false
-      )
-    );
-  };
+        )
+      );
+    };
 
 export const SHOW_CLEAR_PAGE_DIALOG = 'SHOW_CLEAR_PAGE_DIALOG';
 export const showClearPageDialog = (): GDAction => ({
@@ -540,10 +539,10 @@ export const selectDataSetHistoryItem = (historyId: number, isLatest: boolean): 
 // current state of the generator
 export const revertToHistoryVersion =
   (): any =>
-  (dispatch: Dispatch, getState: any): any => {
-    const state = getState();
-    const i18n = selectors.getCoreI18n(state);
+    (dispatch: Dispatch, getState: any): any => {
+      const state = getState();
+      const i18n = selectors.getCoreI18n(state);
 
-    dispatch(hideDataSetHistory());
-    dispatch(accountActions.saveCurrentDataSet(i18n.dataSetReverted));
-  };
+      dispatch(hideDataSetHistory());
+      dispatch(accountActions.saveCurrentDataSet(i18n.dataSetReverted));
+    };

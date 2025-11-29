@@ -36,29 +36,29 @@ export const setLocaleFileLoading = (): GDAction => ({
 
 export const selectLocale =
   (locale: GDLocale, navigate?: any): any =>
-  (dispatch: Dispatch): any => {
-    dispatch(setLocaleFileLoading());
+    (dispatch: Dispatch): any => {
+      dispatch(setLocaleFileLoading());
 
-    window.gd = {};
-    window.gd.localeLoaded = (strings: any): void => {
-      langUtils.setLocale(locale, strings);
-      dispatch(setLocaleFileLoaded(locale));
-      Cookies.set('lang', locale);
+      window.gd = {};
+      window.gd.localeLoaded = (strings: any): void => {
+        langUtils.setLocale(locale, strings);
+        dispatch(setLocaleFileLoaded(locale));
+        Cookies.set('lang', locale);
 
-      const htmlTag = document.querySelector('html');
-      if (htmlTag) {
-        htmlTag.setAttribute('lang', locale);
-      }
+        const htmlTag = document.querySelector('html');
+        if (htmlTag) {
+          htmlTag.setAttribute('lang', locale);
+        }
 
-      if (navigate) {
-        navigate(getCurrentLocalizedPath(locale));
-      }
+        if (navigate) {
+          navigate(getCurrentLocalizedPath(locale));
+        }
+      };
+      const s = document.createElement('script');
+      const filename = localeFileMap[locale];
+      s.src = `./${filename}`;
+      document.body.appendChild(s);
     };
-    const s = document.createElement('script');
-    const filename = localeFileMap[locale];
-    s.src = `./${filename}`;
-    document.body.appendChild(s);
-  };
 
 export const RESET_STORE = 'RESET_STORE';
 export const resetStore = (): GDAction => ({ type: RESET_STORE });
@@ -219,31 +219,31 @@ export const onOneTimeLoginSuccess = (tokenExpiry: number, password: string, nav
 export const LOGOUT = 'LOGOUT';
 export const logout =
   (): any =>
-  async (dispatch: Dispatch): Promise<any> => {
-    const i18n = getStrings();
+    async (dispatch: Dispatch): Promise<any> => {
+      const i18n = getStrings();
 
-    Cookies.remove('refreshToken');
+      Cookies.remove('refreshToken');
 
-    dispatch({ type: LOGOUT });
-    dispatch({ type: CLEAR_GRID });
-    dispatch(actions.addRows(C.NUM_DEFAULT_ROWS));
+      dispatch({ type: LOGOUT });
+      dispatch({ type: CLEAR_GRID });
+      dispatch(actions.addRows(C.NUM_DEFAULT_ROWS));
 
-    addToast({
-      type: 'success',
-      message: i18n.core.nowLoggedOut
-    });
+      addToast({
+        type: 'success',
+        message: i18n.core.nowLoggedOut
+      });
 
-    // doesn't awfully matter if this fails. It's just for cleanup
-    await apolloClient.mutate({
-      mutation: gql`
+      // doesn't awfully matter if this fails. It's just for cleanup
+      await apolloClient.mutate({
+        mutation: gql`
         mutation Logout {
           logout {
             success
           }
         }
       `
-    });
-  };
+      });
+    };
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = (token: string): GDAction => ({
@@ -254,30 +254,30 @@ export const setAuthToken = (token: string): GDAction => ({
 export const REFRESHING_TOKEN = 'REFRESHING_TOKEN';
 export const updateRefreshToken =
   () =>
-  async (dispatch: Dispatch): Promise<any> => {
-    dispatch({ type: REFRESHING_TOKEN });
+    async (dispatch: Dispatch): Promise<any> => {
+      dispatch({ type: REFRESHING_TOKEN });
 
-    const { data } = await apolloClient.mutate({
-      mutation: REFRESH_TOKEN
-    });
-
-    if (data?.refreshToken?.success) {
-      const { token, tokenExpiry, refreshToken } = data.refreshToken;
-
-      Cookies.set('refreshToken', refreshToken!, {
-        expires: new Date(tokenExpiry!)
+      const { data } = await apolloClient.mutate({
+        mutation: REFRESH_TOKEN
       });
 
-      setAuthTokenRefresh(tokenExpiry!, (): any => updateRefreshToken()(dispatch));
-      dispatch(setAuthenticationData(data.refreshToken));
-      dispatch(setAuthToken(token!));
-    } else {
-      // console.log('token NOT refreshed -- user logged out');
-    }
+      if (data?.refreshToken?.success) {
+        const { token, tokenExpiry, refreshToken } = data.refreshToken;
 
-    dispatch(setAuthenticated(!!data?.refreshToken?.success));
-    dispatch(setOnloadAuthDetermined());
-  };
+        Cookies.set('refreshToken', refreshToken!, {
+          expires: new Date(tokenExpiry!)
+        });
+
+        setAuthTokenRefresh(tokenExpiry!, (): any => updateRefreshToken()(dispatch));
+        dispatch(setAuthenticationData(data.refreshToken));
+        dispatch(setAuthToken(token!));
+      } else {
+      // console.log('token NOT refreshed -- user logged out');
+      }
+
+      dispatch(setAuthenticated(!!data?.refreshToken?.success));
+      dispatch(setOnloadAuthDetermined());
+    };
 
 export const ONLOAD_AUTH_DETERMINED = 'ONLOAD_AUTH_DETERMINED';
 export const setOnloadAuthDetermined = (): GDAction => ({
@@ -287,19 +287,19 @@ export const setOnloadAuthDetermined = (): GDAction => ({
 export const SHOW_TOUR_INTRO_DIALOG = 'SHOW_TOUR_INTRO_DIALOG';
 export const showTourIntroDialog =
   (navigate?: any) =>
-  (dispatch: Dispatch, getState: any): any => {
-    const state = getState();
-    const currentPage = getCurrentPage(state);
-    const locale = getLocale(state);
-    const generatorRoute = getGeneratorPageRoute(locale);
+    (dispatch: Dispatch, getState: any): any => {
+      const state = getState();
+      const currentPage = getCurrentPage(state);
+      const locale = getLocale(state);
+      const generatorRoute = getGeneratorPageRoute(locale);
 
-    // the tour is specific to the generator page, so always redirect there when showing/hiding it
-    if (navigate && !isGeneratorPage(currentPage, locale)) {
-      navigate(generatorRoute);
-    }
+      // the tour is specific to the generator page, so always redirect there when showing/hiding it
+      if (navigate && !isGeneratorPage(currentPage, locale)) {
+        navigate(generatorRoute);
+      }
 
-    dispatch({ type: SHOW_TOUR_INTRO_DIALOG });
-  };
+      dispatch({ type: SHOW_TOUR_INTRO_DIALOG });
+    };
 
 export const HIDE_TOUR_INTRO_DIALOG = 'HIDE_TOUR_INTRO_DIALOG';
 export const hideTourIntroDialog = (): GDAction => ({
@@ -309,54 +309,54 @@ export const hideTourIntroDialog = (): GDAction => ({
 export const TOUR_BUNDLE_LOADED = 'TOUR_BUNDLE_LOADED';
 export const loadTourBundle =
   (): any =>
-  (dispatch: Dispatch): void => {
-    const i18n = getStrings();
+    (dispatch: Dispatch): void => {
+      const i18n = getStrings();
 
-    // TODO check hashing of bundle here
-    import(
+      // TODO check hashing of bundle here
+      import(
       /* webpackChunkName: "tour" */
       /* webpackMode: "lazy" */
-      '../../../tours'
-    )
-      .then((resp) => {
-        setTourComponents(resp.default);
-        dispatch({ type: TOUR_BUNDLE_LOADED });
-      })
-      .catch(() => {
-        dispatch(hideTourIntroDialog());
+        '../../../tours'
+      )
+        .then((resp) => {
+          setTourComponents(resp.default);
+          dispatch({ type: TOUR_BUNDLE_LOADED });
+        })
+        .catch(() => {
+          dispatch(hideTourIntroDialog());
 
-        addToast({
-          type: 'success',
-          message: i18n.core.problemLoadingTour
+          addToast({
+            type: 'success',
+            message: i18n.core.problemLoadingTour
+          });
         });
-      });
-  };
+    };
 
 export const sendPasswordResetEmail =
   (email: string, onLoginError: any): any =>
-  async (dispatch: Dispatch): Promise<any> => {
-    const i18n = getStrings();
+    async (dispatch: Dispatch): Promise<any> => {
+      const i18n = getStrings();
 
-    dispatch(startDialogProcessing());
+      dispatch(startDialogProcessing());
 
-    const { data } = await apolloClient.mutate({
-      mutation: SEND_PASSWORD_RESET_EMAIL_MUTATION,
-      variables: { email }
-    });
-
-    if (data?.sendPasswordResetEmail?.success) {
-      addToast({
-        type: 'success',
-        message: i18n.core.passwordResetMsg
+      const { data } = await apolloClient.mutate({
+        mutation: SEND_PASSWORD_RESET_EMAIL_MUTATION,
+        variables: { email }
       });
-      dispatch(setPasswordResetDialogVisibility(false));
-      dispatch(setLoginDialogVisibility(true, email));
-      dispatch(stopDialogProcessing());
-    } else {
-      dispatch(setLoginError());
-      onLoginError();
-    }
-  };
+
+      if (data?.sendPasswordResetEmail?.success) {
+        addToast({
+          type: 'success',
+          message: i18n.core.passwordResetMsg
+        });
+        dispatch(setPasswordResetDialogVisibility(false));
+        dispatch(setLoginDialogVisibility(true, email));
+        dispatch(stopDialogProcessing());
+      } else {
+        dispatch(setLoginError());
+        onLoginError();
+      }
+    };
 
 export const SET_ACCOUNTS_SORT_DIR = 'SET_ACCOUNTS_SORT_DIR';
 export const setAccountsSortDir = (sortDir: ColSortDir): any => ({

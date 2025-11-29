@@ -8,7 +8,7 @@ import C from '@generatedata/config/constants';
 import { useClasses } from './ManageAccount.styles';
 
 // TODO
-const dateStyles = {};
+const dateStyles = { dateField: '' };
 
 export type ManageAccountProps = {
   i18n: any;

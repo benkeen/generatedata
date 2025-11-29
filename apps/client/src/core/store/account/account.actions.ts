@@ -1,24 +1,24 @@
-import { Dispatch } from 'redux';
+import { AccountStatus } from '@generatedata/graphql-schema';
+import { addToast } from '@generatedata/utils/general';
+import { getStrings } from '@generatedata/utils/lang';
 import { format } from 'date-fns';
-import { apolloClient } from '../../apolloClient';
+import { Dispatch } from 'redux';
+import {
+  CREATE_USER_ACCOUNT,
+  RENAME_DATA_SET,
+  SAVE_ACCOUNT,
+  SAVE_CURRENT_ACCOUNT,
+  SAVE_CURRENT_DATA_SET,
+  SAVE_NEW_DATA_SET,
+  UPDATE_PASSWORD
+} from '~core/mutations';
 import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
 import { getEditingData, getSelectedAccountsPageTab } from '~store/account/account.selectors';
 import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
-import { SelectedAccountsTab, SelectedAccountTab } from '~types/account';
-import { AccountStatus } from '@generatedata/graphql-schema';
-import { GDAction } from '~types/general';
-import { addToast } from '@generatedata/utils/general';
-import { getStrings } from '@generatedata/utils/lang';
-import {
-  SAVE_ACCOUNT,
-  SAVE_CURRENT_ACCOUNT,
-  RENAME_DATA_SET,
-  UPDATE_PASSWORD,
-  SAVE_NEW_DATA_SET,
-  SAVE_CURRENT_DATA_SET
-} from '~core/mutations';
 import { SET_ONE_TIME_PASSWORD } from '~store/main/main.actions';
-import { CREATE_USER_ACCOUNT } from '~core/mutations';
+import { SelectedAccountsTab, SelectedAccountTab } from '~types/account';
+import { GDAction } from '~types/general';
+import { apolloClient } from '../../apolloClient';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 export const updateAccount = (data: AccountEditingData): GDAction => ({
@@ -69,69 +69,69 @@ export const yourAccountUpdated = (): GDAction => ({
 // to the main Accounts page. Otherwise the data may not still be available when navigating back
 export const onCleanupAccountsPage =
   (): any =>
-  async (dispatch: Dispatch, getState: any): Promise<any> => {
-    const tab = getSelectedAccountsPageTab(getState());
+    async (dispatch: Dispatch, getState: any): Promise<any> => {
+      const tab = getSelectedAccountsPageTab(getState());
 
-    if (tab === SelectedAccountsTab.editAccount) {
-      dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
-    }
-  };
+      if (tab === SelectedAccountsTab.editAccount) {
+        dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
+      }
+    };
 
 export const saveYourAccount =
   (): any =>
-  async (dispatch: Dispatch, getState: any): Promise<any> => {
-    const i18n = getStrings();
+    async (dispatch: Dispatch, getState: any): Promise<any> => {
+      const i18n = getStrings();
 
-    const { firstName, lastName, email, country, region } = getEditingData(getState());
+      const { firstName, lastName, email, country, region } = getEditingData(getState());
 
-    await apolloClient.mutate({
-      mutation: SAVE_CURRENT_ACCOUNT,
-      variables: { firstName, lastName, email, country, region }
-    });
+      await apolloClient.mutate({
+        mutation: SAVE_CURRENT_ACCOUNT,
+        variables: { firstName, lastName, email, country, region }
+      });
 
-    addToast({
-      type: 'success',
-      message: i18n.core.yourAccountUpdated
-    });
+      addToast({
+        type: 'success',
+        message: i18n.core.yourAccountUpdated
+      });
 
-    dispatch(yourAccountUpdated());
-  };
+      dispatch(yourAccountUpdated());
+    };
 
 // for an admin updating an account
 export const saveAccount =
   (data: any): any =>
-  async (dispatch: Dispatch): Promise<any> => {
-    const i18n = getStrings();
-    const { accountId, firstName, lastName, email, country, region, disabled, expiryDate } = data;
+    async (dispatch: Dispatch): Promise<any> => {
+      const i18n = getStrings();
+      const { accountId, firstName, lastName, email, country, region, disabled, expiryDate } = data;
 
-    const accountStatus = getAccountStatus(disabled, expiryDate);
+      const accountStatus = getAccountStatus(disabled, expiryDate);
 
-    let cleanExpiryDate = null;
-    if (expiryDate) {
-      cleanExpiryDate = expiryDate;
-    }
-
-    await apolloClient.mutate({
-      mutation: SAVE_ACCOUNT,
-      variables: {
-        accountId,
-        accountStatus,
-        firstName,
-        lastName,
-        email,
-        country,
-        region,
-        expiryDate: cleanExpiryDate
+      let cleanExpiryDate = null;
+      if (expiryDate) {
+        cleanExpiryDate = expiryDate;
       }
-    });
 
-    addToast({
-      type: 'success',
-      message: i18n.core.userAccountUpdated
-    });
+      await apolloClient.mutate({
+        mutation: SAVE_ACCOUNT,
+        variables: {
+          accountId,
+          accountStatus,
+          firstName,
+          lastName,
+          email,
+          country,
+          region,
+          expiryDate: cleanExpiryDate
+        }
+      });
 
-    dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
-  };
+      addToast({
+        type: 'success',
+        message: i18n.core.userAccountUpdated
+      });
+
+      dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
+    };
 
 export const clearOneTimePassword = (): GDAction => ({
   type: SET_ONE_TIME_PASSWORD,
@@ -142,28 +142,28 @@ export const clearOneTimePassword = (): GDAction => ({
 
 export const savePassword =
   (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void): any =>
-  async (dispatch: Dispatch): Promise<any> => {
-    const i18n = getStrings();
+    async (dispatch: Dispatch): Promise<any> => {
+      const i18n = getStrings();
 
-    const { data } = await apolloClient.mutate({
-      mutation: UPDATE_PASSWORD,
-      variables: { currentPassword, newPassword }
-    });
+      const { data } = await apolloClient.mutate({
+        mutation: UPDATE_PASSWORD,
+        variables: { currentPassword, newPassword }
+      });
 
-    if (!data?.updatePassword?.success) {
-      onError();
-      return;
-    }
+      if (!data?.updatePassword?.success) {
+        onError();
+        return;
+      }
 
-    dispatch(clearOneTimePassword());
+      dispatch(clearOneTimePassword());
 
-    addToast({
-      type: 'success',
-      message: i18n.core.passwordUpdated
-    });
+      addToast({
+        type: 'success',
+        message: i18n.core.passwordUpdated
+      });
 
-    onSuccess();
-  };
+      onSuccess();
+    };
 
 export const SHOW_SAVE_DATA_SET_DIALOG = 'SHOW_SAVE_DATA_SET_DIALOG';
 export const showSaveDataSetDialog = (dialogType: SaveDataDialogType): GDAction => ({
@@ -183,37 +183,37 @@ export const SET_CURRENT_DATA_SET = 'SET_CURRENT_DATA_SET';
 
 export const saveNewDataSet =
   (dataSetName: string): any =>
-  async (dispatch: Dispatch, getState: any): Promise<any> => {
-    const i18n = getStrings();
-    const data: any = getDataSetSavePackage(getState());
+    async (dispatch: Dispatch, getState: any): Promise<any> => {
+      const i18n = getStrings();
+      const data: any = getDataSetSavePackage(getState());
 
-    const response = await apolloClient.mutate({
-      mutation: SAVE_NEW_DATA_SET,
-      variables: {
-        dataSetName,
-        content: JSON.stringify(data)
-      }
-    });
-
-    if (response.data?.saveNewDataSet?.success) {
-      dispatch({
-        type: SET_CURRENT_DATA_SET,
-        payload: {
+      const response = await apolloClient.mutate({
+        mutation: SAVE_NEW_DATA_SET,
+        variables: {
           dataSetName,
-          dataSetId: parseInt(response.data.saveNewDataSet.dataSetId!, 10)
+          content: JSON.stringify(data)
         }
       });
 
-      dispatch(hideSaveDataSetDialog());
+      if (response.data?.saveNewDataSet?.success) {
+        dispatch({
+          type: SET_CURRENT_DATA_SET,
+          payload: {
+            dataSetName,
+            dataSetId: parseInt(response.data.saveNewDataSet.dataSetId!, 10)
+          }
+        });
 
-      addToast({
-        type: 'success',
-        message: i18n.core.dataSetSaved
-      });
-    }
+        dispatch(hideSaveDataSetDialog());
+
+        addToast({
+          type: 'success',
+          message: i18n.core.dataSetSaved
+        });
+      }
 
     // TODO error handling
-  };
+    };
 
 export const UPDATE_CURRENT_DATA_SET_LAST_SAVED = 'UPDATE_CURRENT_DATA_SET_LAST_SAVED';
 export const updateCurrentDataSetLastSaved = (lastSaved: any): GDAction => ({
@@ -225,92 +225,92 @@ export const updateCurrentDataSetLastSaved = (lastSaved: any): GDAction => ({
 
 export const saveCurrentDataSet =
   (successMsg?: string): any =>
-  async (dispatch: Dispatch, getState: any): Promise<any> => {
-    const i18n = getStrings();
+    async (dispatch: Dispatch, getState: any): Promise<any> => {
+      const i18n = getStrings();
 
-    const successMessage = successMsg || i18n.core.dataSetSaved;
-    const state = getState();
-    const data: any = getDataSetSavePackage(state);
-    const dataSetId = getCurrentDataSetId(state);
+      const successMessage = successMsg || i18n.core.dataSetSaved;
+      const state = getState();
+      const data: any = getDataSetSavePackage(state);
+      const dataSetId = getCurrentDataSetId(state);
 
-    const response = await apolloClient.mutate({
-      mutation: SAVE_CURRENT_DATA_SET,
-      variables: {
-        dataSetId,
-        content: JSON.stringify(data)
-      }
-    });
-
-    if (response?.data?.saveDataSet?.success) {
-      dispatch(updateCurrentDataSetLastSaved(response.data.saveDataSet.savedDate));
-
-      addToast({
-        type: 'success',
-        message: successMessage
+      const response = await apolloClient.mutate({
+        mutation: SAVE_CURRENT_DATA_SET,
+        variables: {
+          dataSetId,
+          content: JSON.stringify(data)
+        }
       });
-    }
-  };
+
+      if (response?.data?.saveDataSet?.success) {
+        dispatch(updateCurrentDataSetLastSaved(response.data.saveDataSet.savedDate));
+
+        addToast({
+          type: 'success',
+          message: successMessage
+        });
+      }
+    };
 
 export const UPDATE_CURRENT_DATA_SET_NAME = 'UPDATE_CURRENT_DATA_SET_NAME';
 export const renameDataSet =
   (dataSetName: string): any =>
-  async (dispatch: Dispatch, getState: any): Promise<any> => {
-    const dataSetId = getCurrentDataSetId(getState());
+    async (dispatch: Dispatch, getState: any): Promise<any> => {
+      const dataSetId = getCurrentDataSetId(getState());
 
-    const { data } = await apolloClient.mutate({
-      mutation: RENAME_DATA_SET,
-      variables: {
-        dataSetId,
-        dataSetName
-      }
-    });
-
-    if (data?.renameDataSet?.success) {
-      dispatch({
-        type: UPDATE_CURRENT_DATA_SET_NAME,
-        payload: {
+      const { data } = await apolloClient.mutate({
+        mutation: RENAME_DATA_SET,
+        variables: {
+          dataSetId,
           dataSetName
         }
       });
-    }
-  };
+
+      if (data?.renameDataSet?.success) {
+        dispatch({
+          type: UPDATE_CURRENT_DATA_SET_NAME,
+          payload: {
+            dataSetName
+          }
+        });
+      }
+    };
 
 export const createAccount =
   (data: any) =>
-  async (dispatch: Dispatch): Promise<any> => {
-    const i18n = getStrings();
-    const { firstName, lastName, email, country, region, disabled, expiry, expiryDate, oneTimePassword } = data;
-    const accountStatus = getAccountStatus(disabled, expiryDate);
+    async (dispatch: Dispatch): Promise<any> => {
+      const i18n = getStrings();
+      const { firstName, lastName, email, country, region, disabled, expiry, expiryDate, oneTimePassword } = data;
+      const accountStatus = getAccountStatus(disabled, expiryDate);
 
-    const expiryDateValue = expiry && expiry !== 'none' ? expiryDate.toString() : null;
-    const response = await apolloClient.mutate({
-      mutation: CREATE_USER_ACCOUNT,
-      variables: {
-        firstName,
-        lastName,
-        email,
-        country,
-        region,
-        accountStatus,
-        oneTimePassword,
-        expiryDate: expiryDateValue
+      const expiryDateValue = expiry && expiry !== 'none' ? expiryDate.toString() : null;
+      const response = await apolloClient.mutate({
+        mutation: CREATE_USER_ACCOUNT,
+        variables: {
+          firstName,
+          lastName,
+          email,
+          country,
+          region,
+          accountStatus,
+          oneTimePassword,
+          expiryDate: expiryDateValue
+        }
+      });
+
+      if (response?.data?.createUserAccount?.success) {
+        dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
+
+        addToast({
+          type: 'success',
+          message: i18n.core.accountCreatedDesc
+        });
+      } else {
+        addToast({
+          type: 'error',
+          message: i18n.core.errorCreatingAccount
+        });
       }
-    });
-
-    if (response?.data?.createUserAccount?.success) {
-      dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
-
-      addToast({
-        type: 'success',
-        message: i18n.core.accountCreatedDesc
-      });
-    } else {
-      addToast({
-        type: 'error',
-        message: i18n.core.errorCreatingAccount
-      });
-    }
-  };
+    };
 
 export const getAccountStatus = (disabled: boolean, expiryDate: number): AccountStatus => {
   let accountStatus = AccountStatus.Live;

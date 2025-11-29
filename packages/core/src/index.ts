@@ -2,7 +2,7 @@ export * from './components/buttons/Buttons.component';
 export { CopyToClipboard } from './components/copyToClipboard/CopyToClipboard';
 export * from './components/datePicker/LocalizedDatePicker.component';
 export * from './components/dialogs';
-export { Dropdown } from './components/dropdown/Dropdown';
+export * from './components/dropdown/Dropdown';
 export type { DropdownOption } from './components/dropdown/Dropdown';
 export * from './components/icons/icons';
 export * from './components/loaders/loaders';

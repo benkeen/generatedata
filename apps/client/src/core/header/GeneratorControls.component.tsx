@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import type { RefObject } from 'react';
 import { useMutation } from '@apollo/client/react';
-import AutoSizer from 'react-input-autosize';
-import { Divider, IconButton, List, ListItemButton, ListItemText } from '@mui/material';
 import { HtmlTooltip } from '@generatedata/core';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import useOnClickOutside from 'use-onclickoutside';
 import { addToast } from '@generatedata/utils/general';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Divider, IconButton, List, ListItemButton, ListItemText } from '@mui/material';
+import { useMeasure } from '@uidotdev/usehooks';
+import type { RefObject } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import AutoSizer from 'react-input-autosize';
+import useOnClickOutside from 'use-onclickoutside';
 import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
+import { DELETE_DATA_SET } from '~core/mutations';
 import * as queries from '~core/queries';
 import { CurrentDataSet } from '~store/generator/generator.reducer';
-import { useMeasure } from '@uidotdev/usehooks';
-import { DELETE_DATA_SET } from '~core/mutations';
 
 export type GeneratorControlsProps = {
   i18n: any;
@@ -101,6 +101,7 @@ const GeneratorControls = ({
       return null;
     }
 
+    // interactive
     return (
       <span style={{ display: 'flex', alignItems: 'center' }}>
         <HtmlTooltip
@@ -110,7 +111,6 @@ const GeneratorControls = ({
           disableFocusListener
           disableHoverListener
           disableTouchListener
-          interactive
           PopperProps={
             {
               // popperOptions: {

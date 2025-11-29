@@ -19,7 +19,7 @@ module.exports = {
     semi: [2, 'always'],
     indent: [
       'error',
-      'tab',
+      2,
       {
         SwitchCase: 1
       }
@@ -46,8 +46,8 @@ module.exports = {
     'import/no-mutable-exports': 'off',
     'react/no-unused-prop-types': 'off',
     'react/no-unescaped-entities': 'off',
-    'react/jsx-indent': [2, 'space'],
-    'react/jsx-indent-props': [2, 'space'],
+    'react/jsx-indent': ['error', 2],
+    'react/jsx-indent-props': ['error', 2],
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
@@ -61,5 +61,6 @@ module.exports = {
     react: {
       version: '19.1.1'
     }
-  }
+  },
+  ignorePatterns: ['_localeFileMap.ts', '_pluginWebWorkers.ts']
 };

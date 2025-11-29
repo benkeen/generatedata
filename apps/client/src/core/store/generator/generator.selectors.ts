@@ -1,19 +1,17 @@
-import { createSelector } from 'reselect';
+import { ColumnData, type DataTypeFolder, type ExportTypeFolder } from '@generatedata/plugins';
 import { GeneratorLayout } from '@generatedata/types';
-import { CurrentDataSet, DataRow, DataRows } from './generator.reducer';
-import { GeneratorPanel } from '~types/general';
-import type { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
-import * as mainSelectors from '../main/main.selectors';
-import * as coreUtils from '../../../utils/coreUtils';
 import * as langUtils from '@generatedata/utils/lang';
-import { processBatches, getDataType } from '~utils/dataTypes';
+import { createSelector } from 'reselect';
+import { GDLocale, GenerationTemplate, GeneratorPanel, Store } from '~types/general';
+import { getDataType, processBatches } from '~utils/dataTypes';
 import {
-  getExportTypeLabel as exportTypeUtilsGetExportTypeLabel,
+  getExportTypeTitleValidationFunction as exportTypeGetExportTypeTitleValidation,
   getCodeMirrorMode as exportTypeUtilsGetCodeMirrorMode,
-  getExportTypeTitleValidationFunction as exportTypeGetExportTypeTitleValidation
+  getExportTypeLabel as exportTypeUtilsGetExportTypeLabel
 } from '~utils/exportTypes';
-import { GDLocale, GenerationTemplate, Store } from '~types/general';
-import { ColumnData } from '@generatedata/plugins';
+import * as coreUtils from '../../../utils/coreUtils';
+import * as mainSelectors from '../main/main.selectors';
+import { CurrentDataSet, DataRow, DataRows } from './generator.reducer';
 
 export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
 export const getLoadedExportTypes = (state: Store): any => state.generator.loadedExportTypes;

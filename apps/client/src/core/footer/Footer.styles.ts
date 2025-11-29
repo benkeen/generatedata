@@ -20,6 +20,9 @@ export const useClasses = makeStyles({
     // 	opacity: 1;
     // }
   },
+  visible: {
+    opacity: 1
+  },
 
   footer: {
     flex: '0 0 60px',
@@ -140,16 +143,16 @@ export const useClasses = makeStyles({
     // div.controls
     marginRight: '15px'
   },
-  saveButton: {
-    // button.saveButton
-    backgroundColor: vars.primarySubmit,
-    color: 'white',
-    marginRight: '15px',
+  // saveButton: {
+  //   // button.saveButton
+  //   backgroundColor: vars.primarySubmit,
+  //   color: 'white',
+  //   marginRight: '15px',
 
-    ':hover': {
-      backgroundColor: vars.primarySubmitHover
-    }
-  },
+  //   ':hover': {
+  //     backgroundColor: vars.primarySubmitHover
+  //   }
+  // },
   // div.saveButtonAs: {
   //   height: '32px',
   //   marginRight: '15px',

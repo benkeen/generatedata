@@ -69,6 +69,22 @@ export const useSharedClasses = makeStyles({
 
   hidden: {
     visibility: 'hidden'
+  },
+
+  cancelLink: {
+    marginLeft: '15px',
+    fontSize: '13px',
+    color: '#999999',
+    cursor: 'pointer',
+    transition: 'visibility 200ms ease-in-out',
+
+    '&:hover': {
+      color: primaryColor
+    },
+
+    '&.hidden': {
+      visibility: 'hidden'
+    }
   }
 });
 
@@ -103,22 +119,6 @@ export const useSharedClasses = makeStyles({
 // 	:global(.react-select__placeholder),
 // 	:global(.react-select__single-value) {
 // 		font-size: 14px;
-// 	}
-// }
-
-// .cancelLink {
-// 	margin-left: 15px;
-// 	font-size: 13px;
-// 	color: #999999;
-// 	cursor: pointer;
-// 	transition: visibility 200ms ease-in-out;
-
-// 	&:hover {
-// 		color: c.$primary-color;
-// 	}
-
-// 	&.hidden {
-// 		visibility: hidden;
 // 	}
 // }
 

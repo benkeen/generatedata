@@ -1,30 +1,30 @@
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import GeneratorControls, { GeneratorControlsProps } from './GeneratorControls.component';
-import * as selectors from '../store/generator/generator.selectors';
-import * as generatorActions from '~store/generator/generator.actions';
+import { Dispatch } from 'redux';
 import * as actions from '~store/account/account.actions';
-import * as mainSelectors from '~store/main/main.selectors';
 import { SaveDataDialogType } from '~store/account/account.reducer';
+import * as generatorActions from '~store/generator/generator.actions';
+import * as mainSelectors from '~store/main/main.selectors';
+import * as selectors from '../store/generator/generator.selectors';
+import GeneratorControls, { GeneratorControlsProps } from './GeneratorControls.component';
 
 const mapStateToProps = (state: any): Pick<GeneratorControlsProps, 'i18n' | 'isLoggedIn' | 'dataSet'> => ({
-	i18n: selectors.getCoreI18n(state),
-	isLoggedIn: mainSelectors.isLoggedIn(state),
-	dataSet: selectors.getCurrentDataSet(state)
+  i18n: selectors.getCoreI18n(state),
+  isLoggedIn: mainSelectors.isLoggedIn(state),
+  dataSet: selectors.getCurrentDataSet(state)
 });
 
 const mapDispatchToProps = (
-	dispatch: Dispatch
+  dispatch: Dispatch
 ): Pick<GeneratorControlsProps, 'onUpdate' | 'onSaveDataSet' | 'onSaveAs' | 'onClearGrid' | 'showClearPageDialog' | 'onShowHistory'> => ({
-	onUpdate: (dataSetName: string): any => dispatch(actions.renameDataSet(dataSetName)),
-	onSaveDataSet: (): any => dispatch(actions.showSaveDataSetDialog(SaveDataDialogType.save)),
-	onSaveAs: (): any => dispatch(actions.showSaveDataSetDialog(SaveDataDialogType.saveAs)),
-	onClearGrid: (): any => dispatch(generatorActions.clearPage()),
-	showClearPageDialog: (): any => dispatch(generatorActions.showClearPageDialog()),
-	onShowHistory: (): any => {
-		dispatch(generatorActions.stashGeneratorState());
-		dispatch(generatorActions.showDataSetHistory());
-	}
+  onUpdate: (dataSetName: string): any => dispatch(actions.renameDataSet(dataSetName)),
+  onSaveDataSet: (): any => dispatch(actions.showSaveDataSetDialog(SaveDataDialogType.save)),
+  onSaveAs: (): any => dispatch(actions.showSaveDataSetDialog(SaveDataDialogType.saveAs)),
+  onClearGrid: (): any => dispatch(generatorActions.clearPage()),
+  showClearPageDialog: (): any => dispatch(generatorActions.showClearPageDialog()),
+  onShowHistory: (): any => {
+    dispatch(generatorActions.stashGeneratorState());
+    dispatch(generatorActions.showDataSetHistory());
+  }
 });
 
 const container: any = connect(mapStateToProps, mapDispatchToProps)(GeneratorControls);
