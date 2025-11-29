@@ -1,8 +1,17 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, TextField, Tooltip } from '@generatedata/core';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dropdown,
+  RadioPill,
+  RadioPillRow,
+  TextField,
+  Tooltip
+} from '@generatedata/core';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import Button from '@mui/material/Button';
 import React from 'react';
-import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import * as styles from './Email.scss';
 import { EmailState, GenerationOptionsType, StringSourceEnum, defaultDomainSuffixes, defaultDomains } from './Email.state';

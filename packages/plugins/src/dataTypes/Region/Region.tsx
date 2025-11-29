@@ -1,13 +1,20 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dropdown,
+  RadioPill,
+  RadioPillRow,
+  type DropdownOption
+} from '@generatedata/core';
+import { removeItem } from '@generatedata/utils/array';
+import { getI18nString } from '@generatedata/utils/lang';
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { removeItem } from '~utils/arrayUtils';
-import { getI18nString } from '~utils/langUtils';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import { countryList } from '../../../../_plugins';
-import styles from './Region.scss';
+import { countryList, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { RegionFormat, RegionSource } from './Region.state';
+import { useClasses } from './Region.styles';
 
 const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any) => {
   const countryPluginRows = countryRows.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
@@ -140,6 +147,7 @@ const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, c
 
 export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, countryRows }: DTOptionsProps) => {
   const [dialogVisible, setDialogVisibility] = React.useState(false);
+  const classNames = useClasses();
   const numSelected = data.selectedCountries.length;
 
   const onSetFormats = (field: RegionFormat, checked: boolean): void => {
@@ -173,7 +181,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
   }
 
   return (
-    <div className={styles.buttonLabel}>
+    <div className={classNames.buttonLabel}>
       <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
       </Button>

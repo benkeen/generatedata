@@ -1,11 +1,11 @@
 import CreatablePillField, { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, TextField, Tooltip } from '@generatedata/core';
-import langUtils from '@generatedata/utils';
+import langUtils from '@generatedata/utils/lang';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import * as styles from './List.scss';
 import { GenerationOptionsType, ListState, ListType } from './List.state';
+import { useClasses } from './List.styles';
 
 export const Example = ({ data, onUpdate, i18n }: DTExampleProps) => {
   const onChange = (example: any): void => {
@@ -46,6 +46,7 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps) => {
 };
 
 const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: any) => {
+  const classNames = useClasses();
   const exactlyField = React.useRef<any>();
   const dtListBetweenLow = React.useRef<any>();
 
@@ -70,14 +71,14 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
       <div style={{ width: 500 }}>
         <DialogTitle onClose={onClose}>{i18n.listSettings}</DialogTitle>
         <DialogContent dividers>
-          <div className={styles.row}>
-            <div className={styles.colLabel}>
+          <div className={classNames.row}>
+            <div className={classNames.colLabel}>
               {i18n.numItemsLabel}
               <Tooltip title={i18n.numItemsLabelDesc} arrow>
                 <InfoIcon />
               </Tooltip>
             </div>
-            <div className={styles.content}>
+            <div className={classNames.content}>
               <ul>
                 <li>
                   <input
@@ -157,9 +158,9 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
               </ul>
             </div>
           </div>
-          <div className={styles.row}>
-            <div className={styles.colLabel}>{i18n.delimChars}</div>
-            <div className={styles.content}>
+          <div className={classNames.row}>
+            <div className={classNames.colLabel}>{i18n.delimChars}</div>
+            <div className={classNames.content}>
               <input type="text" style={{ width: 40 }} value={data.delimiter} onChange={updateDelimiter} />
             </div>
           </div>

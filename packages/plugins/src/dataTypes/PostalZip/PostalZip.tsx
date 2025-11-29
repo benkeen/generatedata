@@ -1,7 +1,15 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dropdown,
+  RadioPill,
+  RadioPillRow,
+  type DropdownOption
+} from '@generatedata/core';
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { countryList } from '../../../../_plugins';
 import styles from './PostalZip.scss';

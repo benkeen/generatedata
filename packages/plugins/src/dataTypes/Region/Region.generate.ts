@@ -1,7 +1,5 @@
-import { CountryType, Region } from '~types/countries';
-import { getRandomArrayValue } from '~utils/randomUtils';
-import { DTGenerateResult, DTGenerationData } from '../../';
-import { countryList } from '../../../../_plugins';
+import randomUtils from '@generatedata/utils/random';
+import { countryList, CountryType, DTGenerateResult, DTGenerationData, Region } from '../../';
 import { RegionFormat } from './Region.state';
 
 // used for caching purposes
@@ -17,7 +15,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
     country = countryRow!.data.countryDataType;
   } else {
     const list = rowState.source === 'anyRegion' ? countryList : rowState.selectedCountries;
-    country = getRandomArrayValue(list);
+    country = randomUtils.getRandomArrayValue(list);
   }
 
   if (!country) {

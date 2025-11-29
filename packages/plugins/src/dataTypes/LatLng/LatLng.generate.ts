@@ -1,4 +1,4 @@
-import { getRandomNum } from '~utils/randomUtils';
+import { getRandomNum } from '@generatedata/utils/random';
 import { DTGenerateResult, DTGenerationData } from '../../';
 
 const DECIMAL_PLACES = 5;

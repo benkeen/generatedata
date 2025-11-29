@@ -13,4 +13,3 @@ export const onmessage = (e: DTWorkerOnMessage) => {
   }
   postMessage(generate(e.data, utils));
 };
-git st

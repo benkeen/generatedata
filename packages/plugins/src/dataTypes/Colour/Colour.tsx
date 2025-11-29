@@ -1,9 +1,18 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, Tooltip, type DropdownOption } from '@generatedata/core';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dropdown,
+  RadioPill,
+  RadioPillRow,
+  Tooltip,
+  type DropdownOption
+} from '@generatedata/core';
 import Button from '@mui/material/Button';
 import Slider from '@mui/material/Slider';
 import rc from 'randomcolor';
 import * as React from 'react';
-import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './Colour.scss';
 import { ColourFormatEnum, ColourState, GenerationOptionsType, LuminosityTypeEnum } from './Colour.state';

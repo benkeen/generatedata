@@ -1,7 +1,6 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, RadioPill, RadioPillRow, TextField } from '@generatedata/core';
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { getLipsumWords } from '~utils/stringUtils';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './TextRandom.scss';

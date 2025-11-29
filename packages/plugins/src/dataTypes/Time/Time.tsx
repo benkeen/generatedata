@@ -1,9 +1,7 @@
-import { Dropdown, ErrorTooltip } from '@generatedata/core';
+import { CopyToClipboard, TextField as CoreTextField, Dropdown, ErrorTooltip } from '@generatedata/core';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import TextField from '@mui/material/TextField';
 import { format, fromUnixTime, parse } from 'date-fns';
-import CoreTextField from '~components/TextField';
-import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import * as sharedStyles from '../../../styles/shared.scss';
 import * as styles from './Time.scss';
