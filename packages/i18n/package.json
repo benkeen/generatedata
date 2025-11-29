@@ -1,0 +1,19 @@
+{
+  "name": "@generatedata/i18n",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    "ar": "./locales/ar.json",
+    "de": "./locales/de.json",
+    "en": "./locales/en.json",
+    "es": "./locales/es.json",
+    "fr": "./locales/fr.json",
+    "hi": "./locales/hi.json",
+    "ja": "./locales/ja.json",
+    "nl": "./locales/nl.json",
+    "pt": "./locales/pt.json",
+    "ru": "./locales/ru.json",
+    "ta": "./locales/ta.json",
+    "zh": "./locales/zh.json"
+  }
+}

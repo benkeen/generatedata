@@ -116,7 +116,7 @@ module.exports = function (grunt) {
 
   const generateI18nBundles = () => {
     const fileHashMap = locales.reduce((acc, locale) => {
-      const coreLocaleStrings = JSON.parse(fs.readFileSync(`src/i18n/${locale}.json`, 'utf8'));
+      const coreLocaleStrings = JSON.parse(fs.readFileSync(`@generatedata/i18n/${locale}`, 'utf8'));
       const dtImports = getPluginLocaleFiles(grunt, locale, dataTypesFolder);
       const etImports = getPluginLocaleFiles(grunt, locale, exportTypesFolder);
       const countryImports = getPluginLocaleFiles(grunt, locale, countriesFolder);
@@ -514,7 +514,7 @@ window.gd.localeLoaded(i18n);
 
   // grunt.registerTask('sortI18nFiles', sortI18nFiles);
   grunt.registerTask('default', ['cssmin', 'copy', 'generateI18nBundles', 'webWorkers']);
-  // grunt.registerTask('dev', ['cssmin', 'copy', 'generateI18nBundles', 'webWorkers', 'watch']);
+  grunt.registerTask('dev', ['cssmin', 'copy', 'generateI18nBundles', 'webWorkers', 'watch']);
   grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
   grunt.registerTask('generateI18nBundles', generateI18nBundles);
   // grunt.registerTask('validateI18n', validateI18n);

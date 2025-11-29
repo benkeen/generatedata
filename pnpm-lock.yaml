@@ -649,6 +649,8 @@ importers:
         specifier: ^5.1.3
         version: 5.1.3(graphql@16.12.0)
 
+  packages/i18n: {}
+
   packages/plugins:
     dependencies:
       '@mui/icons-material':

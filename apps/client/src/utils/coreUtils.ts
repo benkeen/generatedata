@@ -1,10 +1,9 @@
+import { CountryNamesMap, DataTypeFolder, DataTypeMap, ExportTypeFolder, ExportTypeMap } from '@generatedata/plugins';
 import { nanoid } from 'nanoid';
 import webWorkers from '../../_pluginWebWorkers';
-
-import { CountryNamesMap, DataTypeFolder, DataTypeMap, ExportTypeFolder, ExportTypeMap } from '@generatedata/plugins';
 // import env from '../../_env';
 
-import { version as rootPackageVersion } from '../../../../package.json'; // TODO see if the bundle includes the full package.json content
+const rootPackageVersion = require('./package.json').version;
 
 export const getScriptVersion = (): string => rootPackageVersion;
 
