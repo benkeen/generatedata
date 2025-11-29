@@ -1,3 +1,6 @@
+import type { AnyObject } from '@generatedata/types';
+import { CountryDataType, CountryNames, DatabaseTypes } from '@generatedata/types';
+import { getStrings } from '@generatedata/utils/lang';
 import Alphanumeric from './dataTypes/Alphanumeric/config';
 import AutoIncrement from './dataTypes/AutoIncrement/config';
 import BitcoinAddress from './dataTypes/BitcoinAddress/config';
@@ -36,8 +39,31 @@ import Track1 from './dataTypes/Track1/config';
 import Track2 from './dataTypes/Track2/config';
 import URLs from './dataTypes/URLs/config';
 import WeightedList from './dataTypes/WeightedList/config';
-import { CountryDataType, CountryNames, DatabaseTypes } from '@generatedata/types';
-import { getStrings } from '@generatedata/utils/lang';
+
+export * from './workerUtils';
+
+export type Dimensions = {
+  width: number;
+  height: number;
+};
+
+// Data Type <Example /> props
+export type DTExampleProps = {
+  data: any;
+  id: string;
+  gridPanelDimensions: Dimensions;
+  onUpdate: (data: AnyObject) => void;
+  coreI18n: any;
+  countryI18n: any;
+  i18n: any;
+};
+
+// Data Type <Help /> props
+export type DTHelpProps = {
+  coreI18n: any;
+  countryI18n: any;
+  i18n: any;
+};
 
 export type ETMessageData = {
   action: 'generate' | 'pause' | 'continue' | 'abort';
@@ -102,6 +128,66 @@ export type CountryNamesMap = {
 export interface ETOnMessage extends MessageEvent {
   data: ETMessageData;
 }
+
+export type DTOptionsMetadata = {
+  useCountryNames?: boolean;
+};
+
+// Data Type <Options /> props
+export type DTOptionsProps = {
+  data: any;
+  id: string;
+  gridPanelDimensions: Dimensions;
+  onUpdate: (data: AnyObject, metadata?: DTOptionsMetadata) => void;
+  isCountryNamesLoading: boolean;
+  isCountryNamesLoaded: boolean;
+  countryNamesMap: CountryNamesMap | null;
+  coreI18n: any;
+  countryI18n: any;
+  i18n: any;
+  throttle?: boolean; // added for testing so we can disable the default throttle behaviour
+
+  // for custom props. See DTCustomProps
+  [propName: string]: any;
+};
+
+export type DTGenerateResult = {
+  display: string | number | boolean;
+  [key: string]: any;
+};
+
+export type DTGenerationData = {
+  rowNum: number;
+  rowState: any;
+  i18n: any;
+  countryI18n: any;
+  existingRowData: DTGenerationExistingRowData[];
+  countryData: {
+    [key in CountryType]?: any;
+  };
+  template: GenerationTemplate;
+};
+
+export type DTGenerationExistingRowData = {
+  id: string;
+  colIndex: number; // bit confusing, but this is the index of the ROW in the UI.
+  dataType: DataTypeFolder;
+
+  // this contains the actual generated data from the data type
+  data: DTGenerateResult;
+};
+
+export type GenerationTemplateRow = {
+  id: string;
+  title: string;
+  dataType: DataTypeFolder;
+  rowState: any;
+  colIndex: number;
+};
+
+export type GenerationTemplate = {
+  [processOrder: number]: GenerationTemplateRow[];
+};
 
 export const dataTypes = {
   Alphanumeric,

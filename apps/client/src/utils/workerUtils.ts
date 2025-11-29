@@ -8,25 +8,25 @@
 import arrayUtils from '@generatedata/utils/array';
 import countryUtils from '@generatedata/utils/country';
 import generalUtils from '@generatedata/utils/general';
+import numberUtils from '@generatedata/utils/number';
 import randomUtils from '@generatedata/utils/random';
 import stringUtils from '@generatedata/utils/string';
-import numberUtils from '@generatedata/utils/number';
 
 export type WorkerUtils = {
-	arrayUtils: typeof arrayUtils;
-	countryUtils: typeof countryUtils;
-	generalUtils: typeof generalUtils;
-	randomUtils: typeof randomUtils;
-	stringUtils: typeof stringUtils;
-	numberUtils: typeof numberUtils;
+  arrayUtils: typeof arrayUtils;
+  countryUtils: typeof countryUtils;
+  generalUtils: typeof generalUtils;
+  randomUtils: typeof randomUtils;
+  stringUtils: typeof stringUtils;
+  numberUtils: typeof numberUtils;
 };
 
 // all utility methods are exposed to web worker generation files on the global scope under `utils`
 const utils = {
-	arrayUtils: { ...arrayUtils },
-	countryUtils: { ...countryUtils },
-	generalUtils: { ...generalUtils },
-	randomUtils: { ...randomUtils },
-	stringUtils: { ...stringUtils },
-	numberUtils: { ...numberUtils }
+  arrayUtils: { ...arrayUtils },
+  countryUtils: { ...countryUtils },
+  generalUtils: { ...generalUtils },
+  randomUtils: { ...randomUtils },
+  stringUtils: { ...stringUtils },
+  numberUtils: { ...numberUtils }
 };

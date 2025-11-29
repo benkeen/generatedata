@@ -116,7 +116,7 @@ module.exports = function (grunt) {
 
   const generateI18nBundles = () => {
     const fileHashMap = locales.reduce((acc, locale) => {
-      const coreLocaleStrings = JSON.parse(fs.readFileSync(`@generatedata/i18n/${locale}`, 'utf8'));
+      const coreLocaleStrings = JSON.parse(fs.readFileSync(require.resolve(`@generatedata/i18n/${locale}`), 'utf8'));
       const dtImports = getPluginLocaleFiles(grunt, locale, dataTypesFolder);
       const etImports = getPluginLocaleFiles(grunt, locale, exportTypesFolder);
       const countryImports = getPluginLocaleFiles(grunt, locale, countriesFolder);
