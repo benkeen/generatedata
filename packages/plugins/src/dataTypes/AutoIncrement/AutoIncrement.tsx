@@ -1,10 +1,8 @@
-import * as React from 'react';
-import { Dropdown } from '@generatedata/core';
-import { TextField } from '@generatedata/core';
+import { Dropdown, TextField } from '@generatedata/core';
 import { isNumeric } from '@generatedata/utils/number';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '../../';
 import { AutoIncrementState, GenerationOptionsType } from './AutoIncrement.state';
-import styles from './AutoIncrement.scss';
+import { useClasses } from './AutoIncrement.styles';
 
 export const Example = ({ data, onUpdate }: DTExampleProps) => {
   const onChange = (value: string): void => {
@@ -34,6 +32,7 @@ export const Example = ({ data, onUpdate }: DTExampleProps) => {
 };
 
 export const Options = ({ coreI18n, i18n, data, onUpdate }: DTOptionsProps) => {
+  const classNames = useClasses();
   const onChange = (field: string, value: number | string): void => {
     onUpdate({
       ...data,
@@ -45,7 +44,7 @@ export const Options = ({ coreI18n, i18n, data, onUpdate }: DTOptionsProps) => {
   const incValueError = data.incrementValue.trim() === '' ? coreI18n.requiredField : '';
 
   return (
-    <div className={styles.options}>
+    <div className={classNames.options}>
       <div style={{ marginBottom: 2 }}>
         <span>{i18n.startAt}</span>
         <TextField

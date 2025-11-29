@@ -1,10 +1,11 @@
-import * as React from 'react';
 import { TextField } from '@generatedata/core';
-import { TypescriptSettings } from './Typescript.state';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
-import styles from './Typescript.scss';
+import { TypescriptSettings } from './Typescript.state';
+import { useClasses } from './Typescript.styles';
 
 export const Settings = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings) => {
+  const classNames = useClasses();
+
   const onChange = (field: string, value: string): void => {
     const newValues = {
       ...data,
@@ -19,7 +20,7 @@ export const Settings = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings) => 
   };
 
   return (
-    <div className={styles.settingsBlock}>
+    <div className={classNames.settingsBlock}>
       <label htmlFor={`${id}-typeName`}>{i18n.typeName}</label>
       <TextField
         id={`${id}-typeName`}

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { ErrorTooltip } from '../tooltips';
 import { useSharedClasses } from '@generatedata/core';
-import { useThrottle } from '../../hooks/useThrottle';
 import { TooltipProps } from '@mui/material/Tooltip';
+import React, { useState } from 'react';
+import { useThrottle } from '../../hooks/useThrottle';
+import { ErrorTooltip } from '../tooltips';
 
 type TextFieldProps = {
   value: string;
@@ -18,6 +18,7 @@ type TextFieldProps = {
   style?: React.CSSProperties;
   disabled?: boolean;
   type?: string;
+  id?: string;
   onFocus?: (e: any) => void;
   onBlur?: (e: any) => void;
   onPaste?: (e: any) => void;

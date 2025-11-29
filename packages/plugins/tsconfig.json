@@ -9,6 +9,6 @@
     "skipLibCheck": true,
     "jsx": "react-jsx"
   },
-  "include": ["src/*.ts", "./typings"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

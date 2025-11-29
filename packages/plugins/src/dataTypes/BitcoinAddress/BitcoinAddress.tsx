@@ -1,15 +1,13 @@
-import React from 'react';
-import Button from '@mui/material/Button';
+import { CheckboxPill, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Tooltip } from '@generatedata/core';
 import InfoIcon from '@mui/icons-material/Info';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import { TextField } from '@generatedata/core';
-import CheckboxPill from '~components/pills/CheckboxPill';
-import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { Tooltip } from '@generatedata/core';
+import Button from '@mui/material/Button';
+import React from 'react';
+import { DTMetadata, DTOptionsProps } from '../../';
 import { BitcoinAddressFormat } from './BitcoinAddress.state';
-import styles from './BitcoinAddress.scss';
+import { useClasses } from './BitcoinAddress.styles';
 
 const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: any) => {
+  const classNames = useClasses();
   const onToggleFormat = (format: BitcoinAddressFormat, checked: boolean): void => {
     onUpdate({
       ...data,

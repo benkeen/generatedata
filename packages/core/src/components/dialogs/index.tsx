@@ -1,13 +1,12 @@
-import * as React from 'react';
-import MuiDialog from '@mui/material/Dialog';
-import MuiDialogTitle from '@mui/material/DialogTitle';
-import MuiDialogContent from '@mui/material/DialogContent';
-import MuiDialogActions from '@mui/material/DialogActions';
-import { styled } from '@mui/material';
-import { makeStyles, withStyles } from '@mui/styles';
-import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { styled } from '@mui/material';
+import MuiDialog from '@mui/material/Dialog';
+import MuiDialogActions from '@mui/material/DialogActions';
+import MuiDialogContent from '@mui/material/DialogContent';
+import MuiDialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import { makeStyles, withStyles } from '@mui/styles';
 
 const dialogStyles = (theme: any): any => ({
   root: {
