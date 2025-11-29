@@ -1,4 +1,4 @@
-import { ETOnMessage } from '@generatedata/types';
+import { ETOnMessage } from '../../';
 import { generate } from './Ruby.generate';
 
 const context: Worker = self as any;

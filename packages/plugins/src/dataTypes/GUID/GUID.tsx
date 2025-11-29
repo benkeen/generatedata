@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { DTHelpProps, DTMetadata } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata } from '../../';
 
 export const Help = ({ i18n }: DTHelpProps) => <p>{i18n.help}</p>;
 

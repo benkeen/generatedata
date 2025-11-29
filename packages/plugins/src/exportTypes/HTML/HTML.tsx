@@ -1,10 +1,9 @@
-import * as React from 'react';
-import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import etShared from '../../../styles/etShared.scss';
+import { RadioPill, RadioPillRow, useETStyles } from '@generatedata/core';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
 import { ExportFormat } from './HTML.state';
 
 export const Settings = ({ i18n, id, data, onUpdate }: ETSettings) => {
+  const classNames = useETStyles();
   const onChange = (exportFormat: ExportFormat): void => {
     onUpdate({
       ...data,
@@ -13,7 +12,7 @@ export const Settings = ({ i18n, id, data, onUpdate }: ETSettings) => {
   };
 
   return (
-    <div className={etShared.settingRow}>
+    <div className={classNames.settingRow}>
       <label>{i18n.dataFormat}</label>
       <RadioPillRow>
         <RadioPill

@@ -1,14 +1,14 @@
+import { DTWorkerOnMessage } from '../../';
 import utils from '../../../utils';
-import { DTWorkerOnMessage } from '~types/dataTypes';
 import { generate } from './Names.generate';
 
 let workerUtilsLoaded = false;
 
 export const onmessage = (e: DTWorkerOnMessage) => {
-	if (!workerUtilsLoaded) {
-		importScripts(e.data.workerUtilsUrl);
-		workerUtilsLoaded = true;
-	}
+  if (!workerUtilsLoaded) {
+    importScripts(e.data.workerUtilsUrl);
+    workerUtilsLoaded = true;
+  }
 
-	postMessage(generate(e.data, utils));
+  postMessage(generate(e.data, utils));
 };

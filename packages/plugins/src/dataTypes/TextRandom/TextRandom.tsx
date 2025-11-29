@@ -1,12 +1,11 @@
-import * as React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@generatedata/core';
 import Button from '@mui/material/Button';
-import { TextField } from '@generatedata/core';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { getLipsumWords } from '~utils/stringUtils';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
+import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { TextSource, TextRandomState, GenerationOptionsType } from './TextRandom.state';
+import { getLipsumWords } from '~utils/stringUtils';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './TextRandom.scss';
+import { GenerationOptionsType, TextRandomState, TextSource } from './TextRandom.state';
 
 const TextRandomDialog = ({ visible, data, id, onClose, onChangeFromStart, onUpdateSource, onUpdateCustomText, coreI18n, i18n }: any) => {
   const getCustomTextField = (): JSX.Element | null => {

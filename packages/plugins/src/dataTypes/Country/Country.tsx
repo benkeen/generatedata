@@ -1,14 +1,13 @@
-import * as React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
 import Button from '@mui/material/Button';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
-import fullCountryList from './fullCountryList';
+import { CountryType } from '~types/countries';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { countryList } from '../../../../_plugins';
 import styles from './Country.scss';
 import { CountrySource } from './Country.state';
-import { CountryType } from '~types/countries';
+import fullCountryList from './fullCountryList';
 
 const fullCountryListOptions = fullCountryList.map((countryName) => ({
   value: countryName,

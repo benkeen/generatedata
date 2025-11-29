@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { Dropdown, type DropdownOption } from '@generatedata/core';
-import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { DTMetadata, DTOptionsProps } from '../../';
 
 export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps) => {
   const options = [

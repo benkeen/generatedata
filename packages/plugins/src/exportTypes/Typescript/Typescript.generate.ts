@@ -1,5 +1,4 @@
-import { ColumnData } from '~types/general';
-import { ETMessageData, WorkerUtils } from '../../';
+import { ColumnData, ETMessageData, WorkerUtils } from '../../';
 
 let utils: WorkerUtils;
 const maybeEnquote = (value: any) => {

@@ -1,10 +1,9 @@
-import { DTGenerateResult } from '~types/dataTypes';
+import { DTGenerateResult } from '../../';
 
 // data: DTGenerationData
 export const generate = (): DTGenerateResult => {
-	return { display: '' };
+  return { display: '' };
 };
-
 
 /*
 	// custom member vars for this Data Type

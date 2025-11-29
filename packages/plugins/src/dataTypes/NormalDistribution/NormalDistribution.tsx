@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { DTMetadata, DTOptionsProps } from '../../';
 import styles from './NormalDistribution.scss';
 
 export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps) => {

@@ -1,9 +1,9 @@
-import { DTBundle } from '~types/dataTypes';
+import { DTBundle } from '../../';
 import { Help, getMetadata } from './PIN';
 
 const bundle: DTBundle = {
-	Help,
-	getMetadata
+  Help,
+  getMetadata
 };
 
 export default bundle;

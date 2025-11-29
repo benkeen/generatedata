@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '~types/dataTypes';
-import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { TextField } from '@generatedata/core';
 import { isBoolean } from '@generatedata/utils/general';
 import { isNumeric } from '@generatedata/utils/number';
-import styles from './Constant.scss';
+import CreatablePillField from '~components/creatablePillField/CreatablePillField';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '../../';
 import sharedStyles from '../../../styles/shared.scss';
+import styles from './Constant.scss';
 
 export type GenerationOptionsType = {
   loopCount: number;

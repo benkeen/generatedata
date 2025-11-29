@@ -1,8 +1,7 @@
-import { CityState, RegionSource, RegionSourceEnum } from './City.state';
 import { CountryType, Region } from '~types/countries';
-import { DTGenerateResult, DTGenerationExistingRowData, DTGenerationData } from '~types/dataTypes';
-import { WorkerUtils } from '../../';
+import { DTGenerateResult, DTGenerationData, DTGenerationExistingRowData, WorkerUtils } from '../../';
 import { countryList } from '../../../../_plugins';
+import { CityState, RegionSourceEnum } from './City.state';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
   const { rowState } = data;

@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { Dropdown } from '@generatedata/core';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
-import { PhoneState, GenerationOptionsType } from './Phone.state';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
+import { GenerationOptionsType, PhoneState } from './Phone.state';
 
 export const rowStateReducer = (state: PhoneState): GenerationOptionsType => ({ option: state.option });
 

@@ -7,3 +7,4 @@ data/db
 .turbo
 .npm
 dist/
+.turbo

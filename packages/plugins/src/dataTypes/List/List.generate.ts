@@ -1,6 +1,5 @@
-import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
 import { ListType } from './List.state';
-import { WorkerUtils } from '../../';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
   const { listType, values, exactly, betweenLow, betweenHigh, delimiter } = data.rowState;

@@ -1,9 +1,8 @@
-import * as React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
 import Button from '@mui/material/Button';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
+import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './Track2.scss';
 
 const Track2Dialog = ({ visible, data, id, panRows, onClose, onUpdatePANSource, onUpdateRowSource, coreI18n, i18n }: any) => {

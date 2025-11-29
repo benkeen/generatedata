@@ -1,10 +1,9 @@
-import { DTGenerateResult } from '~types/dataTypes';
+import { DTGenerateResult } from '../../';
 
 // data: GenerationData
 export const generate = (): DTGenerateResult => {
-	return { display: '' };
+  return { display: '' };
 };
-
 
 /*
 	private $generatedOrgNrs = array();

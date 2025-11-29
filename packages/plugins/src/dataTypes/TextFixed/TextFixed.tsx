@@ -1,12 +1,11 @@
-import * as React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@generatedata/core';
 import Button from '@mui/material/Button';
-import { TextField } from '@generatedata/core';
-import { getLipsumWords } from '~utils/stringUtils';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import { TextSource, TextFixedState, GenerationOptionsType } from './TextFixed.state';
+import { getLipsumWords } from '~utils/stringUtils';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './TextFixed.scss';
+import { GenerationOptionsType, TextFixedState, TextSource } from './TextFixed.state';
 
 const TextFieldDialog = ({ visible, data, id, onClose, onUpdateSource, onUpdateCustomText, coreI18n, i18n }: any) => {
   const getCustomTextField = (): JSX.Element | null => {

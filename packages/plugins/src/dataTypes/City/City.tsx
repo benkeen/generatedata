@@ -1,13 +1,12 @@
-import * as React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
 import Button from '@mui/material/Button';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { getI18nString } from '~utils/langUtils';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
+import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
+import { getI18nString } from '~utils/langUtils';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { countryList } from '../../../../_plugins';
-import { RegionSourceEnum, RegionSource } from './City.state';
 import styles from './City.scss';
+import { RegionSource, RegionSourceEnum } from './City.state';
 
 const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, regionRows }: any) => {
   const regionPluginRows = regionRows.map(({ index, id, title }: any) => ({

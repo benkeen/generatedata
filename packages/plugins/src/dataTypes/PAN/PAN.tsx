@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
 import Button from '@mui/material/Button';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
+import React, { useEffect, useState } from 'react';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { cloneObj } from '~utils/generalUtils';
-import { toSentenceCase } from '~utils/stringUtils';
 import { getI18nString } from '~utils/langUtils';
-import { PanState, GenerationOptionsType } from './PAN.state';
+import { toSentenceCase } from '~utils/stringUtils';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { creditCardFormats, CreditCardFormatType, CreditCardType, creditCardTypes } from './formats';
 import styles from './PAN.scss';
+import { GenerationOptionsType, PanState } from './PAN.state';
 
 export const getCreditCardOptions = (formats: string[], i18n: any): DropdownOption[] =>
   formats.map((format) => ({

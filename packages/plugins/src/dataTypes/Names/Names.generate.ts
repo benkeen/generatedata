@@ -1,6 +1,5 @@
+import { DTGenerateResult, WorkerUtils } from '../../';
 import { NamesSource } from './Names.state';
-import { WorkerUtils } from '../../';
-import { DTGenerateResult } from '~types/dataTypes';
 
 const maleNames = [
   'Aaron',

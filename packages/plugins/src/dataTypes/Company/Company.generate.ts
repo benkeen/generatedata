@@ -1,5 +1,4 @@
-import { WorkerUtils } from '../../';
-import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
 
 let utils: WorkerUtils;
 

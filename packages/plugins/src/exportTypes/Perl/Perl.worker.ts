@@ -1,4 +1,4 @@
-import { ETOnMessage } from '@generatedata/types';
+import { ETOnMessage } from '../../';
 import { generate } from './Perl.generate';
 
 const context: Worker = self as any;

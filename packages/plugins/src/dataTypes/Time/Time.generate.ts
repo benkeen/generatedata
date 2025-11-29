@@ -1,6 +1,5 @@
 import { format, fromUnixTime } from 'date-fns';
-import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { WorkerUtils } from '../../';
+import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
   const { fromTime, toTime, format: displayFormat } = data.rowState;

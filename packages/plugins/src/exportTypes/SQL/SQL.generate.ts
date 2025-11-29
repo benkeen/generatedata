@@ -1,5 +1,4 @@
-import { ETMessageData } from '../../';
-import { ColumnData } from '~types/general';
+import { ColumnData, ETMessageData } from '../../';
 import { SQLSettings } from './SQL.state';
 
 export const generate = (data: ETMessageData): string => {

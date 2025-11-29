@@ -1,12 +1,12 @@
-import * as React from 'react';
-import Switch from '@mui/material/Switch';
-import { Dropdown } from '@generatedata/core';
-import { TextField } from '@generatedata/core';
-import { SQLSettings } from './SQL.state';
+import { Dropdown, TextField } from '@generatedata/core';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
-import styles from './SQL.scss';
+import Switch from '@mui/material/Switch';
+import * as React from 'react';
+import { SQLSettings } from './SQL.state';
+import { useClasses } from './SQL.styles';
 
 export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): any => {
+  const classNames = useClasses();
   const onChange = (field: string, value: any): void => {
     onUpdate({
       ...data,
@@ -64,16 +64,16 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
       return null;
     }
 
-    let classes = styles.batchSize;
+    let classes = classNames.batchSize;
     let brace = null;
     let label = (
       <span>
-        <span className={styles.batchSizeHyphen}>&#8212;</span> {i18n.batchSize}
+        <span className={classNames.batchSizeHyphen}>&#8212;</span> {i18n.batchSize}
       </span>
     );
     if (data.databaseType === 'MySQL') {
-      classes += ` ${styles.withBrace}`;
-      brace = <span className={styles.brace}>&#125;</span>;
+      classes += ` ${classNames.withBrace}`;
+      brace = <span className={classNames.brace}>&#125;</span>;
       label = i18n.batchSize;
     }
 
@@ -104,12 +104,12 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
     }
 
     return (
-      <div className={styles.block}>
+      <div className={classNames.block}>
         <div>
-          <label className={styles.title}>Quotes</label>
+          <label className={classNames.title}>Quotes</label>
         </div>
         <div>
-          <div className={styles.row}>
+          <div className={classNames.row}>
             <ul>
               <li>
                 <input
@@ -147,7 +147,7 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
   return (
     <>
       <div>
-        <div className={styles.row}>
+        <div className={classNames.row}>
           <div>
             <label htmlFor={`${id}-tableName`}>{i18n.dbTableName}</label>
             <div>
@@ -172,9 +172,9 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
           </div>
         </div>
 
-        <div className={styles.block}>
+        <div className={classNames.block}>
           <div>
-            <label className={styles.title}>{i18n.miscOptions}</label>
+            <label className={classNames.title}>{i18n.miscOptions}</label>
           </div>
           <div>
             <div>
@@ -212,12 +212,12 @@ export const Settings = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings): an
         </div>
       </div>
 
-      <div className={styles.block}>
+      <div className={classNames.block}>
         <div>
-          <label className={styles.title}>{i18n.statementType}</label>
+          <label className={classNames.title}>{i18n.statementType}</label>
         </div>
         <div>
-          <div className={styles.row}>
+          <div className={classNames.row}>
             <ul>
               <li>
                 <input

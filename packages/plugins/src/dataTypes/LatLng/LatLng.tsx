@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 
 export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps) => {
   const onChange = (field: string, checked: boolean): void => {

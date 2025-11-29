@@ -11,11 +11,9 @@ export const useClasses = makeStyles({
       marginRight: '4px'
     }
   },
-
   labelCol: {
     paddingRight: '20px'
   },
-
   table: {
     '& input:disabled': {
       color: '#999999'

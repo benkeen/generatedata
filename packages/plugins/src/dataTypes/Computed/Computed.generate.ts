@@ -1,5 +1,4 @@
-import { DTGenerateResult, DTGenerationData, DTGenerationExistingRowData } from '~types/dataTypes';
-import { WorkerUtils } from '../../';
+import { DTGenerateResult, DTGenerationData, DTGenerationExistingRowData, WorkerUtils } from '../../';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
   const placeholders: any = {};

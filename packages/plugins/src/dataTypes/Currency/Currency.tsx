@@ -1,12 +1,10 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, TextField } from '@generatedata/core';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
-import { TextField } from '@generatedata/core';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import { PrefixLocationEnum } from './Currency.state';
+import Button from '@mui/material/Button';
+import * as React from 'react';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './Currency.scss';
+import { PrefixLocationEnum } from './Currency.state';
 
 export const Example = ({ i18n, data, onUpdate }: any) => {
   const onChange = (i: any): void => {

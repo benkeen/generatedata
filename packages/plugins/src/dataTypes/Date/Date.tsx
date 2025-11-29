@@ -1,19 +1,17 @@
-import * as React from 'react';
-import { format, fromUnixTime } from 'date-fns';
-import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
-import Button from '@mui/material/Button';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
-import Event from '@mui/icons-material/Event';
-import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { ErrorTooltip } from '@generatedata/core';
-import { TextField } from '@generatedata/core';
-import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
-import { isValidDateFormat } from '@generatedata/utils/date';
-import * as sharedStyles from '../../../styles/shared.scss';
-import { DateState, GenerationOptionsType } from './Date.state';
-import * as styles from './Date.scss';
 import C from '@generatedata/config/constants';
+import { Dropdown, ErrorTooltip, TextField } from '@generatedata/core';
+import { isValidDateFormat } from '@generatedata/utils/date';
+import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
+import Event from '@mui/icons-material/Event';
+import Button from '@mui/material/Button';
+import { format, fromUnixTime } from 'date-fns';
+import * as React from 'react';
+import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
+import { LocalizedDatePicker, LocalizedDatePickerProvider } from '~components/datePicker/LocalizedDatePicker.component';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
+import * as sharedStyles from '../../../styles/shared.scss';
+import * as styles from './Date.scss';
+import { DateState, GenerationOptionsType } from './Date.state';
 
 export const rowStateReducer = ({ fromDate, toDate, format }: DateState): GenerationOptionsType => ({
   fromDate,

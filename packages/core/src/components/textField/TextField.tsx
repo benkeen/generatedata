@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useThrottle } from '../../hooks/useThrottle';
 import { ErrorTooltip } from '../tooltips';
 
+// TODO update to pull from native field. Sheesh.
 type TextFieldProps = {
   value: string;
   onChange: (e: any) => void;
@@ -24,6 +25,8 @@ type TextFieldProps = {
   onPaste?: (e: any) => void;
   onKeyDown?: (e: any) => void;
   autoComplete?: string;
+  min?: number | string;
+  max?: number | string;
 };
 
 export const TextField = ({ throttle, error, value, onChange, tooltipPlacement, className, ref, ...props }: TextFieldProps) => {

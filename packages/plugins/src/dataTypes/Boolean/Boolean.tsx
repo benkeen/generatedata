@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { Dropdown } from '@generatedata/core';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { BooleanState, GenerationOptionsType } from './Boolean.state';
 
 export const Example = ({ data, onUpdate }: DTExampleProps) => {

@@ -1,20 +1,19 @@
-import { DTGenerateResult, DTWorkerOnMessage } from '~types/dataTypes';
+import { DTGenerateResult, DTWorkerOnMessage } from '../../';
 
 // data: DTGenerationData
 export const generate = (): DTGenerateResult => {
-	return { display: '' };
+  return { display: '' };
 };
-
 
 let utilsLoaded = false;
 
 export const onmessage = (e: DTWorkerOnMessage) => {
-	if (!utilsLoaded) {
-		importScripts(e.data.workerUtilsUrl);
-		utilsLoaded = true;
-	}
+  if (!utilsLoaded) {
+    importScripts(e.data.workerUtilsUrl);
+    utilsLoaded = true;
+  }
 
-	postMessage(generate());
+  postMessage(generate());
 };
 
 /*

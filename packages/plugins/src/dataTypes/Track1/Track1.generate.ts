@@ -1,5 +1,4 @@
-import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { WorkerUtils } from '../../';
+import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
 
 /*
 	Source - http://en.wikipedia.org/wiki/Magnetic_stripe_card#Financial_cards

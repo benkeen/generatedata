@@ -1,9 +1,9 @@
-import * as React from 'react';
-import styles from './XML.scss';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETValidateTitleField } from '@generatedata/types';
 import { TextField } from '@generatedata/core';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETValidateTitleField } from '@generatedata/types';
+import { useClasses } from './XML.styles';
 
 export const Settings = ({ data, i18n, coreI18n, id, onUpdate }: ETSettings) => {
+  const classNames = useClasses();
   const onChange = (prop: string, value: any): void => {
     onUpdate({
       ...data,
@@ -27,7 +27,7 @@ export const Settings = ({ data, i18n, coreI18n, id, onUpdate }: ETSettings) => 
 
   return (
     <>
-      <div className={styles.row}>
+      <div className={classNames.row}>
         <label htmlFor={`${id}-rootNodeName`}>{i18n.rootNodeName}</label>
         <TextField
           error={rootNodeNameError}
@@ -36,7 +36,7 @@ export const Settings = ({ data, i18n, coreI18n, id, onUpdate }: ETSettings) => 
           onChange={(e: any): void => onChange('rootNodeName', e.target.value)}
         />
       </div>
-      <div className={styles.row}>
+      <div className={classNames.row}>
         <label htmlFor={`${id}-recordNodeName`}>{i18n.recordNodeName}</label>
         <TextField
           error={recordNodeNameError}

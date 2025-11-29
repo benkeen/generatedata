@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import sharedStyles from '../../../styles/shared.scss';
 import styles from './Computed.scss';
 

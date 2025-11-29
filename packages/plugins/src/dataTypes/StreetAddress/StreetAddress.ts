@@ -1,9 +1,9 @@
-import { DTMetadata } from '~types/dataTypes';
+import { DTMetadata } from '../../';
 
 export const getMetadata = (): DTMetadata => ({
-	sql: {
-		field: 'varchar(255) default NULL',
-		field_Oracle: 'varchar2(255) default NULL',
-		field_MSSQL: 'VARCHAR(255) NULL'
-	}
+  sql: {
+    field: 'varchar(255) default NULL',
+    field_Oracle: 'varchar2(255) default NULL',
+    field_MSSQL: 'VARCHAR(255) NULL'
+  }
 });

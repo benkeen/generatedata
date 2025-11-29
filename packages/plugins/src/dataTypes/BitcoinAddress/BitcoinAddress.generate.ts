@@ -1,6 +1,6 @@
 import { BitcoinAddressFormat } from './BitcoinAddress.state';
 // import { WorkerUtils } from '../../';
-import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '../../';
 // import { BitcoinAddressFormat, BitcoinAddressState } from './BitcoinAddress';
 // import ECPairFactory from 'ecpair';
 // import * as ecc from 'tiny-secp256k1';

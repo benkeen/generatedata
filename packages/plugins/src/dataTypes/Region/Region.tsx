@@ -1,14 +1,13 @@
-import * as React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
 import Button from '@mui/material/Button';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { countryList } from '../../../../_plugins';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import styles from './Region.scss';
+import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
 import { removeItem } from '~utils/arrayUtils';
 import { getI18nString } from '~utils/langUtils';
-import { RegionSource, RegionFormat } from './Region.state';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
+import { countryList } from '../../../../_plugins';
+import styles from './Region.scss';
+import { RegionFormat, RegionSource } from './Region.state';
 
 const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any) => {
   const countryPluginRows = countryRows.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));

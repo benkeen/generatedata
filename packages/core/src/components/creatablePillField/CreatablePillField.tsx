@@ -1,10 +1,10 @@
+import { arrayMove } from '@generatedata/utils/array';
 import * as React from 'react';
 import { components } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { DropdownOption } from '../dropdown/Dropdown';
 import { ErrorTooltip } from '../tooltips';
-import { arrayMove } from '@generatedata/utils/array';
 import { useClasses } from './CreatablePillField.styles';
 
 export const SortableMultiValue = SortableElement((props: any) => {
@@ -76,7 +76,7 @@ export type CreatablePillFieldProps = {
   isClearable?: boolean;
 };
 
-const CreatablePillField = ({
+export const CreatablePillField = ({
   onChange,
   onValidateNewItem,
   value,
@@ -155,5 +155,3 @@ CreatablePillField.defaultProps = {
   placeholder: 'Press enter to create item',
   error: ''
 };
-
-export default CreatablePillField;

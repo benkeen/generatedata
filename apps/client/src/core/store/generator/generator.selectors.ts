@@ -1,6 +1,6 @@
 import { ColumnData, type DataTypeFolder, type ExportTypeFolder } from '@generatedata/plugins';
 import { GeneratorLayout } from '@generatedata/types';
-import * as langUtils from '@generatedata/utils/lang';
+import langUtils from '@generatedata/utils/lang';
 import { createSelector } from 'reselect';
 import { GDLocale, GenerationTemplate, GeneratorPanel, Store } from '~types/general';
 import { getDataType, processBatches } from '~utils/dataTypes';

@@ -1,15 +1,13 @@
-import * as React from 'react';
-import { format, fromUnixTime, parse } from 'date-fns';
-import { Dropdown } from '@generatedata/core';
+import { Dropdown, ErrorTooltip } from '@generatedata/core';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import TextField from '@mui/material/TextField';
+import { format, fromUnixTime, parse } from 'date-fns';
 import CoreTextField from '~components/TextField';
 import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { ErrorTooltip } from '@generatedata/core';
-import { DateState, GenerationOptionsType } from './Time.state';
-import * as styles from './Time.scss';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import * as sharedStyles from '../../../styles/shared.scss';
+import * as styles from './Time.scss';
+import { DateState, GenerationOptionsType } from './Time.state';
 
 const SECS_IN_DAY = 86400;
 export const rowStateReducer = ({ fromTime, toTime, format }: DateState): GenerationOptionsType => ({

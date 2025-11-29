@@ -1,6 +1,6 @@
-import { DTWorkerOnMessage } from '~types/dataTypes';
+import { DTWorkerOnMessage } from '../../';
 import { generate } from './LatLng.generate';
 
 export const onmessage = (e: DTWorkerOnMessage) => {
-	postMessage(generate(e.data));
+  postMessage(generate(e.data));
 };

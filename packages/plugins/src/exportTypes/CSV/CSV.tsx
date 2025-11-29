@@ -1,10 +1,7 @@
-import * as React from 'react';
-import { TextField } from '@generatedata/core';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
+import { Dropdown, TextField, useETStyles, type DropdownOption } from '@generatedata/core';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
-import { CSVSettings } from './CSV.state';
-import etShared from '../../../styles/etShared.scss';
 import styles from './CSV.scss';
+import { CSVSettings } from './CSV.state';
 
 const options = [
   { value: 'Windows', label: 'Windows' },
@@ -13,6 +10,8 @@ const options = [
 ];
 
 export const Settings = ({ i18n, id, data, onUpdate }: ETSettings) => {
+  const classNames = useETStyles();
+
   const onChange = (prop: string, value: string): void => {
     onUpdate({
       ...data,
@@ -21,7 +20,7 @@ export const Settings = ({ i18n, id, data, onUpdate }: ETSettings) => {
   };
 
   return (
-    <div className={`${etShared.settingRow} ${styles.settings}`}>
+    <div className={`${classNames.settingRow} ${styles.settings}`}>
       <div>
         <label htmlFor={`${id}-delimiter`}>{i18n.delimiterChars}</label>
         <TextField

@@ -1,8 +1,8 @@
-import { DTBundle } from '~types/dataTypes';
+import { DTBundle } from '../../';
 import { getMetadata } from './StreetAddress';
 
 const bundle: DTBundle = {
-	getMetadata
+  getMetadata
 };
 
 export default bundle;

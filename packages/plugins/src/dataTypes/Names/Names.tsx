@@ -1,19 +1,26 @@
-import * as React from 'react';
+import {
+  CopyToClipboard,
+  CreatablePillField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dropdown,
+  RadioPill,
+  RadioPillRow,
+  SmallSpinner,
+  Tooltip,
+  type DropdownOption
+} from '@generatedata/core';
+import WorldIcon from '@mui/icons-material/Public';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { RadioPill, RadioPillRow } from '@generatedata/core';
-import { SmallSpinner } from '@generatedata/core';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
-import { Tooltip } from '@generatedata/core';
-import WorldIcon from '@mui/icons-material/Public';
-import { CopyToClipboard } from '@generatedata/core';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { CreatablePillField } from '@generatedata/core';
-import { countryList } from '../../../../_plugins';
+import * as React from 'react';
 import { CountryType } from '~types/countries';
-import { NamesState, NamesSource, GenerationOptionsType } from './Names.state';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
+import { countryList } from '../../../../_plugins';
 import styles from './Names.scss';
+import { GenerationOptionsType, NamesSource, NamesState } from './Names.state';
 
 export const rowStateReducer = ({ options, source, selectedCountries }: NamesState): GenerationOptionsType => ({
   options,

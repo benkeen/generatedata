@@ -1,12 +1,11 @@
-import * as React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
 import Button from '@mui/material/Button';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
+import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { countryList } from '../../../../_plugins';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import { PostalZipSource } from './PostalZip.state';
 import styles from './PostalZip.scss';
+import { PostalZipSource } from './PostalZip.state';
 
 const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, countryRows, regionRows }: any) => {
   const countryPluginRows = countryRows.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));

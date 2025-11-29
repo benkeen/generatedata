@@ -1,24 +1,20 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
+import { CreatablePillField, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, TextField, Tooltip } from '@generatedata/core';
+import { langUtils } from '@generatedata/utils';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { Dropdown } from '@generatedata/core';
-import { TextField } from '@generatedata/core';
-import CreatablePillField from '~components/creatablePillField/CreatablePillField';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import { Tooltip } from '@generatedata/core';
-import * as langUtils from '~utils/langUtils';
-import {
-  presets,
-  WeightedListTypeEnum,
-  WeightedListItem,
-  getWeightedListLabels,
-  getWeightedListItems,
-  WeightedListState,
-  GenerationOptionsType,
-  convertListItemsToObj
-} from './WeightedList.state';
+import Button from '@mui/material/Button';
+import * as React from 'react';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import * as styles from './WeightedList.scss';
+import {
+  convertListItemsToObj,
+  GenerationOptionsType,
+  getWeightedListItems,
+  getWeightedListLabels,
+  presets,
+  WeightedListItem,
+  WeightedListState,
+  WeightedListTypeEnum
+} from './WeightedList.state';
 
 export const Example = ({ data, onUpdate, i18n }: DTExampleProps) => {
   const onChange = (example: any): void => {

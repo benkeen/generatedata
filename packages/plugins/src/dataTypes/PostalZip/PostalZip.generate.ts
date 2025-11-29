@@ -1,7 +1,6 @@
-import utils from '../../../utils';
-import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { CountryDataType, CountryType, Region } from '~types/countries';
-import { WorkerUtils } from '../../';
+import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
+import utils from '../../../utils';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
   const { rowState, countryData, existingRowData } = data;

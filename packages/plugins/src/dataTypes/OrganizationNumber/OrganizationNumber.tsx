@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { Dropdown } from '@generatedata/core';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps) => {
   const onChange = (value: any): void => {

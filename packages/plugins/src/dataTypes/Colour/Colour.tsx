@@ -1,14 +1,12 @@
-import * as React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, Tooltip, type DropdownOption } from '@generatedata/core';
 import Button from '@mui/material/Button';
 import Slider from '@mui/material/Slider';
 import rc from 'randomcolor';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { Dropdown, type DropdownOption } from '@generatedata/core';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
+import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/pills/RadioPill';
-import { Tooltip } from '@generatedata/core';
-import { ColourFormatEnum, ColourState, LuminosityTypeEnum, GenerationOptionsType } from './Colour.state';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './Colour.scss';
+import { ColourFormatEnum, ColourState, GenerationOptionsType, LuminosityTypeEnum } from './Colour.state';
 
 const getModalOptions = ({ i18n }: any): DropdownOption[] => [
   { value: 'any', label: i18n.anyColour },

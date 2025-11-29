@@ -1,11 +1,10 @@
-import * as React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown } from '@generatedata/core';
 import Button from '@mui/material/Button';
-import { DTExampleProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
-import { Dropdown } from '@generatedata/core';
+import * as React from 'react';
 import CheckboxPill from '~components/pills/CheckboxPill';
-import { URLsState, GenerationOptionsType, initialState } from './URLs.state';
+import { DTExampleProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './URLs.scss';
+import { GenerationOptionsType, initialState, URLsState } from './URLs.state';
 
 export const Example = ({ data, onUpdate }: DTExampleProps) => {
   const onChange = (value: any): void => {

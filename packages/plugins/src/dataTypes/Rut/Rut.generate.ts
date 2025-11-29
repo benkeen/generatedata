@@ -1,5 +1,4 @@
-import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
-import { WorkerUtils } from '../../';
+import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
 
 export const generate = ({ rowState }: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
   const { formatCode, uppercaseDigit } = rowState;

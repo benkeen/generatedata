@@ -1,7 +1,7 @@
-import { DTGenerateResult, DTMetadata } from '~types/dataTypes';
+import { DTGenerateResult } from '../../';
 
 export const generate = (): DTGenerateResult => {
-	return { display: '' };
+  return { display: '' };
 };
 
 /*

@@ -1,4 +1,4 @@
-import { ETOnMessage } from '@generatedata/types';
+import { ETOnMessage } from '../../';
 import { generate } from './PHP.generate';
 
 const context: Worker = self as any;

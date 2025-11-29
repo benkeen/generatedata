@@ -1,13 +1,13 @@
-import { DTBundle } from '~types/dataTypes';
-import { Help, Example, Options, getMetadata } from './Currency';
+import { DTBundle } from '../../';
+import { Example, Help, Options, getMetadata } from './Currency';
 import { initialState } from './Currency.state';
 
 const bundle: DTBundle = {
-	initialState,
-	Example,
-	Options,
-	Help,
-	getMetadata
+  initialState,
+  Example,
+  Options,
+  Help,
+  getMetadata
 };
 
 export default bundle;

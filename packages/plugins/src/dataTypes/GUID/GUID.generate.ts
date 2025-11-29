@@ -1,5 +1,4 @@
-import { DTGenerateResult } from '~types/dataTypes';
-import { WorkerUtils } from '../../';
+import { DTGenerateResult, WorkerUtils } from '../../';
 
 const generatedGUIDs: any = {};
 

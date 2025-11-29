@@ -1,17 +1,16 @@
 // @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh
 // @package DataTypes
+import { DTWorkerOnMessage } from '../../';
 import utils from '../../../utils';
-import { DTWorkerOnMessage } from '~types/dataTypes';
 import { generate } from './CVV.generate';
 
 let utilsLoaded = false;
 
 export const onmessage = (e: DTWorkerOnMessage) => {
-	if (!utilsLoaded) {
-		importScripts(e.data.workerUtilsUrl);
-		utilsLoaded = true;
-	}
+  if (!utilsLoaded) {
+    importScripts(e.data.workerUtilsUrl);
+    utilsLoaded = true;
+  }
 
-	postMessage(generate(undefined, utils));
+  postMessage(generate(undefined, utils));
 };
-
