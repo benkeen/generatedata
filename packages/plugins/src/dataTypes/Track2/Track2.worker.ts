@@ -2,7 +2,7 @@
  * @author Ben Keen <ben.keen@gmail.com>, original code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
  */
 import { DTWorkerOnMessage } from '../../';
-import utils from '../../../utils';
+import utils from '../../workerUtils';
 import { generate } from './Track2.generate';
 
 let utilsLoaded = false;

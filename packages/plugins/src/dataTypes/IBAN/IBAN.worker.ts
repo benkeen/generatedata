@@ -2,7 +2,7 @@
  * Original author (PHP): Joeri Noort <joert@joert.net>
  */
 import { DTWorkerOnMessage } from '../../';
-import utils from '../../../utils';
+import utils from '../../workerUtils';
 import { generate } from './IBAN.generate';
 
 let utilsLoaded = false;

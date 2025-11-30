@@ -1,5 +1,4 @@
 import { ApolloProvider } from '@apollo/client/react';
-import { GeneratorLayout } from '@generatedata/types';
 import langUtils from '@generatedata/utils/lang';
 import { configureStore } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
@@ -14,7 +13,6 @@ import generatorReducer, { getInitialState } from '~store/generator/generator.re
 import { setLocaleFileLoaded } from '~store/main/main.actions';
 import mainReducer, { initialState as initialMainState } from '~store/main/main.reducer';
 import packetsReducer, { initialState as initialPacketState } from '~store/packets/packets.reducer';
-import { ETSettings } from '~types/exportTypes';
 
 import i18n from '@generatedata/i18n';
 import jsonI18n from '@generatedata/plugins/dist/exportTypes/JSON/i18n/en.json';
@@ -71,22 +69,3 @@ export const getTestState = () => ({
   packets: { ...initialPacketState },
   account: { ...initialAccountState }
 });
-
-// requires the DT test to supply i18n and rowState (if pertinent)
-export const getBlankDTGeneratorPayload = () => ({
-  rowNum: 1,
-  rowState: null,
-  countryI18n: {},
-  existingRowData: [],
-  countryData: {},
-  workerUtilsUrl: ''
-});
-
-export const defaultETSettings: ETSettings = {
-  onUpdate: () => {},
-  data: null,
-  coreI18n: {},
-  i18n: {},
-  id: 'id',
-  layout: 'horizontal' as GeneratorLayout
-};

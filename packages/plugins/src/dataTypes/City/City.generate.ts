@@ -1,5 +1,5 @@
-import { CountryType, Region } from '~types/countries';
-import { countryList, DTGenerateResult, DTGenerationData, DTGenerationExistingRowData, WorkerUtils } from '../../';
+import { Region } from '@generatedata/types';
+import { countryList, CountryType, DTGenerateResult, DTGenerationData, DTGenerationExistingRowData, WorkerUtils } from '../../';
 import { CityState, RegionSourceEnum } from './City.state';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {

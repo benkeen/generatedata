@@ -1,5 +1,5 @@
 import { DTWorkerOnMessage } from '../../';
-import utils from '../../../utils';
+import utils from '../../workerUtils';
 import { generate } from './City.generate';
 
 let utilsLoaded = false;

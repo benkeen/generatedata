@@ -1,7 +1,7 @@
 import C from '@generatedata/config/constants';
 import { getStrings } from '@generatedata/utils/lang';
 import { FC } from 'react';
-import Select from 'react-select';
+// import Select from 'react-select';
 import { useStyles } from './Dropdown.styles';
 
 export type DropdownOption = {
@@ -72,16 +72,17 @@ export const Dropdown: FC<any> = ({ value, isGrouped, options, hasError, placeho
   }
 
   return (
-    <Select
-      {...props}
-      className={className}
-      options={options}
-      classNamePrefix="react-select"
-      value={selectedValue}
-      styles={selectStyles}
-      placeholder={placeholderStr}
-      menuPlacement="auto"
-      menuPortalTarget={document.body}
-    />
+    <div>...</div>
+    // <Select
+    //   {...props}
+    //   className={className}
+    //   options={options}
+    //   classNamePrefix="react-select"
+    //   value={selectedValue}
+    //   styles={selectStyles}
+    //   placeholder={placeholderStr}
+    //   menuPlacement="auto"
+    //   menuPortalTarget={document.body}
+    // />
   );
 };

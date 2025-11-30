@@ -41,7 +41,7 @@ describe('Options', () => {
       }
     });
 
-    expect(onUpdate).toBeCalledWith({
+    expect(onUpdate).toHaveBeenCalledWith({
       ...initialState,
       value: 'new value!!'
     });

@@ -1,5 +1,5 @@
 import { DTWorkerOnMessage } from '../../';
-import utils from '../../../utils';
+import utils from '../../workerUtils';
 import { generate } from './AutoIncrement.generate';
 
 let utilsLoaded = false;

@@ -13,3 +13,14 @@ export type WorkerUtils = {
   stringUtils: typeof stringUtils;
   numberUtils: typeof numberUtils;
 };
+
+const workerUtils: WorkerUtils = {
+  arrayUtils: { ...arrayUtils },
+  countryUtils: { ...countryUtils },
+  generalUtils: { ...generalUtils },
+  randomUtils: { ...randomUtils },
+  stringUtils: { ...stringUtils },
+  numberUtils: { ...numberUtils }
+};
+
+export default workerUtils;

@@ -203,8 +203,13 @@ export type DTBundle = {
 
   rowStateReducer?: (state: any) => any;
   getMetadata?: (data: any) => DTMetadata;
-  customProps?: DTCustomProps;
-  actionInterceptors?: DTActionInterceptors;
+  getStoreIntegrations: (
+    selectors: any,
+    actions: any
+  ) => {
+    customProps?: DTCustomProps;
+    actionInterceptors?: DTActionInterceptors;
+  };
 };
 
 export type DTActionInterceptors = {
@@ -354,7 +359,7 @@ import CountryUS from './countries/US/bundle';
 import CountryUkraine from './countries/Ukraine/bundle';
 import CountryVietnam from './countries/Vietnam/bundle';
 
-export const countryList = [
+export const countryList: CountryType[] = [
   'Australia',
   'Austria',
   'Belgium',

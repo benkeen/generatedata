@@ -3,6 +3,7 @@ import { styled } from '@mui/material';
 import MuiDialog from '@mui/material/Dialog';
 import MuiDialogActions from '@mui/material/DialogActions';
 import MuiDialogContent from '@mui/material/DialogContent';
+import type { DialogTitleProps as MuiDialogTitleProps } from '@mui/material/DialogTitle';
 import MuiDialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -21,12 +22,20 @@ const dialogStyles = (theme: any): any => ({
   }
 });
 
-export const DialogTitle = withStyles(dialogStyles)((props: any) => {
+type DialogTitleProps = MuiDialogTitleProps & {
+  onClose?: () => void;
+  customCloseIcon?: any;
+  classes?: {
+    [className: string]: string;
+  };
+};
+
+export const DialogTitle = withStyles(dialogStyles)((props: DialogTitleProps) => {
   const { children, classes, onClose, customCloseIcon, ...other } = props;
   const Close = customCloseIcon ? customCloseIcon : CloseIcon;
 
   return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+    <MuiDialogTitle className={classes.root} {...other}>
       <Typography variant="h5">{children}</Typography>
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
@@ -37,25 +46,21 @@ export const DialogTitle = withStyles(dialogStyles)((props: any) => {
   );
 });
 
-// @ts-ignore
-export const DialogContent = styled(MuiDialogContent)((theme) => ({
+export const DialogContent = styled(MuiDialogContent)((theme: any) => ({
   root: {
-    // @ts-ignore
     padding: theme.spacing(2)
   }
 }));
 
-export const DialogActions = styled(MuiDialogActions)((theme) => ({
+export const DialogActions = styled(MuiDialogActions)((theme: any) => ({
   root: {
     margin: 0,
-    // @ts-ignore
     padding: theme.spacing(1)
   }
 }));
 
 const useDialogStyles = makeStyles({
   root: {
-    // @ts-ignore-line
     zIndex: '5005 !important',
     width: '100%'
   },

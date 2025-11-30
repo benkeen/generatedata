@@ -32,9 +32,6 @@ importers:
       '@reduxjs/toolkit':
         specifier: ^2.8.2
         version: 2.8.2(react-redux@9.2.0(@types/react@19.1.11)(react@19.2.0)(redux@5.0.1))(react@19.2.0)
-      '@types/randomcolor':
-        specifier: ^0.5.9
-        version: 0.5.9
       '@uidotdev/usehooks':
         specifier: ^2.4.1
         version: 2.4.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -80,9 +77,6 @@ importers:
       pretty-bytes:
         specifier: ^7.1.0
         version: 7.1.0
-      randomcolor:
-        specifier: ^0.6.2
-        version: 0.6.2
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -671,6 +665,9 @@ importers:
       date-fns:
         specifier: ^2.17.0
         version: 2.30.0
+      randomcolor:
+        specifier: ^0.6.2
+        version: 0.6.2
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -681,6 +678,9 @@ importers:
       '@generatedata/config':
         specifier: workspace:*
         version: link:../config
+      '@generatedata/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@generatedata/types':
         specifier: workspace:*
         version: link:../types
@@ -696,6 +696,9 @@ importers:
       '@types/jest':
         specifier: ^30.0.0
         version: 30.0.0
+      '@types/randomcolor':
+        specifier: ^0.5.9
+        version: 0.5.9
       '@types/sinon':
         specifier: ^21.0.0
         version: 21.0.0

@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
-import { DTGenerationData } from '../../';
-import utils from '../../../../utils';
+import { DTGenerationData } from '../../../';
+import utils from '../../../workerUtils';
 import { generate } from '../StreetAddress.generate';
 const i18n = require('../i18n/en.json');
 

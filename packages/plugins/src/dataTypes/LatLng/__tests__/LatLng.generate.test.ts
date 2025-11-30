@@ -1,4 +1,4 @@
-import { DTGenerationData } from '../../';
+import { DTGenerationData } from '../../../';
 import { generate } from '../LatLng.generate';
 
 // klutzy tests

@@ -1,5 +1,5 @@
 import { ETOnMessage } from '../../';
-import utils from '../../../utils';
+import utils from '../../workerUtils';
 import { generate } from './JSON.generate';
 
 const context: Worker = self as any;

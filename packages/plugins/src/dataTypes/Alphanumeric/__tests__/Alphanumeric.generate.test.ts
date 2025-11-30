@@ -1,6 +1,6 @@
 import sinon from 'sinon';
-import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
-import utils from '../../../../utils';
+import { getBlankDTGeneratorPayload } from '../../../tests/testHelpers';
+import utils from '../../../workerUtils';
 import { initialState } from '../Alphanumeric.state';
 import { onmessage } from '../Alphanumeric.worker';
 

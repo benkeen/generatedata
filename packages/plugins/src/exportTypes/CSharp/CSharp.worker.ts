@@ -1,5 +1,5 @@
 import { ETOnMessage } from '../../';
-import utils from '../../../utils';
+import utils from '../../workerUtils';
 import { generate } from './CSharp.generate';
 
 let workerUtilsLoaded = false;

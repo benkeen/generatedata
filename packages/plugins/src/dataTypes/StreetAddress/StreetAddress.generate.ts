@@ -1,5 +1,5 @@
 import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
-import utils from '../../../utils';
+import utils from '../../workerUtils';
 
 const getWords = (): string[] => {
   const { words } = utils.stringUtils.getLipsumWords();

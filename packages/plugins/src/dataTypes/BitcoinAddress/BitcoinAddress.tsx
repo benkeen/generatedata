@@ -33,12 +33,12 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
       <div style={{ width: 400 }}>
         <DialogTitle onClose={onClose}>{i18n.bitcoinSettings}</DialogTitle>
         <DialogContent dividers>
-          <table className={styles.table}>
+          <table className={classNames.table}>
             <thead>
               <tr>
-                <td className={styles.labelCol}>{coreI18n.format}</td>
+                <td className={classNames.labelCol}>{coreI18n.format}</td>
                 <td>
-                  <div className={styles.formatHeader}>
+                  <div className={classNames.formatHeader}>
                     <span>{i18n.weight}</span>
                     <Tooltip title={i18n.weightDesc} arrow>
                       <InfoIcon />
@@ -49,7 +49,7 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
             </thead>
             <tbody>
               <tr>
-                <td className={styles.labelCol}>
+                <td className={classNames.labelCol}>
                   <CheckboxPill
                     label="P2PKH / Legacy"
                     onClick={(): void => onToggleFormat(BitcoinAddressFormat.Legacy, !data[BitcoinAddressFormat.Legacy].enabled)}
@@ -70,7 +70,7 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
                 </td>
               </tr>
               <tr>
-                <td className={styles.labelCol}>
+                <td className={classNames.labelCol}>
                   <CheckboxPill
                     label="P2SH / Compatibility"
                     onClick={(): void =>
@@ -93,7 +93,7 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
                 </td>
               </tr>
               <tr>
-                <td className={styles.labelCol}>
+                <td className={classNames.labelCol}>
                   <CheckboxPill
                     label="P2WPKH / Bech32"
                     onClick={(): void => onToggleFormat(BitcoinAddressFormat.Segwit, !data[BitcoinAddressFormat.Segwit].enabled)}

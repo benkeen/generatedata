@@ -4,7 +4,6 @@ import InfoIcon from '@mui/icons-material/InfoOutlined';
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import * as styles from './WeightedList.scss';
 import {
   convertListItemsToObj,
   GenerationOptionsType,
@@ -15,6 +14,7 @@ import {
   WeightedListState,
   WeightedListTypeEnum
 } from './WeightedList.state';
+import { useClasses } from './WeightedList.styles';
 
 export const Example = ({ data, onUpdate, i18n }: DTExampleProps) => {
   const onChange = (example: any): void => {
@@ -49,6 +49,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
   const [value, setValue] = React.useState('');
   const [weight, setWeight] = React.useState('');
   const [displayStrings, setDisplayStrings] = React.useState<string[]>([]);
+  const classNames = useClasses();
 
   const onChangeValue = (e: any): void => setValue(e.target.value);
   const onChangeWeight = (e: any): void => setWeight(e.target.value);
@@ -125,14 +126,14 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
       <div style={{ width: 500 }}>
         <DialogTitle onClose={onClose}>{i18n.weightedListSettings}</DialogTitle>
         <DialogContent dividers>
-          <div className={styles.row}>
-            <div className={styles.colLabel}>
+          <div className={classNames.row}>
+            <div className={classNames.colLabel}>
               {i18n.numItemsLabel}
               <Tooltip title={i18n.numItemsLabelDesc} arrow>
                 <InfoIcon />
               </Tooltip>
             </div>
-            <div className={styles.content}>
+            <div className={classNames.content}>
               <ul>
                 <li>
                   <input
@@ -214,38 +215,38 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
               </ul>
             </div>
           </div>
-          <div className={styles.row}>
-            <div className={styles.colLabel}>
+          <div className={classNames.row}>
+            <div className={classNames.colLabel}>
               {i18n.allowDuplicates}
               <Tooltip title={i18n.allowDuplicatesDesc} arrow>
                 <InfoIcon />
               </Tooltip>
             </div>
-            <div className={styles.content}>
+            <div className={classNames.content}>
               <input
                 type="checkbox"
                 checked={data.allowDuplicates}
                 onChange={updateAllowDuplicates}
-                className={styles.allowDuplicatesCheckbox}
+                className={classNames.allowDuplicatesCheckbox}
               />
             </div>
           </div>
-          <div className={styles.row}>
-            <div className={styles.colLabel}>
+          <div className={classNames.row}>
+            <div className={classNames.colLabel}>
               {i18n.delimChars}
               <Tooltip title={i18n.delimCharsDesc} arrow>
                 <InfoIcon />
               </Tooltip>
             </div>
-            <div className={styles.content}>
+            <div className={classNames.content}>
               <input type="text" style={{ width: 40 }} value={data.delimiter} onChange={updateDelimiter} />
             </div>
           </div>
-          <div className={styles.row}>
-            <div className={styles.colLabel}>{i18n.itemsTitle}</div>
-            <div className={styles.content}>
+          <div className={classNames.row}>
+            <div className={classNames.colLabel}>{i18n.itemsTitle}</div>
+            <div className={classNames.content}>
               <form onSubmit={(e): void => e.preventDefault()}>
-                <div className={styles.addValueRow}>
+                <div className={classNames.addValueRow}>
                   <div>
                     <label>{i18n.value}</label>
                     <TextField

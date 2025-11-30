@@ -9,7 +9,7 @@ import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import * as sharedStyles from '../../../styles/shared.scss';
 import { DateState, GenerationOptionsType } from './Date.state';
-import * as styles from './Date.styles.ts';
+import { useClasses } from './Date.styles';
 
 export const rowStateReducer = ({ fromDate, toDate, format }: DateState): GenerationOptionsType => ({
   fromDate,
@@ -81,6 +81,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
   const [fromDatePickerOpen, setFromDatePickerOpen] = React.useState(false);
   const [toDatePickerOpen, setToDatePickerOpen] = React.useState(false);
   const [selectedDatePicker, setDatePicker] = React.useState('fromDate');
+  const classNames = useClasses();
 
   const onChange = (field: string, value: any): void => {
     onUpdate({
@@ -104,7 +105,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
     setToDatePickerOpen(false);
   };
 
-  let toDateClass = styles.dateBtn;
+  let toDateClass = classNames.dateBtn;
   let toDateError = '';
   if (data.fromDate > data.toDate) {
     toDateClass += ` ${sharedStyles.errorField}`;
@@ -123,8 +124,8 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
   return (
     <LocalizedDatePickerProvider>
       <div>
-        <div className={styles.dateRow}>
-          <Button onClick={(): void => onBtnClick('fromDate')} variant="outlined" disableElevation className={styles.dateBtn}>
+        <div className={classNames.dateRow}>
+          <Button onClick={(): void => onBtnClick('fromDate')} variant="outlined" disableElevation className={classNames.dateBtn}>
             <span style={{ marginRight: 3 }}>{format(fromUnixTime(data.fromDate), C.DATE_FORMAT)}</span>
             <Event />
           </Button>
@@ -137,7 +138,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
           </ErrorTooltip>
         </div>
         <div>
-          <span className={styles.formatCodeLabel}>{i18n.formatCode}</span>
+          <span className={classNames.formatCodeLabel}>{i18n.formatCode}</span>
           <TextField
             error={formatError}
             value={data.format}
@@ -149,7 +150,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
           <LocalizedDatePicker
             autoOk
             open={fromDatePickerOpen}
-            className={styles.dateField}
+            className={classNames.dateField}
             value={fromUnixTime(data.fromDate)}
             onChange={(val: any): void => onSelectDate(selectedDatePicker, format(val, 't'))}
             onClose={(): void => setFromDatePickerOpen(false)}
@@ -157,7 +158,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
           <LocalizedDatePicker
             autoOk
             open={toDatePickerOpen}
-            className={styles.dateField}
+            className={classNames.dateField}
             value={fromUnixTime(data.toDate)}
             onChange={(val: any): void => onSelectDate(selectedDatePicker, format(val, 't'))}
             onClose={(): void => setToDatePickerOpen(false)}
@@ -168,25 +169,31 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
   );
 };
 
-const Copy = ({ content, tooltip, message }: any) => (
-  <span className={styles.copy}>
-    <CopyToClipboard content={content} message={message} tooltip={tooltip} />
-  </span>
-);
+const Copy = ({ content, tooltip, message }: any) => {
+  const classNames = useClasses();
+  return (
+    <span className={classNames.copy}>
+      <CopyToClipboard content={content} message={message} tooltip={tooltip} />
+    </span>
+  );
+};
 
-const generateRows = (letters: string[], i18n: any, coreI18n: any) =>
-  letters.map((letter: string) => (
-    <div className={styles.row} key={letter}>
-      <div className={styles.col1}>
+const generateRows = (letters: string[], i18n: any, coreI18n: any) => {
+  const classNames = useClasses();
+
+  return letters.map((letter: string) => (
+    <div className={classNames.row} key={letter}>
+      <div className={classNames.col1}>
         <label>{letter}</label>
       </div>
       <div className={sharedStyles.copyCol}>
         <Copy content={letter} message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
       </div>
-      <div className={styles.col2}>{i18n[`${letter}Format`]}</div>
-      <div className={styles.col3}>{i18n[`${letter}FormatExample`]}</div>
+      <div className={classNames.col2}>{i18n[`${letter}Format`]}</div>
+      <div className={classNames.col3}>{i18n[`${letter}FormatExample`]}</div>
     </div>
   ));
+};
 
 export const Help = ({ coreI18n, i18n }: DTHelpProps) => (
   <>

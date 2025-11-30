@@ -1,7 +1,7 @@
-import langUtils from '@generatedata/utils';
+import langUtils from '@generatedata/utils/lang';
 import { render } from '@testing-library/react';
 import sinon from 'sinon';
-import { defaultETSettings } from '../../../../../tests/testHelpers';
+import { defaultETSettings } from '../../../tests/testHelpers';
 import { Settings } from '../CSV';
 import { initialState } from '../CSV.state';
 

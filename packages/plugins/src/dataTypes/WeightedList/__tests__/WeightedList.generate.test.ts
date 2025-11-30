@@ -1,5 +1,5 @@
-import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
-import utils from '../../../../utils';
+import { getBlankDTGeneratorPayload } from '../../../tests/testHelpers';
+import utils from '../../../workerUtils';
 import { generate } from '../WeightedList.generate';
 
 describe('onmessage', () => {

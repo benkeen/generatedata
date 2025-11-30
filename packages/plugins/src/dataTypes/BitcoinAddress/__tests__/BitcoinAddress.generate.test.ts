@@ -1,4 +1,4 @@
-import { DTGenerationData } from '../../';
+import { DTGenerationData } from '../../../';
 import { generate } from '../BitcoinAddress.generate';
 import { BitcoinAddressFormat, BitcoinAddressState } from '../BitcoinAddress.state';
 
