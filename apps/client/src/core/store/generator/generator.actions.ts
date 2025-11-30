@@ -93,8 +93,11 @@ export const loadDataTypeBundle = (
   requestDataTypeBundle(dataType).then((bundle: DTBundle) => {
     dispatch(dataTypeLoaded(dataType));
     if (bundle.getStoreIntegrations) {
-      const actionInterceptors = bundle.getStoreIntegrations().actionInterceptors;
-      registerInterceptors(dataType, actionInterceptors);
+      const actionInterceptors = bundle.getStoreIntegrations({}, {}).actionInterceptors;
+
+      if (actionInterceptors) {
+        registerInterceptors(dataType, actionInterceptors);
+      }
     }
 
     // if it's been selected within the grid, select the row and update the preview panel

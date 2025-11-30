@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import webWorkers from '../../_pluginWebWorkers';
 // import env from '../../_env';
 
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const rootPackageVersion = require('../../../../package.json').version;
 
 export const getScriptVersion = (): string => rootPackageVersion;

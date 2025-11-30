@@ -65,7 +65,7 @@ export const PanelControls = ({
           disableHoverListener={!toggleLayoutEnabled}
           disableFocusListener={!toggleLayoutEnabled}
         >
-          <Button onClick={toggleLayout} disabled={!toggleLayoutEnabled} className={styles.toggleLayoutBtn}>
+          <Button onClick={toggleLayout} disabled={!toggleLayoutEnabled} className={classNames.toggleLayoutBtn}>
             <ToggleDirectionIcon />
           </Button>
         </Tooltip>

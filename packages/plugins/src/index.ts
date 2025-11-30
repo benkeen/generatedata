@@ -177,6 +177,7 @@ export type DTGenerationExistingRowData = {
   data: DTGenerateResult;
 };
 
+//
 export type GenerationTemplateRow = {
   id: string;
   title: string;
@@ -185,7 +186,6 @@ export type GenerationTemplateRow = {
   colIndex: number;
 };
 
-// types?
 export type GenerationTemplate = {
   [processOrder: number]: GenerationTemplateRow[];
 };

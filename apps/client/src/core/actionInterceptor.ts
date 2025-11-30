@@ -1,9 +1,8 @@
-import { DataTypeFolder } from '@generatedata/plugins';
+import { DataTypeFolder, DTActionInterceptors, DTInterceptorSingleAction } from '@generatedata/plugins';
 import { Store } from 'redux';
 import { onConfigureDataType } from '~store/generator/generator.actions';
 import { DataRow } from '~store/generator/generator.reducer';
 import { getRows } from '~store/generator/generator.selectors';
-import { DTActionInterceptors, DTInterceptorSingleAction } from '~types/dataTypes';
 
 // TODO what if onload, a user interacts with a pre-saved config prior to the data type loading and the interceptor
 // isn't registered yet? Other than defensively coding the Data Type generation I'm not sure how to handle that... I

@@ -60,6 +60,26 @@ export const DefaultHelpComponent = ({ i18n }: DTHelpProps) => <p dangerouslySet
 
 const showNothing = (): null => null;
 
+const getDTStoreIntegrations = (dataType: DataTypeFolder | null) => {
+  const emptyReturn = {
+    customProps: {},
+    actionInterceptors: {}
+  };
+  if (!dataType || !loadedDataTypes[dataType]) {
+    return emptyReturn;
+  }
+
+  if (!loadedDataTypes[dataType]!.getStoreIntegrations) {
+    return emptyReturn;
+  }
+
+  const result = loadedDataTypes[dataType]!.getStoreIntegrations({}, {});
+  return {
+    customProps: result.customProps ? result.customProps : {},
+    actionInterceptors: result.actionInterceptors ? result.actionInterceptors : {}
+  };
+};
+
 export const getDataType = (dataType: DataTypeFolder | null): any => {
   // TODO return type is important here. Dense method!
   if (!dataType || !loadedDataTypes[dataType]) {
@@ -89,8 +109,7 @@ export const getDataType = (dataType: DataTypeFolder | null): any => {
     Help = DefaultHelpComponent;
   }
 
-  const customProps = dataType && loadedDataTypes[dataType]!.customProps ? loadedDataTypes[dataType]!.customProps : {};
-  const actionInterceptors = dataType && loadedDataTypes[dataType]!.actionInterceptors ? loadedDataTypes[dataType]!.actionInterceptors : {};
+  const { customProps, actionInterceptors } = getDTStoreIntegrations(dataType);
 
   const { getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
   return {
