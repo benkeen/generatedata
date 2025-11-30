@@ -1,19 +1,14 @@
+import { Dropdown, SmallSpinner, TextField, useSharedClasses } from '@generatedata/core';
+import { CountryNamesMap, DataTypeFolder, DTOptionsMetadata } from '@generatedata/plugins';
+import DragIndicator from '@mui/icons-material/DragIndicator';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import InfoIcon from '@mui/icons-material/InfoOutlined';
 import * as React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import DragIndicator from '@mui/icons-material/DragIndicator';
-import InfoIcon from '@mui/icons-material/InfoOutlined';
-import { Dropdown } from '@generatedata/core';
-import { DataRow } from '~store/generator/generator.reducer';
 import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
-import { DataTypeFolder } from '@generatedata/plugins';
+import { DataRow } from '~store/generator/generator.reducer';
 import { useClasses } from './Grid.styles';
-import { useSharedClasses } from '@generatedata/core';
-import { TextField } from '@generatedata/core';
-import { SmallSpinner } from '@generatedata/core';
 import { SmallScreenSettingsIcon } from './SmallScreenSettingsIcon';
-import { DTOptionsMetadata } from '~types/dataTypes';
-import { CountryNamesMap } from '@generatedata/plugins';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
   const styles: React.CSSProperties = {

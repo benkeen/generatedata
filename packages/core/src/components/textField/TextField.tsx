@@ -28,6 +28,7 @@ type TextFieldProps = {
   min?: number | string;
   max?: number | string;
   step?: number | string;
+  maxLength?: number;
 };
 
 export const TextField = ({ throttle, error, value, onChange, tooltipPlacement, className, ref, ...props }: TextFieldProps) => {

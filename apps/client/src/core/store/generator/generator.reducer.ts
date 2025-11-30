@@ -1,18 +1,17 @@
 import { AnyAction } from 'redux';
 // @ts-ignore
-import { nanoid } from 'nanoid';
-import { produce } from 'immer';
-import * as actions from './generator.actions';
-import * as mainActions from '../main/main.actions';
-import * as accountActions from '../account/account.actions';
-import * as packetActions from '../packets/packets.actions';
-import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
-import { DataTypeFolder, dataTypes, ExportTypeFolder, exportTypes } from '@generatedata/plugins';
-import { GeneratorLayout } from '@generatedata/types';
-import C from '@generatedata/config/constants';
-import { GeneratorPanel } from '~types/general';
-import { DTOptionsMetadata } from '~types/dataTypes';
 import clientConfig from '@generatedata/config/clientConfig';
+import C from '@generatedata/config/constants';
+import { DataTypeFolder, dataTypes, DTOptionsMetadata, ExportTypeFolder, exportTypes } from '@generatedata/plugins';
+import { GeneratorLayout } from '@generatedata/types';
+import { produce } from 'immer';
+import { nanoid } from 'nanoid';
+import { GeneratorPanel } from '~types/general';
+import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
+import * as accountActions from '../account/account.actions';
+import * as mainActions from '../main/main.actions';
+import * as packetActions from '../packets/packets.actions';
+import * as actions from './generator.actions';
 
 export type DataRow = {
   id: string;

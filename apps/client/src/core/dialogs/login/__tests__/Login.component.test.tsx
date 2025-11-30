@@ -1,5 +1,4 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import LoginDialog from '../Login.component';
 // import sharedStyles from '../../../../styles/shared.scss';
 const i18n = require('../../../../i18n/en.json');
@@ -22,7 +21,7 @@ describe('LoginDialog', () => {
 
     const closeButton = baseElement.querySelector('.MuiDialogTitle-root button') as HTMLButtonElement;
     fireEvent.click(closeButton);
-    expect(onClose).toBeCalled();
+    expect(onClose).toHaveBeenCalled();
   });
 
   it('clicking enter in the fields submits the form and shows errors on the fields', () => {

@@ -76,7 +76,7 @@
     "dotenv": "^8.2.0",
     "googleapis": "^65.0.0",
     "graphql": "^16.11.0",
-    "immer": "^10.1.1",
+    "immer": "^11.0.1",
     "js-cookie": "^3.0.5",
     "nanoid": "^5.1.5",
     "os-browserify": "^0.3.0",

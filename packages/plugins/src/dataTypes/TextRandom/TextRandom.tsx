@@ -8,7 +8,7 @@ import { useClasses } from './TextRandom.styles';
 
 const TextRandomDialog = ({ visible, data, id, onClose, onChangeFromStart, onUpdateSource, onUpdateCustomText, coreI18n, i18n }: any) => {
   const classNames = useClasses();
-  const getCustomTextField = (): JSX.Element | null => {
+  const getCustomTextField = () => {
     if (data.textSource !== 'custom') {
       return null;
     }

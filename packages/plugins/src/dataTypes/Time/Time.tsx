@@ -89,7 +89,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
           <TextField
             type="time"
             defaultValue={format(fromUnixTime(data.toTime), 'H:mm')}
-            className={styles.field}
+            className={classNames.field}
             InputLabelProps={{
               shrink: true
             }}
@@ -108,7 +108,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
           value={data.format}
           style={{ width: 140 }}
           onChange={(e: any): void => onChange('format', e.target.value)}
-          maxLength="255"
+          maxLength={255}
         />
       </div>
     </div>

@@ -14,7 +14,7 @@ import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './Track2.scss';
 
 const Track2Dialog = ({ visible, data, id, panRows, onClose, onUpdatePANSource, onUpdateRowSource, coreI18n, i18n }: any) => {
-  const getPanSourceDropdown = (): JSX.Element | null => {
+  const getPanSourceDropdown = () => {
     if (data.panSource !== 'row') {
       return null;
     }

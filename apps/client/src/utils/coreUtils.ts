@@ -3,7 +3,8 @@ import { nanoid } from 'nanoid';
 import webWorkers from '../../_pluginWebWorkers';
 // import env from '../../_env';
 
-const rootPackageVersion = require('./package.json').version;
+// @ts-ignore
+const rootPackageVersion = require('../../../../package.json').version;
 
 export const getScriptVersion = (): string => rootPackageVersion;
 

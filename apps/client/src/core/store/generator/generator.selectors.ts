@@ -1,8 +1,8 @@
 import { ColumnData, type DataTypeFolder, type ExportTypeFolder } from '@generatedata/plugins';
-import { GeneratorLayout } from '@generatedata/types';
+import { GenerationTemplate, GeneratorLayout } from '@generatedata/types';
 import langUtils from '@generatedata/utils/lang';
 import { createSelector } from 'reselect';
-import { GDLocale, GenerationTemplate, GeneratorPanel, Store } from '~types/general';
+import { GDLocale, GeneratorPanel, Store } from '~types/general';
 import { getDataType, processBatches } from '~utils/dataTypes';
 import {
   getExportTypeTitleValidationFunction as exportTypeGetExportTypeTitleValidation,

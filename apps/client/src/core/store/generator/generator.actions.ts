@@ -1,5 +1,5 @@
 import C from '@generatedata/config/constants';
-import { DataTypeFolder, ExportTypeFolder, getCountryData } from '@generatedata/plugins';
+import { DataTypeFolder, DTBundle, DTOptionsMetadata, ExportTypeFolder, getCountryData } from '@generatedata/plugins';
 import { DataSetListItem } from '@generatedata/types';
 import { getUnique } from '@generatedata/utils/array';
 import { addToast } from '@generatedata/utils/general';
@@ -8,7 +8,6 @@ import { getUniqueString } from '@generatedata/utils/string';
 import { Dispatch } from 'redux';
 import { GenerationWorkerActionType } from '~core/generator/generation.types';
 import * as accountActions from '~store/account/account.actions';
-import { DTBundle, DTOptionsMetadata } from '~types/dataTypes';
 import { GDAction } from '~types/general';
 import { requestDataTypeBundle } from '~utils/dataTypes';
 import { getExportTypeInitialState, loadExportTypeBundle } from '~utils/exportTypes';
@@ -93,8 +92,9 @@ export const loadDataTypeBundle = (
 
   requestDataTypeBundle(dataType).then((bundle: DTBundle) => {
     dispatch(dataTypeLoaded(dataType));
-    if (bundle.actionInterceptors) {
-      registerInterceptors(dataType, bundle.actionInterceptors);
+    if (bundle.getStoreIntegrations) {
+      const actionInterceptors = bundle.getStoreIntegrations().actionInterceptors;
+      registerInterceptors(dataType, actionInterceptors);
     }
 
     // if it's been selected within the grid, select the row and update the preview panel

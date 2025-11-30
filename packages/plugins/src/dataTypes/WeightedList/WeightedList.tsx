@@ -43,8 +43,8 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps) => {
 };
 
 const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: any) => {
-  const exactlyField = React.useRef<any>();
-  const dtListBetweenLow = React.useRef<any>();
+  const exactlyField = React.useRef<any>(null);
+  const dtListBetweenLow = React.useRef<any>(null);
   const [showErrors, setShowErrors] = React.useState(false);
   const [value, setValue] = React.useState('');
   const [weight, setWeight] = React.useState('');

@@ -1,7 +1,6 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown } from '@generatedata/core';
+import { CheckboxPill, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown } from '@generatedata/core';
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import CheckboxPill from '~components/pills/CheckboxPill';
 import { DTExampleProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './URLs.scss';
 import { GenerationOptionsType, initialState, URLsState } from './URLs.state';

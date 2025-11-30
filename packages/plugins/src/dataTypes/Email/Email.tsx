@@ -127,6 +127,7 @@ const getSafeState = (data: EmailState | undefined): EmailState => {
 export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOptionsProps) => {
   const safeData = getSafeState(data);
   const [dialogVisible, setDialogVisibility] = React.useState(false);
+  const classNames = useClasses();
 
   let label = `${i18n.source} ${i18n.random}`;
   if (safeData.source === StringSourceEnum.fields) {

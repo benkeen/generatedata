@@ -26,7 +26,7 @@ const Track1Dialog = ({
   coreI18n,
   i18n
 }: any) => {
-  const getPanSourceDropdown = (): JSX.Element | null => {
+  const getPanSourceDropdown = () => {
     if (data.panSource !== 'row') {
       return null;
     }
@@ -45,7 +45,7 @@ const Track1Dialog = ({
     );
   };
 
-  const getNameSourceDropdown = (): JSX.Element | null => {
+  const getNameSourceDropdown = () => {
     if (data.nameSource !== 'row') {
       return null;
     }

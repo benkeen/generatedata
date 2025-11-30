@@ -1,7 +1,6 @@
 import C from '@generatedata/config/constants';
-import { DataTypeFolder, blacklistedDataTypeFolders, dataTypes } from '@generatedata/plugins';
+import { DTBundle, DTCustomProps, DTHelpProps, DataTypeFolder, blacklistedDataTypeFolders, dataTypes } from '@generatedata/plugins';
 import { getLocale, getStrings } from '@generatedata/utils/lang';
-import { DTBundle, DTCustomProps, DTHelpProps } from '~types/dataTypes';
 import { Store } from '~types/general';
 
 type LoadedDataTypes = {

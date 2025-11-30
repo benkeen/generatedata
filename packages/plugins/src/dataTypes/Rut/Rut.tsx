@@ -20,7 +20,7 @@ export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps) => {
   };
 
   // the uppercase checkbox only applies to formats that include the final digit
-  const getUppercaseCheckbox = (): JSX.Element | null => {
+  const getUppercaseCheckbox = () => {
     if (data.formatCode === '12345678' || data.formatCode === '12.345.678') {
       return null;
     }

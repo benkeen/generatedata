@@ -39,6 +39,6 @@ describe('HelpDialog', () => {
 
     const closeButton = baseElement.querySelector('.MuiDialogTitle-root button') as HTMLButtonElement;
     fireEvent.click(closeButton);
-    expect(onClose).toBeCalled();
+    expect(onClose).toHaveBeenCalled();
   });
 });

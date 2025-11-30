@@ -1,5 +1,13 @@
 import C from '@generatedata/config/constants';
-import { CopyToClipboard, Dropdown, ErrorTooltip, LocalizedDatePicker, LocalizedDatePickerProvider, TextField } from '@generatedata/core';
+import {
+  CopyToClipboard,
+  Dropdown,
+  ErrorTooltip,
+  LocalizedDatePicker,
+  LocalizedDatePickerProvider,
+  TextField,
+  useSharedClasses
+} from '@generatedata/core';
 import { isValidDateFormat } from '@generatedata/utils/date';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import Event from '@mui/icons-material/Event';
@@ -7,7 +15,6 @@ import Button from '@mui/material/Button';
 import { format, fromUnixTime } from 'date-fns';
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import * as sharedStyles from '../../../styles/shared.scss';
 import { DateState, GenerationOptionsType } from './Date.state';
 import { useClasses } from './Date.styles';
 
@@ -82,6 +89,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
   const [toDatePickerOpen, setToDatePickerOpen] = React.useState(false);
   const [selectedDatePicker, setDatePicker] = React.useState('fromDate');
   const classNames = useClasses();
+  const sharedStyles = useSharedClasses();
 
   const onChange = (field: string, value: any): void => {
     onUpdate({
@@ -180,6 +188,7 @@ const Copy = ({ content, tooltip, message }: any) => {
 
 const generateRows = (letters: string[], i18n: any, coreI18n: any) => {
   const classNames = useClasses();
+  const sharedStyles = useSharedClasses();
 
   return letters.map((letter: string) => (
     <div className={classNames.row} key={letter}>

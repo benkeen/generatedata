@@ -1,7 +1,7 @@
 import C from '@generatedata/config/constants';
 import { ExportTypeFolder, exportTypes } from '@generatedata/plugins';
+import { ETBrowserBundle, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
 import { getLocale, getStrings } from '@generatedata/utils/lang';
-import { ETBrowserBundle, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
 
 export type LoadedExportTypes = {
   [name in ExportTypeFolder]?: ETBrowserBundle;

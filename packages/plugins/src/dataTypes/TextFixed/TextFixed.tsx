@@ -8,7 +8,7 @@ import { useClasses } from './TextFixed.styles';
 
 const TextFieldDialog = ({ visible, data, id, onClose, onUpdateSource, onUpdateCustomText, coreI18n, i18n }: any) => {
   const classNames = useClasses();
-  const getCustomTextField = (): JSX.Element | null => {
+  const getCustomTextField = () => {
     if (data.textSource !== 'custom') {
       return null;
     }

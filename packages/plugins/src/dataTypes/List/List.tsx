@@ -1,4 +1,4 @@
-import CreatablePillField, { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, TextField, Tooltip } from '@generatedata/core';
+import { CreatablePillField, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, TextField, Tooltip } from '@generatedata/core';
 import langUtils from '@generatedata/utils/lang';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import Button from '@mui/material/Button';
@@ -47,8 +47,8 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps) => {
 
 const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: any) => {
   const classNames = useClasses();
-  const exactlyField = React.useRef<any>();
-  const dtListBetweenLow = React.useRef<any>();
+  const exactlyField = React.useRef<any>(null);
+  const dtListBetweenLow = React.useRef<any>(null);
 
   const onChange = (field: string, value: any): void => {
     onUpdate({
