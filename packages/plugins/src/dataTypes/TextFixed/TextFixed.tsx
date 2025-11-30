@@ -1,19 +1,25 @@
 import { Dialog, DialogActions, DialogContent, DialogTitle, RadioPill, RadioPillRow, TextField } from '@generatedata/core';
+import { getLipsumWords } from '@generatedata/utils/string';
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import { getLipsumWords } from '~utils/stringUtils';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import styles from './TextFixed.scss';
 import { GenerationOptionsType, TextFixedState, TextSource } from './TextFixed.state';
+import { useClasses } from './TextFixed.styles';
 
 const TextFieldDialog = ({ visible, data, id, onClose, onUpdateSource, onUpdateCustomText, coreI18n, i18n }: any) => {
+  const classNames = useClasses();
   const getCustomTextField = (): JSX.Element | null => {
     if (data.textSource !== 'custom') {
       return null;
     }
 
     return (
-      <textarea value={data.customText} placeholder={i18n.enterCustomText} className={styles.customText} onChange={onUpdateCustomText} />
+      <textarea
+        value={data.customText}
+        placeholder={i18n.enterCustomText}
+        className={classNames.customText}
+        onChange={onUpdateCustomText}
+      />
     );
   };
 

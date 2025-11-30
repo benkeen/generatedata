@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DTHelpProps, DTOptionsProps } from '../../';
-import styles from './SIRET.scss';
+import { useClasses } from './SIRET.styles';
 
 export const Options = ({ id, data, onUpdate }: DTOptionsProps) => {
   const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -22,28 +22,32 @@ export const Options = ({ id, data, onUpdate }: DTOptionsProps) => {
   );
 };
 
-export const Help = ({ i18n }: DTHelpProps) => (
-  <>
-    <p>{i18n.DESC}</p>
+export const Help = ({ i18n }: DTHelpProps) => {
+  const classNames = useClasses();
 
-    <div className={styles.row}>
-      <div className={styles.col1}>{i18n.SIRET}</div>
-      <div className={styles.col2}>{i18n.typeSIRET}</div>
-    </div>
-    <div className={styles.row}>
-      <div className={styles.col1}>{i18n.SIREN}</div>
-      <div className={styles.col2}>{i18n.typeSIREN}</div>
-    </div>
+  return (
+    <>
+      <p>{i18n.DESC}</p>
 
-    <p>
-      {i18n.moreInfo}{' '}
-      <a
-        href="http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Wikipedia - SIRET
-      </a>
-    </p>
-  </>
-);
+      <div className={classNames.row}>
+        <div className={classNames.col1}>{i18n.SIRET}</div>
+        <div className={classNames.col2}>{i18n.typeSIRET}</div>
+      </div>
+      <div className={classNames.row}>
+        <div className={classNames.col1}>{i18n.SIREN}</div>
+        <div className={classNames.col2}>{i18n.typeSIREN}</div>
+      </div>
+
+      <p>
+        {i18n.moreInfo}{' '}
+        <a
+          href="http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Wikipedia - SIRET
+        </a>
+      </p>
+    </>
+  );
+};

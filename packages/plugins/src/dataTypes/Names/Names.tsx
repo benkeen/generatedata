@@ -16,11 +16,9 @@ import WorldIcon from '@mui/icons-material/Public';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import * as React from 'react';
-import { CountryType } from '~types/countries';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import { countryList } from '../../../../_plugins';
-import styles from './Names.scss';
+import { countryList, CountryType, DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { GenerationOptionsType, NamesSource, NamesState } from './Names.state';
+import { useClasses } from './Names.styles';
 
 export const rowStateReducer = ({ options, source, selectedCountries }: NamesState): GenerationOptionsType => ({
   options,
@@ -158,6 +156,7 @@ export const Options = ({
   countryNamesMap
 }: DTOptionsProps) => {
   const [visible, setDialogVisibility] = React.useState(false);
+  const classNames = useClasses();
 
   const safeData = {
     source: NamesSource.any,
@@ -184,16 +183,16 @@ export const Options = ({
     });
   };
 
-  let iconClasses = styles.anyNamesIcon;
+  let iconClasses = classNames.anyNamesIcon;
   let iconTooltip = i18n.westernNames;
   if (data.source === NamesSource.countries) {
-    iconClasses = styles.regionalNamesIcon;
+    iconClasses = classNames.regionalNamesIcon;
     iconTooltip = i18n.regionalNames;
   }
 
   return (
     <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
-      <div className={styles.pillField}>
+      <div className={classNames.pillField}>
         <CreatablePillField value={safeData.options} onChange={(options: any): void => onUpdate({ ...safeData, options })} />
       </div>
       <Tooltip title={iconTooltip} placement="bottom" arrow>
@@ -221,69 +220,75 @@ export const Options = ({
   );
 };
 
-const Copy = ({ content, message, tooltip }: any) => (
-  <span className={styles.copy}>
-    <CopyToClipboard tooltip={tooltip} content={content} message={message} />
-  </span>
-);
+const Copy = ({ content, message, tooltip }: any) => {
+  const classNames = useClasses();
+  return (
+    <span className={classNames.copy}>
+      <CopyToClipboard tooltip={tooltip} content={content} message={message} />
+    </span>
+  );
+};
 
-export const Help = ({ coreI18n, i18n }: DTHelpProps) => (
-  <>
-    <p>
-      {i18n.DESC} {i18n.help_intro}
-    </p>
+export const Help = ({ coreI18n, i18n }: DTHelpProps) => {
+  const classNames = useClasses();
+  return (
+    <>
+      <p>
+        {i18n.DESC} {i18n.help_intro}
+      </p>
 
-    <div className={styles.row}>
-      <div className={styles.col1}>
-        <label>Name</label>
+      <div className={classNames.row}>
+        <div className={classNames.col1}>
+          <label>Name</label>
+        </div>
+        <div className={classNames.copyCol}>
+          <Copy content="Name" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
+        </div>
+        <div className={classNames.col2}>{i18n.type_Name}</div>
       </div>
-      <div className={styles.copyCol}>
-        <Copy content="Name" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
+      <div className={classNames.row}>
+        <div className={classNames.col1}>
+          <label>MaleName</label>
+        </div>
+        <div className={classNames.copyCol}>
+          <Copy content="MaleName" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
+        </div>
+        <div className={classNames.col2}>{i18n.type_MaleName}</div>
       </div>
-      <div className={styles.col2}>{i18n.type_Name}</div>
-    </div>
-    <div className={styles.row}>
-      <div className={styles.col1}>
-        <label>MaleName</label>
+      <div className={classNames.row}>
+        <div className={classNames.col1}>
+          <label>FemaleName</label>
+        </div>
+        <div className={classNames.copyCol}>
+          <Copy content="FemaleName" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
+        </div>
+        <div className={classNames.col2}>{i18n.type_FemaleName}</div>
       </div>
-      <div className={styles.copyCol}>
-        <Copy content="MaleName" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
+      <div className={classNames.row}>
+        <div className={classNames.col1}>
+          <label>Initial</label>
+        </div>
+        <div className={classNames.copyCol}>
+          <Copy content="Initial" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
+        </div>
+        <div className={classNames.col2}>{i18n.type_Initial}</div>
       </div>
-      <div className={styles.col2}>{i18n.type_MaleName}</div>
-    </div>
-    <div className={styles.row}>
-      <div className={styles.col1}>
-        <label>FemaleName</label>
+      <div className={classNames.row}>
+        <div className={classNames.col1}>
+          <label>Surname</label>
+        </div>
+        <div className={classNames.copyCol}>
+          <Copy content="Surname" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
+        </div>
+        <div className={classNames.col2}>{i18n.type_Surname}</div>
       </div>
-      <div className={styles.copyCol}>
-        <Copy content="FemaleName" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
-      </div>
-      <div className={styles.col2}>{i18n.type_FemaleName}</div>
-    </div>
-    <div className={styles.row}>
-      <div className={styles.col1}>
-        <label>Initial</label>
-      </div>
-      <div className={styles.copyCol}>
-        <Copy content="Initial" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
-      </div>
-      <div className={styles.col2}>{i18n.type_Initial}</div>
-    </div>
-    <div className={styles.row}>
-      <div className={styles.col1}>
-        <label>Surname</label>
-      </div>
-      <div className={styles.copyCol}>
-        <Copy content="Surname" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
-      </div>
-      <div className={styles.col2}>{i18n.type_Surname}</div>
-    </div>
 
-    <h3>{i18n.namesSource}</h3>
+      <h3>{i18n.namesSource}</h3>
 
-    <p>{i18n.namesSourceDesc}</p>
-  </>
-);
+      <p>{i18n.namesSourceDesc}</p>
+    </>
+  );
+};
 
 export const getMetadata = (): DTMetadata => ({
   sql: {

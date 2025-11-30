@@ -1,4 +1,3 @@
-import { StyledComponent } from '@emotion/styled';
 import MuiTooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 

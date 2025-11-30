@@ -1,11 +1,10 @@
-import { CopyToClipboard, TextField as CoreTextField, Dropdown, ErrorTooltip } from '@generatedata/core';
+import { CopyToClipboard, TextField as CoreTextField, Dropdown, ErrorTooltip, useSharedClasses } from '@generatedata/core';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import TextField from '@mui/material/TextField';
 import { format, fromUnixTime, parse } from 'date-fns';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import * as sharedStyles from '../../../styles/shared.scss';
-import * as styles from './Time.scss';
 import { DateState, GenerationOptionsType } from './Time.state';
+import { useClasses } from './Time.styles';
 
 const SECS_IN_DAY = 86400;
 export const rowStateReducer = ({ fromTime, toTime, format }: DateState): GenerationOptionsType => ({
@@ -56,6 +55,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps) => {
 };
 
 export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
+  const classNames = useClasses();
   const onChange = (field: string, value: any): void => {
     onUpdate({
       ...data,
@@ -70,11 +70,11 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
 
   return (
     <div>
-      <div className={styles.dateRow}>
+      <div className={classNames.dateRow}>
         <TextField
           type="time"
           defaultValue={format(fromUnixTime(data.fromTime), 'HH:mm')}
-          className={styles.field}
+          className={classNames.field}
           InputLabelProps={{
             shrink: true
           }}
@@ -102,43 +102,52 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
         </ErrorTooltip>
       </div>
       <div>
-        <span className={styles.formatCodeLabel}>{i18n.formatCode}</span>
+        <span className={classNames.formatCodeLabel}>{i18n.formatCode}</span>
         <CoreTextField
           error={data.format ? '' : coreI18n.requiredField}
           value={data.format}
           style={{ width: 140 }}
           onChange={(e: any): void => onChange('format', e.target.value)}
-          maxLength={255}
+          maxLength="255"
         />
       </div>
     </div>
   );
 };
 
-const Copy = ({ content, tooltip, message }: any) => (
-  <span className={styles.copy}>
-    <CopyToClipboard content={content} message={message} tooltip={tooltip} />
-  </span>
-);
+const Copy = ({ content, tooltip, message }: any) => {
+  const classNames = useClasses();
+  return (
+    <span className={classNames.copy}>
+      <CopyToClipboard content={content} message={message} tooltip={tooltip} />
+    </span>
+  );
+};
 
-const generateRows = (letters: string[], i18n: any, coreI18n: any): JSX.Element[] =>
-  letters.map((letter: string) => (
-    <div className={styles.row} key={letter}>
-      <div className={styles.col1}>
+const generateRows = (letters: string[], i18n: any, coreI18n: any): JSX.Element[] => {
+  const sharedClasses = useSharedClasses();
+  const classNames = useClasses();
+
+  return letters.map((letter: string) => (
+    <div className={classNames.row} key={letter}>
+      <div className={classNames.col1}>
         <label>{letter}</label>
       </div>
-      <div className={sharedStyles.copyCol}>
+      <div className={sharedClasses.copyCol}>
         <Copy content={letter} message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
       </div>
-      <div className={styles.col2}>{i18n[`${letter}Format`]}</div>
-      <div className={styles.col3}>{i18n[`${letter}FormatExample`]}</div>
+      <div className={classNames.col2}>{i18n[`${letter}Format`]}</div>
+      <div className={classNames.col3}>{i18n[`${letter}FormatExample`]}</div>
     </div>
   ));
+};
 
-export const Help = ({ i18n, coreI18n }: DTHelpProps) => (
-  <>
-    <p dangerouslySetInnerHTML={{ __html: i18n.helpIntro }} />
+export const Help = ({ i18n, coreI18n }: DTHelpProps) => {
+  return (
+    <>
+      <p dangerouslySetInnerHTML={{ __html: i18n.helpIntro }} />
 
-    {generateRows(['h', 'H', 'mm', 'ss', 'a', 'aaa', 'aaaa'], i18n, coreI18n)}
-  </>
-);
+      {generateRows(['h', 'H', 'mm', 'ss', 'a', 'aaa', 'aaaa'], i18n, coreI18n)}
+    </>
+  );
+};

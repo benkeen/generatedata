@@ -26,7 +26,7 @@ const selectStyles = {
   menuPortal: (base: any): any => ({ ...base, zIndex: C.ZINDEXES.DIALOG })
 };
 
-export const Dropdown: FC<any> = ({ value, isGrouped, options, hasError, placeholder, ...props }) => {
+export const Dropdown: FC<any> = ({ value, isGrouped, options, hasError, placeholder, ...props }): React.ReactElement<any, any> => {
   const i18n = getStrings();
   const classNames = useStyles();
 

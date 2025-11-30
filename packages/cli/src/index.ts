@@ -6,19 +6,19 @@
  * functionality to show a progress indicator, allow for arguments + error handling etc.
  */
 
-import path from 'path';
-import fs from 'fs';
-import { DataTemplateRow, DataTypeWorkerInterface, ExportType, GDTemplate } from '~types/generator';
-import { DataType } from '../../../client/_plugins';
-import { dataTypeNodeData, exportTypeNodeData } from './_cliTypes';
-import countryNames from '../../../client/_namePlugins';
-import { generate as generateUtils } from '../../../client/src/utils/generatorUtils';
-import workerUtils from '../../../client/src/utils';
-import { GDLocale, GenerationTemplate } from '~types/general';
-import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
-import { convertRowsToGenerationTemplate } from '~store/generator/generator.selectors';
 import { getCountryData } from '@generatedata/plugins';
-import { setLocale } from '~utils/langUtils';
+import { setLocale } from '@generatedata/utils/lang';
+import fs from 'fs';
+import path from 'path';
+import { convertRowsToGenerationTemplate } from '~store/generator/generator.selectors';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
+import { GDLocale, GenerationTemplate } from '~types/general';
+import { DataTemplateRow, DataTypeWorkerInterface, ExportType, GDTemplate } from '~types/generator';
+import countryNames from '../../../client/_namePlugins';
+import { DataType } from '../../../client/_plugins';
+import workerUtils from '../../../client/src/utils';
+import { generate as generateUtils } from '../../../client/src/utils/generatorUtils';
+import { dataTypeNodeData, exportTypeNodeData } from './_cliTypes';
 
 export { availableLocales } from '../../../client/_env';
 export { DataType, ExportType, GDTemplate };

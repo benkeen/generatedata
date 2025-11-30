@@ -10,11 +10,9 @@ import {
 } from '@generatedata/core';
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import { CountryType } from '~types/countries';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import { countryList } from '../../../../_plugins';
-import styles from './Country.scss';
+import { countryList, CountryType, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { CountrySource } from './Country.state';
+import { useClasses } from './Country.styles';
 import fullCountryList from './fullCountryList';
 
 const fullCountryListOptions = fullCountryList.map((countryName) => ({
@@ -82,6 +80,7 @@ const CountryDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource
 export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTOptionsProps) => {
   const [dialogVisible, setDialogVisibility] = React.useState(false);
   const numSelected = data.selectedCountries.length;
+  const classNames = useClasses();
 
   const onUpdateSource = (source: CountrySource): void => {
     onUpdate({
@@ -113,7 +112,7 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
   }
 
   return (
-    <div className={styles.buttonLabel}>
+    <div className={classNames.buttonLabel}>
       <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
       </Button>

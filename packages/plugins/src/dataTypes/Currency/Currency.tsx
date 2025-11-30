@@ -3,8 +3,8 @@ import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import styles from './Currency.scss';
 import { PrefixLocationEnum } from './Currency.state';
+import { useClasses } from './Currency.styles';
 
 export const Example = ({ i18n, data, onUpdate }: any) => {
   const onChange = (i: any): void => {
@@ -52,6 +52,7 @@ export const Example = ({ i18n, data, onUpdate }: any) => {
 };
 
 const CurrencySettingsDialog = ({ id, visible, data, onUpdate, onClose, coreI18n, i18n }: any) => {
+  const classNames = useClasses();
   const onChange = (field: string, value: any): void => {
     onUpdate({
       ...data,
@@ -71,9 +72,9 @@ const CurrencySettingsDialog = ({ id, visible, data, onUpdate, onClose, coreI18n
 
           <h3>{coreI18n.settings}</h3>
 
-          <div className={styles.row}>
-            <div className={styles.col1}>{i18n.currencySymbol}</div>
-            <div className={`${styles.col2} ${styles.currencyLine}`}>
+          <div className={classNames.row}>
+            <div className={classNames.col1}>{i18n.currencySymbol}</div>
+            <div className={`${classNames.col2} ${classNames.currencyLine}`}>
               <TextField
                 value={data.currencySymbol}
                 style={{ width: 30 }}
@@ -97,9 +98,9 @@ const CurrencySettingsDialog = ({ id, visible, data, onUpdate, onClose, coreI18n
               <label htmlFor={`${id}-currencySymbolLocation2`}>Suffix</label>
             </div>
           </div>
-          <div className={styles.row}>
-            <div className={styles.col1}>Separators</div>
-            <div className={`${styles.col2} ${styles.separatorLine}`}>
+          <div className={classNames.row}>
+            <div className={classNames.col1}>Separators</div>
+            <div className={`${classNames.col2} ${classNames.separatorLine}`}>
               {i18n.thousands}
               <TextField
                 value={data.thousandsSeparator}
@@ -115,8 +116,8 @@ const CurrencySettingsDialog = ({ id, visible, data, onUpdate, onClose, coreI18n
               />
             </div>
           </div>
-          <div className={styles.row}>
-            <div className={styles.col1}>
+          <div className={classNames.row}>
+            <div className={classNames.col1}>
               <input
                 type="checkbox"
                 id={`${id}-includeCents`}
@@ -183,42 +184,46 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate }: DTOptionsProps) 
   );
 };
 
-export const Help = ({ i18n }: DTHelpProps) => (
-  <div className={styles.helpDialog}>
-    <p>{i18n.helpIntro}</p>
+export const Help = ({ i18n }: DTHelpProps) => {
+  const classNames = useClasses();
 
-    <div className={styles.row}>
-      <div className={styles.col1}>
-        <label>{i18n.rangeFrom}</label>
+  return (
+    <div className={classNames.helpDialog}>
+      <p>{i18n.helpIntro}</p>
+
+      <div className={classNames.row}>
+        <div className={classNames.col1}>
+          <label>{i18n.rangeFrom}</label>
+        </div>
+        <div className={classNames.col2}>{i18n.rangeFromDesc}</div>
       </div>
-      <div className={styles.col2}>{i18n.rangeFromDesc}</div>
-    </div>
-    <div className={styles.row}>
-      <div className={styles.col1}>
-        <label>{i18n.rangeTo}</label>
+      <div className={classNames.row}>
+        <div className={classNames.col1}>
+          <label>{i18n.rangeTo}</label>
+        </div>
+        <div className={classNames.col2}>{i18n.rangeToDesc}</div>
       </div>
-      <div className={styles.col2}>{i18n.rangeToDesc}</div>
-    </div>
-    <div className={styles.row}>
-      <div className={styles.col1}>
-        <label>{i18n.currencySymbol}</label>
+      <div className={classNames.row}>
+        <div className={classNames.col1}>
+          <label>{i18n.currencySymbol}</label>
+        </div>
+        <div className={classNames.col2} dangerouslySetInnerHTML={{ __html: i18n.currencySymbolDesc }} />
       </div>
-      <div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.currencySymbolDesc }} />
-    </div>
-    <div className={styles.row}>
-      <div className={styles.col1}>
-        <label>{i18n.prefixSuffix}</label>
+      <div className={classNames.row}>
+        <div className={classNames.col1}>
+          <label>{i18n.prefixSuffix}</label>
+        </div>
+        <div className={classNames.col2}>{i18n.prefixSuffixDesc}</div>
       </div>
-      <div className={styles.col2}>{i18n.prefixSuffixDesc}</div>
-    </div>
-    <div className={styles.row}>
-      <div className={styles.col1}>
-        <label>{i18n.separators}</label>
+      <div className={classNames.row}>
+        <div className={classNames.col1}>
+          <label>{i18n.separators}</label>
+        </div>
+        <div className={classNames.col2}>{i18n.separatorsDesc}</div>
       </div>
-      <div className={styles.col2}>{i18n.separatorsDesc}</div>
     </div>
-  </div>
-);
+  );
+};
 
 export const getMetadata = (): DTMetadata => ({
   sql: {

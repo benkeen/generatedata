@@ -8,11 +8,10 @@ import {
   RadioPillRow,
   type DropdownOption
 } from '@generatedata/core';
+import { getI18nString } from '@generatedata/utils/lang';
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import { getI18nString } from '~utils/langUtils';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import { countryList } from '../../../../_plugins';
+import { countryList, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import styles from './City.scss';
 import { RegionSource, RegionSourceEnum } from './City.state';
 

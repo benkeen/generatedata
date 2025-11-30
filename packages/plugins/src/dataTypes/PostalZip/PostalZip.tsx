@@ -10,10 +10,9 @@ import {
 } from '@generatedata/core';
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import { countryList } from '../../../../_plugins';
-import styles from './PostalZip.scss';
+import { countryList, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { PostalZipSource } from './PostalZip.state';
+import { useClasses } from './PostalZip.styles';
 
 const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, countryRows, regionRows }: any) => {
   const countryPluginRows = countryRows.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
@@ -145,6 +144,7 @@ const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, on
 export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, countryRows, regionRows, cityRows }: DTOptionsProps) => {
   const [dialogVisible, setDialogVisibility] = React.useState(false);
   const numSelected = data.selectedCountries.length;
+  const classNames = useClasses();
 
   let label = '';
   if (data.source === 'any') {
@@ -162,7 +162,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
   }
 
   return (
-    <div className={styles.buttonLabel}>
+    <div className={classNames.buttonLabel}>
       <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
       </Button>

@@ -13,18 +13,20 @@ import InfoIcon from '@mui/icons-material/InfoOutlined';
 import Button from '@mui/material/Button';
 import React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import * as styles from './Email.scss';
 import { EmailState, GenerationOptionsType, StringSourceEnum, defaultDomainSuffixes, defaultDomains } from './Email.state';
+import { useClasses } from './Email.styles';
 
 const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOptions, i18n }: any) => {
+  const classNames = useClasses();
+
   const getFieldsRow = () => {
     if (data.source === StringSourceEnum.random) {
       return null;
     }
 
     return (
-      <div className={styles.fieldsRow}>
-        <div className={styles.fieldRow} style={{ marginRight: 10 }}>
+      <div className={classNames.fieldsRow}>
+        <div className={classNames.fieldRow} style={{ marginRight: 10 }}>
           <label>{i18n.sourceDataField1}</label>
           <Dropdown
             value={data.fieldId1}
@@ -32,7 +34,7 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOption
             options={[{ value: '', label: coreI18n.pleaseSelect }, ...rowOptions]}
           />
         </div>
-        <div className={styles.fieldRow}>
+        <div className={classNames.fieldRow}>
           <label>{i18n.sourceDataField2}</label>
           <Dropdown
             value={data.fieldId2}
@@ -72,7 +74,7 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOption
             />
           </RadioPillRow>
           {getFieldsRow()}
-          <div className={styles.fieldRow}>
+          <div className={classNames.fieldRow}>
             <label>
               {i18n.domains}
               <Tooltip title={i18n.domainsDesc} arrow>
@@ -85,7 +87,7 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOption
               error={data.domains ? '' : coreI18n.requiredField}
             />
           </div>
-          <div className={styles.fieldRow}>
+          <div className={classNames.fieldRow}>
             <label>
               {i18n.domainSuffixes}
               <Tooltip title={i18n.domainSuffixDesc} arrow>
@@ -146,7 +148,7 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOpti
   }, [nameRows]);
 
   return (
-    <div className={styles.buttonLabel}>
+    <div className={classNames.buttonLabel}>
       <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
       </Button>

@@ -1,6 +1,5 @@
 import { CountryType } from '~types/countries';
-import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
-import { countryList } from '../../../../_plugins';
+import { countryList, DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
 import { CountryState } from './Country.state';
 import fullCountryList from './fullCountryList';
 

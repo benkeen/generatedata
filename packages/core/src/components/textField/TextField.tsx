@@ -27,6 +27,7 @@ type TextFieldProps = {
   autoComplete?: string;
   min?: number | string;
   max?: number | string;
+  step?: number | string;
 };
 
 export const TextField = ({ throttle, error, value, onChange, tooltipPlacement, className, ref, ...props }: TextFieldProps) => {

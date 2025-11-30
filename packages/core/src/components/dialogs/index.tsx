@@ -21,7 +21,7 @@ const dialogStyles = (theme: any): any => ({
   }
 });
 
-export const DialogTitle = withStyles(dialogStyles)((props: any): any => {
+export const DialogTitle = withStyles(dialogStyles)((props: any) => {
   const { children, classes, onClose, customCloseIcon, ...other } = props;
   const Close = customCloseIcon ? customCloseIcon : CloseIcon;
 

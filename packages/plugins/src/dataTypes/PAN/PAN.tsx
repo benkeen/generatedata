@@ -1,14 +1,13 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
+import { CreatablePillField, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
+import { cloneObj } from '@generatedata/utils/general';
+import { getI18nString } from '@generatedata/utils/lang';
+import { toSentenceCase } from '@generatedata/utils/string';
 import Button from '@mui/material/Button';
 import React, { useEffect, useState } from 'react';
-import CreatablePillField from '~components/creatablePillField/CreatablePillField';
-import { cloneObj } from '~utils/generalUtils';
-import { getI18nString } from '~utils/langUtils';
-import { toSentenceCase } from '~utils/stringUtils';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { creditCardFormats, CreditCardFormatType, CreditCardType, creditCardTypes } from './formats';
-import styles from './PAN.scss';
 import { GenerationOptionsType, PanState } from './PAN.state';
+import { useClasses } from './PAN.styles';
 
 export const getCreditCardOptions = (formats: string[], i18n: any): DropdownOption[] =>
   formats.map((format) => ({
@@ -75,6 +74,7 @@ const validFormat = (cardType: CreditCardType, format: string, allFormats: Credi
 const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCardFormats, coreI18n, i18n }: any) => {
   const [selectedCard, setSelectedCard] = useState<CreditCardType | null>(null);
   const [formatError, setFormatError] = useState('');
+  const classNames = useClasses();
 
   useEffect(() => {
     if (data.cardTypes.indexOf(selectedCard) === -1) {
@@ -114,19 +114,19 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCard
       validLengths.map((length, index) => `<b key=${index}>${length}</b>`).join(', ')
     ]);
 
-    return <div className={styles.validLengthsTip} dangerouslySetInnerHTML={{ __html: text }} />;
+    return <div className={classNames.validLengthsTip} dangerouslySetInnerHTML={{ __html: text }} />;
   };
 
   const getFormatError = (): JSX.Element | null => {
     if (!formatError) {
       return null;
     }
-    return <div className={styles.error}>{formatError}</div>;
+    return <div className={classNames.error}>{formatError}</div>;
   };
 
   const getFormatsSection = () => {
     if (!data.cardTypes.length) {
-      return <div className={styles.noCreditCards}>{i18n.noCreditCards}</div>;
+      return <div className={classNames.noCreditCards}>{i18n.noCreditCards}</div>;
     }
 
     return (
@@ -188,6 +188,7 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCard
 export const Options = ({ data, i18n, coreI18n, onUpdate }: DTOptionsProps): React.ReactNode => {
   const [dialogVisible, setDialogVisibility] = React.useState(false);
   const numSelected = data.cardTypes.length;
+  const classNames = useClasses();
 
   const onUpdateSelectedCards = (cardTypes: CreditCardType[]): void => {
     const cardFormats: CreditCardFormatType = {};
@@ -222,7 +223,7 @@ export const Options = ({ data, i18n, coreI18n, onUpdate }: DTOptionsProps): Rea
   const label = `<b>${numSelected}</b> ` + (numSelected === 1 ? i18n.creditCard : i18n.creditCards);
 
   return (
-    <div className={styles.buttonLabel}>
+    <div className={classNames.buttonLabel}>
       <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
       </Button>

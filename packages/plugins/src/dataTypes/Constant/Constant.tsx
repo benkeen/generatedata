@@ -1,10 +1,8 @@
-import { TextField } from '@generatedata/core';
+import { CreatablePillField, TextField, useSharedClasses } from '@generatedata/core';
 import { isBoolean } from '@generatedata/utils/general';
 import { isNumeric } from '@generatedata/utils/number';
-import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '../../';
-import sharedStyles from '../../../styles/shared.scss';
-import styles from './Constant.scss';
+import { useClasses } from './Constant.styles';
 
 export type GenerationOptionsType = {
   loopCount: number;
@@ -21,9 +19,13 @@ export const initialState: ConstantState = {
   values: ['1', '2']
 };
 
-export const Example = ({ coreI18n }: DTExampleProps) => <div className={sharedStyles.emptyCol}>{coreI18n.seeHelpDialog}</div>;
+export const Example = ({ coreI18n }: DTExampleProps) => {
+  const classNames = useSharedClasses();
+  return <div className={classNames.emptyCol}>{coreI18n.seeHelpDialog}</div>;
+};
 
 export const Options = ({ i18n, coreI18n, data, onUpdate }: DTOptionsProps) => {
+  const classNames = useClasses();
   const onChange = (field: string, value: string): void => {
     onUpdate({
       ...data,
@@ -35,7 +37,7 @@ export const Options = ({ i18n, coreI18n, data, onUpdate }: DTOptionsProps) => {
   const valuesError = data.values.length ? '' : coreI18n.requiredField;
 
   return (
-    <div className={styles.options}>
+    <div className={classNames.options}>
       <div style={{ marginBottom: 2 }}>
         <label>{i18n.loopCount}</label>
         <TextField
@@ -46,7 +48,7 @@ export const Options = ({ i18n, coreI18n, data, onUpdate }: DTOptionsProps) => {
           onChange={(e: any): void => onChange('loopCount', e.target.value)}
         />
       </div>
-      <div className={styles.values}>
+      <div className={classNames.values}>
         <label>{i18n.values}</label>
         <CreatablePillField
           error={valuesError}

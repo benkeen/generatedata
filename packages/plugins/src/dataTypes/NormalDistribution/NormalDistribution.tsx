@@ -1,7 +1,8 @@
 import { DTMetadata, DTOptionsProps } from '../../';
-import styles from './NormalDistribution.scss';
+import { useClasses } from './NormalDistribution.styles';
 
 export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps) => {
+  const classNames = useClasses();
   const onChange = (field: string, value: string): void => {
     onUpdate({
       ...data,
@@ -10,7 +11,7 @@ export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps) => {
   };
 
   return (
-    <div className={styles.options}>
+    <div className={classNames.options}>
       <label htmlFor={`${id}-mean`}>{i18n.mean}</label>
       <input
         type="number"

@@ -16,8 +16,8 @@ import mainReducer, { initialState as initialMainState } from '~store/main/main.
 import packetsReducer, { initialState as initialPacketState } from '~store/packets/packets.reducer';
 import { ETSettings } from '~types/exportTypes';
 
+import i18n from '@generatedata/i18n';
 import jsonI18n from '@generatedata/plugins/dist/exportTypes/JSON/i18n/en.json';
-import i18n from '../src/i18n/en.json';
 
 export const rootReducer = combineReducers({
   generator: generatorReducer,
