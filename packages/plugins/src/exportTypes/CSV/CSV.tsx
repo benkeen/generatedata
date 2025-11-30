@@ -1,7 +1,7 @@
 import { Dropdown, TextField, useETStyles, type DropdownOption } from '@generatedata/core';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
-import styles from './CSV.scss';
 import { CSVSettings } from './CSV.state';
+import { useClasses } from './CSV.styles';
 
 const options = [
   { value: 'Windows', label: 'Windows' },
@@ -10,7 +10,8 @@ const options = [
 ];
 
 export const Settings = ({ i18n, id, data, onUpdate }: ETSettings) => {
-  const classNames = useETStyles();
+  const etClassNames = useETStyles();
+  const classNames = useClasses();
 
   const onChange = (prop: string, value: string): void => {
     onUpdate({
@@ -20,7 +21,7 @@ export const Settings = ({ i18n, id, data, onUpdate }: ETSettings) => {
   };
 
   return (
-    <div className={`${classNames.settingRow} ${styles.settings}`}>
+    <div className={`${etClassNames.settingRow} ${classNames.settings}`}>
       <div>
         <label htmlFor={`${id}-delimiter`}>{i18n.delimiterChars}</label>
         <TextField

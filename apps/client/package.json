@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "grunt && npm run webpackProd",
-    "clean": "npx rimraf client/dist",
+    "clean": "npx rimraf dist node_modules .turbo",
     "coverage": "npx jest --coverage",
     "i18n": "grunt && grunt i18n",
     "start": "grunt dev & npm run build & npm run webpackDev",

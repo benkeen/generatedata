@@ -1,17 +1,16 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Delete from '@mui/icons-material/Delete';
-import CheckBox from '@mui/icons-material/CheckBox';
-import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank';
-import SwapHoriz from '@mui/icons-material/SwapHoriz';
-import SwapVert from '@mui/icons-material/SwapVert';
-import CodeIcon from '@mui/icons-material/Code';
-import { toSentenceCase } from '@generatedata/utils/string';
 import { Tooltip } from '@generatedata/core';
 import { GeneratorLayout } from '@generatedata/types';
+import { toSentenceCase } from '@generatedata/utils/string';
+import CheckBox from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank';
+import CodeIcon from '@mui/icons-material/Code';
+import Delete from '@mui/icons-material/Delete';
+import SwapHoriz from '@mui/icons-material/SwapHoriz';
+import SwapVert from '@mui/icons-material/SwapVert';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import FeatureToggles from '~core/featureToggles';
-import * as styles from './PanelControls.scss';
+import { useClasses } from './PanelControls.styles';
 
 export type PanelControlsProps = {
   className: string;
@@ -38,6 +37,7 @@ export const PanelControls = ({
   showDataTemplateDialog,
   i18n
 }: PanelControlsProps) => {
+  const classNames = useClasses();
   const toggleLayoutEnabled = isGridVisible && isPreviewVisible;
   const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
   const PreviewIcon = isPreviewVisible ? CheckBox : CheckBoxOutlineBlank;
@@ -45,12 +45,12 @@ export const PanelControls = ({
 
   let gridBtnClasses = '';
   if (isGridVisible) {
-    gridBtnClasses += ` ${styles.btnSelected}`;
+    gridBtnClasses += ` ${classNames.btnSelected}`;
   }
 
   let previewBtnClasses = '';
   if (isPreviewVisible) {
-    previewBtnClasses += ` ${styles.btnSelected}`;
+    previewBtnClasses += ` ${classNames.btnSelected}`;
   }
 
   // Material UI throws an error when it comes to having a tooltip on a disabled button, and within a ButtonGroup
@@ -76,7 +76,7 @@ export const PanelControls = ({
       <Button
         onClick={toggleLayout}
         disabled={!toggleLayoutEnabled}
-        className={`${styles.toggleLayoutBtn} ${styles.toggleLayoutBtnDisabled}`}
+        className={`${classNames.toggleLayoutBtn} ${classNames.toggleLayoutBtnDisabled}`}
       >
         <ToggleDirectionIcon />
       </Button>
@@ -89,7 +89,7 @@ export const PanelControls = ({
     }
 
     return (
-      <ButtonGroup aria-label="" size="small" className={`${className} ${styles.dataTemplateControls}`}>
+      <ButtonGroup aria-label="" size="small" className={`${className} ${classNames.dataTemplateControls}`}>
         <Tooltip title={<span dangerouslySetInnerHTML={{ __html: 'Export / import template' }} />} placement="bottom" arrow>
           <Button onClick={showDataTemplateDialog} startIcon={<CodeIcon />} />
         </Tooltip>
@@ -99,7 +99,7 @@ export const PanelControls = ({
 
   return (
     <>
-      <ButtonGroup aria-label="" size="small" className={`${className} ${styles.builderControls}`}>
+      <ButtonGroup aria-label="" size="small" className={`${className} ${classNames.builderControls}`}>
         <Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowGrid }} />} arrow>
           <Button className={gridBtnClasses} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>
             {i18n.grid}

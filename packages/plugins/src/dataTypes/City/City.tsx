@@ -12,8 +12,8 @@ import { getI18nString } from '@generatedata/utils/lang';
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { countryList, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import styles from './City.scss';
 import { RegionSource, RegionSourceEnum } from './City.state';
+import { useClasses } from './City.styles';
 
 const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, regionRows }: any) => {
   const regionPluginRows = regionRows.map(({ index, id, title }: any) => ({
@@ -127,6 +127,7 @@ const CityDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, o
 export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regionRows }: DTOptionsProps) => {
   const [dialogVisible, setDialogVisibility] = React.useState(false);
   const numSelected = data.selectedCountries.length;
+  const classNames = useClasses();
 
   let label = '';
   if (data.source === RegionSourceEnum.any) {
@@ -144,7 +145,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regio
   }
 
   return (
-    <div className={styles.buttonLabel}>
+    <div className={classNames.buttonLabel}>
       <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
       </Button>

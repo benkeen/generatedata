@@ -2,8 +2,8 @@
   "name": "@generatedata/utils",
   "description": "Utility methods and code",
   "scripts": {
-    "clean": "",
-    "build": "tsc"
+    "build": "tsc",
+    "clean": "npx rimraf node_modules dist .turbo"
   },
   "dependencies": {
     "@mui/material": "^7.3.5",
@@ -23,6 +23,7 @@
     "@types/node": "^20.19.11",
     "@types/sinon": "^7.5.1",
     "jest": "^30.2.0",
+    "rimraf": "^6.0.1",
     "sinon": "^21.0.0",
     "typescript": "^5.9.3"
   },

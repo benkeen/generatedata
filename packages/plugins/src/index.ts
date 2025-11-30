@@ -185,6 +185,7 @@ export type GenerationTemplateRow = {
   colIndex: number;
 };
 
+// types?
 export type GenerationTemplate = {
   [processOrder: number]: GenerationTemplateRow[];
 };

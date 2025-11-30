@@ -2,8 +2,8 @@ import { CheckboxPill, Dialog, DialogActions, DialogContent, DialogTitle, Dropdo
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTExampleProps, DTMetadata, DTOptionsProps } from '../../';
-import styles from './URLs.scss';
 import { GenerationOptionsType, initialState, URLsState } from './URLs.state';
+import { useClasses } from './URLs.styles';
 
 export const Example = ({ data, onUpdate }: DTExampleProps) => {
   const onChange = (value: any): void => {
@@ -33,6 +33,8 @@ export const Example = ({ data, onUpdate }: DTExampleProps) => {
 };
 
 const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: any) => {
+  const classNames = useClasses();
+
   return (
     <Dialog onClose={onClose} open={visible}>
       <div style={{ width: 500 }}>
@@ -42,18 +44,18 @@ const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
 
           <h3>{coreI18n.options}</h3>
 
-          <blockquote className={styles.optionsView}>
+          <blockquote className={classNames.optionsView}>
             <pre>
-              <span className={data.protocolEnabled ? styles.enabledSection : styles.disabledSection}>protocol://</span>
-              <span className={data.hostnameEnabled ? styles.enabledSection : styles.disabledSection}>hostname</span>
-              <span className={data.pathEnabled ? styles.enabledSection : styles.disabledSection}>/path</span>
-              <span className={data.queryParamsEnabled ? styles.enabledSection : styles.disabledSection}>?queryparams</span>
+              <span className={data.protocolEnabled ? classNames.enabledSection : classNames.disabledSection}>protocol://</span>
+              <span className={data.hostnameEnabled ? classNames.enabledSection : classNames.disabledSection}>hostname</span>
+              <span className={data.pathEnabled ? classNames.enabledSection : classNames.disabledSection}>/path</span>
+              <span className={data.queryParamsEnabled ? classNames.enabledSection : classNames.disabledSection}>?queryparams</span>
             </pre>
           </blockquote>
 
           <div>
-            <div className={styles.settingsRow}>
-              <div className={styles.firstCol}>
+            <div className={classNames.settingsRow}>
+              <div className={classNames.firstCol}>
                 <CheckboxPill
                   label={i18n.protocol}
                   onClick={(): void => onUpdate({ ...data, protocolEnabled: !data.protocolEnabled })}
@@ -61,7 +63,7 @@ const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                   checked={data.protocolEnabled}
                 />
               </div>
-              <div className={styles.secondCol}>
+              <div className={classNames.secondCol}>
                 <input
                   type="text"
                   value={data.protocolOptions}
@@ -70,8 +72,8 @@ const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                 />
               </div>
             </div>
-            <div className={styles.settingsRow}>
-              <div className={styles.firstCol}>
+            <div className={classNames.settingsRow}>
+              <div className={classNames.firstCol}>
                 <CheckboxPill
                   label={i18n.hostname}
                   onClick={(): void => onUpdate({ ...data, hostnameEnabled: !data.hostnameEnabled })}
@@ -79,7 +81,7 @@ const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                   checked={data.hostnameEnabled}
                 />
               </div>
-              <div className={styles.secondCol}>
+              <div className={classNames.secondCol}>
                 <input
                   type="text"
                   value={data.hostnameOptions}
@@ -88,8 +90,8 @@ const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                 />
               </div>
             </div>
-            <div className={styles.settingsRow}>
-              <div className={styles.firstCol}>
+            <div className={classNames.settingsRow}>
+              <div className={classNames.firstCol}>
                 <CheckboxPill
                   label={i18n.path}
                   onClick={(): void => onUpdate({ ...data, pathEnabled: !data.pathEnabled })}
@@ -97,7 +99,7 @@ const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                   checked={data.pathEnabled}
                 />
               </div>
-              <div className={styles.secondCol}>
+              <div className={classNames.secondCol}>
                 <input
                   type="text"
                   value={data.pathOptions}
@@ -106,8 +108,8 @@ const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                 />
               </div>
             </div>
-            <div className={styles.settingsRow}>
-              <div className={styles.firstCol}>
+            <div className={classNames.settingsRow}>
+              <div className={classNames.firstCol}>
                 <CheckboxPill
                   label={i18n.queryParams}
                   onClick={(): void => onUpdate({ ...data, queryParamsEnabled: !data.queryParamsEnabled })}
@@ -115,7 +117,7 @@ const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                   checked={data.queryParamsEnabled}
                 />
               </div>
-              <div className={styles.secondCol}>
+              <div className={classNames.secondCol}>
                 <input
                   type="text"
                   value={data.queryParamsOptions}
@@ -138,6 +140,7 @@ const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
 
 export const Options = ({ i18n, id, coreI18n, data, onUpdate }: DTOptionsProps) => {
   const [visible, setDialogVisibility] = React.useState(false);
+  const classNames = useClasses();
 
   return (
     <>
@@ -146,7 +149,7 @@ export const Options = ({ i18n, id, coreI18n, data, onUpdate }: DTOptionsProps) 
         variant="outlined"
         color="primary"
         size="small"
-        className={styles.buttonLabel}
+        className={classNames.buttonLabel}
       >
         {coreI18n.options}
       </Button>

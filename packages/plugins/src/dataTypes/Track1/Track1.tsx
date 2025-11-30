@@ -11,7 +11,7 @@ import {
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import styles from './Track1.scss';
+import { useClasses } from './Track1.styles';
 
 const Track1Dialog = ({
   visible,
@@ -127,6 +127,7 @@ const Track1Dialog = ({
 
 export const Options = ({ i18n, coreI18n, countryI18n, panRows, nameRows, id, data, onUpdate }: DTOptionsProps) => {
   const [dialogVisible, setDialogVisibility] = React.useState(false);
+  const classNames = useClasses();
 
   const onUpdateSource = (prop: string, value: any): void => {
     const newValues = {
@@ -158,7 +159,7 @@ export const Options = ({ i18n, coreI18n, countryI18n, panRows, nameRows, id, da
   }
 
   return (
-    <div className={styles.buttonLabel}>
+    <div className={classNames.buttonLabel}>
       <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
       </Button>

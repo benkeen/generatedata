@@ -3,7 +3,11 @@
   "description": "Shared types for the suite of @generatedata packages",
   "version": "1.0.0",
   "module": "./index.d.ts",
+  "scripts": {
+    "clean": "npx rimraf node_modules .turbo"
+  },
   "devDependencies": {
-    "@generatedata/config": "workspace:*"
+    "@generatedata/config": "workspace:*",
+    "rimraf": "^6.0.1"
   }
 }

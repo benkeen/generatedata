@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "clean": "npx rimraf node_modules dist .turbo"
   },
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
@@ -32,7 +33,8 @@
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^19.1.11",
     "jest": "^30.2.0",
-    "jest-cli": "^30.2.0"
+    "jest-cli": "^30.2.0",
+    "rimraf": "^6.0.1"
   },
   "exports": {
     ".": {

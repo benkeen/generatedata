@@ -1,5 +1,4 @@
-import React from 'react';
-import { PrimaryButton, NullButton } from '@generatedata/core';
+import { NullButton, PrimaryButton } from '@generatedata/core';
 import { getStrings } from '@generatedata/utils/lang';
 
 export const TourCompleteStep = ({ close }: any) => {

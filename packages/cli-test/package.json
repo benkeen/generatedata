@@ -1,6 +1,9 @@
 {
   "name": "@generatedata/cli-test",
   "description": "Private package to test consumption and execution of the published @generatedata/cli package",
+  "scripts": {
+    "clean": "npx rimraf node_modules dist .turbo"
+  },
   "private": true,
   "dependencies": {}
 }

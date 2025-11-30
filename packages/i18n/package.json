@@ -2,6 +2,9 @@
   "name": "@generatedata/i18n",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "clean": "npx rimraf .turbo"
+  },
   "exports": {
     ".": "./locales/en.json",
     "./ar": "./locales/ar.json",
@@ -16,5 +19,8 @@
     "./ru": "./locales/ru.json",
     "./ta": "./locales/ta.json",
     "./zh": "./locales/zh.json"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
   }
 }

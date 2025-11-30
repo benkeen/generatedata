@@ -14,8 +14,8 @@ import Slider from '@mui/material/Slider';
 import rc from 'randomcolor';
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import styles from './Colour.scss';
 import { ColourFormatEnum, ColourState, GenerationOptionsType, LuminosityTypeEnum } from './Colour.state';
+import { useClasses } from './Colour.styles';
 
 const getModalOptions = ({ i18n }: any): DropdownOption[] => [
   { value: 'any', label: i18n.anyColour },
@@ -43,6 +43,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps) => {
 const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: any) => {
   const [randomDemoColours, setRandomDemoColours] = React.useState<string[]>([]);
   const [counter, setCounter] = React.useState(0);
+  const classNames = useClasses();
 
   React.useEffect(() => {
     setRandomDemoColours(
@@ -68,10 +69,10 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
       <div style={{ width: 500 }}>
         <DialogTitle onClose={onClose}>{i18n.configureColours}</DialogTitle>
         <DialogContent dividers>
-          <table className={styles.settings}>
+          <table className={classNames.settings}>
             <tbody>
               <tr>
-                <td className={styles.labelCol}>{i18n.colour}</td>
+                <td className={classNames.labelCol}>{i18n.colour}</td>
                 <td>
                   <Dropdown
                     value={data.value}
@@ -81,7 +82,7 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
                 </td>
               </tr>
               <tr>
-                <td className={styles.labelCol}>{i18n.luminosity}</td>
+                <td className={classNames.labelCol}>{i18n.luminosity}</td>
                 <td>
                   <RadioPillRow>
                     <RadioPill
@@ -115,7 +116,7 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
                 </td>
               </tr>
               <tr>
-                <td className={styles.labelCol}>{i18n.format}</td>
+                <td className={classNames.labelCol}>{i18n.format}</td>
                 <td>
                   <RadioPillRow>
                     <RadioPill
@@ -142,7 +143,7 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
                 </td>
               </tr>
               <tr>
-                <td className={styles.labelCol}>{i18n.alpha}</td>
+                <td className={classNames.labelCol}>{i18n.alpha}</td>
                 <td>
                   <Slider
                     value={data.alpha}
@@ -158,7 +159,7 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
             </tbody>
           </table>
 
-          <ul className={styles.demoColours}>
+          <ul className={classNames.demoColours}>
             {randomDemoColours.map((colour: string, index: number) => (
               <li key={`${colour}-${index}`}>
                 <Tooltip title={colour}>
@@ -183,6 +184,7 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
 
 export const Options = ({ id, i18n, coreI18n, data, onUpdate }: DTOptionsProps) => {
   const [dialogVisible, setDialogVisibility] = React.useState(false);
+  const classNames = useClasses();
 
   const options = getModalOptions({ i18n });
   let buttonLabel = '';
@@ -194,7 +196,7 @@ export const Options = ({ id, i18n, coreI18n, data, onUpdate }: DTOptionsProps) 
   });
 
   return (
-    <div className={styles.buttonLabel}>
+    <div className={classNames.buttonLabel}>
       <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
         <span dangerouslySetInnerHTML={{ __html: buttonLabel }} />
       </Button>
