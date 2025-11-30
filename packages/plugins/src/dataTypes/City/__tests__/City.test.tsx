@@ -1,9 +1,7 @@
-import React from 'react';
+import i18n from '@generatedata/i18n';
 import { render } from '@testing-library/react';
 import { Help, Options } from '../City';
 import { initialState } from '../City.state';
-
-const i18n = require('../i18n/en.json');
 
 const helpProps = {
 	coreI18n: {},

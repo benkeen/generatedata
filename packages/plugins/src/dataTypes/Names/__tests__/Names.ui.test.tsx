@@ -1,7 +1,6 @@
-import React from 'react'
+import i18n from '@generatedata/i18n';
 import { render } from '@testing-library/react';
 import { Help } from '../Names';
-const i18n = require('../i18n/en.json');
 
 const defaultProps = {
 	coreI18n: {},

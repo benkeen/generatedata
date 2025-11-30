@@ -3,7 +3,7 @@ import { defaultETSettings } from '../../../tests/testHelpers';
 import { Settings } from '../HTML';
 import { initialState } from '../HTML.state';
 
-const i18n = require('../i18n/en.json');
+import i18n from '@generatedata/i18n';
 
 describe('Settings', () => {
   it('renders', () => {

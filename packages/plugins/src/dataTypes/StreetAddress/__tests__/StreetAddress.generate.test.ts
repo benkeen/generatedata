@@ -1,8 +1,8 @@
+import i18n from '@generatedata/i18n';
 import * as sinon from 'sinon';
 import { DTGenerationData } from '../../../';
 import utils from '../../../workerUtils';
 import { generate } from '../StreetAddress.generate';
-const i18n = require('../i18n/en.json');
 
 describe('generate', () => {
   let data: DTGenerationData = {

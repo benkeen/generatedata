@@ -1,10 +1,9 @@
+import i18n from '@generatedata/i18n';
 import sinon from 'sinon';
 import { getBlankDTGeneratorPayload } from '../../../tests/testHelpers';
 import utils from '../../../workerUtils';
 import { initialState } from '../Alphanumeric.state';
 import { onmessage } from '../Alphanumeric.worker';
-
-const i18n = require('../i18n/en.json');
 
 describe('onmessage', () => {
   const postMessage = jest.fn();

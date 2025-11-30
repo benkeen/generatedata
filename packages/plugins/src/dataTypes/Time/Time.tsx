@@ -124,7 +124,7 @@ const Copy = ({ content, tooltip, message }: any) => {
   );
 };
 
-const generateRows = (letters: string[], i18n: any, coreI18n: any): JSX.Element[] => {
+const generateRows = (letters: string[], i18n: any, coreI18n: any) => {
   const sharedClasses = useSharedClasses();
   const classNames = useClasses();
 

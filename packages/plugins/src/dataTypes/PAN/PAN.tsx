@@ -101,7 +101,7 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCard
     setSelectedCard(creditCard);
   };
 
-  const getFormatDesc = (creditCard: CreditCardType | null): JSX.Element | null => {
+  const getFormatDesc = (creditCard: CreditCardType | null) => {
     if (!creditCard) {
       return null;
     }
@@ -117,7 +117,7 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCard
     return <div className={classNames.validLengthsTip} dangerouslySetInnerHTML={{ __html: text }} />;
   };
 
-  const getFormatError = (): JSX.Element | null => {
+  const getFormatError = () => {
     if (!formatError) {
       return null;
     }

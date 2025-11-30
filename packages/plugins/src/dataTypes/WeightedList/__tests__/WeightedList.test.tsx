@@ -1,8 +1,7 @@
-import React from 'react'
+import i18n from '@generatedata/i18n';
 import { render } from '@testing-library/react';
-import { getWeightedListItems, WeightedListItem } from '../WeightedList.state';
 import { Help, Options } from '../WeightedList';
-const i18n = require('../i18n/en.json');
+import { getWeightedListItems, WeightedListItem } from '../WeightedList.state';
 
 const defaultProps = {
 	data: {

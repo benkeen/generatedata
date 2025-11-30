@@ -1,9 +1,9 @@
+import i18n from '@generatedata/i18n';
 import langUtils from '@generatedata/utils/lang';
 import { fireEvent, render } from '@testing-library/react';
 import sinon from 'sinon';
 import { Example, Help, Options } from '../Alphanumeric';
 import { initialState } from '../Alphanumeric.state';
-const i18n = require('../i18n/en.json');
 
 const defaultProps = {
   coreI18n: {},

@@ -20,6 +20,7 @@
     "@generatedata/types": "workspace:*",
     "@testing-library/react": "^10.4.7",
     "@types/jest": "^30.0.0",
+    "@types/node": "^20.19.11",
     "@types/sinon": "^7.5.1",
     "jest": "^30.2.0",
     "sinon": "^21.0.0",
