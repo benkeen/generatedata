@@ -4,6 +4,7 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "moduleResolution": "bundler",
+    "preserveSymlinks": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
     "noImplicitThis": true,

@@ -1,15 +1,14 @@
 import { DTBundle } from '../../';
-import { Help, Options, getMetadata, rowStateReducer } from './Email';
+import { Help, Options, getMetadata } from './Email';
 import { initialState } from './Email.state';
-import { customProps } from './Email.store';
+import { getStoreIntegrations } from './Email.store';
 
 const bundle: DTBundle = {
   initialState,
   Help,
   Options,
   getMetadata,
-  customProps,
-  rowStateReducer
+  getStoreIntegrations
 };
 
 export default bundle;

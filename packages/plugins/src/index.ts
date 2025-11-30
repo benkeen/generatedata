@@ -203,7 +203,7 @@ export type DTBundle = {
 
   rowStateReducer?: (state: any) => any;
   getMetadata?: (data: any) => DTMetadata;
-  getStoreIntegrations: (
+  getStoreIntegrations?: (
     selectors: any,
     actions: any
   ) => {

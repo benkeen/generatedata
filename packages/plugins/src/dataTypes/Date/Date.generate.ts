@@ -1,5 +1,5 @@
+import { isValidDateFormat } from '@generatedata/utils/date';
 import { format, fromUnixTime } from 'date-fns';
-import { isValidDateFormat } from '~utils/dateUtils';
 import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {

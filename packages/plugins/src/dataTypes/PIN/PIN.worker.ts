@@ -1,4 +1,4 @@
-import { DTWorkerOnMessage } from '~types/dataTypes';
+import { DTWorkerOnMessage } from '../../';
 import utils from '../../workerUtils';
 import { generate } from './PIN.generate';
 

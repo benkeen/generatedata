@@ -1,11 +1,16 @@
 import { createSelector } from 'reselect';
-import { getSortedRowsArray } from '~store/generator/generator.selectors';
 import { DTCustomProps } from '../../';
 
-const getNameRows = createSelector(getSortedRowsArray, (rows) =>
-  rows.map((row, index) => ({ ...row, index })).filter(({ dataType }) => dataType === 'Names')
-);
-
-export const customProps: DTCustomProps = {
-  nameRows: getNameRows
+const getNameRows = (selectors: any) => {
+  return createSelector(selectors.getSortedRowsArray, (rows) =>
+    rows.map((row: any, index: number) => ({ ...row, index })).filter(({ dataType }: any) => dataType === 'Names')
+  );
 };
+
+const getCustomProps = (selectors: any): DTCustomProps => ({
+  nameRows: getNameRows(selectors)
+});
+
+export const getStoreIntegrations = (selectors: any) => ({
+  customProps: getCustomProps(selectors)
+});

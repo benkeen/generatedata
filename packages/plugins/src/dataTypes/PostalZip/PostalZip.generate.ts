@@ -1,12 +1,12 @@
 import { CountryDataType, Region } from '@generatedata/types';
-import { CountryType, DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
+import { CountryType, DTGenerateResult, DTGenerationData, WorkerUtils, getCountryList } from '../../';
 import utils from '../../workerUtils';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
   const { rowState, countryData, existingRowData } = data;
   const { source, selectedCountries } = rowState;
 
-  const countryList = utils.countryUtils.getCountryList();
+  const countryList = getCountryList();
   let country: CountryType;
   let regionRow: any;
 
@@ -53,7 +53,6 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 
 const getRegionPostalCode = (countryData: CountryDataType, region: Region): string => {
   let placeholders: any = {};
-
   let format: string = countryData.extendedData.zipFormat.format;
 
   if (countryData.extendedData.zipFormat.replacements) {
