@@ -106,7 +106,6 @@ export const useClasses = makeStyles({
   optionsCol: {
     flex: 3
   },
-
   deleteCol: {
     flex: '0 0 30px',
     cursor: 'pointer',
@@ -129,12 +128,10 @@ export const useClasses = makeStyles({
       transition: 'fill 0.5s ease-in-out'
     }
   },
-
   // div.settingsIconCol svg.disabledBtn {
   //   fill: #eeeeee,
   //   cursor: default,
   // }
-
   // deleteCol: { // div.deleteCol
   //   marginRight: 0,
   //   ':hover': {
@@ -143,18 +140,15 @@ export const useClasses = makeStyles({
   //     }
   //   }
   // }
-
   // div.settingsIconCol: {
   //   display: 'none'
   // }
   disabledBtn: {
     fill: '#eeeeee'
   },
-
   smallScreenSpinner: {
     marginTop: '-2px !important'
   },
-
   gridOverlay: {
     flex: 1,
     height: '100%',

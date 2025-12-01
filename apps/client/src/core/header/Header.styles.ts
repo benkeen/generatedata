@@ -6,7 +6,13 @@ export const useClasses = makeStyles({
     backgroundImage: 'url("./images/bg.png")',
     padding: '0 10px',
     height: '60px',
-    display: 'flex'
+    display: 'flex',
+    '& img': {
+      userSelect: 'none'
+    },
+    '& section': {
+      float: 'right'
+    }
   },
 
   generatorControls: {
@@ -26,11 +32,11 @@ export const useClasses = makeStyles({
     left: '55px',
     top: '17px',
     transition: 'opacity 200ms ease-in-out',
-    userSelect: 'none'
+    userSelect: 'none',
 
-    // img {
-    // 	width: 200px;
-    // }
+    '& img': {
+      width: '200px'
+    }
   },
 
   visible: {
@@ -39,46 +45,59 @@ export const useClasses = makeStyles({
 
   headerLinks: {
     marginRight: '20px',
-    animation: 'fadein 1s'
+    animation: 'fadein 1s',
+    '& li': {
+      color: '#2e3d4e',
+      cursor: 'pointer',
+      fontSize: '13px',
+      transition: 'color 0.1s ease-in-out',
+      textDecoration: 'none',
 
-    // li, a {
-    // 	color: #2e3d4e;
-    // 	cursor: pointer;
-    // 	font-size: 13px;
-    // 	transition: color 0.1s ease-in-out;
-    // 	text-decoration: none;
+      '& a:hover': {
+        color: vars.primaryColor,
+        textDecoration: 'none'
+      },
+      '&:hover': {
+        color: vars.primaryColor,
+        textDecoration: 'none'
+      }
+    },
+    '& a': {
+      color: '#2e3d4e',
+      cursor: 'pointer',
+      fontSize: '13px',
+      transition: 'color 0.1s ease-in-out',
+      textDecoration: 'none',
 
-    // 	a:hover,
-    // 	&:hover {
-    // 		color: c.$primary-color;
-    // 		text-decoration: none;
-    // 	}
-    // }
+      '& a:hover': {
+        color: vars.primaryColor,
+        textDecoration: 'none'
+      },
+      '&:hover': {
+        color: vars.primaryColor,
+        textDecoration: 'none'
+      }
+    }
   },
-
   userAccount: {
     display: 'flex',
-    alignItems: 'center'
-
-    // img {
-    // 	width: 24,
-    // 	height: 24px,
-    // 	borderRadius: 12px,
-    // 	marginRight: 6px
-    // }
+    alignItems: 'center',
+    '& img': {
+      width: '24px',
+      height: '24px',
+      borderRadius: '12px',
+      marginRight: '6px'
+    }
   },
-
   controls: {
     flex: '1',
     zIndex: '1',
-
     '& input': {
       color: '#222222',
       backgroundColor: 'transparent',
       border: '1px solid transparent',
       transition: 'border 150ms ease-in-out',
       textOverflow: 'ellipsis',
-
       '&:hover': {
         border: '1px solid c.$primary-color',
         textOverflow: 'inherit'
@@ -90,7 +109,6 @@ export const useClasses = makeStyles({
       }
     }
   },
-
   title: {
     '& h5': {
       display: 'flex',
@@ -98,7 +116,6 @@ export const useClasses = makeStyles({
       maxWidth: 'calc(100% - 40px)'
     }
   },
-
   flags: {
     backgroundImage: 'url("./images/flags.png")',
     backgroundRepeat: 'no-repeat',
@@ -121,38 +138,31 @@ export const useClasses = makeStyles({
       fontWeight: 'bold'
     }
   },
-
   selected: {
     '& a': {
       color: vars.primaryColor
     }
   },
-
   logoutLink: {
     marginRight: 0,
-
     '& button': {
       fontSize: '22px'
     }
   },
-
   divider: {
     color: '#c0c0c3',
     userSelect: 'none',
     cursor: 'inherit',
-
     ':hover': {
       color: '#c0c0c3'
     }
   },
-
   localeSelector: {
     marginRight: 0,
     '& button': {
       fontSize: '22px'
     }
   },
-
   headerInner: {
     position: 'relative',
     width: '100%',
@@ -162,7 +172,6 @@ export const useClasses = makeStyles({
     flexFirection: 'row',
     alignItems: 'center'
   },
-
   headerLogo: {
     flex: 0,
     display: 'flex',
@@ -170,44 +179,32 @@ export const useClasses = makeStyles({
     alignItems: 'center',
     margin: '4px 0',
     paddingRight: '10px'
+  },
+  nav: {
+    flex: '0 0 auto',
+    display: 'flex',
+    alignItems: 'center',
+
+    '& ul': {
+      display: 'flex',
+      alignItems: 'center',
+      listStyle: 'none',
+      fontSize: '14px',
+
+      '& li': {
+        display: 'inline-block',
+        margin: '0 10px',
+
+        '&.current a': {
+          color: '#000000'
+        }
+      }
+    }
+  },
+  '& a': {
+    textDecoration: 'none'
   }
 });
-
-// .header {
-// 	img {
-// 		user-select: none;
-// 	}
-
-// 	section {
-// 		float: right;
-// 	}
-
-// 	nav {
-// 		flex: 0 0 auto;
-// 		display: flex;
-// 		align-items: center;
-
-// 		ul {
-// 			display: flex;
-// 			align-items: center;
-// 			list-style: none;
-// 			font-size: 14px;
-
-// 			li {
-// 				display: inline-block;
-// 				margin: 0 10px;
-
-// 				&.current a {
-// 					color: #000000;
-// 				}
-// 			}
-// 		}
-// 	}
-
-// 	a {
-// 		text-decoration: none;
-// 	}
-// }
 
 // div ul {
 // 	li.logoutLink {

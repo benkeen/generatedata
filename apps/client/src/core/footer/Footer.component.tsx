@@ -126,7 +126,7 @@ const Footer = ({
         disabled={!actionButtonsEnabled}
       >
         <SaveIcon />
-        {i18n.save}
+        {i18n.save}!!
       </Button>
     );
   };

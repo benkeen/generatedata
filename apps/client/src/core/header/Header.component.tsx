@@ -1,19 +1,18 @@
-import React from 'react';
-import { useWindowSize } from 'react-hooks-window-size';
+import C from '@generatedata/config/constants';
+import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
+import React from 'react';
+import { useWindowSize } from 'react-hooks-window-size';
+import { AccountType } from '~types/account';
+import { getHeaderLinks, isGeneratorPage } from '~utils/routeUtils';
 import LoginDialog from '../dialogs/login/Login.container';
 import PasswordResetDialog from '../dialogs/passwordReset/PasswordReset.container';
 import GeneratorControls from './GeneratorControls.container';
-import C from '@generatedata/config/constants';
 import HeaderLinks, { MobileLinks } from './HeaderLinks.component';
-import { getHeaderLinks, getGeneratorPageRoute, isGeneratorPage } from '~utils/routeUtils';
-import { AccountType } from '~types/account';
 // import sharedStyles from '../../styles/shared.scss';
 import { GDLocale } from '~types/general';
 import { useClasses } from './Header.styles';
-import { useSharedClasses } from '@generatedata/core';
 
 export type HeaderProps = {
   locale: GDLocale;
@@ -118,7 +117,7 @@ const Header = ({
           <div className={generatorControlsClasses}>
             <GeneratorControls disabled={generatorControlsDisabled} />
           </div>
-          <nav>{getNav()}</nav>
+          <nav className={classNames.nav}>{getNav()}</nav>
         </div>
       </header>
       <LoginDialog />

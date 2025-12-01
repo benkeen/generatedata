@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc",
+    "watch": "tsc --watch",
     "clean": "npx rimraf node_modules dist .turbo"
   },
   "dependencies": {

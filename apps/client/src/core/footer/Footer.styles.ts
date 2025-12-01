@@ -1,5 +1,6 @@
 import { vars } from '@generatedata/core';
 import { makeStyles } from '@griffel/react';
+
 export const useClasses = makeStyles({
   showTourLink: {
     flex: '0 0 auto'
@@ -23,46 +24,41 @@ export const useClasses = makeStyles({
   visible: {
     opacity: 1
   },
-
   footer: {
     flex: '0 0 60px',
     backgroundImage: 'url("./images/bg.png")',
     padding: '16px 20px',
 
-    // 	& > div {
-    // 		display: flex;
-    // 		flex: 0 0 auto;
-    // 		margin: 0 auto;
-    // 		align-content: space-between;
-    // 		max-width: 1400px;
-    // 		height: 32px;
+    '& > div': {
+      display: 'flex',
+      flex: '0 0 auto',
+      margin: '0 auto',
+      alignContent: 'space-between',
+      maxWidth: '1400px',
+      height: '32px',
 
-    // 		& > ul {
-    // 			flex: 0 0 auto;
-    // 			display: flex;
-    // 			flex-direction: row;
-    // 			list-style: none;
-    // 			margin: 0;
-    // 			padding: 0;
-    // 			align-items: center;
+      '& > ul': {
+        flex: '0 0 auto',
+        display: 'flex',
+        flexDirection: 'row',
+        listStyle: 'none',
+        margin: 0,
+        padding: 0,
+        alignItems: 'center',
+        '& li': {
+          display: 'flex',
+          marginRight: '10px',
 
-    // 			li {
-    // 				display: flex;
-    // 				margin-right: 10px;
-
-    // 				&:hover {
-    // 					svg {
-    // 						fill: c.$primary-color;
-    // 					}
-    // 				}
-    // 			}
-
-    // 			svg {
-    // 				cursor: pointer;
-    // 				transition: fill 0.15s ease-in-out;
-    // 			}
-    // 		}
-    // 	}
+          '&:hover svg': {
+            fill: vars.primaryColor
+          }
+        },
+        '& svg': {
+          cursor: 'pointer',
+          transition: 'fill 0.15s ease-in-out'
+        }
+      }
+    },
 
     '& a:hover': {
       borderBottom: 0
@@ -102,6 +98,12 @@ export const useClasses = makeStyles({
   },
   saveButton: {
     fontSize: '13px',
+    backgroundColor: vars.primarySubmit,
+    color: 'white',
+    marginRight: '15px',
+    ':hover': {
+      backgroundColor: vars.primarySubmitHover
+    },
     '& svg': {
       fontSize: '15px',
       margin: '0 5px 0 -5px'
@@ -110,6 +112,12 @@ export const useClasses = makeStyles({
     //   border-color: #bbbbbb;
     // }
   },
+  saveButtonAs: {
+    // button.saveButtonAsMainBtn {
+    // 	border-color: #bde9fb;
+    // }
+  },
+
   saveButtonAsMainBtn: {
     fontSize: '13px',
     '& svg': {
@@ -122,11 +130,6 @@ export const useClasses = makeStyles({
   },
   aboutIconEl: {
     height: '24px'
-  },
-  saveButtonAs: {
-    // button.saveButtonAsMainBtn {
-    // 	border-color: #bde9fb;
-    // }
   },
   scriptVersion: {
     '& a': {
@@ -143,16 +146,6 @@ export const useClasses = makeStyles({
     // div.controls
     marginRight: '15px'
   },
-  // saveButton: {
-  //   // button.saveButton
-  //   backgroundColor: vars.primarySubmit,
-  //   color: 'white',
-  //   marginRight: '15px',
-
-  //   ':hover': {
-  //     backgroundColor: vars.primarySubmitHover
-  //   }
-  // },
   // div.saveButtonAs: {
   //   height: '32px',
   //   marginRight: '15px',

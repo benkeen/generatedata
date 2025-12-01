@@ -7,6 +7,7 @@
   "scripts": {
     "tsc": "tsc",
     "build": "run-s tsc copy-i18n-files",
+    "watch": "tsc --watch",
     "clean": "npx rimraf node_modules dist .turbo",
     "copy-i18n-files": "copyfiles -u 1 ./src/*/*/i18n/*.json dist"
   },
