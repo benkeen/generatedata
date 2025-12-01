@@ -6,29 +6,24 @@ export const useClasses = makeStyles({
     alignItems: 'center',
     overflow: 'hidden !important',
     padding: '10px 16px',
-
-    svg: {
+    '& svg': {
       color: 'orange',
       fontSize: '50px',
       marginRight: '10px'
     },
-
-    ul: {
+    '& ul': {
       margin: 0,
       padding: 0,
       listStyleType: 'none',
-
-      li: {
+      '& li': {
         display: 'flex',
         marginBottom: '4px'
       },
-
-      input: {
+      '& input': {
         marginRight: '5px'
       }
     }
   },
-
   dataSetName: {
     fontSize: '18px',
     marginTop: '5px',

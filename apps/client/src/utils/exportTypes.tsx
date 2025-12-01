@@ -48,55 +48,54 @@ export const DefaultSettings = ({ coreI18n }: ETSettings) => <div>{coreI18n.noAd
 
 // TODO error scenarios
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
-  // TODO
-  // return new Promise((mainResolve) => {
-  // 	const etBundle = new Promise((resolve, reject) => {
-  // 		import(
-  // 			/* webpackChunkName: "ET-[request]" */
-  // 			/* webpackMode: "lazy" */
-  // 			`../plugins/exportTypes/${exportType}/bundle`
-  // 		)
-  // 			.then((resp: any) => {
-  // 				const def = resp.default;
-  // 				loadedExportTypes[exportType] = {
-  // 					Settings: def.Settings || DefaultSettings,
-  // 					initialState: def.initialState,
-  // 					getExportTypeLabel: def.getExportTypeLabel,
-  // 					getDownloadFileInfo: def.getDownloadFileInfo,
-  // 					getCodeMirrorMode: def.getCodeMirrorMode,
-  // 					validateTitleField: def.validateTitleField,
-  // 					isValid: def.isValid
-  // 				};
-  // 				resolve(def);
-  // 			})
-  // 			.catch((e) => {
-  // 				reject(e);
-  // 			});
-  // 	});
-  // 	const codeMirrorModes = exportTypes[exportType].codeMirrorModes.map((mode: string) => {
-  // 		return new Promise((resolve) => {
-  // 			const normalizedMode = mode.replace('/', '_');
-  // 			const id = `mode-${normalizedMode}`;
-  // 			// if the codemirror mode was already inserted, don't bother doing it again
-  // 			if (document.getElementById(id)) {
-  // 				// @ts-ignore-line
-  // 				resolve();
-  // 				return;
-  // 			}
-  // 			const modeFile = document.createElement('script');
-  // 			modeFile.src = `./codeMirrorModes/${mode}.js`;
-  // 			modeFile.id = id;
-  // 			modeFile.onload = (): void => {
-  // 				// @ts-ignore-line
-  // 				resolve();
-  // 			};
-  // 			document.body.appendChild(modeFile);
-  // 		});
-  // 	});
-  // 	Promise.all([...codeMirrorModes, etBundle]).then(() => {
-  // 		mainResolve(etBundle);
-  // 	});
-  // });
+  return new Promise((mainResolve) => {
+    const etBundle = new Promise((resolve, reject) => {
+      import(
+        /* webpackChunkName: "ET-[request]" */
+        /* webpackMode: "lazy" */
+        `@generatedata/plugins/dist/exportTypes/${exportType}/bundle`
+      )
+        .then((resp: any) => {
+          const def = resp.default;
+          loadedExportTypes[exportType] = {
+            Settings: def.Settings || DefaultSettings,
+            initialState: def.initialState,
+            getExportTypeLabel: def.getExportTypeLabel,
+            getDownloadFileInfo: def.getDownloadFileInfo,
+            getCodeMirrorMode: def.getCodeMirrorMode,
+            validateTitleField: def.validateTitleField,
+            isValid: def.isValid
+          };
+          resolve(def);
+        })
+        .catch((e) => {
+          reject(e);
+        });
+    });
+    const codeMirrorModes = exportTypes[exportType].codeMirrorModes.map((mode: string) => {
+      return new Promise((resolve) => {
+        const normalizedMode = mode.replace('/', '_');
+        const id = `mode-${normalizedMode}`;
+        // if the codemirror mode was already inserted, don't bother doing it again
+        if (document.getElementById(id)) {
+          // @ts-ignore-line
+          resolve();
+          return;
+        }
+        const modeFile = document.createElement('script');
+        modeFile.src = `./codeMirrorModes/${mode}.js`;
+        modeFile.id = id;
+        modeFile.onload = (): void => {
+          // @ts-ignore-line
+          resolve();
+        };
+        document.body.appendChild(modeFile);
+      });
+    });
+    Promise.all([...codeMirrorModes, etBundle]).then(() => {
+      mainResolve(etBundle);
+    });
+  });
 };
 
 // *** assumes the callee knows what they're doing & that they've checked the component has been loaded

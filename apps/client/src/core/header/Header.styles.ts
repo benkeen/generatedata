@@ -1,5 +1,5 @@
-import { makeStyles } from '@griffel/react';
 import { vars } from '@generatedata/core';
+import { makeStyles } from '@griffel/react';
 
 export const useClasses = makeStyles({
   header: {
@@ -117,7 +117,7 @@ export const useClasses = makeStyles({
     ':hover': {
       backgroundColor: vars.primaryPaleBg
     },
-    span: {
+    '& span': {
       fontWeight: 'bold'
     }
   },
@@ -131,7 +131,7 @@ export const useClasses = makeStyles({
   logoutLink: {
     marginRight: 0,
 
-    button: {
+    '& button': {
       fontSize: '22px'
     }
   },
@@ -148,7 +148,7 @@ export const useClasses = makeStyles({
 
   localeSelector: {
     marginRight: 0,
-    button: {
+    '& button': {
       fontSize: '22px'
     }
   },

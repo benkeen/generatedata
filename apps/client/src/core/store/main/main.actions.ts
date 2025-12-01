@@ -3,7 +3,7 @@ import C from '@generatedata/config/constants';
 import type { AuthResponse } from '@generatedata/graphql-schema';
 import { setAuthTokenRefresh } from '@generatedata/utils/auth';
 import { addToast, setTourComponents } from '@generatedata/utils/general';
-import langUtils, { getCurrentLocalizedPath, getStrings } from '@generatedata/utils/lang';
+import { getCurrentLocalizedPath, getStrings, setLocale } from '@generatedata/utils/lang';
 import Cookies from 'js-cookie';
 import { Dispatch } from 'redux';
 import { ColSortDir } from '~components/tables/TableHeader.component';
@@ -39,7 +39,7 @@ export const selectLocale =
 
       window.gd = {};
       window.gd.localeLoaded = (strings: any): void => {
-        langUtils.setLocale(locale, strings);
+        setLocale(locale, strings);
         dispatch(setLocaleFileLoaded(locale));
         Cookies.set('lang', locale);
 

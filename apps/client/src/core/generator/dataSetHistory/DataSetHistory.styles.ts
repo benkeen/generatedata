@@ -69,7 +69,6 @@ export const useClasses = makeStyles({
       padding: '15px',
       '& button': {
         width: '100%',
-
         '& svg': {
           marginRight: '5px'
         }

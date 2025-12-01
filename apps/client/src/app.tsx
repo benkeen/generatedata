@@ -7,7 +7,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import * as codemirror from 'codemirror';
 import { useEffect } from 'react';
 import { Provider, useDispatch } from 'react-redux';
-import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import { apolloClient } from '~core/apolloClient';
 import SaveDataSetDialog from '~core/dialogs/saveDataSet/SaveDataSet.container';
 import ErrorBoundary from '~core/ErrorBoundary.component';
@@ -61,9 +62,7 @@ const LocalizationWrapper = (args: any) => {
   return (
     <Routes>
       {localizedRoutes.map(({ path, component: Component }, index) => (
-        <Route key={index} path={path}>
-          <Component />
-        </Route>
+        <Route key={index} path={path} element={<Component />} />
       ))}
     </Routes>
   );
@@ -77,12 +76,12 @@ const App = () => {
     init();
   }, []);
 
+  // localization wrapp was <Route path="/:lang?">
+
   return (
     <ErrorBoundary>
       <Page>
-        <Route path="/:lang?">
-          <LocalizationWrapper />
-        </Route>
+        <LocalizationWrapper />
         <Toast />
         <SaveDataSetDialog />
       </Page>
@@ -103,9 +102,9 @@ const AppWrapper = () => (
             }
 
             return ( */}
-        <Router>
+        <BrowserRouter>
           <App />
-        </Router>
+        </BrowserRouter>
         {/* );
           }}
         </PersistGate> */}

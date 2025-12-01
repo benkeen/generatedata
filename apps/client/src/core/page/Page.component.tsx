@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from 'react';
 import { CenteredSpinner, DefaultSpinner } from '@generatedata/core';
-import Header from '../header/Header.container';
+import { PropsWithChildren } from 'react';
 import Footer from '../footer/Footer.container';
+import Header from '../header/Header.container';
 import { useClasses } from './Page.styles';
 
 export type PageProps = {
@@ -11,6 +11,8 @@ export type PageProps = {
 
 const Page = ({ localeFileLoaded, children }: PropsWithChildren<PageProps>) => {
   const classNames = useClasses();
+
+  console.log('page children: ', children);
 
   const content = localeFileLoaded ? (
     <>
