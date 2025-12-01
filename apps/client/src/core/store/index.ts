@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-import { persistReducer, persistStore } from 'redux-persist';
-import { Persistor } from 'redux-persist/es/types';
+import { persistReducer } from 'redux-persist';
+// import { Persistor } from 'redux-persist/es/types';
 // import actionsInterceptor from '../actionInterceptor'; // TODO
 import storage from 'redux-persist/lib/storage';
 import accountReducer from './account/account.reducer';
@@ -10,7 +10,7 @@ import generatorReducer from './generator/generator.reducer';
 import mainReducer from './main/main.reducer';
 import packetsReducer from './packets/packets.reducer';
 
-let persistor: Persistor;
+// let persistor: Persistor;
 function initStore(state: any): any {
   const rootPersistConfig = {
     key: 'root',
@@ -77,7 +77,7 @@ function initStore(state: any): any {
     // composeEnhancers(applyMiddleware(thunk, actionsInterceptor), ...enhancers)
   });
 
-  persistor = persistStore(store);
+  // persistor = persistStore(store);
 
   return store;
 }
@@ -90,4 +90,4 @@ if (process.env.NODE_ENV !== 'test') {
 
 export default store;
 
-export { persistor };
+// export { persistor };

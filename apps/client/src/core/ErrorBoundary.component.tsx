@@ -1,9 +1,9 @@
 import React from 'react';
-import { persistor } from './store';
-import Button from '@mui/material/Button';
+// import { persistor } from './store';
 import { CockroachIcon } from '@generatedata/core';
-import Header from './header/Header.container';
+import Button from '@mui/material/Button';
 import Footer from './footer/Footer.container';
+import Header from './header/Header.container';
 
 class ErrorBoundary extends React.Component<any, any> {
   constructor(props: any) {
@@ -27,12 +27,12 @@ class ErrorBoundary extends React.Component<any, any> {
   // }
 
   onClear(): void {
-    persistor.purge().then(() => {
-      this.setState({
-        hasError: false,
-        error: ''
-      });
-    });
+    // persistor.purge().then(() => {
+    //   this.setState({
+    //     hasError: false,
+    //     error: ''
+    //   });
+    // });
   }
 
   render(): any {

@@ -1,27 +1,35 @@
 /* istanbul ignore file */
-import React, { useEffect } from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Routes, Route, useNavigation } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client/react';
-import * as codemirror from 'codemirror';
-import { PersistGate } from 'redux-persist/integration/react';
-import { ThemeProvider } from '@mui/material/styles';
-import { apolloClient } from '~core/apolloClient';
-import store, { persistor } from '~core/store';
-import Page from '~core/page/Page.container';
-import * as core from '~core/index';
-import ErrorBoundary from '~core/ErrorBoundary.component';
-import theme from '~core/theme';
-import SaveDataSetDialog from '~core/dialogs/saveDataSet/SaveDataSet.container';
-import { useGlobalStyles, Toast } from '@generatedata/core';
 import C from '@generatedata/config/constants';
-import { getAppStateVersion } from '~store/main/main.selectors';
-import { resetStore, initRouteListener } from '~store/main/main.actions';
-import { getRoutes } from '~utils/routeUtils';
+import { Toast, useGlobalStyles } from '@generatedata/core';
 import { getLocaleMap } from '@generatedata/utils/lang';
+import { ThemeProvider } from '@mui/material/styles';
+import * as codemirror from 'codemirror';
+import { useEffect } from 'react';
+import { Provider, useDispatch } from 'react-redux';
+import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
+import { apolloClient } from '~core/apolloClient';
+import SaveDataSetDialog from '~core/dialogs/saveDataSet/SaveDataSet.container';
+import ErrorBoundary from '~core/ErrorBoundary.component';
+import Page from '~core/page/Page.container';
+import store from '~core/store';
+import theme from '~core/theme';
 import '~store/generator/generator.reducer';
+import { resetStore } from '~store/main/main.actions';
+import { getAppStateVersion } from '~store/main/main.selectors';
+import { getRoutes, updateBodyClass } from '~utils/routeUtils';
+import { init } from './core';
 
 window.CodeMirror = codemirror;
+
+export const useRouteListener = () => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateBodyClass(location.pathname));
+  }, [location]);
+};
 
 const checkState = async (state: any): Promise<any> => {
   const lastAppStateVersion = getAppStateVersion(state.getState());
@@ -62,12 +70,11 @@ const LocalizationWrapper = (args: any) => {
 };
 
 const App = () => {
-  const navigation = useNavigation();
-
   useGlobalStyles();
+  useRouteListener();
 
   useEffect(() => {
-    initRouteListener(navigation);
+    init();
   }, []);
 
   return (
@@ -87,7 +94,7 @@ const AppWrapper = () => (
   <Provider store={store}>
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={theme}>
-        <PersistGate loading={null} persistor={persistor} onBeforeLift={(): Promise<any> => checkState(store)}>
+        {/* <PersistGate loading={null} persistor={persistor} onBeforeLift={(): Promise<any> => checkState(store)}>
           {(bootstrapped) => {
             // PersistGate handles repopulating the redux store; core.init() re-initializes everything else we
             // need, including checking auth and loading the appropriate locale file
@@ -95,13 +102,13 @@ const AppWrapper = () => (
               core.init();
             }
 
-            return (
-              <Router>
-                <App />
-              </Router>
-            );
+            return ( */}
+        <Router>
+          <App />
+        </Router>
+        {/* );
           }}
-        </PersistGate>
+        </PersistGate> */}
       </ThemeProvider>
     </ApolloProvider>
   </Provider>

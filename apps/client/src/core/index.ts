@@ -27,6 +27,8 @@ export const init = (): void => {
   const exportType = selectors.getExportType(state);
   const numRows = selectors.getNumRows(state);
 
+  console.log({ exportType });
+
   store.dispatch(mainActions.selectLocale(pageLocale));
   store.dispatch(actions.onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
 

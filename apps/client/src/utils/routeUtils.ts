@@ -139,7 +139,7 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
   return links;
 };
 
-export const updateBodyClass = (store: any, pathname: string): void => {
+export const updateBodyClass = (pathname: string) => {
   let pageId = pathname.replace(/\//g, '');
 
   const rootLocale = clientConfig.appSettings.GD_LOCALES.indexOf(pageId as GDLocale);
@@ -151,12 +151,12 @@ export const updateBodyClass = (store: any, pathname: string): void => {
   // include sub-pages since we're removing all the slashes
   document.body.className = `page-${pageId}`;
 
-  store.dispatch({
+  return {
     type: PAGE_CHANGE,
     payload: {
       page: location.pathname
     }
-  });
+  };
 };
 
 export const removeLocale = (path: string): string => {

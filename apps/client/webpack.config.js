@@ -81,6 +81,9 @@ module.exports = (env, argv) => {
       new CaseSensitivePathsPlugin(),
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'src/index.html')
+      }),
+      new webpack.ProvidePlugin({
+        process: require.resolve('process/browser')
       })
       // new Dotenv({ path: envPath })
     ],
@@ -104,6 +107,7 @@ module.exports = (env, argv) => {
         stream: require.resolve('stream-browserify'),
         vm: require.resolve('vm-browserify'),
         zlib: require.resolve('browserify-zlib')
+        // process: require.resolve('process/browser')
       }
     },
 

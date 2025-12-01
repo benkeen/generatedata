@@ -8,7 +8,6 @@ import Cookies from 'js-cookie';
 import { Dispatch } from 'redux';
 import { ColSortDir } from '~components/tables/TableHeader.component';
 import { LOGIN_MUTATION, REFRESH_TOKEN, SEND_PASSWORD_RESET_EMAIL_MUTATION } from '~core/mutations';
-import store from '~core/store';
 import { onChangeTab, showSaveDataSetDialog } from '~store/account/account.actions';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 import * as actions from '~store/generator/generator.actions';
@@ -16,7 +15,7 @@ import { CLEAR_GRID } from '~store/generator/generator.actions';
 import { getCurrentPage, getLocale } from '~store/main/main.selectors';
 import { SelectedAccountTab } from '~types/account';
 import { AccountStatusFilter, AuthMethod, GDAction, GDLocale } from '~types/general';
-import { getGeneratorPageRoute, isGeneratorPage, updateBodyClass } from '~utils/routeUtils';
+import { getGeneratorPageRoute, isGeneratorPage } from '~utils/routeUtils';
 import { localeFileMap } from '../../../../_localeFileMap';
 import { apolloClient } from '../../apolloClient';
 
@@ -63,13 +62,6 @@ export const RESET_STORE = 'RESET_STORE';
 export const resetStore = (): GDAction => ({ type: RESET_STORE });
 
 export const PAGE_CHANGE = 'PAGE_CHANGE';
-export const initRouteListener = (history: any): void => {
-  updateBodyClass(store, history.location.pathname);
-
-  history.listen((location: any) => {
-    updateBodyClass(store, location.pathname);
-  });
-};
 
 export const SET_LOGIN_DIALOG_VISIBILITY = 'SET_LOGIN_DIALOG_VISIBILITY';
 export const setLoginDialogVisibility = (visible: boolean, email = ''): GDAction => ({
