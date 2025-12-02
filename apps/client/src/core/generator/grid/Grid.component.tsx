@@ -1,16 +1,15 @@
+import C from '@generatedata/config/constants';
+import { PrimaryButton, Tooltip } from '@generatedata/core';
+import { DataTypeFolder } from '@generatedata/plugins';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
+import { useMeasure } from '@uidotdev/usehooks';
 import React, { useMemo } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useWindowSize } from 'react-hooks-window-size';
-import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton';
-import { useClasses } from './Grid.styles';
-import { Tooltip } from '@generatedata/core';
-import { PrimaryButton } from '@generatedata/core';
 import { DataRow } from '~store/generator/generator.reducer';
-import { DataTypeFolder } from '@generatedata/plugins';
+import { useClasses } from './Grid.styles';
 import GridRow from './GridRow.container';
-import C from '@generatedata/config/constants';
-import { useMeasure } from '@uidotdev/usehooks';
 
 export type GridProps = {
   rows: DataRow[];
@@ -65,7 +64,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
         <div>
           <div className={classNames.gridHeaderWrapper}>
             <div className={`${classNames.gridRow} ${classNames.gridHeader} tour-gridHeader`} style={{ flex: '0 0 auto' }}>
-              <div className={classNames.orderCol}>{rows.length}</div>
+              <div className={`${classNames.orderCol} ${classNames.orderColHeader}`}>{rows.length}</div>
               <div className={classNames.dataTypeCol}>{i18n.dataType}</div>
               <div className={classNames.titleCol}>{columnTitle}</div>
               <div className={classNames.examplesCol}>{i18n.examples}</div>

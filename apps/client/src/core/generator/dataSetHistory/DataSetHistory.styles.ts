@@ -23,15 +23,16 @@ export const useClasses = makeStyles({
     alignItems: 'center'
   },
   currentVersionRow: {
-    flex: '0 0 auto',
-    row: {
-      border: `1px solid ${vars.secondaryColor}`,
-      backgroundColor: vars.secondaryPaleColor,
-      color: vars.secondaryDarkColor,
-      marginBottom: '10px',
-      borderRadius: '4px'
-    }
+    flex: '0 0 auto'
+    // row: {
+    //   border: `1px solid ${vars.secondaryColor}`,
+    //   backgroundColor: vars.secondaryPaleColor,
+    //   color: vars.secondaryDarkColor,
+    //   marginBottom: '10px',
+    //   borderRadius: '4px'
+    // }
   },
+
   edit: {
     marginRight: '10px'
   },

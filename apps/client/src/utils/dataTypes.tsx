@@ -217,20 +217,20 @@ export const getAffectedDataTypes = (dataTypes: any): any => {
 export const affectedDataTypes = getAffectedDataTypes(dataTypes);
 
 export const requestDataTypeBundle = (dataType: DataTypeFolder): any => {
-  // return new Promise((resolve, reject) => {
-  //   import(
-  //     /* webpackChunkName: "DT-[request]" */
-  //     /* webpackMode: "lazy" */
-  //     `../plugins/dataTypes/${dataType}/bundle`
-  //   )
-  //     .then((definition: any) => {
-  //       loadedDataTypes[dataType] = definition.default;
-  //       resolve(definition.default);
-  //     })
-  //     .catch((e) => {
-  //       reject(e);
-  //     });
-  // });
+  return new Promise((resolve, reject) => {
+    import(
+      /* webpackChunkName: "DT-[request]" */
+      /* webpackMode: "lazy" */
+      `@generatedata/plugins/dist/dataTypes/${dataType}/bundle`
+    )
+      .then((definition: any) => {
+        loadedDataTypes[dataType] = definition.default;
+        resolve(definition.default);
+      })
+      .catch((e) => {
+        reject(e);
+      });
+  });
 };
 
 // TODO - this is causing a repaint on every method call, which is causing the most slowness in the UI. But using

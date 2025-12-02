@@ -31,10 +31,11 @@ Logical units of the code are now found under `apps` and `packages`.
 
 ## Other changes
 
-- moved to pnpm
 - use turborepo
+- moved to pnpm
 - dropped Sass/CSS modules in favour of Griffel
 - dropped redux-persist since it's no longer supported (replacement?)
+- move from `react-beautiful-dnd` (deprecated) to `@dnd-kit/core`
 
 ## Bootstrap process for new clones
 

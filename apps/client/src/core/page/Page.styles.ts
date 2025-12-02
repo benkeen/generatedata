@@ -26,16 +26,3 @@ export const useClasses = makeStyles({
 // 		padding-top: 60px;
 // 	}
 // }
-
-// input,
-// textarea,
-// select {
-// 	border-radius: 4px;
-// 	border: 1px solid #cccccc;
-// 	padding: 6px;
-// 	outline: none;
-
-// 	&:focus {
-// 		border: 1px solid c.$field-focus-color;
-// 	}
-// }

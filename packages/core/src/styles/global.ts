@@ -22,16 +22,36 @@ export const useGlobalStyles = makeStaticStyles({
   input: {
     fontFamily: '"Open Sans", serif',
     fontSize: '12px'
+    // border-radius: 4px;
+    // border: 1px solid #cccccc;
+    // padding: 6px;
+    // outline: none;
+    // 	&:focus {
+    // 		border: 1px solid c.$field-focus-color;
+    // 	}
   },
   select: {
     fontFamily: '"Open Sans", serif',
     fontSize: '12px'
+    // border-radius: 4px;
+    // border: 1px solid #cccccc;
+    // padding: 6px;
+    // outline: none;
+    // 	&:focus {
+    // 		border: 1px solid c.$field-focus-color;
+    // 	}
   },
   textarea: {
     fontFamily: '"Open Sans", serif',
-    fontSize: '12px'
+    fontSize: '12px',
+    borderRadius: '4px',
+    border: '1px solid #cccccc',
+    padding: '6px',
+    outline: 'none'
+    // &:focus {
+    // 	border: 1px solid c.$field-focus-color;
+    // }
   },
-
   a: {
     textDecoration: 'none',
     color: primaryColor,

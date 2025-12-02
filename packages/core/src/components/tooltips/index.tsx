@@ -1,21 +1,21 @@
-import MuiTooltip from '@mui/material/Tooltip';
+import MuiTooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 
-export const HtmlTooltip = styled(MuiTooltip)(() => ({
-  tooltip: {
+export const HtmlTooltip = styled(MuiTooltip)<TooltipProps>(() => ({
+  [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: '#ffffff',
     color: 'rgba(0, 0, 0, 0.87)',
     fontSize: 12,
     padding: 0,
     boxShadow: '3px 3px 6px #999999'
   },
-  arrow: {
+  [`& .${tooltipClasses.arrow}`]: {
     color: '#ffffff'
   }
 }));
 
-export const Tooltip = styled(MuiTooltip)(() => ({
-  tooltip: {
+export const Tooltip = styled(MuiTooltip)<TooltipProps>(() => ({
+  [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: '#333333',
     maxWidth: 220,
     color: '#dddddd',
@@ -23,13 +23,13 @@ export const Tooltip = styled(MuiTooltip)(() => ({
     fontSize: 11,
     padding: 10
   },
-  arrow: {
+  [`& .${tooltipClasses.arrow}`]: {
     color: '#333333'
   }
 }));
 
-export const ErrorTooltip = styled(MuiTooltip)(() => ({
-  tooltip: {
+export const ErrorTooltip = styled(MuiTooltip)<TooltipProps>(() => ({
+  [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: '#D80000',
     maxWidth: 220,
     color: '#ffffff',
@@ -37,7 +37,7 @@ export const ErrorTooltip = styled(MuiTooltip)(() => ({
     fontSize: 11,
     padding: 10
   },
-  arrow: {
+  [`& .${tooltipClasses.arrow}`]: {
     color: '#D80000'
   }
 }));

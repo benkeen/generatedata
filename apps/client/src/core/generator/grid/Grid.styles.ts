@@ -26,10 +26,20 @@ export const useClasses = makeStyles({
     borderRadius: 0
   },
   orderCol: {
-    fontStyle: 'italic',
-    color: '#cccccc',
+    flex: '0 0 40px',
+    display: 'flex',
+    padding: '4px 0 2px 2px',
+    marginTop: '6px',
+    color: '#999999',
+    '& svg': {
+      color: '#cccccc'
+    }
+  },
+  orderColHeader: {
     padding: '0 0 0 17px',
     marginTop: '4px',
+    fontStyle: 'italic',
+    color: '#cccccc',
     fontSize: '10px'
   },
   smallScreenMode: {
@@ -66,16 +76,6 @@ export const useClasses = makeStyles({
       paddingTop: '2px'
     }
   },
-  // orderCol: {
-  //   flex: '0 0 40px',
-  //   display: 'flex',
-  //   marginTop: '6px',
-  //   padding: '4px 0 2px 2px',
-  //   color: '#999999',
-  //   '& svg': {
-  //     color: '#cccccc'
-  //   }
-  // },
   titleCol: {
     flex: 2,
     '& input': {
@@ -188,24 +188,18 @@ export const useClasses = makeStyles({
     display: 'inline-flex',
     alignItems: 'center',
     marginBottom: '12px',
-    fontSize: '12px'
-
-    //   span,
-    //   input {
-    //     margin-right: 6px,
-    //   }
-
-    //   input {
-    //     height: 28px,
-    //   }
-
-    //   input {
-    //     width: 42px,
-    //   }
-
-    //   button {
-    //     font-size: 11px,
-    //     min-width: 60px,
-    //   }
+    fontSize: '12px',
+    '& span': {
+      marginRight: '6px'
+    },
+    '& input': {
+      marginRight: '6px',
+      height: '28px',
+      width: '42px'
+    },
+    '& button': {
+      fontSize: '11px',
+      minWidth: '60px'
+    }
   }
 });
