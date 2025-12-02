@@ -73,6 +73,8 @@
     "codemirror": "^5.58.2",
     "crypto-browserify": "^3.12.1",
     "date-fns": "^2.17.0",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
     "dotenv": "^8.2.0",
     "googleapis": "^65.0.0",
     "graphql": "^16.11.0",

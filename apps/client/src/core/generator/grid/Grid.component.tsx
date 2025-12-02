@@ -1,3 +1,5 @@
+import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import C from '@generatedata/config/constants';
 import { PrimaryButton, Tooltip } from '@generatedata/core';
 import { DataTypeFolder } from '@generatedata/plugins';
@@ -5,11 +7,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import { useMeasure } from '@uidotdev/usehooks';
 import React, { useMemo } from 'react';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useWindowSize } from 'react-hooks-window-size';
 import { DataRow } from '~store/generator/generator.reducer';
 import { useClasses } from './Grid.styles';
-import GridRow from './GridRow.container';
+import { GridRow } from './GridRow.component';
 
 export type GridProps = {
   rows: DataRow[];
@@ -27,6 +28,13 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
   const windowSize = useWindowSize();
   const [measureRef, { width = 0, height = 0 }] = useMeasure();
   const classNames = useClasses();
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates
+    })
+  );
 
   let gridSizeClass = '';
   if (width && width < C.GRID.SMALL_BREAKPOINT) {
@@ -47,6 +55,25 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
 
   // to prevent repaints
   const memoizedDimensions = useMemo(() => ({ width, height }), [width, height]) as { width: number; height: number };
+
+  //   <DragDropContext onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}>
+  //   <Droppable droppableId="droppable">
+  //     {(provided: any): any => (
+  //       <div className={classNames.grid} {...provided.droppableProps} ref={provided.innerRef}>
+  //         {rows.map((row, index) => (
+  //           <GridRow
+  //             row={row}
+  //             key={row.id}
+  //             index={index}
+  //             gridPanelDimensions={memoizedDimensions}
+  //             showHelpDialog={showHelpDialog}
+  //           />
+  //         ))}
+  //         {provided.placeholder}
+  //       </div>
+  //     )}
+  //   </Droppable>
+  // </DragDropContext>
 
   return (
     <>
@@ -76,25 +103,25 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
         </div>
         <div className={`${classNames.scrollableGridRows} tour-scrollableGridRows`}>
           <div className={`${classNames.gridRowsWrapper} tour-gridRows`}>
-            <DragDropContext onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}>
-              <Droppable droppableId="droppable">
-                {(provided: any): any => (
-                  <div className={classNames.grid} {...provided.droppableProps} ref={provided.innerRef}>
-                    {rows.map((row, index) => (
-                      <GridRow
-                        row={row}
-                        key={row.id}
-                        index={index}
-                        gridPanelDimensions={memoizedDimensions}
-                        showHelpDialog={showHelpDialog}
-                      />
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </DragDropContext>
-
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}
+            >
+              <div className={classNames.grid}>
+                <SortableContext items={rows} strategy={verticalListSortingStrategy}>
+                  {rows.map((row, index) => (
+                    <GridRow
+                      row={row}
+                      key={row.id}
+                      index={index}
+                      gridPanelDimensions={memoizedDimensions}
+                      showHelpDialog={showHelpDialog}
+                    />
+                  ))}
+                </SortableContext>
+              </div>
+            </DndContext>
             <form onSubmit={(e): any => e.preventDefault()} className={`${classNames.addRows} tour-addRows`}>
               <span>{i18n.add}</span>
               <input
