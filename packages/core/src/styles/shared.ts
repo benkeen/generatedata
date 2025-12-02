@@ -51,11 +51,11 @@ export const useSharedClasses = makeStyles({
     flex: '1',
     display: 'flex',
     flexDirection: 'row',
-    fontSize: '12px'
+    fontSize: '12px',
 
-    // 	input {
-    // 		font-size: 14px;
-    // 	}
+    '& input': {
+      fontSize: '14px'
+    }
   },
 
   selected: {

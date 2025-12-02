@@ -6,7 +6,6 @@ export const useClasses = makeStyles({
     alignItems: 'center',
     overflow: 'hidden !important',
     padding: '10px 16px',
-
     '& ul': {
       margin: 0,
       padding: 0,
@@ -26,7 +25,6 @@ export const useClasses = makeStyles({
     fontSize: '13px',
     display: 'flex',
     alignItems: 'center',
-
     '& svg': {
       color: '#275eb5',
       opacity: 0.8,
@@ -34,16 +32,13 @@ export const useClasses = makeStyles({
       marginRight: '18px'
     }
   },
-
   newDataSet: {
     flex: 1,
-
     '& input': {
       fontSize: '14px',
       width: '100%'
     }
   },
-
   existingDataSet: {
     fontSize: '14px'
   }

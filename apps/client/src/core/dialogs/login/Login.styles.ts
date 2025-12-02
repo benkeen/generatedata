@@ -36,7 +36,6 @@ export const useClasses = makeStyles({
     // div.actionsRow
     justifyContent: 'space-between'
   },
-
   forgotPasswordLink: {
     marginLeft: '10px',
     color: '#666666',

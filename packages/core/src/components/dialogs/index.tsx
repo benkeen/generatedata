@@ -1,26 +1,12 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { styled } from '@mui/material';
 import MuiDialog from '@mui/material/Dialog';
 import MuiDialogActions from '@mui/material/DialogActions';
-import MuiDialogContent from '@mui/material/DialogContent';
+import MuiDialogContent, { type DialogContentProps } from '@mui/material/DialogContent';
 import type { DialogTitleProps as MuiDialogTitleProps } from '@mui/material/DialogTitle';
 import MuiDialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { makeStyles, withStyles } from '@mui/styles';
-
-const dialogStyles = (theme: any): any => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(2)
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: 6,
-    color: theme.palette.grey[500]
-  }
-});
+import { makeStyles } from '@mui/styles';
 
 type DialogTitleProps = MuiDialogTitleProps & {
   onClose?: () => void;
@@ -30,34 +16,59 @@ type DialogTitleProps = MuiDialogTitleProps & {
   };
 };
 
-export const DialogTitle = withStyles(dialogStyles)((props: DialogTitleProps) => {
+export const DialogTitle = (props: DialogTitleProps) => {
   const { children, classes, onClose, customCloseIcon, ...other } = props;
   const Close = customCloseIcon ? customCloseIcon : CloseIcon;
 
   return (
-    <MuiDialogTitle className={classes.root} {...other}>
+    <MuiDialogTitle className={classes.root} {...other} sx={{ margin: 0, padding: 2 }}>
       <Typography variant="h5">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 1,
+            top: 6,
+            color: '#cccccc'
+          }}
+        >
           <Close fontSize="large" />
         </IconButton>
       ) : null}
     </MuiDialogTitle>
   );
-});
+};
 
-export const DialogContent = styled(MuiDialogContent)((theme: any) => ({
-  root: {
-    padding: theme.spacing(2)
-  }
-}));
+// export const DialogContent = styled(MuiDialogContent)<DialogContentProps>(({ theme: any }) => ({
+//   // root: {
+//   padding: 2 //theme.spacing(2)
+//   // }
+// }));
 
-export const DialogActions = styled(MuiDialogActions)((theme: any) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1)
-  }
-}));
+export const DialogContent = ({ children, ...other }: DialogContentProps) => {
+  return (
+    <MuiDialogContent sx={{ padding: 2 }} {...other}>
+      {children}
+    </MuiDialogContent>
+  );
+};
+
+export const DialogActions = ({ children, ...other }: DialogContentProps) => {
+  return (
+    <MuiDialogActions sx={{ margin: 0, padding: 2 }} {...other}>
+      {children}
+    </MuiDialogActions>
+  );
+};
+
+// export const DialogActions = styled(MuiDialogActions)<DialogActionsProps>(({ theme: any }) => ({
+//   // root: {
+//   //   margin: 0,
+//   //   padding: theme.spacing(1)
+//   // }
+// }));
 
 const useDialogStyles = makeStyles({
   root: {

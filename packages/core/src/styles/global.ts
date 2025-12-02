@@ -1,5 +1,5 @@
 import { makeStaticStyles } from '@griffel/react';
-import { primaryColor } from './variables';
+import { fieldFocusColor, primaryColor } from './variables';
 
 export const useGlobalStyles = makeStaticStyles({
   '*': {
@@ -21,25 +21,25 @@ export const useGlobalStyles = makeStaticStyles({
   },
   input: {
     fontFamily: '"Open Sans", serif',
-    fontSize: '12px'
-    // border-radius: 4px;
-    // border: 1px solid #cccccc;
-    // padding: 6px;
-    // outline: none;
-    // 	&:focus {
-    // 		border: 1px solid c.$field-focus-color;
-    // 	}
+    fontSize: '12px',
+    borderRadius: '4px',
+    border: '1px solid #cccccc',
+    padding: '6px',
+    outline: 'none',
+    '&:focus': {
+      border: `1px solid ${fieldFocusColor}`
+    }
   },
   select: {
     fontFamily: '"Open Sans", serif',
-    fontSize: '12px'
-    // border-radius: 4px;
-    // border: 1px solid #cccccc;
-    // padding: 6px;
-    // outline: none;
-    // 	&:focus {
-    // 		border: 1px solid c.$field-focus-color;
-    // 	}
+    fontSize: '12px',
+    borderRadius: '4px',
+    border: '1px solid #cccccc',
+    padding: '6px',
+    outline: 'none',
+    '&:focus': {
+      border: `1px solid ${fieldFocusColor}`
+    }
   },
   textarea: {
     fontFamily: '"Open Sans", serif',
@@ -47,10 +47,10 @@ export const useGlobalStyles = makeStaticStyles({
     borderRadius: '4px',
     border: '1px solid #cccccc',
     padding: '6px',
-    outline: 'none'
-    // &:focus {
-    // 	border: 1px solid c.$field-focus-color;
-    // }
+    outline: 'none',
+    '&:focus': {
+      border: `1px solid ${fieldFocusColor}`
+    }
   },
   a: {
     textDecoration: 'none',
@@ -60,11 +60,9 @@ export const useGlobalStyles = makeStaticStyles({
       color: `1px solid color.adjust(c.$primary-color, $lightness: -30%)` // TODO
     }
   },
-
   h3: {
     margin: '10px 0 8px'
   },
-
   '.Select-menu-outer': {
     zIndex: '10000 !important'
   }

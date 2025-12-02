@@ -14,7 +14,6 @@ export const useClasses = makeStyles({
       float: 'right'
     }
   },
-
   generatorControls: {
     flex: '1',
     overflow: 'hidden',
@@ -25,7 +24,6 @@ export const useClasses = makeStyles({
       opacity: '1'
     }
   },
-
   mainLogo: {
     opacity: 0,
     position: 'absolute',
@@ -38,11 +36,9 @@ export const useClasses = makeStyles({
       width: '200px'
     }
   },
-
   visible: {
     opacity: 1
   },
-
   headerLinks: {
     marginRight: '20px',
     animation: 'fadein 1s',
@@ -52,7 +48,6 @@ export const useClasses = makeStyles({
       fontSize: '13px',
       transition: 'color 0.1s ease-in-out',
       textDecoration: 'none',
-
       '& a:hover': {
         color: vars.primaryColor,
         textDecoration: 'none'
@@ -68,7 +63,6 @@ export const useClasses = makeStyles({
       fontSize: '13px',
       transition: 'color 0.1s ease-in-out',
       textDecoration: 'none',
-
       '& a:hover': {
         color: vars.primaryColor,
         textDecoration: 'none'

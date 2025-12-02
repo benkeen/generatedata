@@ -47,12 +47,11 @@ export const useClasses = makeStyles({
     padding: '10px',
     marginBottom: '10px',
     borderRadius: '5px',
-    height: 'inherit'
-
-    // label: {
-    // fontSize: '14px',
-    // flex: '0 0 140px'
-    // }
+    height: 'inherit',
+    '& label': {
+      fontSize: '14px',
+      flex: '0 0 140px'
+    }
   },
 
   spinner: {

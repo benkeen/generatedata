@@ -142,7 +142,6 @@ export const useClasses = makeStyles({
       }
     }
   },
-
   controls: {
     // div.controls
     marginRight: '15px'
@@ -163,7 +162,6 @@ export const useClasses = makeStyles({
     // button.saveBtnArrow
     minWidth: 'inherit',
     padding: '0 6px',
-
     '& svg': {
       margin: 0
     }

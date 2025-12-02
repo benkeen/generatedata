@@ -16,7 +16,6 @@ export const useClasses = makeStyles({
     margin: '15px auto 0'
   },
   gridHeader: {
-    // div.gridHeader
     width: '100%',
     fontWeight: 'bold',
     color: '#666666',

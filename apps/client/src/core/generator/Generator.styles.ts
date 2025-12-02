@@ -1,0 +1,50 @@
+import { makeStyles } from '@griffel/react';
+
+export const useClasses = makeStyles({
+  controlRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: '6px 10px',
+    justifyContent: 'flex-end'
+  }
+});
+
+// :global(.Pane2) {
+// 	max-width: 100%;
+// 	overflow: hidden;
+// }
+
+// :global(.Resizer) {
+// 	background-image: url('./images/bg.png');
+// 	z-index: 1;
+// 	box-sizing: border-box;
+// 	background-clip: padding-box;
+
+// 	&:global(.horizontal) {
+// 		flex: 0 0 auto;
+// 		height: 5px;
+// 		margin: 0;
+// 		cursor: row-resize;
+// 		width: 100%;
+
+// 		&:hover {
+// 			background-image: none;
+// 			background-color: #dddddd;
+// 		}
+// 	}
+
+// 	&:global(.vertical) {
+// 		width: 5px;
+// 		margin: 0;
+// 		cursor: col-resize;
+
+// 		&:hover {
+// 			background-image: none;
+// 			background-color: #dddddd;
+// 		}
+// 	}
+
+// 	&:hover(.disabled) {
+// 		cursor: not-allowed;
+// 	}
+// }

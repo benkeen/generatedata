@@ -1,5 +1,5 @@
-import { makeStyles } from '@griffel/react';
 import { vars } from '@generatedata/core';
+import { makeStyles } from '@griffel/react';
 
 export const useClasses = makeStyles({
   dataTemplateDialog: {
@@ -11,8 +11,8 @@ export const useClasses = makeStyles({
   // }
 
   actions: {
-    button: {
-      svg: {
+    '& button': {
+      '& svg': {
         fill: vars.primaryColor,
         height: '18px',
         width: '18px',
