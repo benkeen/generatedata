@@ -30,6 +30,7 @@ export const useClasses = makeStyles({
     padding: '4px 0 2px 2px',
     marginTop: '6px',
     color: '#999999',
+    cursor: 'pointer',
     '& svg': {
       color: '#cccccc'
     }

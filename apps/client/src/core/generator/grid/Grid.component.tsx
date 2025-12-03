@@ -1,13 +1,5 @@
-import {
-  closestCenter,
-  DndContext,
-  KeyboardSensor,
-  PointerSensor,
-  UniqueIdentifier,
-  useDroppable,
-  useSensor,
-  useSensors
-} from '@dnd-kit/core';
+import { closestCenter, DndContext, KeyboardSensor, PointerSensor, UniqueIdentifier, useSensor, useSensors } from '@dnd-kit/core';
+import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import C from '@generatedata/config/constants';
 import { PrimaryButton, Tooltip } from '@generatedata/core';
@@ -32,22 +24,22 @@ export type GridProps = {
   showHelpDialog: (section: DataTypeFolder) => void;
 };
 
-const Droppable = (props: any) => {
-  const { isOver, setNodeRef } = useDroppable({
-    id: 'droppable'
-  });
-  const classNames = useClasses();
+// const Droppable = (props: any) => {
+//   const { isOver, setNodeRef } = useDroppable({
+//     id: 'droppable'
+//   });
+//   const classNames = useClasses();
 
-  const style = {
-    color: isOver ? 'green' : undefined
-  };
+//   const style = {
+//     color: isOver ? 'green' : undefined
+//   };
 
-  return (
-    <div className={classNames.grid} ref={setNodeRef} style={style}>
-      {props.children}
-    </div>
-  );
-};
+//   return (
+//     <div className={classNames.grid} ref={setNodeRef} style={style}>
+//       {props.children}
+//     </div>
+//   );
+// };
 
 const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel, showHelpDialog }: GridProps) => {
   const [numRows, setNumRows] = useState(1);
@@ -104,6 +96,8 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
 
   // const getIndex = (id: UniqueIdentifier) => rows.indexOf(id);
 
+  // r
+
   return (
     <>
       <div style={{ position: 'fixed', right: 0, padding: 10 }}>
@@ -134,13 +128,14 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
           <div className={`${classNames.gridRowsWrapper} tour-gridRows`}>
             <DndContext
               sensors={sensors}
+              modifiers={[restrictToVerticalAxis]}
               collisionDetection={closestCenter}
               onDragStart={({ active }) => {
                 if (!active) {
                   return;
                 }
 
-                // console.log('starting drag', active);
+                console.log('starting drag', active);
 
                 setActiveId(active.id);
               }}
@@ -155,20 +150,13 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
                 }
               }}
             >
-              <Droppable>
-                <SortableContext items={rows} strategy={verticalListSortingStrategy}>
-                  {rows.map((row, index) => (
-                    <GridRow
-                      row={row}
-                      key={row.id}
-                      index={index}
-                      gridPanelDimensions={memoizedDimensions}
-                      showHelpDialog={showHelpDialog}
-                    />
-                  ))}
-                </SortableContext>
-              </Droppable>
+              <SortableContext items={rows} strategy={verticalListSortingStrategy}>
+                {rows.map((row, index) => (
+                  <GridRow row={row} key={row.id} index={index} gridPanelDimensions={memoizedDimensions} showHelpDialog={showHelpDialog} />
+                ))}
+              </SortableContext>
             </DndContext>
+
             <form onSubmit={(e): any => e.preventDefault()} className={`${classNames.addRows} tour-addRows`}>
               <span>{i18n.add}</span>
               <input

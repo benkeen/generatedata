@@ -1,4 +1,5 @@
-import { useDraggable } from '@dnd-kit/core';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { Dropdown, SmallSpinner, TextField, useSharedClasses } from '@generatedata/core';
 import { CountryNamesMap, DataTypeFolder, DTOptionsMetadata } from '@generatedata/plugins';
 import DragIndicator from '@mui/icons-material/DragIndicator';
@@ -73,7 +74,7 @@ export const GridRow = ({
 }: GridRowProps) => {
   const sharedClasses = useSharedClasses();
   const classNames = useClasses();
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id: row.id
   });
 
@@ -139,17 +140,14 @@ export const GridRow = ({
     }
   }
 
-  // <div className={classNames.orderCol} {...provided.dragHandleProps}>
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition
+  };
 
   return (
-    <div
-      className={`${classNames.gridRow} tour-gridRow`}
-      key={row.id}
-      {...listeners}
-      {...attributes}
-      // style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
-    >
-      <div className={classNames.orderCol}>
+    <div className={`${classNames.gridRow} tour-gridRow`} key={row.id} ref={setNodeRef} style={style} {...attributes}>
+      <div className={classNames.orderCol} {...listeners}>
         <DragIndicator fontSize="small" />
         {index + 1}
       </div>
