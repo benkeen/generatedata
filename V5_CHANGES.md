@@ -36,6 +36,7 @@ Logical units of the code are now found under `apps` and `packages`.
 - dropped Sass/CSS modules in favour of Griffel
 - dropped redux-persist since it's no longer supported (replacement?)
 - move from `react-beautiful-dnd` (deprecated) to `@dnd-kit/core`
+- react 18 (19 is too new for any good DND lib)
 
 ## Bootstrap process for new clones
 

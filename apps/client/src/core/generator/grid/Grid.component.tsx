@@ -1,4 +1,13 @@
-import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import {
+  closestCenter,
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  UniqueIdentifier,
+  useDroppable,
+  useSensor,
+  useSensors
+} from '@dnd-kit/core';
 import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import C from '@generatedata/config/constants';
 import { PrimaryButton, Tooltip } from '@generatedata/core';
@@ -6,16 +15,16 @@ import { DataTypeFolder } from '@generatedata/plugins';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import { useMeasure } from '@uidotdev/usehooks';
-import React, { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
 import { DataRow } from '~store/generator/generator.reducer';
 import { useClasses } from './Grid.styles';
-import { GridRow } from './GridRow.component';
+import GridRow from './GridRow.container';
 
 export type GridProps = {
   rows: DataRow[];
   onAddRows: (numRows: number) => void;
-  onSort: (id: string, newIndex: number) => void;
+  onSort: (event: any) => void;
   toggleGrid: () => void;
   i18n: any;
   columnTitle: string;
@@ -23,11 +32,29 @@ export type GridProps = {
   showHelpDialog: (section: DataTypeFolder) => void;
 };
 
+const Droppable = (props: any) => {
+  const { isOver, setNodeRef } = useDroppable({
+    id: 'droppable'
+  });
+  const classNames = useClasses();
+
+  const style = {
+    color: isOver ? 'green' : undefined
+  };
+
+  return (
+    <div className={classNames.grid} ref={setNodeRef} style={style}>
+      {props.children}
+    </div>
+  );
+};
+
 const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel, showHelpDialog }: GridProps) => {
-  const [numRows, setNumRows] = React.useState(1);
+  const [numRows, setNumRows] = useState(1);
   const windowSize = useWindowSize();
   const [measureRef, { width = 0, height = 0 }] = useMeasure();
   const classNames = useClasses();
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -75,6 +102,8 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
   //   </Droppable>
   // </DragDropContext>
 
+  // const getIndex = (id: UniqueIdentifier) => rows.indexOf(id);
+
   return (
     <>
       <div style={{ position: 'fixed', right: 0, padding: 10 }}>
@@ -106,9 +135,27 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
             <DndContext
               sensors={sensors}
               collisionDetection={closestCenter}
-              onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}
+              onDragStart={({ active }) => {
+                if (!active) {
+                  return;
+                }
+
+                // console.log('starting drag', active);
+
+                setActiveId(active.id);
+              }}
+              onDragEnd={({ over }) => {
+                if (over) {
+                  console.log('over ...', over);
+                  // const overIndex = getIndex(over.id);
+                  // if (activeIndex !== overIndex) {
+                  //   setItems((items) => reorderItems(items, activeIndex, overIndex));
+                  //   // onSort();
+                  // }
+                }
+              }}
             >
-              <div className={classNames.grid}>
+              <Droppable>
                 <SortableContext items={rows} strategy={verticalListSortingStrategy}>
                   {rows.map((row, index) => (
                     <GridRow
@@ -120,7 +167,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
                     />
                   ))}
                 </SortableContext>
-              </div>
+              </Droppable>
             </DndContext>
             <form onSubmit={(e): any => e.preventDefault()} className={`${classNames.addRows} tour-addRows`}>
               <span>{i18n.add}</span>

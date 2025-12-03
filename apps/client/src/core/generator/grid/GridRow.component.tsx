@@ -1,10 +1,10 @@
+import { useDraggable } from '@dnd-kit/core';
 import { Dropdown, SmallSpinner, TextField, useSharedClasses } from '@generatedata/core';
 import { CountryNamesMap, DataTypeFolder, DTOptionsMetadata } from '@generatedata/plugins';
 import DragIndicator from '@mui/icons-material/DragIndicator';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import * as React from 'react';
-import { Draggable } from 'react-beautiful-dnd';
 import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
 import { DataRow } from '~store/generator/generator.reducer';
 import { useClasses } from './Grid.styles';
@@ -73,6 +73,9 @@ export const GridRow = ({
 }: GridRowProps) => {
   const sharedClasses = useSharedClasses();
   const classNames = useClasses();
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: row.id
+  });
 
   let example: any = null;
   let options: any = null;
@@ -123,82 +126,82 @@ export const GridRow = ({
     showHelpDialog(row.dataType as DataTypeFolder);
   }, [row.dataType]);
 
-  return (
-    <Draggable key={row.id} draggableId={row.id} index={index}>
-      {(provided: any, snapshot: any): any => {
-        // the title field is always required, regardless of Export Type
-        let titleColError = '';
-        if (row.dataType) {
-          if (row.title.trim() === '') {
-            titleColError = i18n.requiredField;
-          } else if (row.titleError) {
-            titleColError = row.titleError;
-          }
-        }
+  // return (
+  // <Draggable key={row.id} draggableId={row.id} index={index}>
+  //   {(provided: any, snapshot: any): any => {
+  // the title field is always required, regardless of Export Type
+  let titleColError = '';
+  if (row.dataType) {
+    if (row.title.trim() === '') {
+      titleColError = i18n.requiredField;
+    } else if (row.titleError) {
+      titleColError = row.titleError;
+    }
+  }
 
-        return (
-          <div
-            className={`${classNames.gridRow} tour-gridRow`}
-            key={row.id}
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
-          >
-            <div className={classNames.orderCol} {...provided.dragHandleProps}>
-              <DragIndicator fontSize="small" />
-              {index + 1}
-            </div>
-            <div className={classNames.dataTypeCol}>
-              <Dropdown
-                className={classNames.dataTypeColDropdown}
-                isGrouped={true}
-                value={row.dataType}
-                onChange={(i: any): void => onSelectDataType(i.value, { gridRowId: row.id })}
-                options={dtDropdownOptions}
-              />
-              <div className={classNames.dataTypeHelp}>
-                {row.dataType ? <InfoIcon fontSize="inherit" onClick={onClickShowHelp} /> : null}
-              </div>
-            </div>
-            <div className={classNames.titleCol}>
-              <TextField
-                error={titleColError}
-                value={row.title}
-                onChange={(e: any): void => onChangeTitle(row.id, e.target.value)}
-                throttle={false}
-              />
-            </div>
-            <div className={classNames.examplesCol}>{example}</div>
-            <div className={classNames.optionsCol}>{options}</div>
-            <div
-              className={classNames.settingsIconCol}
-              onClick={(): void => {
-                if (row.dataType === null) {
-                  return;
-                }
-              }}
-            >
-              <SmallScreenSettingsIcon
-                id={row.id}
-                data={row.data}
-                dataType={row.dataType}
-                Example={Example}
-                Options={Options}
-                isDataTypeLoaded={isDataTypeLoaded}
-                i18n={i18n}
-                countryI18n={countryI18n}
-                gridPanelDimensions={gridPanelDimensions}
-                selectedDataTypeI18n={selectedDataTypeI18n}
-                onConfigureDataType={onConfigureDataType}
-                dtCustomProps={dtCustomProps}
-              />
-            </div>
-            <div className={classNames.deleteCol} onClick={(): void => onRemove(row.id)}>
-              <HighlightOffIcon />
-            </div>
-          </div>
-        );
-      }}
-    </Draggable>
+  // <div className={classNames.orderCol} {...provided.dragHandleProps}>
+
+  return (
+    <div
+      className={`${classNames.gridRow} tour-gridRow`}
+      key={row.id}
+      {...listeners}
+      {...attributes}
+      // style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+    >
+      <div className={classNames.orderCol}>
+        <DragIndicator fontSize="small" />
+        {index + 1}
+      </div>
+      <div className={classNames.dataTypeCol}>
+        <Dropdown
+          className={classNames.dataTypeColDropdown}
+          isGrouped={true}
+          value={row.dataType}
+          onChange={(i: any): void => onSelectDataType(i.value, { gridRowId: row.id })}
+          options={dtDropdownOptions}
+        />
+        <div className={classNames.dataTypeHelp}>{row.dataType ? <InfoIcon fontSize="inherit" onClick={onClickShowHelp} /> : null}</div>
+      </div>
+      <div className={classNames.titleCol}>
+        <TextField
+          error={titleColError}
+          value={row.title}
+          onChange={(e: any): void => onChangeTitle(row.id, e.target.value)}
+          throttle={false}
+        />
+      </div>
+      <div className={classNames.examplesCol}>{example}</div>
+      <div className={classNames.optionsCol}>{options}</div>
+      <div
+        className={classNames.settingsIconCol}
+        onClick={(): void => {
+          if (row.dataType === null) {
+            return;
+          }
+        }}
+      >
+        <SmallScreenSettingsIcon
+          id={row.id}
+          data={row.data}
+          dataType={row.dataType}
+          Example={Example}
+          Options={Options}
+          isDataTypeLoaded={isDataTypeLoaded}
+          i18n={i18n}
+          countryI18n={countryI18n}
+          gridPanelDimensions={gridPanelDimensions}
+          selectedDataTypeI18n={selectedDataTypeI18n}
+          onConfigureDataType={onConfigureDataType}
+          dtCustomProps={dtCustomProps}
+        />
+      </div>
+      <div className={classNames.deleteCol} onClick={(): void => onRemove(row.id)}>
+        <HighlightOffIcon />
+      </div>
+    </div>
   );
+  //   }}
+  // </Draggable>
+  // );
 };

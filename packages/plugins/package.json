@@ -18,7 +18,7 @@
     "@mui/lab": "^7.0.1-beta.19",
     "date-fns": "^2.17.0",
     "randomcolor": "^0.6.2",
-    "react": "^19.2.0",
+    "react": "^18.3.1",
     "reselect": "^5.1.1"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "@testing-library/dom": "^10.4.1",
     "@types/jest": "^30.0.0",
     "@types/randomcolor": "^0.5.9",
-    "@types/react": "^19.1.11",
+    "@types/react": "^18.3.27",
     "@types/sinon": "^21.0.0",
     "copyfiles": "2.4.1",
     "jest": "^30.2.0",

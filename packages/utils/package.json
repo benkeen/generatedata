@@ -11,7 +11,7 @@
     "bcryptjs": "^3.0.3",
     "date-fns": "^2.17.0",
     "nanoid": "^3.3.4",
-    "react": "^19.2.0",
+    "react": "^18.3.1",
     "underscore": "^1.13.7"
   },
   "devDependencies": {

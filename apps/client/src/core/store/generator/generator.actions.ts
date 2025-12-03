@@ -175,13 +175,14 @@ export const configureExportType = (data: any): GDAction => ({
 });
 
 export const REPOSITION_ROW = 'REPOSITION_ROW';
-export const repositionRow = (id: string, newIndex: number): GDAction => ({
-  type: REPOSITION_ROW,
-  payload: {
-    id,
-    newIndex
-  }
-});
+export const repositionRow = (e: any): GDAction => {
+  console.log('....', e);
+
+  return {
+    type: REPOSITION_ROW,
+    payload: {}
+  };
+};
 
 export const TOGGLE_GRID = 'TOGGLE_GRID';
 export const toggleGrid = (): GDAction => ({ type: TOGGLE_GRID });

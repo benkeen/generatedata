@@ -1,8 +1,8 @@
-import React, { useEffect, useImperativeHandle, useRef } from 'react';
+import { initToast, ToastType } from '@generatedata/utils/general';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import { Portal } from '../portal/Portal';
-import { initToast, ToastType } from '@generatedata/utils/general';
 // import './Toast.styles.ts';
 
 const defaultMessage: ToastType = {
@@ -70,7 +70,7 @@ export const Toast = () => {
   );
 };
 
-Toast.defaultProps = {
-  type: 'success',
-  autoHideDuration: 5000
-};
+// Toast.defaultProps = {
+//   type: 'success',
+//   autoHideDuration: 5000
+// };

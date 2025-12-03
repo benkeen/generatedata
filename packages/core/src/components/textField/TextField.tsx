@@ -6,6 +6,7 @@ import { ErrorTooltip } from '../tooltips';
 
 // TODO update to pull from native field. Sheesh.
 type TextFieldProps = {
+  type?: string;
   value: string;
   onChange: (e: any) => void;
   throttle?: boolean;
@@ -18,7 +19,6 @@ type TextFieldProps = {
   name?: string;
   style?: React.CSSProperties;
   disabled?: boolean;
-  type?: string;
   id?: string;
   onFocus?: (e: any) => void;
   onBlur?: (e: any) => void;
@@ -31,7 +31,17 @@ type TextFieldProps = {
   maxLength?: number;
 };
 
-export const TextField = ({ throttle, error, value, onChange, tooltipPlacement, className, ref, ...props }: TextFieldProps) => {
+export const TextField = ({
+  throttle = true,
+  type = 'text',
+  error = '',
+  value,
+  onChange,
+  tooltipPlacement = 'bottom',
+  className,
+  ref,
+  ...props
+}: TextFieldProps) => {
   const classNames = useSharedClasses();
   let classes = className ? className : '';
   if (error) {
@@ -41,8 +51,8 @@ export const TextField = ({ throttle, error, value, onChange, tooltipPlacement, 
   const [innerValue, setInnerValue] = useState(value || '');
   const [lastEvent, setChangeEvent] = useThrottle(null, 2); // second param is frames per second...
 
-  const cleanProps = { ...props };
-  if (props.type === 'intOnly') {
+  const cleanProps: any = { ...props };
+  if (type === 'intOnly') {
     cleanProps.type = 'number';
     cleanProps.onKeyDown = (e: any): void => {
       if (e.key === '.') {
@@ -77,12 +87,4 @@ export const TextField = ({ throttle, error, value, onChange, tooltipPlacement, 
       <input {...cleanProps} value={throttle ? innerValue : value} onChange={controlledOnChange} className={classes} ref={ref} />
     </ErrorTooltip>
   );
-};
-TextField.displayName = 'TextField';
-
-TextField.defaultProps = {
-  throttle: true,
-  type: 'text',
-  error: '',
-  tooltipPlacement: 'bottom'
 };
