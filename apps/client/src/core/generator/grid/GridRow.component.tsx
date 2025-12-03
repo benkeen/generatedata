@@ -199,7 +199,4 @@ export const GridRow = ({
       </div>
     </div>
   );
-  //   }}
-  // </Draggable>
-  // );
 };

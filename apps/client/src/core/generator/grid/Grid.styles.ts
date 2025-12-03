@@ -1,7 +1,7 @@
 import { vars } from '@generatedata/core';
-import { makeStyles } from '@griffel/react';
+import { makeStyles, mergeClasses } from '@griffel/react';
 
-export const useClasses = makeStyles({
+const useBaseClasses = makeStyles({
   gridWrapper: {
     width: '100%',
     padding: '0 10px',
@@ -203,3 +203,14 @@ export const useClasses = makeStyles({
     }
   }
 });
+
+export const useClasses = () => {
+  const baseClasses = useBaseClasses();
+
+  const gridHeaderRow = mergeClasses(baseClasses.gridRow, baseClasses.gridHeader);
+
+  return {
+    gridHeaderRow,
+    ...baseClasses
+  };
+};

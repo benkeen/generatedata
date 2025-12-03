@@ -24,23 +24,6 @@ export type GridProps = {
   showHelpDialog: (section: DataTypeFolder) => void;
 };
 
-// const Droppable = (props: any) => {
-//   const { isOver, setNodeRef } = useDroppable({
-//     id: 'droppable'
-//   });
-//   const classNames = useClasses();
-
-//   const style = {
-//     color: isOver ? 'green' : undefined
-//   };
-
-//   return (
-//     <div className={classNames.grid} ref={setNodeRef} style={style}>
-//       {props.children}
-//     </div>
-//   );
-// };
-
 const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel, showHelpDialog }: GridProps) => {
   const [numRows, setNumRows] = useState(1);
   const windowSize = useWindowSize();
@@ -96,8 +79,6 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
 
   // const getIndex = (id: UniqueIdentifier) => rows.indexOf(id);
 
-  // r
-
   return (
     <>
       <div style={{ position: 'fixed', right: 0, padding: 10 }}>
@@ -113,7 +94,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
       <div className={`${classNames.gridWrapper} ${gridSizeClass}`} ref={measureRef}>
         <div>
           <div className={classNames.gridHeaderWrapper}>
-            <div className={`${classNames.gridRow} ${classNames.gridHeader} tour-gridHeader`} style={{ flex: '0 0 auto' }}>
+            <div className={`${classNames.gridHeaderRow} tour-gridHeader`} style={{ flex: '0 0 auto' }}>
               <div className={`${classNames.orderCol} ${classNames.orderColHeader}`}>{rows.length}</div>
               <div className={classNames.dataTypeCol}>{i18n.dataType}</div>
               <div className={classNames.titleCol}>{columnTitle}</div>
