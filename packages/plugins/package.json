@@ -6,7 +6,8 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "tsc": "tsc",
-    "build": "run-s tsc copy-i18n-files",
+    "build": "run-s tsc copy-i18n-files generate-web-workers",
+    "generate-web-workers": "",
     "watch": "tsc --watch",
     "clean": "npx rimraf node_modules dist .turbo",
     "copy-i18n-files": "copyfiles -u 1 ./src/*/*/i18n/*.json dist"
@@ -28,6 +29,8 @@
     "@generatedata/i18n": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@griffel/react": "^1.5.32",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/dom": "^10.4.1",
     "@types/jest": "^30.0.0",
@@ -38,6 +41,11 @@
     "jest": "^30.2.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^6.0.1",
+    "rollup": "^2.31.0",
+    "rollup-plugin-multi-entry": "^2.1.0",
+    "rollup-plugin-strip-exports": "^2.0.6",
+    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-typescript2": "^0.27.1",
     "sinon": "^21.0.0",
     "typescript": "^5.9.3"
   }

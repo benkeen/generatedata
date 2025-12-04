@@ -25,10 +25,10 @@ export const useClasses = makeStyles({
     },
     '& svg': {
       fill: '#aaaaaa'
+    },
+    '& .MuiButton-startIcon': {
+      marginRight: 0
     }
-    // :global(.MuiButton-startIcon) {
-    // 	margin-right: 0;
-    // }
   },
   btnSelected: {
     '& svg': {
