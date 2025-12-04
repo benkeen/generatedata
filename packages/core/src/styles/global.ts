@@ -65,6 +65,15 @@ export const useGlobalStyles = makeStaticStyles({
   },
   '.Select-menu-outer': {
     zIndex: '10000 !important'
+  },
+
+  '.MuiButtonBase-root': {
+    color: '#000000de',
+
+    '& svg': {
+      marginLeft: '-4px',
+      marginRight: '6px'
+    }
   }
 
   // body div.MuiTooltip-popper) {

@@ -14,19 +14,30 @@ export const HtmlTooltip = styled(MuiTooltip)<TooltipProps>(() => ({
   }
 }));
 
-export const Tooltip = styled(MuiTooltip)<TooltipProps>(() => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '#333333',
-    maxWidth: 220,
-    color: '#dddddd',
-    lineHeight: '16px',
-    fontSize: 11,
-    padding: 10
-  },
-  [`& .${tooltipClasses.arrow}`]: {
-    color: '#333333'
-  }
-}));
+export const Tooltip = ({ children, ...props }: TooltipProps) => (
+  <MuiTooltip
+    {...props}
+    slotProps={{
+      tooltip: {
+        sx: {
+          backgroundColor: '#333333 !important',
+          maxWidth: 220,
+          color: '#dddddd',
+          lineHeight: '16px',
+          fontSize: 11,
+          padding: '10px'
+        }
+      },
+      arrow: {
+        sx: {
+          color: '#333333'
+        }
+      }
+    }}
+  >
+    {children}
+  </MuiTooltip>
+);
 
 export const ErrorTooltip = styled(MuiTooltip)<TooltipProps>(() => ({
   [`& .${tooltipClasses.tooltip}`]: {

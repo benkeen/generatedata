@@ -188,6 +188,7 @@ const useBaseClasses = makeStyles({
     display: 'inline-flex',
     alignItems: 'center',
     marginBottom: '12px',
+    marginTop: '12px',
     fontSize: '12px',
     '& span': {
       marginRight: '6px'

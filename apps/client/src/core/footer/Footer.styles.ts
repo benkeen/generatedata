@@ -16,7 +16,6 @@ export const useClasses = makeStyles({
     paddingRight: '18px',
     opacity: 0,
     transition: 'opacity 200ms ease-in-out'
-
     // &.visible {
     // 	opacity: 1;
     // }
@@ -180,20 +179,21 @@ export const useClasses = makeStyles({
       backgroundColor: vars.primarySubmitHover
     }
   },
-  tourBtn: {}
+  tourBtn: {
+    textTransform: 'none',
+    transition: 'color 0.15s ease-in-out',
+    marginLeft: '-6px',
+
+    '& svg': {
+      marginRight: '4px'
+    },
+    '&:hover': {
+      color: vars.primaryColor
+    }
+  }
 });
 
 // .tourBtn:global(.MuiButtonBase-root) {
-// 	text-transform: none;
-// 	transition: color 0.15s ease-in-out;
-// 	margin-left: -6px;
-
-// 	svg {
-// 		margin-right: 4px;
-// 	}
-// 	&:hover {
-// 		color: c.$primary-color;
-// 	}
 // }
 
 // @media (max-width: 900px) {

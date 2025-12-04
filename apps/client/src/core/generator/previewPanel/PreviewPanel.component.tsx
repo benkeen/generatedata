@@ -1,19 +1,17 @@
-import React, { useEffect, CSSProperties } from 'react';
-import { useWindowSize } from 'react-hooks-window-size';
-import CloseIcon from '@mui/icons-material/Close';
-import ErrorIcon from '@mui/icons-material/ErrorOutline';
-import ErrorSolidIcon from '@mui/icons-material/Error';
-import Refresh from '@mui/icons-material/Refresh';
-import AddCircle from '@mui/icons-material/AddCircle';
-import IconButton from '@mui/material/IconButton';
-import CodeMirrorWrapper from './CodeMirrorWrapper.container';
-import { Tooltip } from '@generatedata/core';
-import { PreviewPanelButton } from '@generatedata/core';
-import { Portal } from '@generatedata/core';
-import { PreviewPanelLoader } from './PreviewPanelLoader.component';
-import PanelButtons from '~core/generator/dataSetHistory/PanelButtons.container';
 import C from '@generatedata/config/constants';
-import * as styles from './PreviewPanel.scss';
+import { Portal, PreviewPanelButton, Tooltip } from '@generatedata/core';
+import AddCircle from '@mui/icons-material/AddCircle';
+import CloseIcon from '@mui/icons-material/Close';
+import ErrorSolidIcon from '@mui/icons-material/Error';
+import ErrorIcon from '@mui/icons-material/ErrorOutline';
+import Refresh from '@mui/icons-material/Refresh';
+import IconButton from '@mui/material/IconButton';
+import React, { CSSProperties, useEffect } from 'react';
+import { useWindowSize } from 'react-hooks-window-size';
+import PanelButtons from '~core/generator/dataSetHistory/PanelButtons.container';
+import CodeMirrorWrapper from './CodeMirrorWrapper.container';
+import { useClasses } from './PreviewPanel.styles';
+import { PreviewPanelLoader } from './PreviewPanelLoader.component';
 
 export type PreviewPanelProps = {
   togglePreview: () => void;
@@ -39,6 +37,8 @@ export type PreviewPanelProps = {
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const NoResultsBlock = ({ i18n, type }: any) => {
+  const classNames = useClasses();
+
   const map: any = {
     invalidSettings: {
       icon: ErrorSolidIcon,
@@ -55,7 +55,7 @@ const NoResultsBlock = ({ i18n, type }: any) => {
   const Icon = map[type].icon;
 
   return (
-    <div className={styles.noResults}>
+    <div className={classNames.noResults}>
       <div style={{ marginTop: -50 }}>
         <Icon
           style={{
@@ -96,6 +96,7 @@ const PreviewPanel = ({
   closeOverlayPanels
 }: PreviewPanelProps): React.ReactNode => {
   const windowSize = useWindowSize();
+  const classNames = useClasses();
 
   // on load, and after a user loads a data set, rather than retrigger a refresh of the preview panel after every little
   // change, we do it ONCE when all data types, the export type and locale file have been loaded
@@ -149,9 +150,9 @@ const PreviewPanel = ({
     refreshIconProps = { disabled: true };
   }
 
-  let exportTypeButtonClasses = 'tour-exportTypeBtn';
+  let exportTypeButtonClasses = `${classNames.exportTypeButton} tour-exportTypeBtn`;
   if (!hasValidExportTypeSettings) {
-    exportTypeButtonClasses += ` ${styles.error}`;
+    exportTypeButtonClasses += ` ${classNames.error}`;
   }
 
   const getExportSettingsBtn = () => {
@@ -185,8 +186,8 @@ const PreviewPanel = ({
 
   if (!initialDependenciesLoaded) {
     return (
-      <div className={`${styles.previewPanel} ${themeName}`}>
-        <div className={styles.previewLoading}>
+      <div className={`${classNames.previewPanel} ${themeName}`}>
+        <div className={classNames.previewLoading}>
           <PreviewPanelLoader />
         </div>
       </div>
@@ -194,11 +195,11 @@ const PreviewPanel = ({
   }
 
   const content = (
-    <div className={styles.panelContent}>
-      <div className={styles.topRow}>
+    <div className={classNames.panelContent}>
+      <div className={classNames.topRow}>
         {getExportSettingsBtn()}
 
-        <div className={`${styles.controls} tour-previewPanelControls`}>
+        <div className={`${classNames.controls} tour-previewPanelControls`}>
           <span onClick={refreshPreview}>
             <Tooltip title={i18n.refreshPanel} placement="bottom" {...refreshTooltipProps} arrow>
               <span>
@@ -222,7 +223,7 @@ const PreviewPanel = ({
 
       {getNoResults()}
 
-      <div className={styles.preview} style={previewPanelStyles}>
+      <div className={classNames.preview} style={previewPanelStyles}>
         {getCodeMirrorPanel()}
       </div>
     </div>
@@ -231,12 +232,12 @@ const PreviewPanel = ({
   if (exportSettingsVisible || dataSetHistoryVisible) {
     return (
       <Portal id="overlayPanelFullScreen">
-        <div className={`${styles.previewPanel} ${themeName}`}>{content}</div>
+        <div className={`${classNames.previewPanel} ${themeName}`}>{content}</div>
       </Portal>
     );
   }
 
-  return <div className={`${styles.previewPanel} ${themeName}`}>{content}</div>;
+  return <div className={`${classNames.previewPanel} ${themeName}`}>{content}</div>;
 };
 
 export default PreviewPanel;

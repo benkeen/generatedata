@@ -11,14 +11,6 @@ export const useClasses = makeStyles({
     '& h3': {
       marginTop: 0
     }
-    // 	:global(.MuiButtonBase-root) {
-    // 		margin-bottom: 10px;
-
-    // 		svg {
-    // 			margin-left: -4px;
-    // 			margin-right: 6px;
-    // 		}
-    // 	}
   },
   separator: {
     margin: '0 25px',
