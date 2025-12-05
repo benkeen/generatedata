@@ -12,9 +12,7 @@
  */
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import path from 'path';
 import removeExports from 'rollup-plugin-strip-exports';
-import typescript from 'rollup-plugin-typescript2';
 import removeImports from './build/rollup-plugin-remove-imports';
 import workerHash from './build/rollup-plugin-worker-hash';
 
@@ -35,19 +33,19 @@ export default (cmdLineArgs) => {
     return;
   }
 
-  const terserCompressProps = {};
+  // const terserCompressProps = {};
 
-  // the point of the workerUtils file is to expose all utility methods in a single `utils` object
-  // for use by plugin web workers. This is available on the global scope within a web worker
-  if (src === 'src/utils/workerUtils.ts') {
-    terserCompressProps.top_retain = ['utils', 'onmessage'];
-  } else if (/src\/plugins\/countries/.test(src)) {
-    const folder = path.dirname(src).split(path.sep);
-    terserCompressProps.top_retain = [folder[folder.length - 1]];
-  } else {
-    terserCompressProps.unused = true;
-    terserCompressProps.top_retain = ['utils', 'onmessage'];
-  }
+  // // the point of the workerUtils file is to expose all utility methods in a single `utils` object
+  // // for use by plugin web workers. This is available on the global scope within a web worker
+  // if (src === 'src/utils/workerUtils.ts') {
+  //   terserCompressProps.top_retain = ['utils', 'onmessage'];
+  // } else if (/src\/plugins\/countries/.test(src)) {
+  //   const folder = path.dirname(src).split(path.sep);
+  //   terserCompressProps.top_retain = [folder[folder.length - 1]];
+  // } else {
+  //   terserCompressProps.unused = true;
+  //   terserCompressProps.top_retain = ['utils', 'randomUtils', 'onmessage'];
+  // }
 
   return {
     input: src,
@@ -60,13 +58,13 @@ export default (cmdLineArgs) => {
       removeImports(),
       commonjs(),
       nodeResolve(),
-      typescript({
-        tsconfigOverride: {
-          compilerOptions: {
-            target: 'es5'
-          }
-        }
-      }),
+      // typescript({
+      //   tsconfigOverride: {
+      //     compilerOptions: {
+      //       target: 'es5'
+      //     }
+      //   }
+      // }),
       // terser({
       //   mangle: false,
       //   compress: {

@@ -50,6 +50,7 @@ const getScopedWorkerFilename = (file, workerType) => {
 
 const getDataTypeWebWorkerMap = () => {
   const baseFolder = path.join(__dirname, '../src/dataTypes');
+  const baseDistFolder = path.join(__dirname, '../dist/dataTypes');
   const folders = fs.readdirSync(baseFolder);
 
   const map = {};
@@ -58,7 +59,8 @@ const getDataTypeWebWorkerMap = () => {
     if (!fs.existsSync(webworkerFile)) {
       return;
     }
-    map[`dist/workers/DT-${folder}.worker.js`] = [`${baseFolder}/${folder}/${folder}.worker.ts`];
+    // map[`dist/workers/DT-${folder}.worker.js`] = [`${baseFolder}/${folder}/${folder}.worker.ts`];
+    map[`dist/workers/DT-${folder}.worker.js`] = [`${baseDistFolder}/${folder}/${folder}.worker.js`];
   });
 
   return map;
@@ -66,6 +68,7 @@ const getDataTypeWebWorkerMap = () => {
 
 const getExportTypeWebWorkerMap = () => {
   const baseFolder = path.join(__dirname, '../src/exportTypes');
+  const baseDistFolder = path.join(__dirname, '../dist/exportTypes');
   const folders = fs.readdirSync(baseFolder);
 
   const map = {};
@@ -74,7 +77,8 @@ const getExportTypeWebWorkerMap = () => {
     if (!fs.existsSync(webworkerFile)) {
       return;
     }
-    map[`dist/workers/ET-${folder}.worker.js`] = [`${baseFolder}/${folder}/${folder}.worker.ts`];
+    // map[`dist/workers/ET-${folder}.worker.js`] = [`${baseFolder}/${folder}/${folder}.worker.ts`];
+    map[`dist/workers/ET-${folder}.worker.js`] = [`${baseDistFolder}/${folder}/${folder}.worker.js`];
   });
 
   return map;
@@ -208,10 +212,12 @@ const getWebWorkerShellCommands = (omitFiles = {}) => {
 
 const commands = getWebWorkerShellCommands();
 
+// console.log(commands);
+
 const { result } = concurrently(Object.values(commands), { maxProcesses: 4 })
 
 result.then(() => {
   console.log('All web workers built');
 }, (err) => {
-  console.log("Error: ", err);
+  // console.log("Error: ", err);
 });
