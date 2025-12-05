@@ -68,19 +68,19 @@ const getScopedWorkerFilename = (file, workerType) => {
 	return `${prefix}${fileWithoutExt}.js`;
 };
 
-const hasWorkerFileChanged = (filename, hashFile) => {
-	let hasChanged = true;
+// const hasWorkerFileChanged = (filename, hashFile) => {
+// 	let hasChanged = true;
 
-	if (fs.existsSync(hashFile) && fs.existsSync(filename)) {
-		const hash = fs.readFileSync(hashFile, 'utf8');
+// 	if (fs.existsSync(hashFile) && fs.existsSync(filename)) {
+// 		const hash = fs.readFileSync(hashFile, 'utf8');
 
-		if (md5File.sync(filename) === hash) {
-			hasChanged = false;
-		}
-	}
+// 		if (md5File.sync(filename) === hash) {
+// 			hasChanged = false;
+// 		}
+// 	}
 
-	return hasChanged;
-};
+// 	return hasChanged;
+// };
 
 // returns all the items in arr1 that are not in arr2
 const arrayDiff = (arr1, arr2) => arr1.filter((a) => arr2.indexOf(a) === -1);

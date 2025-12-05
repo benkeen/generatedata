@@ -4,24 +4,23 @@
  * TODO at the moment we're actually loading the utils code twice: once for the web workers, one in the code bundle.
  * The core script COULD load this generated file & use the methods from the window object; as long as the typings were
  * provided that'd cut down on build size. But honestly it's <20KB and there are bigger fish to fry.
- * 
+ *
  * ---------------
- * 
- * TODO DEC 2025 rewrite. I'm moving this to the plugins package, since the workerUtils + plugins are here. The core utils is the outlier, 
+ *
+ * TODO DEC 2025 rewrite. I'm moving this to the plugins package, since the workerUtils + plugins are here. The core utils is the outlier,
  * but I want to get clarification on exactly what's needed.
  */
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import path from 'path';
 import removeExports from 'rollup-plugin-strip-exports';
-import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import removeImports from './build/rollup-plugin-remove-imports';
 import workerHash from './build/rollup-plugin-worker-hash';
 
 // example usage:
 
-// --> in core 
+// --> in core
 //    npx rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js
 
 // --> in plugins
@@ -68,12 +67,12 @@ export default (cmdLineArgs) => {
           }
         }
       }),
-      terser({
-        mangle: false,
-        compress: {
-          ...terserCompressProps
-        }
-      }),
+      // terser({
+      //   mangle: false,
+      //   compress: {
+      //     ...terserCompressProps
+      //   }
+      // }),
       removeExports(),
       workerHash()
     ]

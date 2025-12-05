@@ -33,6 +33,7 @@ Logical units of the code are now found under `apps` and `packages`.
 
 - use turborepo
 - moved to pnpm
+- node 24
 - dropped Sass/CSS modules in favour of Griffel
 - dropped redux-persist since it's no longer supported (replacement?)
 - move from `react-beautiful-dnd` (deprecated) to `@dnd-kit/core`
