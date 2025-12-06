@@ -27,7 +27,6 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 
   // this can occur if the user hasn't configured the region DT properly
   if (!country) {
-    gi;
     return { display: '' };
   }
 
