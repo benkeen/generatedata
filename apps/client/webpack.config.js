@@ -5,6 +5,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // const envPath = path.resolve(__dirname, '../../.env');
@@ -84,6 +85,11 @@ module.exports = (env, argv) => {
       }),
       new webpack.ProvidePlugin({
         process: require.resolve('process/browser')
+      }),
+
+      // the @generatedata/plugins package contains the web workers. This copies them to the app dist folder so
+      new CopyPlugin({
+        patterns: [{ from: './node_modules/@generatedata/plugins/dist/workers/*', to: 'dist/workers' }]
       })
       // new Dotenv({ path: envPath })
     ],

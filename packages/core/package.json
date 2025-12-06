@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "clean": "npx rimraf node_modules dist .turbo"
+    "clean": "npx rimraf dist",
+    "purge": "npx rimraf node_modules dist .turbo"
   },
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",

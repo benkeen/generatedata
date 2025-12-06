@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "clean": "npx rimraf .turbo"
+    "purge": "npx rimraf .turbo"
   },
   "exports": {
     ".": "./locales/en.json",

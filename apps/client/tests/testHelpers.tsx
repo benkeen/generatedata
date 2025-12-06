@@ -15,6 +15,8 @@ import mainReducer, { initialState as initialMainState } from '~store/main/main.
 import packetsReducer, { initialState as initialPacketState } from '~store/packets/packets.reducer';
 
 import i18n from '@generatedata/i18n';
+
+// @ts-ignore - TODO
 import jsonI18n from '@generatedata/plugins/dist/exportTypes/JSON/i18n/en.json';
 
 export const rootReducer = combineReducers({

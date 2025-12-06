@@ -237,10 +237,10 @@ window.gd.localeLoaded(i18n);
     shell: {
       webpackProd: {
         command: 'npm run prod'
-      },
+      }
 
       // note these aren't executed right away, so they contain ALL web workers, even those don't need regeneration
-      ...getWebWorkerShellCommands()
+      // ...getWebWorkerShellCommands()
     },
 
     watch: {
@@ -248,7 +248,7 @@ window.gd.localeLoaded(i18n);
     },
 
     md5: {
-      ...webWorkerMd5Tasks
+      // ...webWorkerMd5Tasks
     }
   });
 
@@ -349,9 +349,9 @@ window.gd.localeLoaded(i18n);
   grunt.loadNpmTasks('grunt-md5');
 
   // grunt.registerTask('sortI18nFiles', sortI18nFiles);
-  grunt.registerTask('default', ['cssmin', 'copy', 'generateI18nBundles', 'webWorkers']);
-  grunt.registerTask('dev', ['cssmin', 'copy', 'generateI18nBundles', 'webWorkers', 'watch']);
-  grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
+  grunt.registerTask('default', ['cssmin', 'copy', 'generateI18nBundles']); //'webWorkers'
+  grunt.registerTask('dev', ['cssmin', 'copy', 'generateI18nBundles', 'watch']); // 'webWorkers',
+  // grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
   grunt.registerTask('generateI18nBundles', generateI18nBundles);
   // grunt.registerTask('validateI18n', validateI18n);
 

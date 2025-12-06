@@ -1,6 +1,6 @@
 import { CountryNamesMap, DataTypeFolder, DataTypeMap, ExportTypeFolder, ExportTypeMap } from '@generatedata/plugins';
+import pluginWebWorkers from '@generatedata/plugins/workerFileMap';
 import { nanoid } from 'nanoid';
-import webWorkers from '../../_pluginWebWorkers';
 // import env from '../../_env';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -16,7 +16,8 @@ const generationWorkers: WorkerMap = {};
 
 export const createGenerationWorker = (customId: string | null = null): string => {
   const workerId = customId ? customId : nanoid();
-  generationWorkers[workerId] = new Worker(`./workers/${webWorkers.generationWorker}`);
+  // generationWorkers[workerId] = new Worker(`./workers/${webWorkers.generationWorker}`);
+
   return workerId;
 };
 
@@ -27,7 +28,7 @@ export const destroyGenerationWorker = (id: string): void => {
 
 export const getDataTypeWorkerMap = (dataTypes: DataTypeFolder[]): DataTypeMap => {
   const map: DataTypeMap = {};
-  const dataTypeMap: any = webWorkers.dataTypes;
+  const dataTypeMap: any = pluginWebWorkers.dataTypes;
   dataTypes.forEach((dataType: DataTypeFolder) => {
     map[dataType] = dataTypeMap[dataType];
   });
@@ -36,14 +37,14 @@ export const getDataTypeWorkerMap = (dataTypes: DataTypeFolder[]): DataTypeMap =
 
 export const getExportTypeWorkerMap = (exportTypes: ExportTypeMap): ExportTypeMap => {
   const map: ExportTypeMap = {};
-  const dataTypeMap: any = webWorkers.exportTypes;
+  const dataTypeMap: any = pluginWebWorkers.exportTypes;
   Object.keys(exportTypes).forEach((exportType) => {
     map[exportType as ExportTypeFolder] = dataTypeMap[exportType];
   });
   return map;
 };
 
-export const getWorkerUtilsUrl = (): string => webWorkers.workerUtils;
+export const getWorkerUtilsUrl = (): string => ''; // webWorkers.workerUtils; // core package
 
 const messageIds: any = {};
 
@@ -77,7 +78,7 @@ export const getCountryNamesBundle = (): any => {
     import(
       /* webpackChunkName: "countryNames" */
       /* webpackMode: "lazy" */
-      '@generatedata/plugins/dist/names'
+      '@generatedata/plugins/names'
     )
       .then((resp: any) => {
         namesPlugins = resp.default;

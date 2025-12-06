@@ -92,6 +92,5 @@ module.exports = {
 	getHashFilename,
 	generateWorkerHashfile,
 	getScopedWorkerFilename,
-	hasWorkerFileChanged,
 	arrayDiff
 };

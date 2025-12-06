@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build.js",
-    "clean": "npx rimraf node_modules .turbo",
+    "purge": "npx rimraf node_modules dist .turbo",
     "start": "nodemon ./app.js"
   },
   "dependencies": {

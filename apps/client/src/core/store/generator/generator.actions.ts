@@ -15,7 +15,7 @@ import * as coreUtils from '../../../utils/coreUtils';
 import { getCountryNamesBundle } from '../../../utils/coreUtils';
 import { registerInterceptors } from '../../actionInterceptor';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
-import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
+import type { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import * as selectors from './generator.selectors';
 import { getCurrentDataSet, isCountryNamesLoaded, isCountryNamesLoading } from './generator.selectors';
 

@@ -63,16 +63,34 @@ const generateWorkers = () => {
   ];
 
   const commands = workQueue.map((item) => ({ command: item.command }))
-
   const { result } = concurrently(commands, { maxProcesses: 4 })
-result.then(() => {
-  console.log('All web workers built');
-}, (err) => {
-  // console.log("Error: ", err);
-});
+  result.then(() => {
+    console.log('All web workers built');
+  }, (err) => {
+    console.log("Error generating plugin web worker(s): ", err);
+    process.exit(1);
+  });
 
+  // declare module '@generatedata/plugins/workerFileMap';
+  
+  // lastly, generate the worker file map
+  const workerFileMap = {};
+  workQueue.forEach((item) => {
+    if (!workerFileMap[item.pluginType]) {
+      workerFileMap[item.pluginType] = {};
+    }
+    workerFileMap[item.pluginType][item.plugin] = item.targetFile;
+  });
 
-  return commands;
+  const mapFileContent = `// This file is auto-generated during the build process
+export default ${JSON.stringify(workerFileMap, null, 2)};
+`;
+
+  fs.writeFileSync(
+    path.join(__dirname, '../dist/workers/workerFileMap.js'),
+    mapFileContent,
+    'utf-8'
+  );  
 };
 
 generateWorkers();

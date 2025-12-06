@@ -9,7 +9,8 @@
   },
   "scripts": {
     "__build": "grunt && tsc",
-    "clean": "npx rimraf node_modules dist .turbo",
+    "clean": "npx rimraf dist",
+    "purge": "npx rimraf node_modules dist .turbo",
     "test": "jest"
   },
   "files": [

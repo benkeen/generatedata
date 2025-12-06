@@ -16,6 +16,9 @@
     "clean": {
       "dependsOn": ["^clean"]
     },
+    "purge": {
+      "dependsOn": ["^purge"]
+    },
     "dev": {
       "cache": false,
       "persistent": true

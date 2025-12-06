@@ -1,4 +1,4 @@
-import { ColumnData, GenerationTemplate, type DataTypeFolder, type ExportTypeFolder } from '@generatedata/plugins';
+import type { ColumnData, DataTypeFolder, ExportTypeFolder, GenerationTemplate } from '@generatedata/plugins';
 import { GeneratorLayout } from '@generatedata/types';
 import * as langUtils from '@generatedata/utils/lang';
 import { createSelector } from 'reselect';

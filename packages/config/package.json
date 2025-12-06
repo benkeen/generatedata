@@ -5,7 +5,8 @@
   "scripts": {
     "tsc": "tsc",
     "build": "run-s confirm-setup tsc",
-    "clean": "npx rimraf node_modules dist .turbo",
+    "clean": "npx rimraf dist",
+    "purge": "npx rimraf node_modules dist .turbo",
     "confirm-setup": "node ./scripts/confirm-setup.js"
   },
   "devDependencies": {

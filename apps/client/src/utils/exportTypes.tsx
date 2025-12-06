@@ -53,7 +53,7 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
       import(
         /* webpackChunkName: "ET-[request]" */
         /* webpackMode: "lazy" */
-        `@generatedata/plugins/dist/exportTypes/${exportType}/bundle`
+        `@generatedata/plugins/exportTypes/${exportType}/bundle`
       )
         .then((resp: any) => {
           const def = resp.default;

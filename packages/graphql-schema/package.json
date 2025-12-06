@@ -7,7 +7,8 @@
   "types": "./dist/resolvers-types.ts",
   "scripts": {
     "build": "graphql-codegen --config codegen.yml",
-    "clean": "npx rimraf node_modules dist .turbo"
+    "clean": "npx rimraf dist",
+    "purge": "npx rimraf node_modules dist .turbo"
   },
   "dependencies": {
     "graphql": "^16.12.0"

@@ -9,7 +9,8 @@
     "build": "run-s tsc copy-i18n-files generate-web-workers",
     "generate-web-workers": "node ./build/webworkers.build.js",
     "watch": "tsc --watch",
-    "clean": "npx rimraf node_modules dist .turbo",
+    "clean": "npx rimraf dist",
+    "purge": "npx rimraf node_modules dist .turbo",
     "copy-i18n-files": "copyfiles -u 1 ./src/*/*/i18n/*.json dist"
   },
   "dependencies": {
@@ -29,7 +30,6 @@
     "@generatedata/i18n": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@griffel/react": "^1.5.32",
-    "@rollup/plugin-alias": "^6.0.0",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@testing-library/react": "^16.3.0",
@@ -45,12 +45,28 @@
     "npm-run-all": "^4.1.5",
     "rimraf": "^6.0.1",
     "rollup": "^2.31.0",
-    "rollup-plugin-multi-entry": "^2.1.0",
     "rollup-plugin-strip-exports": "^2.0.6",
-    "rollup-plugin-terser": "^6.1.0",
-    "rollup-plugin-typescript2": "^0.27.1",
     "sinon": "^21.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./names": {
+      "types": "./dist/names.d.ts",
+      "default": "./dist/names.js"
+    },
+    "./workerFileMap": {
+      "default": "./dist/workers/workerFileMap.js"
+    },
+    "./dataTypes/*": {
+      "default": "./dist/dataTypes/*"
+    },
+    "./exportTypes/*": {
+      "default": "./dist/exportTypes/*"
+    }
   }
 }
