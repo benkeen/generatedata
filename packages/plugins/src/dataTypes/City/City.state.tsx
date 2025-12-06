@@ -1,4 +1,4 @@
-import { CountryType } from '../../';
+import { type CountryType } from '../../';
 
 export const enum RegionSourceEnum {
   any = 'any',

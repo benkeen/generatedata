@@ -1,3 +1,9 @@
+/**
+ * This is a special file. The build process bundles the content of this file and generates a workerUtils.js file, and the
+ * helpers here are passed to the plugins. The direct imports in the [plugin].worker.ts files are stripped out when they're bundled
+ * into the final worker files, and the export here is also stripped. The `utils` var here remains in the final worker.js file -
+ * that's how the workers access these helper functions.
+ */
 import * as arrayUtils from '@generatedata/utils/array';
 // import * as countryUtils from '@generatedata/utils/country';
 import * as generalUtils from '@generatedata/utils/general';
@@ -14,7 +20,7 @@ export type WorkerUtils = {
   numberUtils: typeof numberUtils;
 };
 
-const workerUtils: WorkerUtils = {
+const utils: WorkerUtils = {
   arrayUtils: { ...arrayUtils },
   // countryUtils: { ...countryUtils },
   generalUtils: { ...generalUtils },
@@ -23,4 +29,4 @@ const workerUtils: WorkerUtils = {
   numberUtils: { ...numberUtils }
 };
 
-export default workerUtils;
+export default utils;

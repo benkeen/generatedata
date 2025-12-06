@@ -1,5 +1,12 @@
 import { Region } from '@generatedata/types';
-import { countryList, CountryType, DTGenerateResult, DTGenerationData, DTGenerationExistingRowData, WorkerUtils } from '../../';
+import {
+  countryList,
+  type CountryType,
+  type DTGenerateResult,
+  type DTGenerationData,
+  type DTGenerationExistingRowData,
+  type WorkerUtils
+} from '../../';
 import { CityState, RegionSourceEnum } from './City.state';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
@@ -20,6 +27,7 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 
   // this can occur if the user hasn't configured the region DT properly
   if (!country) {
+    gi;
     return { display: '' };
   }
 

@@ -1,6 +1,12 @@
 /**
  * This script is called as part of the main package build command. It generates the following;
  * - dist/workers/* - worker files for all data types + export types + core workers
+ * 
+ * REMAINING:
+ * - hash the generated filenames
+ * - generate a manifest file
+ * - add worker 
+ * - clean up this whole file, it's a total mess
  */
 const fs = require('fs');
 const md5File = require('md5-file');
@@ -59,7 +65,6 @@ const getDataTypeWebWorkerMap = () => {
     if (!fs.existsSync(webworkerFile)) {
       return;
     }
-    // map[`dist/workers/DT-${folder}.worker.js`] = [`${baseFolder}/${folder}/${folder}.worker.ts`];
     map[`dist/workers/DT-${folder}.worker.js`] = [`${baseDistFolder}/${folder}/${folder}.worker.js`];
   });
 
@@ -77,22 +82,15 @@ const getExportTypeWebWorkerMap = () => {
     if (!fs.existsSync(webworkerFile)) {
       return;
     }
-    // map[`dist/workers/ET-${folder}.worker.js`] = [`${baseFolder}/${folder}/${folder}.worker.ts`];
     map[`dist/workers/ET-${folder}.worker.js`] = [`${baseDistFolder}/${folder}/${folder}.worker.js`];
   });
 
   return map;
 };
 
-// const webWorkerFileList = webWorkerFileListWithType.map((i) => i.file);
-
-// const generateWorkerMapFile = () => {
-//   fs.writeFileSync('./_pluginWebWorkers.ts', `/* eslint quotes:0 */\nexport default ${JSON.stringify(webWorkerMap, null, '\t')};`);
-// };
-
 const getWebWorkerShellCommands = (omitFiles = {}) => {
   const webWorkerFileListWithType = [
-    { file: 'src/utils/workerUtils.ts', type: 'core' }
+    { file: 'dist/workerUtils.js', type: 'core' }
   ];
   const dataTypes = getDataTypeWebWorkerMap();
   const exportTypes = getExportTypeWebWorkerMap();
@@ -117,7 +115,9 @@ const getWebWorkerShellCommands = (omitFiles = {}) => {
     if (['dataType', 'exportType'].indexOf(type) !== -1) {
       const filename = getScopedWorkerFilename(file, type);
       target = `dist/workers/${filename}`;
-    }
+    } else if (type === 'core') {
+      target = `dist/workers/${filename}.js`;
+    } 
 
     // TODO detect when the command is run and look for the generated __hash-[filename] content, then update
     commands[`buildWebWorker${index}`] = {
@@ -127,46 +127,6 @@ const getWebWorkerShellCommands = (omitFiles = {}) => {
 
   return commands;
 };
-
-// TODO: parallelize!
-// generating every web worker bundle takes time. To get around that, rollup generates a file in the dist/workers
-// file for each bundle, with the filename of the form:
-//      Plugins (e.g.):
-//          __hash-DT-Alphanumeric.generator
-//          __hash-ET-JSON.generator
-//
-//      Core workers:
-//          __hash-core.worker
-//          __hash-workerUtils
-// we then use that information here to check to see if we need to regenerate or not
-// const getWebWorkerBuildCommandNames = () => {
-//   const omitFiles = {};
-//   webWorkerFileListWithType.forEach(({ file, type }) => {
-//     const filename = helpers.getScopedWorkerFilename(file, type);
-//     const filenameHash = helpers.getHashFilename(filename);
-
-//     if (!hasWorkerFileChanged(`${workersFolder}/${filename}`, `${workersFolder}/${filenameHash}`)) {
-//       omitFiles[file] = true;
-//     }
-//   });
-
-//   return Object.keys(getWebWorkerShellCommands(omitFiles)).map((cmdName) => `shell:${cmdName}`);
-// };
-
-// const webWorkerWatchers = (() => {
-// 	const tasks = {};
-
-// 	// this contains *ALL* web worker tasks. It ensures that everything is watched.
-// 	webWorkerFileList.forEach((workerPath, index) => {
-// 		tasks[`webWorkerWatcher${index}`] = {
-// 			files: [workerPath],
-// 			options: { spawn: false },
-// 			tasks: [`shell:buildWebWorker${index}`, `md5:webWorkerMd5Task${index}`, 'generateWorkerMapFile']
-// 		};
-// 	});
-
-// 	return tasks;
-// })();
 
 // const processMd5Change = (fileChanges) => {
 //   const oldPath = fileChanges[0].oldPath;
@@ -211,9 +171,6 @@ const getWebWorkerShellCommands = (omitFiles = {}) => {
 
 
 const commands = getWebWorkerShellCommands();
-
-// console.log(commands);
-
 const { result } = concurrently(Object.values(commands), { maxProcesses: 4 })
 
 result.then(() => {

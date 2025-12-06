@@ -13,7 +13,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import removeExports from 'rollup-plugin-strip-exports';
-import removeImports from './build/rollup-plugin-remove-imports';
+import removeUtilsImport from './build/rollup-plugin-remove-utils-import';
 import workerHash from './build/rollup-plugin-worker-hash';
 
 // example usage:
@@ -54,10 +54,14 @@ export default (cmdLineArgs) => {
       format: 'es'
     },
     treeshake: false,
+    preserveSymlinks: true,
     plugins: [
-      removeImports(),
+      removeUtilsImport(),
+      nodeResolve({
+        // include: ['node_modules/**', '../utils/node_modules/**'],
+        // modulePaths: [path.resolve(__dirname, '../')]
+      }),
       commonjs(),
-      nodeResolve(),
       // typescript({
       //   tsconfigOverride: {
       //     compilerOptions: {
