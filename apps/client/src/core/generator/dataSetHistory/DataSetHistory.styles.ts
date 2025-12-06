@@ -85,12 +85,12 @@ export const useClasses = makeStyles({
   row: {
     padding: '6px',
     border: '1px solid transparent',
-    transition: 'all 0.2s ease-in-out'
+    transition: 'all 0.2s ease-in-out',
 
-    // 	label {
-    // 		color: #999999;
-    // 		font-size: 11px;
-    // 	}
+    '& label': {
+      color: '#999999',
+      fontSize: '11px'
+    }
 
     // 	.id {
     // 		margin-left: 10px;

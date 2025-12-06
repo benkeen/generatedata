@@ -1,11 +1,22 @@
+import { vars } from '@generatedata/core';
 import { makeStyles } from '@griffel/react';
 
 export const useClasses = makeStyles({
-  aboutDialog: {},
-  actions: {}
+  aboutDialog: {
+    '& h4': {
+      marginTop: 0
+    }
+  },
+  actions: {
+    '& button svg': {
+      fill: vars.primaryColor,
+      height: '18px',
+      width: '18px',
+      marginRight: '6px',
+      marginLeft: '-4px'
+    }
+  }
 });
-
-// @use '../../../styles/variables' as c;
 
 // .aboutDialog {
 // 	.actions {
@@ -18,10 +29,6 @@ export const useClasses = makeStyles({
 // 				margin-left: -4px;
 // 			}
 // 		}
-// 	}
-
-// 	h4 {
-// 		margin-top: 0;
 // 	}
 
 // 	:global(.MuiDialogContent-root) {

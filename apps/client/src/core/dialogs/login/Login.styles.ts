@@ -22,15 +22,15 @@ export const useClasses = makeStyles({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    borderLeft: '1px solid #efefef'
+    borderLeft: '1px solid #efefef',
 
-    // 	& > div {
-    // 		position: absolute;
-    // 		left: -8px;
-    // 		background-color: white;
-    // 		padding: 2px;
-    // 		color: #555555;
-    // 	}
+    '& > div': {
+      position: 'absolute',
+      left: '-8px',
+      backgroundColor: 'white',
+      padding: '2px',
+      color: '#555555'
+    }
   },
   actionsRow: {
     // div.actionsRow

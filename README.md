@@ -1,6 +1,6 @@
 # generatedata.com
 
-> Nov 2025: Warning: master is currently being refactored, so it'll be in a broken state for a while.
+> Dec 2025: I'm currently refactoring the codebase for v5. Master will be broken for a while.
 
 This is the repo for the downloadable version of [generatedata.com](https://generatedata.com). The script is essentially
 an _engine_ to generate any sort of random data in any format. It currently comes with 30 or
