@@ -64,6 +64,8 @@
     "./dataTypes/*": {
       "default": "./dist/dataTypes/*"
     },
-    "./exportTypes/*": "./dist/exportTypes/*"
+    "./exportTypes/*": {
+      "default": "./dist/exportTypes/*"
+    }
   }
 }

@@ -217,20 +217,22 @@ export const getAffectedDataTypes = (dataTypes: any): any => {
 export const affectedDataTypes = getAffectedDataTypes(dataTypes);
 
 export const requestDataTypeBundle = (dataType: DataTypeFolder): any => {
-  // return new Promise((resolve, reject) => {
-  //   import(
-  //     /* webpackChunkName: "DT-[request]" */
-  //     /* webpackMode: "lazy" */
-  //     `@generatedata/plugins/dataTypes/${dataType}/bundle`
-  //   )
-  //     .then((definition: any) => {
-  //       loadedDataTypes[dataType] = definition.default;
-  //       resolve(definition.default);
-  //     })
-  //     .catch((e) => {
-  //       reject(e);
-  //     });
-  // });
+  // Note: `@generatedata/plugins/exportTypes/${exportType}/bundle.js` should have worked, but webpack has an open
+  // bug, hence the relative path. See: https://github.com/webpack/webpack/issues/13865
+  return new Promise((resolve, reject) => {
+    import(
+      /* webpackChunkName: "DT-[request]" */
+      /* webpackMode: "lazy" */
+      `../../node_modules/@generatedata/plugins/dist/dataTypes/${dataType}/bundle.js`
+    )
+      .then((definition: any) => {
+        loadedDataTypes[dataType] = definition.default;
+        resolve(definition.default);
+      })
+      .catch((e) => {
+        reject(e);
+      });
+  });
 };
 
 // TODO - this is causing a repaint on every method call, which is causing the most slowness in the UI. But using

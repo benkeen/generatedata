@@ -49,11 +49,13 @@ export const DefaultSettings = ({ coreI18n }: ETSettings) => <div>{coreI18n.noAd
 // TODO error scenarios
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
   return new Promise((mainResolve) => {
+    // Note: `@generatedata/plugins/exportTypes/${exportType}/bundle.js` should have worked, but webpack has an open
+    // bug, hence the relative path. See: https://github.com/webpack/webpack/issues/13865
     const etBundle = new Promise((resolve, reject) => {
       import(
         /* webpackChunkName: "ET-[request]" */
         /* webpackMode: "lazy" */
-        `@generatedata/plugins/exportTypes/${exportType}/bundle`
+        `../../node_modules/@generatedata/plugins/dist/exportTypes/${exportType}/bundle.js`
       )
         .then((resp: any) => {
           const def = resp.default;
