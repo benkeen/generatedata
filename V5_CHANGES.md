@@ -46,3 +46,17 @@ Logical units of the code are now found under `apps` and `packages`.
 
 - install turborepo CLI, nvm, pnpm globals
 - `pnpm install` - this bootstraps the whole repo
+
+### Note on Workers
+
+The web worker file generation process for the plugins is vastly faster now I ditched TS in the rollup config and just target the JS
+version of the plugin worker generated in the main build/tsc step. It's so fast, I ditched all the extra manual memoization stuff which
+has simplifies the bilds.
+
+For clear code organization, I want the following:
+
+1. `plugins` package: generates DT + ET workers as part of its dist/
+2. `utils` package: generates the "worker utils" worker (just a subset of all available utils)
+3. `client` app package: generates the "generator utils" worker. This is only needed here. The CLI package should't need it, I don't think. If it does, down the road I'll move it somewhere sensible.
+
+It'll be the client app's responsibility to copy all the necessary workers to its own dist folder for runtime loading on the site.

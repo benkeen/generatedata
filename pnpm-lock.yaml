@@ -205,8 +205,8 @@ importers:
         specifier: ^15.1.0
         version: 15.1.0(rollup@2.79.2)
       '@rollup/plugin-node-resolve':
-        specifier: ^8.4.0
-        version: 8.4.0(rollup@2.79.2)
+        specifier: ^13.3.0
+        version: 13.3.0(rollup@2.79.2)
       '@stylistic/eslint-plugin-js':
         specifier: ^3.1.0
         version: 3.1.0(eslint@8.57.1)
@@ -390,9 +390,6 @@ importers:
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
-      rollup-plugin-multi-entry:
-        specifier: ^2.1.0
-        version: 2.1.0
       rollup-plugin-strip-exports:
         specifier: ^2.0.6
         version: 2.0.7
@@ -712,9 +709,6 @@ importers:
       '@griffel/react':
         specifier: ^1.5.32
         version: 1.5.32(react@18.3.1)
-      '@rollup/plugin-alias':
-        specifier: ^6.0.0
-        version: 6.0.0(rollup@2.79.2)
       '@rollup/plugin-commonjs':
         specifier: ^15.1.0
         version: 15.1.0(rollup@2.79.2)
@@ -760,18 +754,9 @@ importers:
       rollup:
         specifier: ^2.31.0
         version: 2.79.2
-      rollup-plugin-multi-entry:
-        specifier: ^2.1.0
-        version: 2.1.0
       rollup-plugin-strip-exports:
         specifier: ^2.0.6
         version: 2.0.7
-      rollup-plugin-terser:
-        specifier: ^6.1.0
-        version: 6.1.0(rollup@2.79.2)
-      rollup-plugin-typescript2:
-        specifier: ^0.27.1
-        version: 0.27.3(rollup@2.79.2)(typescript@5.9.3)
       sinon:
         specifier: ^21.0.0
         version: 21.0.0
@@ -3068,15 +3053,6 @@ packages:
   '@repeaterjs/repeater@3.0.6':
     resolution: {integrity: sha512-Javneu5lsuhwNCryN+pXH93VPQ8g0dBX7wItHFgYiwQmzE1sVdg5tWHiOgHywzL2W21XQopa7IwIEnNbmeUJYA==}
 
-  '@rollup/plugin-alias@6.0.0':
-    resolution: {integrity: sha512-tPCzJOtS7uuVZd+xPhoy5W4vThe6KWXNmsFCNktaAh5RTqcLiSfT4huPQIXkgJ6YCOjJHvecOAzQxLFhPxKr+g==}
-    engines: {node: '>=20.19.0'}
-    peerDependencies:
-      rollup: '>=4.0.0'
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
   '@rollup/plugin-commonjs@15.1.0':
     resolution: {integrity: sha512-xCQqz4z/o0h2syQ7d9LskIMvBSH4PX5PjYdpSSvgS+pQik3WahkQVNWg3D8XJeYjZoVWnIUQYDghuEMRGrmQYQ==}
     engines: {node: '>= 8.0.0'}
@@ -3088,12 +3064,6 @@ packages:
     engines: {node: '>= 10.0.0'}
     peerDependencies:
       rollup: ^2.42.0
-
-  '@rollup/plugin-node-resolve@8.4.0':
-    resolution: {integrity: sha512-LFqKdRLn0ShtQyf6SBYO69bGE1upV6wUhBX0vFOUnLAyzx5cwp8svA0eHUnu8+YU57XOkrMtfG63QOpQx25pHQ==}
-    engines: {node: '>= 8.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0
 
   '@rollup/pluginutils@3.1.0':
     resolution: {integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==}
@@ -4016,10 +3986,6 @@ packages:
     resolution: {integrity: sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==}
     engines: {node: '>= 0.4'}
 
-  arr-union@3.1.0:
-    resolution: {integrity: sha512-sKpyeERZ02v1FeCZT8lrfJq5u6goHCtpTAzPwJYe7c8SPFOboNjNg1vz2L4VTn9T4PQxEx13TbXLmYUcS6Ug7Q==}
-    engines: {node: '>=0.10.0'}
-
   array-buffer-byte-length@1.0.2:
     resolution: {integrity: sha512-LHE+8BuR7RYGDKvnrmcuSq3tDcKv9OFEXQt/HpbZhY7V6h0zlUXutnAD82GiFx9rdieCMjkvtcsPqBwgUl1Iiw==}
     engines: {node: '>= 0.4'}
@@ -4096,10 +4062,6 @@ packages:
   astring@1.9.0:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
-
-  async-array-reduce@0.2.1:
-    resolution: {integrity: sha512-/ywTADOcaEnwiAnOEi0UB/rAcIq5bTFfCV9euv3jLYFUMmy6KvKccTQUnLlp8Ensmfj43wHSmbGiPqjsZ6RhNA==}
-    engines: {node: '>=0.10.0'}
 
   async-function@1.0.0:
     resolution: {integrity: sha512-hsU18Ae8CDTR6Kgu9DYf0EbCr/a5iGL0rytQDobUcdpYOKokk8LEjVphnXkDkgpi0wYVsqrXuP0bZxJaTqdgoA==}
@@ -5003,9 +4965,6 @@ packages:
     peerDependenciesMeta:
       babel-plugin-macros:
         optional: true
-
-  deep-freeze@0.0.1:
-    resolution: {integrity: sha512-Z+z8HiAvsGwmjqlphnHW5oz6yWlOwu6EQfFTjmeTWlDeda3FS2yv3jhq35TX/ewmsnqB+RX2IdsIOyjJCQN5tg==}
 
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
@@ -6101,10 +6060,6 @@ packages:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
 
-  has-glob@1.0.0:
-    resolution: {integrity: sha512-D+8A457fBShSEI3tFCj65PAbT++5sKiFtdCdOam0gnfBgw9D277OERk+HM9qYJXmdVLZ/znez10SqHN0BBQ50g==}
-    engines: {node: '>=0.10.0'}
-
   has-property-descriptors@1.0.2:
     resolution: {integrity: sha512-55JNKuIW+vq4Ke1BjOTjM2YctQIvCT7GFzHwmfZPGo5wnrgkid0YQtnAleFSqumZm4az3n2BS+erby5ipJdgrg==}
 
@@ -6471,10 +6426,6 @@ packages:
     resolution: {integrity: sha512-nPUB5km40q9e8UfN/Zc24eLlzdSf9OfKByBw9CIdw4H1giPMeA0OIJvbchsCu4npfI2QcMVBsGEBHKZ7wLTWmQ==}
     engines: {node: '>= 0.4'}
 
-  is-glob@3.1.0:
-    resolution: {integrity: sha512-UFpDDrPgM6qpnFNI+rh/p3bUaq9hKLZN8bMUWzxmcnZVS3omf4IPK+BrewlnWjO1WmUsMYuSjKh4UJuV4+Lqmw==}
-    engines: {node: '>=0.10.0'}
-
   is-glob@4.0.3:
     resolution: {integrity: sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==}
     engines: {node: '>=0.10.0'}
@@ -6598,10 +6549,6 @@ packages:
 
   is-upper-case@2.0.2:
     resolution: {integrity: sha512-44pxmxAvnnAOwBg4tHPnkfvgjPwbc5QIsSstNU+YcJ1ovxVzCWpSGosPJOZh/a1tdl81fbgnLc9LLv+x2ywbPQ==}
-
-  is-valid-glob@1.0.0:
-    resolution: {integrity: sha512-AhiROmoEFDSsjx8hW+5sGwgKVIORcXnrlAx/R0ZSeaPw70Vw0CqkGBBhHGL58Uox2eXnU1AnvXJl1XlyedO5bA==}
-    engines: {node: '>=0.10.0'}
 
   is-weakmap@2.0.2:
     resolution: {integrity: sha512-K5pXYOm9wqY1RgjpL3YTkF39tni1XajUIkawTLUo9EZEVUFga5gSQJF8nNS7ZwJQ02y+1YCNYcMh+HIf1ZqE+w==}
@@ -7241,10 +7188,6 @@ packages:
   map-cache@0.2.2:
     resolution: {integrity: sha512-8y/eV9QQZCiyn1SprXSrCmqJN0yNRATe+PO8ztwqrvrbdRLA3eYJF0yaR0YayLWkMbsQSKWS9N2gPcGEc4UsZg==}
     engines: {node: '>=0.10.0'}
-
-  matched@1.0.2:
-    resolution: {integrity: sha512-7ivM1jFZVTOOS77QsR+TtYHH0ecdLclMkqbf5qiJdX2RorqfhsL65QHySPZgDE0ZjHoh+mQUNHTanNXIlzXd0Q==}
-    engines: {node: '>= 0.12.0'}
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -8468,10 +8411,6 @@ packages:
   ripemd160@2.0.3:
     resolution: {integrity: sha512-5Di9UC0+8h1L6ZD2d7awM7E/T4uA1fJRlx6zk/NvdCCVEoAnFqvHmCuNeIKoCeIixBX/q8uM+6ycDvF8woqosA==}
     engines: {node: '>= 0.8'}
-
-  rollup-plugin-multi-entry@2.1.0:
-    resolution: {integrity: sha512-YVVsI15uvbxMKdeYS5NXQa5zbVr/DYdDBBwseC80+KAc7mqDUjM6Qe4wl+jFucVw1yvBDZFk0PPSBZqoLq8xUA==}
-    deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-multi-entry.
 
   rollup-plugin-strip-exports@2.0.7:
     resolution: {integrity: sha512-dPvZcbAihL2vTZ+rof6gZj69HZ+VU+RVDSt9Tg+mps3blfpukUYxGA+029mmRaU0Ov9m8vWYtjknUahJHZXfJw==}
@@ -12980,10 +12919,6 @@ snapshots:
 
   '@repeaterjs/repeater@3.0.6': {}
 
-  '@rollup/plugin-alias@6.0.0(rollup@2.79.2)':
-    optionalDependencies:
-      rollup: 2.79.2
-
   '@rollup/plugin-commonjs@15.1.0(rollup@2.79.2)':
     dependencies:
       '@rollup/pluginutils': 3.1.0(rollup@2.79.2)
@@ -13001,17 +12936,6 @@ snapshots:
       '@types/resolve': 1.17.1
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
-      is-module: 1.0.0
-      resolve: 1.22.10
-      rollup: 2.79.2
-
-  '@rollup/plugin-node-resolve@8.4.0(rollup@2.79.2)':
-    dependencies:
-      '@rollup/pluginutils': 3.1.0(rollup@2.79.2)
-      '@types/resolve': 1.17.1
-      builtin-modules: 3.3.0
-      deep-freeze: 0.0.1
-      deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.10
       rollup: 2.79.2
@@ -14022,8 +13946,6 @@ snapshots:
 
   aria-query@5.3.2: {}
 
-  arr-union@3.1.0: {}
-
   array-buffer-byte-length@1.0.2:
     dependencies:
       call-bound: 1.0.3
@@ -14125,8 +14047,6 @@ snapshots:
   ast-types-flow@0.0.8: {}
 
   astring@1.9.0: {}
-
-  async-array-reduce@0.2.1: {}
 
   async-function@1.0.0: {}
 
@@ -15269,8 +15189,6 @@ snapshots:
   dedent@1.7.0(babel-plugin-macros@3.1.0):
     optionalDependencies:
       babel-plugin-macros: 3.1.0
-
-  deep-freeze@0.0.1: {}
 
   deep-is@0.1.4: {}
 
@@ -16639,10 +16557,6 @@ snapshots:
 
   has-flag@4.0.0: {}
 
-  has-glob@1.0.0:
-    dependencies:
-      is-glob: 3.1.0
-
   has-property-descriptors@1.0.2:
     dependencies:
       es-define-property: 1.0.1
@@ -17012,10 +16926,6 @@ snapshots:
       has-tostringtag: 1.0.2
       safe-regex-test: 1.1.0
 
-  is-glob@3.1.0:
-    dependencies:
-      is-extglob: 2.1.1
-
   is-glob@4.0.3:
     dependencies:
       is-extglob: 2.1.1
@@ -17124,8 +17034,6 @@ snapshots:
   is-upper-case@2.0.2:
     dependencies:
       tslib: 2.8.1
-
-  is-valid-glob@1.0.0: {}
 
   is-weakmap@2.0.2: {}
 
@@ -18096,15 +18004,6 @@ snapshots:
       tmpl: 1.0.5
 
   map-cache@0.2.2: {}
-
-  matched@1.0.2:
-    dependencies:
-      arr-union: 3.1.0
-      async-array-reduce: 0.2.1
-      glob: 7.2.3
-      has-glob: 1.0.0
-      is-valid-glob: 1.0.0
-      resolve-dir: 1.0.1
 
   math-intrinsics@1.1.0: {}
 
@@ -19397,10 +19296,6 @@ snapshots:
     dependencies:
       hash-base: 3.1.2
       inherits: 2.0.4
-
-  rollup-plugin-multi-entry@2.1.0:
-    dependencies:
-      matched: 1.0.2
 
   rollup-plugin-strip-exports@2.0.7:
     dependencies:

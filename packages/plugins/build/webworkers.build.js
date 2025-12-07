@@ -1,11 +1,6 @@
 /**
  * This script is called as part of the main package build command. It generates the following;
  * - dist/workers/* - worker files for all data types + export types + core workers
- * 
- * REMAINING:
- * - hash the generated filenames
- * - generate a manifest file
- * - clean up this whole file, it's a total mess
  */
 const fs = require('fs');
 const md5File = require('md5-file');
@@ -49,7 +44,7 @@ const getWorkQueue = (pluginType) => {
       plugin: folder,
       pluginType,
       targetFile,
-      command: `npx rollup -c --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`
+      command: `npx rollup -c ./build/rollup.config.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`
     });
   });
 

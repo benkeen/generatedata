@@ -9,7 +9,8 @@
     "build": "run-s tsc copy-i18n-files generate-web-workers",
     "generate-web-workers": "node ./build/webworkers.build.js",
     "watch": "tsc --watch",
-    "clean": "npx rimraf node_modules dist .turbo",
+    "clean": "npx rimraf dist",
+    "purge": "npx rimraf node_modules dist .turbo",
     "copy-i18n-files": "copyfiles -u 1 ./src/*/*/i18n/*.json dist"
   },
   "dependencies": {
@@ -46,7 +47,6 @@
     "rollup": "^2.31.0",
     "rollup-plugin-strip-exports": "^2.0.6",
     "sinon": "^21.0.0",
-    "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
   "exports": {

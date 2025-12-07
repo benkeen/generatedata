@@ -2,8 +2,10 @@
   "name": "@generatedata/utils",
   "description": "Utility methods and code",
   "scripts": {
-    "build": "tsc",
-    "clean": "npx rimraf node_modules dist .turbo"
+    "build": "run-s tsc generate-web-worker",
+    "clean": "npx rimraf dist",
+    "generate-web-worker": "node ./build/webworker.build.js",
+    "purge": "npx rimraf node_modules dist .turbo"
   },
   "dependencies": {
     "@mui/material": "^7.3.5",
@@ -18,12 +20,18 @@
     "@date-io/date-fns": "^1.3.13",
     "@generatedata/config": "workspace:*",
     "@generatedata/types": "workspace:*",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "@testing-library/react": "^10.4.7",
     "@types/jest": "^30.0.0",
     "@types/node": "^20.19.11",
     "@types/sinon": "^7.5.1",
     "jest": "^30.2.0",
+    "md5-file": "^5.0.0",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^6.0.1",
+    "rollup": "^2.31.0",
+    "rollup-plugin-strip-exports": "^2.0.6",
     "sinon": "^21.0.0",
     "typescript": "^5.9.3"
   },
