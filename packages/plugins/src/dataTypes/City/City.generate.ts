@@ -1,12 +1,6 @@
 import { Region } from '@generatedata/types';
-import {
-  countryList,
-  type CountryType,
-  type DTGenerateResult,
-  type DTGenerationData,
-  type DTGenerationExistingRowData,
-  type WorkerUtils
-} from '../../';
+import type { WorkerUtils } from '@generatedata/utils/worker';
+import { countryList, type CountryType, type DTGenerateResult, type DTGenerationData, type DTGenerationExistingRowData } from '../../';
 import { CityState, RegionSourceEnum } from './City.state';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {

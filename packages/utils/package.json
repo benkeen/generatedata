@@ -71,6 +71,10 @@
     "./string": {
       "default": "./dist/string.js",
       "types": "./dist/string.d.ts"
+    },
+    "./worker": {
+      "default": "./dist/worker.js",
+      "types": "./dist/worker.d.ts"
     }
   }
 }

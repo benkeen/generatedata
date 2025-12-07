@@ -1,6 +1,5 @@
-import React from 'react';
-import ArrowDropUp from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUp from '@mui/icons-material/ArrowDropUp';
 import { useClasses } from './TableHeader.styles';
 
 export type TableCol = {

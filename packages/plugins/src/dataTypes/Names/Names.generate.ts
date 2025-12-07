@@ -1,4 +1,5 @@
-import { DTGenerateResult, WorkerUtils } from '../../';
+import type { WorkerUtils } from '@generatedata/utils/worker';
+import { DTGenerateResult } from '../../';
 import { NamesSource } from './Names.state';
 
 const maleNames = [

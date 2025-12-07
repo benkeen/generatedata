@@ -1,5 +1,5 @@
+import utils from '@generatedata/utils/worker';
 import sinon from 'sinon';
-import utils from '../../../workerUtils';
 import { onmessage } from '../PIN.worker';
 
 describe('onmessage', () => {

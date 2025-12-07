@@ -1,5 +1,5 @@
+import type { WorkerUtils } from '@generatedata/utils/worker';
 import { ETMessageData } from '../../';
-import { WorkerUtils } from '../../workerUtils';
 
 export const generate = (data: ETMessageData, utils: WorkerUtils): string => {
   const { stripWhitespace } = data;

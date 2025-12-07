@@ -1,7 +1,7 @@
 // @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh
 // @package DataTypes
+import utils from '@generatedata/utils/worker';
 import { DTWorkerOnMessage } from '../../';
-import utils from '../../workerUtils';
 import { generate } from './CVV.generate';
 
 let utilsLoaded = false;

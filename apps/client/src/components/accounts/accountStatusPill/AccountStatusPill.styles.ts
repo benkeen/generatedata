@@ -1,6 +1,7 @@
-import { makeStyles } from '@griffel/react';
+import { AccountStatus } from '@generatedata/graphql-schema';
+import { makeStyles, mergeClasses } from '@griffel/react';
 
-export const useClasses = makeStyles({
+const useBaseClasses = makeStyles({
   pill: {
     borderRadius: '3px',
     padding: '1px 6px 2px',
@@ -19,3 +20,11 @@ export const useClasses = makeStyles({
     color: 'white'
   }
 });
+
+export const useClasses = (status: AccountStatus) => {
+  const baseClasses = useBaseClasses();
+
+  return {
+    pill: mergeClasses(baseClasses.pill, baseClasses[status])
+  };
+};

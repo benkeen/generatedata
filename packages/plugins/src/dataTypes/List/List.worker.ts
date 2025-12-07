@@ -1,5 +1,5 @@
+import utils from '@generatedata/utils/worker';
 import { DTGenerateResult, DTGenerationData, DTWorkerOnMessage } from '../../';
-import utils from '../../workerUtils';
 import { ListType } from './List.state';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {

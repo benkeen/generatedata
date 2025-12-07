@@ -1,8 +1,8 @@
 /**
  * Original author (PHP): Joeri Noort <joert@joert.net>
  */
+import utils from '@generatedata/utils/worker';
 import { DTWorkerOnMessage } from '../../';
-import utils from '../../workerUtils';
 import { generate } from './IBAN.generate';
 
 let utilsLoaded = false;

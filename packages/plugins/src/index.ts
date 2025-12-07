@@ -40,8 +40,6 @@ import Track2 from './dataTypes/Track2/config';
 import URLs from './dataTypes/URLs/config';
 import WeightedList from './dataTypes/WeightedList/config';
 
-export * from './workerUtils';
-
 export type Dimensions = {
   width: number;
   height: number;

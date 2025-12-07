@@ -1,4 +1,5 @@
-import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
+import type { WorkerUtils } from '@generatedata/utils/worker';
+import { DTGenerateResult, DTGenerationData } from '../../';
 import { WeightedListTypeEnum } from './WeightedList.state';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {

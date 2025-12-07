@@ -1,5 +1,5 @@
+import utils from '@generatedata/utils/worker';
 import { DTWorkerOnMessage } from '../../';
-import utils from '../../workerUtils';
 import { generate } from './Country.generate';
 
 let utilsLoaded = false;

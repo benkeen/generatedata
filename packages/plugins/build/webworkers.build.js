@@ -76,10 +76,11 @@ const generateWorkers = () => {
   // lastly, generate the worker file map
   const workerFileMap = {};
   workQueue.forEach((item) => {
-    if (!workerFileMap[item.pluginType]) {
-      workerFileMap[item.pluginType] = {};
+    let key = item.pluginType === 'dataType' ? 'dataTypes' : 'exportTypes';
+    if (!workerFileMap[key]) {
+      workerFileMap[key] = {};
     }
-    workerFileMap[item.pluginType][item.plugin] = item.targetFile;
+    workerFileMap[key][item.plugin] = item.targetFile;
   });
 
   const mapFileContent = `// This file is auto-generated during the build process

@@ -1,7 +1,7 @@
 import i18n from '@generatedata/i18n';
+import utils from '@generatedata/utils/worker';
 import * as sinon from 'sinon';
 import { DTGenerationData } from '../../../';
-import utils from '../../../workerUtils';
 import { generate } from '../StreetAddress.generate';
 
 describe('generate', () => {

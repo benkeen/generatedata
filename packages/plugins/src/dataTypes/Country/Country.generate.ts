@@ -1,4 +1,5 @@
-import { countryList, CountryType, DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
+import type { WorkerUtils } from '@generatedata/utils/worker';
+import { countryList, CountryType, DTGenerateResult, DTGenerationData } from '../../';
 import { CountryState } from './Country.state';
 import fullCountryList from './fullCountryList';
 

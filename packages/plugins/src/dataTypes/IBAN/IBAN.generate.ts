@@ -1,7 +1,8 @@
 /**
  * Original author (PHP): Joeri Noort <joert@joert.net>
  */
-import { DTGenerateResult, WorkerUtils } from '../../';
+import type { WorkerUtils } from '@generatedata/utils/worker';
+import { DTGenerateResult } from '../../';
 
 let utils: WorkerUtils;
 

@@ -1,7 +1,7 @@
 import i18n from '@generatedata/i18n';
+import utils from '@generatedata/utils/worker';
 import sinon from 'sinon';
 import { getBlankDTGeneratorPayload } from '../../../tests/testHelpers';
-import utils from '../../../workerUtils';
 import { onmessage } from '../Country.worker';
 
 describe('onmessage', () => {

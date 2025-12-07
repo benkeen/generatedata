@@ -1,4 +1,5 @@
-import { DTGenerateResult, DTGenerationData, WorkerUtils } from '../../';
+import type { WorkerUtils } from '@generatedata/utils/worker';
+import { DTGenerateResult, DTGenerationData } from '../../';
 import { StringSourceEnum } from './Email.state';
 
 let utils: WorkerUtils;
