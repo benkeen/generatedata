@@ -26,16 +26,6 @@ const getFilenameHash = (filename) => {
   return hashSum.digest('hex').substring(0, 8);
 };
 
-// stored in memory here. For the dev environment, changes to web worker files are watched and built separately,
-// then this object is updated with the change & the final map file is regenerated. For prod it's just done in
-// one go
-const webWorkerMap = {
-  generationWorker: '',
-  workerUtils: '',
-  dataTypes: {},
-  exportTypes: {}
-};
-
 module.exports = function (grunt) {
   const dataTypesFolder = 'dataTypes';
   const exportTypesFolder = 'exportTypes';
@@ -232,23 +222,6 @@ window.gd.localeLoaded(i18n);
 
     clean: {
       dist: ['dist']
-    },
-
-    shell: {
-      webpackProd: {
-        command: 'npm run prod'
-      }
-
-      // note these aren't executed right away, so they contain ALL web workers, even those don't need regeneration
-      // ...getWebWorkerShellCommands()
-    },
-
-    watch: {
-      // ...webWorkerWatchers
-    },
-
-    md5: {
-      // ...webWorkerMd5Tasks
     }
   });
 
@@ -349,11 +322,8 @@ window.gd.localeLoaded(i18n);
   grunt.loadNpmTasks('grunt-md5');
 
   // grunt.registerTask('sortI18nFiles', sortI18nFiles);
-  grunt.registerTask('default', ['cssmin', 'copy', 'generateI18nBundles']); //'webWorkers'
-  grunt.registerTask('dev', ['cssmin', 'copy', 'generateI18nBundles', 'watch']); // 'webWorkers',
-  // grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
+  grunt.registerTask('default', ['cssmin', 'copy', 'generateI18nBundles']);
+  grunt.registerTask('dev', ['cssmin', 'copy', 'generateI18nBundles', 'watch']);
   grunt.registerTask('generateI18nBundles', generateI18nBundles);
   // grunt.registerTask('validateI18n', validateI18n);
-
-  grunt.registerTask('webWorkers', [...getWebWorkerBuildCommandNames(), ...getWebWorkerMd5TaskNames(), 'generateWorkerMapFile']);
 };

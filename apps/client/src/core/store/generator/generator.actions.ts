@@ -17,7 +17,6 @@ import { registerInterceptors } from '../../actionInterceptor';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
 import type { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import * as selectors from './generator.selectors';
-import { getCurrentDataSet, isCountryNamesLoaded, isCountryNamesLoading } from './generator.selectors';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -144,7 +143,7 @@ export const onConfigureDataType = (id: string, data: any, metadata?: DTOptionsM
   return (dispatch: any, getState: any): any => {
     if (metadata && metadata.useCountryNames) {
       const state = getState();
-      if (!isCountryNamesLoaded(state) && !isCountryNamesLoading(state)) {
+      if (!selectors.isCountryNamesLoaded(state) && !selectors.isCountryNamesLoading(state)) {
         dispatch(requestCountryNames());
       }
     }
@@ -506,7 +505,7 @@ export const loadDataSetHistoryItem =
   (content: any): any =>
     (dispatch: Dispatch, getState: any): any => {
       const state = getState();
-      const { dataSetId, dataSetName } = getCurrentDataSet(state);
+      const { dataSetId, dataSetName } = selectors.getCurrentDataSet(state);
 
       dispatch(
         loadDataSet(
