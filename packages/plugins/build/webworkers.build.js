@@ -65,8 +65,6 @@ const generateWorkers = () => {
     console.log("Error generating plugin web worker(s): ", err);
     process.exit(1);
   });
-
-  // declare module '@generatedata/plugins/workerFileMap';
   
   // lastly, generate the worker file map and typings file
   const workerFileMap = {};

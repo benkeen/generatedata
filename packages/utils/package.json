@@ -4,8 +4,9 @@
   "scripts": {
     "build": "run-s tsc generate-web-worker",
     "clean": "npx rimraf dist",
-    "generate-web-worker": "node ./build/webworker.build.js",
-    "purge": "npx rimraf node_modules dist .turbo"
+    "generate-web-worker": "node ./build/workerUtils.build.js",
+    "purge": "npx rimraf node_modules dist .turbo",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@mui/material": "^7.3.5",
@@ -24,7 +25,7 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@testing-library/react": "^10.4.7",
     "@types/jest": "^30.0.0",
-    "@types/node": "^20.19.11",
+    "@types/node": "^24.10.1",
     "@types/sinon": "^7.5.1",
     "jest": "^30.2.0",
     "md5-file": "^5.0.0",
@@ -81,8 +82,12 @@
       "types": "./dist/string.d.ts"
     },
     "./worker": {
-      "default": "./dist/worker.js",
+      "default": "./dist/workers/worker.js",
       "types": "./dist/worker.d.ts"
+    },
+    "./workerFileMap": {
+      "default": "./dist/workers/workerFileMap.js",
+      "types": "./dist/workers/workerFileMap.d.ts"
     }
   }
 }
