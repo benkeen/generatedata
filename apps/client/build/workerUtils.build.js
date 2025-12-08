@@ -9,24 +9,26 @@ if (!fs.existsSync(workersFolder)) {
 }
 
 const generateWorkerUtils = () => {
-  const sourceFile = path.resolve(__dirname, '../dist/worker.js');
+  const sourceFile = path.resolve(__dirname, '../dist-workers/src/core/generator/generation.worker.js');
   const fileHash = md5File.sync(sourceFile);
-  const targetFile = `workerUtils-${fileHash}.js`;
-  const command = `npx rollup -c ./build/rollup.workers.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`;
+  const targetFile = `generation.worker-${fileHash}.js`;
+  const command = `npx rollup -c ./build/workerUtils.build.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`;
 
   execSync(command, { stdio: 'inherit' });
 
-  // lastly, generate the worker file map
+  // lastly, generate the worker file map. This is generated within client/src so it's a standard file for the webpack build
   const workerFileMap = {
     workerUtils: targetFile
   };
 
   const mapFileContent = `// This file is auto-generated during the build process
-export default ${JSON.stringify(workerFileMap, null, 2)};
+export const generationWorker = { 
+  ${JSON.stringify(workerFileMap, null, 2)}
+};
 `;
 
   fs.writeFileSync(
-    path.join(__dirname, '../dist/workers/workerFileMap.js'),
+    path.join(__dirname, '../src/_generationWorker.ts'),
     mapFileContent,
     'utf-8'
   );  

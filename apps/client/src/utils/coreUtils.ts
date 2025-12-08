@@ -1,6 +1,7 @@
 import { CountryNamesMap, DataTypeFolder, DataTypeMap, ExportTypeFolder, ExportTypeMap } from '@generatedata/plugins';
 import pluginWebWorkers from '@generatedata/plugins/workerFileMap';
 import { nanoid } from 'nanoid';
+import { generationWorker } from '../_generationWorker';
 // import env from '../../_env';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -16,7 +17,7 @@ const generationWorkers: WorkerMap = {};
 
 export const createGenerationWorker = (customId: string | null = null): string => {
   const workerId = customId ? customId : nanoid();
-  // generationWorkers[workerId] = new Worker(`./workers/${webWorkers.generationWorker}`);
+  generationWorkers[workerId] = new Worker(`./workers/${generationWorker}`);
 
   return workerId;
 };

@@ -6,7 +6,6 @@ import { addToast } from '@generatedata/utils/general';
 import { getStrings } from '@generatedata/utils/lang';
 import { getUniqueString } from '@generatedata/utils/string';
 import { Dispatch } from 'redux';
-import { GenerationWorkerActionType } from '~core/generator/generation.types';
 import * as accountActions from '~store/account/account.actions';
 import { GDAction } from '~types/general';
 import { requestDataTypeBundle } from '~utils/dataTypes';
@@ -174,14 +173,10 @@ export const configureExportType = (data: any): GDAction => ({
 });
 
 export const REPOSITION_ROW = 'REPOSITION_ROW';
-export const repositionRow = (e: any): GDAction => {
-  console.log('....', e);
-
-  return {
-    type: REPOSITION_ROW,
-    payload: {}
-  };
-};
+export const repositionRow = (e: any): GDAction => ({
+  type: REPOSITION_ROW,
+  payload: {}
+});
 
 export const TOGGLE_GRID = 'TOGGLE_GRID';
 export const toggleGrid = (): GDAction => ({ type: TOGGLE_GRID });
@@ -215,7 +210,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
     // That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
     // far clearer to the end user that way
     generationWorker.postMessage({
-      action: GenerationWorkerActionType.ProcessDataTypesOnly,
+      action: 'ProcessDataTypesOnly',
       numResults: C.MAX_PREVIEW_ROWS,
       batchSize: C.MAX_PREVIEW_ROWS,
       unchanged,
@@ -229,7 +224,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
     });
 
     generationWorker.onmessage = (e: MessageEvent): void => {
-      if (e.data.event !== GenerationWorkerActionType.DataTypesProcessed) {
+      if (e.data.event !== 'DataTypesProcessed') {
         return;
       }
       const { generatedData } = e.data.data;

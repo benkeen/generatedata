@@ -9,7 +9,6 @@ import { useMeasure } from '@uidotdev/usehooks';
 import React from 'react';
 import CountUp from 'react-countup';
 import { Bar, BarChart, CartesianGrid, Cell, Label, Pie, PieChart, XAxis, YAxis } from 'recharts';
-import { GenerationWorkerActionType } from '~core/generator/generation.types';
 import { DataPacket } from '~store/packets/packets.reducer';
 import { LoadTimeGraphDuration } from '~types/general';
 import usePrevious from '../../hooks/usePrevious';
@@ -72,7 +71,7 @@ const ActivityPanel = ({
 
   const abortPacket = (): void => {
     onAbort();
-    generationWorker.postMessage({ action: GenerationWorkerActionType.Abort });
+    generationWorker.postMessage({ action: 'Abort' });
     coreUtils.destroyGenerationWorker(generationWorkerId);
   };
 

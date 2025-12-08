@@ -5,7 +5,6 @@ import { getFormattedNum } from '@generatedata/utils/number';
 import CheckIcon from '@mui/icons-material/Check';
 import Button from '@mui/material/Button';
 import { NumericFormat } from 'react-number-format';
-import { GenerationWorkerActionType } from '~core/generator/generation.types';
 import { DataPacket } from '~store/packets/packets.reducer';
 import * as coreUtils from '../../utils/coreUtils';
 import { useClasses } from './ActivityPanel.styles';
@@ -113,7 +112,7 @@ const GenerationSettingsPanel = ({
       onAbort();
       onClose();
       generationWorker.postMessage({
-        action: GenerationWorkerActionType.Abort
+        action: 'Abort'
       });
       coreUtils.destroyGenerationWorker(generationWorkerId);
     } else {

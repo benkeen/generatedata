@@ -1,4 +1,5 @@
 _env.ts
 dist/*
+dist-workers/*
 node_modules/*
 .turbo

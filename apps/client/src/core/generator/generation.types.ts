@@ -2,21 +2,20 @@ import { CountryNamesMap, DataTypeMap, GenerationTemplate } from '@generatedata/
 import { CountryDataType } from '@generatedata/types';
 import { UnchangedGenerationData } from '~types/generator';
 
-export enum GenerationWorkerActionType {
-  Generate = 'GENERATE',
-  ProcessDataTypesOnly = 'PROCESS_DATA_TYPES_ONLY',
-  ProcessExportTypeOnly = 'PROCESS_EXPORT_TYPES_ONLY',
-  Pause = 'PAUSE',
-  Abort = 'ABORT',
-  Continue = 'CONTINUE',
-  SetSpeed = 'SET_SPEED',
-  DataTypesProcessed = 'DATA_TYPES_PROCESSED',
-  ExportTypeProcessed = 'EXPORT_TYPE_PROCESSED'
-}
+export type GenerationWorkerActionType =
+  | 'Generate'
+  | 'ProcessDataTypesOnly'
+  | 'ProcessExportTypeOnly'
+  | 'Pause'
+  | 'Abort'
+  | 'Continue'
+  | 'SetSpeed'
+  | 'DataTypesProcessed'
+  | 'ExportTypeProcessed';
 
 export type ProcessDataTypesOnlyAction = {
   data: {
-    action: GenerationWorkerActionType.ProcessDataTypesOnly;
+    action: 'ProcessDataTypesOnly';
     numResults: number;
     batchSize: number;
     unchanged: UnchangedGenerationData;
@@ -32,7 +31,7 @@ export type ProcessDataTypesOnlyAction = {
 
 export type ProcessExportTypeOnlyAction = {
   data: {
-    action: GenerationWorkerActionType.ProcessExportTypeOnly;
+    action: 'ProcessExportTypeOnly';
     rows: any; // TODO
     columns: any; // TODO
     isFirstBatch: boolean;
@@ -49,7 +48,7 @@ export type ProcessExportTypeOnlyAction = {
 
 export type GenerateAction = {
   data: {
-    action: GenerationWorkerActionType.Generate;
+    action: 'Generate';
     numResults: number;
     batchSize: number;
     speed: number;
@@ -69,25 +68,25 @@ export type GenerateAction = {
 
 export type PauseAction = {
   data: {
-    action: GenerationWorkerActionType.Pause;
+    action: 'Pause';
   };
 };
 
 export type AbortAction = {
   data: {
-    action: GenerationWorkerActionType.Abort;
+    action: 'Abort';
   };
 };
 
 export type ContinueAction = {
   data: {
-    action: GenerationWorkerActionType.Continue;
+    action: 'Continue';
   };
 };
 
 export type SetSpeedAction = {
   data: {
-    action: GenerationWorkerActionType.SetSpeed;
+    action: 'SetSpeed';
     speed: number;
   };
 };
