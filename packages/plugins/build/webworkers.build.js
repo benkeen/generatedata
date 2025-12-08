@@ -44,7 +44,7 @@ const getWorkQueue = (pluginType) => {
       plugin: folder,
       pluginType,
       targetFile,
-      command: `npx rollup -c ./build/rollup.config.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`
+      command: `npx rollup -c ./build/rollup.workers.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`
     });
   });
 
@@ -68,7 +68,7 @@ const generateWorkers = () => {
 
   // declare module '@generatedata/plugins/workerFileMap';
   
-  // lastly, generate the worker file map
+  // lastly, generate the worker file map and typings file
   const workerFileMap = {};
   workQueue.forEach((item) => {
     let key = item.pluginType === 'dataType' ? 'dataTypes' : 'exportTypes';
@@ -86,7 +86,27 @@ export default ${JSON.stringify(workerFileMap, null, 2)};
     path.join(__dirname, '../dist/workers/workerFileMap.js'),
     mapFileContent,
     'utf-8'
-  );  
+  );
+
+  const typingsFileContent = `// This file is auto-generated during the build process
+import type { DataType, ExportType } from '../';
+
+declare const _workerFileMap: {
+    dataTypes: {
+        [key: DataType]: string;
+    };
+    exportTypes: {
+        [key: ExportType]: string;
+    };
+};
+export default _workerFileMap;
+`;
+
+  fs.writeFileSync(
+    path.join(__dirname, '../dist/workers/workerFileMap.d.ts'),
+    typingsFileContent,
+    'utf-8'
+  );
 };
 
 generateWorkers();
