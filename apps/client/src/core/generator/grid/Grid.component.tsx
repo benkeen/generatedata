@@ -16,7 +16,7 @@ import GridRow from './GridRow.container';
 export type GridProps = {
   rows: DataRow[];
   onAddRows: (numRows: number) => void;
-  onSort: (event: any) => void;
+  onSort: (id: string, newIndex: number) => void;
   toggleGrid: () => void;
   i18n: any;
   columnTitle: string;

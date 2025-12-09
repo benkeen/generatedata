@@ -3,3 +3,4 @@ dist/*
 dist-workers/*
 node_modules/*
 .turbo
+src/_generationWorker.ts

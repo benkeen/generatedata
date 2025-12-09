@@ -220,6 +220,8 @@ window.gd.localeLoaded(i18n);
       }
     },
 
+    watch: {},
+
     clean: {
       dist: ['dist']
     }

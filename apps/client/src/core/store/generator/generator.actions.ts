@@ -173,9 +173,12 @@ export const configureExportType = (data: any): GDAction => ({
 });
 
 export const REPOSITION_ROW = 'REPOSITION_ROW';
-export const repositionRow = (e: any): GDAction => ({
+export const repositionRow = (id: string, newIndex: number): GDAction => ({
   type: REPOSITION_ROW,
-  payload: {}
+  payload: {
+    id,
+    newIndex
+  }
 });
 
 export const TOGGLE_GRID = 'TOGGLE_GRID';
