@@ -51,6 +51,8 @@ export const isCountryNamesLoaded = (state: Store): boolean => state.generator.i
 
 export const getCurrentExportTypeWorkerUrl = createSelector(getExportType, getLoadedExportTypes, (exportType, loadedExportTypes) => {
   const exportTypeWorkerMap = coreUtils.getExportTypeWorkerMap(loadedExportTypes);
+
+  console.log('exportTypeWorkerMap', exportTypeWorkerMap);
   return exportTypeWorkerMap[exportType] || '';
 });
 

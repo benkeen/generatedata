@@ -17,13 +17,9 @@ const generateWorkerUtils = () => {
   execSync(command, { stdio: 'inherit' });
 
   // lastly, generate the worker file map. This is generated within client/src so it's a standard file for the webpack build
-  const workerFileMap = {
-    workerUtils: targetFile
-  };
-
   const mapFileContent = `/* eslint-disable */
 // This file is auto-generated during the build process
-export const generationWorker = ${JSON.stringify(workerFileMap, null, 2)}
+export const generationWorker = ${JSON.stringify(targetFile, null, 2)}
 `;
 
   fs.writeFileSync(

@@ -217,6 +217,17 @@ window.gd.localeLoaded(i18n);
             dest: 'dist/codeMirrorModes/'
           }
         ]
+      },
+
+      pluginWorkers: {
+        files: [
+          {
+            expand: true,
+            cwd: './node_modules/@generatedata/plugins/dist/workers',
+            src: ['**/*'],
+            dest: 'dist/workers/'
+          }
+        ]
       }
     },
 
