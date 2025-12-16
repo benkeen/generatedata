@@ -23,6 +23,7 @@
     "@generatedata/types": "workspace:*",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^12.3.0",
     "@testing-library/react": "^10.4.7",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.1",
@@ -33,6 +34,7 @@
     "rimraf": "^6.0.1",
     "rollup": "^2.31.0",
     "rollup-plugin-strip-exports": "^2.0.6",
+    "rollup-plugin-terser": "^7.0.2",
     "sinon": "^21.0.0",
     "typescript": "^5.9.3"
   },

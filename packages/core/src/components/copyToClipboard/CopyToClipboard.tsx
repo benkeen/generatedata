@@ -1,7 +1,6 @@
-import React from 'react';
-import { CopyToClipboard as Copy } from 'react-copy-to-clipboard';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { addToast } from '@generatedata/utils/general';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import { CopyToClipboard as Copy } from 'react-copy-to-clipboard';
 import { useClasses, useStaticStyles } from './CopyToClipboard.styles';
 
 export const CopyToClipboard = ({ message, tooltip, content }: any) => {

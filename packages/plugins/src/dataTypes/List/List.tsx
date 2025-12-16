@@ -1,5 +1,5 @@
 import { CreatablePillField, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, TextField, Tooltip } from '@generatedata/core';
-import langUtils from '@generatedata/utils/lang';
+import utils from '@generatedata/utils';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import Button from '@mui/material/Button';
 import * as React from 'react';
@@ -197,25 +197,25 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps) 
   let label;
   if (safeData.listType === ListType.exactly) {
     if (safeData.exactly === '1') {
-      label = langUtils.getI18nString(i18n.exactly1Item, ['<b>1</b>']);
+      label = utils.langUtils.getI18nString(i18n.exactly1Item, ['<b>1</b>']);
     } else {
-      label = langUtils.getI18nString(i18n.exactlyNItems, [`<b>${safeData.exactly}</b>`]);
+      label = utils.langUtils.getI18nString(i18n.exactlyNItems, [`<b>${safeData.exactly}</b>`]);
     }
   } else if (!safeData.betweenLow && !safeData.betweenHigh) {
     label = i18n.noRangeEntered;
   } else if (safeData.betweenLow && safeData.betweenHigh) {
-    label = langUtils.getI18nString(i18n.betweenNumItems, [`<b>${safeData.betweenLow}</b>`, `<b>${safeData.betweenHigh}</b>`]);
+    label = utils.langUtils.getI18nString(i18n.betweenNumItems, [`<b>${safeData.betweenLow}</b>`, `<b>${safeData.betweenHigh}</b>`]);
   } else if (safeData.betweenLow) {
     if (safeData.betweenLow === '1') {
-      label = langUtils.getI18nString(i18n.atLeast1Item, ['<b>1</b>']);
+      label = utils.langUtils.getI18nString(i18n.atLeast1Item, ['<b>1</b>']);
     } else {
-      label = langUtils.getI18nString(i18n.atLeastNItems, [`<b>${safeData.betweenLow}</b>`]);
+      label = utils.langUtils.getI18nString(i18n.atLeastNItems, [`<b>${safeData.betweenLow}</b>`]);
     }
   } else {
     if (safeData.betweenHigh === '1') {
-      label = langUtils.getI18nString(i18n.atMost1Item, ['<b>1</b>']);
+      label = utils.langUtils.getI18nString(i18n.atMost1Item, ['<b>1</b>']);
     } else {
-      label = langUtils.getI18nString(i18n.atMostNItems, [`<b>${safeData.betweenHigh}</b>`]);
+      label = utils.langUtils.getI18nString(i18n.atMostNItems, [`<b>${safeData.betweenHigh}</b>`]);
     }
   }
 

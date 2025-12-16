@@ -1,3 +1,4 @@
+const { exec } = require('child_process');
 const fs = require('fs');
 const md5File = require('md5-file');
 const path = require('path');
@@ -12,7 +13,7 @@ const generateWorkerUtils = () => {
   const sourceFile = path.resolve(__dirname, '../dist/worker.js');
   const fileHash = md5File.sync(sourceFile);
   const targetFile = `workerUtils-${fileHash}.js`;
-  const command = `npx rollup -c ./build/rollup.workers.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`;
+  const command = `npx rollup -c ./build/rollup.workers.js --config-src=${sourceFile} --config-target=./dist-tmp/${targetFile}`;
 
   execSync(command, { stdio: 'inherit' });
 
@@ -30,6 +31,9 @@ export default ${JSON.stringify(workerFileMap, null, 2)};
     mapFileContent,
     'utf-8'
   );  
+
+  execSync(`mv ./dist-tmp/${targetFile} ./dist/workers/${targetFile}`, { stdio: 'inherit' });
+  execSync(`rm -Rf ./dist-tmp`, { stdio: 'inherit' });
 };
 
 generateWorkerUtils();
