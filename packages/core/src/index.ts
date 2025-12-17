@@ -1,4 +1,4 @@
-export * from './components/buttons/Buttons.component';
+export * from './components/buttons/Buttons';
 export { CopyToClipboard } from './components/copyToClipboard/CopyToClipboard';
 export * from './components/creatablePillField/CreatablePillField';
 export * from './components/datePicker/LocalizedDatePicker.component';

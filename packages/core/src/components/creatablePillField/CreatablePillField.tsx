@@ -16,10 +16,10 @@ import { useClasses } from './CreatablePillField.styles';
 //   return <components.MultiValue {...props} innerProps={innerProps} />;
 // });
 
-// const customComponents = {
-//   // DropdownIndicator: null,
-//   MultiValue: SortableMultiValue
-// };
+const customComponents = {
+  DropdownIndicator: null
+  // MultiValue: SortableMultiValue
+};
 
 // const selectStyles = {
 //   control: (base: React.CSSProperties): React.CSSProperties => ({
@@ -126,29 +126,31 @@ export const CreatablePillField = ({
 
   return (
     <ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
-      <CreatableSelect
-        className={classes.join(' ')}
-        // styles={selectStyles}
-        // components={customComponents}
-        inputValue={tempValue}
-        // axis="xy"
-        // distance={4}
-        // getHelperDimensions={({ node }: any): any => node.getBoundingClientRect()}
-        isClearable={isClearable}
-        isMulti
-        // onSortEnd={onSortEnd}
-        menuIsOpen={false}
-        onChange={(options: any): void => {
-          const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
-          onChange(newValues);
-        }}
-        onInputChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-        placeholder={placeholder}
-        value={options}
-        menuPlacement="auto"
-        menuPortalTarget={document.body}
-      />
+      <span>
+        <CreatableSelect
+          className={classes.join(' ')}
+          // styles={selectStyles}
+          components={customComponents}
+          inputValue={tempValue}
+          // axis="xy"
+          // distance={4}
+          // getHelperDimensions={({ node }: any): any => node.getBoundingClientRect()}
+          isClearable={isClearable}
+          isMulti
+          // onSortEnd={onSortEnd}
+          menuIsOpen={false}
+          onChange={(options: any): void => {
+            const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
+            onChange(newValues);
+          }}
+          onInputChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder}
+          value={options}
+          menuPlacement="auto"
+          menuPortalTarget={document.body}
+        />
+      </span>
     </ErrorTooltip>
   );
 };
