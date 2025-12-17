@@ -8,3 +8,5 @@ data/db
 .npm
 dist/
 .turbo
+*storybook.log
+storybook-static

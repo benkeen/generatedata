@@ -1,3 +1,4 @@
+import React from 'react';
 import { arrayMove } from '@generatedata/utils/array';
 import { useState } from 'react';
 import CreatableSelect from 'react-select/creatable';

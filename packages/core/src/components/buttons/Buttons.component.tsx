@@ -1,4 +1,7 @@
+import * as React from 'react';
 import Button, { ButtonProps } from '@mui/material/Button';
+
+export type { ButtonProps } from '@mui/material/Button';
 
 export const PrimaryButton = ({ children, ...props }: ButtonProps) => (
   <Button color="primary" variant="outlined" disableElevation {...props}>

@@ -8,6 +8,6 @@
   "vs-code-prettier-eslint.prettierLast": false,
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "always"
+    // "source.organizeImports": "always"
   }
 }

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { addToast } from '@generatedata/utils/general';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { CopyToClipboard as Copy } from 'react-copy-to-clipboard';
