@@ -25,7 +25,8 @@ export const defaultGenerationOptions = {
   protocolEnabled: true,
   protocolOptions: 'http://,https://',
   hostnameEnabled: true,
-  hostnameOptions: 'facebook.com,google.com,instagram.com,bbc.co.uk,guardian.co.uk,nytimes.com,cnn.com,youtube.com,wikipedia.org,netflix.com,x.com,whatsapp.com,zoom.us,reddit.com,naver.com,pinterest.com,yahoo.com,baidu.com,walmart.com,ebay.com',
+  hostnameOptions:
+    'facebook.com,google.com,instagram.com,bbc.co.uk,guardian.co.uk,nytimes.com,cnn.com,youtube.com,wikipedia.org,netflix.com,x.com,whatsapp.com,zoom.us,reddit.com,naver.com,pinterest.com,yahoo.com,baidu.com,walmart.com,ebay.com',
   pathEnabled: false,
   pathOptions: 'one,sub/cars,group/9,site,en-us,en-ca,fr,settings,sub,user/110',
   queryParamsEnabled: false,

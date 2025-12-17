@@ -73,7 +73,7 @@ const getDTStoreIntegrations = (dataType: DataTypeFolder | null) => {
     return emptyReturn;
   }
 
-  const result = loadedDataTypes[dataType]!.getStoreIntegrations({}, {});
+  const result = loadedDataTypes[dataType]!.getStoreIntegrations({}, {}); // TODO
   return {
     customProps: result.customProps ? result.customProps : {},
     actionInterceptors: result.actionInterceptors ? result.actionInterceptors : {}
@@ -91,6 +91,7 @@ export const getDataType = (dataType: DataTypeFolder | null): any => {
     };
   }
 
+  console.log('Loaded. DT:', dataType, loadedDataTypes[dataType]);
   let Example = null;
   let Options = null;
   let Help;
