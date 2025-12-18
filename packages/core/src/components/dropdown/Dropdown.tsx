@@ -1,3 +1,4 @@
+import * as React from 'react';
 import C from '@generatedata/config/constants';
 import { getStrings } from '@generatedata/utils/lang';
 import { FC } from 'react';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toast } from '../Toast.component';
+import { Toast } from '../Toast';
 import { render, act } from '@testing-library/react';
 import { addToast } from '@generatedata/utils/general';
 

@@ -16,7 +16,7 @@ import { useClasses } from './CreatablePillField.styles';
 //   return <components.MultiValue {...props} innerProps={innerProps} />;
 // });
 
-const customComponents = {
+const customComponents: any = {
   DropdownIndicator: null
   // MultiValue: SortableMultiValue
 };
@@ -69,8 +69,8 @@ export const createOption = (label: string): DropdownOption => ({
 export type CreatablePillFieldProps = {
   onChange: (newValues: string[]) => void;
   value: string[];
-  error: string;
-  placeholder: string;
+  error?: string;
+  placeholder?: string;
   onValidateNewItem?: (value: string) => boolean;
   className?: string;
   isClearable?: boolean;

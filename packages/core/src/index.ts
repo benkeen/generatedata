@@ -1,7 +1,7 @@
 export * from './components/buttons/Buttons';
-export { CopyToClipboard } from './components/copyToClipboard/CopyToClipboard';
-export * from './components/creatablePillField/CreatablePillField';
-export * from './components/datePicker/LocalizedDatePicker.component';
+export { CopyToClipboard } from './components/copyToClipboard';
+export * from './components/creatablePillField';
+export * from './components/datePicker';
 export * from './components/dialogs';
 export * from './components/dropdown/Dropdown';
 export type { DropdownOption } from './components/dropdown/Dropdown';
@@ -10,6 +10,6 @@ export * from './components/loaders/loaders';
 export * from './components/pills';
 export * from './components/portal/Portal';
 export { TextField } from './components/textField/TextField';
-export { Toast } from './components/toast/Toast.component';
+export { Toast } from './components/toast/Toast';
 export * from './components/tooltips';
 export * from './styles';
