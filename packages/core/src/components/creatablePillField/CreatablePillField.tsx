@@ -2,6 +2,7 @@ import React from 'react';
 import { arrayMove } from '@generatedata/utils/array';
 import { useState } from 'react';
 import CreatableSelect from 'react-select/creatable';
+import type { StylesConfig } from 'react-select';
 // import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { DropdownOption } from '../dropdown/Dropdown';
 import { ErrorTooltip } from '../tooltips';
@@ -21,43 +22,43 @@ const customComponents: any = {
   // MultiValue: SortableMultiValue
 };
 
-// const selectStyles = {
-//   control: (base: React.CSSProperties): React.CSSProperties => ({
-//     ...base,
-//     boxShadow: 'none',
-//     minHeight: 30,
-//     maxHeight: 100,
-//     overflow: 'scroll'
-//   }),
-//   dropdownIndicator: (base: React.CSSProperties): React.CSSProperties => ({
-//     ...base,
-//     padding: 4
-//   }),
-//   clearIndicator: (base: React.CSSProperties): React.CSSProperties => ({
-//     ...base,
-//     padding: 4
-//   }),
-//   multiValue: (base: React.CSSProperties): React.CSSProperties => ({
-//     ...base,
-//     backgroundColor: '#e0ebfd'
-//   }),
-//   valueContainer: (base: React.CSSProperties): React.CSSProperties => ({
-//     ...base,
-//     padding: '0px 2px'
-//   }),
-//   container: (base: React.CSSProperties): React.CSSProperties => ({
-//     ...base
-//   }),
-//   input: (base: React.CSSProperties): React.CSSProperties => ({
-//     ...base,
-//     margin: 0,
-//     padding: 0
-//   }),
-//   indicatorsContainer: (base: React.CSSProperties): React.CSSProperties => ({
-//     ...base,
-//     alignItems: 'flex-start'
-//   })
-// };
+const selectStyles: StylesConfig<DropdownOption, true> = {
+  control: (base) => ({
+    ...base,
+    boxShadow: 'none',
+    minHeight: 30,
+    maxHeight: 100,
+    overflow: 'scroll'
+  }),
+  dropdownIndicator: (base) => ({
+    ...base,
+    padding: 4
+  }),
+  clearIndicator: (base) => ({
+    ...base,
+    padding: 4
+  }),
+  multiValue: (base) => ({
+    ...base,
+    backgroundColor: '#e0ebfd'
+  }),
+  valueContainer: (base) => ({
+    ...base,
+    padding: '0px 2px'
+  }),
+  container: (base) => ({
+    ...base
+  }),
+  input: (base) => ({
+    ...base,
+    margin: 0,
+    padding: 0
+  }),
+  indicatorsContainer: (base) => ({
+    ...base,
+    alignItems: 'flex-start'
+  })
+};
 
 export const createOption = (label: string): DropdownOption => ({
   label,
@@ -129,7 +130,7 @@ export const CreatablePillField = ({
       <span>
         <CreatableSelect
           className={classes.join(' ')}
-          // styles={selectStyles}
+          styles={selectStyles}
           components={customComponents}
           inputValue={tempValue}
           // axis="xy"

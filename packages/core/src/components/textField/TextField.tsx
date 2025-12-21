@@ -5,7 +5,7 @@ import { useThrottle } from '../../hooks/useThrottle';
 import { ErrorTooltip } from '../tooltips';
 
 // TODO update to pull from native field. Sheesh.
-type TextFieldProps = {
+export type TextFieldProps = {
   type?: string;
   value: string;
   onChange: (e: any) => void;
