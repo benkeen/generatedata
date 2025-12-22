@@ -20,44 +20,6 @@ function initStore(): any {
   //   blacklist: ['generator', 'main', 'packets']
   // };
 
-  // const generatorPersistConfig = {
-  //   key: 'generator',
-  //   storage,
-  //   blacklist: [
-  //     'initialDependenciesLoaded',
-  //     'loadedDataTypes',
-  //     'loadedExportTypes',
-  //     'isGenerating',
-  //     'numGeneratedRows',
-  //     'dataTypePreviewData',
-  //     'bulkActionPending',
-  //     'isCountryNamesLoading',
-  //     'isCountryNamesLoaded'
-  //   ]
-  // };
-
-  // const mainPersistConfig = {
-  //   key: 'main',
-  //   storage,
-  //   blacklist: [
-  //     'localeFileLoaded',
-  //     'isOnloadAuthDetermined',
-  //     'tourBundleLoaded',
-  //     'dialogProcessing',
-  //     'accountsCurrentPage',
-  //     'accountsSortCol',
-  //     'accountsSortDir',
-  //     'accountsFilterStr'
-  //   ]
-  // };
-
-  // TODO should be able to just blacklist the entire section and not have to pinpoint them here... doc really not clear
-  // const packetsPersistConfig = {
-  //   key: 'packets',
-  //   storage,
-  //   blacklist: ['currentPacketId', 'packetIds', 'packets']
-  // };
-
   // const accountPersistConfig = {
   //   key: 'account',
   //   storage,
@@ -65,7 +27,6 @@ function initStore(): any {
   // };
 
   // const rootReducer = combineReducers({
-  //   generator: persistReducer(generatorPersistConfig, generatorReducer),
   //   main: persistReducer(mainPersistConfig, mainReducer),
   //   packets: persistReducer(packetsPersistConfig, packetsReducer),
   //   account: persistReducer(accountPersistConfig, accountReducer)
@@ -88,8 +49,6 @@ function initStore(): any {
     // composeEnhancers(applyMiddleware(thunk, actionsInterceptor), ...enhancers)
   });
 
-  // persistor = persistStore(store);
-
   return store;
 }
 
@@ -104,5 +63,3 @@ if (process.env.NODE_ENV !== 'test') {
 store.subscribe(() => persistStore(store));
 
 export default store;
-
-// export { persistor };

@@ -11,7 +11,7 @@ import { apolloClient } from '~core/apolloClient';
 import accountReducer, { initialState as initialAccountState } from '~store/account/account.reducer';
 import generatorReducer, { getInitialState } from '~store/generator/generator.reducer';
 import { setLocaleFileLoaded } from '~store/main/main.actions';
-import mainReducer, { initialState as initialMainState } from '~store/main/main.reducer';
+import mainReducer, { getInitialState as getMainInitialState } from '~store/main/main.reducer';
 import packetsReducer, { initialState as initialPacketState } from '~store/packets/packets.reducer';
 
 import i18n from '@generatedata/i18n';
@@ -67,7 +67,7 @@ export const renderWithStoreAndRouter = (component: any) => {
 
 export const getTestState = () => ({
   generator: getInitialState(),
-  main: { ...initialMainState },
+  main: getMainInitialState(),
   packets: { ...initialPacketState },
   account: { ...initialAccountState }
 });

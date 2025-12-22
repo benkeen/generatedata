@@ -1,12 +1,16 @@
-import { GeneratorState } from './generator/generator.reducer';
+import { GeneratorState, getInitialState as getGeneratorInitialState } from './generator/generator.reducer';
+import { MainState, getInitialState as getMainInitialState } from './main/main.reducer';
 
-// throttle these to every second or so
+// throttle the storage to every second or so.
 export const persistStore = (store: any) => {
   const { generator } = store.getState();
+
+  const mainPersistor: MainState = {
+    ...getMainInitialState()
+  };
+
   const persistedGenerator: GeneratorState = {
-    loadedDataTypes: {},
-    loadedExportTypes: {},
-    initialDependenciesLoaded: false,
+    ...getGeneratorInitialState(),
     exportType: generator.exportType,
     rows: generator.rows,
     sortedRows: generator.sortedRows,
@@ -14,42 +18,21 @@ export const persistStore = (store: any) => {
     showPreview: generator.showPreview,
     smallScreenVisiblePanel: generator.smallScreenVisiblePanel,
     generatorLayout: generator.generatorLayout,
-    showExportSettings: false,
     exportTypeSettings: generator.exportTypeSettings,
-    showGenerationSettingsPanel: false,
-    showDataSetHistory: false,
-    bulkActionPending: false,
-    showHelpDialog: false,
-    showSchemaDialog: false,
-    showClearPageDialog: false,
-    helpDialogSection: null,
     showLineNumbers: generator.showLineNumbers,
     enableLineWrapping: generator.enableLineWrapping,
     theme: generator.theme,
     previewTextSize: generator.previewTextSize,
-    dataTypePreviewData: {},
     exportSettingsTab: generator.exportSettingsTab,
     numPreviewRows: generator.numPreviewRows,
-    stripWhitespace: generator.stripWhitespaces,
-    lastLayoutWidth: null,
-    lastLayoutHeight: null,
-    numRowsToGenerate: generator.numRowsToGenerate,
-    currentDataSet: {
-      dataSetId: null,
-      dataSetName: '',
-      lastSaved: null
-    },
-    selectedDataSetHistory: {
-      historyId: null,
-      isLatest: false
-    },
-    isCountryNamesLoading: false,
-    isCountryNamesLoaded: false,
-    stashedState: null
+    stripWhitespace: generator.stripWhitespace,
+    numRowsToGenerate: generator.numRowsToGenerate
   };
 
   const data = {
+    main: mainPersistor,
     generator: persistedGenerator
   };
+
   localStorage.setItem('generatedata', JSON.stringify(data));
 };

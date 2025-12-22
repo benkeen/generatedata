@@ -33,7 +33,7 @@ export type MainState = {
   accountStatusFilter: AccountStatusFilter;
 };
 
-export const initialState: MainState = {
+export const getInitialState = (): MainState => ({
   appStateVersion: C.APP_STATE_VERSION,
   authMethod: AuthMethod.default,
   localeFileLoading: false,
@@ -56,11 +56,12 @@ export const initialState: MainState = {
   accountsSortDir: ColSortDir.asc,
   accountsFilterStr: '',
   accountStatusFilter: AccountStatusFilter.all
-};
+});
 
 export const reducer = produce((draft: MainState, action: AnyAction) => {
   switch (action.type) {
     case actions.RESET_STORE:
+      const initialState = getInitialState();
       Object.keys(initialState).forEach((key) => {
         // @ts-ignore-line
         draft[key] = initialState[key];
@@ -179,6 +180,6 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
       draft.accountStatusFilter = action.payload.status;
       break;
   }
-}, initialState);
+}, getInitialState());
 
 export default reducer;
