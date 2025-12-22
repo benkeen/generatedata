@@ -2,7 +2,7 @@ import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
 import { GeneratorLayout } from '@generatedata/types';
 import { getStrings } from '@generatedata/utils/lang';
 import Reactour, { ReactourStepPosition } from 'reactour';
-import store from '~core/store';
+import store from '~store/index';
 import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
 import { TourProps } from '~types/general';

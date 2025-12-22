@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import * as actions from '../store/packets/packets.actions';
-import * as selectors from '../store/packets/packets.selectors';
+import * as actions from '~store/packets/packets.actions';
+import * as selectors from '~store/packets/packets.selectors';
 import ActivePacketsList, { ActivePacketsListProps } from './ActivePacketsList.component';
 
 const mapStateToProps = (state: any): Pick<ActivePacketsListProps, 'packetList'> => ({

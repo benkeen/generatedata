@@ -16,8 +16,8 @@ import { getCurrentPage, getLocale } from '~store/main/main.selectors';
 import { SelectedAccountTab } from '~types/account';
 import { AccountStatusFilter, AuthMethod, GDAction, GDLocale } from '~types/general';
 import { getGeneratorPageRoute, isGeneratorPage } from '~utils/routeUtils';
-import { localeFileMap } from '../../../../_localeFileMap';
-import { apolloClient } from '../../apolloClient';
+import { localeFileMap } from '../../../_localeFileMap';
+import { apolloClient } from '../../core/apolloClient';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -307,7 +307,7 @@ export const loadTourBundle =
       import(
       /* webpackChunkName: "tour" */
       /* webpackMode: "lazy" */
-        '../../../tours'
+        '../../tours'
       )
         .then((resp) => {
           setTourComponents(resp.default);

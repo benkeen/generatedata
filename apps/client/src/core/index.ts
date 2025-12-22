@@ -5,11 +5,11 @@ import { initAuthVendors } from '@generatedata/utils/auth';
 import { getCurrentPageLocale } from '@generatedata/utils/lang';
 import { requestCountryNames } from '~store/generator/generator.actions';
 import * as coreUtils from '../utils/coreUtils';
-import store from './store';
-import * as actions from './store/generator/generator.actions';
-import * as selectors from './store/generator/generator.selectors';
-import * as mainActions from './store/main/main.actions';
-import * as mainSelectors from './store/main/main.selectors';
+import store from '~store/index';
+import * as actions from '~store/generator/generator.actions';
+import * as selectors from '~store/generator/generator.selectors';
+import * as mainActions from '~store/main/main.actions';
+import * as mainSelectors from '~store/main/main.selectors';
 
 // TODO
 // import '../../_imports';

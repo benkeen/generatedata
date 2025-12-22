@@ -5,11 +5,11 @@ import { SaveDataDialogType } from '~store/account/account.reducer';
 import { GDLocale } from '~types/general';
 import { isExportTypeValid } from '~utils/exportTypes';
 import * as coreUtils from '../../utils/coreUtils';
-import * as accountActions from '../store/account/account.actions';
-import * as actions from '../store/generator/generator.actions';
-import * as selectors from '../store/generator/generator.selectors';
-import * as mainActions from '../store/main/main.actions';
-import * as mainSelectors from '../store/main/main.selectors';
+import * as accountActions from '~store/account/account.actions';
+import * as actions from '~store/generator/generator.actions';
+import * as selectors from '~store/generator/generator.selectors';
+import * as mainActions from '~store/main/main.actions';
+import * as mainSelectors from '~store/main/main.selectors';
 import Footer, { FooterProps } from './Footer.component';
 
 const mapStateToProps = (

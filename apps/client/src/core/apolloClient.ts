@@ -1,7 +1,7 @@
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, concat } from '@apollo/client';
 import fetch from 'cross-fetch';
-import store from './store';
-import * as mainSelectors from './store/main/main.selectors';
+import store from '~store/index';
+import * as mainSelectors from '~store/main/main.selectors';
 
 // TODO: generalized error handling when logged out
 // import { onError } from 'apollo-link-error';

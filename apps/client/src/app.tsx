@@ -13,7 +13,7 @@ import { apolloClient } from '~core/apolloClient';
 import SaveDataSetDialog from '~core/dialogs/saveDataSet/SaveDataSet.container';
 import ErrorBoundary from '~core/ErrorBoundary.component';
 import Page from '~core/page/Page.container';
-import store from '~core/store';
+import store from '~store/index';
 import theme from '~core/theme';
 import '~store/generator/generator.reducer';
 import { resetStore } from '~store/main/main.actions';

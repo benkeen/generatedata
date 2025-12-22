@@ -9,7 +9,7 @@ import {
   getCodeMirrorMode as exportTypeUtilsGetCodeMirrorMode,
   getExportTypeLabel as exportTypeUtilsGetExportTypeLabel
 } from '~utils/exportTypes';
-import * as coreUtils from '../../../utils/coreUtils';
+import * as coreUtils from '../../utils/coreUtils';
 import * as mainSelectors from '../main/main.selectors';
 import { CurrentDataSet, DataRow, DataRows } from './generator.reducer';
 

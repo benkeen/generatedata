@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
 import { apolloClient } from '../../apolloClient';
-import store from '../../store';
+import store from '~store/index';
 import { onLoginSuccess, setAuthenticated, setAuthenticationData, setOnloadAuthDetermined } from '~store/main/main.actions';
 import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';

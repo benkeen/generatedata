@@ -18,7 +18,7 @@ import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/gen
 import { SET_ONE_TIME_PASSWORD } from '~store/main/main.actions';
 import { SelectedAccountsTab, SelectedAccountTab } from '~types/account';
 import { GDAction } from '~types/general';
-import { apolloClient } from '../../apolloClient';
+import { apolloClient } from '../../core/apolloClient';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 export const updateAccount = (data: AccountEditingData): GDAction => ({

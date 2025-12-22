@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as mainSelectors from '../store/main/main.selectors';
+import * as mainSelectors from '~store/main/main.selectors';
 import Page, { PageProps } from './Page.component';
 
 const mapStateToProps = (state: any): Pick<PageProps, 'localeFileLoaded'> => ({

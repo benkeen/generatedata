@@ -4,7 +4,7 @@ import * as actions from '~store/account/account.actions';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 import * as generatorActions from '~store/generator/generator.actions';
 import * as mainSelectors from '~store/main/main.selectors';
-import * as selectors from '../store/generator/generator.selectors';
+import * as selectors from '~store/generator/generator.selectors';
 import GeneratorControls, { GeneratorControlsProps } from './GeneratorControls.component';
 
 const mapStateToProps = (state: any): Pick<GeneratorControlsProps, 'i18n' | 'isLoggedIn' | 'dataSet'> => ({

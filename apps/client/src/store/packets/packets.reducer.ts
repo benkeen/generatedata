@@ -5,7 +5,7 @@ import { ExportTypeFolder } from '@generatedata/plugins';
 import { produce } from 'immer';
 import { nanoid } from 'nanoid';
 import { LoadTimeGraphDuration } from '~types/general';
-import { getByteSize, getGraphDuration, getRowGenerationRatePerSecond } from '../../generationPanel/generation.helpers';
+import { getByteSize, getGraphDuration, getRowGenerationRatePerSecond } from '../../core/generationPanel/generation.helpers';
 import * as mainActions from '../main/main.actions';
 import * as actions from './packets.actions';
 

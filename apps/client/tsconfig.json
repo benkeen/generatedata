@@ -1,29 +1,29 @@
 {
-	"compilerOptions": {
-		"lib": ["es6", "dom", "esnext", "webworker"],
-		"outDir": "./dist/",
-		"sourceMap": true,
-		"esModuleInterop": true,
-		"noImplicitAny": true,
-		"noImplicitThis": true,
-		"strict": true,
-		"strictNullChecks": true,
-		"moduleResolution": "bundler",
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"module": "es2022",
-		"target": "es6",
-		"jsx": "react-jsx",
-		"allowSyntheticDefaultImports": true,
-		"removeComments": false,
-		"baseUrl": "./",
-		"paths": {
-			"~components/*": ["src/components/*"],
-			"~utils/*": ["src/utils/*"],
-			"~store/*": ["src/core/store/*"],
-			"~core/*": ["src/core/*"],
-			"~types/*": ["types/*"]
-		}
-	},
-	"exclude": ["node_modules"]
+  "compilerOptions": {
+    "lib": ["es6", "dom", "esnext", "webworker"],
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "module": "es2022",
+    "target": "es6",
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
+    "removeComments": false,
+    "baseUrl": "./",
+    "paths": {
+      "~components/*": ["src/components/*"],
+      "~utils/*": ["src/utils/*"],
+      "~store/*": ["src/store/*"],
+      "~core/*": ["src/core/*"],
+      "~types/*": ["types/*"]
+    }
+  },
+  "exclude": ["node_modules"]
 }

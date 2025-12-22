@@ -10,11 +10,11 @@ import * as accountActions from '~store/account/account.actions';
 import { GDAction } from '~types/general';
 import { requestDataTypeBundle } from '~utils/dataTypes';
 import { getExportTypeInitialState, loadExportTypeBundle } from '~utils/exportTypes';
-import * as coreUtils from '../../../utils/coreUtils';
-import { getCountryNamesBundle } from '../../../utils/coreUtils';
-import { registerInterceptors } from '../../actionInterceptor';
-import { getUnchangedData } from '../../generationPanel/generation.helpers';
-import type { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
+import * as coreUtils from '../../utils/coreUtils';
+import { getCountryNamesBundle } from '../../utils/coreUtils';
+import { registerInterceptors } from '../../core/actionInterceptor';
+import { getUnchangedData } from '../../core/generationPanel/generation.helpers';
+import type { ExportSettingsTab } from '../../core/generator/exportSettings/ExportSettings.types';
 import * as selectors from './generator.selectors';
 
 export const ADD_ROWS = 'ADD_ROWS';

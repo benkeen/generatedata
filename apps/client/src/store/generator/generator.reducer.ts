@@ -7,7 +7,7 @@ import { GeneratorLayout } from '@generatedata/types';
 import { produce } from 'immer';
 import { nanoid } from 'nanoid';
 import { GeneratorPanel } from '~types/general';
-import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
+import { ExportSettingsTab } from '../../core/generator/exportSettings/ExportSettings.types';
 import * as accountActions from '../account/account.actions';
 import * as mainActions from '../main/main.actions';
 import * as packetActions from '../packets/packets.actions';

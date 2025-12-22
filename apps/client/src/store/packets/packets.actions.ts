@@ -4,9 +4,9 @@ import * as mainSelectors from '~store/main/main.selectors';
 import { GDAction } from '~types/general';
 import { getDownloadFileInfo } from '~utils/exportTypes';
 import { getGeneratorPageRoute } from '~utils/routeUtils';
-import * as coreUtils from '../../../utils/coreUtils';
-import { downloadFile } from '../../generationPanel/generation.helpers';
-import { UPDATE_DATA_SET_GENERATION_COUNT } from '../../mutations';
+import * as coreUtils from '../../utils/coreUtils';
+import { downloadFile } from '../../core/generationPanel/generation.helpers';
+import { UPDATE_DATA_SET_GENERATION_COUNT } from '../../core/mutations';
 import * as selectors from '../generator/generator.selectors';
 import * as packetSelectors from './packets.selectors';
 
