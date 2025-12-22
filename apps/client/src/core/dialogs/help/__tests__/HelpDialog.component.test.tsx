@@ -2,7 +2,7 @@ import { DataTypeFolder } from '@generatedata/plugins';
 import langUtils from '@generatedata/utils/lang';
 import { fireEvent, render } from '@testing-library/react';
 import sinon from 'sinon';
-import * as dataTypeUtils from '~utils/dataTypes';
+import * as dataTypeUtils from '~utils/dataTypeUtils';
 import HelpDialog from '../HelpDialog.component';
 const i18n = require('../../../../i18n/en.json');
 const NamesI18n = require('../../../../plugins/dataTypes/Names/i18n/en.json');

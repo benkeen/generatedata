@@ -3,12 +3,12 @@ import { GeneratorLayout } from '@generatedata/types';
 import * as langUtils from '@generatedata/utils/lang';
 import { createSelector } from 'reselect';
 import { GDLocale, GeneratorPanel, Store } from '~types/general';
-import { getDataType, processBatches } from '~utils/dataTypes';
+import { getDataType, processBatches } from '~utils/dataTypeUtils';
 import {
   getExportTypeTitleValidationFunction as exportTypeGetExportTypeTitleValidation,
   getCodeMirrorMode as exportTypeUtilsGetCodeMirrorMode,
   getExportTypeLabel as exportTypeUtilsGetExportTypeLabel
-} from '~utils/exportTypes';
+} from '~utils/exportTypeUtils';
 import * as coreUtils from '../../utils/coreUtils';
 import * as mainSelectors from '../main/main.selectors';
 import { CurrentDataSet, DataRow, DataRows } from './generator.reducer';

@@ -137,9 +137,6 @@ importers:
       redux:
         specifier: ^5.0.1
         version: 5.0.1
-      redux-persist:
-        specifier: ^6.0.0
-        version: 6.0.0(react@18.3.1)(redux@5.0.1)
       rollup:
         specifier: ^2.31.0
         version: 2.79.2
@@ -8611,15 +8608,6 @@ packages:
 
   reduce-configs@1.1.1:
     resolution: {integrity: sha512-EYtsVGAQarE8daT54cnaY1PIknF2VB78ug6Zre2rs36EsJfC40EG6hmTU2A2P1ZuXnKAt2KI0fzOGHcX7wzdPw==}
-
-  redux-persist@6.0.0:
-    resolution: {integrity: sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==}
-    peerDependencies:
-      react: '>=16'
-      redux: '>4.0.0'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   redux-testkit@1.0.6:
     resolution: {integrity: sha512-Poym2JNvwLE1ie0v+vQ6CcvGvjOumDbEwcdree3BW7Ct2wiEVqa+fzgrprowT6Vdb2QjjrLrXOWBlOLDK8L6tA==}
@@ -20111,12 +20099,6 @@ snapshots:
       strip-indent: 3.0.0
 
   reduce-configs@1.1.1: {}
-
-  redux-persist@6.0.0(react@18.3.1)(redux@5.0.1):
-    dependencies:
-      redux: 5.0.1
-    optionalDependencies:
-      react: 18.3.1
 
   redux-testkit@1.0.6:
     dependencies:

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
-import { isExportTypeValid } from '~utils/exportTypes';
+import { isExportTypeValid } from '~utils/exportTypeUtils';
 import PreviewPanel, { PreviewPanelProps } from './PreviewPanel.component';
 
 const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {

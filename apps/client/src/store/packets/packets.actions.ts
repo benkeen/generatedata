@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { apolloClient } from '~core/apolloClient';
 import * as mainSelectors from '~store/main/main.selectors';
 import { GDAction } from '~types/general';
-import { getDownloadFileInfo } from '~utils/exportTypes';
+import { getDownloadFileInfo } from '~utils/exportTypeUtils';
 import { getGeneratorPageRoute } from '~utils/routeUtils';
 import * as coreUtils from '../../utils/coreUtils';
 import { downloadFile } from '../../core/generationPanel/generation.helpers';

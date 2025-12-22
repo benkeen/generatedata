@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
-import { getExportTypeSettingsComponent } from '~utils/exportTypes';
+import { getExportTypeSettingsComponent } from '~utils/exportTypeUtils';
 import { ExportTypeTab, ExportTypeTabProps } from './ExportTypeTab.component';
 
 const mapStateToProps = (

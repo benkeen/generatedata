@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown, type DropdownOption } from '@generatedata/core';
-import { getGroupedExportTypes } from '~utils/exportTypes';
+import { getGroupedExportTypes } from '~utils/exportTypeUtils';
 import { useClasses } from './ExportSettings.styles';
 import { ExportSettingsTab } from './ExportSettings.types';
 import { MediumSpinner } from '@generatedata/core';
@@ -26,7 +26,7 @@ export const ExportTypeTab = ({
   exportTypeSettings
 }: ExportTypeTabProps) => {
   const classNames = useClasses();
-  let spinnerStyles = classNames.spinner;
+  const spinnerStyles = classNames.spinner;
   if (SettingsComponent) {
     // spinnerStyles += ` ${classNames.fadeOut}`;
   }

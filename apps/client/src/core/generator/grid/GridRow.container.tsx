@@ -6,7 +6,7 @@ import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
 import { DataRow } from '~store/generator/generator.reducer';
 import * as selectors from '~store/generator/generator.selectors';
 import { Store } from '~types/general';
-import { getCustomProps, getDataType, getSortedGroupedDataTypes } from '~utils/dataTypes';
+import { getCustomProps, getDataType, getSortedGroupedDataTypes } from '~utils/dataTypeUtils';
 import * as coreUtils from '../../../utils/coreUtils';
 import { GridRow, GridRowProps } from './GridRow.component';
 

@@ -1,8 +1,7 @@
 import { AnyAction } from 'redux';
-// @ts-ignore
 import clientConfig from '@generatedata/config/clientConfig';
 import C from '@generatedata/config/constants';
-import { DataTypeFolder, dataTypes, DTOptionsMetadata, ExportTypeFolder, exportTypes } from '@generatedata/plugins';
+import { DataTypeFolder, DTOptionsMetadata, ExportTypeFolder } from '@generatedata/plugins';
 import { GeneratorLayout } from '@generatedata/types';
 import { produce } from 'immer';
 import { nanoid } from 'nanoid';
@@ -116,12 +115,8 @@ export type SelectedDataSetHistoryItem = {
 };
 
 export type GeneratorState = {
-  loadedDataTypes: {
-    [str in DataTypeFolder]: boolean;
-  };
-  loadedExportTypes: {
-    [str in ExportTypeFolder]: boolean;
-  };
+  loadedDataTypes: Partial<Record<DataTypeFolder, boolean>>;
+  loadedExportTypes: Partial<Record<ExportTypeFolder, boolean>>;
 
   // this is set to true on load after all necessary export types, data types for whatever last config they
   // has have loaded, as well as re-generate a new batch of preview data. It's used to show a spinner in the
@@ -162,9 +157,8 @@ export type GeneratorState = {
 };
 
 export const getInitialState = (): GeneratorState => ({
-  // the extra check for existence on these vars is just to placate the tests (not sure why needed)
-  loadedDataTypes: Object.keys(dataTypes).reduce((acc: any, name) => ({ ...acc, [name]: false }), {}),
-  loadedExportTypes: Object.keys(exportTypes).reduce((acc: any, name) => ({ ...acc, [name]: false }), {}),
+  loadedDataTypes: {},
+  loadedExportTypes: {},
   initialDependenciesLoaded: false,
   exportType: clientConfig.appSettings.GD_DEFAULT_EXPORT_TYPE as ExportTypeFolder,
   rows: {},

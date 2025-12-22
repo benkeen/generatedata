@@ -2,7 +2,7 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, DropdownOption, Medi
 import { DataTypeFolder } from '@generatedata/plugins';
 import Button from '@mui/material/Button';
 import React, { useState } from 'react';
-import { getDataType, getSortedGroupedDataTypes } from '~utils/dataTypes';
+import { getDataType, getSortedGroupedDataTypes } from '~utils/dataTypeUtils';
 import { useClasses } from './HelpDialog.styles';
 
 export type HelpDialogProps = {

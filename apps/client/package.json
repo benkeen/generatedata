@@ -107,7 +107,6 @@
     "reactour": "^1.18.0",
     "recharts": "^3.1.2",
     "redux": "^5.0.1",
-    "redux-persist": "^6.0.0",
     "rollup": "^2.31.0",
     "rxjs": "^7.3.0",
     "sass": "^1.49.9",
