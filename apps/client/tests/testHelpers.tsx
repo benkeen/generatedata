@@ -8,11 +8,11 @@ import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import { combineReducers } from 'redux';
 import { apolloClient } from '~core/apolloClient';
-import accountReducer, { initialState as initialAccountState } from '~store/account/account.reducer';
+import accountReducer, { getInitialState as getInitialAccountState } from '~store/account/account.reducer';
 import generatorReducer, { getInitialState } from '~store/generator/generator.reducer';
 import { setLocaleFileLoaded } from '~store/main/main.actions';
 import mainReducer, { getInitialState as getMainInitialState } from '~store/main/main.reducer';
-import packetsReducer, { initialState as initialPacketState } from '~store/packets/packets.reducer';
+import packetsReducer, { getInitialState as getInitialPacketState } from '~store/packets/packets.reducer';
 
 import i18n from '@generatedata/i18n';
 
@@ -68,6 +68,6 @@ export const renderWithStoreAndRouter = (component: any) => {
 export const getTestState = () => ({
   generator: getInitialState(),
   main: getMainInitialState(),
-  packets: { ...initialPacketState },
-  account: { ...initialAccountState }
+  packets: { ...getInitialPacketState() },
+  account: { ...getInitialAccountState() }
 });

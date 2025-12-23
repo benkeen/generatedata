@@ -45,7 +45,7 @@ export type AccountState = {
   editingData: AccountEditingData;
 };
 
-export const initialState: AccountState = {
+export const getInitialState = (): AccountState => ({
   showSaveDataSetDialog: false,
   saveDataDialogType: SaveDataDialogType.save,
   oneTimePassword: '',
@@ -73,12 +73,13 @@ export const initialState: AccountState = {
     accountId: undefined,
     status: undefined
   }
-};
+});
 
 export const reducer = produce((draft: AccountState, action: AnyAction) => {
   switch (action.type) {
     case mainActions.LOGOUT:
     case mainActions.RESET_STORE:
+      const initialState = getInitialState();
       Object.keys(initialState).forEach((key) => {
         // @ts-ignore-line
         draft[key] = initialState[key];
@@ -185,6 +186,6 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
       draft.numRowsGenerated += action.payload.count;
       break;
   }
-}, initialState);
+}, getInitialState());
 
 export default reducer;

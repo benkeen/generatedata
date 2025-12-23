@@ -61,11 +61,11 @@ export type PacketsState = {
   packets: DataPackets;
 };
 
-export const initialState: PacketsState = {
+export const getInitialState = (): PacketsState => ({
   currentPacketId: null,
   packetIds: [],
   packets: {}
-};
+});
 
 export const getNewPacket = ({
   generationWorkerId,
@@ -115,6 +115,7 @@ export const getNewPacket = ({
 export const reducer = produce((draft: PacketsState, action: AnyAction) => {
   switch (action.type) {
     case mainActions.RESET_STORE:
+      const initialState = getInitialState();
       Object.keys(initialState).forEach((key) => {
         // @ts-ignore-line
         draft[key] = initialState[key];
@@ -233,6 +234,6 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
       break;
     }
   }
-}, initialState);
+}, getInitialState());
 
 export default reducer;

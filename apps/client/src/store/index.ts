@@ -7,32 +7,15 @@ import mainReducer from './main/main.reducer';
 import packetsReducer from './packets/packets.reducer';
 import { persistStore } from './persistor';
 
-// let persistor: Persistor;
 function initStore(): any {
-  // let preloadedState = {};
-  // if (localStorage.getItem('generatedata')) {
-  //   preloadedState = JSON.parse(localStorage.getItem('generatedata') || '{}');
-  // }
+  const preloadedDataStr = localStorage.getItem('generatedata');
+  let preloadedState;
 
-  // const rootPersistConfig = {
-  //   key: 'root',
-  //   storage,
-  //   blacklist: ['generator', 'main', 'packets']
-  // };
-
-  // const accountPersistConfig = {
-  //   key: 'account',
-  //   storage,
-  //   blacklist: ['yourAccount', 'editAccount']
-  // };
-
-  // const rootReducer = combineReducers({
-  //   main: persistReducer(mainPersistConfig, mainReducer),
-  //   packets: persistReducer(packetsPersistConfig, packetsReducer),
-  //   account: persistReducer(accountPersistConfig, accountReducer)
-  // });
-
-  // const persistedRootReducer = persistReducer(rootPersistConfig, rootReducer);
+  try {
+    preloadedState = preloadedDataStr ? JSON.parse(preloadedDataStr) : undefined;
+  } catch {
+    // do nothing
+  }
 
   const rootReducer = combineReducers({
     account: accountReducer,
@@ -40,14 +23,19 @@ function initStore(): any {
     generator: generatorReducer,
     packets: packetsReducer
   });
-  // type RootState = ReturnType<typeof rootReducer>;
 
-  const store = configureStore({
+  const storeData = {
     reducer: rootReducer,
-    enhancers: (getDefaultEnhancers) => getDefaultEnhancers()
-    // preloadedState
+    enhancers: (getDefaultEnhancers: any) => getDefaultEnhancers()
     // composeEnhancers(applyMiddleware(thunk, actionsInterceptor), ...enhancers)
-  });
+  };
+
+  if (preloadedState) {
+    // @ts-ignore-line
+    storeData['preloadedState'] = preloadedState;
+  }
+
+  const store = configureStore(storeData);
 
   return store;
 }

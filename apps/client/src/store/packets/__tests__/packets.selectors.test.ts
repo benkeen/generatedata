@@ -1,8 +1,8 @@
-import { getNewPacket, initialState as initialPacketState, PacketsState } from '../packets.reducer';
+import { getNewPacket, getInitialState as getInitialPacketState, PacketsState } from '../packets.reducer';
 import * as selectors from '../packets.selectors';
 import { getInitialState } from '../../generator/generator.reducer';
 import { getInitialState as getMainInitialState } from '../../main/main.reducer';
-import { initialState as initialAccountState } from '../../account/account.reducer';
+import { getInitialState as getInitialAccountState } from '../../account/account.reducer';
 import * as generalUtils from '@generatedata/utils/general';
 import { Store } from '~types/general';
 
@@ -11,14 +11,14 @@ describe('getCurrentPacket', () => {
     const state: Store = {
       generator: getInitialState(),
       main: getMainInitialState(),
-      packets: initialPacketState,
-      account: initialAccountState
+      packets: getInitialPacketState(),
+      account: getInitialAccountState()
     };
     expect(selectors.getCurrentPacket(state)).toEqual(null);
   });
 
   it('should return the selected packet', () => {
-    const packets: PacketsState = generalUtils.cloneObj(initialPacketState);
+    const packets: PacketsState = generalUtils.cloneObj(getInitialPacketState());
     packets.currentPacketId = '456';
     packets.packetIds = ['123', '456'];
     packets.packets['123'] = getNewPacket({ generationWorkerId: 1 });
@@ -28,13 +28,13 @@ describe('getCurrentPacket', () => {
       generator: getInitialState(),
       main: getMainInitialState(),
       packets,
-      account: initialAccountState
+      account: getInitialAccountState()
     };
     expect(selectors.getCurrentPacket(state)!.generationWorkerId).toEqual(2);
   });
 
   it('getActivePacketList', () => {
-    const packets: PacketsState = generalUtils.cloneObj(initialPacketState);
+    const packets: PacketsState = generalUtils.cloneObj(getInitialPacketState());
     packets.currentPacketId = '456';
     packets.packetIds = ['123', '456'];
     packets.packets['123'] = getNewPacket({
@@ -50,7 +50,7 @@ describe('getCurrentPacket', () => {
       generator: getInitialState(),
       main: getMainInitialState(),
       packets,
-      account: initialAccountState
+      account: getInitialAccountState()
     };
     expect(selectors.getActivePacketList(state)).toEqual([
       {
