@@ -91,7 +91,6 @@ export const getDataType = (dataType: DataTypeFolder | null): any => {
     };
   }
 
-  console.log('Loaded. DT:', dataType, loadedDataTypes[dataType]);
   let Example = null;
   let Options = null;
   let Help;

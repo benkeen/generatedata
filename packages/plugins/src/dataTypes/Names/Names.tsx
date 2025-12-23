@@ -190,8 +190,6 @@ export const Options = ({
     iconTooltip = i18n.regionalNames;
   }
 
-  console.log(CreatablePillField);
-
   return (
     <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
       <div className={classNames.pillField}>

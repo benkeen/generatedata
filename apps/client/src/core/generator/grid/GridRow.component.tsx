@@ -100,7 +100,6 @@ export const GridRow = ({
     }
 
     if (Options) {
-      console.log('Rendering Options for row ', row.id, ' DT:', row.dataType);
       options = (
         <Options
           coreI18n={i18n}

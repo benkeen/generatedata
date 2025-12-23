@@ -74,6 +74,7 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
           reject(e);
         });
     });
+
     const codeMirrorModes = exportTypes[exportType].codeMirrorModes.map((mode: string) => {
       return new Promise((resolve) => {
         const normalizedMode = mode.replace('/', '_');

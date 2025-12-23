@@ -42,7 +42,7 @@ export const persistStore = (store: any) => {
   };
 
   const data = {
-    accounts: accountPersistor,
+    account: accountPersistor,
     main: mainPersistor,
     generator: persistedGenerator,
     packets: packetsPersistor
