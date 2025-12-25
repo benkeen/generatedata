@@ -1,12 +1,12 @@
 import { Region } from '@generatedata/types';
-import randomUtils from '@generatedata/utils/random';
+import type { WorkerUtils } from '@generatedata/utils/worker';
 import { countryList, CountryType, DTGenerateResult, DTGenerationData } from '../../';
 import { RegionFormat } from './Region.state';
 
 // used for caching purposes
 const countryRegions: any = {};
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
+export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
   const { rowState, countryData, existingRowData } = data;
 
   let country: CountryType;
@@ -16,7 +16,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
     country = countryRow!.data.countryDataType;
   } else {
     const list = rowState.source === 'anyRegion' ? countryList : rowState.selectedCountries;
-    country = randomUtils.getRandomArrayValue(list);
+    country = utils.randomUtils.getRandomArrayValue(list);
   }
 
   if (!country) {
@@ -34,10 +34,10 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
     };
   }
 
-  const displayFormat = randomUtils.getRandomArrayValue(rowState.formats) as RegionFormat;
+  const displayFormat = utils.randomUtils.getRandomArrayValue(rowState.formats) as RegionFormat;
   if (countryRegions[country]) {
     return {
-      display: randomUtils.getRandomArrayValue(countryRegions[country][displayFormat]),
+      display: utils.randomUtils.getRandomArrayValue(countryRegions[country][displayFormat]),
       displayFormat,
       countryDataType: country
     };
@@ -50,7 +50,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
     };
 
     return {
-      display: randomUtils.getRandomArrayValue(countryRegions[country][displayFormat]),
+      display: utils.randomUtils.getRandomArrayValue(countryRegions[country][displayFormat]),
       displayFormat,
       countryDataType: country
     };
