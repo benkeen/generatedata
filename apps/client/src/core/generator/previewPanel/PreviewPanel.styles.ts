@@ -53,14 +53,19 @@ export const useClasses = makeStyles({
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
-    overflow: 'hidden'
-    // 	& > div,
-    // 	& > div > div {
-    // 		display: flex;
-    // 		flex-direction: column;
-    // 		flex: 1;
-    // 		overflow: hidden;
-    // 	}
+    overflow: 'hidden',
+    '& > div': {
+      display: 'flex',
+      flexDirection: 'column',
+      flex: 1,
+      overflow: 'hidden'
+    },
+    '& > div > div': {
+      display: 'flex',
+      flexDirection: 'column',
+      flex: 1,
+      overflow: 'hidden'
+    }
     // 	.loading {
     // 		align-items: center;
     // 		justify-content: center;
