@@ -13,6 +13,7 @@ export default (cmdLineArgs) => {
     console.error('\n*** Missing command line args. See file for usage. ***\n');
     return;
   }
+
   return {
     input: src,
     output: {

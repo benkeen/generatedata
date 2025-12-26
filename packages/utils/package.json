@@ -87,9 +87,9 @@
       "default": "./dist/workers/worker.js",
       "types": "./dist/worker.d.ts"
     },
-    "./workerFileMap": {
-      "default": "./dist/workers/workerFileMap.js",
-      "types": "./dist/workers/workerFileMap.d.ts"
+    "./workerUtilsFileMap": {
+      "default": "./dist/workers/workerUtilsFileMap.js",
+      "types": "./dist/workers/workerUtilsFileMap.d.ts"
     }
   }
 }

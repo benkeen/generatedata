@@ -1,5 +1,6 @@
 import { CountryNamesMap, DataTypeFolder, DataTypeMap, ExportTypeFolder, ExportTypeMap } from '@generatedata/plugins';
-import pluginWebWorkers from '@generatedata/plugins/workerFileMap';
+import pluginWebWorkers from '@generatedata/plugins/workerPluginsFileMap';
+import workerFileMap from '@generatedata/utils/workerUtilsFileMap';
 import { nanoid } from 'nanoid';
 import { generationWorker } from '../_generationWorker';
 // import env from '../../_env';
@@ -45,7 +46,7 @@ export const getExportTypeWorkerMap = (exportTypes: ExportTypeMap): ExportTypeMa
   return map;
 };
 
-export const getWorkerUtilsUrl = (): string => ''; // webWorkers.workerUtils; // core package
+export const getWorkerUtilsUrl = (): string => workerFileMap.workerUtils;
 
 const messageIds: any = {};
 

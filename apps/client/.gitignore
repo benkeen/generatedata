@@ -1,6 +1,6 @@
 _env.ts
-dist/*
-dist-workers/*
+dist
+dist-workers
 node_modules/*
 .turbo
 src/_generationWorker.ts

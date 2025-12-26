@@ -226,6 +226,12 @@ window.gd.localeLoaded(i18n);
             cwd: './node_modules/@generatedata/plugins/dist/workers',
             src: ['**/*'],
             dest: 'dist/workers/'
+          },
+          {
+            expand: true,
+            cwd: './node_modules/@generatedata/utils/dist/workers',
+            src: ['**/*'],
+            dest: 'dist/workers/'
           }
         ]
       }

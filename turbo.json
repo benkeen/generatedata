@@ -2,8 +2,8 @@
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
   "tasks": {
-    "start": {
-      "dependsOn": ["^start"]
+    "watch": {
+      "dependsOn": ["^watch"]
     },
     "build": {
       "dependsOn": ["^build"],

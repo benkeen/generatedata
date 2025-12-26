@@ -13,7 +13,8 @@
     "coverage": "npx jest --coverage",
     "i18n": "grunt && grunt i18n",
     "purge": "npx rimraf node_modules dist .turbo",
-    "start": "grunt dev & npm run build & npm run webpackDev",
+    "start": "npm run watch",
+    "watch": "grunt dev & npm run build & npm run webpackDev",
     "test": "env NODE_ENV=test jest",
     "webpackDev": "webpack serve --config ./webpack.config.js --mode=development",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production"

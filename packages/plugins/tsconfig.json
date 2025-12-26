@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "module": "es2015",
-    "target": "es6",
+    "target": "es5",
     "jsx": "react-jsx"
   },
   "include": ["src"],

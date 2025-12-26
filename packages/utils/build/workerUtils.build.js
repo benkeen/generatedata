@@ -18,22 +18,36 @@ const generateWorkerUtils = () => {
   execSync(command, { stdio: 'inherit' });
 
   // lastly, generate the worker file map
-  const workerFileMap = {
+  const workerUtilsFileMap = {
     workerUtils: targetFile
   };
 
   const mapFileContent = `// This file is auto-generated during the build process
-export default ${JSON.stringify(workerFileMap, null, 2)};
+export default ${JSON.stringify(workerUtilsFileMap, null, 2)};
 `;
 
   fs.writeFileSync(
-    path.join(__dirname, '../dist/workers/workerFileMap.js'),
+    path.join(__dirname, '../dist/workers/workerUtilsFileMap.js'),
     mapFileContent,
     'utf-8'
   );  
 
   execSync(`mv ./dist-tmp/${targetFile} ./dist/workers/${targetFile}`, { stdio: 'inherit' });
   execSync(`rm -Rf ./dist-tmp`, { stdio: 'inherit' });
+
+    const typingsFileContent = `// This file is auto-generated during the build process
+declare const _workerUtilsFileMap: {
+  workerUtils: string;
+};
+export default _workerUtilsFileMap;
+`;
+
+  fs.writeFileSync(
+    path.join(__dirname, '../dist/workers/workerUtilsFileMap.d.ts'),
+    typingsFileContent,
+    'utf-8'
+  );
+
 };
 
 generateWorkerUtils();

@@ -58,8 +58,8 @@
       "types": "./dist/names.d.ts",
       "default": "./dist/names.js"
     },
-    "./workerFileMap": {
-      "default": "./dist/workers/workerFileMap.js"
+    "./workerPluginsFileMap": {
+      "default": "./dist/workers/workerPluginsFileMap.js"
     },
     "./dataTypes/*": {
       "default": "./dist/dataTypes/*"

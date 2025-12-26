@@ -67,21 +67,21 @@ const generateWorkers = () => {
   });
   
   // lastly, generate the worker file map and typings file
-  const workerFileMap = {};
+  const workerPluginsFileMap = {};
   workQueue.forEach((item) => {
     let key = item.pluginType === 'dataType' ? 'dataTypes' : 'exportTypes';
-    if (!workerFileMap[key]) {
-      workerFileMap[key] = {};
+    if (!workerPluginsFileMap[key]) {
+      workerPluginsFileMap[key] = {};
     }
-    workerFileMap[key][item.plugin] = item.targetFile;
+    workerPluginsFileMap[key][item.plugin] = item.targetFile;
   });
 
   const mapFileContent = `// This file is auto-generated during the build process
-export default ${JSON.stringify(workerFileMap, null, 2)};
+export default ${JSON.stringify(workerPluginsFileMap, null, 2)};
 `;
 
   fs.writeFileSync(
-    path.join(__dirname, '../dist/workers/workerFileMap.js'),
+    path.join(__dirname, '../dist/workers/workerPluginsFileMap.js'),
     mapFileContent,
     'utf-8'
   );
@@ -89,19 +89,19 @@ export default ${JSON.stringify(workerFileMap, null, 2)};
   const typingsFileContent = `// This file is auto-generated during the build process
 import type { DataType, ExportType } from '../';
 
-declare const _workerFileMap: {
-    dataTypes: {
-        [key: DataType]: string;
-    };
-    exportTypes: {
-        [key: ExportType]: string;
-    };
+declare const _workerPluginsFileMap: {
+  dataTypes: {
+    [key: DataType]: string;
+  };
+  exportTypes: {
+    [key: ExportType]: string;
+  };
 };
-export default _workerFileMap;
+export default _workerPluginsFileMap;
 `;
 
   fs.writeFileSync(
-    path.join(__dirname, '../dist/workers/workerFileMap.d.ts'),
+    path.join(__dirname, '../dist/workers/workerPluginsFileMap.d.ts'),
     typingsFileContent,
     'utf-8'
   );

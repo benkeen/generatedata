@@ -2168,7 +2168,6 @@ const lastNames = [
   'Zamora',
   'Zimmerman'
 ];
-const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const genders = ['male', 'female'];
 
 export const getRandomGender = (utils: WorkerUtils): string => (utils.randomUtils.getRandomBool() ? genders[0] : genders[1]);
@@ -2240,7 +2239,7 @@ export const generate = (data: any, utils: WorkerUtils): DTGenerateResult => {
     output = output.replace(/Surname/, utils.randomUtils.getRandomArrayValue(lastNamesSource));
   }
   while (/Initial/.test(output)) {
-    output = output.replace(/Initial/, utils.randomUtils.getRandomCharInString(letters));
+    output = output.replace(/Initial/, utils.randomUtils.getRandomCharInString(utils.randomUtils.letters));
   }
 
   let gender = 'unknown';
