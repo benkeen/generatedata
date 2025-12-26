@@ -87,6 +87,7 @@ export const useClasses = makeStyles({
   },
   generateButton: {
     fontSize: '13px',
+    color: 'white',
     '& svg': {
       fontSize: '15px',
       margin: '0 5px 0 -5px'

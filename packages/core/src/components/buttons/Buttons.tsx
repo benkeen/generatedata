@@ -20,13 +20,10 @@ export const NullButton = styled((props: ButtonProps) => <Button variant="outlin
 
 export const SecondaryButton = styled((props: ButtonProps) => (
   <Button color="secondary" variant="outlined" disableElevation disableRipple {...props} />
-))(({ theme }) => ({
-  border: '1px solid #047a12',
-  color: '#047a12',
-  backgroundColor: '#fafffb',
+))(() => ({
+  border: '1px solid #ccccccff',
   '&:hover': {
-    border: '1px solid #0e961e',
-    backgroundColor: '#f6fff7'
+    backgroundColor: '#f4f4f4'
   }
 }));
 

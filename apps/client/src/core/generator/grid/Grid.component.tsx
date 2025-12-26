@@ -115,14 +115,11 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
                 if (!active) {
                   return;
                 }
-
-                console.log('starting drag', active);
-
                 setActiveId(active.id);
               }}
               onDragEnd={({ over }) => {
                 if (over) {
-                  console.log('over ...', over);
+                  console.log('over ...', activeId);
                   // const overIndex = getIndex(over.id);
                   // if (activeIndex !== overIndex) {
                   //   setItems((items) => reorderItems(items, activeIndex, overIndex));

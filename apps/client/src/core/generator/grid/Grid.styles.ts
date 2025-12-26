@@ -111,16 +111,19 @@ const useBaseClasses = makeStyles({
     cursor: 'pointer',
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: '8px',
+    paddingTop: '8px !important',
     '& svg': {
       fill: '#333333',
       transition: 'fill 0.5s ease-in-out'
+    },
+    '&:hover svg': {
+      fill: '#990000'
     }
   },
   settingsIconCol: {
+    display: 'none', // flex when visible
     flex: '0 0 30px',
     cursor: 'pointer',
-    display: 'flex',
     justifyContent: 'center',
     paddingTop: '8px',
     '& svg': {
@@ -131,17 +134,6 @@ const useBaseClasses = makeStyles({
   // div.settingsIconCol svg.disabledBtn {
   //   fill: #eeeeee,
   //   cursor: default,
-  // }
-  // deleteCol: { // div.deleteCol
-  //   marginRight: 0,
-  //   ':hover': {
-  //     '& svg': {
-  //       fill: '#990000'
-  //     }
-  //   }
-  // }
-  // div.settingsIconCol: {
-  //   display: 'none'
   // }
   disabledBtn: {
     fill: '#eeeeee'

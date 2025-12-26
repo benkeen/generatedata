@@ -28,9 +28,11 @@ export const DialogTitle = (props: DialogTitleProps) => {
           onClick={onClose}
           sx={{
             position: 'absolute',
-            right: 1,
-            top: 6,
-            color: '#cccccc'
+            right: 6,
+            top: 8,
+            '& svg': {
+              color: '#cccccc'
+            }
           }}
         >
           <Close fontSize="large" />
@@ -40,15 +42,9 @@ export const DialogTitle = (props: DialogTitleProps) => {
   );
 };
 
-// export const DialogContent = styled(MuiDialogContent)<DialogContentProps>(({ theme: any }) => ({
-//   // root: {
-//   padding: 2 //theme.spacing(2)
-//   // }
-// }));
-
 export const DialogContent = ({ children, ...other }: DialogContentProps) => {
   return (
-    <MuiDialogContent sx={{ padding: 2 }} {...other}>
+    <MuiDialogContent sx={{ padding: '20px', lineHeight: '20px', fontSize: '13px' }} {...other}>
       {children}
     </MuiDialogContent>
   );
@@ -56,18 +52,11 @@ export const DialogContent = ({ children, ...other }: DialogContentProps) => {
 
 export const DialogActions = ({ children, ...other }: DialogContentProps) => {
   return (
-    <MuiDialogActions sx={{ margin: 0, padding: 2 }} {...other}>
+    <MuiDialogActions sx={{ margin: 0, padding: '10px' }} {...other}>
       {children}
     </MuiDialogActions>
   );
 };
-
-// export const DialogActions = styled(MuiDialogActions)<DialogActionsProps>(({ theme: any }) => ({
-//   // root: {
-//   //   margin: 0,
-//   //   padding: theme.spacing(1)
-//   // }
-// }));
 
 export const Dialog = ({ children, ...props }: any) => (
   <MuiDialog
