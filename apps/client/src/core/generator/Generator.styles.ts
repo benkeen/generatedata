@@ -1,4 +1,4 @@
-import { makeStyles } from '@griffel/react';
+import { makeStyles, makeStaticStyles } from '@griffel/react';
 
 export const useClasses = makeStyles({
   controlRow: {
@@ -9,13 +9,19 @@ export const useClasses = makeStyles({
   }
 });
 
+export const useGlobalStyles = makeStaticStyles({
+  '.split-pane-divider': {
+    backgroundImage: 'url("./images/bg.png")',
+    padding: '3px'
+  }
+});
+
 // :global(.Pane2) {
 // 	max-width: 100%;
 // 	overflow: hidden;
 // }
 
 // :global(.Resizer) {
-// 	background-image: url('./images/bg.png');
 // 	z-index: 1;
 // 	box-sizing: border-box;
 // 	background-clip: padding-box;
@@ -47,4 +53,22 @@ export const useClasses = makeStyles({
 // 	&:hover(.disabled) {
 // 		cursor: not-allowed;
 // 	}
+// }
+
+// .split-pane {
+//   height: 100vh;
+// }
+
+// .split-pane-divider {
+//   background: #e0e0e0;
+//   transition: background 0.2s;
+// }
+
+// .split-pane-divider:hover {
+//   background: #b0b0b0;
+// }
+
+// .split-pane-divider:focus {
+//   outline: 2px solid #2196f3;
+//   outline-offset: -2px;
 // }

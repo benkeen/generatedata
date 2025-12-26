@@ -55,7 +55,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
     }
   };
 
-  // to prevent repaints
+  // to prevent repaints. TODO check still neede
   const memoizedDimensions = useMemo(() => ({ width, height }), [width, height]) as { width: number; height: number };
 
   //   <DragDropContext onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}>
@@ -71,7 +71,6 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
   //             showHelpDialog={showHelpDialog}
   //           />
   //         ))}
-  //         {provided.placeholder}
   //       </div>
   //     )}
   //   </Droppable>

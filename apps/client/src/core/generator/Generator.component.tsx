@@ -1,7 +1,7 @@
 import C from '@generatedata/config/constants';
 import { GeneratorLayout } from '@generatedata/types';
 import { useWindowSize } from 'react-hooks-window-size';
-import SplitPane from 'react-split-pane';
+import { SplitPane, Pane } from 'react-split-pane';
 import TourDialog from '~core/dialogs/tourIntro/TourIntro.container';
 import { GeneratorPanel } from '~types/general';
 import ClearPageDialog from '../dialogs/clearPage/ClearPage.container';
@@ -11,9 +11,9 @@ import ActivityPanel from '../generationPanel/ActivityPanel.container';
 import GenerationSettings from '../generationPanel/GenerationSettings.container';
 import DataSetHistory from './dataSetHistory/DataSetHistory.container';
 import ExportSettings from './exportSettings/ExportSettings.container';
-import './Generator.styles.ts';
 import Grid from './grid/Grid.container';
 import Preview from './previewPanel/PreviewPanel.container';
+import { useGlobalStyles } from './Generator.styles';
 
 export type GeneratorProps = {
   i18n: any;
@@ -40,6 +40,8 @@ const Builder = ({
 }: GeneratorProps) => {
   const windowSize = useWindowSize();
   const onResize = (size: number): void => onResizePanels(size);
+
+  useGlobalStyles();
 
   let minSize: number;
   let maxSize: number;
@@ -68,20 +70,16 @@ const Builder = ({
       return <Preview />;
     }
 
+    // defaultSize={defaultSize} size={defaultSize} onChange={onResize}
     if (isGridVisible && isPreviewVisible) {
       return (
-        /* @ts-ignore-line */
-        <SplitPane
-          className="gdGridPanel"
-          split={generatorLayout}
-          minSize={minSize}
-          maxSize={maxSize}
-          defaultSize={defaultSize}
-          size={defaultSize}
-          onChange={onResize}
-        >
-          <Grid />
-          <Preview />
+        <SplitPane className="gdGridPanel" direction={generatorLayout}>
+          <Pane minSize={minSize} maxSize={maxSize}>
+            <Grid />
+          </Pane>
+          <Pane>
+            <Preview />
+          </Pane>
         </SplitPane>
       );
     }
