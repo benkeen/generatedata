@@ -12,6 +12,8 @@ export type AboutProps = {
 const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps) => {
   const classNames = useClasses();
 
+  console.log('AboutDialog render', Dialog);
+
   return (
     <Dialog onClose={onClose} open={visible} className={classNames.aboutDialog}>
       <div style={{ width: 460 }}>

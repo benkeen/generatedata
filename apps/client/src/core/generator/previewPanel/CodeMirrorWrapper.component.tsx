@@ -33,11 +33,9 @@ const CodeMirrorWrapper = (props: CodeMirrorWrapperProps) => {
   const [codeMirrorInstance, setCodeMirrorInstance] = React.useState<any>(null);
 
   useEffect(() => {
-    console.log('!!!');
     if (!columns.length || !previewRows.length) {
       return;
     }
-    console.log('Generating preview string...');
     generatePreviewString(props).then((str: string) => {
       setCode(str);
     });

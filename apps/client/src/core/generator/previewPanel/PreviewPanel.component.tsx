@@ -173,13 +173,9 @@ const PreviewPanel = ({
   };
 
   const getCodeMirrorPanel = (): React.ReactNode => {
-    console.log('????');
-
     if (!hasValidExportTypeSettings || !hasData) {
       return null;
     }
-
-    console.log('exportTypeLoaded', exportTypeLoaded);
 
     if (!exportTypeLoaded) {
       return <PreviewPanelLoader />;

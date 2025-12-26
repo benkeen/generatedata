@@ -21,7 +21,7 @@ export const DialogTitle = (props: DialogTitleProps) => {
   const Close = customCloseIcon ? customCloseIcon : CloseIcon;
 
   return (
-    <MuiDialogTitle className={classes.root} {...other} sx={{ margin: 0, padding: 2 }}>
+    <MuiDialogTitle {...other} sx={{ margin: 0, padding: 2 }}>
       <Typography variant="h5">{children}</Typography>
       {onClose ? (
         <IconButton
@@ -70,19 +70,12 @@ export const DialogActions = ({ children, ...other }: DialogContentProps) => {
 //   // }
 // }));
 
-const useDialogStyles = makeStyles({
-  root: {
-    zIndex: '5005 !important',
-    width: '100%'
-  },
-  paper: {
-    borderRadius: 6,
-    maxWidth: 'inherit'
-  }
-});
-
-export const Dialog = (props: any) => {
-  const { root, paper } = useDialogStyles(props);
-
-  return <MuiDialog className={root} classes={{ paper }} scroll="paper" {...props} />;
-};
+export const Dialog = ({ children, ...props }: any) => (
+  <MuiDialog
+    scroll="paper"
+    {...props}
+    sx={{ zIndex: '5005 !important', width: '100%', '& .MuiDialog-paper': { borderRadius: '6px', maxWidth: 'inherit' } }}
+  >
+    {children}
+  </MuiDialog>
+);

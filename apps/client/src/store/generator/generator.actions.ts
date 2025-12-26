@@ -209,8 +209,6 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
       dispatch(onComplete());
     }
 
-    console.log('generationWorker.postMessage', generationWorker);
-
     // here we DO need to generate the data independently of the final string in the appropriate export type format.
     // That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
     // far clearer to the end user that way
@@ -229,8 +227,6 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
     });
 
     generationWorker.onmessage = (e: MessageEvent): void => {
-      console.log('generationWorker.onmessage', e.data.event);
-
       if (e.data.event !== 'DataTypesProcessed') {
         return;
       }

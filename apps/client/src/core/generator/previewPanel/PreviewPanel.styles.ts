@@ -66,10 +66,6 @@ export const useClasses = makeStyles({
       flex: 1,
       overflow: 'hidden'
     }
-    // 	.loading {
-    // 		align-items: center;
-    // 		justify-content: center;
-    // 	}
   },
   loading: {
     alignItems: 'center',

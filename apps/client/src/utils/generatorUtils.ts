@@ -145,8 +145,6 @@ export const generateDataTypes: GenerateDataTypes = (options): void => {
   const { numResults, batchSize, ...otherOptions } = options;
   const numBatches = Math.ceil(numResults / batchSize);
 
-  console.log('passing data to main process', numBatches);
-
   mainProcess({
     numResults,
     numBatches,
@@ -293,8 +291,6 @@ const generateDataTypeBatch = (options: GenerateDataTypeBrowserBatchProps | Gene
     }
 
     Promise.all(rowPromises).then((generatedData: any) => {
-      console.log('all row promises complete.', generatedData);
-
       onBatchComplete({
         completedBatchNum: batchNum,
         numGeneratedRows: lastRow,
@@ -396,8 +392,6 @@ const processDataTypeBatch = (options: ProcessDataTypeBatchNodeProps | ProcessDa
   return cells.map((currCell: any) => {
     const dataType = currCell.dataType;
 
-    // console.log('cell: ', { rowNum, dataType });
-
     return new Promise((resolve, reject) => {
       if (unchanged[currCell.colIndex]) {
         resolve(unchanged[currCell.colIndex][rowNum - 1]);
@@ -434,8 +428,6 @@ const queueJob = (dataType: DataTypeFolder, workerInterface: WorkerInterface, pa
     reject
   });
 
-  // console.log({ workerQueue, workerInterface });
-
   processQueue(dataType, workerInterface);
 };
 
@@ -452,20 +444,15 @@ const processQueue = (dataType: DataTypeFolder, workerInterface: WorkerInterface
   workerQueue[dataType].processing = true;
   const { payload, resolve, reject } = queue[0];
 
-  console.log('actually doing the work here.', payload);
-
   if (workerInterface.context === 'node') {
     const resp = workerInterface.send(payload);
     resolve(resp);
     processNextItem(dataType, workerInterface);
   } else {
-    console.log('Sending payload to worker via interface', workerInterface);
     workerInterface.send(payload);
-    console.log('AFTER.');
 
     // @ts-ignore
     workerInterface.onSuccess((resp: any): void => {
-      console.log('on success....');
       resolve(resp.data);
       processNextItem(dataType, workerInterface);
     });

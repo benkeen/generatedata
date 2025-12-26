@@ -7,8 +7,6 @@ const context: Worker = self as any;
 const workerCache: any = {};
 
 context.onmessage = (e: GenerationActions) => {
-  console.log('generation.worker received message', e.data);
-
   if (e.data.action === 'Pause') {
     generatorUtils.pause();
   } else if (e.data.action === 'Abort') {
@@ -18,13 +16,9 @@ context.onmessage = (e: GenerationActions) => {
   } else if (e.data.action === 'SetSpeed') {
     generatorUtils.setSpeed(e.data.speed);
   } else if (e.data.action === 'ProcessDataTypesOnly') {
-    console.log('here...', { dataTypeInterface: getDataTypeWorkerInterface(e.data.dataTypeWorkerMap) });
-
     generatorUtils.generateDataTypes({
       ...e.data,
       onBatchComplete: (data: DataTypeBatchGeneratedPayload) => {
-        console.log('??? on batch complete', data);
-
         context.postMessage({
           event: 'DataTypesProcessed',
           data
