@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, GithubIcon, PrimaryButton, Tooltip } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, GithubIcon, PrimaryButton, Tooltip, vars } from '@generatedata/core';
 import { Link } from '~components/Link.component';
 import { useClasses } from './About.styles';
 
@@ -12,13 +12,11 @@ export type AboutProps = {
 const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps) => {
   const classNames = useClasses();
 
-  console.log('AboutDialog render', Dialog);
-
   return (
     <Dialog onClose={onClose} open={visible} className={classNames.aboutDialog}>
       <div style={{ width: 460 }}>
         <DialogTitle onClose={onClose}>{i18n.about}</DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers sx={{ lineHeight: '20px' }}>
           <div>
             <h4>
               generatedata.com &#8212;
@@ -41,6 +39,11 @@ const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps) => {
           <PrimaryButton
             onClick={(): void => {
               window.open('https://github.com/benkeen/generatedata', '_blank');
+            }}
+            sx={{
+              '& svg': {
+                fill: vars.primaryColor
+              }
             }}
           >
             <GithubIcon />

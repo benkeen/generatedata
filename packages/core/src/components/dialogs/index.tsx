@@ -6,7 +6,6 @@ import type { DialogTitleProps as MuiDialogTitleProps } from '@mui/material/Dial
 import MuiDialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { makeStyles } from '@mui/styles';
 
 type DialogTitleProps = MuiDialogTitleProps & {
   onClose?: () => void;
