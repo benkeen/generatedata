@@ -2,20 +2,17 @@
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
-  // typography: {
-  //   fontFamily: '"Open Sans", serif',
-  //   button: {
-  //     fontSize: 'inherit'
-  //   }
-  // },
-  // palette: {
-  //   primary: {
-  //     main: '#275eb5'
-  //   }
-  // },
-  // transitions: {
-  //   create: () => 'none'
-  // },
+  typography: {
+    fontFamily: '"Open Sans", serif',
+    button: {
+      fontSize: 'inherit'
+    }
+  },
+  palette: {
+    primary: {
+      main: '#275eb5'
+    }
+  },
   components: {
     MuiButtonBase: {
       defaultProps: {
