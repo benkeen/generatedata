@@ -6,15 +6,13 @@ export const useClasses = makeStyles({
     backgroundColor: '#ffffff',
     boxShadow: '0 1px 1px #cccccc',
     '& > button': {
-      border: 0
+      border: 0,
+      fontSize: '11px',
+      color: '#444444'
     },
     '& svg': {
       fill: '#aaaaaa'
     }
-    // :global(.MuiButton-root) {
-    // 	font-size: 11px;
-    // 	color: #444444;
-    // }
   },
   dataTemplateControls: {
     margin: '0 6px 0 0',

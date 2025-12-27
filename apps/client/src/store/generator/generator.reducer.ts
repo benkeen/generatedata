@@ -114,6 +114,19 @@ export type SelectedDataSetHistoryItem = {
   isLatest: boolean;
 };
 
+export type PanelSizes = {
+  windowHeight: number;
+  windowWidth: number;
+  horizontal?: [number, number];
+  vertical?: [number, number];
+};
+
+export type UpdatePanelSizeData = {
+  windowHeight?: number;
+  windowWidth?: number;
+  sizes?: number[];
+};
+
 export type GeneratorState = {
   loadedDataTypes: Partial<Record<DataTypeFolder, boolean>>;
   loadedExportTypes: Partial<Record<ExportTypeFolder, boolean>>;
@@ -146,8 +159,7 @@ export type GeneratorState = {
   exportSettingsTab: ExportSettingsTab;
   numPreviewRows: number;
   stripWhitespace: boolean;
-  lastLayoutWidth: number | null;
-  lastLayoutHeight: number | null;
+  panelSizes: PanelSizes | null;
   numRowsToGenerate: number;
   currentDataSet: CurrentDataSet;
   selectedDataSetHistory: SelectedDataSetHistoryItem;
@@ -185,8 +197,7 @@ export const getInitialState = (): GeneratorState => ({
   helpDialogSection: null,
   numRowsToGenerate: clientConfig.appSettings.GD_DEFAULT_NUM_ROWS,
   stripWhitespace: false,
-  lastLayoutWidth: null,
-  lastLayoutHeight: null,
+  panelSizes: null,
   currentDataSet: {
     dataSetId: null,
     dataSetName: '',
@@ -427,8 +438,24 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
       break;
 
     case actions.SET_PANEL_SIZE:
-      const setting = draft.generatorLayout === 'horizontal' ? 'lastLayoutHeight' : 'lastLayoutWidth';
-      draft[setting] = action.payload.size;
+      if (!draft.panelSizes) {
+        draft.panelSizes = {
+          windowHeight: 0,
+          windowWidth: 0
+        };
+      }
+      if (action.payload.panelSizeData.windowHeight !== undefined) {
+        draft.panelSizes.windowHeight = action.payload.panelSizeData.windowHeight;
+      }
+      if (action.payload.panelSizeData.windowWidth !== undefined) {
+        draft.panelSizes.windowWidth = action.payload.panelSizeData.windowWidth;
+      }
+
+      if (draft.generatorLayout === 'horizontal') {
+        draft.panelSizes.horizontal = [action.payload.panelSizeData.sizes[0], action.payload.panelSizeData.sizes[1]];
+      } else {
+        draft.panelSizes.vertical = [action.payload.panelSizeData.sizes[0], action.payload.panelSizeData.sizes[1]];
+      }
       break;
 
     case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL:

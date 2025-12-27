@@ -34,6 +34,7 @@ export const persistStore = (store: any) => {
     exportSettingsTab: generator.exportSettingsTab,
     numPreviewRows: generator.numPreviewRows,
     stripWhitespace: generator.stripWhitespace,
+    panelSizes: generator.panelSizes,
     numRowsToGenerate: generator.numRowsToGenerate
   };
 

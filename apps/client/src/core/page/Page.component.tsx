@@ -11,9 +11,6 @@ export type PageProps = {
 
 const Page = ({ localeFileLoaded, children }: PropsWithChildren<PageProps>) => {
   const classNames = useClasses();
-
-  console.log('page children: ', children);
-
   const content = localeFileLoaded ? (
     <>
       <Header />

@@ -11,17 +11,17 @@ import { DataRow } from '~store/generator/generator.reducer';
 import { useClasses } from './Grid.styles';
 import { SmallScreenSettingsIcon } from './SmallScreenSettingsIcon';
 
-const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
-  const styles: React.CSSProperties = {
-    ...draggableStyle,
-    userSelect: 'none',
-    margin: '0 0 0 0'
-  };
-  if (isDragging) {
-    styles.background = '#e0ebfd';
-  }
-  return styles;
-};
+// const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
+//   const styles: React.CSSProperties = {
+//     ...draggableStyle,
+//     userSelect: 'none',
+//     margin: '0 0 0 0'
+//   };
+//   if (isDragging) {
+//     styles.background = '#e0ebfd';
+//   }
+//   return styles;
+// };
 
 export type GridRowProps = {
   row: DataRow;
@@ -127,9 +127,6 @@ export const GridRow = ({
     showHelpDialog(row.dataType as DataTypeFolder);
   }, [row.dataType]);
 
-  // return (
-  // <Draggable key={row.id} draggableId={row.id} index={index}>
-  //   {(provided: any, snapshot: any): any => {
   // the title field is always required, regardless of Export Type
   let titleColError = '';
   if (row.dataType) {

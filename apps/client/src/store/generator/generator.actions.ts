@@ -16,6 +16,7 @@ import { registerInterceptors } from '../../core/actionInterceptor';
 import { getUnchangedData } from '../../core/generationPanel/generation.helpers';
 import type { ExportSettingsTab } from '../../core/generator/exportSettings/ExportSettings.types';
 import * as selectors from './generator.selectors';
+import { UpdatePanelSizeData } from './generator.reducer';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -414,10 +415,10 @@ export const clearPage =
     };
 
 export const SET_PANEL_SIZE = 'SET_PANEL_SIZE';
-export const setPanelSize = (size: number): GDAction => ({
+export const updatePanelSizes = (panelSizeData: UpdatePanelSizeData): GDAction => ({
   type: SET_PANEL_SIZE,
   payload: {
-    size
+    panelSizeData
   }
 });
 
