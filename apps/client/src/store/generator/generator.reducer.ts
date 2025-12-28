@@ -117,14 +117,14 @@ export type SelectedDataSetHistoryItem = {
 export type PanelSizes = {
   windowHeight: number;
   windowWidth: number;
-  horizontal?: [number, number];
-  vertical?: [number, number];
+  horizontal?: number;
+  vertical?: number;
 };
 
 export type UpdatePanelSizeData = {
   windowHeight?: number;
   windowWidth?: number;
-  sizes?: number[];
+  size: number;
 };
 
 export type GeneratorState = {
@@ -178,7 +178,7 @@ export const getInitialState = (): GeneratorState => ({
   showGrid: true,
   showPreview: true,
   smallScreenVisiblePanel: GeneratorPanel.grid,
-  generatorLayout: GeneratorLayout.horizontal,
+  generatorLayout: GeneratorLayout.vertical,
   showExportSettings: false,
   exportTypeSettings: {},
   numPreviewRows: 5,
@@ -451,11 +451,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
         draft.panelSizes.windowWidth = action.payload.panelSizeData.windowWidth;
       }
 
-      if (draft.generatorLayout === 'horizontal') {
-        draft.panelSizes.horizontal = [action.payload.panelSizeData.sizes[0], action.payload.panelSizeData.sizes[1]];
-      } else {
-        draft.panelSizes.vertical = [action.payload.panelSizeData.sizes[0], action.payload.panelSizeData.sizes[1]];
-      }
+      draft.panelSizes[draft.generatorLayout] = action.payload.panelSizeData.size;
       break;
 
     case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL:

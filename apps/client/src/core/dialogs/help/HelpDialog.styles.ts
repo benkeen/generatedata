@@ -1,4 +1,5 @@
 import { makeStyles } from '@griffel/react';
+import { vars } from '@generatedata/core';
 
 export const useClasses = makeStyles({
   helpDialog: {
@@ -56,26 +57,26 @@ export const useClasses = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     overflow: 'hidden',
-    fontSize: '13px'
+    fontSize: '13px',
 
     // 	input {
     // 		width: 100%;
     // 		flex: 0 0 auto;
     // 	}
 
-    // 	ul {
-    // 		margin: 0;
-    // 		list-style: none;
-    // 		padding: 0 0 0 10px;
-    // 		font-size: 12px;
-    // 		line-height: 20px;
-    // 	}
-    // 	li {
-    // 		color: c.$primary-color;
-    // 		cursor: pointer;
-    // 		&:hover {
-    // 			text-decoration: underline;
-    // 		}
-    // 	}
+    '& ul': {
+      margin: 0,
+      listStyle: 'none',
+      padding: '0 0 0 10px',
+      fontSize: '12px',
+      lineHeight: '20px'
+    },
+    '& li': {
+      color: vars.primaryColor,
+      cursor: 'pointer',
+      '&:hover': {
+        textDecoration: 'underline'
+      }
+    }
   }
 });

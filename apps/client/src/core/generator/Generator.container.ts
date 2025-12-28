@@ -7,7 +7,6 @@ import Generator, { GeneratorProps } from './Generator.component';
 import { UpdatePanelSizeData } from '~store/generator/generator.reducer';
 
 const mapStateToProps = (state: any): Omit<GeneratorProps, 'updatePanelSizes'> => ({
-  i18n: selectors.getCoreI18n(state),
   isGridVisible: selectors.isGridVisible(state),
   isPreviewVisible: selectors.isPreviewVisible(state),
   generatorLayout: selectors.getGeneratorLayout(state),

@@ -49,6 +49,9 @@ export const useClasses = makeStyles({
     fontSize: '12px',
     '& b': {
       color: vars.primaryColor
+    },
+    '& button': {
+      marginBottom: '8px'
     }
   }
 });

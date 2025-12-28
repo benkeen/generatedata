@@ -1,4 +1,12 @@
-import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, PrimaryButton } from '@generatedata/core';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogLoadingSpinner,
+  DialogTitle,
+  PrimaryButton,
+  SecondaryButton
+} from '@generatedata/core';
 import { getTourComponents } from '@generatedata/utils/general';
 import { useEffect, useState } from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
@@ -146,9 +154,7 @@ const TourDialog = ({
             </div>
           </DialogContent>
           <DialogActions>
-            <PrimaryButton onClick={closeIntroDialog} color="primary">
-              {i18n.close}
-            </PrimaryButton>
+            <SecondaryButton onClick={closeIntroDialog}>{i18n.close}</SecondaryButton>
           </DialogActions>
         </div>
         <DialogLoadingSpinner visible={loadingBundle} />
