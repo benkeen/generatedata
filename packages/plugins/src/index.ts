@@ -1,4 +1,5 @@
 import type { AnyObject } from '@generatedata/types';
+import { createSelector } from 'reselect';
 import { CountryDataType, CountryNames, DatabaseTypes } from '@generatedata/types';
 import { getStrings } from '@generatedata/utils/lang';
 import Alphanumeric from './dataTypes/Alphanumeric/config';
@@ -226,7 +227,7 @@ export type DTInterceptorSingleAction = {
 };
 
 export type DTCustomProps = {
-  // weird, but setting these to undefined prevents the Data Type from overriding the core prop names accidentally
+  // setting these to undefined prevents the Data Type from overriding the core prop names accidentally
   coreI18n?: undefined;
   countryI18n?: undefined;
   i18n?: undefined;

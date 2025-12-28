@@ -17,6 +17,7 @@ import { getUnchangedData } from '../../core/generationPanel/generation.helpers'
 import type { ExportSettingsTab } from '../../core/generator/exportSettings/ExportSettings.types';
 import * as selectors from './generator.selectors';
 import { UpdatePanelSizeData } from './generator.reducer';
+import * as allSelectors from '../selectors';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -92,7 +93,7 @@ export const loadDataTypeBundle = (
   requestDataTypeBundle(dataType).then((bundle: DTBundle) => {
     dispatch(dataTypeLoaded(dataType));
     if (bundle.getStoreIntegrations) {
-      const actionInterceptors = bundle.getStoreIntegrations({}, {}).actionInterceptors;
+      const actionInterceptors = bundle.getStoreIntegrations(allSelectors, {}).actionInterceptors;
 
       if (actionInterceptors) {
         registerInterceptors(dataType, actionInterceptors);
