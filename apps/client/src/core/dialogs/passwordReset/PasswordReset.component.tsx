@@ -1,7 +1,6 @@
-import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, PrimaryButton, TextField } from '@generatedata/core';
 import { isValidEmail } from '@generatedata/utils/general';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import Button from '@mui/material/Button';
 import { useEffect, useRef, useState } from 'react';
 import { useClasses } from './PasswordReset.styles';
 
@@ -100,9 +99,9 @@ const PasswordResetDialog = ({
                 {i18n.backToLogin}
               </div>
             </div>
-            <Button type="submit" color="primary" variant="outlined" disabled={dialogProcessing}>
+            <PrimaryButton type="submit" disabled={dialogProcessing}>
               {i18n.sendEmail}
-            </Button>
+            </PrimaryButton>
           </DialogActions>
         </div>
       </form>

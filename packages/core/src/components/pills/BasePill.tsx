@@ -28,7 +28,7 @@ type PillProps = {
   style?: any;
 };
 
-const BasePill = ({ type, label, onClick, name, checked, disabled, tooltip, style }: PillProps) => {
+const BasePill = ({ type, label, onClick, name, checked, disabled = false, tooltip, style = {} }: PillProps) => {
   const button = (
     <Button onClick={onClick} size="small" color="primary" variant="outlined" style={style} disabled={disabled}>
       <input type={type} name={name} checked={checked} disabled={disabled} onChange={(): void => {}} />
@@ -50,11 +50,6 @@ const BasePill = ({ type, label, onClick, name, checked, disabled, tooltip, styl
   }
 
   return button;
-};
-
-BasePill.defaultProps = {
-  disabled: false,
-  style: {}
 };
 
 export default BasePill;

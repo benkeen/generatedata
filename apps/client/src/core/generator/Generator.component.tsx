@@ -81,8 +81,6 @@ const Builder = ({
         computedSizes[0] = panelSizes[generatorLayout];
         computedSizes[1] = windowSize.width - panelSizes[generatorLayout];
       }
-
-      console.log('horizontal: ', computedSizes);
     } else {
       const availableHeight = windowSize.height - (C.HEADER_HEIGHT + C.FOOTER_HEIGHT);
       computedSizes[0] = availableHeight / 2;
@@ -91,8 +89,6 @@ const Builder = ({
         computedSizes[0] = panelSizes[generatorLayout];
         computedSizes[1] = availableHeight - panelSizes[generatorLayout];
       }
-
-      console.log('vertical: ', computedSizes);
     }
 
     if (isGridVisible && isPreviewVisible) {

@@ -35,11 +35,12 @@ const theme = createTheme({
     //     zIndex: '5000 !important'
     //   }
     // }
+  },
+  // see: https://mui.com/material-ui/customization/default-theme/?expand-path=$.zIndex
+  zIndex: {
+    // @ts-ignore-line
+    tooltip: '5006 !important'
   }
-  // zIndex: {
-  //   // @ts-ignore-line
-  //   tooltip: '5001 !important'
-  // }
 });
 
 export default theme;

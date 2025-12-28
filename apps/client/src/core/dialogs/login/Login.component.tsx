@@ -1,7 +1,6 @@
-import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, PrimaryButton, TextField } from '@generatedata/core';
 import { getVendorLoginButtons, hasVendorLogin } from '@generatedata/utils/auth';
 import { addToast, isValidEmail } from '@generatedata/utils/general';
-import Button from '@mui/material/Button';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useClasses } from './Login.styles';
@@ -37,13 +36,13 @@ const LoginDialog = ({
   const navigate = useNavigate();
   const classNames = useClasses();
 
-  const textFieldRef = useRef<any>(undefined);
+  const textFieldRef = useRef<any>();
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [autoFocusPasswordField, shouldAutoFocusPasswordField] = useState(false);
-  const passwordFieldRef = useRef<HTMLInputElement>(undefined);
+  const passwordFieldRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!visible) {
@@ -204,9 +203,9 @@ const LoginDialog = ({
               <div className={classNames.forgotPasswordLink} onClick={(): void => showPasswordResetDialog(email)}>
                 {i18n.forgottenYourPasswordQ}
               </div>
-              <Button type="submit" color="primary" variant="outlined" disabled={dialogProcessing}>
+              <PrimaryButton type="submit" disabled={dialogProcessing}>
                 {i18n.login}
-              </Button>
+              </PrimaryButton>
             </DialogActions>
           </div>
         </form>

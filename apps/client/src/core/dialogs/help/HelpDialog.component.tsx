@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, DropdownOption, MediumSpinner } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, DropdownOption, MediumSpinner, SecondaryButton } from '@generatedata/core';
 import { DataTypeFolder } from '@generatedata/plugins';
 import Button from '@mui/material/Button';
 import React, { useState } from 'react';
@@ -99,9 +99,7 @@ const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n,
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <SecondaryButton onClick={onClose}>{coreI18n.close}</SecondaryButton>
         </DialogActions>
       </div>
     </Dialog>

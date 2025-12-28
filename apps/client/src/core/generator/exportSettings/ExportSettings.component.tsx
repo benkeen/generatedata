@@ -1,12 +1,12 @@
 import * as React from 'react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PreviewSettingsTab from './PreviewSettingsTab.container';
 import ExportTypeTab from './ExportTypeTab.container';
 import { useClasses } from './ExportSettings.styles';
+import { PrimaryButton } from '@generatedata/core';
 
 export type ExportSettingsProps = {
   i18n: any;
@@ -41,10 +41,10 @@ export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings 
         </Tabs>
         <section>{getTab()}</section>
         <footer>
-          <Button onClick={toggleExportSettings} variant="outlined" color="primary" disableElevation>
+          <PrimaryButton onClick={toggleExportSettings} variant="outlined" color="primary" disableElevation>
             <HighlightOffIcon />
             {i18n.closePanel}
-          </Button>
+          </PrimaryButton>
         </footer>
       </div>
     </Drawer>

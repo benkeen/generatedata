@@ -1,6 +1,5 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, PrimaryButton } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, AlertButton, PrimaryButton } from '@generatedata/core';
 import WarningIcon from '@mui/icons-material/Warning';
-import Button from '@mui/material/Button';
 import { useClasses } from './ClearPage.styles';
 
 export type ClearPageDialogProps = {
@@ -24,9 +23,9 @@ const ClearPageDialog = ({ visible, onClose, onClear, i18n }: ClearPageDialogPro
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClear} color="secondary" variant="outlined" className="clearPage">
+          <AlertButton onClick={onClear} className="clearPage">
             {i18n.yes}
-          </Button>
+          </AlertButton>
           <PrimaryButton onClick={onClose} className="cancelClearPage">
             {i18n.no}
           </PrimaryButton>

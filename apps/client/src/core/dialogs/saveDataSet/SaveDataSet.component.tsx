@@ -31,7 +31,7 @@ const SaveDataSetDialog = ({
   const navigate = useNavigate();
   const classNames = useClasses();
 
-  const newDataSetNameField = useRef<HTMLInputElement>(undefined);
+  const newDataSetNameField = useRef<HTMLInputElement>(null);
   const [newDataSetName, setNewDataSetName] = useState('');
   const [newDataSetNameError, setNewDataSetErrorName] = useState('');
 

@@ -9,7 +9,12 @@ export const PrimaryButton = styled((props: ButtonProps) => (
 ))(({ theme }) => ({
   // such a kludge. Material UI's base styles are overriding this for some reason. Same specificity.
   color: `${theme.palette.primary.main} !important`
-  // Button's color="primary" prop handles the color through the theme at runtime
+}));
+
+export const AlertButton = styled((props: ButtonProps) => (
+  <Button color="error" variant="outlined" disableElevation disableRipple {...props} />
+))(({ theme }) => ({
+  color: `${theme.palette.error.main} !important`
 }));
 
 export const NullButton = styled((props: ButtonProps) => <Button variant="outlined" disableElevation disableRipple {...props} />)(

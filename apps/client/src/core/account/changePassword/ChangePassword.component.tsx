@@ -1,6 +1,5 @@
-import { TextField } from '@generatedata/core';
+import { PrimaryButton, TextField } from '@generatedata/core';
 import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
 import { useRef, useState } from 'react';
 
 export type ChangePasswordProps = {
@@ -12,14 +11,14 @@ export type ChangePasswordProps = {
 };
 
 const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: ChangePasswordProps) => {
-  const currentPasswordField = useRef<HTMLInputElement>(undefined);
+  const currentPasswordField = useRef<HTMLInputElement>(null);
   const [currentPassword, setCurrentPassword] = useState('');
   const [currentPasswordError, setCurrentPasswordError] = useState('');
 
-  const passwordField = useRef<HTMLInputElement>(undefined);
+  const passwordField = useRef<HTMLInputElement>(null);
   const [password, setPassword] = useState('');
 
-  const password2Field = useRef<HTMLInputElement>(undefined);
+  const password2Field = useRef<HTMLInputElement>(null);
   const [password2, setPassword2] = useState('');
   const [password2Error, setPassword2Error] = useState('');
 
@@ -147,9 +146,9 @@ const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: 
       </div>
 
       <div>
-        <Button type="submit" color="primary" variant="contained" disabled={!submitButtonEnabled} disableElevation>
+        <PrimaryButton type="submit" disabled={!submitButtonEnabled}>
           {i18n.update}
-        </Button>
+        </PrimaryButton>
       </div>
     </form>
   );

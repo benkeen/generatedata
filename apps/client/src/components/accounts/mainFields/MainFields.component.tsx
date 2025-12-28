@@ -1,9 +1,8 @@
-import { Dropdown, TextField, useSharedClasses } from '@generatedata/core';
+import { Dropdown, PrimaryButton, TextField, useSharedClasses } from '@generatedata/core';
 import { canadianProvinceOptions, countryDropdownOptions } from '@generatedata/plugins';
 import { isValidEmail } from '@generatedata/utils/general';
 import { generateRandomAlphanumericStr } from '@generatedata/utils/random';
 import Refresh from '@mui/icons-material/Refresh';
-import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
@@ -36,7 +35,7 @@ const MainFields = ({
   isAddingUser,
   className = ''
 }: MainFieldsProps) => {
-  const emailFieldRef = useRef(undefined);
+  const emailFieldRef = useRef<HTMLInputElement>(null);
   const [oneTimePasswordFieldVisible, setOneTimePasswordFieldVisible] = useState(false);
   const sharedClasses = useSharedClasses();
 
@@ -208,9 +207,9 @@ const MainFields = ({
       </div>
 
       <div>
-        <Button type="submit" color="primary" variant="contained" disableElevation disabled={!saveButtonEnabled}>
+        <PrimaryButton type="submit" disabled={!saveButtonEnabled}>
           {submitButtonLabel}
-        </Button>
+        </PrimaryButton>
 
         <span onClick={onCancel} className={cancelLinkClasses}>
           {i18n.cancel}
