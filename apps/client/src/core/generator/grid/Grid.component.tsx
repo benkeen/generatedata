@@ -29,7 +29,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
   const windowSize = useWindowSize();
   const [measureRef, { width = 0, height = 0 }] = useMeasure();
   const classNames = useClasses();
-  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+  const [draggingRowId, setDraggingRowId] = useState<UniqueIdentifier | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -55,28 +55,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
     }
   };
 
-  // to prevent repaints. TODO check still neede
   const memoizedDimensions = useMemo(() => ({ width, height }), [width, height]) as { width: number; height: number };
-
-  //   <DragDropContext onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}>
-  //   <Droppable droppableId="droppable">
-  //     {(provided: any): any => (
-  //       <div className={classNames.grid} {...provided.droppableProps} ref={provided.innerRef}>
-  //         {rows.map((row, index) => (
-  //           <GridRow
-  //             row={row}
-  //             key={row.id}
-  //             index={index}
-  //             gridPanelDimensions={memoizedDimensions}
-  //             showHelpDialog={showHelpDialog}
-  //           />
-  //         ))}
-  //       </div>
-  //     )}
-  //   </Droppable>
-  // </DragDropContext>
-
-  // const getIndex = (id: UniqueIdentifier) => rows.indexOf(id);
 
   return (
     <>
@@ -114,16 +93,14 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
                 if (!active) {
                   return;
                 }
-                setActiveId(active.id);
+                setDraggingRowId(active.id);
               }}
               onDragEnd={({ over }) => {
                 if (over) {
-                  console.log('over ...', activeId);
-                  // const overIndex = getIndex(over.id);
-                  // if (activeIndex !== overIndex) {
-                  //   setItems((items) => reorderItems(items, activeIndex, overIndex));
-                  //   // onSort();
-                  // }
+                  onSort(
+                    draggingRowId as string,
+                    rows.findIndex((r) => r.id === over.id)
+                  );
                 }
               }}
             >
