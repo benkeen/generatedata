@@ -1,6 +1,5 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, RadioPill, RadioPillRow, TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, PrimaryButton, RadioPill, RadioPillRow, TextField } from '@generatedata/core';
 import { getLipsumWords } from '@generatedata/utils/string';
-import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { GenerationOptionsType, TextFixedState, TextSource } from './TextFixed.state';
@@ -51,9 +50,7 @@ const TextFieldDialog = ({ visible, data, id, onClose, onUpdateSource, onUpdateC
           {getCustomTextField()}
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -95,9 +92,9 @@ export const Options = ({ coreI18n, i18n, id, data, onUpdate }: DTOptionsProps) 
         value={data.numWords}
         onChange={onUpdateNumWords}
       />
-      <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small">
         {i18n.TextFixed_words}
-      </Button>
+      </PrimaryButton>
       <TextFieldDialog
         visible={dialogVisible}
         data={data}

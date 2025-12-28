@@ -5,7 +5,7 @@ export const useClasses = makeStyles({
     margin: 0,
     padding: 0,
     display: 'inline-flex',
-    gap: '7px',
+    gap: '6px',
     flexWrap: 'wrap',
     listStyleType: 'none',
     '& li span': {

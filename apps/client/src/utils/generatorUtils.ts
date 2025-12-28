@@ -345,22 +345,26 @@ const processDataTypeBatchGroup = (options: ProcessDataTypeBatchGroupNode | Proc
           // before starting the next. That way, the generated data from earlier batches is available to later
           // Data Types for generating their own data
           return new Promise((resolveBatch) => {
-            Promise.all(promises).then((singleBatchResponses: any) => {
-              for (let i = 0; i < singleBatchResponses.length; i++) {
-                currRowData.push({
-                  id: currBatch[i].id,
-                  colIndex: currBatch[i].colIndex,
-                  dataType: currBatch[i].dataType,
-                  data: singleBatchResponses[i]
-                });
-              }
-              resolveBatch();
+            Promise.all(promises)
+              .then((singleBatchResponses: any) => {
+                for (let i = 0; i < singleBatchResponses.length; i++) {
+                  currRowData.push({
+                    id: currBatch[i].id,
+                    colIndex: currBatch[i].colIndex,
+                    dataType: currBatch[i].dataType,
+                    data: singleBatchResponses[i]
+                  });
+                }
+                resolveBatch();
 
-              if (batchIndex === processGroups.length - 1) {
-                currRowData.sort((a, b) => (a.colIndex < b.colIndex ? -1 : 1));
-                resolveAll(currRowData.map((row) => row.data));
-              }
-            });
+                if (batchIndex === processGroups.length - 1) {
+                  currRowData.sort((a, b) => (a.colIndex < b.colIndex ? -1 : 1));
+                  resolveAll(currRowData.map((row) => row.data));
+                }
+              })
+              .catch((err) => {
+                console.log('A major error occurred. Generation cannot continue.', err);
+              });
           });
         });
     });

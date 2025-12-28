@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import { Tooltip } from '../tooltips';
 import { useClasses } from './BasePill.styles';
+import { PrimaryButton } from '../buttons';
 
 export const PillRow = ({ className, children }: any) => {
   const classNames = useClasses();
@@ -30,10 +31,10 @@ type PillProps = {
 
 const BasePill = ({ type, label, onClick, name, checked, disabled = false, tooltip, style = {} }: PillProps) => {
   const button = (
-    <Button onClick={onClick} size="small" color="primary" variant="outlined" style={style} disabled={disabled}>
+    <PrimaryButton onClick={onClick} size="small" style={style} disabled={disabled}>
       <input type={type} name={name} checked={checked} disabled={disabled} onChange={(): void => {}} />
       <span>{label}</span>
-    </Button>
+    </PrimaryButton>
   );
 
   if (tooltip) {

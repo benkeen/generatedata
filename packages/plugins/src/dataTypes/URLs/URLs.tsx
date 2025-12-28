@@ -1,4 +1,4 @@
-import { CheckboxPill, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown } from '@generatedata/core';
+import { CheckboxPill, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, PrimaryButton } from '@generatedata/core';
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTExampleProps, DTMetadata, DTOptionsProps } from '../../';
@@ -129,9 +129,7 @@ const URLsDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -144,15 +142,9 @@ export const Options = ({ i18n, id, coreI18n, data, onUpdate }: DTOptionsProps) 
 
   return (
     <>
-      <Button
-        onClick={(): void => setDialogVisibility(true)}
-        variant="outlined"
-        color="primary"
-        size="small"
-        className={classNames.buttonLabel}
-      >
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small" className={classNames.buttonLabel}>
         {coreI18n.options}
-      </Button>
+      </PrimaryButton>
       <URLsDialog
         visible={visible}
         id={id}

@@ -1,7 +1,16 @@
-import { CreatablePillField, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, TextField, Tooltip } from '@generatedata/core';
+import {
+  CreatablePillField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dropdown,
+  PrimaryButton,
+  TextField,
+  Tooltip
+} from '@generatedata/core';
 import utils from '@generatedata/utils';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
-import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { GenerationOptionsType, ListState, ListType } from './List.state';
@@ -166,9 +175,7 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -223,9 +230,9 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps) 
     <>
       <div style={{ margin: 4 }}>
         <span dangerouslySetInnerHTML={{ __html: label }} />
-        <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small" style={{ marginLeft: 6 }}>
+        <PrimaryButton onClick={(): void => setDialogVisibility(true)} style={{ marginLeft: 6 }} size="small">
           {i18n.customize}
-        </Button>
+        </PrimaryButton>
       </div>
       <div>
         <CreatablePillField value={safeData.values} onChange={(values: any): void => onUpdate({ ...safeData, values })} />

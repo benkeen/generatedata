@@ -4,6 +4,7 @@ import {
   DialogContent,
   DialogTitle,
   Dropdown,
+  PrimaryButton,
   RadioPill,
   RadioPillRow,
   Tooltip,
@@ -170,12 +171,8 @@ const ColourDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }: 
           </ul>
         </DialogContent>
         <DialogActions>
-          <Button onClick={(): void => setCounter(counter + 1)} color="primary" variant="outlined">
-            {i18n.refresh}
-          </Button>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={(): void => setCounter(counter + 1)}>{i18n.refresh}</PrimaryButton>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -197,9 +194,9 @@ export const Options = ({ id, i18n, coreI18n, data, onUpdate }: DTOptionsProps) 
 
   return (
     <div className={classNames.buttonLabel}>
-      <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small">
         <span dangerouslySetInnerHTML={{ __html: buttonLabel }} />
-      </Button>
+      </PrimaryButton>
       <ColourDialog
         visible={dialogVisible}
         data={data}

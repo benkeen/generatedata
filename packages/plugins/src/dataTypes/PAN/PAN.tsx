@@ -1,8 +1,16 @@
-import { CreatablePillField, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, type DropdownOption } from '@generatedata/core';
+import {
+  CreatablePillField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dropdown,
+  PrimaryButton,
+  type DropdownOption
+} from '@generatedata/core';
 import { cloneObj } from '@generatedata/utils/general';
 import { getI18nString } from '@generatedata/utils/lang';
 import { toSentenceCase } from '@generatedata/utils/string';
-import Button from '@mui/material/Button';
 import React, { useEffect, useState } from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { creditCardFormats, CreditCardFormatType, CreditCardType, creditCardTypes } from './formats';
@@ -176,9 +184,7 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCard
           {getFormatsSection()}
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -224,9 +230,9 @@ export const Options = ({ data, i18n, coreI18n, onUpdate }: DTOptionsProps): Rea
 
   return (
     <div className={classNames.buttonLabel}>
-      <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
-      </Button>
+      </PrimaryButton>
       <PANDialog
         visible={dialogVisible}
         data={data}

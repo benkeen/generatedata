@@ -4,11 +4,11 @@ import {
   DialogContent,
   DialogTitle,
   Dropdown,
+  PrimaryButton,
   RadioPill,
   RadioPillRow,
   type DropdownOption
 } from '@generatedata/core';
-import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { useClasses } from './Track2.styles';
@@ -62,9 +62,7 @@ const Track2Dialog = ({ visible, data, id, panRows, onClose, onUpdatePANSource, 
           {getPanSourceDropdown()}
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -97,9 +95,9 @@ export const Options = ({ i18n, coreI18n, countryI18n, panRows, id, data, onUpda
 
   return (
     <div className={classNames.buttonLabel}>
-      <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
-      </Button>
+      </PrimaryButton>
       <Track2Dialog
         visible={dialogVisible}
         data={data}

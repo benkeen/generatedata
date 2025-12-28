@@ -1,6 +1,5 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, PrimaryButton, TextField } from '@generatedata/core';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
-import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { PrefixLocationEnum } from './Currency.state';
@@ -129,9 +128,7 @@ const CurrencySettingsDialog = ({ id, visible, data, onUpdate, onClose, coreI18n
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -167,9 +164,9 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate }: DTOptionsProps) 
         step={step}
         onChange={(e: any): void => onChange('to', parseFloat(e.target.value).toFixed(2))}
       />
-      <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small">
         {coreI18n.settings}
-      </Button>
+      </PrimaryButton>
 
       <CurrencySettingsDialog
         visible={dialogVisible}

@@ -1,6 +1,5 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, RadioPill, RadioPillRow, TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, PrimaryButton, RadioPill, RadioPillRow, TextField } from '@generatedata/core';
 import { getLipsumWords } from '@generatedata/utils/string';
-import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { GenerationOptionsType, TextRandomState, TextSource } from './TextRandom.state';
@@ -60,9 +59,7 @@ const TextRandomDialog = ({ visible, data, id, onClose, onChangeFromStart, onUpd
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -115,9 +112,9 @@ export const Options = ({ coreI18n, i18n, id, data, onUpdate }: DTOptionsProps) 
         value={data.maxWords}
         onChange={(e: any): void => onChange('maxWords', e.target.value)}
       />
-      <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small">
         {i18n.words}
-      </Button>
+      </PrimaryButton>
       <TextRandomDialog
         visible={dialogVisible}
         data={data}

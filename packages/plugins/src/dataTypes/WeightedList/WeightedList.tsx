@@ -1,4 +1,14 @@
-import { CreatablePillField, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, TextField, Tooltip } from '@generatedata/core';
+import {
+  CreatablePillField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dropdown,
+  PrimaryButton,
+  TextField,
+  Tooltip
+} from '@generatedata/core';
 import { langUtils } from '@generatedata/utils';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import Button from '@mui/material/Button';
@@ -271,9 +281,9 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
                   </div>
                   <div>
                     <label />
-                    <Button type="submit" onClick={onAdd} variant="outlined" color="primary" size="small">
+                    <PrimaryButton type="submit" onClick={onAdd} size="small">
                       <span dangerouslySetInnerHTML={{ __html: i18n.addBtnLabel }} />
-                    </Button>
+                    </PrimaryButton>
                   </div>
                 </div>
               </form>
@@ -288,9 +298,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -345,9 +353,9 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps) 
     <>
       <div style={{ margin: 4 }}>
         <span dangerouslySetInnerHTML={{ __html: label }} />
-        <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small" style={{ marginLeft: 6 }}>
+        <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small" style={{ marginLeft: 6 }}>
           {i18n.customize}
-        </Button>
+        </PrimaryButton>
       </div>
       <WeightedListDialog
         visible={dialogVisible}

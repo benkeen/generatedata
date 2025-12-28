@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogTitle,
   Dropdown,
+  PrimaryButton,
   RadioPill,
   RadioPillRow,
   SmallSpinner,
@@ -135,9 +136,7 @@ const NamesDialog = ({
           {getCountryContent()}
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>

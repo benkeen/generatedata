@@ -43,8 +43,9 @@ export const DialogTitle = (props: DialogTitleProps) => {
 };
 
 export const DialogContent = ({ children, ...other }: DialogContentProps) => {
+  // lineHeight: '20px',
   return (
-    <MuiDialogContent sx={{ padding: '20px', lineHeight: '20px', fontSize: '13px' }} {...other}>
+    <MuiDialogContent sx={{ padding: '20px', fontSize: '13px' }} {...other}>
       {children}
     </MuiDialogContent>
   );

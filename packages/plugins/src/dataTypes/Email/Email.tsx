@@ -4,13 +4,13 @@ import {
   DialogContent,
   DialogTitle,
   Dropdown,
+  PrimaryButton,
   RadioPill,
   RadioPillRow,
   TextField,
   Tooltip
 } from '@generatedata/core';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
-import Button from '@mui/material/Button';
 import React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { EmailState, GenerationOptionsType, StringSourceEnum, defaultDomainSuffixes, defaultDomains } from './Email.state';
@@ -102,9 +102,7 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOption
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -150,9 +148,9 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOpti
 
   return (
     <div className={classNames.buttonLabel}>
-      <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
-      </Button>
+      </PrimaryButton>
       <EmailDialog
         visible={dialogVisible}
         data={safeData}

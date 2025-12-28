@@ -1,6 +1,5 @@
-import { CheckboxPill, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Tooltip } from '@generatedata/core';
+import { CheckboxPill, Dialog, DialogActions, DialogContent, DialogTitle, PrimaryButton, TextField, Tooltip } from '@generatedata/core';
 import InfoIcon from '@mui/icons-material/Info';
-import Button from '@mui/material/Button';
 import React from 'react';
 import { DTMetadata, DTOptionsProps } from '../../';
 import { BitcoinAddressFormat } from './BitcoinAddress.state';
@@ -117,9 +116,7 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
           </table>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -147,9 +144,9 @@ export const Options = ({ data, id, i18n, coreI18n, onUpdate }: DTOptionsProps) 
 
   return (
     <div>
-      <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small">
         <span dangerouslySetInnerHTML={{ __html: buttonLabel }} />
-      </Button>
+      </PrimaryButton>
       <BitcoinDialog
         visible={dialogVisible}
         data={data}
