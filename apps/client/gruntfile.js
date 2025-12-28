@@ -184,6 +184,7 @@ window.gd.localeLoaded(i18n);
       target: {
         files: {
           'dist/styles.css': [
+            'src/resources/global.css',
             'src/resources/codemirror.css',
             'src/resources/ambience.css',
             'src/resources/bespin.css',

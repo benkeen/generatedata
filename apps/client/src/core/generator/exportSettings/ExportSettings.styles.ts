@@ -1,6 +1,6 @@
 import { makeStyles } from '@griffel/react';
 
-export const useClasses = makeStyles({
+export const useBaseClasses = makeStyles({
   tabContent: {
     padding: '20px'
   },
@@ -41,7 +41,6 @@ export const useClasses = makeStyles({
       }
     }
   },
-
   exportFormatRow: {
     backgroundImage: 'url("./images/bg.png")',
     padding: '10px',
@@ -53,15 +52,22 @@ export const useClasses = makeStyles({
       flex: '0 0 140px'
     }
   },
-
   spinner: {
     position: 'absolute',
     top: 'calc(50% - 40px)',
     left: 'calc(50% - 40px)'
-
-    // 	&.fadeOut {
-    // 		opacity: 0;
-    // 		transition: opacity 0.25s ease-in-out;
-    // 	}
+  },
+  fadeOut: {
+    opacity: '0',
+    transition: 'opacity 0.25s ease-in-out'
   }
 });
+
+export const useClasses = (hideSpinner: boolean = false) => {
+  const classNames = useBaseClasses();
+
+  return {
+    ...classNames,
+    spinner: hideSpinner ? `${classNames.spinner} ${classNames.fadeOut}` : classNames.spinner
+  };
+};

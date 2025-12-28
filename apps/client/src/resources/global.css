@@ -1,0 +1,4 @@
+/* to workaround limitations with Griffel - makeStaticStyles doesn't support nested selectors */
+#overlayPanelFullScreen > div {
+  height: 100%;
+}

@@ -11,9 +11,10 @@ export type RadioPillProps = {
   disabled?: boolean;
   tooltip?: string;
   style?: any;
+  id?: string;
 };
 
-export const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: RadioPillProps) => (
+export const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style, id }: RadioPillProps) => (
   <BasePill
     type={PillType.radio}
     label={label}
@@ -23,5 +24,6 @@ export const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, st
     disabled={disabled}
     tooltip={tooltip}
     style={style}
+    id={id}
   />
 );

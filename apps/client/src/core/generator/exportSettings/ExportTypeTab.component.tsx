@@ -25,18 +25,14 @@ export const ExportTypeTab = ({
   onUpdate,
   exportTypeSettings
 }: ExportTypeTabProps) => {
-  const classNames = useClasses();
-  const spinnerStyles = classNames.spinner;
-  if (SettingsComponent) {
-    // spinnerStyles += ` ${classNames.fadeOut}`;
-  }
+  const classNames = useClasses(!!SettingsComponent);
 
   return (
     <div className={`${classNames.tabContent} tour-exportTypeTabContent`}>
       <div className={`${classNames.row} ${classNames.exportFormatRow}`}>
         <div className={classNames.label}>{i18n.format}</div>
         <div className={`${classNames.field} tour-exportTypeDropdown`}>
-          <div style={{ width: 180 }}>
+          <div style={{ width: '100%' }}>
             <Dropdown
               isGrouped={true}
               value={exportType}
@@ -58,7 +54,7 @@ export const ExportTypeTab = ({
           />
         ) : null}
       </div>
-      <MediumSpinner className={spinnerStyles} />
+      <MediumSpinner className={classNames.spinner} />
     </div>
   );
 };

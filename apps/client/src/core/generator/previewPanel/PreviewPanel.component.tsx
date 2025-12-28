@@ -10,7 +10,7 @@ import React, { CSSProperties, useEffect } from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
 import PanelButtons from '~core/generator/dataSetHistory/PanelButtons.container';
 import CodeMirrorWrapper from './CodeMirrorWrapper.container';
-import { useClasses } from './PreviewPanel.styles';
+import { useClasses, useStaticStyles } from './PreviewPanel.styles';
 import { PreviewPanelLoader } from './PreviewPanelLoader.component';
 
 export type PreviewPanelProps = {
@@ -95,6 +95,7 @@ const PreviewPanel = ({
   initRefresh,
   closeOverlayPanels
 }: PreviewPanelProps): React.ReactNode => {
+  useStaticStyles();
   const windowSize = useWindowSize();
   const classNames = useClasses();
 

@@ -1,4 +1,4 @@
-import { makeStyles, shorthands } from '@griffel/react';
+import { makeStaticStyles, makeStyles, shorthands } from '@griffel/react';
 
 export const useClasses = makeStyles({
   previewPanel: {
@@ -11,17 +11,6 @@ export const useClasses = makeStyles({
   exportTypeButton: {
     color: 'white'
   },
-  // :global(#overlayPanelFullScreen) {
-  // 	position: absolute;
-  // 	right: 0;
-  // 	top: 0;
-  // 	left: 400px;
-  // 	bottom: 0;
-  // 	z-index: 1400;
-  // 	& > div {
-  // 		height: 100%;
-  // 	}
-  // }
   topRow: {
     display: 'flex',
     flexDirection: 'row',
@@ -98,5 +87,16 @@ export const useClasses = makeStyles({
       backgroundColor: '#503636',
       ...shorthands.borderColor('#dc4040')
     }
+  }
+});
+
+export const useStaticStyles = makeStaticStyles({
+  '#overlayPanelFullScreen': {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    left: '400px',
+    bottom: 0,
+    zIndex: 1400
   }
 });

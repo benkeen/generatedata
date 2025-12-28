@@ -27,12 +27,13 @@ type PillProps = {
   disabled?: boolean;
   tooltip?: string;
   style?: any;
+  id?: string;
 };
 
-const BasePill = ({ type, label, onClick, name, checked, disabled = false, tooltip, style = {} }: PillProps) => {
+const BasePill = ({ type, label, onClick, name, checked, disabled = false, tooltip, style = {}, id }: PillProps) => {
   const button = (
     <PrimaryButton onClick={onClick} size="small" style={style} disabled={disabled}>
-      <input type={type} name={name} checked={checked} disabled={disabled} onChange={(): void => {}} />
+      <input type={type} name={name} checked={checked} disabled={disabled} onChange={(): void => {}} id={id} />
       <span>{label}</span>
     </PrimaryButton>
   );

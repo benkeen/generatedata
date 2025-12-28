@@ -12,10 +12,11 @@ export const Settings = ({ data, id, i18n, onUpdate }: ETSettings) => {
 
   return (
     <div className={classNames.settingRow}>
-      <label>{i18n.dataStructureFormat}</label>
+      <label htmlFor={`${id}-simple`}>{i18n.dataStructureFormat}</label>
 
       <RadioPillRow>
         <RadioPill
+          id={`${id}-simple`}
           label={i18n.simple}
           onClick={(): void => onChange('dataStructureFormat', 'simple')}
           name={`${id}-simple`}

@@ -11,9 +11,6 @@ import * as selectors from '~store/generator/generator.selectors';
 import * as mainActions from '~store/main/main.actions';
 import * as mainSelectors from '~store/main/main.selectors';
 
-// TODO
-// import '../../_imports';
-
 export const init = (): void => {
   coreUtils.createGenerationWorker('preview');
 
