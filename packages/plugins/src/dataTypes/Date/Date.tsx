@@ -1,13 +1,5 @@
 import C from '@generatedata/config/constants';
-import {
-  CopyToClipboard,
-  Dropdown,
-  ErrorTooltip,
-  LocalizedDatePicker,
-  LocalizedDatePickerProvider,
-  TextField,
-  useSharedClasses
-} from '@generatedata/core';
+import { CopyToClipboard, Dropdown, ErrorTooltip, DatePicker, TextField, useSharedClasses } from '@generatedata/core';
 import { isValidDateFormat } from '@generatedata/utils/date';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import Event from '@mui/icons-material/Event';
@@ -130,50 +122,46 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
   }
 
   return (
-    <LocalizedDatePickerProvider>
-      <div>
-        <div className={classNames.dateRow}>
-          <Button onClick={(): void => onBtnClick('fromDate')} variant="outlined" disableElevation className={classNames.dateBtn}>
-            <span style={{ marginRight: 3 }}>{format(fromUnixTime(data.fromDate), C.DATE_FORMAT)}</span>
+    <div>
+      <div className={classNames.dateRow}>
+        <Button onClick={(): void => onBtnClick('fromDate')} variant="outlined" disableElevation className={classNames.dateBtn}>
+          <span style={{ marginRight: 3 }}>{format(fromUnixTime(data.fromDate), C.DATE_FORMAT)}</span>
+          <Event />
+        </Button>
+        <ArrowRightAlt />
+        <ErrorTooltip title={toDateError} arrow disableHoverListener={!toDateError} disableFocusListener={!toDateError}>
+          <Button onClick={(): void => onBtnClick('toDate')} variant="outlined" disableElevation className={toDateClass}>
+            <span style={{ marginRight: 3 }}>{format(fromUnixTime(data.toDate), C.DATE_FORMAT)}</span>
             <Event />
           </Button>
-          <ArrowRightAlt />
-          <ErrorTooltip title={toDateError} arrow disableHoverListener={!toDateError} disableFocusListener={!toDateError}>
-            <Button onClick={(): void => onBtnClick('toDate')} variant="outlined" disableElevation className={toDateClass}>
-              <span style={{ marginRight: 3 }}>{format(fromUnixTime(data.toDate), C.DATE_FORMAT)}</span>
-              <Event />
-            </Button>
-          </ErrorTooltip>
-        </div>
-        <div>
-          <span className={classNames.formatCodeLabel}>{i18n.formatCode}</span>
-          <TextField
-            error={formatError}
-            value={data.format}
-            style={{ width: 140 }}
-            onChange={(e: any): void => onChange('format', e.target.value)}
-          />
-        </div>
-        <div style={{ display: 'none' }}>
-          <LocalizedDatePicker
-            autoOk
-            open={fromDatePickerOpen}
-            className={classNames.dateField}
-            value={fromUnixTime(data.fromDate)}
-            onChange={(val: any): void => onSelectDate(selectedDatePicker, format(val, 't'))}
-            onClose={(): void => setFromDatePickerOpen(false)}
-          />
-          <LocalizedDatePicker
-            autoOk
-            open={toDatePickerOpen}
-            className={classNames.dateField}
-            value={fromUnixTime(data.toDate)}
-            onChange={(val: any): void => onSelectDate(selectedDatePicker, format(val, 't'))}
-            onClose={(): void => setToDatePickerOpen(false)}
-          />
-        </div>
+        </ErrorTooltip>
       </div>
-    </LocalizedDatePickerProvider>
+      <div>
+        <span className={classNames.formatCodeLabel}>{i18n.formatCode}</span>
+        <TextField
+          error={formatError}
+          value={data.format}
+          style={{ width: 140 }}
+          onChange={(e: any): void => onChange('format', e.target.value)}
+        />
+      </div>
+      <div style={{ display: 'none' }}>
+        <DatePicker
+          open={fromDatePickerOpen}
+          className={classNames.dateField}
+          value={fromUnixTime(data.fromDate)}
+          onChange={(val: any): void => onSelectDate(selectedDatePicker, format(val, 't'))}
+          onClose={(): void => setFromDatePickerOpen(false)}
+        />
+        <DatePicker
+          open={toDatePickerOpen}
+          className={classNames.dateField}
+          value={fromUnixTime(data.toDate)}
+          onChange={(val: any): void => onSelectDate(selectedDatePicker, format(val, 't'))}
+          onClose={(): void => setToDatePickerOpen(false)}
+        />
+      </div>
+    </div>
   );
 };
 

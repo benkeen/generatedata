@@ -1,4 +1,4 @@
-import { LocalizedDatePicker, LocalizedDatePickerProvider, RadioPill, RadioPillRow } from '@generatedata/core';
+import { DatePicker, RadioPill, RadioPillRow } from '@generatedata/core';
 import { getFormattedNum } from '@generatedata/utils/number';
 import { add, format, fromUnixTime } from 'date-fns';
 import { useState } from 'react';
@@ -163,16 +163,13 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
       </div>
 
       <div style={{ display: 'none' }}>
-        <LocalizedDatePickerProvider>
-          <LocalizedDatePicker
-            autoOk
-            open={showDatepicker}
-            className={dateStyles.dateField}
-            value={data.expiryDate === null ? fromUnixTime(yearFromNow) : fromUnixTime(data.expiryDate / 1000)}
-            onChange={(val: any): void => onSelectDate(format(val, 'T'))}
-            onClose={(): void => setShowDatepicker(false)}
-          />
-        </LocalizedDatePickerProvider>
+        <DatePicker
+          open={showDatepicker}
+          className={dateStyles.dateField}
+          value={data.expiryDate === null ? fromUnixTime(yearFromNow) : fromUnixTime(data.expiryDate / 1000)}
+          onChange={(val: any): void => onSelectDate(format(val, 'T'))}
+          onClose={(): void => setShowDatepicker(false)}
+        />
       </div>
     </div>
   );

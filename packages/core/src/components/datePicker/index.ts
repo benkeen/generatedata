@@ -1,1 +1,1 @@
-export * from './LocalizedDatePicker';
+export * from './DatePicker';
