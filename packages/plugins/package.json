@@ -25,14 +25,17 @@
     "reselect": "^5.1.1"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.28.4",
     "@generatedata/types": "workspace:*",
     "@generatedata/config": "workspace:*",
     "@generatedata/core": "workspace:*",
     "@generatedata/i18n": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@griffel/react": "^1.5.32",
+    "@rollup/plugin-babel": "^6.1.0",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "@testing-library/react": "^16.3.0",
     "@testing-library/dom": "^10.4.1",
     "@types/jest": "^30.0.0",

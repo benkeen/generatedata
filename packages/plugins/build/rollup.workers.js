@@ -1,7 +1,9 @@
 import commonjs from '@rollup/plugin-commonjs';
+import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import removeExports from 'rollup-plugin-strip-exports';
 import removeUtilsImport from './rollup-plugin-remove-utils-import';
+import terser from '@rollup/plugin-terser';
 
 // example usage:
 //    npx rollup -c ./build/rollup.workers.js --build-src=src/plugins/dataTypes/AutoIncrement/AutoIncrement.generator.ts --build-target=dist/workers/DT-AutoIncrement.generator.js
@@ -22,6 +24,15 @@ export default (cmdLineArgs) => {
     },
     treeshake: false,
     preserveSymlinks: true,
-    plugins: [removeUtilsImport(), nodeResolve(), commonjs(), removeExports()]
+    plugins: [
+      removeUtilsImport(),
+      nodeResolve(),
+      commonjs(),
+      babel({ babelHelpers: 'bundled' }),
+      removeExports(),
+
+      // TODO - currently causes the workers to fail to work
+      // terser()
+    ]
   };
 };

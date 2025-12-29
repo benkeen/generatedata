@@ -75,10 +75,15 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
           type="time"
           defaultValue={format(fromUnixTime(data.fromTime), 'HH:mm')}
           className={classNames.field}
+          variant="standard"
           InputLabelProps={{
             shrink: true
           }}
-          inputProps={{ step: 60 }}
+          slotProps={{
+            htmlInput: {
+              step: 60
+            }
+          }}
           onChange={(e: any): void => {
             const date = parse(e.target.value, 'HH:mm', new Date());
             onChange('fromTime', parseInt(format(date, 't'), 10));
@@ -90,10 +95,15 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps) => {
             type="time"
             defaultValue={format(fromUnixTime(data.toTime), 'H:mm')}
             className={classNames.field}
+            variant="standard"
             InputLabelProps={{
               shrink: true
             }}
-            inputProps={{ step: 60 }}
+            slotProps={{
+              htmlInput: {
+                step: 60
+              }
+            }}
             onChange={(e: any): void => {
               const date = parse(e.target.value, 'HH:mm', new Date());
               onChange('toTime', parseInt(format(date, 't'), 10));
