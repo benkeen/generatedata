@@ -2,3 +2,9 @@
 #overlayPanelFullScreen > div {
   height: 100%;
 }
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #2684ff;
+}

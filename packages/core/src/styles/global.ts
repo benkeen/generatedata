@@ -1,5 +1,5 @@
 import { makeStaticStyles } from '@griffel/react';
-import { fieldFocusColor, primaryColor } from './variables';
+import { primaryColor } from './variables';
 
 export const useGlobalStyles = makeStaticStyles({
   '*': {
@@ -25,10 +25,7 @@ export const useGlobalStyles = makeStaticStyles({
     borderRadius: '4px',
     border: '1px solid #cccccc',
     padding: '6px',
-    outline: 'none',
-    '&:focus': {
-      border: `1px solid ${fieldFocusColor}`
-    }
+    outline: 'none'
   },
   select: {
     fontFamily: '"Open Sans", serif',
@@ -36,10 +33,7 @@ export const useGlobalStyles = makeStaticStyles({
     borderRadius: '4px',
     border: '1px solid #cccccc',
     padding: '6px',
-    outline: 'none',
-    '&:focus': {
-      border: `1px solid ${fieldFocusColor}`
-    }
+    outline: 'none'
   },
   textarea: {
     fontFamily: '"Open Sans", serif',
@@ -47,17 +41,14 @@ export const useGlobalStyles = makeStaticStyles({
     borderRadius: '4px',
     border: '1px solid #cccccc',
     padding: '6px',
-    outline: 'none',
-    '&:focus': {
-      border: `1px solid ${fieldFocusColor}`
-    }
+    outline: 'none'
   },
   a: {
     textDecoration: 'none',
     color: primaryColor,
     '&:hover': {
       textDecoration: 'underline',
-      color: `1px solid color.adjust(c.$primary-color, $lightness: -30%)` // TODO
+      color: `1px solid color.adjust(c.$primary-color, $lightness: -30%)` // TODO fix
     }
   },
   h3: {

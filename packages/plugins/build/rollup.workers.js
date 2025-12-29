@@ -23,7 +23,7 @@ export default (cmdLineArgs) => {
       format: 'es'
     },
     treeshake: false,
-    preserveSymlinks: true,
+    // preserveSymlinks: true,
     plugins: [
       removeUtilsImport(),
       nodeResolve(),

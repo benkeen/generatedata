@@ -4,11 +4,11 @@ import {
   DialogContent,
   DialogTitle,
   Dropdown,
+  PrimaryButton,
   RadioPill,
   RadioPillRow,
   type DropdownOption
 } from '@generatedata/core';
-import Button from '@mui/material/Button';
 import * as React from 'react';
 import { countryList, CountryType, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { CountrySource } from './Country.state';
@@ -68,9 +68,7 @@ const CountryDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -113,9 +111,9 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 
   return (
     <div className={classNames.buttonLabel}>
-      <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
-      </Button>
+      </PrimaryButton>
       <CountryDialog
         visible={dialogVisible}
         data={data}
