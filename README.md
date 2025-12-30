@@ -33,8 +33,8 @@ https://benkeen.github.io/generatedata/
 
 ## License
 
-This script is freely available under the GPL 3 license. See license.txt in the root folder. Please note that all
-contributors agree that all code is released under this license.
+This script is freely available under the GPL 3 license. Please note that all contributors agree that all code is released under
+this license.
 
 ## Contributors
 
