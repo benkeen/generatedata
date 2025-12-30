@@ -1,5 +1,14 @@
 import clientConfig from '@generatedata/config/clientConfig';
-import { Dialog, DialogActions, DialogContent, DialogTitle, ErrorTooltip, MediumSpinner, useSharedClasses } from '@generatedata/core';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  ErrorTooltip,
+  MediumSpinner,
+  PrimaryButton,
+  useSharedClasses
+} from '@generatedata/core';
 import { getI18nString } from '@generatedata/utils/lang';
 import { getFormattedNum } from '@generatedata/utils/number';
 import CheckIcon from '@mui/icons-material/Check';
@@ -155,23 +164,19 @@ const GenerationSettingsPanel = ({
               <label htmlFor="stripWhitespace">{i18n.stripWhitespace}</label>
             </div>
           </DialogContent>
-          <DialogActions>
-            <div style={{ display: 'flex', width: '100%' }}>
-              <div style={{ flex: 1 }} />
-              <div>
-                {cancelButton}
-                <Button
-                  type="submit"
-                  onClick={actionButtonClick}
-                  color="primary"
-                  disabled={actionButtonDisabled}
-                  disableElevation
-                  variant="contained"
-                >
-                  {buttonLabel}
-                </Button>
-              </div>
-            </div>
+          <DialogActions sx={{ textAlign: 'right' }}>
+            {cancelButton}
+            <PrimaryButton
+              type="submit"
+              onClick={actionButtonClick}
+              color="primary"
+              disabled={actionButtonDisabled}
+              disableElevation
+              variant="contained"
+              sx={{ color: 'white !important' }}
+            >
+              {buttonLabel}
+            </PrimaryButton>
           </DialogActions>
         </div>
       </Dialog>

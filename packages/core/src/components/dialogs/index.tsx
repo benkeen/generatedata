@@ -20,7 +20,7 @@ export const DialogTitle = (props: DialogTitleProps) => {
   const Close = customCloseIcon ? customCloseIcon : CloseIcon;
 
   return (
-    <MuiDialogTitle {...other} sx={{ margin: 0, padding: 2, fontSize: '18px' }}>
+    <MuiDialogTitle {...other} sx={{ margin: 0, padding: '14px 16px', fontSize: '18px' }}>
       {children}
       {onClose ? (
         <IconButton
