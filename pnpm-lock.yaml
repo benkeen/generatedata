@@ -66,8 +66,8 @@ importers:
         specifier: ^8.2.0
         version: 8.6.0
       googleapis:
-        specifier: ^65.0.0
-        version: 65.0.0
+        specifier: ^169.0.0
+        version: 169.0.0
       graphql:
         specifier: ^16.11.0
         version: 16.11.0
@@ -440,7 +440,7 @@ importers:
         version: 3.0.0
       apollo-server-express:
         specifier: ^3.13.0
-        version: 3.13.0(express@4.21.2)(graphql@16.12.0)
+        version: 3.13.0(express@4.22.1)(graphql@16.12.0)
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -454,8 +454,8 @@ importers:
         specifier: ^2.17.0
         version: 2.30.0
       express:
-        specifier: ^4.20.2
-        version: 4.21.2
+        specifier: ^4.22.0
+        version: 4.22.1
       google-auth-library:
         specifier: ^10.5.0
         version: 10.5.0
@@ -4075,10 +4075,6 @@ packages:
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
 
-  abort-controller@3.0.0:
-    resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
-    engines: {node: '>=6.5'}
-
   accepts@1.3.8:
     resolution: {integrity: sha512-PYAthTa2m2VKxuvSD3DPC/Gy+U+sOA1LAuT8mkmRuvw+NACSaeXEQ+NHcVF7rONl6qcaxV3Uuemwawk+7+SJLw==}
     engines: {node: '>= 0.6'}
@@ -4347,10 +4343,6 @@ packages:
   arraybuffer.prototype.slice@1.0.4:
     resolution: {integrity: sha512-BNoCY6SXXPQ7gF2opIP4GBE+Xw7U+pHMYKuzjgCN3GwiaIR09UUeKfheyIry77QtrCBlC0KK0q5/TER/tYh3PQ==}
     engines: {node: '>= 0.4'}
-
-  arrify@2.0.1:
-    resolution: {integrity: sha512-3duEwti880xqi4eAMN8AyR4a0ByT90zoYdLlevfrvU43vb0YZwZVfxOgxWrLXXXpyugL0hNZc9G6BiB5B3nUug==}
-    engines: {node: '>=8'}
 
   asap@2.0.6:
     resolution: {integrity: sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA==}
@@ -5779,10 +5771,6 @@ packages:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
 
-  event-target-shim@5.0.1:
-    resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
-    engines: {node: '>=6'}
-
   eventemitter2@0.4.14:
     resolution: {integrity: sha512-K7J4xq5xAD5jHsGM5ReWXRTFa3JRGofHiMcVgQ8PRwgWxzjHpMWCIzsmyf60+mh8KLsqYPcjUMa0AC4hd6lPyQ==}
 
@@ -5841,6 +5829,10 @@ packages:
     resolution: {integrity: sha512-28HqgMZAmih1Czt9ny7qr6ek2qddF4FclbMzwhCREB6OFfH+rXAnuNCwo1/wFvrtbgsQDb4kSbX9de9lFbrXnA==}
     engines: {node: '>= 0.10.0'}
 
+  express@4.22.1:
+    resolution: {integrity: sha512-F2X8g9P1X7uCPZMA3MVf9wcTqlyNp7IhH5qPCI0izhaOIYXaW9L535tGA3qmjRzpH+bZczqq7hVKxTR4NWnu+g==}
+    engines: {node: '>= 0.10.0'}
+
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
@@ -5867,9 +5859,6 @@ packages:
 
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
-
-  fast-text-encoding@1.0.6:
-    resolution: {integrity: sha512-VhXlQgj9ioXCqGstD37E/HBeqEGV/qOD/kmbVG8h5xKBYvM1L3lR1Zn4555cQ8GkYbJa8aJSipLPndE1k6zK2w==}
 
   fast-uri@3.0.6:
     resolution: {integrity: sha512-Atfo14OibSv5wAp4VWNsFYE1AchQRTv9cBGWET4pZWHzYshFSS9NQI6I57rdKn9croWVMbYFbLhJ+yJvmZIIHw==}
@@ -6075,10 +6064,6 @@ packages:
   functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
 
-  gaxios@4.3.3:
-    resolution: {integrity: sha512-gSaYYIO1Y3wUtdfHmjDUZ8LWaxJQpiavzbF5Kq53akSzvmVg0RfyOcFDbO1KJ/KCGRFz2qG+lS81F0nkr7cRJA==}
-    engines: {node: '>=10'}
-
   gaxios@7.1.3:
     resolution: {integrity: sha512-YGGyuEdVIjqxkxVH1pUTMY/XtmmsApXrCVv5EU25iX6inEPbV+VakJfLealkBtJN69AQmh1eGOdCl9Sm1UP6XQ==}
     engines: {node: '>=18'}
@@ -6086,10 +6071,6 @@ packages:
   gaze@1.1.3:
     resolution: {integrity: sha512-BRdNm8hbWzFzWHERTrejLqwHDfS4GibPoq5wjTPIoJHoBtKGPg3xAFfxmM+9ztbXelxcf2hwQcaz1PtmFeue8g==}
     engines: {node: '>= 4.0.0'}
-
-  gcp-metadata@4.3.1:
-    resolution: {integrity: sha512-x850LS5N7V1F3UcV7PoupzGsyD6iVwTVvsh3tbXfkctZnBnjW5yu5z1/3k3SehF7TyoTIe78rJs02GMMy+LF+A==}
-    engines: {node: '>=10'}
 
   gcp-metadata@8.1.2:
     resolution: {integrity: sha512-zV/5HKTfCeKWnxG0Dmrw51hEWFGfcF2xiXqcA3+J90WDuP0SvoiSO5ORvcBsifmx/FoIjgQN3oNOGaQ5PhLFkg==}
@@ -6214,27 +6195,17 @@ packages:
     resolution: {integrity: sha512-7ABviyMOlX5hIVD60YOfHw4/CxOfBhyduaYB+wbFWCWoni4N7SLcV46hrVRktuBbZjFC9ONyqamZITN7q3n32w==}
     engines: {node: '>=18'}
 
-  google-auth-library@6.1.6:
-    resolution: {integrity: sha512-Q+ZjUEvLQj/lrVHF/IQwRo6p3s8Nc44Zk/DALsN+ac3T4HY/g/3rrufkgtl+nZ1TW7DNAw5cTChdVp4apUXVgQ==}
-    engines: {node: '>=10'}
-
   google-logging-utils@1.1.3:
     resolution: {integrity: sha512-eAmLkjDjAFCVXg7A1unxHsLf961m6y17QFqXqAXGj/gVkKFrEICfStRfwUlGNfeCEjNRa32JEWOUTlYXPyyKvA==}
     engines: {node: '>=14'}
 
-  google-p12-pem@3.1.4:
-    resolution: {integrity: sha512-HHuHmkLgwjdmVRngf5+gSmpkyaRI6QmOg77J8tkNBHhNEI62sGHyw4/+UkgyZEI7h84NbWprXDJ+sa3xOYFvTg==}
-    engines: {node: '>=10'}
-    deprecated: Package is no longer maintained
-    hasBin: true
+  googleapis-common@8.0.1:
+    resolution: {integrity: sha512-eCzNACUXPb1PW5l0ULTzMHaL/ltPRADoPgjBlT8jWsTbxkCp6siv+qKJ/1ldaybCthGwsYFYallF7u9AkU4L+A==}
+    engines: {node: '>=18.0.0'}
 
-  googleapis-common@4.4.3:
-    resolution: {integrity: sha512-W46WKCk3QtlCCfmZyQIH5zxmDOyeV5Qj+qs7nr2ox08eRkEJMWp6iwv542R/PsokXaGUSrmif4vCC4+rGzRSsQ==}
-    engines: {node: '>=10.10.0'}
-
-  googleapis@65.0.0:
-    resolution: {integrity: sha512-dcfZVkML8H6mPAsph0hgfyRQYKJpw2XjKchAXx5YEfDYWU7021Mpzaf+ejNSipa3QmcfOLOcWg6sUr0I7M4jjQ==}
-    engines: {node: '>=10'}
+  googleapis@169.0.0:
+    resolution: {integrity: sha512-IOGMG8tljCZSLvYgdojRu6mB10KEsK0J7X62sXXlQz9koe5BUAW+rqkY3qhQM9wXM6hVL3/Hase7XbxoMyeYiQ==}
+    engines: {node: '>=18'}
 
   gopd@1.2.0:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
@@ -6356,10 +6327,6 @@ packages:
     resolution: {integrity: sha512-/ABUy3gYWu5iBmrUSRBP97JLpQUm0GgVveDCp6t3yRNIoltIYw7rEj3g5y1o2PGPR2vfTRGa7WC/LZHLTXnEzA==}
     engines: {node: '>=16'}
     hasBin: true
-
-  gtoken@5.3.2:
-    resolution: {integrity: sha512-gkvEKREW7dXWF8NV8pVrKfW7WqReAmjjkMBh6lNCCGOM4ucS0r0YyXXl0r/9Yj8wcW/32ISkfc8h5mPTDbtifQ==}
-    engines: {node: '>=10'}
 
   gtoken@8.0.0:
     resolution: {integrity: sha512-+CqsMbHPiSTdtSO14O51eMNlrp9N79gmeqmXeouJOhfucAedHw9noVe/n5uJk3tbKE6a+6ZCQg3RPhVhHByAIw==}
@@ -7582,10 +7549,6 @@ packages:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
     engines: {node: '>= 0.6'}
 
-  mime-db@1.53.0:
-    resolution: {integrity: sha512-oHlN/w+3MQ3rba9rqFr6V/ypF10LSkdwUysQL7GkXoTgIWeV+tcXGA852TBxH+gsh8UWoyhR1hKcoMJTuWflpg==}
-    engines: {node: '>= 0.6'}
-
   mime-db@1.54.0:
     resolution: {integrity: sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ==}
     engines: {node: '>= 0.6'}
@@ -8334,6 +8297,7 @@ packages:
   raw-body@1.1.7:
     resolution: {integrity: sha512-WmJJU2e9Y6M5UzTOkHaM7xJGAPQD8PNzx3bAd2+uhZAim6wDk6dAZxPVYLF67XhbR4hmKGh33Lpmh4XWrCH5Mg==}
     engines: {node: '>= 0.8.0'}
+    deprecated: No longer maintained. Please upgrade to a stable version.
 
   raw-body@2.5.2:
     resolution: {integrity: sha512-8zGqypfENjCIqGhgXToC8aB2r7YrBX+AQAfIPs/Mlk+BtPTztOvTS01NRW/3Eh60J+a48lt8qsCzirQ6loCVfA==}
@@ -10451,7 +10415,7 @@ snapshots:
       '@babel/core': 7.26.9
       '@babel/helper-compilation-targets': 7.26.5
       '@babel/helper-plugin-utils': 7.26.5
-      debug: 4.4.0(supports-color@5.5.0)
+      debug: 4.4.3(supports-color@5.5.0)
       lodash.debounce: 4.0.8
       resolve: 1.22.10
     transitivePeerDependencies:
@@ -14183,10 +14147,6 @@ snapshots:
 
   abbrev@1.1.1: {}
 
-  abort-controller@3.0.0:
-    dependencies:
-      event-target-shim: 5.0.1
-
   accepts@1.3.8:
     dependencies:
       mime-types: 2.1.35
@@ -14349,7 +14309,7 @@ snapshots:
     dependencies:
       graphql: 16.12.0
 
-  apollo-server-express@3.13.0(express@4.21.2)(graphql@16.12.0):
+  apollo-server-express@3.13.0(express@4.22.1)(graphql@16.12.0):
     dependencies:
       '@types/accepts': 1.3.7
       '@types/body-parser': 1.19.2
@@ -14361,7 +14321,7 @@ snapshots:
       apollo-server-types: 3.8.0(graphql@16.12.0)
       body-parser: 1.20.3
       cors: 2.8.5
-      express: 4.21.2
+      express: 4.22.1
       graphql: 16.12.0
       parseurl: 1.3.3
     transitivePeerDependencies:
@@ -14479,8 +14439,6 @@ snapshots:
       es-errors: 1.3.0
       get-intrinsic: 1.2.7
       is-array-buffer: 3.0.5
-
-  arrify@2.0.1: {}
 
   asap@2.0.6: {}
 
@@ -15185,7 +15143,7 @@ snapshots:
 
   compressible@2.0.18:
     dependencies:
-      mime-db: 1.53.0
+      mime-db: 1.54.0
 
   compression@1.8.0:
     dependencies:
@@ -16238,8 +16196,6 @@ snapshots:
 
   etag@1.8.1: {}
 
-  event-target-shim@5.0.1: {}
-
   eventemitter2@0.4.14: {}
 
   eventemitter2@6.4.9: {}
@@ -16341,6 +16297,42 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  express@4.22.1:
+    dependencies:
+      accepts: 1.3.8
+      array-flatten: 1.1.1
+      body-parser: 1.20.3
+      content-disposition: 0.5.4
+      content-type: 1.0.5
+      cookie: 0.7.2
+      cookie-signature: 1.0.6
+      debug: 2.6.9(supports-color@7.2.0)
+      depd: 2.0.0
+      encodeurl: 2.0.0
+      escape-html: 1.0.3
+      etag: 1.8.1
+      finalhandler: 1.3.1
+      fresh: 0.5.2
+      http-errors: 2.0.0
+      merge-descriptors: 1.0.3
+      methods: 1.1.2
+      on-finished: 2.4.1
+      parseurl: 1.3.3
+      path-to-regexp: 0.1.12
+      proxy-addr: 2.0.7
+      qs: 6.14.0
+      range-parser: 1.2.1
+      safe-buffer: 5.2.1
+      send: 0.19.0
+      serve-static: 1.16.2
+      setprototypeof: 1.2.0
+      statuses: 2.0.1
+      type-is: 1.6.18
+      utils-merge: 1.0.1
+      vary: 1.1.2
+    transitivePeerDependencies:
+      - supports-color
+
   extend@3.0.2: {}
 
   extract-zip@1.7.0(supports-color@7.2.0):
@@ -16369,8 +16361,6 @@ snapshots:
   fast-json-stable-stringify@2.1.0: {}
 
   fast-levenshtein@2.0.6: {}
-
-  fast-text-encoding@1.0.6: {}
 
   fast-uri@3.0.6: {}
 
@@ -16597,17 +16587,6 @@ snapshots:
 
   functions-have-names@1.2.3: {}
 
-  gaxios@4.3.3:
-    dependencies:
-      abort-controller: 3.0.0
-      extend: 3.0.2
-      https-proxy-agent: 5.0.1
-      is-stream: 2.0.1
-      node-fetch: 2.7.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-
   gaxios@7.1.3:
     dependencies:
       extend: 3.0.2
@@ -16620,14 +16599,6 @@ snapshots:
   gaze@1.1.3:
     dependencies:
       globule: 1.3.4
-
-  gcp-metadata@4.3.1:
-    dependencies:
-      gaxios: 4.3.3
-      json-bigint: 1.0.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
 
   gcp-metadata@8.1.2:
     dependencies:
@@ -16795,45 +16766,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  google-auth-library@6.1.6:
-    dependencies:
-      arrify: 2.0.1
-      base64-js: 1.5.1
-      ecdsa-sig-formatter: 1.0.11
-      fast-text-encoding: 1.0.6
-      gaxios: 4.3.3
-      gcp-metadata: 4.3.1
-      gtoken: 5.3.2
-      jws: 4.0.0
-      lru-cache: 6.0.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-
   google-logging-utils@1.1.3: {}
 
-  google-p12-pem@3.1.4:
-    dependencies:
-      node-forge: 1.3.1
-
-  googleapis-common@4.4.3:
+  googleapis-common@8.0.1:
     dependencies:
       extend: 3.0.2
-      gaxios: 4.3.3
-      google-auth-library: 6.1.6
+      gaxios: 7.1.3
+      google-auth-library: 10.5.0
       qs: 6.14.0
       url-template: 2.0.8
-      uuid: 8.3.2
     transitivePeerDependencies:
-      - encoding
       - supports-color
 
-  googleapis@65.0.0:
+  googleapis@169.0.0:
     dependencies:
-      google-auth-library: 6.1.6
-      googleapis-common: 4.4.3
+      google-auth-library: 10.5.0
+      googleapis-common: 8.0.1
     transitivePeerDependencies:
-      - encoding
       - supports-color
 
   gopd@1.2.0: {}
@@ -16995,15 +16944,6 @@ snapshots:
       js-yaml: 3.14.1
       minimatch: 3.0.8
       nopt: 3.0.6
-
-  gtoken@5.3.2:
-    dependencies:
-      gaxios: 4.3.3
-      google-p12-pem: 3.1.4
-      jws: 4.0.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
 
   gtoken@8.0.0:
     dependencies:
@@ -18612,8 +18552,6 @@ snapshots:
       brorand: 1.1.0
 
   mime-db@1.52.0: {}
-
-  mime-db@1.53.0: {}
 
   mime-db@1.54.0: {}
 
