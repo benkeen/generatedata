@@ -46,28 +46,6 @@ module.exports = (env, argv) => {
           ],
           exclude: '/node_modules'
         },
-        // {
-        //   test: /\.scss$/,
-        //   use: [
-        //     'style-loader',
-        //     {
-        //       loader: '@teamsupercell/typings-for-css-modules-loader'
-        //     },
-        //     {
-        //       loader: 'css-loader',
-        //       options: {
-        //         modules: {
-        //           localIdentName: '[name]__[local]--[fullhash:base64:3]'
-        //         },
-        //         url: false
-        //       }
-        //     },
-        //     {
-        //       loader: 'sass-loader',
-        //       options: {}
-        //     }
-        //   ]
-        // },
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader']
