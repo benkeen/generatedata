@@ -1,25 +1,45 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { arrayMove } from '@generatedata/utils/array';
 import { useState } from 'react';
 import CreatableSelect from 'react-select/creatable';
 import type { StylesConfig } from 'react-select';
-// import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
+import { SortableContext, useSortable } from '@dnd-kit/sortable';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { DropdownOption } from '../dropdown/Dropdown';
 import { ErrorTooltip } from '../tooltips';
 import { useClasses } from './CreatablePillField.styles';
+import { components } from 'react-select';
+import { CSS } from '@dnd-kit/utilities';
 
-// export const SortableMultiValue = SortableElement((props: any) => {
-//   const onMouseDown = (e: any): void => {
-//     e.preventDefault();
-//     e.stopPropagation();
-//   };
-//   const innerProps = { onMouseDown };
-//   return <components.MultiValue {...props} innerProps={innerProps} />;
-// });
+export const MultiValue = (props: any) => {
+  const onMouseDown = (e: any): void => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  const innerProps = { onMouseDown };
 
-const customComponents: any = {
-  DropdownIndicator: null
-  // MultiValue: SortableMultiValue
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: props.data.value
+  });
+
+  return (
+    <div ref={setNodeRef} style={{ transform: CSS.Translate.toString(transform), transition }} {...attributes} {...listeners}>
+      <components.MultiValue {...props} innerProps={innerProps} />
+    </div>
+  );
+};
+
+const MultiValueRemove = (props: any) => {
+  return (
+    <components.MultiValueRemove
+      {...props}
+      innerProps={{
+        onPointerDown: (e) => e.stopPropagation(),
+        ...props.innerProps
+      }}
+    />
+  );
 };
 
 const selectStyles: StylesConfig<DropdownOption, true> = {
@@ -86,34 +106,59 @@ export const CreatablePillField = ({
   className,
   isClearable = true
 }: CreatablePillFieldProps) => {
-  const [tempValue, setTempValue] = useState('');
-  const options = value.map(createOption);
   const classNames = useClasses();
 
-  const handleInputChange = (newTempValue: string): void => setTempValue(newTempValue);
+  const [newTempValue, setNewTempValue] = useState('');
+  const [activeItems, setActiveItems] = useState<{ value: string; label: string }[]>(() => value.map(createOption));
+
+  // const options = activeItems.map(createOption);
+  // const [selected, setSelected] = React.useState<ColorOption[]>([colorOptions[4], colorOptions[5]]);
+  // const onChange = (selectedOptions: OnChangeValue<ColorOption, true>) => setSelected([...selectedOptions]);
+
+  const handleInputChange = (newTempValue: string): void => setNewTempValue(newTempValue);
+
   const handleKeyDown = (e: any): void => {
-    if (!tempValue) {
+    if (!newTempValue) {
       return;
     }
     switch (e.key) {
       case 'Enter':
       case 'Tab':
         if (onValidateNewItem) {
-          const isValid = onValidateNewItem(tempValue);
+          const isValid = onValidateNewItem(newTempValue);
           if (!isValid) {
             return;
           }
         }
-        setTempValue('');
-        onChange([...value, tempValue]);
+        setNewTempValue('');
+        onChange([...value, newTempValue]);
         e.preventDefault();
     }
   };
 
-  const onSortEnd = ({ oldIndex, newIndex }: { oldIndex: number; newIndex: number }): void => {
-    const sortedOptions = arrayMove(options, oldIndex, newIndex);
-    onChange(sortedOptions.map((i: DropdownOption) => i.value));
-  };
+  const onDragOver = useCallback(
+    (event: DragEndEvent) => {
+      const { active, over } = event;
+
+      if (!active || !over) return;
+
+      console.log('onDragOver ---', active.id, over.id);
+      // const sortedItems = ;
+
+      setActiveItems((items) => {
+        const oldIndex = items.findIndex((item) => item.value === active.id);
+        const newIndex = items.findIndex((item) => item.value === over.id);
+
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    },
+    [setActiveItems]
+  );
+
+  const onDragEnd = useCallback((event: DragEndEvent) => {
+    console.log('onDragEnd ---');
+    onChange(activeItems.map((item) => item.value));
+  }, []);
 
   const classes: string[] = [];
   if (className) {
@@ -128,29 +173,33 @@ export const CreatablePillField = ({
   return (
     <ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
       <span>
-        <CreatableSelect
-          className={classes.join(' ')}
-          styles={selectStyles}
-          components={customComponents}
-          inputValue={tempValue}
-          // axis="xy"
-          // distance={4}
-          // getHelperDimensions={({ node }: any): any => node.getBoundingClientRect()}
-          isClearable={isClearable}
-          isMulti
-          // onSortEnd={onSortEnd}
-          menuIsOpen={false}
-          onChange={(options: any): void => {
-            const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
-            onChange(newValues);
-          }}
-          onInputChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          placeholder={placeholder}
-          value={options}
-          menuPlacement="auto"
-          menuPortalTarget={document.body}
-        />
+        <DndContext modifiers={[restrictToParentElement]} onDragOver={onDragOver} collisionDetection={closestCenter}>
+          <SortableContext items={activeItems.map((item) => item.value)} strategy={() => null}>
+            <CreatableSelect
+              className={classes.join(' ')}
+              styles={selectStyles}
+              components={{
+                MultiValue,
+                MultiValueRemove
+              }}
+              inputValue={newTempValue}
+              isClearable={isClearable}
+              isMulti
+              menuIsOpen={false}
+              // onChange={(options: any): void => {
+              //   const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
+              //   console.log('....');
+              //   onChange(newValues);
+              // }}
+              onInputChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+              placeholder={placeholder}
+              value={activeItems}
+              menuPlacement="auto"
+              menuPortalTarget={document.body}
+            />
+          </SortableContext>
+        </DndContext>
       </span>
     </ErrorTooltip>
   );

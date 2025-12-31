@@ -7,7 +7,13 @@ export default {
   component: CreatablePillField
 } as Meta;
 
-const Template: StoryFn<CreatablePillFieldProps> = (args) => <CreatablePillField {...args} />;
+const Template: StoryFn<CreatablePillFieldProps> = (args) => {
+  const [value, setValue] = React.useState<string[]>(args.value || []);
+
+  console.log('.....', value);
+
+  return <CreatablePillField {...args} value={value} onChange={setValue} />;
+};
 
 export const Default = Template.bind({});
 Default.args = {
