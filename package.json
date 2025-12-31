@@ -33,6 +33,8 @@
     "turbo": "^2.3.3"
   },
   "pnpm": {
-    "overrides": {}
+    "overrides": {
+      "on-headers@1": "^1.1.0"
+    }
   }
 }
