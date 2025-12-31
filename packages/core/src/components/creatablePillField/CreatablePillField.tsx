@@ -1,10 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { arrayMove } from '@generatedata/utils/array';
 import { useState } from 'react';
 import CreatableSelect from 'react-select/creatable';
 import type { StylesConfig } from 'react-select';
-import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
-import { SortableContext, useSortable } from '@dnd-kit/sortable';
+import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core';
+import { SortableContext, useSortable, rectSortingStrategy } from '@dnd-kit/sortable';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { DropdownOption } from '../dropdown/Dropdown';
 import { ErrorTooltip } from '../tooltips';
@@ -80,16 +80,17 @@ const selectStyles: StylesConfig<DropdownOption, true> = {
   })
 };
 
-export const createOption = (label: string): DropdownOption => ({
+// the index is used to ensure unique values. If there are two identical values, deleting and sorting won't work properly.
+// However, this still leads to some issues if you have identical values and try to sort them: they get re-sorted after
+// the drag completes. But it's a minor issue for now.
+export const createOption = (label: string, index: number): DropdownOption => ({
   label,
-  value: label
+  value: `${label}_${index}`
 });
-
-// const SortableCreatableSelect: any = SortableContainer(CreatableSelect);
 
 export type CreatablePillFieldProps = {
   onChange: (newValues: string[]) => void;
-  value: string[];
+  items: string[];
   error?: string;
   placeholder?: string;
   onValidateNewItem?: (value: string) => boolean;
@@ -100,20 +101,19 @@ export type CreatablePillFieldProps = {
 export const CreatablePillField = ({
   onChange,
   onValidateNewItem,
-  value,
+  items,
   error = '',
   placeholder = 'Press enter to create item',
   className,
   isClearable = true
 }: CreatablePillFieldProps) => {
   const classNames = useClasses();
-
   const [newTempValue, setNewTempValue] = useState('');
-  const [activeItems, setActiveItems] = useState<{ value: string; label: string }[]>(() => value.map(createOption));
+  const [activeItems, setActiveItems] = useState<{ value: string; label: string }[]>(() => items.map(createOption));
 
-  // const options = activeItems.map(createOption);
-  // const [selected, setSelected] = React.useState<ColorOption[]>([colorOptions[4], colorOptions[5]]);
-  // const onChange = (selectedOptions: OnChangeValue<ColorOption, true>) => setSelected([...selectedOptions]);
+  useEffect(() => {
+    setActiveItems(items.map(createOption));
+  }, [items]);
 
   const handleInputChange = (newTempValue: string): void => setNewTempValue(newTempValue);
 
@@ -131,7 +131,7 @@ export const CreatablePillField = ({
           }
         }
         setNewTempValue('');
-        onChange([...value, newTempValue]);
+        onChange([...items, newTempValue]);
         e.preventDefault();
     }
   };
@@ -141,9 +141,6 @@ export const CreatablePillField = ({
       const { active, over } = event;
 
       if (!active || !over) return;
-
-      console.log('onDragOver ---', active.id, over.id);
-      // const sortedItems = ;
 
       setActiveItems((items) => {
         const oldIndex = items.findIndex((item) => item.value === active.id);
@@ -155,10 +152,16 @@ export const CreatablePillField = ({
     [setActiveItems]
   );
 
-  const onDragEnd = useCallback((event: DragEndEvent) => {
-    console.log('onDragEnd ---');
-    onChange(activeItems.map((item) => item.value));
-  }, []);
+  const onDragEnd = useCallback(
+    (event: DragEndEvent) => {
+      const { active, over } = event;
+
+      if (!active || !over) return;
+
+      onChange(activeItems.map((i) => i.label));
+    },
+    [activeItems]
+  );
 
   const classes: string[] = [];
   if (className) {
@@ -168,13 +171,11 @@ export const CreatablePillField = ({
     classes.push(classNames.errorField);
   }
 
-  // onCreateOption={(a: any) => console.log(a)}
-
   return (
     <ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
       <span>
-        <DndContext modifiers={[restrictToParentElement]} onDragOver={onDragOver} collisionDetection={closestCenter}>
-          <SortableContext items={activeItems.map((item) => item.value)} strategy={() => null}>
+        <DndContext modifiers={[restrictToParentElement]} onDragOver={onDragOver} onDragEnd={onDragEnd} collisionDetection={closestCorners}>
+          <SortableContext items={activeItems.map((item) => item.value)} strategy={rectSortingStrategy}>
             <CreatableSelect
               className={classes.join(' ')}
               styles={selectStyles}
@@ -186,11 +187,10 @@ export const CreatablePillField = ({
               isClearable={isClearable}
               isMulti
               menuIsOpen={false}
-              // onChange={(options: any): void => {
-              //   const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
-              //   console.log('....');
-              //   onChange(newValues);
-              // }}
+              onChange={(options: any): void => {
+                const newValues = options ? options.map(({ label }: DropdownOption) => label) : [];
+                onChange(newValues);
+              }}
               onInputChange={handleInputChange}
               onKeyDown={handleKeyDown}
               placeholder={placeholder}

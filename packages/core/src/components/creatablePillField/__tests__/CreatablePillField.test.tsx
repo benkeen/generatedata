@@ -3,7 +3,7 @@ import { CreatablePillField } from '../CreatablePillField';
 
 const defaultProps = {
   onChange: () => {},
-  value: ['one', 'two', 'three']
+  items: ['one', 'two', 'three']
 };
 
 describe('CreatablePillField', () => {

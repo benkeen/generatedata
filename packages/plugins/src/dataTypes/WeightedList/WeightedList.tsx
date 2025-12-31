@@ -289,7 +289,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
               </form>
               <div>
                 {displayStrings.length ? (
-                  <CreatablePillField onChange={onChangeList} value={displayStrings} />
+                  <CreatablePillField onChange={onChangeList} items={displayStrings} />
                 ) : (
                   <p>{i18n.pleaseAddItems}</p>
                 )}

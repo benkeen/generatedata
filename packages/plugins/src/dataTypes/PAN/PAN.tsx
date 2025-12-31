@@ -151,7 +151,7 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCard
         {getFormatError()}
 
         <CreatablePillField
-          value={selectedCard && data.cardFormats[selectedCard] ? data.cardFormats[selectedCard].formats : []}
+          items={selectedCard && data.cardFormats[selectedCard] ? data.cardFormats[selectedCard].formats : []}
           onChange={(formats: string[]): void => updateFormats(formats)}
           placeholder={i18n.enterFormats}
           onValidateNewItem={(newFormat: string): boolean => validateFormat(newFormat)}

@@ -235,7 +235,7 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps) 
         </PrimaryButton>
       </div>
       <div>
-        <CreatablePillField value={safeData.values} onChange={(values: any): void => onUpdate({ ...safeData, values })} />
+        <CreatablePillField items={safeData.values} onChange={(values: any): void => onUpdate({ ...safeData, values })} />
       </div>
       <ListDialog
         visible={dialogVisible}

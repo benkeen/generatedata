@@ -51,10 +51,10 @@ export const Options = ({ i18n, coreI18n, data, onUpdate }: DTOptionsProps) => {
       <div className={classNames.values}>
         <label>{i18n.values}</label>
         <CreatablePillField
-          error={valuesError}
-          value={data.values}
+          items={data.values}
           onChange={(values: any): void => onUpdate({ ...data, values })}
           placeholder={coreI18n.pressEnterAddItem}
+          error={valuesError}
         />
       </div>
     </div>

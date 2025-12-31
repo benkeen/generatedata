@@ -192,7 +192,7 @@ export const Options = ({
   return (
     <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
       <div className={classNames.pillField}>
-        <CreatablePillField value={safeData.options} onChange={(options: any): void => onUpdate({ ...safeData, options })} />
+        <CreatablePillField items={safeData.options} onChange={(options: any): void => onUpdate({ ...safeData, options })} />
       </div>
       <Tooltip title={iconTooltip} placement="bottom" arrow>
         <span>

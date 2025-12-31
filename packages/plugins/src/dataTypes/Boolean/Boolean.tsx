@@ -27,7 +27,7 @@ export const Example = ({ data, onUpdate }: DTExampleProps) => {
 export const Options = ({ coreI18n, data, onUpdate }: DTOptionsProps) => (
   <CreatablePillField
     error={data.values.length ? '' : coreI18n.requiredField}
-    value={data.values}
+    items={data.values}
     onChange={(values: any): void => onUpdate({ ...data, values })}
   />
 );
