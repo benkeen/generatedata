@@ -306,9 +306,6 @@ importers:
       eslint-webpack-plugin:
         specifier: ^4.0.1
         version: 4.2.0(eslint@8.57.1)(webpack@5.103.0(esbuild@0.25.0)(webpack-cli@6.0.1))
-      extract-text-webpack-plugin:
-        specifier: 1.0.1
-        version: 1.0.1(webpack@5.103.0(esbuild@0.25.0)(webpack-cli@6.0.1))
       grunt:
         specifier: ^1.6.1
         version: 1.6.1
@@ -4392,9 +4389,6 @@ packages:
   async-retry@1.3.3:
     resolution: {integrity: sha512-wfr/jstw9xNi/0teMHrRW7dsz3Lt5ARhYNZ2ewpadnhaIp5mbALhOAP+EAdsC7t4Z6wqsDVv9+W6gm1Dk9mEyw==}
 
-  async@1.5.2:
-    resolution: {integrity: sha512-nSVgobk4rv61R9PUSDtYt7mPVB2olxNR5RWJcAsH676/ef11bUZwvu7+RGYrYauVdDPcO519v68wRhXQtxsV9w==}
-
   async@2.6.4:
     resolution: {integrity: sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==}
 
@@ -4542,9 +4536,6 @@ packages:
   bcryptjs@3.0.3:
     resolution: {integrity: sha512-GlF5wPWnSa/X5LKM1o0wz0suXIINz1iHRLvTS+sLyi7XPbe5ycmYI3DlZqVGZZtDgl4DmasFg7gOB3JYbphV5g==}
     hasBin: true
-
-  big.js@3.2.0:
-    resolution: {integrity: sha512-+hN/Zh2D08Mx65pZ/4g5bsmNiZUuChDiQfTUQ7qJr4/kuopCr88xZsAXv6mBoZEsUI4OuGHlX59qE94K2mMW8Q==}
 
   big.js@5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
@@ -5519,10 +5510,6 @@ packages:
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
 
-  emojis-list@2.1.0:
-    resolution: {integrity: sha512-knHEZMgs8BB+MInokmNTg/OyPlAddghe1YBgNwJBc5zsJi/uyIcXoSDsL/W9ymOsBoBGdPIHXYJ9+qKFwRwDng==}
-    engines: {node: '>= 0.10'}
-
   emojis-list@3.0.0:
     resolution: {integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==}
     engines: {node: '>= 4'}
@@ -5860,12 +5847,6 @@ packages:
 
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
-
-  extract-text-webpack-plugin@1.0.1:
-    resolution: {integrity: sha512-cl5NaZf1uB2ijZsLmoaPaaDMDBkd4ll5fv0b9BUmNADAg537ArDwvcvUY46KR+GI4uWwF7aF3MEo4GKKWv/+vg==}
-    deprecated: Deprecated. Please use https://github.com/webpack-contrib/mini-css-extract-plugin
-    peerDependencies:
-      webpack: ^1.9.11
 
   extract-zip@1.7.0:
     resolution: {integrity: sha512-xoh5G1W/PB0/27lXgMQyIhP5DSY/LhoCsOyZgb+6iMmRtCwVBo55uKaMoEYrDCKQhWvqEip5ZPKAc6eFNyf/MA==}
@@ -7232,10 +7213,6 @@ packages:
     resolution: {integrity: sha512-rvm6hunfCcqegwYaG5T4yKJWxc9FXFgBVrcTZ4XfSVRwa5HA/Xs+vB/Eo9treYYHCeNM0nrSUr82V/M31Urc7A==}
     engines: {node: '>= 0.2.0'}
 
-  json5@0.5.1:
-    resolution: {integrity: sha512-4xrs1aW+6N5DalkqSVA8fxh458CXvR99WU8WLKmq4v8eWAL86Xo3BVqyd3SkA9wEVjCMqyvvRRkshAdOnBp5rw==}
-    hasBin: true
-
   json5@1.0.2:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
     hasBin: true
@@ -7375,9 +7352,6 @@ packages:
   loader-runner@4.3.1:
     resolution: {integrity: sha512-IWqP2SCPhyVFTBtRcgMHdzlf9ul25NwaFx4wCEH/KjAXuuHY4yNjvPXsBokp8jCB936PyWRaPKUNh8NvylLp2Q==}
     engines: {node: '>=6.11.5'}
-
-  loader-utils@0.2.17:
-    resolution: {integrity: sha512-tiv66G0SmiOx+pLWMtGEkfSEejxvb6N6uRrQjfWJIT79W9GMpgKeCAmm9aVBKtd4WEgntciI8CsGqjpDoCWJug==}
 
   loader-utils@1.4.2:
     resolution: {integrity: sha512-I5d00Pd/jwMD2QCduo657+YM/6L3KZu++pmX9VFncxaxvHcru9jx1lBaFft+r4Mt2jK0Yhp41XlRAihzPxHNCg==}
@@ -9062,9 +9036,6 @@ packages:
     resolution: {integrity: sha512-vzn8aSqKgytVik0iwdBEi+zevbTYZogewTUM6dtpmGwEcdzbub/TX4bCzRhebDCRC3QzXgJsLRKB2V/Oof7HXg==}
     engines: {node: '>=0.10.0'}
 
-  source-list-map@0.1.8:
-    resolution: {integrity: sha512-cabwdhnSNf/tTDMh/DXZXlkeQLvdYT5xfGYBohqHG7wb3bBQrQlHQNWM9NWSOboXXK1zgwz6JzS5e4hZq9vxMw==}
-
   source-list-map@2.0.1:
     resolution: {integrity: sha512-qnQ7gVMxGNxsiL4lEuJwe/To8UnK7fAnmbGEEH8RpLouuKbeEm0lhbQVFIrNSuB+G7tVrAlVsZgETT5nljf+Iw==}
 
@@ -10029,9 +10000,6 @@ packages:
   webpack-merge@6.0.1:
     resolution: {integrity: sha512-hXXvrjtx2PLYx4qruKl+kyRSLc52V+cCvMxRjmKwoA+CBbbF5GfIBtR6kCvl0fYGqTUPKB+1ktVmTHqMOzgCBg==}
     engines: {node: '>=18.0.0'}
-
-  webpack-sources@0.1.5:
-    resolution: {integrity: sha512-8CXYfPZkWvY0VWadHDQ3q2hUBqk2IJKTTdDPYb5hwnGVVma8bzqTJEerUDrpWwXnuY9vxZ0mGEnjYD0XLhRHeQ==}
 
   webpack-sources@1.4.3:
     resolution: {integrity: sha512-lgTS3Xhv1lCOKo7SA5TjKXMjpSM4sBjNV5+q2bqesbSPs5FjGmU6jjtBSkX9b4qW87vDIsCIlUPOEhbZrMdjeQ==}
@@ -14571,8 +14539,6 @@ snapshots:
     dependencies:
       retry: 0.13.1
 
-  async@1.5.2: {}
-
   async@2.6.4:
     dependencies:
       lodash: 4.17.21
@@ -14825,8 +14791,6 @@ snapshots:
       tweetnacl: 0.14.5
 
   bcryptjs@3.0.3: {}
-
-  big.js@3.2.0: {}
 
   big.js@5.2.2: {}
 
@@ -15893,8 +15857,6 @@ snapshots:
 
   emoji-regex@9.2.2: {}
 
-  emojis-list@2.1.0: {}
-
   emojis-list@3.0.0: {}
 
   encodeurl@1.0.2: {}
@@ -16411,13 +16373,6 @@ snapshots:
       - supports-color
 
   extend@3.0.2: {}
-
-  extract-text-webpack-plugin@1.0.1(webpack@5.103.0(esbuild@0.25.0)(webpack-cli@6.0.1)):
-    dependencies:
-      async: 1.5.2
-      loader-utils: 0.2.17
-      webpack: 5.103.0(esbuild@0.25.0)(webpack-cli@6.0.1)
-      webpack-sources: 0.1.5
 
   extract-zip@1.7.0(supports-color@7.2.0):
     dependencies:
@@ -18235,8 +18190,6 @@ snapshots:
       remedial: 1.0.8
       remove-trailing-spaces: 1.0.9
 
-  json5@0.5.1: {}
-
   json5@1.0.2:
     dependencies:
       minimist: 1.2.8
@@ -18451,13 +18404,6 @@ snapshots:
       strip-bom: 3.0.0
 
   loader-runner@4.3.1: {}
-
-  loader-utils@0.2.17:
-    dependencies:
-      big.js: 3.2.0
-      emojis-list: 2.1.0
-      json5: 0.5.1
-      object-assign: 4.1.1
 
   loader-utils@1.4.2:
     dependencies:
@@ -20247,8 +20193,6 @@ snapshots:
     dependencies:
       is-plain-obj: 1.1.0
 
-  source-list-map@0.1.8: {}
-
   source-list-map@2.0.1: {}
 
   source-map-js@1.2.1: {}
@@ -21383,11 +21327,6 @@ snapshots:
       clone-deep: 4.0.1
       flat: 5.0.2
       wildcard: 2.0.1
-
-  webpack-sources@0.1.5:
-    dependencies:
-      source-list-map: 0.1.8
-      source-map: 0.5.7
 
   webpack-sources@1.4.3:
     dependencies:
