@@ -18,10 +18,10 @@
     "google-auth-library": "^6.1.3",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.8",
-    "nanoid": "^3.3.4",
-    "nodemailer": "^6.9.9",
-    "nodemon": "^2.0.6",
-    "sequelize": "^6.29.0"
+    "nanoid": "^5.1.6",
+    "nodemailer": "^7.0.12",
+    "nodemon": "^3.1.11",
+    "sequelize": "^6.37.7"
   },
   "devDependencies": {
     "@generatedata/config": "workspace:*",
