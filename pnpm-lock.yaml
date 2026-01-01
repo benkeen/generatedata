@@ -476,6 +476,12 @@ importers:
       '@generatedata/graphql-schema':
         specifier: workspace:*
         version: link:../../packages/graphql-schema
+      '@generatedata/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
+      '@generatedata/types':
+        specifier: workspace:*
+        version: link:../../packages/types
       '@generatedata/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -1116,10 +1122,6 @@ packages:
 
   '@babel/helper-wrap-function@7.25.9':
     resolution: {integrity: sha512-ETzz9UTjQSTmw39GboatdymDq4XIQbR8ySgVrylRhPOFpsd+JrKHIuF0de7GCWmem+T4uC5z7EZguod7Wj4A4g==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/helpers@7.26.9':
-    resolution: {integrity: sha512-Mz/4+y8udxBKdmzt/UjPACs4G3j5SshJJEFFKxlCGPydG4JAHXxjWjAwjd09tf6oINvl1VfMJo+nB7H2YKQ0dA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helpers@7.28.4':
@@ -9867,7 +9869,7 @@ snapshots:
       '@babel/generator': 7.26.9
       '@babel/helper-compilation-targets': 7.26.5
       '@babel/helper-module-transforms': 7.26.0(@babel/core@7.26.9)
-      '@babel/helpers': 7.26.9
+      '@babel/helpers': 7.28.4
       '@babel/parser': 7.26.9
       '@babel/template': 7.26.9
       '@babel/traverse': 7.26.9(supports-color@5.5.0)
@@ -10060,11 +10062,6 @@ snapshots:
       '@babel/types': 7.28.5
     transitivePeerDependencies:
       - supports-color
-
-  '@babel/helpers@7.26.9':
-    dependencies:
-      '@babel/template': 7.26.9
-      '@babel/types': 7.26.9
 
   '@babel/helpers@7.28.4':
     dependencies:

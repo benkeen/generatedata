@@ -25,6 +25,8 @@
   },
   "devDependencies": {
     "@generatedata/config": "workspace:*",
+    "@generatedata/i18n": "workspace:*",
+    "@generatedata/types": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@generatedata/graphql-schema": "workspace:*",
     "dotenv": "^8.2.0",

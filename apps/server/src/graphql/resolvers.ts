@@ -1,11 +1,12 @@
-const db = require('../database');
-const authUtils = require('../utils/authUtils');
-const authResolvers = require('./resolvers/auth');
-const accountResolvers = require('./resolvers/account');
-const dataSetResolvers = require('./resolvers/dataSets');
-// const { Resolvers } = require('@generatedata/graphql-schema');
+import db from '../database';
+import * as authUtils from '../utils/authUtils';
+import authResolvers from './resolvers/auth';
+import accountResolvers from './resolvers/account';
+import dataSetResolvers from './resolvers/dataSets';
+import { Resolvers } from '@generatedata/graphql-schema';
 
 const resolvers = {
+  //
   Query: {
     accounts: async (root, args, { token, user }) => {
       authUtils.authenticate(token);

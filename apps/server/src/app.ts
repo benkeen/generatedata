@@ -1,10 +1,10 @@
-const { ApolloServer } = require('apollo-server-express');
-const express = require('express');
-const typeDefs = require('./graphql/schema');
-const resolvers = require('./graphql/resolvers');
-const cookieParser = require('cookie-parser');
-const authUtils = require('./utils/authUtils');
-const path = require('path');
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
+import typeDefs from './graphql/schema';
+import resolvers from './graphql/resolvers';
+import cookieParser from 'cookie-parser';
+import authUtils from './utils/authUtils';
+import path from 'path';
 
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 

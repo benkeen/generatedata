@@ -1,14 +1,13 @@
-const emailUtils = require('../utils/emailUtils');
-const generalUtils = require('../utils/generalUtils');
-const langUtils = require('../utils/langUtils');
-
+const emailUtils = require('../src/utils/emailUtils');
+const generalUtils = require('../src/utils/generalUtils');
+const langUtils = require('../src/utils/langUtils');
 
 const passwordReset = ({ firstName, email, tempPassword, i18n }) => {
-	const emailIntroLineWithName = langUtils.getI18nString(i18n.emailIntroLineWithName, [firstName]);
-	const adminEmail = emailUtils.getAdminEmail();
-	const siteUrl = generalUtils.getSiteUrl();
+  const emailIntroLineWithName = langUtils.getI18nString(i18n.emailIntroLineWithName, [firstName]);
+  const adminEmail = emailUtils.getAdminEmail();
+  const siteUrl = generalUtils.getSiteUrl();
 
-	const text = `${emailIntroLineWithName}
+  const text = `${emailIntroLineWithName}
 
 ${i18n.passwordResetEmailDesc} 
 
@@ -22,7 +21,7 @@ ${i18n.emailFooterDisclaimer}
 ${adminEmail}
 	`;
 
-	const html = `<!doctype html>
+  const html = `<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -56,13 +55,13 @@ ${adminEmail}
 </body>
 </html>`;
 
-	return {
-		subject: i18n.passwordReset,
-		text,
-		html
-	};
+  return {
+    subject: i18n.passwordReset,
+    text,
+    html
+  };
 };
 
 module.exports = {
-	passwordReset
+  passwordReset
 };

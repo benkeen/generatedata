@@ -1,14 +1,14 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 
-const isValidPassword = async (plainTextPassword, hash) => await bcrypt.compare(plainTextPassword, hash);
+export const isValidPassword = async (plainTextPassword: string, hash: string) => await bcrypt.compare(plainTextPassword, hash);
 
-const getJwt = (payload) =>
+export const getJwt = (payload: any) =>
   jwt.sign(payload, process.env.GD_JWT_SECRET, {
     expiresIn: `${process.env.GD_JWT_LIFESPAN_MINS}m`
   });
 
-const authenticate = async (token) => {
+export const authenticate = async (token: any) => {
   if (token) {
     try {
       await jwt.verify(token, process.env.GD_JWT_SECRET);
@@ -21,7 +21,7 @@ const authenticate = async (token) => {
   return false;
 };
 
-const decodeToken = (token) => {
+export const decodeToken = (token: any) => {
   const decodedToken = jwt.decode(token, { complete: true });
 
   if (!decodedToken) {
@@ -31,7 +31,7 @@ const decodeToken = (token) => {
   return decodedToken;
 };
 
-const getUser = (token) => {
+export const getUser = (token: any) => {
   if (!token) {
     return {};
   }
@@ -39,7 +39,7 @@ const getUser = (token) => {
   return decodedToken.payload;
 };
 
-const accountExpired = (expiryDate) => {
+export const accountExpired = (expiryDate: Date | null) => {
   if (expiryDate === null) {
     return false;
   }
@@ -49,13 +49,4 @@ const accountExpired = (expiryDate) => {
   const expiryDateMs = expiryDate ? expiryDate.getTime() : 0;
 
   return expiryDateMs < nowMs;
-};
-
-module.exports = {
-  getPasswordHash,
-  isValidPassword,
-  getJwt,
-  authenticate,
-  getUser,
-  accountExpired
 };

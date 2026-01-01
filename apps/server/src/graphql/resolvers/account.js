@@ -1,5 +1,5 @@
 const dateFns = require('date-fns');
-const db = require('../../database');
+const db = require('../../../database');
 const authUtils = require('../../utils/authUtils');
 
 const updateCurrentAccount = async (_root, args, { token, user }) => {

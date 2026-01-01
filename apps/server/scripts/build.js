@@ -1,6 +1,6 @@
 import dateFns from 'date-fns';
 import serverConfig from '@generatedata/config/serverConfig';
-import authUtils from '@generatedata/utils/auth';
+import { getPasswordHash } from '@generatedata/utils/auth';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 const createDatabaseInitFile = async () => {
   const now = Math.round(new Date().getTime() / 1000);
-  const newPasswordHash = await authUtils.getPasswordHash(serverConfig.defaultAdminAccount.GD_DEFAULT_ADMIN_PASSWORD);
+  const newPasswordHash = await getPasswordHash(serverConfig.defaultAdminAccount.GD_DEFAULT_ADMIN_PASSWORD);
 
   const mysqlDateTime = dateFns.format(dateFns.fromUnixTime(now), 'yyyy-LL-dd HH:mm:ss');
 

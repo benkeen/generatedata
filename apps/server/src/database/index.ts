@@ -1,9 +1,9 @@
-const Sequelize = require('sequelize');
-const accounts = require('./tables/accounts');
-const dataSets = require('./tables/dataSets');
-const dataSetHistory = require('./tables/dataSetHistory');
-const settings = require('./tables/settings');
-const path = require('path');
+import { Sequelize } from 'sequelize';
+import accounts from './tables/accounts';
+import dataSets from './tables/dataSets';
+import dataSetHistory from './tables/dataSetHistory';
+import settings from './tables/settings';
+import path from 'path';
 
 require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
 
