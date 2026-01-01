@@ -1,6 +1,7 @@
 import C from '@generatedata/config/constants';
 import { formatUnixTime } from '@generatedata/utils/date';
 import { getFormattedNum } from '@generatedata/utils/number';
+import { getLocale } from '@generatedata/utils/lang';
 import { useEffect } from 'react';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
 import { AccountEditingData } from '~store/account/account.reducer';
@@ -32,6 +33,8 @@ const YourAccount = ({
   expiryDate
 }: YourAccountProps) => {
   const classNames = useClasses();
+  const locale = getLocale();
+
   useEffect(() => {
     onInit();
   }, []);
@@ -66,7 +69,7 @@ const YourAccount = ({
         <div className={classNames.rightCol}>
           <div className={classNames.rightBlock}>
             <label>{i18n.totalNumGeneratedRows}</label>
-            <div>{getFormattedNum(numGeneratedRows)}</div>
+            <div>{getFormattedNum(numGeneratedRows, locale)}</div>
           </div>
           {getExpiryDate()}
         </div>

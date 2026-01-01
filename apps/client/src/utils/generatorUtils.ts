@@ -1,7 +1,7 @@
 import { CountryNamesMap, DataTypeFolder, GenerationTemplate } from '@generatedata/plugins';
 import { CountryDataType } from '@generatedata/types';
 import { DataTypeBatchGeneratedPayload, DataTypeWorkerInterface, UnchangedGenerationData, WorkerInterface } from '~types/generator';
-import { WorkerUtils } from './workerUtils';
+import type { WorkerUtils } from '@generatedata/utils/worker';
 
 /**
  * This utility file contains the guts of the data generation code. It farms out work to the various plugins

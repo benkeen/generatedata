@@ -8,7 +8,6 @@
  * that's how the workers access these helper functions.
  */
 import * as arrayUtils from './array';
-// import * as countryUtils from '@generatedata/utils/country';
 import * as generalUtils from './general';
 import * as numberUtils from './number';
 import * as randomUtils from './random';
@@ -16,7 +15,6 @@ import * as stringUtils from './string';
 
 export type WorkerUtils = {
   arrayUtils: typeof arrayUtils;
-  // countryUtils: typeof countryUtils;
   generalUtils: typeof generalUtils;
   randomUtils: typeof randomUtils;
   stringUtils: typeof stringUtils;
@@ -25,7 +23,6 @@ export type WorkerUtils = {
 
 const utils: WorkerUtils = {
   arrayUtils: { ...arrayUtils },
-  // countryUtils: { ...countryUtils },
   generalUtils: { ...generalUtils },
   randomUtils: { ...randomUtils },
   stringUtils: { ...stringUtils },

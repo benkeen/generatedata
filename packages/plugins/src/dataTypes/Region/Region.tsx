@@ -4,13 +4,13 @@ import {
   DialogContent,
   DialogTitle,
   Dropdown,
+  PrimaryButton,
   RadioPill,
   RadioPillRow,
   type DropdownOption
 } from '@generatedata/core';
 import { removeItem } from '@generatedata/utils/array';
 import { getI18nString } from '@generatedata/utils/lang';
-import Button from '@mui/material/Button';
 import * as React from 'react';
 import { countryList, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { RegionFormat, RegionSource } from './Region.state';
@@ -136,9 +136,7 @@ const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, c
           </p>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary" variant="outlined">
-            {coreI18n.close}
-          </Button>
+          <PrimaryButton onClick={onClose}>{coreI18n.close}</PrimaryButton>
         </DialogActions>
       </div>
     </Dialog>
@@ -182,9 +180,9 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 
   return (
     <div className={classNames.buttonLabel}>
-      <Button onClick={(): void => setDialogVisibility(true)} variant="outlined" color="primary" size="small">
+      <PrimaryButton onClick={(): void => setDialogVisibility(true)} size="small">
         <span dangerouslySetInnerHTML={{ __html: label }} />
-      </Button>
+      </PrimaryButton>
       <RegionDialog
         visible={dialogVisible}
         data={data}

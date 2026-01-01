@@ -9,7 +9,7 @@ import {
   PrimaryButton,
   useSharedClasses
 } from '@generatedata/core';
-import { getI18nString } from '@generatedata/utils/lang';
+import { getI18nString, getLocale } from '@generatedata/utils/lang';
 import { getFormattedNum } from '@generatedata/utils/number';
 import CheckIcon from '@mui/icons-material/Check';
 import Button from '@mui/material/Button';
@@ -53,12 +53,14 @@ const GenerationSettingsPanel = ({
 }: GenerationSettingsProps) => {
   const sharedClasses = useSharedClasses();
   const classNames = useClasses();
+  const locale = getLocale();
+
   let error = '';
 
   if (!numRowsToGenerate) {
     error = i18n.requiredField;
   } else if (!isLoggedIn && numRowsToGenerate > clientConfig.appSettings.GD_MAX_DEMO_MODE_ROWS) {
-    error = getI18nString(i18n.overMaxAnonRows, [getFormattedNum(clientConfig.appSettings.GD_MAX_DEMO_MODE_ROWS)]);
+    error = getI18nString(i18n.overMaxAnonRows, [getFormattedNum(clientConfig.appSettings.GD_MAX_DEMO_MODE_ROWS, locale)]);
   }
 
   const getEngine = () => {

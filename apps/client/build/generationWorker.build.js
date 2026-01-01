@@ -8,7 +8,7 @@ if (!fs.existsSync(workersFolder)) {
   fs.mkdirSync(workersFolder, { recursive: true });
 }
 
-const generateWorkerUtils = () => {
+const generateGenerationWorker = () => {
   const sourceFile = path.resolve(__dirname, '../dist-workers/src/core/generator/generation.worker.js');
   const fileHash = md5File.sync(sourceFile);
   const targetFile = `generation.worker-${fileHash}.js`;
@@ -29,4 +29,4 @@ export const generationWorker = ${JSON.stringify(targetFile, null, 2)}
   );  
 };
 
-generateWorkerUtils();
+generateGenerationWorker();

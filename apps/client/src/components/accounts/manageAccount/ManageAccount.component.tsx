@@ -1,5 +1,6 @@
 import { DatePicker, RadioPill, RadioPillRow } from '@generatedata/core';
 import { getFormattedNum } from '@generatedata/utils/number';
+import { getLocale } from '@generatedata/utils/lang';
 import { add, format, fromUnixTime } from 'date-fns';
 import { useState } from 'react';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
@@ -44,6 +45,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
   const [showDatepicker, setShowDatepicker] = useState(false);
   const [showErrors] = useState(false);
   const classNames = useClasses();
+  const locale = getLocale();
 
   let accountHasChanges = data.firstName !== '' && data.lastName !== '' && data.email !== '' && data.country !== '';
   if (data.country === 'CA' && data.region === '') {
@@ -158,7 +160,7 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
         </div>
         <div className={classNames.rightBlock}>
           <label>{i18n.totalNumGeneratedRows}</label>
-          <div>{getFormattedNum(initialState.numRowsGenerated)}</div>
+          <div>{getFormattedNum(initialState.numRowsGenerated, locale)}</div>
         </div>
       </div>
 

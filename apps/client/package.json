@@ -6,7 +6,7 @@
     "build": "run-s gruntCmd create-generation-worker-bundle build-webpack",
     "gruntCmd": "grunt",
     "build-webpack": "npm run webpackProd",
-    "bundle-generation-worker": "node ./build/workerUtils.build.js",
+    "bundle-generation-worker": "node ./build/generationWorker.build.js",
     "worker-tsc": "tsc -p ./tsconfig.workers.json",
     "create-generation-worker-bundle": "run-s worker-tsc bundle-generation-worker",
     "clean": "npx rimraf dist",

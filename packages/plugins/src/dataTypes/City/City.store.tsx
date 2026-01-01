@@ -16,7 +16,7 @@ const getCustomProps = (selectors: any) => ({
 const getActionInterceptors = (actions: any) => {
   return {
     // when a Region plugin row is removed, clean up any city fields that may have been mapped to it
-    [actions.REMOVE_ROW]: (regionRowId: string, rowState: CityStateRegionRow, actionPayload: any): CityState | null => {
+    [actions.REMOVE_ROW]: (_regionRowId: string, rowState: CityStateRegionRow, actionPayload: any): CityState | null => {
       if (actionPayload.id === rowState.targetRowId) {
         return {
           ...rowState,
@@ -27,7 +27,7 @@ const getActionInterceptors = (actions: any) => {
       return null;
     },
 
-    [actions.SELECT_DATA_TYPE]: (regionRowId: string, rowState: CityStateRegionRow, actionPayload: any): CityState | null => {
+    [actions.SELECT_DATA_TYPE]: (_regionRowId: string, rowState: CityStateRegionRow, actionPayload: any): CityState | null => {
       if (actionPayload.id === rowState.targetRowId) {
         if (actionPayload.value !== 'Region') {
           return {

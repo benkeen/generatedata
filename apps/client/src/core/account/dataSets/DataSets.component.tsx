@@ -3,6 +3,7 @@ import { useSharedClasses } from '@generatedata/core';
 import { DataSetListItem } from '@generatedata/types';
 import { formatUnixTime } from '@generatedata/utils/date';
 import { getFormattedNum } from '@generatedata/utils/number';
+import { getLocale } from '@generatedata/utils/lang';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
@@ -18,12 +19,13 @@ import { useClasses } from './DataSets.styles';
 
 const Row = ({ onDelete, onLoad, dataSet, i18n }: any) => {
   const classNames = useClasses();
+  const locale = getLocale();
 
   return (
     <div className={classNames.row}>
       <div className={classNames.dataSetName}>{dataSet.dataSetName}</div>
       <div className={classNames.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
-      <div className={classNames.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated)}</div>
+      <div className={classNames.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated, locale)}</div>
       <div className={classNames.open}>
         <Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>
           {i18n.open}

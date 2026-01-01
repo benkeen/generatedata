@@ -1,8 +1,8 @@
 /* eslint max-len:0 */
 // @ts-ignore-line
 import { template as uTemplate, templateSettings } from 'underscore';
-import { AlertProps } from '@mui/material/Alert';
-import { SnackbarOrigin } from '@mui/material';
+import type { AlertProps } from '@mui/material/Alert';
+import type { SnackbarOrigin } from '@mui/material';
 
 templateSettings.interpolate = /\{\{(.+?)\}\}/g;
 

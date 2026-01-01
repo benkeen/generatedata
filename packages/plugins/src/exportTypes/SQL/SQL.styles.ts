@@ -30,17 +30,17 @@ export const useClasses = makeStyles({
   batchSize: {
     display: 'flex',
     alignItems: 'center',
-    height: '31px'
-    // 	> span {
-    // 		height: 38px;
-    // 		margin-right: 4px;
-    // 	}
-    // 	> label {
-    // 		margin: 0 4px 0 5px;
-    // 	}
-    // 	input {
-    // 		margin-top: -2px;
-    // 	}
+    height: '31px',
+    '& > span': {
+      height: '38px',
+      marginRight: '4px'
+    },
+    '& > label': {
+      margin: '0 4px 0 5px'
+    },
+    '& input': {
+      marginTop: '-2px'
+    }
   },
   withBrace: {
     height: '58px'
@@ -55,10 +55,6 @@ export const useClasses = makeStyles({
   },
   block: {
     marginBottom: '10px'
-    // 	.title {
-    // 		margin: 0 0 8px;
-    // 		color: #555555;
-    // 	}
   },
   title: {
     margin: '0 0 8px',

@@ -2,9 +2,9 @@
   "name": "@generatedata/utils",
   "description": "Utility methods and code",
   "scripts": {
-    "build": "run-s tsc generate-web-worker",
+    "build": "run-s tsc generate-worker-utils",
     "clean": "npx rimraf dist",
-    "generate-web-worker": "node ./build/workerUtils.build.js",
+    "generate-worker-utils": "node ./build/workerUtils.build.js",
     "purge": "npx rimraf node_modules dist .turbo",
     "tsc": "tsc"
   },
