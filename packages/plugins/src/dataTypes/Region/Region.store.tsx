@@ -20,7 +20,9 @@ const getCustomProps = (selectors: any) => ({
 
 const getActionInterceptors = (actions: any) => ({
   // when a Country plugin row is removed, clean up any region fields that may have been mapped to it
-  [actions.REMOVE_ROW]: (countryRowId: string, rowState: RegionState, actionPayload: any): RegionState | null => {
+  [actions.REMOVE_ROW]: (_countryRowId: string, rowState: RegionState, actionPayload: any): RegionState | null => {
+    console.log('.....actionPayload', actionPayload);
+
     if (actionPayload.id === rowState.targetRowId) {
       return {
         ...rowState,
@@ -32,7 +34,7 @@ const getActionInterceptors = (actions: any) => ({
   },
 
   // check any mapped Country rows don't make changes to their config that invalidates the region mapping
-  [actions.CONFIGURE_DATA_TYPE]: (countryRowId: string, rowState: RegionState, actionPayload: any): RegionState | null => {
+  [actions.CONFIGURE_DATA_TYPE]: (_countryRowId: string, rowState: RegionState, actionPayload: any): RegionState | null => {
     if (actionPayload.id === rowState.targetRowId) {
       if (actionPayload.data.source !== 'plugins') {
         return {

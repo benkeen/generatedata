@@ -8,6 +8,7 @@ import { getRows } from '~store/generator/generator.selectors';
 // isn't registered yet? Other than defensively coding the Data Type generation I'm not sure how to handle that... I
 // guess we could also lock down the UI...
 const actionInterceptors: any = {};
+
 export const registerInterceptors = (dataType: DataTypeFolder, interceptors: DTActionInterceptors): void => {
   Object.keys(interceptors).forEach((action) => {
     if (!actionInterceptors[action]) {
@@ -33,6 +34,8 @@ const actionInterceptor =
         const interceptors = action && action.type ? getActionInterceptors(action.type) : [];
 
         if (interceptors.length) {
+          console.log('interceptors for action', action.type, interceptors);
+
           const rows = getRows(store.getState());
           interceptors.forEach(({ dataType, interceptor }) => {
             Object.keys(rows).forEach((rowId: string) => {

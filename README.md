@@ -16,7 +16,6 @@ in PHP and MYSQL and 3.x offered a REST API to let you generate the data program
 still planned for 4.x it's not currently offered, and the plan it to tackle that _after_ making the script available
 as an npm package - which we feel will be a more convenient way to programmatically generate data over the more agnostic
 REST approach.
-`
 
 ## Requirements
 

@@ -12,7 +12,7 @@ import { requestDataTypeBundle } from '~utils/dataTypeUtils';
 import { getExportTypeInitialState, loadExportTypeBundle } from '~utils/exportTypeUtils';
 import * as coreUtils from '../../utils/coreUtils';
 import { getCountryNamesBundle } from '../../utils/coreUtils';
-import { registerInterceptors } from '../../core/actionInterceptor';
+import { registerInterceptors } from '../actionInterceptor';
 import { getUnchangedData } from '../../core/generationPanel/generation.helpers';
 import type { ExportSettingsTab } from '../../core/generator/exportSettings/ExportSettings.types';
 import * as selectors from './generator.selectors';
@@ -97,6 +97,7 @@ export const loadDataTypeBundle = (
       const actionInterceptors = bundle.getStoreIntegrations(allSelectors, allActions).actionInterceptors;
 
       if (actionInterceptors) {
+        console.log('register interceptors for', dataType, actionInterceptors);
         registerInterceptors(dataType, actionInterceptors);
       }
     }

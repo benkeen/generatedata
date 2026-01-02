@@ -19,7 +19,7 @@ import '~store/generator/generator.reducer';
 import { resetStore } from '~store/main/main.actions';
 import { getAppStateVersion } from '~store/main/main.selectors';
 import { getRoutes, updateBodyClass } from '~utils/routeUtils';
-import { init } from './core';
+import { initApp } from './core';
 
 window.CodeMirror = codemirror;
 
@@ -41,23 +41,17 @@ const checkState = async (state: any): Promise<any> => {
 
 const routes = getRoutes();
 
-// there's probably a cleaner way to do this, but this seems performant and not too complicated
 const LocalizationWrapper = (args: any) => {
-  const availableLocalesMap = getLocaleMap();
-  const lang = args.match?.params?.lang;
-  let localizedRoutes = routes;
-
   // this rewrites any routes that include a valid (known) lang path root folder so the routing
   // works as expected. Note: the actual loading of the locale file will have taken place prior to here. It either
   // occurs on first boot and <Page> handles waiting to show the whole application until it's ready, or when
   // the user changes is via the lang selector dialog - that alters the URL to include the locale only after it's been
   // successfully loaded
-  if (lang && lang !== 'en' && availableLocalesMap[lang]) {
-    localizedRoutes = routes.map((route) => ({
-      ...route,
-      path: `/${lang}${route.path}`
-    }));
-  }
+  // if (lang && lang !== 'en' && availableLocalesMap[lang]) {
+  const localizedRoutes = routes.map((route) => ({
+    ...route,
+    path: `/:lang?/${route.path}`
+  }));
 
   return (
     <Routes>
@@ -72,11 +66,7 @@ const App = () => {
   useGlobalStyles();
   useRouteListener();
 
-  useEffect(() => {
-    init();
-  }, []);
-
-  // localization wrapp was <Route path="/:lang?">
+  useEffect(initApp, []);
 
   return (
     <ErrorBoundary>

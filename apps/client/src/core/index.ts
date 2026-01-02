@@ -11,7 +11,7 @@ import * as selectors from '~store/generator/generator.selectors';
 import * as mainActions from '~store/main/main.actions';
 import * as mainSelectors from '~store/main/main.selectors';
 
-export const init = (): void => {
+export const initApp = (): void => {
   coreUtils.createGenerationWorker('preview');
 
   const state = store.getState();

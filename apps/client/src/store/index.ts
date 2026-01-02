@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-// import actionsInterceptor from '../actionInterceptor'; // TODO
+import actionInterceptor from './actionInterceptor';
 import accountReducer from './account/account.reducer';
 import generatorReducer from './generator/generator.reducer'; // , { GeneratorState }
 import mainReducer from './main/main.reducer';
@@ -26,8 +26,8 @@ function initStore(): any {
 
   const storeData = {
     reducer: rootReducer,
-    enhancers: (getDefaultEnhancers: any) => getDefaultEnhancers()
-    // composeEnhancers(applyMiddleware(thunk, actionsInterceptor), ...enhancers)
+    enhancers: (getDefaultEnhancers: any) => getDefaultEnhancers(),
+    middleware: (getDefaultMiddleware: any) => getDefaultMiddleware().concat(actionInterceptor)
   };
 
   if (preloadedState) {
