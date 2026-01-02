@@ -427,9 +427,21 @@ importers:
 
   apps/server:
     dependencies:
-      '@types/nanoid':
-        specifier: 3.0.0
-        version: 3.0.0
+      '@generatedata/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+      '@generatedata/graphql-schema':
+        specifier: workspace:*
+        version: link:../../packages/graphql-schema
+      '@generatedata/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
+      '@generatedata/types':
+        specifier: workspace:*
+        version: link:../../packages/types
+      '@generatedata/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       apollo-server-express:
         specifier: ^3.13.0
         version: 3.13.0(express@5.2.1)(graphql@16.12.0)
@@ -470,27 +482,18 @@ importers:
         specifier: ^6.37.7
         version: 6.37.7(mysql2@3.16.0)
     devDependencies:
-      '@generatedata/config':
-        specifier: workspace:*
-        version: link:../../packages/config
-      '@generatedata/graphql-schema':
-        specifier: workspace:*
-        version: link:../../packages/graphql-schema
-      '@generatedata/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
-      '@generatedata/types':
-        specifier: workspace:*
-        version: link:../../packages/types
-      '@generatedata/utils':
-        specifier: workspace:*
-        version: link:../../packages/utils
+      '@types/nanoid':
+        specifier: 3.0.0
+        version: 3.0.0
       dotenv:
         specifier: ^8.2.0
         version: 8.6.0
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
   packages/cli:
     dependencies:

@@ -3,6 +3,7 @@ import { DTBundle, DTCustomProps, DTHelpProps, DataTypeFolder, blacklistedDataTy
 import { getLocale, getStrings } from '@generatedata/utils/lang';
 import { Store } from '~types/general';
 import * as allSelectors from '../store/selectors';
+import * as allActions from '../store/actions';
 
 type LoadedDataTypes = {
   [name in DataTypeFolder]: DTBundle;
@@ -74,7 +75,7 @@ const getDTStoreIntegrations = (dataType: DataTypeFolder | null) => {
     return emptyReturn;
   }
 
-  const result = loadedDataTypes[dataType]!.getStoreIntegrations(allSelectors, {}); // TODO
+  const result = loadedDataTypes[dataType]!.getStoreIntegrations(allSelectors, allActions);
   return {
     customProps: result.customProps ? result.customProps : {},
     actionInterceptors: result.actionInterceptors ? result.actionInterceptors : {}

@@ -23,13 +23,13 @@ const createDatabaseInitFile = async () => {
     '%LAST_UPDATED%': mysqlDateTime
   };
 
-  const dbStructureTemplate = fs.readFileSync(path.join(__dirname, '../database/dbStructure.template.sql'), 'utf8');
+  const dbStructureTemplate = fs.readFileSync(path.join(__dirname, '../src/database/dbStructure.template.sql'), 'utf8');
   let newFile = dbStructureTemplate;
   Object.keys(placeholders).forEach((placeholder) => {
     newFile = newFile.replace(placeholder, placeholders[placeholder]);
   });
 
-  fs.writeFileSync(path.join(__dirname, '../database/_dbStructure.sql'), newFile);
+  fs.writeFileSync(path.join(__dirname, '../_dbStructure.sql'), newFile);
 };
 
 createDatabaseInitFile();

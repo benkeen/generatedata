@@ -8,7 +8,11 @@
     "start": "nodemon ./app.js"
   },
   "dependencies": {
-    "@types/nanoid": "3.0.0",
+    "@generatedata/config": "workspace:*",
+    "@generatedata/i18n": "workspace:*",
+    "@generatedata/types": "workspace:*",
+    "@generatedata/utils": "workspace:*",
+    "@generatedata/graphql-schema": "workspace:*",
     "apollo-server-express": "^3.13.0",
     "bcryptjs": "^3.0.3",
     "codemirror": "^5.58.2",
@@ -24,12 +28,9 @@
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
-    "@generatedata/config": "workspace:*",
-    "@generatedata/i18n": "workspace:*",
-    "@generatedata/types": "workspace:*",
-    "@generatedata/utils": "workspace:*",
-    "@generatedata/graphql-schema": "workspace:*",
+    "@types/nanoid": "3.0.0",
     "dotenv": "^8.2.0",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.3"
   }
 }

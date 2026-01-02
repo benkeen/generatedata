@@ -1,8 +1,8 @@
+// TODO move to plugins package
 export interface GetCountryData {
   (i18n: any): CountryDataType;
 }
 
-// TODO move to plugins package
 export type CountryDataType = {
   countrySlug: string;
   countryName: string;

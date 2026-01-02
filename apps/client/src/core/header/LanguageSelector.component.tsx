@@ -8,10 +8,11 @@ import { GDLocale } from '~types/general';
 import { useClasses } from './Header.styles';
 import { useNavigate } from 'react-router';
 import clientConfig from '@generatedata/config/clientConfig';
+import C from '@generatedata/config/constants';
 
-const allLocaleOptions = Object.keys(clientConfig.appSettings.GD_LOCALES).map((shortCode) => ({
-  value: shortCode,
-  label: clientConfig.appSettings.GD_LOCALES[shortCode as GDLocale]
+const localeList = clientConfig.appSettings.GD_LOCALES.map((locale) => ({
+  value: locale,
+  label: C.GD_ALL_SUPPORTED_LOCALES[locale]
 }));
 
 export type SelectorDialogProps = {
@@ -37,7 +38,7 @@ const SelectorDialog = ({ visible, currentLocale, onSelect, onClose, onExited, l
         </DialogTitle>
         <DialogContent dividers>
           <List disablePadding>
-            {allLocaleOptions.map((currLocale: any) => (
+            {localeList.map((currLocale: any) => (
               <ListItemButton
                 key={currLocale.value}
                 className={currentLocale === currLocale.value ? classNames.selectedLocale : ''}

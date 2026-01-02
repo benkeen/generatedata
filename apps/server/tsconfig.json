@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "lib": ["es6"],
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node16",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "module": "node16",
+    "target": "es6",
+    "allowSyntheticDefaultImports": true,
+    "removeComments": false,
+    "baseUrl": "./"
+  },
+  "exclude": ["node_modules"]
+}
