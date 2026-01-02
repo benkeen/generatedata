@@ -16,9 +16,6 @@ export const useClasses = makeStyles({
     paddingRight: '18px',
     opacity: 0,
     transition: 'opacity 200ms ease-in-out'
-    // &.visible {
-    // 	opacity: 1;
-    // }
   },
   visible: {
     opacity: 1
@@ -59,31 +56,13 @@ export const useClasses = makeStyles({
       }
     },
 
+    '& svg': {
+      '-webkit-mask-image': '-webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.6)))'
+    },
+
     '& a:hover': {
       borderBottom: 0
     }
-
-    // 	svg {
-    // 		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.6)));
-    // 	}
-
-    // 	button.generateButton,
-    // 	button.saveButton,
-    // 	button.saveButtonAsMainBtn {
-    // 		font-size: 13px;
-
-    // 		svg {
-    // 			font-size: 15px;
-    // 			margin: 0 5px 0 -5px;
-    // 		}
-
-    // 		&:global(.Mui-disabled) {
-    // 			border-color: #bbbbbb;
-    // 		}
-    // 	}
-    // .aboutIconEl {
-    // 	height: 24px;
-    // }
   },
   generateButton: {
     fontSize: '13px',
@@ -92,12 +71,8 @@ export const useClasses = makeStyles({
       fontSize: '15px',
       margin: '0 5px 0 -5px'
     }
-    // &:global(.Mui-disabled) {
-    //   border-color: #bbbbbb;
-    // }
   },
   saveButton: {
-    // ':global(div)',
     fontSize: '13px',
     backgroundColor: vars.primarySubmit,
     color: 'white',
@@ -109,25 +84,18 @@ export const useClasses = makeStyles({
       fontSize: '15px',
       margin: '0 5px 0 -5px'
     }
-    // &:global(.Mui-disabled) {
-    //   border-color: #bbbbbb;
-    // }
   },
   saveButtonAs: {
     // button.saveButtonAsMainBtn {
     // 	border-color: #bde9fb;
     // }
   },
-
   saveButtonAsMainBtn: {
     fontSize: '13px',
     '& svg': {
       fontSize: '15px',
       margin: '0 5px 0 -5px'
     }
-    // &:global(.Mui-disabled) {
-    //   border-color: #bbbbbb;
-    // }
   },
   aboutIconEl: {
     height: '24px'
@@ -143,7 +111,6 @@ export const useClasses = makeStyles({
     }
   },
   controls: {
-    // div.controls
     marginRight: '15px'
   },
   // div.saveButtonAs: {
@@ -159,7 +126,6 @@ export const useClasses = makeStyles({
   //   }
   // },
   saveBtnArrow: {
-    // button.saveBtnArrow
     minWidth: 'inherit',
     padding: '0 6px',
     '& svg': {

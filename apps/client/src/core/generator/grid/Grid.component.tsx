@@ -28,7 +28,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
   const [numRows, setNumRows] = useState(1);
   const windowSize = useWindowSize();
   const [measureRef, { width = 0, height = 0 }] = useMeasure();
-  const classNames = useClasses();
+  const classNames = useClasses(width);
   const [draggingRowId, setDraggingRowId] = useState<UniqueIdentifier | null>(null);
 
   const sensors = useSensors(
@@ -37,13 +37,6 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
       coordinateGetter: sortableKeyboardCoordinates
     })
   );
-
-  let gridSizeClass = '';
-  if (width && width < C.GRID.SMALL_BREAKPOINT) {
-    gridSizeClass = classNames.gridSmall;
-  } else if (width && width < C.GRID.MEDIUM_BREAKPOINT) {
-    gridSizeClass = classNames.gridMedium;
-  }
 
   const addRowsBtnLabel = numRows === 1 ? i18n.row : i18n.rows;
 
@@ -69,7 +62,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
         </span>
       </div>
 
-      <div className={`${classNames.gridWrapper} ${gridSizeClass}`} ref={measureRef}>
+      <div className={classNames.gridWrapper} ref={measureRef}>
         <div>
           <div className={classNames.gridHeaderWrapper}>
             <div className={`${classNames.gridHeaderRow} tour-gridHeader`} style={{ flex: '0 0 auto' }}>
@@ -106,7 +99,14 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
             >
               <SortableContext items={rows} strategy={verticalListSortingStrategy}>
                 {rows.map((row, index) => (
-                  <GridRow row={row} key={row.id} index={index} gridPanelDimensions={memoizedDimensions} showHelpDialog={showHelpDialog} />
+                  <GridRow
+                    row={row}
+                    key={row.id}
+                    index={index}
+                    gridPanelDimensions={memoizedDimensions}
+                    showHelpDialog={showHelpDialog}
+                    gridWidth={width}
+                  />
                 ))}
               </SortableContext>
             </DndContext>

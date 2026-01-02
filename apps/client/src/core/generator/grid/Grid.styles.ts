@@ -1,5 +1,6 @@
 import { vars } from '@generatedata/core';
 import { makeStyles, mergeClasses } from '@griffel/react';
+import C from '@generatedata/config/constants';
 
 const useBaseClasses = makeStyles({
   gridWrapper: {
@@ -41,14 +42,6 @@ const useBaseClasses = makeStyles({
     fontStyle: 'italic',
     color: '#cccccc',
     fontSize: '10px'
-  },
-  smallScreenMode: {
-    display: 'none',
-    position: 'absolute',
-    right: '10px',
-    margin: '2px 0 0',
-    fontSize: '10px',
-    cursor: 'pointer'
   },
   scrollableGridRows: {
     width: '100%',
@@ -121,7 +114,7 @@ const useBaseClasses = makeStyles({
     }
   },
   settingsIconCol: {
-    display: 'none', // flex when visible
+    display: 'flex',
     flex: '0 0 30px',
     cursor: 'pointer',
     justifyContent: 'center',
@@ -158,24 +151,6 @@ const useBaseClasses = makeStyles({
       // }
     }
   },
-  gridSmall: {
-    // .examplesCol,
-    // .optionsCol {
-    //   display: none,
-    // }
-    // .smallScreenMode,
-    // .settingsIconCol {
-    //   display: inherit,
-    // }
-  },
-  gridMedium: {
-    // .examplesCol {
-    //   display: none,
-    // }
-    // .smallScreenMode {
-    //   display: block,
-    // }
-  },
   addRows: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -194,16 +169,36 @@ const useBaseClasses = makeStyles({
       fontSize: '11px',
       minWidth: '60px'
     }
+  },
+  hidden: {
+    display: 'none'
   }
 });
 
-export const useClasses = () => {
+export const useClasses = (width?: number | null) => {
   const baseClasses = useBaseClasses();
 
+  let hideOptions = false;
+  let hideExamples = false;
+  let hideSettingsCol = true;
+  if (width && width < C.GRID.SMALL_BREAKPOINT) {
+    hideOptions = true;
+    hideExamples = true;
+    hideSettingsCol = false;
+  } else if (width && width < C.GRID.MEDIUM_BREAKPOINT) {
+    hideOptions = true;
+  }
+
   const gridHeaderRow = mergeClasses(baseClasses.gridRow, baseClasses.gridHeader);
+  const optionsCol = mergeClasses(baseClasses.optionsCol, hideOptions ? baseClasses.hidden : '');
+  const examplesCol = mergeClasses(baseClasses.examplesCol, hideExamples ? baseClasses.hidden : '');
+  const settingsIconCol = mergeClasses(baseClasses.settingsIconCol, hideSettingsCol ? baseClasses.hidden : '');
 
   return {
+    ...baseClasses,
     gridHeaderRow,
-    ...baseClasses
+    optionsCol,
+    examplesCol,
+    settingsIconCol
   };
 };

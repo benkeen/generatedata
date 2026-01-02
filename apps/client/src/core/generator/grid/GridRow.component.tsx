@@ -5,7 +5,7 @@ import { CountryNamesMap, DataTypeFolder, DTOptionsMetadata } from '@generatedat
 import DragIndicator from '@mui/icons-material/DragIndicator';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
-import * as React from 'react';
+import React, { useCallback } from 'react';
 import { LoadDataTypeBundleOptions } from '~store/generator/generator.actions';
 import { DataRow } from '~store/generator/generator.reducer';
 import { useClasses } from './Grid.styles';
@@ -46,6 +46,7 @@ export type GridRowProps = {
   isCountryNamesLoading: boolean;
   isCountryNamesLoaded: boolean;
   countryNamesMap: CountryNamesMap | null;
+  gridWidth: number | null;
 };
 
 const NoExample = ({ coreI18n, emptyColClass }: any) => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>;
@@ -70,10 +71,11 @@ export const GridRow = ({
   isDataTypeLoaded,
   isCountryNamesLoading,
   isCountryNamesLoaded,
-  countryNamesMap
+  countryNamesMap,
+  gridWidth
 }: GridRowProps) => {
   const sharedClasses = useSharedClasses();
-  const classNames = useClasses();
+  const classNames = useClasses(gridWidth);
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id: row.id
   });
@@ -123,7 +125,7 @@ export const GridRow = ({
     example = <SmallSpinner />;
   }
 
-  const onClickShowHelp = React.useCallback(() => {
+  const onClickShowHelp = useCallback(() => {
     showHelpDialog(row.dataType as DataTypeFolder);
   }, [row.dataType]);
 
