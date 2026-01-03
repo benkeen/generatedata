@@ -4,7 +4,6 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$"],
       "outputs": ["./dist"]
     },
     "test": {
@@ -18,8 +17,8 @@
     },
     "dev": {
       "dependsOn": [],
-      "cache": false,
-      "persistent": true
+      "persistent": true,
+      "cache": false
     }
   }
 }

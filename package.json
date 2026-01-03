@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo run dev --filter=@generatedata/client",
+    "dev": "turbo dev --parallel --filter=@generatedata/client...",
     "prodAll": "COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up",
     "startApp": "npm run prod && COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up --build",
     "clearApp": "npm run stopDevServer && npm run dockerCleanup",

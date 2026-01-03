@@ -17,6 +17,9 @@ trade-off I had to make.
 
 ### Running dev environment
 
+TODO: clarify this. `turbo build` then `npm run dev` in the root should run the dev env. Running a _local_ environment
+without needing to alter the code would mean Docker.
+
 - `git clone https://github.com/benkeen/generatedata.git` - this clones the repo to your local computer. On Mac, I'd
   suggest putting it in your `~` folder; I tried it in other locations but Docker ran into permissions issues.
 
@@ -27,6 +30,9 @@ trade-off I had to make.
     throw an error during startup.
 
 - `pnpm install`
+
+[TODO]
+
 - After starting Docker, in one tab run: `npm run startAndBuildDevServer` - this boots up the server + database containers.
   For subsequent runs you can just use `npm run startDevServer` and it'll be faster.
 - In a second tab, `npm run start` - this boots up the client-side code. Be warned: this does a _LOT_ of stuff and the
