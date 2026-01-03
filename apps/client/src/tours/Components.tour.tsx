@@ -1,4 +1,4 @@
-import { NullButton, PrimaryButton } from '@generatedata/core';
+import { PrimaryButton, SecondaryButton } from '@generatedata/core';
 import { getStrings } from '@generatedata/utils/lang';
 
 export const TourCompleteStep = ({ close }: any) => {
@@ -18,9 +18,9 @@ export const TourCompleteStep = ({ close }: any) => {
         <PrimaryButton size="medium" style={{ marginRight: 6 }} onClick={close}>
           {i18n.tryDifferentTour}
         </PrimaryButton>
-        <NullButton size="medium" onClick={onExit}>
+        <SecondaryButton size="medium" onClick={onExit}>
           Exit
-        </NullButton>
+        </SecondaryButton>
       </p>
     </>
   );

@@ -34,8 +34,6 @@ const actionInterceptor =
         const interceptors = action && action.type ? getActionInterceptors(action.type) : [];
 
         if (interceptors.length) {
-          console.log('interceptors for action', action.type, interceptors);
-
           const rows = getRows(store.getState());
           interceptors.forEach(({ dataType, interceptor }) => {
             Object.keys(rows).forEach((rowId: string) => {

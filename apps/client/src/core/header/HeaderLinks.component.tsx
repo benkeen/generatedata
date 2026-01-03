@@ -166,7 +166,7 @@ export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
       );
     } else if (headerLink === 'loginDialog') {
       links.push(
-        <li key="loginDialog" onClick={showLoginDialog}>
+        <li key="loginDialog" onClick={showLoginDialog} data-ok="asdas" className={classNames.clickable}>
           {i18n.login}
         </li>
       );

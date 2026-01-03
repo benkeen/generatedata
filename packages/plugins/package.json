@@ -7,6 +7,7 @@
   "scripts": {
     "tsc": "tsc",
     "build": "run-s tsc copy-i18n-files generate-web-workers",
+    "dev": "npm run watch",
     "generate-web-workers": "node ./build/webworkers.build.js",
     "watch": "tsc --watch",
     "clean": "npx rimraf dist",

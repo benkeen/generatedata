@@ -2,9 +2,6 @@
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
   "tasks": {
-    "watch": {
-      "dependsOn": ["^watch"]
-    },
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$"],
@@ -20,6 +17,7 @@
       "dependsOn": ["^purge"]
     },
     "dev": {
+      "dependsOn": [],
       "cache": false,
       "persistent": true
     }

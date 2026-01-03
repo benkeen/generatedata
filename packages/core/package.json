@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc",
     "build-storybook": "storybook build",
+    "dev": "npm run watch",
     "watch": "tsc --watch",
     "clean": "npx rimraf dist",
     "purge": "npx rimraf node_modules dist .turbo",

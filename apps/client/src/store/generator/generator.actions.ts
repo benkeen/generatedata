@@ -97,7 +97,6 @@ export const loadDataTypeBundle = (
       const actionInterceptors = bundle.getStoreIntegrations(allSelectors, allActions).actionInterceptors;
 
       if (actionInterceptors) {
-        console.log('register interceptors for', dataType, actionInterceptors);
         registerInterceptors(dataType, actionInterceptors);
       }
     }

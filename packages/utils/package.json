@@ -4,6 +4,7 @@
   "scripts": {
     "build": "run-s tsc generate-worker-utils",
     "clean": "npx rimraf dist",
+    "dev": "npm run build",
     "generate-worker-utils": "node ./build/workerUtils.build.js",
     "purge": "npx rimraf node_modules dist .turbo",
     "tsc": "tsc"

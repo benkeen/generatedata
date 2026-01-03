@@ -118,10 +118,18 @@ const useBaseClasses = makeStyles({
     flex: '0 0 30px',
     cursor: 'pointer',
     justifyContent: 'center',
-    paddingTop: '8px',
+    paddingTop: '8px !important',
     '& svg': {
       fill: '#333333',
       transition: 'fill 0.5s ease-in-out'
+    }
+  },
+  closeButton: {
+    position: 'fixed',
+    right: 0,
+    padding: '6px 10px',
+    '& svg': {
+      fill: '#666666'
     }
   },
   // div.settingsIconCol svg.disabledBtn {
@@ -186,7 +194,7 @@ export const useClasses = (width?: number | null) => {
     hideExamples = true;
     hideSettingsCol = false;
   } else if (width && width < C.GRID.MEDIUM_BREAKPOINT) {
-    hideOptions = true;
+    hideExamples = true;
   }
 
   const gridHeaderRow = mergeClasses(baseClasses.gridRow, baseClasses.gridHeader);

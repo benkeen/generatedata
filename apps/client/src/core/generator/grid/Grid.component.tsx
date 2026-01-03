@@ -52,14 +52,12 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
 
   return (
     <>
-      <div style={{ position: 'fixed', right: 0, padding: 10 }}>
-        <span onClick={onClose}>
-          <Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.closePanel }} />} placement="bottom" arrow>
-            <IconButton size="small" aria-label={i18n.closePanel}>
-              <CloseIcon fontSize="large" />
-            </IconButton>
-          </Tooltip>
-        </span>
+      <div className={classNames.closeButton} onClick={onClose}>
+        <Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.closePanel }} />} placement="bottom" arrow>
+          <IconButton size="small" aria-label={i18n.closePanel}>
+            <CloseIcon fontSize="large" />
+          </IconButton>
+        </Tooltip>
       </div>
 
       <div className={classNames.gridWrapper} ref={measureRef}>

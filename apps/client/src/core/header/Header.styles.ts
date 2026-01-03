@@ -44,7 +44,6 @@ export const useClasses = makeStyles({
     animation: 'fadein 1s',
     '& li': {
       color: '#2e3d4e',
-      cursor: 'pointer',
       fontSize: '13px',
       transition: 'color 0.1s ease-in-out',
       textDecoration: 'none',
@@ -72,6 +71,9 @@ export const useClasses = makeStyles({
         textDecoration: 'none'
       }
     }
+  },
+  clickable: {
+    cursor: 'pointer'
   },
   userAccount: {
     display: 'flex',
@@ -144,7 +146,7 @@ export const useClasses = makeStyles({
     }
   },
   divider: {
-    color: '#c0c0c3',
+    color: '#c0c0c3 !important',
     userSelect: 'none',
     cursor: 'inherit',
     ':hover': {
@@ -155,6 +157,10 @@ export const useClasses = makeStyles({
     marginRight: 0,
     '& button': {
       fontSize: '22px'
+    },
+    '& svg': {
+      color: '#333333',
+      '-webkit-mask-image': '-webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.6)))'
     }
   },
   headerInner: {

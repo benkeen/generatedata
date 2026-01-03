@@ -21,8 +21,6 @@ const getCustomProps = (selectors: any) => ({
 const getActionInterceptors = (actions: any) => ({
   // when a Country plugin row is removed, clean up any region fields that may have been mapped to it
   [actions.REMOVE_ROW]: (_countryRowId: string, rowState: RegionState, actionPayload: any): RegionState | null => {
-    console.log('.....actionPayload', actionPayload);
-
     if (actionPayload.id === rowState.targetRowId) {
       return {
         ...rowState,
