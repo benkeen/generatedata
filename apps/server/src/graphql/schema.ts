@@ -1,6 +1,6 @@
-const { gql } = require('apollo-server-express');
+import { gql } from 'apollo-server-express';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type Query {
     accounts(limit: Int, offset: Int, sortCol: String, sortDir: SortDir, filterStr: String, status: String): AccountsResults
     account: Account
@@ -156,5 +156,3 @@ const typeDefs = gql`
     permissionDenied
   }
 `;
-
-module.exports = typeDefs;

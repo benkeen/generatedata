@@ -1,7 +1,7 @@
-const db = require('../../../database');
-const authUtils = require('../../utils/authUtils');
+import db from '../../database';
+import * as authUtils from '../../utils/authUtils';
 
-const saveNewDataSet = async (_root, { dataSetName, content }, { token, user }) => {
+export const saveNewDataSet = async (_root, { dataSetName, content }, { token, user }) => {
   authUtils.authenticate(token);
 
   const { accountId } = user;
@@ -29,7 +29,7 @@ const saveNewDataSet = async (_root, { dataSetName, content }, { token, user }) 
   };
 };
 
-const renameDataSet = async (_root, { dataSetId, dataSetName }, { token, user }) => {
+export const renameDataSet = async (_root, { dataSetId, dataSetName }, { token, user }) => {
   authUtils.authenticate(token);
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
@@ -46,7 +46,7 @@ const renameDataSet = async (_root, { dataSetId, dataSetName }, { token, user })
   };
 };
 
-const saveDataSet = async (_root, { dataSetId, content }, { token, user }) => {
+export const saveDataSet = async (_root, { dataSetId, content }, { token, user }) => {
   authUtils.authenticate(token);
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
@@ -70,7 +70,7 @@ const saveDataSet = async (_root, { dataSetId, content }, { token, user }) => {
   };
 };
 
-const deleteDataSet = async (_root, { dataSetId }, { token, user }) => {
+export const deleteDataSet = async (_root, { dataSetId }, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
@@ -90,7 +90,7 @@ const deleteDataSet = async (_root, { dataSetId }, { token, user }) => {
   };
 };
 
-const updateDataSetGenerationCount = async (_root, { dataSetId, generatedRows }, { token, user }) => {
+export const updateDataSetGenerationCount = async (_root, { dataSetId, generatedRows }, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
@@ -114,12 +114,4 @@ const updateDataSetGenerationCount = async (_root, { dataSetId, generatedRows },
   return {
     success: true
   };
-};
-
-module.exports = {
-  saveNewDataSet,
-  saveDataSet,
-  renameDataSet,
-  deleteDataSet,
-  updateDataSetGenerationCount
 };

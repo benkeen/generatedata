@@ -1,11 +1,16 @@
-const emailUtils = require('../src/utils/emailUtils');
-const generalUtils = require('../src/utils/generalUtils');
-const langUtils = require('../src/utils/langUtils');
+import * as emailUtils from '../utils/emailUtils';
+import * as generalUtils from '../utils/generalUtils';
+import * as langUtils from '../utils/langUtils';
+
+type PasswordResetAccountExpiredParams = {
+  firstName: string;
+  i18n: any;
+};
 
 /**
  * Used when a user tries to reset their password but their account has already expired.
  */
-const passwordResetAccountExpired = ({ firstName, i18n }) => {
+export const passwordResetAccountExpired = ({ firstName, i18n }: PasswordResetAccountExpiredParams) => {
   const emailIntroLineWithName = langUtils.getI18nString(i18n.emailIntroLineWithName, [firstName]);
   const adminEmail = emailUtils.getAdminEmail();
   const siteUrl = generalUtils.getSiteUrl();
@@ -50,8 +55,4 @@ ${adminEmail}
     text,
     html
   };
-};
-
-module.exports = {
-  passwordResetAccountExpired
 };

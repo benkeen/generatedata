@@ -1,10 +1,10 @@
 import { OAuth2Client } from 'google-auth-library';
 import { nanoid } from 'nanoid';
 import db from '../../database';
-import authUtils from '../../utils/authUtils';
-import emailUtils from '../../utils/emailUtils';
-import langUtils from '../../utils/langUtils';
-import { passwordReset, passwordResetAccountExpired } from '../../../emails';
+import * as authUtils from '../../utils/authUtils';
+import * as emailUtils from '../../utils/emailUtils';
+import * as langUtils from '../../utils/langUtils';
+import { passwordReset, passwordResetAccountExpired } from '../../emails';
 
 export const getAccountNumRowsGenerated = async (accountId) => {
   const results = await db.dataSets.findAll({

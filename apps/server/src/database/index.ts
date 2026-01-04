@@ -5,8 +5,6 @@ import dataSetHistory from './tables/dataSetHistory';
 import settings from './tables/settings';
 import { serverConfig } from '@generatedata/config';
 
-// require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
-
 const sequelize = new Sequelize(
   serverConfig.database.GD_DB_NAME,
   serverConfig.database.GD_MYSQL_ROOT_USER,

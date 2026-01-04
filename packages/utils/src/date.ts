@@ -35,3 +35,5 @@ export const isValidDateFormat = (dateFormat: string) => {
   }
   return isValid;
 };
+
+export const getMysqlDateTime = (date = new Date()) => format(date, 'YYYY-MM-DD HH-mm-ss');
