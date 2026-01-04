@@ -1,17 +1,18 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import { clientConfig, serverConfig } from '@generatedata/config';
 
 export const isValidPassword = async (plainTextPassword: string, hash: string) => await bcrypt.compare(plainTextPassword, hash);
 
 export const getJwt = (payload: any) =>
-  jwt.sign(payload, process.env.GD_JWT_SECRET, {
-    expiresIn: `${process.env.GD_JWT_LIFESPAN_MINS}m`
+  jwt.sign(payload, serverConfig.auth.GD_JWT_SECRET, {
+    expiresIn: `${clientConfig.auth.GD_JWT_LIFESPAN_MINS}m`
   });
 
 export const authenticate = async (token: any) => {
   if (token) {
     try {
-      await jwt.verify(token, process.env.GD_JWT_SECRET);
+      await jwt.verify(token, serverConfig.auth.GD_JWT_SECRET);
       return true;
     } catch (e) {
       return false;

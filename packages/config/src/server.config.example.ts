@@ -28,6 +28,13 @@ const serverConfig: GDServerConfig = {
     GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME: 'YourSite',
     GD_DEFAULT_ADMIN_EMAIL: 'admin@youremail.net',
     GD_DEFAULT_ADMIN_PASSWORD: 'admin123'
+  },
+
+  database: {
+    GD_DB_NAME: 'generatedata',
+    GD_MYSQL_ROOT_USER: 'root',
+    GD_MYSQL_ROOT_PASSWORD: 'ChangeMeNow!',
+    GD_DB_PORT: 3306
   }
 };
 

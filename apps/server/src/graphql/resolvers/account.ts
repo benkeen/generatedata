@@ -1,8 +1,8 @@
-const dateFns = require('date-fns');
-const db = require('../../../database');
-const authUtils = require('../../utils/authUtils');
+import dateFns from 'date-fns';
+import db from '../../database';
+import * as authUtils from '../../utils/authUtils';
 
-const updateCurrentAccount = async (_root, args, { token, user }) => {
+export const updateCurrentAccount = async (_root, args, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
@@ -24,7 +24,7 @@ const updateCurrentAccount = async (_root, args, { token, user }) => {
   };
 };
 
-const updateAccount = async (_root, args, { token, user }) => {
+export const updateAccount = async (_root, args, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
@@ -73,7 +73,7 @@ const updateAccount = async (_root, args, { token, user }) => {
   };
 };
 
-const updatePassword = async (root, args, { token, user }) => {
+export const updatePassword = async (root, args, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
@@ -107,7 +107,7 @@ const updatePassword = async (root, args, { token, user }) => {
   };
 };
 
-const createUserAccount = async (root, args, { token, user }) => {
+export const createUserAccount = async (root, args, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
@@ -153,7 +153,7 @@ const createUserAccount = async (root, args, { token, user }) => {
   };
 };
 
-const deleteAccount = async (_root, { accountId }, { token, user }) => {
+export const deleteAccount = async (_root, { accountId }, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
@@ -171,12 +171,4 @@ const deleteAccount = async (_root, { accountId }, { token, user }) => {
   return {
     success: true
   };
-};
-
-module.exports = {
-  updateCurrentAccount,
-  updateAccount,
-  updatePassword,
-  createUserAccount,
-  deleteAccount
 };

@@ -195,6 +195,7 @@ export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 // this re-generates the preview panel data. This doesn't have to be called on boot-up because the preview data is
 // generated on the fly, saved in the store and rehydrated when the app loads
 export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = null): any => {
+  console.log('_______________ PREVIEW __________________');
   const generationWorker = coreUtils.getGenerationWorker('preview');
 
   return (dispatch: any, getState: any): any => {
@@ -213,8 +214,8 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
     }
 
     // here we DO need to generate the data independently of the final string in the appropriate export type format.
-    // That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
-    // far clearer to the end user that way
+    // That allows us to tease out what changes on each keystroke in the UI and only visually update specific fields -
+    // it's far clearer to the end user that way about what impact their changes have
     generationWorker.postMessage({
       action: 'ProcessDataTypesOnly',
       numResults: C.MAX_PREVIEW_ROWS,
@@ -230,9 +231,13 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
     });
 
     generationWorker.onmessage = (e: MessageEvent): void => {
+      console.log('on message payload: ', e.data.event, e);
+
       if (e.data.event !== 'DataTypesProcessed') {
         return;
       }
+      console.log('ok!');
+
       const { generatedData } = e.data.data;
 
       columns.forEach(({ id }, index: number) => {

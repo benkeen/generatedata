@@ -3,13 +3,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-// const envPath = path.resolve(__dirname, '../../.env');
-// require('dotenv').config({ path: envPath });
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env, argv) => {
   const mode = argv.mode === 'production' ? 'production' : 'development'; // TODO not working with package.json commands
@@ -33,9 +30,6 @@ module.exports = (env, argv) => {
         {
           test: /\.tsx?$/,
           use: [{ loader: 'ts-loader' }]
-          // exclude: [
-          // 	path.resolve(__dirname, '../cli')
-          // ]
         },
         {
           test: /\.js$/,
@@ -69,7 +63,6 @@ module.exports = (env, argv) => {
       new CopyPlugin({
         patterns: [{ from: './node_modules/@generatedata/plugins/dist/workers/*', to: 'dist/workers' }]
       })
-      // new Dotenv({ path: envPath })
     ],
 
     resolve: {
@@ -91,7 +84,6 @@ module.exports = (env, argv) => {
         stream: require.resolve('stream-browserify'),
         vm: require.resolve('vm-browserify'),
         zlib: require.resolve('browserify-zlib')
-        // process: require.resolve('process/browser')
       }
     },
 
@@ -108,8 +100,7 @@ module.exports = (env, argv) => {
     config.devServer = {
       historyApiFallback: true,
       static: path.join(__dirname, 'dist'),
-      // publicPath: 'http://localhost:9000',
-      port: process.env.GD_WEB_SERVER_PORT,
+      // port: process.env.GD_WEB_SERVER_PORT, // TODO - this'll require converting @generatedata/config to CJS, or revising this webpack file to use ESM/TS
       open: true
     };
 

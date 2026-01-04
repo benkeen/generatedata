@@ -7,6 +7,8 @@ const context: Worker = self as any;
 const workerCache: any = {};
 
 context.onmessage = (e: GenerationActions) => {
+  console.log('on message: ', e.data.action);
+
   if (e.data.action === 'Pause') {
     generatorUtils.pause();
   } else if (e.data.action === 'Abort') {
@@ -19,6 +21,8 @@ context.onmessage = (e: GenerationActions) => {
     generatorUtils.generateDataTypes({
       ...e.data,
       onBatchComplete: (data: DataTypeBatchGeneratedPayload) => {
+        console.log('???');
+        // PROBLEM HERE: this isn't being picked up when first selecting a new Data Type for a row
         context.postMessage({
           event: 'DataTypesProcessed',
           data

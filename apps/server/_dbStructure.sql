@@ -69,5 +69,5 @@ ALTER TABLE `accounts` MODIFY `account_id` mediumint(8) UNSIGNED NOT NULL AUTO_I
 /* the admin account info is populated from the values in your .env file the first time it boots up */
 INSERT INTO `accounts` (account_id, date_created, last_updated, account_type, account_status, first_name, last_name,
   email, password, country, region)
-VALUES (1, '2026-01-01 17:12:12', '2026-01-01 17:12:12', 'superuser', 'live', 'John', 'Smith',
-  'admin@youremail.net', '$2b$10$U0zwfRfpC/CUAB/jkfkZEOJOqWy3eRCEcQGhizU7LnZwD6OKvlI7W', '', '')
+VALUES (1, '2026-01-03 16:52:35', '2026-01-03 16:52:35', 'superuser', 'live', 'John', 'Smith',
+  'admin@youremail.net', '$2b$10$VnCd9lGp1GoZ/RkH5OzBa.XzFqK6uGCBG1J9EDD.jvukOhCoGO4e2', '', '')

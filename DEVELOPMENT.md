@@ -20,6 +20,8 @@ trade-off I had to make.
 TODO: clarify this. `turbo build` then `npm run dev` in the root should run the dev env. Running a _local_ environment
 without needing to alter the code would mean Docker.
 
+Gaps: changing the generation.worker.ts isn't updated during watch mode.
+
 - `git clone https://github.com/benkeen/generatedata.git` - this clones the repo to your local computer. On Mac, I'd
   suggest putting it in your `~` folder; I tried it in other locations but Docker ran into permissions issues.
 

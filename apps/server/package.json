@@ -3,7 +3,8 @@
   "description": "Server-side code for generatedata app",
   "private": true,
   "scripts": {
-    "build": "node scripts/build.js",
+    "build": "tsc",
+    "aaa": "node scripts/build.js",
     "purge": "npx rimraf node_modules dist .turbo",
     "start": "nodemon ./app.js"
   },
@@ -28,7 +29,9 @@
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/nanoid": "3.0.0",
+    "@types/nodemailer": "^7.0.4",
     "dotenv": "^8.2.0",
     "rimraf": "^6.0.1",
     "typescript": "^5.9.3"

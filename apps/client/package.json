@@ -154,7 +154,6 @@
     "concurrently": "^5.2.0",
     "copy-webpack-plugin": "^13.0.1",
     "cross-fetch": "^3.1.5",
-    "dotenv-webpack": "^6.0.0",
     "eslint": "^8.52.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",

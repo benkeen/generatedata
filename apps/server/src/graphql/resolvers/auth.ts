@@ -1,12 +1,12 @@
-const { OAuth2Client } = require('google-auth-library');
-const { nanoid } = require('nanoid');
-const db = require('../../database');
-const authUtils = require('../../utils/authUtils');
-const emailUtils = require('../../utils/emailUtils');
-const langUtils = require('../../utils/langUtils');
-const { passwordReset, passwordResetAccountExpired } = require('../../../emails');
+import { OAuth2Client } from 'google-auth-library';
+import { nanoid } from 'nanoid';
+import db from '../../database';
+import authUtils from '../../utils/authUtils';
+import emailUtils from '../../utils/emailUtils';
+import langUtils from '../../utils/langUtils';
+import { passwordReset, passwordResetAccountExpired } from '../../../emails';
 
-const getAccountNumRowsGenerated = async (accountId) => {
+export const getAccountNumRowsGenerated = async (accountId) => {
   const results = await db.dataSets.findAll({
     where: {
       accountId: accountId
@@ -17,7 +17,7 @@ const getAccountNumRowsGenerated = async (accountId) => {
   return results[0].dataValues.totalRowsGenerated || 0;
 };
 
-const login = async (_root, { email, password }, { res }) => {
+export const login = async (_root, { email, password }, { res }) => {
   const user = await db.accounts.findOne({
     attributes: [
       'accountId',
@@ -89,7 +89,7 @@ const login = async (_root, { email, password }, { res }) => {
   };
 };
 
-const sendPasswordResetEmail = async (root, { email }, { req }) => {
+export const sendPasswordResetEmail = async (root, { email }, { req }) => {
   const i18n = langUtils.getStrings(req.cookies.lang || 'en');
 
   const user = await db.accounts.findOne({
@@ -135,7 +135,7 @@ const sendPasswordResetEmail = async (root, { email }, { req }) => {
   return { success: true };
 };
 
-const loginWithGoogle = async (_root, { googleToken }, { res }) => {
+export const loginWithGoogle = async (_root, { googleToken }, { res }) => {
   const client = new OAuth2Client(process.env.GD_GOOGLE_AUTH_CLIENT_ID);
   let email = '';
   let profileImage = '';
@@ -217,7 +217,7 @@ const loginWithGoogle = async (_root, { googleToken }, { res }) => {
   };
 };
 
-const checkAndUpdateRefreshToken = async (_root, _args, { req, res }) => {
+export const checkAndUpdateRefreshToken = async (_root, _args, { req, res }) => {
   if (!req.cookies.refreshToken) {
     return { success: false };
   }
@@ -249,7 +249,7 @@ const checkAndUpdateRefreshToken = async (_root, _args, { req, res }) => {
   };
 };
 
-const logout = async (root, args, { req }) => {
+export const logout = async (root, args, { req }) => {
   if (!req.cookies.refreshToken) {
     return { success: true };
   }
@@ -272,7 +272,7 @@ const logout = async (root, args, { req }) => {
   return { success: true };
 };
 
-const getNewTokens = async (accountId, email, user) => {
+export const getNewTokens = async (accountId, email, user) => {
   const token = await authUtils.getJwt({ accountId, email });
 
   // store the refresh token in a cookie and stash in the db
@@ -288,13 +288,4 @@ const getNewTokens = async (accountId, email, user) => {
   const tokenExpiry = new Date().getTime() + expiryMsFromNow;
 
   return { token, tokenExpiry, refreshToken };
-};
-
-module.exports = {
-  login,
-  loginWithGoogle,
-  sendPasswordResetEmail,
-  checkAndUpdateRefreshToken,
-  logout,
-  getAccountNumRowsGenerated
 };

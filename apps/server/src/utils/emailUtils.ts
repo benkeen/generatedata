@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { serverConfig } from '@generatedata/config';
 
 export const sendEmail = async (recipientEmail: string, subject: string, textContent: string, htmlContent: string) => {
   const transporter = nodemailer.createTransport({
@@ -9,7 +10,7 @@ export const sendEmail = async (recipientEmail: string, subject: string, textCon
       type: 'OAuth2',
       user: getAdminEmail(),
       serviceClient: process.env.GD_EMAIL_OAUTH_SERVICE_CLIENT_ID,
-      privateKey: process.env.GD_EMAIL_OAUTH_PRIVATE_KEY.replace(/\\n/g, '\n')
+      privateKey: serverConfig.email.GD_EMAIL_OAUTH_PRIVATE_KEY.replace(/\\n/g, '\n')
     }
   });
 

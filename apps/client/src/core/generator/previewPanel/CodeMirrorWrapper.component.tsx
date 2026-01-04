@@ -67,6 +67,8 @@ export default CodeMirrorWrapper;
 
 export const generatePreviewString = (props: any): Promise<any> => {
   const { previewRows, columns, exportTypeSettings, exportTypeWorkerUrl } = props;
+
+  console.log('_______________ GENERATE PREVIEW STRING __________________');
   const generationWorker = coreUtils.getGenerationWorker('preview');
 
   return new Promise((resolve) => {

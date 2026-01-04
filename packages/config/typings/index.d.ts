@@ -52,4 +52,10 @@ export type GDServerConfig = {
     GD_DEFAULT_ADMIN_EMAIL: string;
     GD_DEFAULT_ADMIN_PASSWORD: string;
   };
+  database: {
+    GD_DB_NAME: string;
+    GD_MYSQL_ROOT_USER: string;
+    GD_MYSQL_ROOT_PASSWORD: string;
+    GD_DB_PORT: number;
+  };
 };
