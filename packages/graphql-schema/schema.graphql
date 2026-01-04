@@ -58,7 +58,7 @@ type Account {
   region: String
   numRowsGenerated: Int
   profileImage: String
-  errorStatus: Error
+  errorType: ErrorType
 }
 
 type Setting {
@@ -109,7 +109,7 @@ type DataSetResults {
 type AccountsResults {
   results: [Account]
   totalCount: Int
-  errorStatus: Error
+  errorType: ErrorType
 }
 
 type AuthResponse {
@@ -138,10 +138,6 @@ type GeneralResponse {
   error: String
 }
 
-type Error {
-  errorStatus: ErrorStatus
-}
-
 type SavedDataSetResponse {
   success: Boolean
   error: String
@@ -166,6 +162,6 @@ enum SortDir {
   DESC
 }
 
-enum ErrorStatus {
+enum ErrorType {
   permissionDenied
 }

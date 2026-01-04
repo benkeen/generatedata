@@ -1,24 +1,16 @@
 import { OAuth2Client } from 'google-auth-library';
 import { nanoid } from 'nanoid';
-import { db, sequelize } from '../../database';
+import { db } from '../../database';
+import { clientConfig } from '@generatedata/config';
+import { RequestContext } from 'types/server';
+import { getAccountNumRowsGenerated } from './helpers';
+import { MutationResolvers } from '@generatedata/graphql-schema';
 import * as authUtils from '../../utils/authUtils';
 import * as emailUtils from '../../utils/emailUtils';
 import * as langUtils from '../../utils/langUtils';
 import { passwordReset, passwordResetAccountExpired } from '../../emails';
-import { clientConfig } from '@generatedata/config';
 
-export const getAccountNumRowsGenerated = async (accountId: number) => {
-  const results = await db.dataSets.findAll({
-    where: {
-      accountId: accountId
-    },
-    attributes: [[sequelize.fn('sum', sequelize.col('num_rows_generated')), 'totalRowsGenerated']]
-  });
-
-  return results[0].dataValues.totalRowsGenerated || 0;
-};
-
-export const login = async (_root, { email, password }, { res }) => {
+export const login: MutationResolvers['login'] = async (_root, { email, password }, { res }: RequestContext) => {
   const user = await db.accounts.findOne({
     attributes: [
       'accountId',
@@ -90,7 +82,7 @@ export const login = async (_root, { email, password }, { res }) => {
   };
 };
 
-export const sendPasswordResetEmail = async (_root, { email }, { req }) => {
+export const sendPasswordResetEmail: MutationResolvers['sendPasswordResetEmail'] = async (_root, { email }, { req }) => {
   const i18n = langUtils.getStrings(req.cookies.lang || 'en');
 
   const user = await db.accounts.findOne({
@@ -136,10 +128,10 @@ export const sendPasswordResetEmail = async (_root, { email }, { req }) => {
   return { success: true };
 };
 
-export const loginWithGoogle = async (_root, { googleToken }, { res }) => {
+export const loginWithGoogle: MutationResolvers['loginWithGoogle'] = async (_root, { googleToken }, { res }) => {
   const client = new OAuth2Client(process.env.GD_GOOGLE_AUTH_CLIENT_ID);
-  let email = '';
-  let profileImage = '';
+  let email: string | undefined = '';
+  let profileImage: string | undefined = '';
 
   async function verify() {
     const ticket = await client.verifyIdToken({
@@ -148,8 +140,8 @@ export const loginWithGoogle = async (_root, { googleToken }, { res }) => {
     });
     const payload = ticket.getPayload();
 
-    email = payload.email;
-    profileImage = payload.picture;
+    email = payload?.email;
+    profileImage = payload?.picture;
   }
 
   try {
@@ -218,7 +210,7 @@ export const loginWithGoogle = async (_root, { googleToken }, { res }) => {
   };
 };
 
-export const checkAndUpdateRefreshToken = async (_root, _args, { req, res }) => {
+export const checkAndUpdateRefreshToken: MutationResolvers['checkAndUpdateRefreshToken'] = async (_root, _args, { req, res }) => {
   if (!req.cookies.refreshToken) {
     return { success: false };
   }

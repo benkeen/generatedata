@@ -1,7 +1,8 @@
-import db from '../../database';
+import { MutationResolvers } from '@generatedata/graphql-schema';
+import { db } from '../../database';
 import * as authUtils from '../../utils/authUtils';
 
-export const saveNewDataSet = async (_root, { dataSetName, content }, { token, user }) => {
+export const saveNewDataSet: MutationResolvers['saveNewDataSet'] = async (_root, { dataSetName, content }, { token, user }) => {
   authUtils.authenticate(token);
 
   const { accountId } = user;
@@ -29,11 +30,11 @@ export const saveNewDataSet = async (_root, { dataSetName, content }, { token, u
   };
 };
 
-export const renameDataSet = async (_root, { dataSetId, dataSetName }, { token, user }) => {
+export const renameDataSet: MutationResolvers['renameDataSet'] = async (_root, { dataSetId, dataSetName }, { token, user }) => {
   authUtils.authenticate(token);
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
-  if (dataSet.accountId !== user.accountId) {
+  if (!dataSet || dataSet.accountId !== user.accountId) {
     return {
       success: false
     };
@@ -46,11 +47,11 @@ export const renameDataSet = async (_root, { dataSetId, dataSetName }, { token, 
   };
 };
 
-export const saveDataSet = async (_root, { dataSetId, content }, { token, user }) => {
+export const saveDataSet: MutationResolvers['saveDataSet'] = async (_root, { dataSetId, content }, { token, user }) => {
   authUtils.authenticate(token);
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
-  if (dataSet.accountId !== user.accountId) {
+  if (!dataSet || dataSet.accountId !== user.accountId) {
     return {
       success: false
     };
@@ -70,13 +71,13 @@ export const saveDataSet = async (_root, { dataSetId, content }, { token, user }
   };
 };
 
-export const deleteDataSet = async (_root, { dataSetId }, { token, user }) => {
+export const deleteDataSet: MutationResolvers['deleteDataSet'] = async (_root, { dataSetId }, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
-  if (dataSet.accountId !== user.accountId) {
+  if (!dataSet || dataSet.accountId !== user.accountId) {
     return {
       success: false
     };
@@ -90,7 +91,11 @@ export const deleteDataSet = async (_root, { dataSetId }, { token, user }) => {
   };
 };
 
-export const updateDataSetGenerationCount = async (_root, { dataSetId, generatedRows }, { token, user }) => {
+export const updateDataSetGenerationCount: MutationResolvers['updateDataSetGenerationCount'] = async (
+  _root,
+  { dataSetId, generatedRows },
+  { token, user }
+) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }

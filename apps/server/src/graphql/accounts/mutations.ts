@@ -1,5 +1,5 @@
 import dateFns from 'date-fns';
-import db from '../../database';
+import { db } from '../../database';
 import * as authUtils from '../../utils/authUtils';
 
 export const updateCurrentAccount = async (_root, args, { token, user }) => {

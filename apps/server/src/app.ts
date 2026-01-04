@@ -6,6 +6,7 @@ import resolvers from './graphql/resolvers';
 import cookieParser from 'cookie-parser';
 import * as authUtils from './utils/authUtils';
 import { clientConfig } from '@generatedata/config';
+import { RequestContext } from '../types/server';
 
 export const typeDefs = `#graphql
   ${graphqlSchema}
@@ -22,7 +23,7 @@ app.use(
   })
 );
 
-const server = new ApolloServer({
+const server = new ApolloServer<RequestContext>({
   typeDefs,
   resolvers
   // context: ({ req, res }) => {
@@ -43,8 +44,10 @@ const server = new ApolloServer({
   //   };
   // }
 });
-// await server.start();
+(async () => {
+  await server.start();
+})();
 
-app.listen(process.env.GD_API_SERVER_PORT, () => {
-  console.log('Server started on port ' + process.env.GD_API_SERVER_PORT);
+app.listen(clientConfig.api.GD_API_SERVER_PORT, () => {
+  console.log('Server started on port ' + clientConfig.api.GD_API_SERVER_PORT);
 });
