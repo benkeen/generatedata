@@ -35,9 +35,3 @@ export const getVendorLoginButtons = (): React.ReactNode[] => {
 
   return buttons;
 };
-
-const saltRounds = 10;
-export const getPasswordHash = async (plainTextPassword) => {
-  const salt = await bcrypt.genSalt(saltRounds);
-  return await bcrypt.hash(plainTextPassword, salt);
-};

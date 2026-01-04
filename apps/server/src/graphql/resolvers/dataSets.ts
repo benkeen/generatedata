@@ -101,13 +101,13 @@ export const updateDataSetGenerationCount = async (_root, { dataSetId, generated
   }
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
-  const { accountId, numRowsGenerated } = dataSet.dataValues;
+  const { accountId, numRowsGenerated } = dataSet!.dataValues;
 
   if (user.accountId !== accountId) {
     return { success: false };
   }
 
-  await dataSet.update({
+  await dataSet!.update({
     numRowsGenerated: numRowsGenerated + addRows
   });
 

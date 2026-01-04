@@ -1,11 +1,12 @@
-import db from '../database';
+import { QueryTypes } from 'sequelize';
+import { db, sequelize } from '../database';
 import * as authUtils from '../utils/authUtils';
 import * as authResolvers from './resolvers/auth';
 import * as accountResolvers from './resolvers/account';
 import * as dataSetResolvers from './resolvers/dataSets';
 import { type MutationResolvers } from '@generatedata/graphql-schema';
 
-export const query = {
+const query = {
   accounts: async (_root, args, { token, user }) => {
     authUtils.authenticate(token);
 
@@ -42,7 +43,7 @@ export const query = {
       statusClause = `AND account_status = '${cleanStatus}'`;
     }
 
-    const [results] = await db.sequelize.query(`
+    const [results] = await sequelize.query(`
 				SELECT *
 				FROM accounts
 				WHERE created_by = ${accountId} ${filterClause} ${statusClause}
@@ -51,13 +52,13 @@ export const query = {
 				OFFSET ${offset} 
 			`);
 
-    const [totalCountQuery] = await db.sequelize.query(
+    const [totalCountQuery] = await sequelize.query(
       `
 				SELECT count(*) as c
 				FROM accounts
 				WHERE created_by = ${accountId} ${filterClause} ${statusClause}
 			`,
-      { raw: true, type: db.sequelize.QueryTypes.SELECT }
+      { raw: true, type: QueryTypes.SELECT }
     );
 
     const updatedResults = results.map(async (row) => {
@@ -72,13 +73,13 @@ export const query = {
       if (row.date_expires && row.account_status !== 'expired' && row.account_status !== 'disabled') {
         const accountExpired = authUtils.accountExpired(new Date(row.date_expires));
         if (accountExpired) {
-          await db.sequelize.query(
+          await sequelize.query(
             `
 							UPDATE accounts
 							SET account_status = 'expired'
 							WHERE account_id = ${accountId}
 						`,
-            { raw: true, type: db.sequelize.QueryTypes.UPDATE }
+            { raw: true, type: QueryTypes.UPDATE }
           );
 
           accountStatus = 'expired';
@@ -136,7 +137,7 @@ export const query = {
     };
 
     const { accountId } = user;
-    const [results] = await db.sequelize.query(`
+    const [results] = await sequelize.query(`
 				SELECT d.dataset_name,
 				    d.dataset_id AS dataSetId,
 				    d.num_rows_generated as numRowsGenerated,
@@ -157,13 +158,13 @@ export const query = {
 				OFFSET ${offset}
 			`);
 
-    const [totalCountQuery] = await db.sequelize.query(
+    const [totalCountQuery] = await sequelize.query(
       `
 				SELECT count(*) as c
 				FROM datasets
 				WHERE account_id = ${accountId} 
 			`,
-      { raw: true, type: db.sequelize.QueryTypes.SELECT }
+      { raw: true, type: QueryTypes.SELECT }
     );
 
     return {
@@ -181,7 +182,7 @@ export const query = {
     };
   },
 
-  dataSetHistory: async (root, args, { token, user }) => {
+  dataSetHistory: async (_root, args, { token, user }) => {
     const { dataSetId, limit, offset } = args;
 
     authUtils.authenticate(token);
@@ -201,7 +202,7 @@ export const query = {
       };
     }
 
-    const [results] = await db.sequelize.query(`
+    const [results] = await sequelize.query(`
 				SELECT *
 				FROM dataset_history dh
 				WHERE dataset_id = ${dataSetId}
@@ -210,13 +211,13 @@ export const query = {
 				OFFSET ${offset}
 			`);
 
-    const [totalCountQuery] = await db.sequelize.query(
+    const [totalCountQuery] = await sequelize.query(
       `
 				SELECT count(*) as c
 				FROM dataset_history
 				WHERE dataset_id = ${dataSetId} 
 			`,
-      { raw: true, type: db.sequelize.QueryTypes.SELECT }
+      { raw: true, type: QueryTypes.SELECT }
     );
 
     return {
@@ -231,7 +232,7 @@ export const query = {
   }
 };
 
-export const mutation: MutationResolvers = {
+const mutation: MutationResolvers = {
   // authentication resolvers
   login: authResolvers.login,
   loginWithGoogle: authResolvers.loginWithGoogle,
@@ -252,4 +253,9 @@ export const mutation: MutationResolvers = {
   saveDataSet: dataSetResolvers.saveDataSet,
   deleteDataSet: dataSetResolvers.deleteDataSet,
   updateDataSetGenerationCount: dataSetResolvers.updateDataSetGenerationCount
+};
+
+export default {
+  Query: query,
+  Mutation: mutation
 };

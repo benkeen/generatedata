@@ -51,3 +51,9 @@ export const accountExpired = (expiryDate: Date | null) => {
 
   return expiryDateMs < nowMs;
 };
+
+const saltRounds = 10;
+export const getPasswordHash = async (plainTextPassword: string) => {
+  const salt = await bcrypt.genSalt(saltRounds);
+  return await bcrypt.hash(plainTextPassword, salt);
+};

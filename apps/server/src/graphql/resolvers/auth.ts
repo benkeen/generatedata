@@ -1,17 +1,18 @@
 import { OAuth2Client } from 'google-auth-library';
 import { nanoid } from 'nanoid';
-import db from '../../database';
+import { db, sequelize } from '../../database';
 import * as authUtils from '../../utils/authUtils';
 import * as emailUtils from '../../utils/emailUtils';
 import * as langUtils from '../../utils/langUtils';
 import { passwordReset, passwordResetAccountExpired } from '../../emails';
+import { clientConfig } from '@generatedata/config';
 
-export const getAccountNumRowsGenerated = async (accountId) => {
+export const getAccountNumRowsGenerated = async (accountId: number) => {
   const results = await db.dataSets.findAll({
     where: {
       accountId: accountId
     },
-    attributes: [[db.sequelize.fn('sum', db.sequelize.col('num_rows_generated')), 'totalRowsGenerated']]
+    attributes: [[sequelize.fn('sum', sequelize.col('num_rows_generated')), 'totalRowsGenerated']]
   });
 
   return results[0].dataValues.totalRowsGenerated || 0;
@@ -89,7 +90,7 @@ export const login = async (_root, { email, password }, { res }) => {
   };
 };
 
-export const sendPasswordResetEmail = async (root, { email }, { req }) => {
+export const sendPasswordResetEmail = async (_root, { email }, { req }) => {
   const i18n = langUtils.getStrings(req.cookies.lang || 'en');
 
   const user = await db.accounts.findOne({
@@ -284,7 +285,8 @@ export const getNewTokens = async (accountId, email, user) => {
   // sent along with any subsequent requests to the server - including the all-important refreshToken request. This
   // info enables the front-end code to transparently extend the lifespan of the living token (`token`) just by making
   // requests
-  const expiryMsFromNow = process.env.GD_JWT_LIFESPAN_MINS * 60 * 1000;
+
+  const expiryMsFromNow = clientConfig.auth.GD_JWT_LIFESPAN_MINS * 60 * 1000;
   const tokenExpiry = new Date().getTime() + expiryMsFromNow;
 
   return { token, tokenExpiry, refreshToken };

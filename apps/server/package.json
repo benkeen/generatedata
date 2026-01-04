@@ -9,15 +9,17 @@
     "start": "nodemon ./app.js"
   },
   "dependencies": {
+    "@apollo/server": "^5.2.0",
+    "@as-integrations/express5": "^1.1.2",
     "@generatedata/config": "workspace:*",
     "@generatedata/i18n": "workspace:*",
     "@generatedata/types": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@generatedata/graphql-schema": "workspace:*",
-    "apollo-server-express": "^3.13.0",
     "bcryptjs": "^3.0.3",
     "codemirror": "^5.58.2",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "date-fns": "^2.17.0",
     "express": "^5.2.1",
     "google-auth-library": "^10.5.0",
@@ -29,6 +31,8 @@
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/nanoid": "3.0.0",
     "@types/nodemailer": "^7.0.4",

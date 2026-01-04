@@ -25,18 +25,24 @@ const sequelize = new Sequelize(
   }
 );
 
-const db = {};
-[accounts, dataSets, dataSetHistory, settings].forEach((model) => {
-  const seqModel = model(sequelize, Sequelize);
-  db[seqModel.name] = seqModel;
-});
+type DBType = {
+  // sequelize: Sequelize;
+  // Sequelize: typeof Sequelize;
+  accounts: ReturnType<typeof accounts>;
+  dataSets: ReturnType<typeof dataSets>;
+  dataSetHistory: ReturnType<typeof dataSetHistory>;
+  settings: ReturnType<typeof settings>;
+};
 
-// define our associations
+const db: DBType = {} as DBType;
+db.accounts = accounts(sequelize);
+db.dataSets = dataSets(sequelize);
+db.dataSetHistory = dataSetHistory(sequelize);
+db.settings = settings(sequelize);
+
 db.dataSets.hasMany(db.dataSetHistory, { foreignKey: 'dataSetId' });
 db.dataSetHistory.belongsTo(db.dataSets);
 
-// TODO why?!
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+// db.Sequelize = Sequelize;
 
-export default db;
+export { db, sequelize };
