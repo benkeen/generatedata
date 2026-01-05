@@ -109,18 +109,6 @@ export const accounts: QueryResolvers['accounts'] = async (_root, args, { token,
   };
 };
 
-export const account: QueryResolvers['account'] = async (_root, _args, { user, token }) => {
-  authUtils.authenticate(token);
-
-  // TODO this may fail
-  const userRecord = await db.accounts.findByPk(user.accountId, { plain: true });
-  if (!userRecord || userRecord.dataValues.accountType !== 'superuser') {
-    return null;
-  }
-
-  return userRecord.dataValues;
-};
-
 export const getAccountNumRowsGenerated = async (accountId: number) => {
   const results = await db.dataSets.findAll({
     where: {

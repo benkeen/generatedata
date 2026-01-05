@@ -39,6 +39,9 @@ importers:
       '@generatedata/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
+      '@generatedata/server':
+        specifier: workspace:*
+        version: link:../server
       '@mui/icons-material':
         specifier: ^7.3.5
         version: 7.3.5(@mui/material@7.3.5(@emotion/react@11.14.0(@types/react@18.3.27)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.27)(react@18.3.1))(@types/react@18.3.27)(react@18.3.1))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.27)(react@18.3.1)
@@ -187,9 +190,6 @@ importers:
       '@generatedata/config':
         specifier: workspace:*
         version: link:../../packages/config
-      '@generatedata/graphql-schema':
-        specifier: workspace:*
-        version: link:../../packages/graphql-schema
       '@generatedata/plugins':
         specifier: workspace:*
         version: link:../../packages/plugins
@@ -433,9 +433,6 @@ importers:
       '@generatedata/config':
         specifier: workspace:*
         version: link:../../packages/config
-      '@generatedata/graphql-schema':
-        specifier: workspace:*
-        version: link:../../packages/graphql-schema
       '@generatedata/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
@@ -466,6 +463,9 @@ importers:
       google-auth-library:
         specifier: ^10.5.0
         version: 10.5.0
+      graphql:
+        specifier: ^16.12.0
+        version: 16.12.0
       jsonwebtoken:
         specifier: ^9.0.3
         version: 9.0.3
@@ -678,22 +678,6 @@ importers:
       storybook-react-rsbuild:
         specifier: ^3.1.0
         version: 3.1.0(@rsbuild/core@1.6.14)(@rspack/core@1.6.7(@swc/helpers@0.5.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@2.79.2)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.9.3)(webpack@5.103.0(esbuild@0.25.0))
-
-  packages/graphql-schema:
-    dependencies:
-      graphql:
-        specifier: ^16.12.0
-        version: 16.12.0
-    devDependencies:
-      '@eddeee888/gcg-typescript-resolver-files':
-        specifier: ^0.15.0
-        version: 0.15.0(graphql@16.12.0)
-      '@graphql-codegen/cli':
-        specifier: ^6.1.0
-        version: 6.1.0(@parcel/watcher@2.5.1)(@types/node@24.10.1)(graphql@16.12.0)(typescript@5.9.3)
-      rimraf:
-        specifier: ^6.0.1
-        version: 6.0.1
 
   packages/i18n:
     devDependencies:
