@@ -2,7 +2,6 @@ import { QueryTypes } from 'sequelize';
 import { db, sequelize } from '../../database';
 import * as authUtils from '../../utils/authUtils';
 import { ErrorType, QueryResolvers } from '@generatedata/graphql-schema';
-import * as authResolvers from '../auth/queries';
 
 export const accounts: QueryResolvers['accounts'] = async (_root, args, { token, user }) => {
   authUtils.authenticate(token);
@@ -67,7 +66,7 @@ export const accounts: QueryResolvers['accounts'] = async (_root, args, { token,
 
     // not great, but info is needed. May be a better idea to denormalize the DB and store this on the
     // account row
-    const numRowsGenerated = await authResolvers.getAccountNumRowsGenerated(accountId);
+    const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
     let accountStatus = row.account_status;
 
     // update any accounts that have an expiry date set and are now expired
@@ -76,10 +75,10 @@ export const accounts: QueryResolvers['accounts'] = async (_root, args, { token,
       if (accountExpired) {
         await sequelize.query(
           `
-							UPDATE accounts
-							SET account_status = 'expired'
-							WHERE account_id = ${accountId}
-						`,
+            UPDATE accounts
+            SET account_status = 'expired'
+            WHERE account_id = ${accountId}
+          `,
           { raw: true, type: QueryTypes.UPDATE }
         );
 
@@ -120,4 +119,16 @@ export const account: QueryResolvers['account'] = async (_root, _args, { user, t
   }
 
   return userRecord.dataValues;
+};
+
+export const getAccountNumRowsGenerated = async (accountId: number) => {
+  const results = await db.dataSets.findAll({
+    where: {
+      accountId: accountId
+    },
+    attributes: [[sequelize.fn('sum', sequelize.col('num_rows_generated')), 'totalRowsGenerated']]
+  });
+
+  // @ts-ignore
+  return results[0].dataValues.totalRowsGenerated;
 };

@@ -1,2 +1,2 @@
-export * from './passwordReset';
-export * from './accountExpired';
+export * from './passwordReset.js';
+export * from './accountExpired.js';

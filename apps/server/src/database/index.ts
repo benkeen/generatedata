@@ -26,8 +26,6 @@ const sequelize = new Sequelize(
 );
 
 type DBType = {
-  // sequelize: Sequelize;
-  // Sequelize: typeof Sequelize;
   accounts: ReturnType<typeof accounts>;
   dataSets: ReturnType<typeof dataSets>;
   dataSetHistory: ReturnType<typeof dataSetHistory>;

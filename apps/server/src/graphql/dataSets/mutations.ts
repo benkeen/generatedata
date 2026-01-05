@@ -67,7 +67,7 @@ export const saveDataSet: MutationResolvers['saveDataSet'] = async (_root, { dat
   return {
     success: true,
     dataSetId,
-    savedDate: dateCreated
+    savedDate: String(dateCreated)
   };
 };
 
@@ -101,7 +101,7 @@ export const updateDataSetGenerationCount: MutationResolvers['updateDataSetGener
   }
 
   let addRows = generatedRows;
-  if (/\D/.test(generatedRows)) {
+  if (/\D/.test(generatedRows.toString())) {
     addRows = 0;
   }
 

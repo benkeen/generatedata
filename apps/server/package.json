@@ -6,7 +6,7 @@
     "build": "tsc",
     "aaa": "node scripts/build.js",
     "purge": "npx rimraf node_modules dist .turbo",
-    "start": "nodemon ./app.js"
+    "start": "nodemon ./dist/app.js"
   },
   "dependencies": {
     "@apollo/server": "^5.2.0",
@@ -25,7 +25,7 @@
     "google-auth-library": "^10.5.0",
     "jsonwebtoken": "^9.0.3",
     "mysql2": "^3.9.8",
-    "nanoid": "^5.1.6",
+    "nanoid": "^3.3.4",
     "nodemailer": "^7.0.12",
     "nodemon": "^3.1.11",
     "sequelize": "^6.37.7"

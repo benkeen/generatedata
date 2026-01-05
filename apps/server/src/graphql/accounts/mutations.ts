@@ -1,7 +1,7 @@
 import dateFns from 'date-fns';
 import { db } from '../../database';
 import * as authUtils from '../../utils/authUtils';
-import { MutationResolvers } from '@generatedata/graphql-schema';
+import { AccountStatus, MutationResolvers } from '@generatedata/graphql-schema';
 
 export const updateCurrentAccount: MutationResolvers['updateCurrentAccount'] = async (_root, args, { token, user }) => {
   if (!authUtils.authenticate(token)) {
@@ -45,18 +45,25 @@ export const updateAccount: MutationResolvers['updateAccount'] = async (_root, a
   if (!currentUser || currentUser.dataValues.accountType !== 'superuser') {
     return {
       success: false,
-      errorStatus: 'PermissionDenied'
+      errorType: 'PermissionDenied'
     };
   }
 
-  let validatedAccountStatus = accountStatus;
+  if (!userRecord) {
+    return {
+      success: false,
+      errorType: 'NotFound'
+    };
+  }
+
+  let validatedAccountStatus = accountStatus as AccountStatus;
 
   // "disabled" trumps "expired", otherwise the UI looks weird (you disable something but it never appears that way)
   if (expiryDate && validatedAccountStatus !== 'disabled') {
     const now = Number(dateFns.format(new Date(), 't'));
 
-    if (expiryDate < now) {
-      validatedAccountStatus = 'expired';
+    if (parseInt(expiryDate, 10) < now) {
+      validatedAccountStatus = AccountStatus.Expired;
     }
   }
 
@@ -87,6 +94,12 @@ export const updatePassword: MutationResolvers['updatePassword'] = async (_root,
 
   const { accountId } = user;
   const userRecord = await db.accounts.findByPk(accountId);
+  if (!userRecord) {
+    return {
+      success: false
+    };
+  }
+
   const { currentPassword, newPassword } = args;
 
   const isCorrect = await authUtils.isValidPassword(currentPassword, userRecord.dataValues.password);
@@ -114,13 +127,13 @@ export const updatePassword: MutationResolvers['updatePassword'] = async (_root,
   };
 };
 
-export const createUserAccount = async (root, args, { token, user }) => {
+export const createUserAccount: MutationResolvers['createUserAccount'] = async (_root, args, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
 
   const userRecord = await db.accounts.findByPk(user.accountId);
-  if (userRecord.dataValues.accountType !== 'superuser') {
+  if (!userRecord || userRecord.dataValues.accountType !== 'superuser') {
     return {
       success: false,
       errorStatus: 'PermissionDenied'
@@ -160,13 +173,13 @@ export const createUserAccount = async (root, args, { token, user }) => {
   };
 };
 
-export const deleteAccount = async (_root, { accountId }, { token, user }) => {
+export const deleteAccount: MutationResolvers['deleteAccount'] = async (_root, { accountId }, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
 
   const userRecord = await db.accounts.findByPk(user.accountId);
-  if (userRecord.dataValues.accountType !== 'superuser') {
+  if (!userRecord || userRecord.dataValues.accountType !== 'superuser') {
     return {
       success: false,
       errorStatus: 'PermissionDenied'

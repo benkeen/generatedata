@@ -40,7 +40,7 @@ type Mutation {
   saveDataSet(dataSetId: ID!, content: String!): SavedDataSetResponse
   renameDataSet(dataSetId: ID!, dataSetName: String!): GeneralResponse
   deleteDataSet(dataSetId: ID!): GeneralResponse
-  updateDataSetGenerationCount(dataSetId: ID, generatedRows: Int): GeneralResponse
+  updateDataSetGenerationCount(dataSetId: ID!, generatedRows: Int!): GeneralResponse
 }
 
 type Account {

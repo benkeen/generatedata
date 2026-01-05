@@ -3,12 +3,12 @@ import { nanoid } from 'nanoid';
 import { db } from '../../database';
 import { clientConfig } from '@generatedata/config';
 import { RequestContext } from 'types/server';
-import { getAccountNumRowsGenerated } from './helpers';
 import { MutationResolvers } from '@generatedata/graphql-schema';
 import * as authUtils from '../../utils/authUtils';
 import * as emailUtils from '../../utils/emailUtils';
 import * as langUtils from '../../utils/langUtils';
-import { passwordReset, passwordResetAccountExpired } from '../../emails';
+import { getAccountNumRowsGenerated } from '../accounts/queries';
+import { passwordReset, passwordResetAccountExpired } from '../../emails/index';
 
 export const login: MutationResolvers['login'] = async (_root, { email, password }, { res }: RequestContext) => {
   const user = await db.accounts.findOne({
