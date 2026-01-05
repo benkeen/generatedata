@@ -125,10 +125,8 @@ type Mutation {
 type Query {
   account: Account
   accounts(filterStr: String, limit: Int, offset: Int, sortCol: String, sortDir: SortDir, status: String): AccountsResults
-  dataSet(id: ID!): DataSet
   dataSetHistory(dataSetId: ID!, limit: Int, offset: Int): DataSetHistoryResults
   dataSets(limit: Int, offset: Int, sortCol: String, sortDir: SortDir): DataSetResults
-  settings: [Setting]
 }
 
 type SavedDataSetResponse {
@@ -136,11 +134,6 @@ type SavedDataSetResponse {
   error: String
   savedDate: String
   success: Boolean
-}
-
-type Setting {
-  settingName: String
-  settingValue: String
 }
 
 enum SortDir {

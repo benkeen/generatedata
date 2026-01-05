@@ -242,10 +242,8 @@ export type Query = {
   __typename?: 'Query';
   account?: Maybe<Account>;
   accounts?: Maybe<AccountsResults>;
-  dataSet?: Maybe<DataSet>;
   dataSetHistory?: Maybe<DataSetHistoryResults>;
   dataSets?: Maybe<DataSetResults>;
-  settings?: Maybe<Array<Maybe<Setting>>>;
 };
 
 
@@ -256,11 +254,6 @@ export type QueryaccountsArgs = {
   sortCol?: InputMaybe<Scalars['String']['input']>;
   sortDir?: InputMaybe<SortDir>;
   status?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QuerydataSetArgs = {
-  id: Scalars['ID']['input'];
 };
 
 
@@ -284,12 +277,6 @@ export type SavedDataSetResponse = {
   error?: Maybe<Scalars['String']['output']>;
   savedDate?: Maybe<Scalars['String']['output']>;
   success?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type Setting = {
-  __typename?: 'Setting';
-  settingName?: Maybe<Scalars['String']['output']>;
-  settingValue?: Maybe<Scalars['String']['output']>;
 };
 
 export type SortDir =
@@ -388,7 +375,6 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<Record<PropertyKey, never>>;
   Query: ResolverTypeWrapper<Record<PropertyKey, never>>;
   SavedDataSetResponse: ResolverTypeWrapper<SavedDataSetResponse>;
-  Setting: ResolverTypeWrapper<Setting>;
   SortDir: ResolverTypeWrapper<'ASC' | 'DESC'>;
 };
 
@@ -410,7 +396,6 @@ export type ResolversParentTypes = {
   Mutation: Record<PropertyKey, never>;
   Query: Record<PropertyKey, never>;
   SavedDataSetResponse: SavedDataSetResponse;
-  Setting: Setting;
 };
 
 export type AccountResolvers<ContextType = any, ParentType extends ResolversParentTypes['Account'] = ResolversParentTypes['Account']> = {
@@ -530,10 +515,8 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   account?: Resolver<Maybe<ResolversTypes['Account']>, ParentType, ContextType>;
   accounts?: Resolver<Maybe<ResolversTypes['AccountsResults']>, ParentType, ContextType, Partial<QueryaccountsArgs>>;
-  dataSet?: Resolver<Maybe<ResolversTypes['DataSet']>, ParentType, ContextType, RequireFields<QuerydataSetArgs, 'id'>>;
   dataSetHistory?: Resolver<Maybe<ResolversTypes['DataSetHistoryResults']>, ParentType, ContextType, RequireFields<QuerydataSetHistoryArgs, 'dataSetId'>>;
   dataSets?: Resolver<Maybe<ResolversTypes['DataSetResults']>, ParentType, ContextType, Partial<QuerydataSetsArgs>>;
-  settings?: Resolver<Maybe<Array<Maybe<ResolversTypes['Setting']>>>, ParentType, ContextType>;
 };
 
 export type SavedDataSetResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['SavedDataSetResponse'] = ResolversParentTypes['SavedDataSetResponse']> = {
@@ -541,11 +524,6 @@ export type SavedDataSetResponseResolvers<ContextType = any, ParentType extends 
   error?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   savedDate?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   success?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
-};
-
-export type SettingResolvers<ContextType = any, ParentType extends ResolversParentTypes['Setting'] = ResolversParentTypes['Setting']> = {
-  settingName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  settingValue?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
 
 export type SortDirResolvers = EnumResolverSignature<{ ASC?: any, DESC?: any }, ResolversTypes['SortDir']>;
@@ -566,7 +544,6 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   SavedDataSetResponse?: SavedDataSetResponseResolvers<ContextType>;
-  Setting?: SettingResolvers<ContextType>;
   SortDir?: SortDirResolvers;
 };
 

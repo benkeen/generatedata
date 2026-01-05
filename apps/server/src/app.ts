@@ -1,16 +1,13 @@
 import { ApolloServer } from '@apollo/server';
 import express from 'express';
 import cors from 'cors';
-import * as graphqlSchema from '@generatedata/graphql-schema';
-import resolvers from './graphql/resolvers';
+// import * as graphqlSchema from '@generatedata/graphql-schema';
 import cookieParser from 'cookie-parser';
-import * as authUtils from './utils/authUtils';
+// import * as authUtils from './utils/authUtils';
 import { clientConfig } from '@generatedata/config';
 import { RequestContext } from '../types/server';
-
-export const typeDefs = `#graphql
-  ${graphqlSchema}
-`;
+import { typeDefs } from './schema/typeDefs.generated';
+import { resolvers } from './schema/resolvers.generated';
 
 const app = express();
 const protocol = clientConfig.webServer.GD_WEB_USE_HTTPS ? 'https' : 'http';
