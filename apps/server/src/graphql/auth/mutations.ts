@@ -62,7 +62,7 @@ export const login: MutationResolvers['login'] = async (_root, { email, password
     return { success: false };
   }
 
-  const { token, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
+  const { token, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user);
   const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
   // we ignore async-ness here. No point slowing down the login just to track the last logged in date
@@ -189,7 +189,7 @@ export const loginWithGoogle: MutationResolvers['loginWithGoogle'] = async (_roo
     };
   }
 
-  const { token, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
+  const { token, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user);
   const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
   return {
@@ -210,7 +210,8 @@ export const loginWithGoogle: MutationResolvers['loginWithGoogle'] = async (_roo
   };
 };
 
-export const checkAndUpdateRefreshToken: MutationResolvers['checkAndUpdateRefreshToken'] = async (_root, _args, { req, res }) => {
+// this checks and updates the refresh token sent in a cookie
+export const refreshToken: MutationResolvers['refreshToken'] = async (_root, _args, { req, res }) => {
   if (!req.cookies.refreshToken) {
     return { success: false };
   }
@@ -228,7 +229,7 @@ export const checkAndUpdateRefreshToken: MutationResolvers['checkAndUpdateRefres
   }
 
   const { accountId, email } = user.dataValues;
-  const { token: newToken, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user, res);
+  const { token: newToken, tokenExpiry, refreshToken } = await getNewTokens(accountId, email, user);
 
   const numRowsGenerated = await getAccountNumRowsGenerated(accountId);
 
@@ -242,7 +243,7 @@ export const checkAndUpdateRefreshToken: MutationResolvers['checkAndUpdateRefres
   };
 };
 
-export const logout = async (root, args, { req }) => {
+export const logout: MutationResolvers['logout'] = async (_root, _args, { req }) => {
   if (!req.cookies.refreshToken) {
     return { success: true };
   }
@@ -265,8 +266,8 @@ export const logout = async (root, args, { req }) => {
   return { success: true };
 };
 
-export const getNewTokens = async (accountId, email, user) => {
-  const token = await authUtils.getJwt({ accountId, email });
+export const getNewTokens = async (accountId: number, email: string, user: any) => {
+  const token = authUtils.getJwt({ accountId, email });
 
   // store the refresh token in a cookie and stash in the db
   const refreshToken = nanoid();

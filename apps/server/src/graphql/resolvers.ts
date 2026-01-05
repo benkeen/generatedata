@@ -1,11 +1,12 @@
 import * as authResolvers from './auth/mutations';
 import * as accountResolvers from './accounts/mutations';
-import * as dataSetResolvers from './dataSets/queries';
+import * as dataSetQueries from './dataSets/queries';
+import * as dataSetMutations from './dataSets/mutations';
 import { type QueryResolvers, type MutationResolvers } from '@generatedata/graphql-schema';
 
 const query: QueryResolvers = {
-  dataSets: dataSetResolvers.dataSets,
-  dataSetHistory: dataSetResolvers.dataSetHistory
+  dataSets: dataSetQueries.dataSets,
+  dataSetHistory: dataSetQueries.dataSetHistory
 };
 
 const mutation: MutationResolvers = {
@@ -13,7 +14,7 @@ const mutation: MutationResolvers = {
   login: authResolvers.login,
   loginWithGoogle: authResolvers.loginWithGoogle,
   sendPasswordResetEmail: authResolvers.sendPasswordResetEmail,
-  refreshToken: authResolvers.checkAndUpdateRefreshToken,
+  refreshToken: authResolvers.refreshToken,
   logout: authResolvers.logout,
 
   // account-related resolvers
@@ -24,11 +25,11 @@ const mutation: MutationResolvers = {
   deleteAccount: accountResolvers.deleteAccount,
 
   // data-sets
-  saveNewDataSet: dataSetResolvers.saveNewDataSet,
-  renameDataSet: dataSetResolvers.renameDataSet,
-  saveDataSet: dataSetResolvers.saveDataSet,
-  deleteDataSet: dataSetResolvers.deleteDataSet,
-  updateDataSetGenerationCount: dataSetResolvers.updateDataSetGenerationCount
+  saveNewDataSet: dataSetMutations.saveNewDataSet,
+  renameDataSet: dataSetMutations.renameDataSet,
+  saveDataSet: dataSetMutations.saveDataSet,
+  deleteDataSet: dataSetMutations.deleteDataSet,
+  updateDataSetGenerationCount: dataSetMutations.updateDataSetGenerationCount
 };
 
 export default {

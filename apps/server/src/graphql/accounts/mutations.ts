@@ -1,14 +1,21 @@
 import dateFns from 'date-fns';
 import { db } from '../../database';
 import * as authUtils from '../../utils/authUtils';
+import { MutationResolvers } from '@generatedata/graphql-schema';
 
-export const updateCurrentAccount = async (_root, args, { token, user }) => {
+export const updateCurrentAccount: MutationResolvers['updateCurrentAccount'] = async (_root, args, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
 
   const { accountId } = user;
   const userRecord = await db.accounts.findByPk(accountId);
+
+  if (!userRecord) {
+    return {
+      success: false
+    };
+  }
 
   const { firstName, lastName, email, country, region } = args;
   userRecord.update({
@@ -24,7 +31,7 @@ export const updateCurrentAccount = async (_root, args, { token, user }) => {
   };
 };
 
-export const updateAccount = async (_root, args, { token, user }) => {
+export const updateAccount: MutationResolvers['updateAccount'] = async (_root, args, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }
@@ -35,7 +42,7 @@ export const updateAccount = async (_root, args, { token, user }) => {
   const { accountId: currentAccountId } = user;
   const currentUser = await db.accounts.findByPk(currentAccountId);
 
-  if (currentUser.dataValues.accountType !== 'superuser') {
+  if (!currentUser || currentUser.dataValues.accountType !== 'superuser') {
     return {
       success: false,
       errorStatus: 'PermissionDenied'
@@ -73,7 +80,7 @@ export const updateAccount = async (_root, args, { token, user }) => {
   };
 };
 
-export const updatePassword = async (root, args, { token, user }) => {
+export const updatePassword: MutationResolvers['updatePassword'] = async (_root, args, { token, user }) => {
   if (!authUtils.authenticate(token)) {
     return { success: false };
   }

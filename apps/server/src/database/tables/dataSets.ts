@@ -1,5 +1,17 @@
 import type { Sequelize } from 'sequelize';
 import { DataTypes } from 'sequelize';
+import { ModelDefined, Optional } from 'sequelize';
+
+interface DataSetAttributes {
+  dataSetId: number;
+  dataSetName: string;
+  status: 'public' | 'private';
+  dateCreated: number;
+  accountId: number;
+  numRowsGenerated: number;
+}
+
+type DataSetCreationAttributes = Optional<DataSetAttributes, 'dataSetId'>;
 
 export default (sequelize: Sequelize) => {
   return sequelize.define(
@@ -41,5 +53,5 @@ export default (sequelize: Sequelize) => {
       tableName: 'datasets',
       timestamps: false
     }
-  );
+  ) as ModelDefined<DataSetAttributes, DataSetCreationAttributes>;
 };

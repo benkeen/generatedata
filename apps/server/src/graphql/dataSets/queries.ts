@@ -84,20 +84,20 @@ export const dataSetHistory: QueryResolvers['dataSetHistory'] = async (_root, ar
   }
 
   const [results] = (await sequelize.query(`
-				SELECT *
-				FROM dataset_history dh
-				WHERE dataset_id = ${dataSetId}
-				ORDER BY history_id DESC
-				LIMIT ${limit}
-				OFFSET ${offset}
-			`)) as Array<any>;
+    SELECT *
+    FROM dataset_history dh
+    WHERE dataset_id = ${dataSetId}
+    ORDER BY history_id DESC
+    LIMIT ${limit}
+    OFFSET ${offset}
+  `)) as Array<any>;
 
   const [totalCountQuery] = (await sequelize.query(
     `
-				SELECT count(*) as c
-				FROM dataset_history
-				WHERE dataset_id = ${dataSetId} 
-			`,
+      SELECT count(*) as c
+      FROM dataset_history
+      WHERE dataset_id = ${dataSetId} 
+    `,
     { raw: true, type: QueryTypes.SELECT }
   )) as any[];
 

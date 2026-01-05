@@ -25,8 +25,8 @@ export const saveNewDataSet: MutationResolvers['saveNewDataSet'] = async (_root,
 
   return {
     success: true,
-    dataSetId,
-    savedDate: dateCreated
+    dataSetId: String(dataSetId),
+    savedDate: String(dateCreated)
   };
 };
 
@@ -34,7 +34,7 @@ export const renameDataSet: MutationResolvers['renameDataSet'] = async (_root, {
   authUtils.authenticate(token);
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
-  if (!dataSet || dataSet.accountId !== user.accountId) {
+  if (!dataSet || dataSet.dataValues.accountId !== user.accountId) {
     return {
       success: false
     };
@@ -51,7 +51,7 @@ export const saveDataSet: MutationResolvers['saveDataSet'] = async (_root, { dat
   authUtils.authenticate(token);
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
-  if (!dataSet || dataSet.accountId !== user.accountId) {
+  if (!dataSet || dataSet.dataValues.accountId !== user.accountId) {
     return {
       success: false
     };
@@ -77,7 +77,7 @@ export const deleteDataSet: MutationResolvers['deleteDataSet'] = async (_root, {
   }
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
-  if (!dataSet || dataSet.accountId !== user.accountId) {
+  if (!dataSet || dataSet.dataValues.accountId !== user.accountId) {
     return {
       success: false
     };

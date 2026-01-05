@@ -38,7 +38,7 @@ type Mutation {
   deleteAccount(accountId: ID!): GeneralResponse
   saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetResponse
   saveDataSet(dataSetId: ID!, content: String!): SavedDataSetResponse
-  renameDataSet(dataSetId: ID!, dataSetName: String): GeneralResponse
+  renameDataSet(dataSetId: ID!, dataSetName: String!): GeneralResponse
   deleteDataSet(dataSetId: ID!): GeneralResponse
   updateDataSetGenerationCount(dataSetId: ID, generatedRows: Int): GeneralResponse
 }
