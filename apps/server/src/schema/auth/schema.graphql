@@ -1,0 +1,33 @@
+extend type Mutation {
+  login(email: String!, password: String!): AuthResponse
+  loginWithGoogle(googleToken: String!): AuthResponse
+  sendPasswordResetEmail(email: String!): GeneralResponse
+  refreshToken: AuthResponse
+  logout: GeneralResponse
+}
+
+type AuthResponse {
+  success: Boolean
+  token: String
+  tokenExpiry: Int
+  refreshToken: String
+  error: String
+  accountId: ID
+  expiryDate: String
+  accountType: AccountType
+  accountStatus: AccountStatus
+  dateCreated: String
+  firstName: String
+  lastName: String
+  email: String
+  country: String
+  region: String
+  numRowsGenerated: Int
+  profileImage: String
+  wasOneTimeLogin: Boolean
+}
+
+type GeneralResponse {
+  success: Boolean
+  error: String
+}

@@ -1,7 +1,7 @@
 import dateFns from 'date-fns';
 import { db } from '../../database';
 import * as authUtils from '../../utils/authUtils';
-import { AccountStatus, MutationResolvers } from '@generatedata/graphql-schema';
+import type { AccountStatus, MutationResolvers } from '@generatedata/graphql-schema';
 
 export const updateCurrentAccount: MutationResolvers['updateCurrentAccount'] = async (_root, args, { token, user }) => {
   if (!authUtils.authenticate(token)) {
@@ -63,7 +63,7 @@ export const updateAccount: MutationResolvers['updateAccount'] = async (_root, a
     const now = Number(dateFns.format(new Date(), 't'));
 
     if (parseInt(expiryDate, 10) < now) {
-      validatedAccountStatus = AccountStatus.Expired;
+      validatedAccountStatus = 'expired';
     }
   }
 

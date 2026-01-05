@@ -1,0 +1,8 @@
+enum SortDir {
+  ASC
+  DESC
+}
+
+enum ErrorType {
+  permissionDenied
+}

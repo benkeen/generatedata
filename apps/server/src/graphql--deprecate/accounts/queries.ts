@@ -1,7 +1,7 @@
 import { QueryTypes } from 'sequelize';
 import { db, sequelize } from '../../database';
 import * as authUtils from '../../utils/authUtils';
-import { ErrorType, QueryResolvers } from '@generatedata/graphql-schema';
+import type { QueryResolvers } from '@generatedata/graphql-schema';
 
 export const accounts: QueryResolvers['accounts'] = async (_root, args, { token, user }) => {
   authUtils.authenticate(token);
@@ -11,7 +11,7 @@ export const accounts: QueryResolvers['accounts'] = async (_root, args, { token,
     return {
       results: [],
       totalCount: 0,
-      errorStatus: ErrorType.PermissionDenied
+      errorStatus: 'permissionDenied'
     };
   }
 

@@ -1,0 +1,60 @@
+extend type Query {
+  dataSets(limit: Int, offset: Int, sortCol: String, sortDir: SortDir): DataSetResults
+  dataSet(id: ID!): DataSet
+  dataSetHistory(dataSetId: ID!, limit: Int, offset: Int): DataSetHistoryResults
+}
+
+extend type Mutation {
+  saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetResponse
+  saveDataSet(dataSetId: ID!, content: String!): SavedDataSetResponse
+  renameDataSet(dataSetId: ID!, dataSetName: String!): GeneralResponse
+  deleteDataSet(dataSetId: ID!): GeneralResponse
+  updateDataSetGenerationCount(dataSetId: ID!, generatedRows: Int!): GeneralResponse
+}
+
+type DataSet {
+  dataSetId: ID
+  dataSetName: String
+  status: String
+  dateCreated: String
+  lastUpdated: String
+  accountId: ID
+  numRowsGenerated: Int
+  history: [DataSetHistory]
+}
+
+type DataSetListItem {
+  dataSetId: ID
+  status: String
+  dateCreated: String
+  numRowsGenerated: Int
+  historyId: ID
+  dataSetName: String
+  content: String
+  dataCreatedUnix: Int
+  historyDateCreatedUnix: Int
+}
+
+type DataSetHistoryResults {
+  results: [DataSetHistory]
+  totalCount: Int
+}
+
+type DataSetHistory {
+  historyId: ID!
+  dataSetId: ID!
+  dateCreated: String
+  content: String
+}
+
+type DataSetResults {
+  results: [DataSetListItem]
+  totalCount: Int
+}
+
+type SavedDataSetResponse {
+  success: Boolean
+  error: String
+  dataSetId: ID
+  savedDate: String
+}

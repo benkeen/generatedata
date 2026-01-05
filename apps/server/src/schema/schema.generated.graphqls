@@ -1,0 +1,149 @@
+type Account {
+  accountId: ID!
+  accountStatus: AccountStatus
+  accountType: AccountType
+  country: String
+  createdBy: ID
+  dateCreated: String
+  email: String
+  errorType: ErrorType
+  expiryDate: String
+  firstName: String
+  lastLoggedIn: String
+  lastName: String
+  numRowsGenerated: Int
+  profileImage: String
+  region: String
+}
+
+enum AccountStatus {
+  disabled
+  expired
+  live
+}
+
+enum AccountType {
+  admin
+  superuser
+  user
+}
+
+type AccountsResults {
+  errorType: ErrorType
+  results: [Account]
+  totalCount: Int
+}
+
+type AuthResponse {
+  accountId: ID
+  accountStatus: AccountStatus
+  accountType: AccountType
+  country: String
+  dateCreated: String
+  email: String
+  error: String
+  expiryDate: String
+  firstName: String
+  lastName: String
+  numRowsGenerated: Int
+  profileImage: String
+  refreshToken: String
+  region: String
+  success: Boolean
+  token: String
+  tokenExpiry: Int
+  wasOneTimeLogin: Boolean
+}
+
+type DataSet {
+  accountId: ID
+  dataSetId: ID
+  dataSetName: String
+  dateCreated: String
+  history: [DataSetHistory]
+  lastUpdated: String
+  numRowsGenerated: Int
+  status: String
+}
+
+type DataSetHistory {
+  content: String
+  dataSetId: ID!
+  dateCreated: String
+  historyId: ID!
+}
+
+type DataSetHistoryResults {
+  results: [DataSetHistory]
+  totalCount: Int
+}
+
+type DataSetListItem {
+  content: String
+  dataCreatedUnix: Int
+  dataSetId: ID
+  dataSetName: String
+  dateCreated: String
+  historyDateCreatedUnix: Int
+  historyId: ID
+  numRowsGenerated: Int
+  status: String
+}
+
+type DataSetResults {
+  results: [DataSetListItem]
+  totalCount: Int
+}
+
+enum ErrorType {
+  permissionDenied
+}
+
+type GeneralResponse {
+  error: String
+  success: Boolean
+}
+
+type Mutation {
+  createUserAccount(accountStatus: AccountStatus, country: String, email: String!, expiryDate: String, firstName: String!, lastName: String!, oneTimePassword: String, region: String): GeneralResponse
+  deleteAccount(accountId: ID!): GeneralResponse
+  deleteDataSet(dataSetId: ID!): GeneralResponse
+  login(email: String!, password: String!): AuthResponse
+  loginWithGoogle(googleToken: String!): AuthResponse
+  logout: GeneralResponse
+  refreshToken: AuthResponse
+  renameDataSet(dataSetId: ID!, dataSetName: String!): GeneralResponse
+  saveDataSet(content: String!, dataSetId: ID!): SavedDataSetResponse
+  saveNewDataSet(content: String!, dataSetName: String!): SavedDataSetResponse
+  sendPasswordResetEmail(email: String!): GeneralResponse
+  updateAccount(accountId: ID!, accountStatus: AccountStatus, country: String!, email: String!, expiryDate: String, firstName: String!, lastName: String!, region: String): GeneralResponse
+  updateCurrentAccount(country: String!, email: String!, firstName: String!, lastName: String!, region: String): GeneralResponse
+  updateDataSetGenerationCount(dataSetId: ID!, generatedRows: Int!): GeneralResponse
+  updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
+}
+
+type Query {
+  account: Account
+  accounts(filterStr: String, limit: Int, offset: Int, sortCol: String, sortDir: SortDir, status: String): AccountsResults
+  dataSet(id: ID!): DataSet
+  dataSetHistory(dataSetId: ID!, limit: Int, offset: Int): DataSetHistoryResults
+  dataSets(limit: Int, offset: Int, sortCol: String, sortDir: SortDir): DataSetResults
+  settings: [Setting]
+}
+
+type SavedDataSetResponse {
+  dataSetId: ID
+  error: String
+  savedDate: String
+  success: Boolean
+}
+
+type Setting {
+  settingName: String
+  settingValue: String
+}
+
+enum SortDir {
+  ASC
+  DESC
+}

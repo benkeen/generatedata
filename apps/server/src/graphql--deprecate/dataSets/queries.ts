@@ -1,4 +1,4 @@
-import { QueryResolvers } from '@generatedata/graphql-schema';
+import type { QueryResolvers } from '@generatedata/graphql-schema';
 import * as authUtils from '../../utils/authUtils';
 import { db, sequelize } from '../../database';
 import { QueryTypes } from 'sequelize';

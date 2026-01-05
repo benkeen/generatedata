@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "aaa": "node scripts/build.js",
+    "build-tmp": "node scripts/build.js",
     "purge": "npx rimraf node_modules dist .turbo",
-    "start": "nodemon ./dist/app.js"
+    "start": "nodemon ./dist/app.js",
+    "generate-schema": "graphql-codegen"
   },
   "dependencies": {
     "@apollo/server": "^5.2.0",
@@ -31,12 +32,15 @@
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^6.1.0",
+    "@eddeee888/gcg-typescript-resolver-files": "^0.15.0",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/nanoid": "3.0.0",
     "@types/nodemailer": "^7.0.4",
     "dotenv": "^8.2.0",
+    "graphql-scalars": "^1.25.0",
     "rimraf": "^6.0.1",
     "typescript": "^5.9.3"
   }

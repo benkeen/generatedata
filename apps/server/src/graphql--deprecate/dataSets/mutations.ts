@@ -1,4 +1,4 @@
-import { MutationResolvers } from '@generatedata/graphql-schema';
+import type { MutationResolvers } from '@generatedata/graphql-schema';
 import { db } from '../../database';
 import * as authUtils from '../../utils/authUtils';
 

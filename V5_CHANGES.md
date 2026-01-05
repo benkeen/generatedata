@@ -17,7 +17,7 @@ Logical units of the code are now found under `apps` and `packages`.
 **Apps**
 
 - `apps/client` - the main client-side app.
-- `apps/server` - the server-side app. I'd LOVE to actually convert this to TS and not continue to use plain wild-west JS, but I don't want to bloat the work, so will probably punt on it until a later version. We'll see.
+- `apps/server` - the server-side app.
 
 **Packages**
 
@@ -27,7 +27,6 @@ Logical units of the code are now found under `apps` and `packages`.
 - `packages/config` - this'll house the main configuration settings and replace the old `.env` file. For simplicity and backward compatibility, I've left the same uppercase names from the old .env variables.
 - `packages/plugins` - the countries, Data Types and Export Types. Perhaps I'll split them into separate packages for each, but for now they're lumped in the same package.
 - `packages/types` - global types.
-- `packages/graphql-schema` - the schema types.
 
 ## Other changes
 

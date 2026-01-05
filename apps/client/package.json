@@ -85,7 +85,7 @@
     "@dnd-kit/modifiers": "^9.0.0",
     "dotenv": "^8.2.0",
     "googleapis": "^169.0.0",
-    "graphql": "^16.11.0",
+    "graphql": "^16.12.0",
     "immer": "^11.0.1",
     "js-cookie": "^3.0.5",
     "nanoid": "^3.3.4",

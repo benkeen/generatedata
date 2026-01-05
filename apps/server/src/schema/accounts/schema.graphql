@@ -1,0 +1,66 @@
+extend type Query {
+  accounts(limit: Int, offset: Int, sortCol: String, sortDir: SortDir, filterStr: String, status: String): AccountsResults
+  account: Account
+}
+
+extend type Mutation {
+  updateAccount(
+    accountId: ID!
+    accountStatus: AccountStatus
+    firstName: String!
+    lastName: String!
+    email: String!
+    country: String!
+    region: String
+    expiryDate: String
+  ): GeneralResponse
+  updateCurrentAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
+  updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
+  createUserAccount(
+    firstName: String!
+    lastName: String!
+    email: String!
+    country: String
+    region: String
+    accountStatus: AccountStatus
+    expiryDate: String
+    oneTimePassword: String
+  ): GeneralResponse
+  deleteAccount(accountId: ID!): GeneralResponse
+}
+
+type Account {
+  accountId: ID!
+  createdBy: ID
+  expiryDate: String
+  accountType: AccountType
+  accountStatus: AccountStatus
+  dateCreated: String
+  lastLoggedIn: String
+  firstName: String
+  lastName: String
+  email: String
+  country: String
+  region: String
+  numRowsGenerated: Int
+  profileImage: String
+  errorType: ErrorType
+}
+
+type AccountsResults {
+  results: [Account]
+  totalCount: Int
+  errorType: ErrorType
+}
+
+enum AccountType {
+  superuser
+  admin
+  user
+}
+
+enum AccountStatus {
+  live
+  disabled
+  expired
+}
