@@ -1,4 +1,4 @@
-import { AccountStatus } from '@generatedata/graphql-schema';
+import type { AccountStatus } from '@generatedata/server';
 import { useClasses } from './AccountStatusPill.styles';
 
 type AccountStatusPillProps = {

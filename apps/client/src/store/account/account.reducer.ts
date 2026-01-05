@@ -3,8 +3,8 @@ import { produce } from 'immer';
 import * as mainActions from '../main/main.actions';
 import * as actions from '../account/account.actions';
 import * as packetActions from '../packets/packets.actions';
-import { AccountType, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
-import { AccountStatus } from '@generatedata/graphql-schema';
+import { type AccountType, SelectedAccountsTab, SelectedAccountTab } from '~types/account';
+import type { AccountStatus } from '@generatedata/server';
 
 // use for both Edit Account, Your Account. Your Account only uses a subset of the fields.
 export type AccountEditingData = {
@@ -170,7 +170,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
       draft.selectedAccountsTab = SelectedAccountsTab.editAccount;
       draft.editingData = {
         accountId,
-        disabled: accountStatus === AccountStatus.Disabled,
+        disabled: accountStatus === 'disabled',
         status: accountStatus,
         firstName,
         lastName,

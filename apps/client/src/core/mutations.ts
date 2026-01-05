@@ -1,7 +1,7 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
-import type { Mutation } from '@generatedata/graphql-schema';
+import type { AuthResponse, GeneralResponse, SavedDataSetResponse } from '@generatedata/server';
 
-export const REFRESH_TOKEN: TypedDocumentNode<Mutation> = gql`
+export const REFRESH_TOKEN: TypedDocumentNode<{ refreshToken: AuthResponse | null }> = gql`
   mutation RefreshToken {
     refreshToken {
       token
@@ -22,7 +22,7 @@ export const REFRESH_TOKEN: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const SEND_PASSWORD_RESET_EMAIL_MUTATION: TypedDocumentNode<Mutation> = gql`
+export const SEND_PASSWORD_RESET_EMAIL_MUTATION: TypedDocumentNode<{ sendPasswordResetEmail: GeneralResponse | null }> = gql`
   mutation SendPasswordResetEmailMutation($email: String!) {
     sendPasswordResetEmail(email: $email) {
       success
@@ -30,7 +30,7 @@ export const SEND_PASSWORD_RESET_EMAIL_MUTATION: TypedDocumentNode<Mutation> = g
   }
 `;
 
-export const UPDATE_DATA_SET_GENERATION_COUNT: TypedDocumentNode<Mutation> = gql`
+export const UPDATE_DATA_SET_GENERATION_COUNT: TypedDocumentNode<{ updateDataSetGenerationCount: GeneralResponse | null }> = gql`
   mutation UpdateDataSetGenerationCount($dataSetId: ID!, $generatedRows: Int!) {
     updateDataSetGenerationCount(dataSetId: $dataSetId, generatedRows: $generatedRows) {
       success
@@ -39,7 +39,7 @@ export const UPDATE_DATA_SET_GENERATION_COUNT: TypedDocumentNode<Mutation> = gql
   }
 `;
 
-export const LOGIN_MUTATION: TypedDocumentNode<Mutation> = gql`
+export const LOGIN_MUTATION: TypedDocumentNode<{ login: AuthResponse | null }> = gql`
   mutation LoginMutation($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
@@ -64,7 +64,7 @@ export const LOGIN_MUTATION: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const LOGIN_WITH_GOOGLE: TypedDocumentNode<Mutation> = gql`
+export const LOGIN_WITH_GOOGLE: TypedDocumentNode<{ loginWithGoogle: AuthResponse | null }> = gql`
   mutation LoginWithGoogle($googleToken: String!) {
     loginWithGoogle(googleToken: $googleToken) {
       token
@@ -86,7 +86,7 @@ export const LOGIN_WITH_GOOGLE: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const CREATE_USER_ACCOUNT: TypedDocumentNode<Mutation> = gql`
+export const CREATE_USER_ACCOUNT: TypedDocumentNode<{ createUserAccount: GeneralResponse | null }> = gql`
   mutation CreateUserAccount(
     $firstName: String!
     $lastName: String!
@@ -112,7 +112,7 @@ export const CREATE_USER_ACCOUNT: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const DELETE_DATA_SET: TypedDocumentNode<Mutation> = gql`
+export const DELETE_DATA_SET: TypedDocumentNode<{ deleteDataSet: GeneralResponse | null }> = gql`
   mutation DeleteDataSet($dataSetId: ID!) {
     deleteDataSet(dataSetId: $dataSetId) {
       success
@@ -121,7 +121,7 @@ export const DELETE_DATA_SET: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const SAVE_NEW_DATA_SET: TypedDocumentNode<Mutation> = gql`
+export const SAVE_NEW_DATA_SET: TypedDocumentNode<{ saveNewDataSet: SavedDataSetResponse | null }> = gql`
   mutation SaveNewDataSet($dataSetName: String!, $content: String!) {
     saveNewDataSet(dataSetName: $dataSetName, content: $content) {
       success
@@ -132,7 +132,7 @@ export const SAVE_NEW_DATA_SET: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const RENAME_DATA_SET: TypedDocumentNode<Mutation> = gql`
+export const RENAME_DATA_SET: TypedDocumentNode<{ renameDataSet: GeneralResponse | null }> = gql`
   mutation RenameDataSet($dataSetId: ID!, $dataSetName: String!) {
     renameDataSet(dataSetId: $dataSetId, dataSetName: $dataSetName) {
       success
@@ -141,7 +141,7 @@ export const RENAME_DATA_SET: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const SAVE_CURRENT_DATA_SET: TypedDocumentNode<Mutation> = gql`
+export const SAVE_CURRENT_DATA_SET: TypedDocumentNode<{ saveDataSet: SavedDataSetResponse | null }> = gql`
   mutation SaveDataSet($dataSetId: ID!, $content: String!) {
     saveDataSet(dataSetId: $dataSetId, content: $content) {
       success
@@ -152,7 +152,7 @@ export const SAVE_CURRENT_DATA_SET: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const SAVE_CURRENT_ACCOUNT: TypedDocumentNode<Mutation> = gql`
+export const SAVE_CURRENT_ACCOUNT: TypedDocumentNode<{ updateCurrentAccount: GeneralResponse | null }> = gql`
   mutation UpdateCurrentAccount($firstName: String!, $lastName: String!, $email: String!, $country: String!, $region: String) {
     updateCurrentAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region) {
       success
@@ -160,7 +160,7 @@ export const SAVE_CURRENT_ACCOUNT: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const SAVE_ACCOUNT: TypedDocumentNode<Mutation> = gql`
+export const SAVE_ACCOUNT: TypedDocumentNode<{ updateAccount: GeneralResponse | null }> = gql`
   mutation UpdateAccount(
     $accountId: ID!
     $accountStatus: AccountStatus
@@ -186,7 +186,7 @@ export const SAVE_ACCOUNT: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const UPDATE_PASSWORD: TypedDocumentNode<Mutation> = gql`
+export const UPDATE_PASSWORD: TypedDocumentNode<{ updatePassword: GeneralResponse | null }> = gql`
   mutation UpdatePassword($currentPassword: String!, $newPassword: String!) {
     updatePassword(currentPassword: $currentPassword, newPassword: $newPassword) {
       success
@@ -195,7 +195,7 @@ export const UPDATE_PASSWORD: TypedDocumentNode<Mutation> = gql`
   }
 `;
 
-export const DELETE_ACCOUNT: TypedDocumentNode<Mutation> = gql`
+export const DELETE_ACCOUNT: TypedDocumentNode<{ deleteAccount: GeneralResponse | null }> = gql`
   mutation DeleteAccount($accountId: ID!) {
     deleteAccount(accountId: $accountId) {
       success

@@ -5,7 +5,6 @@ import * as actions from '../main.actions';
 import { setAuthenticationData } from '../main.actions';
 import C from '@generatedata/config/constants';
 import { AuthMethod } from '~types/general';
-import { AccountStatus, AccountType } from '@generatedata/graphql-schema';
 
 describe('main actions', () => {
   let store: any;
@@ -45,8 +44,8 @@ describe('main actions', () => {
         profileImage: 'image-here.jpg',
         expiryDate: '1000010101001',
         dateCreated: '1000010101001',
-        accountType: AccountType.Admin,
-        accountStatus: AccountStatus.Live,
+        accountType: 'admin',
+        accountStatus: 'live',
         numRowsGenerated: 50000
       })
     );

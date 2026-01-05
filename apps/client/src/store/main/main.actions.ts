@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import C from '@generatedata/config/constants';
-import type { AuthResponse } from '@generatedata/graphql-schema';
+import type { AuthResponse } from '@generatedata/server';
 import { setAuthTokenRefresh } from '@generatedata/utils/auth';
 import { addToast, setTourComponents } from '@generatedata/utils/general';
 import { getCurrentLocalizedPath, getStrings, setLocale } from '@generatedata/utils/lang';

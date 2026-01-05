@@ -1,5 +1,5 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
-import { Query } from '@generatedata/graphql-schema';
+import type { Query } from '@generatedata/server';
 
 export const GET_ACCOUNTS: TypedDocumentNode<Query> = gql`
   query GetAccounts($limit: Int, $offset: Int, $sortCol: String, $sortDir: SortDir, $filterStr: String, $status: String) {

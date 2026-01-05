@@ -7,7 +7,7 @@
 // import { SaveDataDialogType } from '~store/account/account.reducer';
 // import { SelectedAccountTab } from '~types/account';
 // import { AuthMethod } from '~types/general';
-// import { AccountStatus, AccountType } from '@generatedata/graphql-schema';
+// import { AccountStatus, AccountType } from '@generatedata/server';
 
 // describe('accounts section', () => {
 //   let flushThunks;

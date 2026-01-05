@@ -1,8 +1,8 @@
-import { AccountStatus } from '@generatedata/graphql-schema';
+import type { AccountStatus } from '@generatedata/server';
 import { addToast } from '@generatedata/utils/general';
 import { getStrings } from '@generatedata/utils/lang';
 import { format } from 'date-fns';
-import { Dispatch } from 'redux';
+import type { Dispatch } from 'redux';
 import {
   CREATE_USER_ACCOUNT,
   RENAME_DATA_SET,
@@ -12,12 +12,12 @@ import {
   SAVE_NEW_DATA_SET,
   UPDATE_PASSWORD
 } from '~core/mutations';
-import { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
+import type { AccountEditingData, SaveDataDialogType } from '~store/account/account.reducer';
 import { getEditingData, getSelectedAccountsPageTab } from '~store/account/account.selectors';
 import { getCurrentDataSetId, getDataSetSavePackage } from '~store/generator/generator.selectors';
 import { SET_ONE_TIME_PASSWORD } from '~store/main/main.actions';
 import { SelectedAccountsTab, SelectedAccountTab } from '~types/account';
-import { GDAction } from '~types/general';
+import type { GDAction } from '~types/general';
 import { apolloClient } from '../../core/apolloClient';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
@@ -200,7 +200,7 @@ export const saveNewDataSet =
           type: SET_CURRENT_DATA_SET,
           payload: {
             dataSetName,
-            dataSetId: parseInt(response.data.saveNewDataSet.dataSetId!, 10)
+            dataSetId: parseInt(response.data.saveNewDataSet.dataSetId as string, 10)
           }
         });
 
@@ -313,9 +313,9 @@ export const createAccount =
     };
 
 export const getAccountStatus = (disabled: boolean, expiryDate: number): AccountStatus => {
-  let accountStatus = AccountStatus.Live;
+  let accountStatus: AccountStatus = 'live';
   if (disabled) {
-    accountStatus = AccountStatus.Disabled;
+    accountStatus = 'disabled';
   } else {
     // check the expiry date hasn't already passed
     if (expiryDate) {
@@ -323,9 +323,10 @@ export const getAccountStatus = (disabled: boolean, expiryDate: number): Account
       const expiryDateNum = parseInt(expiryDate.toString()); // ensure it's a number
 
       if (expiryDateNum < now) {
-        accountStatus = AccountStatus.Expired;
+        accountStatus = 'expired';
       }
     }
   }
+
   return accountStatus;
 };

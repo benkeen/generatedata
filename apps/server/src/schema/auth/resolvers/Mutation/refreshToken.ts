@@ -3,7 +3,7 @@ import { db } from '../../../../database';
 import { getAccountNumRowsGenerated } from '../../../accounts/helpers';
 import { getNewTokens } from '../../helpers';
 
-export const refreshToken: NonNullable<MutationResolvers['refreshToken']> = async (_parent, _arg, { req, res }) => {
+export const refreshToken: NonNullable<MutationResolvers['refreshToken']> = async (_parent, _args, { req }) => {
   if (!req.cookies.refreshToken) {
     return { success: false };
   }
