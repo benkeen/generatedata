@@ -1,6 +1,5 @@
 extend type Query {
   dataSets(limit: Int, offset: Int, sortCol: String, sortDir: SortDir): DataSetResults
-  dataSet(id: ID!): DataSet
   dataSetHistory(dataSetId: ID!, limit: Int, offset: Int): DataSetHistoryResults
 }
 

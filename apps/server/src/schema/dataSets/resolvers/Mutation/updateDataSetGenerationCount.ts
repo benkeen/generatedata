@@ -1,3 +1,33 @@
+import type { MutationResolvers } from './../../../types.generated';
+import { db } from '../../../../database';
+import * as authUtils from '../../../../utils/authUtils';
 
-        import type   { MutationResolvers } from './../../../types.generated';
-        export const updateDataSetGenerationCount: NonNullable<MutationResolvers['updateDataSetGenerationCount']> = async (_parent, _arg, _ctx) => { /* Implement Mutation.updateDataSetGenerationCount resolver logic here */ };
+export const updateDataSetGenerationCount: NonNullable<MutationResolvers['updateDataSetGenerationCount']> = async (
+  _parent,
+  { dataSetId, generatedRows },
+  { token, user }
+) => {
+  if (!authUtils.authenticate(token)) {
+    return { success: false };
+  }
+
+  let addRows = generatedRows;
+  if (/\D/.test(generatedRows.toString())) {
+    addRows = 0;
+  }
+
+  const dataSet = await db.dataSets.findByPk(dataSetId);
+  const { accountId, numRowsGenerated } = dataSet!.dataValues;
+
+  if (user.accountId !== accountId) {
+    return { success: false };
+  }
+
+  await dataSet!.update({
+    numRowsGenerated: numRowsGenerated + addRows
+  });
+
+  return {
+    success: true
+  };
+};

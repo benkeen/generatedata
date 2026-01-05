@@ -1,8 +1,0 @@
-extend type Query {
-  settings: [Setting]
-}
-
-type Setting {
-  settingName: String
-  settingValue: String
-}
