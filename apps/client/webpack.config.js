@@ -6,6 +6,9 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
+// this defaults to the ESM version, so it pulls from the direct location
+const { clientConfig } = require('@generatedata/config');
+
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env, argv) => {
@@ -100,7 +103,7 @@ module.exports = (env, argv) => {
     config.devServer = {
       historyApiFallback: true,
       static: path.join(__dirname, 'dist'),
-      // port: process.env.GD_WEB_SERVER_PORT, // TODO - this'll require converting @generatedata/config to CJS, or revising this webpack file to use ESM/TS
+      port: clientConfig.webServer.GD_WEB_SERVER_PORT,
       open: true
     };
 

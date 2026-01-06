@@ -1,4 +1,6 @@
 import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@as-integrations/express5';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -7,21 +9,20 @@ import { clientConfig } from '@generatedata/config';
 import { RequestContext } from '../types/server';
 import { typeDefs } from './schema/typeDefs.generated';
 import { resolvers } from './schema/resolvers.generated';
+import http from 'http';
 
 const app = express();
+const httpServer = http.createServer(app);
+
 const protocol = clientConfig.webServer.GD_WEB_USE_HTTPS ? 'https' : 'http';
 
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: `${protocol}://${clientConfig.webServer.GD_WEB_DOMAIN}:${clientConfig.webServer.GD_WEB_SERVER_PORT}`,
-    credentials: true
-  })
-);
 
 const server = new ApolloServer<RequestContext>({
   typeDefs,
-  resolvers
+  resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
+
   // context: ({ req, res }) => {
   //   // the token is the "live" token with a short expiry time, passed along with every request in a header while
   //   // the user is logged in
@@ -40,10 +41,27 @@ const server = new ApolloServer<RequestContext>({
   //   };
   // }
 });
+
 (async () => {
   await server.start();
-})();
+  //   listen: { port: clientConfig.api.GD_API_SERVER_PORT }
+  // });
 
-app.listen(clientConfig.api.GD_API_SERVER_PORT, () => {
+  app.use(
+    '/',
+    cors<cors.CorsRequest>({
+      origin: `${protocol}://${clientConfig.webServer.GD_WEB_DOMAIN}:${clientConfig.webServer.GD_WEB_SERVER_PORT}`,
+      credentials: true
+    }),
+    express.json(),
+
+    // @ts-expect-error
+    expressMiddleware(server, {
+      context: async ({ req }) => ({ token: req.headers.token })
+    })
+  );
+
+  await new Promise<void>((resolve) => httpServer.listen({ port: clientConfig.api.GD_API_SERVER_PORT }, resolve));
+
   console.log('Server started on port ' + clientConfig.api.GD_API_SERVER_PORT);
-});
+})();

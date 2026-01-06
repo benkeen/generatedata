@@ -231,12 +231,9 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
     });
 
     generationWorker.onmessage = (e: MessageEvent): void => {
-      console.log('on message payload: ', e.data.event, e);
-
       if (e.data.event !== 'DataTypesProcessed') {
         return;
       }
-      console.log('ok!');
 
       const { generatedData } = e.data.data;
 

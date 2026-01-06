@@ -9,10 +9,10 @@ export const getJwt = (payload: any) =>
     expiresIn: `${clientConfig.auth.GD_JWT_LIFESPAN_MINS}m`
   });
 
-export const authenticate = async (token: any) => {
+export const authenticate = async (token: string) => {
   if (token) {
     try {
-      await jwt.verify(token, serverConfig.auth.GD_JWT_SECRET);
+      jwt.verify(token, serverConfig.auth.GD_JWT_SECRET);
       return true;
     } catch (e) {
       return false;
@@ -22,7 +22,7 @@ export const authenticate = async (token: any) => {
   return false;
 };
 
-export const decodeToken = (token: any) => {
+export const decodeToken = (token: string) => {
   const decodedToken = jwt.decode(token, { complete: true });
 
   if (!decodedToken) {
@@ -32,7 +32,7 @@ export const decodeToken = (token: any) => {
   return decodedToken;
 };
 
-export const getUser = (token: any) => {
+export const getUser = (token: string) => {
   if (!token) {
     return {};
   }

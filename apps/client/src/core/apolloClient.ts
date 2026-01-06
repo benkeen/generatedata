@@ -2,6 +2,7 @@ import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, concat } from '@apol
 import fetch from 'cross-fetch';
 import store from '~store/index';
 import * as mainSelectors from '~store/main/main.selectors';
+import { clientConfig } from '@generatedata/config';
 
 // TODO: generalized error handling when logged out
 // import { onError } from 'apollo-link-error';
@@ -14,9 +15,9 @@ const protocol = process.env.GD_WEB_USE_HTTPS === 'true' ? 'https' : 'http';
 
 // this could be improved For prod environments we use the same port and use nginx to route the requests
 // to the graphql server
-let uri = `${protocol}://${process.env.GD_WEB_DOMAIN}/graphql`;
+let uri = `${protocol}://${clientConfig.webServer.GD_WEB_DOMAIN}/graphql`;
 if (process.env.NODE_ENV === 'development') {
-  uri = `${protocol}://${process.env.GD_WEB_DOMAIN}:${process.env.GD_API_SERVER_PORT}/graphql`;
+  uri = `${protocol}://${clientConfig.webServer.GD_WEB_DOMAIN}:${clientConfig.api.GD_API_SERVER_PORT}/graphql`;
 }
 
 const httpLink = new HttpLink({
@@ -28,6 +29,7 @@ const httpLink = new HttpLink({
 const authMiddleware = new ApolloLink((operation, forward) => {
   const token = mainSelectors.getAuthToken(store.getState());
 
+  // TODO
   // console.log('adding token header?', mainSelectors.getAuthToken(store.getState()));
 
   // this adds the current active jwt token to all requests so the server can authenticate the user

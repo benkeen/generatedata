@@ -5,11 +5,12 @@
   "scripts": {
     "build": "tsc",
     "create-database-sql": "node build/generate-create-database-sql.js",
+    "dev": "npm run start",
+    "generate-schema": "graphql-codegen --config src/codegen.ts",
     "purge": "npx rimraf node_modules dist .turbo",
     "run-server": "nodemon ./dist/app.js",
     "run-server:debug": "nodemon --exec node --trace-warnings ./dist/app.js",
-    "start": "run-s build run-server",
-    "generate-schema": "graphql-codegen --config src/codegen.ts"
+    "start": "run-s build run-server"
   },
   "dependencies": {
     "@apollo/server": "^5.2.0",
