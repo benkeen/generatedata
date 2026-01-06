@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist/cjs",
+    "target": "es5",
+    "module": "CommonJS",
+    "moduleResolution": "classic",
+    "declaration": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["node", "jest"],
+    "jsx": "react-jsx"
+  }
+}

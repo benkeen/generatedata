@@ -1,4 +1,4 @@
-import type { GDClientConfig } from '../typings';
+import type { GDClientConfig } from './types';
 
 const config: GDClientConfig = {
   appSettings: {

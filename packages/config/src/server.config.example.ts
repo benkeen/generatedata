@@ -1,4 +1,4 @@
-import type { GDServerConfig } from '../typings';
+import type { GDServerConfig } from './types';
 
 const serverConfig: GDServerConfig = {
   auth: {

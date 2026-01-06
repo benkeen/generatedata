@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./dist/esm",
-    "target": "esnext",
-    "module": "es6",
+    "outDir": "./dist/cjs",
+    "target": "es5",
+    "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
     "skipLibCheck": true,

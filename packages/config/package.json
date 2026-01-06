@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "This package contains the settings for your generatedata installation.",
   "scripts": {
-    "tsc": "tsc",
-    "build": "run-s confirm-setup tsc",
+    "build-esm": "tsc",
+    "build-cjs": "tsc --project tsconfig.cjs.json",
+    "build": "run-s confirm-setup build-esm build-cjs",
     "clean": "npx rimraf dist",
     "purge": "npx rimraf node_modules dist .turbo",
     "confirm-setup": "node ./scripts/confirm-setup.js"
@@ -17,20 +18,24 @@
   },
   "exports": {
     ".": {
-      "default": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/esm/index.d.ts",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
     },
     "./constants": {
-      "default": "./dist/constants.js",
-      "types": "./dist/constants.d.ts"
+      "types": "./dist/esm/constants.d.ts",
+      "require": "./dist/cjs/constants.js",
+      "default": "./dist/esm/constants.js"
     },
     "./clientConfig": {
-      "default": "./dist/client.config.js",
-      "types": "./dist/client.config.d.ts"
+      "types": "./dist/esm/client.config.d.ts",
+      "require": "./dist/cjs/client.config.js",
+      "default": "./dist/esm/client.config.js"
     },
     "./serverConfig": {
-      "default": "./dist/server.config.js",
-      "types": "./dist/server.config.d.ts"
+      "types": "./dist/esm/server.config.d.ts",
+      "require": "./dist/cjs/server.config.js",
+      "default": "./dist/esm/server.config.js"
     }
   }
 }
