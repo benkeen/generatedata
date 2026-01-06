@@ -1,4 +1,4 @@
-export type AppType = 'login' | 'open' | 'closed' | 'prod';
+export type AppType = 'login' | 'open' | 'closed' | 'prod' | 'single';
 
 export type GDLocale = 'ar' | 'de' | 'en' | 'es' | 'es' | 'fr' | 'hi' | 'ja' | 'nl' | 'pt' | 'ru' | 'ta' | 'zh';
 

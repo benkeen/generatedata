@@ -1,7 +1,6 @@
 import { ApolloServer } from '@apollo/server';
 import express from 'express';
 import cors from 'cors';
-// import * as graphqlSchema from '@generatedata/graphql-schema';
 import cookieParser from 'cookie-parser';
 // import * as authUtils from './utils/authUtils';
 import { clientConfig } from '@generatedata/config';

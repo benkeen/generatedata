@@ -3,5 +3,5 @@ src/client.config.ts
 src/server.config.ts
 
 # standard folders to ignore
-node_modules/*
-dist/*
+node_modules
+dist

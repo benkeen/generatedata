@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["es6"],
+    "rootDir": "src",
     "outDir": "./dist/",
     "sourceMap": true,
     "esModuleInterop": true,
