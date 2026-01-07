@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "create-database-sql": "node build/generate-create-database-sql.js",
     "dev": "npm run start",
     "generate-schema": "graphql-codegen --config src/codegen.ts",
     "purge": "npx rimraf node_modules dist .turbo",

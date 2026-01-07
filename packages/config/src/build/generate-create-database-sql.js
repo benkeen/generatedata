@@ -1,5 +1,5 @@
 import dateFns from 'date-fns';
-import serverConfig from '@generatedata/config/serverConfig';
+import serverConfig from '../src/server.config';
 import { getPasswordHash } from '@generatedata/utils/auth';
 import fs from 'fs';
 import path from 'path';

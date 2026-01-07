@@ -44,8 +44,6 @@ const server = new ApolloServer<RequestContext>({
 
 (async () => {
   await server.start();
-  //   listen: { port: clientConfig.api.GD_API_SERVER_PORT }
-  // });
 
   app.use(
     '/',

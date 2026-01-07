@@ -16,8 +16,8 @@
     "startApp": "npm run prod && COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up --build",
     "clearApp": "npm run stopDevServer && npm run dockerCleanup",
     "startDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up",
-    "startAndBuildDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up --build",
     "startNodeDevServer": "cd apps/server && npm run start",
+    "startAndBuildDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up --build",
     "stopDevServer": "docker-compose down",
     "dockerCleanup": "docker system prune -a && docker volume rm $(docker volume ls -qf dangling=true)"
   },

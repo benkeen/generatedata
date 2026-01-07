@@ -15,9 +15,9 @@ services:
     networks:
       - gd-network
     expose:
-      - "3001"
+      - "%GD_API_SERVER_PORT%"
     ports:
-      - "3001:3001"
+      - "%GD_API_SERVER_PORT%:%GD_API_SERVER_PORT%"
     restart: on-failure
     volumes:
       - .:/home/app/generatedata
@@ -30,14 +30,14 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     expose:
-      - "3306"
+      - "%GD_DB_PORT%"
     ports:
-      - "3306:3306"
+      - "%GD_DB_PORT%:%GD_DB_PORT%"
     networks:
       - gd-network
     environment:
-      MYSQL_ROOT_PASSWORD: ChangeMeNow!
-      MYSQL_DATABASE: generatedata
+      MYSQL_ROOT_PASSWORD: %GD_MYSQL_ROOT_PASSWORD%
+      MYSQL_DATABASE: %GD_DB_NAME%
       MYSQL_ALLOW_EMPTY_PASSWORD: ok
     volumes:
       - ./apps/server/database/_dbStructure.sql:/docker-entrypoint-initdb.d/setup.sql
