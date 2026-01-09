@@ -9,6 +9,7 @@
     "purge": "npx rimraf node_modules dist .turbo",
     "run-server": "nodemon ./dist/app.js",
     "run-server:debug": "nodemon --exec node --trace-warnings ./dist/app.js",
+    "startServer": "run-server",
     "start": "run-s build run-server"
   },
   "dependencies": {
