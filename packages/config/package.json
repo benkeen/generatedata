@@ -1,7 +1,6 @@
 {
   "name": "@generatedata/config",
   "version": "1.0.0",
-  "type": "module",
   "description": "This package contains the settings for your generatedata installation.",
   "scripts": {
     "build:esm": "tsc",
@@ -25,23 +24,23 @@
   "exports": {
     ".": {
       "types": "./dist/esm/index.d.ts",
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "import": "./dist/esm/index.js",
+      "default": "./dist/cjs/index.js"
     },
     "./constants": {
       "types": "./dist/esm/constants.d.ts",
-      "require": "./dist/cjs/constants.js",
-      "default": "./dist/esm/constants.js"
+      "import": "./dist/esm/constants.js",
+      "default": "./dist/cjs/constants.js"
     },
     "./clientConfig": {
       "types": "./dist/esm/client.config.d.ts",
-      "require": "./dist/cjs/client.config.js",
-      "default": "./dist/esm/client.config.js"
+      "import": "./dist/esm/client.config.js",
+      "default": "./dist/cjs/client.config.js"
     },
     "./serverConfig": {
       "types": "./dist/esm/server.config.d.ts",
-      "require": "./dist/cjs/server.config.js",
-      "default": "./dist/esm/server.config.js"
+      "import": "./dist/esm/server.config.js",
+      "default": "./dist/cjs/server.config.js"
     }
   }
 }

@@ -41,6 +41,7 @@
     "@rollup/plugin-typescript": "^12.3.0",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/nanoid": "3.0.0",
     "@types/nodemailer": "^7.0.4",
