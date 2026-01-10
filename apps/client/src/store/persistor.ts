@@ -2,19 +2,21 @@ import { GeneratorState, getInitialState as getGeneratorInitialState } from './g
 import { getInitialState as getAccountInitialState } from './account/account.reducer';
 import { MainState, getInitialState as getMainInitialState } from './main/main.reducer';
 import { getInitialState as getPacketsInitialState, PacketsState } from './packets/packets.reducer';
+import { ReduxStore } from './types';
 
 // throttle the storage to every second or so.
 export const persistStore = (store: any) => {
-  const { generator } = store.getState();
+  const { account, generator, main } = store.getState() as ReduxStore;
 
   const accountPersistor = {
     ...getAccountInitialState(),
-    selectedTab: generator.dataSets,
-    selectedAccountsTab: generator.accounts
+    selectedTab: account.dataSets,
+    selectedAccountsTab: account.selectedAccountsTab
   };
 
   const mainPersistor: MainState = {
-    ...getMainInitialState()
+    ...getMainInitialState(),
+    isLoggedIn: main.isLoggedIn
   };
 
   const persistedGenerator: GeneratorState = {

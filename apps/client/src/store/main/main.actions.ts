@@ -147,7 +147,6 @@ export const login = (email: string, password: string, navigate: any, onLoginErr
       dispatch(
         setAuthenticationData({
           ...data.login,
-
           authMethod: AuthMethod.default
         })
       );
