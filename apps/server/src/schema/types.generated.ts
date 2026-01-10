@@ -72,7 +72,7 @@ export type AuthResponse = {
   region?: Maybe<Scalars['String']['output']>;
   success?: Maybe<Scalars['Boolean']['output']>;
   token?: Maybe<Scalars['String']['output']>;
-  tokenExpiry?: Maybe<Scalars['Int']['output']>;
+  tokenExpiry?: Maybe<Scalars['String']['output']>;
   wasOneTimeLogin?: Maybe<Scalars['Boolean']['output']>;
 };
 
@@ -443,7 +443,7 @@ export type AuthResponseResolvers<ContextType = any, ParentType extends Resolver
   region?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   success?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   token?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  tokenExpiry?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  tokenExpiry?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   wasOneTimeLogin?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
 };
 

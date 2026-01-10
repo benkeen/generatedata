@@ -51,7 +51,7 @@ type AuthResponse {
   region: String
   success: Boolean
   token: String
-  tokenExpiry: Int
+  tokenExpiry: String
   wasOneTimeLogin: Boolean
 }
 

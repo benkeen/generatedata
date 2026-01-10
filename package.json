@@ -6,9 +6,10 @@
   "packageManager": "pnpm@9.0.0",
   "license": "GPL-3.0+",
   "engines": {
-    "node": "24",
+    "node": ">=24",
     "pnpm": "9"
   },
+  "engineStrict": true,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev --parallel --filter=@generatedata/client...",

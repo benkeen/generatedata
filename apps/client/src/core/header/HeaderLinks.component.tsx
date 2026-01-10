@@ -19,8 +19,7 @@ export type HeaderLinksProps = {
   i18n: any;
 };
 
-const getClassName = (path: string, currentPage: string): string => {
-  const classNames = useClasses();
+const getClassName = (classNames: any, path: string, currentPage: string): string => {
   const currentPageWithoutLocale = removeLocale(currentPage);
   const pathWithSlash = path.charAt(0) === '/' ? path : `/${path}`;
 
@@ -34,57 +33,69 @@ const getClassName = (path: string, currentPage: string): string => {
 const getLink = (link: string, locale: GDLocale): string => (locale === 'en' ? link : `/${locale}${link}`);
 
 export const MobileLinks = ({ locale, currentPage, headerLinks, showLoginDialog, onLogout, i18n }: HeaderLinksProps) => {
-  const links: any = [];
-  const generatorPath = getUnlocalizedGeneratorRoute();
   const classNames = useClasses();
+  const generatorPath = getUnlocalizedGeneratorRoute();
 
-  headerLinks.forEach((headerLink) => {
+  const links = headerLinks.map((headerLink) => {
     if (typeof headerLink === 'object' && headerLink.path) {
       const link = headerLink as GDCustomHeaderLink;
-      links.push(
-        <MenuItem key={link.path} component={Link} className={getClassName(link.path, currentPage)} to={getLink(link.path, locale)}>
+      return (
+        <MenuItem
+          key={link.path}
+          component={Link}
+          className={getClassName(classNames, link.path, currentPage)}
+          to={getLink(link.path, locale)}
+        >
           {i18n[link.labelI18nKey]}
         </MenuItem>
       );
-    } else if (headerLink === 'generator') {
-      links.push(
-        <MenuItem key="generator" component={Link} className={getClassName(generatorPath, currentPage)} to={getLink(generatorPath, locale)}>
+    }
+
+    if (headerLink === 'generator') {
+      return (
+        <MenuItem
+          key="generator"
+          component={Link}
+          className={getClassName(classNames, generatorPath, currentPage)}
+          to={getLink(generatorPath, locale)}
+        >
           {i18n.generator}
         </MenuItem>
       );
-    } else if (headerLink === 'dataSets') {
-      links.push(
-        <MenuItem key="dataSets" component={Link} className={getClassName('datasets', currentPage)} to={getLink('/datasets', locale)}>
+    }
+
+    if (['dataSets', 'accounts', 'register'].includes(headerLink as string)) {
+      return (
+        <MenuItem
+          key={headerLink as string}
+          component={Link}
+          className={getClassName(classNames, headerLink as string, currentPage)}
+          to={getLink(`/${headerLink}`, locale)}
+        >
           {i18n.dataSets}
         </MenuItem>
       );
-    } else if (headerLink === 'userAccount') {
-      const classes = `${classNames.userAccount} ${getClassName('account', currentPage)}`;
-      links.push(
+    }
+
+    if (headerLink === 'userAccount') {
+      const classes = `${classNames.userAccount} ${getClassName(classNames, 'account', currentPage)}`;
+      return (
         <MenuItem key="account" component={Link} className={classes} to={getLink('/account', locale)}>
           {i18n.yourAccount}
         </MenuItem>
       );
-    } else if (headerLink === 'accounts') {
-      links.push(
-        <MenuItem key="accounts" component={Link} className={getClassName('accounts', currentPage)} to={getLink('/accounts', locale)}>
-          {i18n.accounts}
-        </MenuItem>
-      );
-    } else if (headerLink === 'logout') {
-      links.push(
+    }
+
+    if (headerLink === 'logout') {
+      return (
         <MenuItem key="logout" className={classNames.logoutLink} onClick={onLogout}>
           {i18n.logout}
         </MenuItem>
       );
-    } else if (headerLink === 'register') {
-      links.push(
-        <MenuItem key="register" component={Link} className={getClassName('register', currentPage)} to={getLink('/register', locale)}>
-          {i18n.register}
-        </MenuItem>
-      );
-    } else if (headerLink === 'loginDialog') {
-      links.push(
+    }
+
+    if (headerLink === 'loginDialog') {
+      return (
         <MenuItem key="loginDialog" onClick={showLoginDialog}>
           {i18n.login}
         </MenuItem>
@@ -101,21 +112,21 @@ export const MobileLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
 };
 
 export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps) => {
-  const links: any = [];
-  const generatorPath = getUnlocalizedGeneratorRoute();
   const classNames = useClasses();
+  const generatorPath = getUnlocalizedGeneratorRoute();
+  const links: any = [];
 
   headerLinks.forEach((headerLink, index) => {
     if (typeof headerLink === 'object' && headerLink.path) {
       const link = headerLink as GDCustomHeaderLink;
       links.push(
-        <li key={link.path} className={getClassName(link.path, currentPage)}>
+        <li key={link.path} className={getClassName(classNames, link.path, currentPage)}>
           <Link to={getLink(link.path, locale)}>{i18n[link.labelI18nKey]}</Link>
         </li>
       );
     } else if (headerLink === 'generator') {
       links.push(
-        <li key="generator" className={getClassName(generatorPath, currentPage)}>
+        <li key="generator" className={getClassName(classNames, generatorPath, currentPage)}>
           <Link to={getLink(generatorPath, locale)}>{i18n.generator}</Link>
         </li>
       );
@@ -127,13 +138,13 @@ export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
       );
     } else if (headerLink === 'dataSets') {
       links.push(
-        <li key="dataSets" className={getClassName('datasets', currentPage)}>
+        <li key="dataSets" className={getClassName(classNames, 'datasets', currentPage)}>
           <Link to={getLink('/datasets', locale)}>{i18n.dataSets}</Link>
         </li>
       );
     } else if (headerLink === 'userAccount') {
       const userImage = profileImage ? <img src={profileImage} /> : null;
-      const classes = `${classNames.userAccount} ${getClassName('account', currentPage)}`;
+      const classes = `${classNames.userAccount} ${getClassName(classNames, 'account', currentPage)}`;
 
       links.push(
         <li key="account" className={classes}>
@@ -142,7 +153,7 @@ export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
       );
     } else if (headerLink === 'accounts') {
       links.push(
-        <li key="accounts" className={getClassName('accounts', currentPage)}>
+        <li key="accounts" className={getClassName(classNames, 'accounts', currentPage)}>
           <Link to={getLink('/accounts', locale)}>{i18n.accounts}</Link>
         </li>
       );
@@ -160,7 +171,7 @@ export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
       );
     } else if (headerLink === 'register') {
       links.push(
-        <li key="register" className={getClassName('register', currentPage)}>
+        <li key="register" className={getClassName(classNames, 'register', currentPage)}>
           <Link to={getLink('/register', locale)}>{i18n.register}</Link>
         </li>
       );
@@ -172,7 +183,7 @@ export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
       );
     } else if (headerLink === 'loginPage') {
       links.push(
-        <li key="loginPage" className={getClassName('loginPage', currentPage)}>
+        <li key="loginPage" className={getClassName(classNames, 'loginPage', currentPage)}>
           <Link to={getLink('/login', locale)}>{i18n.login}</Link>
         </li>
       );

@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 import C from '@generatedata/config/constants';
 import type { AuthResponse } from '@generatedata/server';
 import { setAuthTokenRefresh } from '@generatedata/utils/auth';
-import { addToast, setTourComponents } from '@generatedata/utils/general';
+import { setTourComponents } from '@generatedata/utils/general';
 import { getCurrentLocalizedPath, getStrings, setLocale } from '@generatedata/utils/lang';
 import Cookies from 'js-cookie';
 import { Dispatch } from 'redux';
@@ -18,6 +18,7 @@ import { AccountStatusFilter, AuthMethod, GDAction, GDLocale } from '~types/gene
 import { getGeneratorPageRoute, isGeneratorPage } from '~utils/routeUtils';
 import { localeFileMap } from '../../../_localeFileMap';
 import { apolloClient } from '../../core/apolloClient';
+import { enqueueSnackbar } from 'notistack';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -139,9 +140,10 @@ export const login = (email: string, password: string, navigate: any, onLoginErr
       variables: { email, password }
     });
 
-    console.log('RESPONSE: ', data);
     if (data?.login?.success) {
-      const { tokenExpiry, refreshToken } = data.login;
+      const { tokenExpiry: tokenExpiryStr, refreshToken } = data.login;
+      const tokenExpiry = parseInt(tokenExpiryStr!, 10);
+
       dispatch(
         setAuthenticationData({
           ...data.login,
@@ -176,10 +178,7 @@ export const onLoginSuccess = (tokenExpiry: number | null, onPageRender: boolean
   dispatch(setLoginDialogVisibility(false));
 
   if (!onPageRender) {
-    addToast({
-      type: 'success',
-      message: i18n.core.nowLoggedIn
-    });
+    enqueueSnackbar(i18n.core.nowLoggedIn, { variant: 'success' });
 
     if (loginFlow === 'fromSaveDataSet') {
       dispatch(showSaveDataSetDialog(SaveDataDialogType.save));
@@ -203,10 +202,7 @@ export const onOneTimeLoginSuccess = (tokenExpiry: number, password: string, nav
   navigate('/account');
   dispatch(onChangeTab(SelectedAccountTab.changePassword));
 
-  addToast({
-    type: 'success',
-    message: i18n.core.nowLoggedIn
-  });
+  enqueueSnackbar(i18n.core.nowLoggedIn, { variant: 'success' });
 };
 
 export const LOGOUT = 'LOGOUT';
@@ -221,10 +217,7 @@ export const logout =
       dispatch({ type: CLEAR_GRID });
       dispatch(actions.addRows(C.NUM_DEFAULT_ROWS));
 
-      addToast({
-        type: 'success',
-        message: i18n.core.nowLoggedOut
-      });
+      enqueueSnackbar(i18n.core.nowLoggedOut, { variant: 'success' });
 
       // doesn't awfully matter if this fails. It's just for cleanup
       await apolloClient.mutate({
@@ -255,7 +248,8 @@ export const updateRefreshToken =
       });
 
       if (data?.refreshToken?.success) {
-        const { token, tokenExpiry, refreshToken } = data.refreshToken;
+        const { token, tokenExpiry: tokenExpiryStr, refreshToken } = data.refreshToken;
+        const tokenExpiry = parseInt(tokenExpiryStr!, 10);
 
         Cookies.set('refreshToken', refreshToken!, {
           expires: new Date(tokenExpiry!)
@@ -317,11 +311,7 @@ export const loadTourBundle =
         })
         .catch(() => {
           dispatch(hideTourIntroDialog());
-
-          addToast({
-            type: 'success',
-            message: i18n.core.problemLoadingTour
-          });
+          enqueueSnackbar(i18n.core.problemLoadingTour, { variant: 'error' });
         });
     };
 
@@ -338,10 +328,7 @@ export const sendPasswordResetEmail =
       });
 
       if (data?.sendPasswordResetEmail?.success) {
-        addToast({
-          type: 'success',
-          message: i18n.core.passwordResetMsg
-        });
+        enqueueSnackbar(i18n.core.passwordResetMsg, { variant: 'success' });
         dispatch(setPasswordResetDialogVisibility(false));
         dispatch(setLoginDialogVisibility(true, email));
         dispatch(stopDialogProcessing());

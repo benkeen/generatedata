@@ -7,8 +7,8 @@ import { OAuth2Client } from 'google-auth-library';
 
 export const loginWithGoogle: NonNullable<MutationResolvers['loginWithGoogle']> = async (_parent, { googleToken }, _ctx) => {
   const client = new OAuth2Client(process.env.GD_GOOGLE_AUTH_CLIENT_ID);
-  let email: string | undefined = '';
-  let profileImage: string | undefined = '';
+  let email: string = '';
+  let profileImage: string = '';
 
   async function verify() {
     const ticket = await client.verifyIdToken({
@@ -17,8 +17,8 @@ export const loginWithGoogle: NonNullable<MutationResolvers['loginWithGoogle']> 
     });
     const payload = ticket.getPayload();
 
-    email = payload?.email;
-    profileImage = payload?.picture;
+    email = payload?.email || '';
+    profileImage = payload?.picture || '';
   }
 
   try {
@@ -72,7 +72,7 @@ export const loginWithGoogle: NonNullable<MutationResolvers['loginWithGoogle']> 
   return {
     success: true,
     token,
-    tokenExpiry,
+    tokenExpiry: tokenExpiry.toString(),
     refreshToken,
     firstName,
     lastName,

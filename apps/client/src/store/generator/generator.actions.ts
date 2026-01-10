@@ -2,7 +2,6 @@ import C from '@generatedata/config/constants';
 import { DataTypeFolder, DTBundle, DTOptionsMetadata, ExportTypeFolder, getCountryData } from '@generatedata/plugins';
 import { DataSetListItem } from '@generatedata/types';
 import { getUnique } from '@generatedata/utils/array';
-import { addToast } from '@generatedata/utils/general';
 import { getStrings } from '@generatedata/utils/lang';
 import { getUniqueString } from '@generatedata/utils/string';
 import { Dispatch } from 'redux';
@@ -19,6 +18,7 @@ import * as selectors from './generator.selectors';
 import { UpdatePanelSizeData } from './generator.reducer';
 import * as allSelectors from '../selectors';
 import * as allActions from '../actions';
+import { enqueueSnackbar } from 'notistack';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -476,10 +476,7 @@ export const loadDataSet =
       });
 
       if (showToast) {
-        addToast({
-          type: 'success',
-          message: i18n.core.dataSetLoaded
-        });
+        enqueueSnackbar(i18n.core.dataSetLoaded, { variant: 'success' });
       }
     };
 

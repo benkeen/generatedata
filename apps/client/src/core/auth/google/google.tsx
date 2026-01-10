@@ -6,10 +6,10 @@ import store from '~store/index';
 import { onLoginSuccess, setAuthenticated, setAuthenticationData, setOnloadAuthDetermined } from '~store/main/main.actions';
 import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';
-import { addToast } from '@generatedata/utils/general';
 import langUtils from '@generatedata/utils/lang';
 import clientConfig from '@generatedata/config/clientConfig';
 import { LOGIN_WITH_GOOGLE } from '../../mutations';
+import { enqueueSnackbar } from 'notistack';
 
 const googleBtnId = 'google-signin-button';
 
@@ -48,7 +48,8 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
     });
 
     if (data?.loginWithGoogle?.success) {
-      const { tokenExpiry, refreshToken } = data.loginWithGoogle;
+      const { tokenExpiry: tokenExpiryStr, refreshToken } = data.loginWithGoogle;
+      const tokenExpiry = parseInt(tokenExpiryStr!, 10);
 
       store.dispatch(
         setAuthenticationData({
@@ -60,18 +61,13 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
       Cookies.set('refreshToken', refreshToken!, {
         expires: new Date(tokenExpiry!)
       });
+
       onLoginSuccess(tokenExpiry!, options.onPageRender, store.dispatch);
     } else {
       if (data?.loginWithGoogle?.error === 'accountExpired') {
-        addToast({
-          type: 'error',
-          message: i18n.core.accountExpiredMsg
-        });
+        enqueueSnackbar(i18n.core.accountExpiredMsg, { variant: 'error' });
       } else if (data?.loginWithGoogle?.error === 'noUserAccount') {
-        addToast({
-          type: 'error',
-          message: i18n.core.userAccountNotFound
-        });
+        enqueueSnackbar(i18n.core.userAccountNotFound, { variant: 'error' });
       }
     }
   }
