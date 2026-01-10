@@ -1,9 +1,10 @@
 import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, PrimaryButton, TextField } from '@generatedata/core';
 import { getVendorLoginButtons, hasVendorLogin } from '@generatedata/utils/auth';
-import { addToast, isValidEmail } from '@generatedata/utils/general';
+import { isValidEmail } from '@generatedata/utils/general';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useClasses } from './Login.styles';
+import { enqueueSnackbar } from 'notistack';
 
 const showVendorLoginColumn = hasVendorLogin();
 const vendorLoginButtons = getVendorLoginButtons();
@@ -80,10 +81,7 @@ const LoginDialog = ({
           errorMessage = i18n.accountExpiredMsg;
         }
 
-        addToast({
-          type: 'error',
-          message: errorMessage
-        });
+        enqueueSnackbar(errorMessage, { variant: 'error' });
 
         if (passwordFieldRef && passwordFieldRef.current) {
           passwordFieldRef.current.select();
@@ -164,9 +162,10 @@ const LoginDialog = ({
             <DialogContent dividers>
               <div className={layoutClass}>
                 <div className={classNames.col}>
-                  <label>{i18n.email}</label>
+                  <label htmlFor="emailField">{i18n.email}</label>
                   <div style={{ marginBottom: 15 }}>
                     <TextField
+                      id="emailField"
                       ref={textFieldRef}
                       value={email}
                       error={emailError}
@@ -179,10 +178,11 @@ const LoginDialog = ({
                     />
                   </div>
 
-                  <label>{i18n.password}</label>
+                  <label htmlFor="passwordField">{i18n.password}</label>
                   <div style={{ marginBottom: 15 }}>
                     <TextField
                       type="password"
+                      id="passwordField"
                       error={passwordError}
                       ref={passwordFieldRef}
                       name="password"

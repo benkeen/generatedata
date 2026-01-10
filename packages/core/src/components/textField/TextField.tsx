@@ -31,10 +31,7 @@ export type TextFieldProps = {
 };
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  (
-    { throttle = true, type = 'text', error = '', value, onChange, tooltipPlacement = 'bottom', className, ...props }: TextFieldProps,
-    ref
-  ) => {
+  ({ throttle = true, error = '', value, onChange, tooltipPlacement = 'bottom', className, ...props }: TextFieldProps, ref) => {
     const classNames = useSharedClasses();
     let classes = className ? className : '';
     if (error) {
@@ -45,7 +42,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const [lastEvent, setChangeEvent] = useThrottle(null, 2); // second param is frames per second...
 
     const cleanProps: any = { ...props };
-    if (type === 'intOnly') {
+    if (props.type === 'intOnly') {
       cleanProps.type = 'number';
       cleanProps.onKeyDown = (e: any): void => {
         if (e.key === '.') {

@@ -10,6 +10,5 @@ export * from './components/loaders/loaders';
 export * from './components/pills';
 export * from './components/portal/Portal';
 export { TextField } from './components/textField/TextField';
-export { Toast } from './components/toast/Toast';
 export * from './components/tooltips';
 export * from './styles';

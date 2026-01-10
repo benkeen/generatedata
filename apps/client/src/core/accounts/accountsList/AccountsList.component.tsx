@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client/react';
 import C from '@generatedata/config/constants';
 import { Dropdown, DropdownOption, SmallSpinner, useSharedClasses } from '@generatedata/core';
-import { addToast } from '@generatedata/utils/general';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Button from '@mui/material/Button';
 import { format, fromUnixTime } from 'date-fns';
@@ -15,6 +14,7 @@ import * as queries from '~core/queries';
 import { AccountStatusFilter } from '~types/general';
 import { useClasses } from './AccountsList.styles';
 import SearchFilter from './SearchFilter.component';
+import { enqueueSnackbar } from 'notistack';
 
 export type AccountsListProps = {
   accountsCurrentPage: number;
@@ -131,11 +131,7 @@ const AccountsList = ({
     onCompleted: () => {
       setDialogVisible(false);
       setDeleteAccountInfo(null);
-
-      addToast({
-        message: i18n.accountDeleted,
-        type: 'success'
-      });
+      enqueueSnackbar(i18n.accountDeleted, { variant: 'success' });
     }
   });
 

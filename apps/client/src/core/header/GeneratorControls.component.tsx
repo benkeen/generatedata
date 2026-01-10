@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client/react';
 import { HtmlTooltip } from '@generatedata/core';
-import { addToast } from '@generatedata/utils/general';
+import { enqueueSnackbar } from 'notistack';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Divider, IconButton, List, ListItemButton, ListItemText } from '@mui/material';
 import { useMeasure } from '@uidotdev/usehooks';
@@ -80,10 +80,7 @@ const GeneratorControls = ({
     // @ts-ignore-line
     inputFieldRef.current?.blur();
 
-    addToast({
-      message: i18n.dataSetNameUpdated,
-      type: 'success'
-    });
+    enqueueSnackbar(i18n.dataSetNameUpdated, { variant: 'success' });
   };
 
   const onKeyUp = (e: any): void => {

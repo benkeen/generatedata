@@ -29,12 +29,6 @@ const theme = createTheme({
         disableRipple: true
       }
     }
-    // MuiDialog: {
-    //   root: {
-    //     // @ts-ignore-line
-    //     zIndex: '5000 !important'
-    //   }
-    // }
   },
   // see: https://mui.com/material-ui/customization/default-theme/?expand-path=$.zIndex
   zIndex: {

@@ -65,6 +65,15 @@ export const useGlobalStyles = makeStaticStyles({
       marginLeft: '-4px',
       marginRight: '6px'
     }
+  },
+  '.gdToastContainer': {
+    zIndex: 5006
+  },
+  '.gdToast div': {
+    fontSize: '13px'
+  },
+  '.gdToast svg': {
+    fill: 'white'
   }
 
   // body div.MuiTooltip-popper) {

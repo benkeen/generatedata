@@ -1,8 +1,9 @@
 /* istanbul ignore file */
 import { ApolloProvider } from '@apollo/client/react';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import IconButton from '@mui/material/IconButton';
 import C from '@generatedata/config/constants';
-import { Toast, useGlobalStyles } from '@generatedata/core';
-import { getLocaleMap } from '@generatedata/utils/lang';
+import { useGlobalStyles } from '@generatedata/core';
 import { ThemeProvider } from '@mui/material/styles';
 import * as codemirror from 'codemirror';
 import { useEffect } from 'react';
@@ -20,6 +21,7 @@ import { resetStore } from '~store/main/main.actions';
 import { getAppStateVersion } from '~store/main/main.selectors';
 import { getRoutes, updateBodyClass } from '~utils/routeUtils';
 import { initApp } from './core';
+import { closeSnackbar, SnackbarProvider } from 'notistack';
 
 window.CodeMirror = codemirror;
 
@@ -72,7 +74,6 @@ const App = () => {
     <ErrorBoundary>
       <Page>
         <LocalizationWrapper />
-        <Toast />
         <SaveDataSetDialog />
       </Page>
     </ErrorBoundary>
@@ -84,7 +85,18 @@ const AppWrapper = () => (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <App />
+          <SnackbarProvider
+            autoHideDuration={5000}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            classes={{ containerRoot: 'gdToastContainer', root: 'gdToast' }}
+            action={(snackbarId) => (
+              <IconButton onClick={() => closeSnackbar(snackbarId)}>
+                <HighlightOffIcon />
+              </IconButton>
+            )}
+          >
+            <App />
+          </SnackbarProvider>
         </BrowserRouter>
       </ThemeProvider>
     </ApolloProvider>

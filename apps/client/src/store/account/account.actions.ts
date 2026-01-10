@@ -1,5 +1,5 @@
 import type { AccountStatus } from '@generatedata/server';
-import { addToast } from '@generatedata/utils/general';
+import { enqueueSnackbar } from 'notistack';
 import { getStrings } from '@generatedata/utils/lang';
 import { format } from 'date-fns';
 import type { Dispatch } from 'redux';
@@ -89,11 +89,7 @@ export const saveYourAccount =
         variables: { firstName, lastName, email, country, region }
       });
 
-      addToast({
-        type: 'success',
-        message: i18n.core.yourAccountUpdated
-      });
-
+      enqueueSnackbar(i18n.core.yourAccountUpdated, { variant: 'success' });
       dispatch(yourAccountUpdated());
     };
 
@@ -125,10 +121,7 @@ export const saveAccount =
         }
       });
 
-      addToast({
-        type: 'success',
-        message: i18n.core.userAccountUpdated
-      });
+      enqueueSnackbar(i18n.core.userAccountUpdated, { variant: 'success' });
 
       dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
     };
@@ -156,12 +149,7 @@ export const savePassword =
       }
 
       dispatch(clearOneTimePassword());
-
-      addToast({
-        type: 'success',
-        message: i18n.core.passwordUpdated
-      });
-
+      enqueueSnackbar(i18n.core.passwordUpdated, { variant: 'success' });
       onSuccess();
     };
 
@@ -205,11 +193,7 @@ export const saveNewDataSet =
         });
 
         dispatch(hideSaveDataSetDialog());
-
-        addToast({
-          type: 'success',
-          message: i18n.core.dataSetSaved
-        });
+        enqueueSnackbar(i18n.core.dataSetSaved, { variant: 'success' });
       }
 
     // TODO error handling
@@ -243,11 +227,7 @@ export const saveCurrentDataSet =
 
       if (response?.data?.saveDataSet?.success) {
         dispatch(updateCurrentDataSetLastSaved(response.data.saveDataSet.savedDate));
-
-        addToast({
-          type: 'success',
-          message: successMessage
-        });
+        enqueueSnackbar(successMessage, { variant: 'success' });
       }
     };
 
@@ -299,16 +279,9 @@ export const createAccount =
 
       if (response?.data?.createUserAccount?.success) {
         dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
-
-        addToast({
-          type: 'success',
-          message: i18n.core.accountCreatedDesc
-        });
+        enqueueSnackbar(i18n.core.accountCreatedDesc, { variant: 'success' });
       } else {
-        addToast({
-          type: 'error',
-          message: i18n.core.errorCreatingAccount
-        });
+        enqueueSnackbar(i18n.core.errorCreatingAccount, { variant: 'error' });
       }
     };
 

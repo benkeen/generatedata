@@ -139,11 +139,13 @@ export const login = (email: string, password: string, navigate: any, onLoginErr
       variables: { email, password }
     });
 
+    console.log('RESPONSE: ', data);
     if (data?.login?.success) {
       const { tokenExpiry, refreshToken } = data.login;
       dispatch(
         setAuthenticationData({
           ...data.login,
+
           authMethod: AuthMethod.default
         })
       );

@@ -4,13 +4,17 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "dev": "npm run start",
+    "dev": "COMPOSE_HTTP_TIMEOUT=150 docker compose -f ./docker-compose.yml up",
     "generate-schema": "graphql-codegen --config src/codegen.ts",
     "purge": "npx rimraf node_modules dist .turbo",
     "run-server": "nodemon ./dist/app.js",
     "run-server:debug": "nodemon --exec node --trace-warnings ./dist/app.js",
     "startServer": "run-server",
-    "start": "run-s build run-server"
+    "start": "run-s build run-server",
+    "startNodeDevServer": "npm run start",
+    "startDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker compose -f ./docker-compose.yml up",
+    "startAndBuildDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker compose -f . up --build",
+    "stopDevServer": "docker compose -f . down"
   },
   "dependencies": {
     "@apollo/server": "^5.2.0",

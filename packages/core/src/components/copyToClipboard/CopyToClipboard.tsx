@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { addToast } from '@generatedata/utils/general';
+import { enqueueSnackbar } from 'notistack';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { CopyToClipboard as Copy } from 'react-copy-to-clipboard';
 import { useClasses, useStaticStyles } from './CopyToClipboard.styles';
@@ -9,11 +9,7 @@ export const CopyToClipboard = ({ message, tooltip, content }: any) => {
   useStaticStyles();
 
   const onCopy = (): void => {
-    addToast({
-      type: 'success',
-      message,
-      verticalPosition: 'top'
-    });
+    enqueueSnackbar(message, { variant: 'info' });
   };
 
   return (
