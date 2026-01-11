@@ -3,15 +3,16 @@
   "description": "Free, MIT-licensed tool for generating random test data. Have at it.",
   "version": "5.0.0-alpha1",
   "author": "Ben Keen <ben.keen@gmail.com>",
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@9.15.9",
   "license": "GPL-3.0+",
   "engines": {
     "node": ">=24",
-    "pnpm": "9"
+    "pnpm": ">=9.15.9"
   },
   "engineStrict": true,
   "scripts": {
     "build": "turbo build",
+    "precheck": "node ./scripts/precheck.js",
     "dev": "turbo dev --parallel --filter=@generatedata/client...",
     "prodAll": "COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up",
     "initApp": "build config, create database, output some sort of message summarizing what just happened + handle re-runs gracefully",
@@ -28,9 +29,12 @@
     "url": "https://github.com/benkeen/generatedata/issues"
   },
   "dependencies": {
+    "npm-run-all": "catalog:",
+    "semver": "7.7.3",
     "turbo": "^2.3.3"
   },
   "pnpm": {
+    "neverBuiltDependencies": [],
     "overrides": {
       "on-headers@1": "^1.1.0",
       "qs@6": "^6.14.1"

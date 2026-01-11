@@ -29,7 +29,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps) => {
   return <Dropdown value={data.example} onChange={(i: any): void => onChange(i.value)} options={options} />;
 };
 
-export const Options = ({ coreI18n, data, throttle, onUpdate }: DTOptionsProps) => {
+export const Options = ({ coreI18n, data, onUpdate, throttle = true }: DTOptionsProps) => {
   const titleColError = data.value.trim() === '' ? coreI18n.requiredField : '';
 
   return (
@@ -41,9 +41,6 @@ export const Options = ({ coreI18n, data, throttle, onUpdate }: DTOptionsProps) 
       throttle={throttle}
     />
   );
-};
-Options.defaultProps = {
-  throttle: true
 };
 
 export const Help = ({ coreI18n, i18n }: DTHelpProps) => {

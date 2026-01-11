@@ -14,8 +14,7 @@ const selectStyles = {
   control: (provided: any): any => ({
     ...provided,
     minHeight: 20,
-    boxShadow: 'none',
-    fontSize: '14px'
+    boxShadow: 'none'
   }),
   indicatorsContainer: (provided: any): any => ({
     ...provided,
@@ -66,13 +65,12 @@ export const Dropdown: FC<any> = ({ value, isGrouped, options, hasError, placeho
 
   const placeholderStr = placeholder ? placeholder : i18n.core.selectEllipsis;
 
-  // for debugging: menuIsOpen={true}
-
   let className = props.className || '';
   if (hasError) {
     className += ` ${classNames.error}`;
   }
 
+  // for debugging: menuIsOpen={true}
   return (
     <Select
       {...props}

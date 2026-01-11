@@ -10,7 +10,7 @@ export type ChangePasswordProps = {
   throttle?: boolean;
 };
 
-const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: ChangePasswordProps) => {
+const ChangePassword = ({ oneTimePassword, onSave, className, i18n, throttle = false }: ChangePasswordProps) => {
   const currentPasswordField = useRef<HTMLInputElement>(null);
   const [currentPassword, setCurrentPassword] = useState('');
   const [currentPasswordError, setCurrentPasswordError] = useState('');
@@ -152,10 +152,6 @@ const ChangePassword = ({ oneTimePassword, onSave, className, throttle, i18n }: 
       </div>
     </form>
   );
-};
-
-ChangePassword.defaultProps = {
-  throttle: false
 };
 
 export default ChangePassword;
