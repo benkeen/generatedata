@@ -34,12 +34,13 @@ export const useRouteListener = () => {
   }, [location]);
 };
 
-const checkState = async (state: any): Promise<any> => {
-  const lastAppStateVersion = getAppStateVersion(state.getState());
-  if (lastAppStateVersion !== C.APP_STATE_VERSION) {
-    await state.dispatch(resetStore());
-  }
-};
+// TODO
+// const checkState = async (state: any): Promise<any> => {
+//   const lastAppStateVersion = getAppStateVersion(state.getState());
+//   if (lastAppStateVersion !== C.APP_STATE_VERSION) {
+//     await state.dispatch(resetStore());
+//   }
+// };
 
 const routes = getRoutes();
 
