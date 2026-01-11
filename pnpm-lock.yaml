@@ -147,6 +147,9 @@ catalogs:
     '@types/nanoid':
       specifier: 3.0.0
       version: 3.0.0
+    '@types/node':
+      specifier: ^20.19.11
+      version: 20.19.11
     '@types/nodemailer':
       specifier: ^7.0.4
       version: 7.0.4
@@ -486,6 +489,9 @@ catalogs:
     turbo:
       specifier: ^2.3.3
       version: 2.4.2
+    typescript:
+      specifier: ^5.9.3
+      version: 5.9.3
     underscore:
       specifier: ^1.13.7
       version: 1.13.7
@@ -752,7 +758,7 @@ importers:
         specifier: 'catalog:'
         version: 5.13.9
       '@types/node':
-        specifier: ^20.19.11
+        specifier: 'catalog:'
         version: 20.19.11
       '@types/react':
         specifier: 'catalog:'
@@ -920,7 +926,7 @@ importers:
         specifier: 'catalog:'
         version: 4.1.1
       typescript:
-        specifier: ^5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
       use-onclickoutside:
         specifier: 'catalog:'
@@ -1059,7 +1065,7 @@ importers:
         specifier: 'catalog:'
         version: 2.79.2
       typescript:
-        specifier: ^5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
 
   packages/cli:
@@ -1096,7 +1102,7 @@ importers:
         specifier: 'catalog:'
         version: 2.1.0
       typescript:
-        specifier: ^5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
 
   packages/cli-test: {}
@@ -1104,7 +1110,7 @@ importers:
   packages/config:
     devDependencies:
       '@types/node':
-        specifier: ^20.19.11
+        specifier: 'catalog:'
         version: 20.19.11
       bcryptjs:
         specifier: 'catalog:'
@@ -1119,7 +1125,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.1
       typescript:
-        specifier: 5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
 
   packages/core:
@@ -1188,7 +1194,7 @@ importers:
         specifier: 'catalog:'
         version: 5.10.2(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       typescript:
-        specifier: ^5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
     devDependencies:
       '@storybook/addon-a11y':
@@ -1323,7 +1329,7 @@ importers:
         version: 2.4.1
       jest:
         specifier: 'catalog:'
-        version: 30.2.0(@types/node@24.10.1)(node-notifier@8.0.2)
+        version: 30.2.0(node-notifier@8.0.2)
       md5-file:
         specifier: 'catalog:'
         version: 5.0.0
@@ -1343,7 +1349,7 @@ importers:
         specifier: 'catalog:'
         version: 21.0.0
       typescript:
-        specifier: ^5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
 
   packages/types:
@@ -1410,14 +1416,14 @@ importers:
         specifier: 'catalog:'
         version: 30.0.0
       '@types/node':
-        specifier: ^24.10.1
-        version: 24.10.1
+        specifier: 'catalog:'
+        version: 20.19.11
       '@types/sinon':
         specifier: ^7.5.1
         version: 7.5.2
       jest:
         specifier: 'catalog:'
-        version: 30.2.0(@types/node@24.10.1)(node-notifier@8.0.2)
+        version: 30.2.0(@types/node@20.19.11)(node-notifier@8.0.2)
       md5-file:
         specifier: 'catalog:'
         version: 5.0.0
@@ -1440,7 +1446,7 @@ importers:
         specifier: 'catalog:'
         version: 21.0.0
       typescript:
-        specifier: ^5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
 
 packages:
@@ -17737,6 +17743,27 @@ snapshots:
       - supports-color
       - ts-node
 
+  jest-cli@30.2.0(@types/node@20.19.11)(node-notifier@8.0.2):
+    dependencies:
+      '@jest/core': 30.2.0(node-notifier@8.0.2)
+      '@jest/test-result': 30.2.0
+      '@jest/types': 30.2.0
+      chalk: 4.1.2
+      exit-x: 0.2.2
+      import-local: 3.2.0
+      jest-config: 30.2.0(@types/node@20.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.19.11)(typescript@5.9.3))
+      jest-util: 30.2.0
+      jest-validate: 30.2.0
+      yargs: 17.7.2
+    optionalDependencies:
+      node-notifier: 8.0.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - esbuild-register
+      - supports-color
+      - ts-node
+
   jest-cli@30.2.0(@types/node@24.10.1)(babel-plugin-macros@3.1.0)(node-notifier@8.0.2)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)):
     dependencies:
       '@jest/core': 30.2.0(babel-plugin-macros@3.1.0)(node-notifier@8.0.2)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
@@ -17758,7 +17785,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-cli@30.2.0(@types/node@24.10.1)(node-notifier@8.0.2):
+  jest-cli@30.2.0(node-notifier@8.0.2):
     dependencies:
       '@jest/core': 30.2.0(node-notifier@8.0.2)
       '@jest/test-result': 30.2.0
@@ -18205,6 +18232,21 @@ snapshots:
       - supports-color
       - ts-node
 
+  jest@30.2.0(@types/node@20.19.11)(node-notifier@8.0.2):
+    dependencies:
+      '@jest/core': 30.2.0(node-notifier@8.0.2)
+      '@jest/types': 30.2.0
+      import-local: 3.2.0
+      jest-cli: 30.2.0(@types/node@20.19.11)(node-notifier@8.0.2)
+    optionalDependencies:
+      node-notifier: 8.0.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - esbuild-register
+      - supports-color
+      - ts-node
+
   jest@30.2.0(@types/node@24.10.1)(babel-plugin-macros@3.1.0)(node-notifier@8.0.2)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)):
     dependencies:
       '@jest/core': 30.2.0(babel-plugin-macros@3.1.0)(node-notifier@8.0.2)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
@@ -18220,12 +18262,12 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest@30.2.0(@types/node@24.10.1)(node-notifier@8.0.2):
+  jest@30.2.0(node-notifier@8.0.2):
     dependencies:
       '@jest/core': 30.2.0(node-notifier@8.0.2)
       '@jest/types': 30.2.0
       import-local: 3.2.0
-      jest-cli: 30.2.0(@types/node@24.10.1)(node-notifier@8.0.2)
+      jest-cli: 30.2.0(node-notifier@8.0.2)
     optionalDependencies:
       node-notifier: 8.0.2
     transitivePeerDependencies:

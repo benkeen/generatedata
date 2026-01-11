@@ -48,7 +48,7 @@
     "jest": "catalog:",
     "jest-cli": "catalog:",
     "jest-css-modules": "catalog:",
-    "typescript": "^5.9.3"
+    "typescript": "catalog:"
   },
   "dependencies": {
     "ansi-colors": "catalog:",

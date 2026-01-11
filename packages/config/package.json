@@ -14,12 +14,12 @@
     "confirm-setup": "node ./scripts/confirm-setup.js"
   },
   "devDependencies": {
-    "@types/node": "^20.19.11",
+    "@types/node": "catalog:",
     "bcryptjs": "catalog:",
     "date-fns": "catalog:",
     "npm-run-all": "catalog:",
     "rimraf": "catalog:",
-    "typescript": "5.9.3"
+    "typescript": "catalog:"
   },
   "exports": {
     ".": {

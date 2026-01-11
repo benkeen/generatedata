@@ -16,7 +16,7 @@
     "bcryptjs": "catalog:",
     "date-fns": "catalog:",
     "nanoid": "catalog:",
-    "react": "^18.3.1",
+    "react": "catalog:",
     "react-dom": "catalog:",
     "underscore": "catalog:"
   },
@@ -29,7 +29,7 @@
     "@rollup/plugin-typescript": "catalog:",
     "@testing-library/react": "catalog:",
     "@types/jest": "catalog:",
-    "@types/node": "^24.10.1",
+    "@types/node": "catalog:",
     "@types/sinon": "^7.5.1",
     "jest": "catalog:",
     "md5-file": "catalog:",
@@ -39,7 +39,7 @@
     "rollup-plugin-strip-exports": "catalog:",
     "rollup-plugin-terser": "catalog:",
     "sinon": "catalog:",
-    "typescript": "^5.9.3"
+    "typescript": "catalog:"
   },
   "exports": {
     ".": {

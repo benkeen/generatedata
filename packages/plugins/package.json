@@ -21,7 +21,7 @@
     "@mui/lab": "catalog:",
     "date-fns": "catalog:",
     "randomcolor": "catalog:",
-    "react": "^18.3.1",
+    "react": "catalog:",
     "react-dom": "catalog:",
     "reselect": "catalog:"
   },
@@ -52,7 +52,7 @@
     "rollup": "catalog:",
     "rollup-plugin-strip-exports": "catalog:",
     "sinon": "catalog:",
-    "typescript": "^5.9.3"
+    "typescript": "catalog:"
   },
   "exports": {
     ".": {

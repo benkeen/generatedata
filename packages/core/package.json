@@ -29,11 +29,11 @@
     "@react-hook/throttle": "catalog:",
     "date-fns": "catalog:",
     "notistack": "catalog:",
-    "react": "18.3.1",
+    "react": "catalog:",
     "react-copy-to-clipboard": "catalog:",
     "react-dom": "catalog:",
     "react-select": "catalog:",
-    "typescript": "^5.9.3"
+    "typescript": "catalog:"
   },
   "devDependencies": {
     "@storybook/react": "catalog:",

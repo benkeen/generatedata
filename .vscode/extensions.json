@@ -1,3 +1,3 @@
 {
-  "recommendations": ["graphql.vscode-graphql-syntax", "graphql.vscode-graphql"]
+  "recommendations": ["graphql.vscode-graphql-syntax", "graphql.vscode-graphql", "antfu.pnpm-catalog-lens", "firsttris.vscode-jest-runner"]
 }

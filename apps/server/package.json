@@ -55,7 +55,7 @@
     "npm-run-all": "catalog:",
     "rimraf": "catalog:",
     "rollup": "catalog:",
-    "typescript": "^5.9.3"
+    "typescript": "catalog:"
   },
   "exports": {
     ".": {
