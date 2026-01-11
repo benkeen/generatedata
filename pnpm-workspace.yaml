@@ -111,7 +111,7 @@ catalog:
   json-loader: 0.5.4
   jsonwebtoken: ^9.0.3
   md5-file: ^5.0.0
-  mini-css-extract-plugin: ^0.8.0
+  mini-css-extract-plugin: ^2.9.4
   mysql2: ^3.9.8
   nanoid: ^3.3.4
   nodemailer: ^7.0.12
@@ -135,7 +135,7 @@ catalog:
   react-input-autosize: ^3.0.0
   react-number-format: 5.4.4
   react-redux: ^9.2.0
-  react-router: ^7.8.2
+  react-router: ^7.9.6
   react-router-dom: ^7.8.2
   react-select: ^5.10.2
   react-split-pane: ^3.0.4
