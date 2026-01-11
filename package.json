@@ -30,8 +30,8 @@
   },
   "dependencies": {
     "npm-run-all": "catalog:",
-    "semver": "7.7.3",
-    "turbo": "^2.3.3"
+    "semver": "catalog:",
+    "turbo": "catalog:"
   },
   "pnpm": {
     "neverBuiltDependencies": [],

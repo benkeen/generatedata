@@ -9,8 +9,8 @@
   },
   "scripts": {
     "__build": "grunt && tsc",
-    "clean": "npx rimraf dist",
-    "purge": "npx rimraf node_modules dist .turbo",
+    "__clean": "npx rimraf dist",
+    "__purge": "npx rimraf node_modules dist .turbo",
     "test": "jest"
   },
   "files": [
@@ -42,17 +42,17 @@
   },
   "devDependencies": {
     "@generatedata/plugins": "workspace:*",
-    "@types/jest": "^30.0.0",
-    "grunt": "^1.6.1",
-    "grunt-cli": "^1.3.2",
-    "jest": "^30.2.0",
-    "jest-cli": "^30.2.0",
-    "jest-css-modules": "^2.1.0",
+    "@types/jest": "catalog:",
+    "grunt": "catalog:",
+    "grunt-cli": "catalog:",
+    "jest": "catalog:",
+    "jest-cli": "catalog:",
+    "jest-css-modules": "catalog:",
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "ansi-colors": "^4.1.3",
-    "cli-progress": "^3.11.2",
-    "yargs": "^17.6.2"
+    "ansi-colors": "catalog:",
+    "cli-progress": "catalog:",
+    "yargs": "catalog:"
   }
 }

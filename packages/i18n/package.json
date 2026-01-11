@@ -21,6 +21,6 @@
     "./zh": "./locales/zh.json"
   },
   "devDependencies": {
-    "rimraf": "^6.0.1"
+    "rimraf": "catalog:"
   }
 }
