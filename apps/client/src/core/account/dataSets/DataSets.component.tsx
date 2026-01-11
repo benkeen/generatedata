@@ -1,11 +1,10 @@
 import { useMutation, useQuery } from '@apollo/client/react';
-import { useSharedClasses } from '@generatedata/core';
+import { SecondaryButton, useSharedClasses } from '@generatedata/core';
 import { DataSetListItem } from '@generatedata/types';
 import { formatUnixTime } from '@generatedata/utils/date';
 import { getFormattedNum } from '@generatedata/utils/number';
 import { getLocale } from '@generatedata/utils/lang';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Pagination from '~components/Pagination';
@@ -27,9 +26,9 @@ const Row = ({ onDelete, onLoad, dataSet, i18n }: any) => {
       <div className={classNames.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
       <div className={classNames.numRowsGenerated}>{getFormattedNum(dataSet.numRowsGenerated, locale)}</div>
       <div className={classNames.open}>
-        <Button size="small" type="submit" color="primary" variant="outlined" onClick={onLoad}>
+        <SecondaryButton size="small" type="submit" onClick={onLoad}>
           {i18n.open}
-        </Button>
+        </SecondaryButton>
       </div>
       <div className={classNames.del} onClick={onDelete}>
         <HighlightOffIcon />

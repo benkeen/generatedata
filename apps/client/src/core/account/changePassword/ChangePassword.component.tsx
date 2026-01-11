@@ -77,7 +77,7 @@ const ChangePassword = ({ oneTimePassword, onSave, className, i18n, throttle = f
 
     return (
       <>
-        <label>{i18n.currentPassword}</label>
+        <label htmlFor="currentPassword">{i18n.currentPassword}</label>
         <div
           style={{
             marginBottom: 15,
@@ -90,6 +90,7 @@ const ChangePassword = ({ oneTimePassword, onSave, className, i18n, throttle = f
             error={currentPasswordError}
             ref={currentPasswordField}
             value={currentPassword}
+            id="currentPassword"
             name="currentPassword"
             onChange={(e: any): void => {
               setCurrentPasswordError('');
@@ -110,12 +111,13 @@ const ChangePassword = ({ oneTimePassword, onSave, className, i18n, throttle = f
       <div style={{ marginBottom: 10 }}>
         {getCurrentPasswordBlock()}
 
-        <label>{i18n.password}</label>
+        <label htmlFor="password">{i18n.password}</label>
         <div style={{ marginBottom: 15 }}>
           <TextField
             type="password"
             ref={passwordField}
             value={password}
+            id="password"
             name="password"
             onChange={(e: any): void => setPassword(e.target.value)}
             style={{ width: 220 }}
@@ -125,13 +127,14 @@ const ChangePassword = ({ oneTimePassword, onSave, className, i18n, throttle = f
           />
         </div>
 
-        <label>{i18n.reenterPassword}</label>
+        <label htmlFor="password2">{i18n.reenterPassword}</label>
         <div style={{ marginBottom: 15 }}>
           <TextField
             type="password"
             ref={password2Field}
             value={password2}
             error={password2Error}
+            id="password2"
             name="password2"
             onChange={(e: any): void => {
               setPassword2Error('');

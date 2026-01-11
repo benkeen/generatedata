@@ -1,5 +1,5 @@
 import React from 'react';
-import { PrimaryButton, NullButton } from '@generatedata/core';
+import { AlertButton, SecondaryButton } from '@generatedata/core';
 import WarningIcon from '@mui/icons-material/Warning';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
 import { useClasses } from './DeleteDataSetDialog.styles';
@@ -27,8 +27,8 @@ const DeleteDataSetDialog = ({ visible, dataSetName, onClose, onDelete, i18n }: 
           </div>
         </DialogContent>
         <DialogActions>
-          <NullButton onClick={onClose}>{i18n.cancel}</NullButton>
-          <PrimaryButton onClick={onDelete}>{i18n.delete}</PrimaryButton>
+          <SecondaryButton onClick={onClose}>{i18n.cancel}</SecondaryButton>
+          <AlertButton onClick={onDelete}>{i18n.delete}</AlertButton>
         </DialogActions>
       </div>
     </Dialog>

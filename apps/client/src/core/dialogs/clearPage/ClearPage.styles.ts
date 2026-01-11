@@ -28,7 +28,6 @@ export const useClasses = makeStyles({
       }
     }
   },
-  // prev within .contentPanel
   clearPageSelection: {
     '& svg': {
       fontSize: '18px',

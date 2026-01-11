@@ -123,9 +123,10 @@ const MainFields = ({
   return (
     <form onSubmit={handleSave} autoComplete="off" className={className}>
       <div>
-        <label>{i18n.firstName}</label>
+        <label htmlFor="firstName">{i18n.firstName}</label>
         <div style={{ marginBottom: 15 }}>
           <TextField
+            id="firstName"
             error={firstNameError}
             value={data.firstName}
             name="firstName"
@@ -135,9 +136,10 @@ const MainFields = ({
           />
         </div>
 
-        <label>{i18n.lastName}</label>
+        <label htmlFor="lastName">{i18n.lastName}</label>
         <div style={{ marginBottom: 15 }}>
           <TextField
+            id="lastName"
             error={lastNameError}
             value={data.lastName}
             name="lastName"
@@ -146,9 +148,10 @@ const MainFields = ({
           />
         </div>
 
-        <label>{i18n.email}</label>
+        <label htmlFor="email">{i18n.email}</label>
         <div style={{ marginBottom: 15 }}>
           <TextField
+            id="email"
             error={emailError}
             value={data.email}
             name="email"

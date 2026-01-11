@@ -2,7 +2,7 @@
 import { ApolloProvider } from '@apollo/client/react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import IconButton from '@mui/material/IconButton';
-import C from '@generatedata/config/constants';
+// import C from '@generatedata/config/constants';
 import { useGlobalStyles } from '@generatedata/core';
 import { ThemeProvider } from '@mui/material/styles';
 import * as codemirror from 'codemirror';
@@ -17,8 +17,8 @@ import Page from '~core/page/Page.container';
 import store from '~store/index';
 import theme from '~core/theme';
 import '~store/generator/generator.reducer';
-import { resetStore } from '~store/main/main.actions';
-import { getAppStateVersion } from '~store/main/main.selectors';
+// import { resetStore } from '~store/main/main.actions';
+// import { getAppStateVersion } from '~store/main/main.selectors';
 import { getRoutes, updateBodyClass } from '~utils/routeUtils';
 import { initApp } from './core';
 import { closeSnackbar, SnackbarProvider } from 'notistack';
@@ -53,7 +53,7 @@ const LocalizationWrapper = (args: any) => {
   // if (lang && lang !== 'en' && availableLocalesMap[lang]) {
   const localizedRoutes = routes.map((route) => ({
     ...route,
-    path: `/:lang?/${route.path}`
+    path: `/:lang?${route.path}`
   }));
 
   return (

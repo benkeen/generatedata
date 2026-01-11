@@ -10,7 +10,8 @@ export const persistStore = (store: any) => {
 
   const accountPersistor = {
     ...getAccountInitialState(),
-    selectedTab: account.dataSets,
+    selectedTab: account.selectedTab,
+    dataSets: account.dataSets,
     selectedAccountsTab: account.selectedAccountsTab
   };
 
