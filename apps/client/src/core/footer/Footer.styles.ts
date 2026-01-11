@@ -1,5 +1,5 @@
 import { vars } from '@generatedata/core';
-import { makeStyles } from '@griffel/react';
+import { makeStyles, shorthands } from '@griffel/react';
 
 export const useClasses = makeStyles({
   showTourLink: {
@@ -86,11 +86,19 @@ export const useClasses = makeStyles({
     }
   },
   saveButtonAs: {
-    // button.saveButtonAsMainBtn {
-    // 	border-color: #bde9fb;
-    // }
+    height: '32px',
+    marginRight: '15px',
+    '& button': {
+      backgroundColor: vars.primarySubmit,
+      color: 'white',
+
+      ':hover': {
+        backgroundColor: vars.primarySubmitHover
+      }
+    }
   },
   saveButtonAsMainBtn: {
+    ...shorthands.borderColor('#bde9fb !important'),
     fontSize: '13px',
     '& svg': {
       fontSize: '15px',
@@ -113,20 +121,8 @@ export const useClasses = makeStyles({
   controls: {
     marginRight: '15px'
   },
-  // div.saveButtonAs: {
-  //   height: '32px',
-  //   marginRight: '15px',
-  //   '& button': {
-  //     backgroundColor: vars.primarySubmit,
-  //     color: 'white',
-
-  //     ':hover': {
-  //       backgroundColor: vars.primarySubmitHover
-  //     }
-  //   }
-  // },
   saveBtnArrow: {
-    minWidth: 'inherit',
+    minWidth: 'inherit !important',
     padding: '0 6px',
     '& svg': {
       margin: 0
@@ -135,7 +131,6 @@ export const useClasses = makeStyles({
   saveAsRow: {
     cursor: 'pointer',
     backgroundColor: vars.primarySubmit,
-    marginBottom: '2px',
     borderRadius: '2px',
     color: 'white',
     textTransform: 'uppercase',

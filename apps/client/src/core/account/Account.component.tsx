@@ -20,21 +20,21 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps) => {
   const sharedClasses = useSharedClasses();
 
   useEffect(() => {
-    let dsClasses = classNames.hidden;
-    let cpClasses = classNames.hidden;
-    let yaClasses = classNames.hidden;
+    let dataSetsClasses = classNames.hidden;
+    let changePasswordClasses = classNames.hidden;
+    let yourAccountClasses = classNames.hidden;
 
     if (selectedTab === SelectedAccountTab.yourAccount) {
-      yaClasses = classNames.shown;
+      yourAccountClasses = classNames.shown;
     } else if (selectedTab === SelectedAccountTab.dataSets) {
-      dsClasses = classNames.shown;
+      dataSetsClasses = classNames.shown;
     } else {
-      cpClasses = classNames.shown;
+      changePasswordClasses = classNames.shown;
     }
 
-    setDataSetsClasses(dsClasses);
-    setChangePasswordClasses(cpClasses);
-    setYourAccountClasses(yaClasses);
+    setDataSetsClasses(dataSetsClasses);
+    setChangePasswordClasses(changePasswordClasses);
+    setYourAccountClasses(yourAccountClasses);
   }, [selectedTab]);
 
   const getTab = () => {

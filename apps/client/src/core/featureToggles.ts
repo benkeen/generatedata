@@ -4,7 +4,7 @@ const FeatureToggles = {
    * of what they're currently building: Data Set rows, Export Type choice abd settings. This will be used for the
    * command-line npm package version of the script being worked on for 4.1.
    */
-  DATA_TEMPLATE_GENERATION_UI: true
+  DATA_TEMPLATE_GENERATION_UI: false
 };
 
 export default FeatureToggles;

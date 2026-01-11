@@ -49,7 +49,7 @@ export const dataSets: NonNullable<QueryResolvers['dataSets']> = async (_parent,
   )) as any[];
 
   return {
-    totalCount: (totalCountQuery[0] as any).c,
+    totalCount: totalCountQuery.c,
     results: results.map((row: any) => ({
       dataSetId: row.dataSetId,
       status: row.status,

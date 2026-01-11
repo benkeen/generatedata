@@ -37,7 +37,10 @@ export const persistStore = (store: any) => {
     numPreviewRows: generator.numPreviewRows,
     stripWhitespace: generator.stripWhitespace,
     panelSizes: generator.panelSizes,
-    numRowsToGenerate: generator.numRowsToGenerate
+    numRowsToGenerate: generator.numRowsToGenerate,
+
+    // TODO persist for page refreshes, but not if the user logs out
+    currentDataSet: generator.currentDataSet
   };
 
   const packetsPersistor: PacketsState = {

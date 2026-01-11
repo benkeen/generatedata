@@ -101,6 +101,14 @@ const Footer = ({
             transition
             placement="top-end"
             className={classNames.saveAsRow}
+            modifiers={[
+              {
+                name: 'offset',
+                options: {
+                  offset: [0, 2]
+                }
+              }
+            ]}
             onClick={(e): void => {
               e.preventDefault();
               e.stopPropagation();
