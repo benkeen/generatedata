@@ -19,8 +19,6 @@ context.onmessage = (e: GenerationActions) => {
     generatorUtils.generateDataTypes({
       ...e.data,
       onBatchComplete: (data: DataTypeBatchGeneratedPayload) => {
-        console.log('problem here --- ');
-        // PROBLEM HERE: this isn't being picked up when first selecting a new Data Type for a row
         context.postMessage({
           event: 'DataTypesProcessed',
           data

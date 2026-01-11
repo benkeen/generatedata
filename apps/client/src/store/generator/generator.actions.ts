@@ -195,7 +195,6 @@ export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 // this re-generates the preview panel data. This doesn't have to be called on boot-up because the preview data is
 // generated on the fly, saved in the store and rehydrated when the app loads
 export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = null): any => {
-  console.log('_______________ PREVIEW __________________');
   const generationWorker = coreUtils.getGenerationWorker('preview');
 
   return (dispatch: any, getState: any): any => {

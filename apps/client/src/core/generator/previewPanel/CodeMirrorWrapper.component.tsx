@@ -67,33 +67,31 @@ export default CodeMirrorWrapper;
 
 export const generatePreviewString = (props: any): Promise<any> => {
   const { previewRows, columns, exportTypeSettings, exportTypeWorkerUrl } = props;
-
-  console.log('_______________ GENERATE PREVIEW STRING __________________');
   const generationWorker = coreUtils.getGenerationWorker('preview');
 
   return new Promise((resolve) => {
-    coreUtils.performTask(
-      'exportTypeWorker',
-      generationWorker,
-      {
-        action: 'ProcessExportTypeOnly',
-        isFirstBatch: true,
-        isLastBatch: true,
-        batchSize: C.GENERATION_BATCH_SIZE,
-        currentBatch: 1,
-        rows: previewRows,
-        columns,
-        exportTypeSettings,
-        stripWhitespace: false,
-        workerUtilsUrl: coreUtils.getWorkerUtilsUrl(),
-        exportTypeWorkerUrl,
-        countryData: getCountryData()
-      },
-      ({ data }: MessageEvent): void => {
-        if (data.event === 'ExportTypeProcessed') {
-          resolve(data.data);
-        }
+    const handleMessage = (event: MessageEvent): void => {
+      if (event.data.event === 'ExportTypeProcessed') {
+        generationWorker.removeEventListener('message', handleMessage);
+        resolve(event.data.data);
       }
-    );
+    };
+
+    generationWorker.addEventListener('message', handleMessage);
+
+    generationWorker.postMessage({
+      action: 'ProcessExportTypeOnly',
+      isFirstBatch: true,
+      isLastBatch: true,
+      batchSize: C.GENERATION_BATCH_SIZE,
+      currentBatch: 1,
+      rows: previewRows,
+      columns,
+      exportTypeSettings,
+      stripWhitespace: false,
+      workerUtilsUrl: coreUtils.getWorkerUtilsUrl(),
+      exportTypeWorkerUrl,
+      countryData: getCountryData()
+    });
   });
 };
