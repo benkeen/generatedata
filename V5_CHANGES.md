@@ -27,17 +27,19 @@ Logical units of the code are now found under `apps` and `packages`.
 - `packages/config` - this'll house the main configuration settings and replace the old `.env` file. For simplicity and backward compatibility, I've left the same uppercase names from the old .env variables.
 - `packages/plugins` - the countries, Data Types and Export Types. Perhaps I'll split them into separate packages for each, but for now they're lumped in the same package.
 - `packages/types` - global types.
-
+- `packages/utils` - utility methods
+  
 ## Other changes
 
-- use turborepo
-- moved to pnpm
+- now uses turborepo
+- moved to pnpm, uses catalogs for dependencies
 - node 24
 - dropped Sass/CSS modules in favour of Griffel
-- dropped redux-persist since it's no longer supported (replacement?)
+- dropped redux-persist since it's no longer supported
 - move from `react-beautiful-dnd` (deprecated) to `@dnd-kit/core`
-- react 18 (19 is too new for any good DND lib)
-- ditch Grunt
+- react 18 (19 is still too new for some deps)
+- ditch Grunt [TODO]
+- greatly improved dev flow.
 
 ## Bootstrap process for new clones
 
