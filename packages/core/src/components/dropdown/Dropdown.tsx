@@ -14,7 +14,8 @@ const selectStyles = {
   control: (provided: any): any => ({
     ...provided,
     minHeight: 20,
-    boxShadow: 'none'
+    boxShadow: 'none',
+    fontSize: '14px'
   }),
   indicatorsContainer: (provided: any): any => ({
     ...provided,

@@ -55,10 +55,10 @@ export const accounts: NonNullable<QueryResolvers['accounts']> = async (_parent,
 
   const [totalCountQuery] = (await sequelize.query(
     `
-     SELECT count(*) as c
-     FROM accounts
-        WHERE created_by = ${accountId} ${filterClause} ${statusClause}
-        `,
+      SELECT count(*) as c
+      FROM accounts
+      WHERE created_by = ${accountId} ${filterClause} ${statusClause}
+    `,
     { raw: true, type: QueryTypes.SELECT }
   )) as any[];
 
@@ -105,7 +105,7 @@ export const accounts: NonNullable<QueryResolvers['accounts']> = async (_parent,
   });
 
   return {
-    totalCount: (totalCountQuery[0] as any).c,
+    totalCount: totalCountQuery.c,
     results: updatedResults
   };
 };

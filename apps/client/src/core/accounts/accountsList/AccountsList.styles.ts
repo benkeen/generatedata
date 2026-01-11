@@ -63,6 +63,12 @@ export const useClasses = makeStyles({
     // }
   },
   row: {
+    display: 'flex',
+    width: '100%',
+    padding: '6px',
+    alignItems: 'center',
+    fontSize: '13px',
+
     '&:hover': {
       backgroundColor: '#f9f9f9'
     }
@@ -77,15 +83,6 @@ export const useClasses = makeStyles({
     }
   }
 });
-
-// 	.row {
-// 		display: flex;
-// 		width: 100%;
-// 		padding: 6px;
-// 		align-items: center;
-// 		font-size: 13px;
-// 	}
-// }
 
 // @media (max-width: 720px) {
 // 	.status,

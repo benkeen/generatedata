@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client/react';
 import C from '@generatedata/config/constants';
-import { Dropdown, DropdownOption, SmallSpinner, useSharedClasses } from '@generatedata/core';
+import { Dropdown, DropdownOption, SecondaryButton, SmallSpinner, useSharedClasses } from '@generatedata/core';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Button from '@mui/material/Button';
 import { format, fromUnixTime } from 'date-fns';
@@ -57,9 +57,9 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastL
       <div className={classNames.lastLoggedIn}>{lastLoggedInVal}</div>
       <div className={classNames.expiryDate}>{expiryDateVal}</div>
       <div className={classNames.edit}>
-        <Button size="small" type="submit" color="primary" variant="outlined" onClick={onEdit}>
+        <SecondaryButton size="small" type="submit" onClick={onEdit}>
           {i18n.edit}
-        </Button>
+        </SecondaryButton>
       </div>
       <div className={classNames.del} onClick={onDelete}>
         <HighlightOffIcon />

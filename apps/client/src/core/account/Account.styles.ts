@@ -21,7 +21,6 @@ export const useClasses = makeStyles({
     paddingLeft: '20px',
     height: '83%'
   },
-
   rightBlock: {
     '& > div': {
       marginBottom: '15px',

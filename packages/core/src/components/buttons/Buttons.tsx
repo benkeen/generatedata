@@ -6,9 +6,9 @@ export type { ButtonProps } from '@mui/material/Button';
 
 export const PrimaryButton = styled((props: ButtonProps) => (
   <Button color="primary" variant="outlined" disableElevation disableRipple {...props} />
-))(({ theme }) => ({
+))(({ theme, disabled }) => ({
   // such a kludge. Material UI's base styles are overriding this for some reason. Same specificity.
-  color: `${theme.palette.primary.main} !important`
+  color: disabled ? 'inherit' : `${theme.palette.primary.main} !important`
 }));
 
 export const AlertButton = styled((props: ButtonProps) => (

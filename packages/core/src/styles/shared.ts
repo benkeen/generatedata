@@ -55,6 +55,25 @@ export const useSharedClasses = makeStyles({
 
     '& input': {
       fontSize: '14px'
+    },
+
+    '& nav': {
+      flex: '0 0 240px',
+
+      '& > ul': {
+        listStyle: 'none',
+        paddingLeft: 0
+      },
+      '& li': {
+        padding: '10px 10px',
+        fontSize: '14px',
+        cursor: 'pointer',
+        transition: 'color 0.2s ease-in-out',
+
+        '&:hover': {
+          color: primaryColor
+        }
+      }
     }
   },
 
@@ -91,26 +110,6 @@ export const useSharedClasses = makeStyles({
 // :global(div.MuiAlert-root) {
 // 	font-size: 13px;
 // }
-
-// 	nav {
-// 		flex: 0 0 240px;
-
-// 		ul {
-// 			list-style: none;
-// 			padding-left: 0;
-
-// 			li {
-// 				padding: 10px 10px;
-// 				font-size: 14px;
-// 				cursor: pointer;
-// 				transition: color 0.2s ease-in-out;
-
-// 				&:hover {
-// 					color: c.$primary-color;
-// 				}
-// 			}
-// 		}
-// 	}
 
 // 	label {
 // 		color: #999999;

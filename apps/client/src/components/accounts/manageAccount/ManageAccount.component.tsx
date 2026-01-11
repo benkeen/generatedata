@@ -4,12 +4,8 @@ import { getLocale } from '@generatedata/utils/lang';
 import { add, format, fromUnixTime } from 'date-fns';
 import { useState } from 'react';
 import MainFields from '~components/accounts/mainFields/MainFields.component';
-// import * as dateStyles from '@generatedata/plugins/dist/dataTypes/Date/Date.scss';
 import C from '@generatedata/config/constants';
 import { useClasses } from './ManageAccount.styles';
-
-// TODO
-const dateStyles = { dateField: '' };
 
 export type ManageAccountProps = {
   i18n: any;
@@ -167,7 +163,6 @@ const ManageAccount = ({ i18n, onCancel, onSave, initialState, submitButtonLabel
       <div style={{ display: 'none' }}>
         <DatePicker
           open={showDatepicker}
-          className={dateStyles.dateField}
           value={data.expiryDate === null ? fromUnixTime(yearFromNow) : fromUnixTime(data.expiryDate / 1000)}
           onChange={(val: any): void => onSelectDate(format(val, 'T'))}
           onClose={(): void => setShowDatepicker(false)}

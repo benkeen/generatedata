@@ -4,7 +4,7 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-// import * as authUtils from './utils/authUtils';
+import * as authUtils from './utils/authUtils';
 import { clientConfig } from '@generatedata/config';
 import { RequestContext } from '../types/server';
 import { typeDefs } from './schema/typeDefs.generated';
@@ -22,24 +22,6 @@ const server = new ApolloServer<RequestContext>({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
-
-  // context: ({ req, res }) => {
-  //   // the token is the "live" token with a short expiry time, passed along with every request in a header while
-  //   // the user is logged in
-  //   const token = (req.headers.authorization || '').replace('Bearer ', '');
-
-  //   // try to retrieve a user with the token
-  //   const user = authUtils.getUser(token);
-
-  //   // provides the auth token to all resolvers, plus access to the original request + response objects for
-  //   // more fine-tune stuff
-  //   return {
-  //     res,
-  //     req,
-  //     token,
-  //     user
-  //   };
-  // }
 });
 
 (async () => {
@@ -55,7 +37,14 @@ const server = new ApolloServer<RequestContext>({
 
     // @ts-expect-error
     expressMiddleware(server, {
-      context: async ({ req }) => ({ token: req.headers.token })
+      context: async ({ req, res }) => {
+        const token = (req.headers.authorization || '').replace('Bearer ', '');
+
+        // try to retrieve a user with the token
+        const user = authUtils.getUser(token);
+
+        return { req, res, token: req.headers.token, user };
+      }
     })
   );
 
