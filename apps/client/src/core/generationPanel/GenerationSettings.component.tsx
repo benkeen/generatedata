@@ -150,14 +150,16 @@ const GenerationSettingsPanel = ({
             <div className={`${classNames.row} ${classNames.generationRow}`}>
               {i18n.generate}
               <ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
-                <NumericFormat
-                  className={error ? sharedClasses.errorField : ''}
-                  value={numRowsToGenerate}
-                  displayType="input"
-                  autoFocus
-                  thousandSeparator={true}
-                  onValueChange={({ value }): void => onChangeNumRowsToGenerate(parseInt(value, 10))}
-                />
+                <span>
+                  <NumericFormat
+                    className={error ? sharedClasses.errorField : ''}
+                    value={numRowsToGenerate}
+                    displayType="input"
+                    autoFocus
+                    thousandSeparator={true}
+                    onValueChange={({ value }): void => onChangeNumRowsToGenerate(parseInt(value, 10))}
+                  />
+                </span>
               </ErrorTooltip>
               {i18n.rows}
             </div>

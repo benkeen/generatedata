@@ -1,8 +1,8 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Tooltip } from '@generatedata/core';
+import { AlertButton, Dialog, DialogActions, DialogContent, DialogTitle, PrimaryButton, Tooltip } from '@generatedata/core';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Pause from '@mui/icons-material/Pause';
 import PlayArrow from '@mui/icons-material/PlayArrow';
-import Button from '@mui/material/Button';
+import StopIcon from '@mui/icons-material/Stop';
 import IconButton from '@mui/material/IconButton';
 import Slider from '@mui/material/Slider';
 import { useMeasure } from '@uidotdev/usehooks';
@@ -38,6 +38,31 @@ export type ActivityPanelProps = {
 
 const valueLabelFormat = (value: number): string => `${value}%`;
 
+// return an array of data that add up to 100. Each piece represents 10% of the pie chart. When the percentage is
+// not a multiple of 10, the fraction should appear in the piece that represents the current percentage, as in the
+// example data set above
+const getPieChartData = (percentage: number) => {
+  const data = [];
+  const fullPieces = Math.floor(percentage / 10);
+  const remainder = percentage % 10;
+
+  for (let i = 0; i < 10; i++) {
+    if (i < fullPieces) {
+      data.push({ name: `${i + 1}`, value: 10, color: '#275eb5' });
+    } else if (i === fullPieces) {
+      if (remainder > 0) {
+        data.push({ name: `${i + 1}`, value: remainder, color: '#275eb5' });
+        data.push({ name: `${i + 1}-empty`, value: 10 - remainder, color: '#eeeeee' });
+      } else {
+        data.push({ name: `${i + 1}`, value: 10, color: '#eeeeee' });
+      }
+    } else if (i > fullPieces) {
+      data.push({ name: `${i + 1}`, value: 10, color: '#eeeeee' });
+    }
+  }
+  return data;
+};
+
 const ActivityPanel = ({
   visible,
   onClose,
@@ -56,7 +81,8 @@ const ActivityPanel = ({
   fullI18n
 }: ActivityPanelProps): any => {
   const classNames = useClasses();
-  const [measureRef, { width = 0, height = 0 }] = useMeasure(); // TODO check defaults are ok
+  const [measureRef, { width = 0, height = 0 }] = useMeasure();
+  const prevGeneratedRows = usePrevious(packet?.numGeneratedRows ?? 0);
 
   if (packet === null || fullI18n === null) {
     return null;
@@ -66,7 +92,6 @@ const ActivityPanel = ({
   const { isPaused, config, generationWorkerId, numGeneratedRows, speed } = packet;
   const { numRowsToGenerate } = config;
 
-  const prevGeneratedRows = usePrevious(numGeneratedRows);
   const generationWorker = coreUtils.getGenerationWorker(generationWorkerId);
 
   const abortPacket = (): void => {
@@ -78,10 +103,7 @@ const ActivityPanel = ({
   const percentage = (numGeneratedRows / numRowsToGenerate) * 100;
   const isComplete = percentage === 100;
 
-  const pieChartData = [
-    { name: coreI18n.complete, value: percentage, color: '#275eb5' },
-    { name: coreI18n.incomplete, value: 100 - percentage, color: '#efefef' }
-  ];
+  const pieChartData = getPieChartData(percentage);
 
   let pauseContinueIcon: any;
   let pauseContinueIconAction: any;
@@ -94,7 +116,7 @@ const ActivityPanel = ({
   }
 
   const marks = [
-    { value: 0, label: coreI18n.seriouslySlow },
+    { value: 1, label: coreI18n.seriouslySlow },
     { value: 100, label: coreI18n.cpuMeltinglyFast }
   ];
 
@@ -102,24 +124,21 @@ const ActivityPanel = ({
     if (isComplete) {
       return (
         <div>
-          <Button onClick={onAbort} variant="outlined" style={{ marginRight: 10 }}>
+          <AlertButton onClick={onAbort} style={{ marginRight: 10 }}>
             {coreI18n.clear}
-          </Button>
-          <Button onClick={onDownload} color="primary" variant="outlined" style={{ marginRight: 10 }}>
+          </AlertButton>
+          <PrimaryButton onClick={onDownload} style={{ marginRight: 10 }}>
             {coreI18n.download}
-          </Button>
+          </PrimaryButton>
         </div>
       );
     }
 
     return (
       <div>
-        <Button onClick={onClose} variant="outlined" style={{ marginRight: 10 }}>
+        <PrimaryButton onClick={onClose} style={{ marginRight: 10 }}>
           {coreI18n.hide}
-        </Button>
-        <Button onClick={abortPacket} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
-          {coreI18n.abort}
-        </Button>
+        </PrimaryButton>
       </div>
     );
   };
@@ -130,17 +149,25 @@ const ActivityPanel = ({
       return null;
     }
 
-    const tooltip = isPaused ? coreI18n.continue : coreI18n.pause;
+    const pausePlayBtnTooltip = isPaused ? coreI18n.continue : coreI18n.pause;
 
     return (
-      <div style={{ flex: 1, display: 'flex', marginRight: 80 }}>
-        <Tooltip title={tooltip} placement="top" arrow style={{ marginRight: 50 }}>
+      <div style={{ flex: 1, display: 'flex', marginRight: 65 }}>
+        <Tooltip title={pausePlayBtnTooltip} placement="top" arrow>
           <span>
-            <IconButton size="medium" aria-label={tooltip} onClick={pauseContinueIconAction}>
+            <IconButton size="medium" aria-label={pausePlayBtnTooltip} onClick={pauseContinueIconAction}>
               {pauseContinueIcon}
             </IconButton>
           </span>
         </Tooltip>
+        <Tooltip title={coreI18n.abort} placement="top" arrow style={{ marginRight: 50 }}>
+          <span>
+            <IconButton size="medium" aria-label={coreI18n.abort} onClick={abortPacket}>
+              <StopIcon fontSize="large" />
+            </IconButton>
+          </span>
+        </Tooltip>
+
         <Slider
           value={speed}
           aria-labelledby="discrete-slider-always"
@@ -156,21 +183,19 @@ const ActivityPanel = ({
     );
   };
 
-  const panel1Width = ((width || 0) / 100) * 20;
-  const pieSize = Math.floor(panel1Width * 0.9);
   const countUpDuration = countUpSpeed;
 
   return (
     <>
       <Dialog className={classNames.activityPanel} onClose={onClose} open={visible}>
-        <div style={{ width: '100%', height: '100%' }} ref={measureRef}>
+        <div style={{ width: 800 }} ref={measureRef}>
           <DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
             {coreI18n.generatedC}
             <CountUp
               start={prevGeneratedRows}
               end={numGeneratedRows}
               separator=","
-              easingFn={coreUtils.easeInOutSine}
+              useEasing={false}
               className={classNames.counter}
               duration={countUpDuration}
             />
@@ -179,25 +204,28 @@ const ActivityPanel = ({
           <DialogContent dividers style={{ padding: 0 }}>
             <div className={classNames.overlayWrapper}>
               <div style={{ display: 'flex' }}>
-                <div className={classNames.panel1} style={{ width: panel1Width }}>
+                <div className={classNames.panel1} style={{ flex: '0 1 250px' }}>
                   <div className={classNames.pie}>
-                    <h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
-                    <PieChart width={pieSize} height={pieSize}>
+                    <PieChart style={{ width: '100%', height: '100%' }}>
                       <Pie
                         dataKey="value"
                         isAnimationActive={false}
                         data={pieChartData}
-                        cx={pieSize / 2}
-                        cy={pieSize / 2}
-                        innerRadius={pieSize / 4}
-                        outerRadius={pieSize / 2 - 5}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius="60%"
+                        outerRadius="98%"
                         startAngle={90}
                         endAngle={-270}
+                        strokeWidth={0.5}
                       >
-                        {pieChartData.map((entry, index) => (
+                        {pieChartData.map((_entry, index) => (
                           <Cell key={index} fill={pieChartData[index].color} />
                         ))}
                       </Pie>
+                      <Label position="center" fill="#000000" fontSize="9px">
+                        {`${getPercentageLabel(percentage, numRowsToGenerate)}%`}
+                      </Label>
                     </PieChart>
                   </div>
 
@@ -225,18 +253,13 @@ const ActivityPanel = ({
                   <h4>{coreI18n.rowsGeneratedPerSecond}</h4>
 
                   {width && height && (
-                    <BarChart
-                      width={width - pieSize}
-                      height={height - 185}
-                      data={batchLoadTimes}
-                      margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
-                    >
+                    <BarChart width="100%" height={height - 185} data={batchLoadTimes} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
                         <Label value={coreI18n.seconds} offset={0} position="insideBottom" />
                       </XAxis>
                       <YAxis dataKey="rowsPerSecond" />
-                      <Bar dataKey="rowsPerSecond" stroke="#275eb5" fill="#275eb5" isAnimationActive={false} />
+                      <Bar dataKey="rowsPerSecond" stroke="#4981dc" fill="#4981dc" isAnimationActive={false} />
                     </BarChart>
                   )}
                 </div>

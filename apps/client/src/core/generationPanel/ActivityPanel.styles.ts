@@ -16,6 +16,12 @@ export const useClasses = makeStyles({
       color: '#666666'
     }
   },
+  activityPanel: {
+    width: '100%',
+    // maxWidth: '1000px',
+    height: '100%'
+    // maxHeight: '600px'
+  },
   panel1: {
     flex: 1,
     position: 'relative',
@@ -61,17 +67,8 @@ export const useClasses = makeStyles({
   actionsRow: {
     height: '72px'
   },
-  activityPanel: {
-    // :global(.MuiDialog-paper) {
-    // 	width: 100%,
-    // 	max-width: 1000px,
-    // 	height: 100%,
-    // 	max-height: 600px,
-    // }
-  },
-
   pie: {
-    marginBottom: '20px',
+    marginBottom: '10px',
     position: 'relative',
 
     '& h3': {
@@ -91,11 +88,12 @@ export const useClasses = makeStyles({
   dataRow: {
     display: 'flex',
     flexDirection: 'row',
-    lineHeight: '42px',
+    lineHeight: '38px',
     width: '100%'
   },
   dataRowLabel: {
-    flex: '1 0 60%'
+    flex: '1 0 60%',
+    color: '#888888'
   },
   dataRowValue: {
     flex: '1 0 40%',

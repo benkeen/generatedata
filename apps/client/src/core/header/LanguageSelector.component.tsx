@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { IconButton, List, ListItemButton, ListItemText, MenuItem } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Dialog, DialogContent, DialogTitle } from '@generatedata/core';
@@ -84,8 +84,7 @@ const LanguageSelector = ({
     return null;
   }
 
-  // note: this actually runs on render as well, but it makes no difference
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isLocaleFileLoading) {
       onHideSelector();
     }

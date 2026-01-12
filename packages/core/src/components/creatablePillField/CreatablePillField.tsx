@@ -181,7 +181,8 @@ export const CreatablePillField = ({
               styles={selectStyles}
               components={{
                 MultiValue,
-                MultiValueRemove
+                MultiValueRemove,
+                DropdownIndicator: null
               }}
               inputValue={newTempValue}
               isClearable={isClearable}

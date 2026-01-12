@@ -70,10 +70,6 @@ export const performTask = (workerName: string, worker: any, postMessagePayload:
   };
 };
 
-export const easeInOutSine = (t: any, b: any, c: any, d: any): number => {
-  return (-c / 2) * (Math.cos((Math.PI * t) / d) - 1) + b;
-};
-
 let namesPlugins: any = null;
 export const getCountryNamesBundle = (): any => {
   return new Promise((resolve, reject) => {
