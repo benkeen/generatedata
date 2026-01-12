@@ -91,12 +91,12 @@ export const hideActivityPanel = (): GDAction => ({ type: HIDE_ACTIVITY_PANEL })
 
 export const SHOW_ACTIVITY_PANEL = 'SHOW_ACTIVITY_PANEL';
 export const showActivityPanel =
-  (packetId: string, history: any) =>
+  (packetId: string, navigate: any) =>
     (dispatch: Dispatch, getState: any): void => {
       const state = getState();
       const locale = mainSelectors.getLocale(state);
 
-      history.push(getGeneratorPageRoute(locale));
+      navigate(getGeneratorPageRoute(locale));
       dispatch({
         type: SHOW_ACTIVITY_PANEL,
         payload: { packetId }

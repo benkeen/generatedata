@@ -1,16 +1,16 @@
 import { GDLocaleMap } from '@generatedata/types';
 
 export const localeFileMap: GDLocaleMap = {
-	"ar": "ar-082d52b0.js",
-	"de": "de-9c5c6e88.js",
-	"en": "en-ec98c99d.js",
-	"es": "es-d2dc0ab7.js",
-	"fr": "fr-76831d50.js",
-	"hi": "hi-dd5691a1.js",
-	"ja": "ja-79d51d8b.js",
-	"nl": "nl-1499548d.js",
-	"pt": "pt-c7796933.js",
-	"ru": "ru-32bc90c7.js",
-	"ta": "ta-9e10d34d.js",
-	"zh": "zh-20134d2b.js"
+	"ar": "ar-9196a7eb.js",
+	"de": "de-a2a15589.js",
+	"en": "en-8e715c0a.js",
+	"es": "es-0021998a.js",
+	"fr": "fr-ed3e92fa.js",
+	"hi": "hi-875f986c.js",
+	"ja": "ja-907f0d23.js",
+	"nl": "nl-9c9a0c3f.js",
+	"pt": "pt-7c93c1ff.js",
+	"ru": "ru-a21b2fcd.js",
+	"ta": "ta-82f86881.js",
+	"zh": "zh-b643762f.js"
 };

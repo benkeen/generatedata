@@ -134,13 +134,7 @@ const ActivityPanel = ({
       );
     }
 
-    return (
-      <div>
-        <PrimaryButton onClick={onClose} style={{ marginRight: 10 }}>
-          {coreI18n.hide}
-        </PrimaryButton>
-      </div>
-    );
+    return null;
   };
 
   const getGenerationControls = (): React.ReactNode => {
