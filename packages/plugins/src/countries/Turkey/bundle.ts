@@ -6,7 +6,7 @@
  *
  * Note: Turkey doesn't appear to have short codes for the provinces, so this just sets them all to the full name.
  */
-import { GetCountryData } from '@generatedata/types';
+import { GetCountryData } from '~typings/countries';
 
 const Turkey: GetCountryData = (i18n) => ({
   countryName: i18n.countryName,

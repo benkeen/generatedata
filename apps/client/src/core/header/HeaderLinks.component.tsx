@@ -114,51 +114,61 @@ export const MobileLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
 export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps) => {
   const classNames = useClasses();
   const generatorPath = getUnlocalizedGeneratorRoute();
-  const links: any = [];
 
-  headerLinks.forEach((headerLink, index) => {
+  const links = headerLinks.map((headerLink, index) => {
     if (typeof headerLink === 'object' && headerLink.path) {
       const link = headerLink as GDCustomHeaderLink;
-      links.push(
+      return (
         <li key={link.path} className={getClassName(classNames, link.path, currentPage)}>
           <Link to={getLink(link.path, locale)}>{i18n[link.labelI18nKey]}</Link>
         </li>
       );
-    } else if (headerLink === 'generator') {
-      links.push(
+    }
+
+    if (headerLink === 'generator') {
+      return (
         <li key="generator" className={getClassName(classNames, generatorPath, currentPage)}>
           <Link to={getLink(generatorPath, locale)}>{i18n.generator}</Link>
         </li>
       );
-    } else if (headerLink === 'separator') {
-      links.push(
+    }
+
+    if (headerLink === 'separator') {
+      return (
         <li key={`separator-${index}`} className={classNames.divider}>
           |
         </li>
       );
-    } else if (headerLink === 'dataSets') {
-      links.push(
+    }
+
+    if (headerLink === 'dataSets') {
+      return (
         <li key="dataSets" className={getClassName(classNames, 'datasets', currentPage)}>
           <Link to={getLink('/datasets', locale)}>{i18n.dataSets}</Link>
         </li>
       );
-    } else if (headerLink === 'userAccount') {
+    }
+
+    if (headerLink === 'userAccount') {
       const userImage = profileImage ? <img src={profileImage} /> : null;
       const classes = `${classNames.userAccount} ${getClassName(classNames, 'account', currentPage)}`;
 
-      links.push(
+      return (
         <li key="account" className={classes}>
           {userImage} <Link to={getLink('/account', locale)}>{i18n.yourAccount}</Link>
         </li>
       );
-    } else if (headerLink === 'accounts') {
-      links.push(
+    }
+
+    if (headerLink === 'accounts') {
+      return (
         <li key="accounts" className={getClassName(classNames, 'accounts', currentPage)}>
           <Link to={getLink('/accounts', locale)}>{i18n.accounts}</Link>
         </li>
       );
-    } else if (headerLink === 'logout') {
-      links.push(
+    }
+    if (headerLink === 'logout') {
+      return (
         <li className={classNames.logoutLink} key="logout">
           <Tooltip title={i18n.logout} placement="bottom" arrow>
             <span>
@@ -169,20 +179,24 @@ export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
           </Tooltip>
         </li>
       );
-    } else if (headerLink === 'register') {
-      links.push(
+    }
+    if (headerLink === 'register') {
+      return (
         <li key="register" className={getClassName(classNames, 'register', currentPage)}>
           <Link to={getLink('/register', locale)}>{i18n.register}</Link>
         </li>
       );
-    } else if (headerLink === 'loginDialog') {
-      links.push(
+    }
+    if (headerLink === 'loginDialog') {
+      return (
         <li key="loginDialog" onClick={showLoginDialog} data-ok="asdas" className={classNames.clickable}>
           {i18n.login}
         </li>
       );
-    } else if (headerLink === 'loginPage') {
-      links.push(
+    }
+
+    if (headerLink === 'loginPage') {
+      return (
         <li key="loginPage" className={getClassName(classNames, 'loginPage', currentPage)}>
           <Link to={getLink('/login', locale)}>{i18n.login}</Link>
         </li>

@@ -3,7 +3,6 @@ import pluginWebWorkers from '@generatedata/plugins/workerPluginsFileMap';
 import workerFileMap from '@generatedata/utils/workerUtilsFileMap';
 import { nanoid } from 'nanoid';
 import { generationWorker } from '../_generationWorker';
-// import env from '../../_env';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const rootPackageVersion = require('../../../../package.json').version;
@@ -47,28 +46,6 @@ export const getExportTypeWorkerMap = (exportTypes: ExportTypeMap): ExportTypeMa
 };
 
 export const getWorkerUtilsUrl = (): string => workerFileMap.workerUtils;
-
-const messageIds: any = {};
-
-// wrapper method for the worker calls. This just adds a layer to abort any previous unfinished messages that are
-// sent to the worker. It's up to the worker to handle aborting it however it sees fit, but the important part is
-// that it doesn't post back any data from stale requests
-export const performTask = (workerName: string, worker: any, postMessagePayload: any, onMessage: any): void => {
-  if (!messageIds[workerName]) {
-    messageIds[workerName] = 1;
-  } else {
-    messageIds[workerName]++;
-  }
-
-  worker.postMessage({
-    ...postMessagePayload,
-    _messageId: 1 // TODO
-  });
-
-  worker.onmessage = (data: any): void => {
-    onMessage(data);
-  };
-};
 
 let namesPlugins: any = null;
 export const getCountryNamesBundle = (): any => {

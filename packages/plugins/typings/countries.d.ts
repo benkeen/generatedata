@@ -1,4 +1,3 @@
-// TODO move to plugins package
 export interface GetCountryData {
   (i18n: any): CountryDataType;
 }

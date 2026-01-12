@@ -143,6 +143,10 @@ export const useClasses = makeStyles({
     marginRight: 0,
     '& button': {
       fontSize: '22px'
+    },
+    '& svg': {
+      color: '#333333',
+      '-webkit-mask-image': '-webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.6)))'
     }
   },
   divider: {
@@ -207,13 +211,6 @@ export const useClasses = makeStyles({
 });
 
 // div ul {
-// 	li.logoutLink {
-// 		margin-right: 0;
-
-// 		button {
-// 			font-size: 22px;
-// 		}
-// 	}
 // 	li.localeSelector {
 // 		margin-right: 0;
 // 		button {

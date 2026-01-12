@@ -2,7 +2,7 @@
 /**
  * @author Fareez Ahamed <fareez.ahamed@gmail.com>
  */
-import { GetCountryData } from '@generatedata/types';
+import { GetCountryData } from '~typings/countries';
 
 const Pakistan: GetCountryData = (i18n) => ({
   countryName: i18n.countryName,

@@ -1,4 +1,4 @@
-import { GetCountryData } from '@generatedata/types';
+import { GetCountryData } from '~typings/countries';
 
 const Nigeria: GetCountryData = (i18n) => ({
   countryName: i18n.countryName,

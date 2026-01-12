@@ -1,4 +1,4 @@
-import { CountryNames } from '@generatedata/types';
+import { CountryNames } from '~typings/countries';
 
 const femaleNames = [
   'Agatha',

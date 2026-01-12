@@ -47,7 +47,7 @@ const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps) =
             endAngle={-270}
             paddingAngle={0}
           >
-            {pieChartData.map((entry, index) => (
+            {pieChartData.map((_entry, index) => (
               <Cell key={index} fill={pieChartData[index].color} />
             ))}
           </Pie>

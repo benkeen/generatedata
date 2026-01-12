@@ -15,8 +15,12 @@
     "allowSyntheticDefaultImports": true,
     "module": "es2015",
     "target": "es5",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "paths": {
+      "~typings/*": ["typings/*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "typings"],
   "exclude": ["node_modules"]
 }

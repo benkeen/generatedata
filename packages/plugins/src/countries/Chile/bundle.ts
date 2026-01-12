@@ -4,7 +4,7 @@
  * Source: http://datos.gob.cl/datasets/ver/29596
  * Author: Gonzalo 'NioZero' Hidalgo <ghidalgo@frostdisk.com>
  */
-import { GetCountryData } from '@generatedata/types';
+import { GetCountryData } from '~typings/countries';
 
 const Chile: GetCountryData = (i18n) => ({
   countryName: i18n.countryName,

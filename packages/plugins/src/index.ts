@@ -1,6 +1,7 @@
-import type { AnyObject } from '@generatedata/types';
-import { createSelector } from 'reselect';
-import { CountryDataType, CountryNames, DatabaseTypes } from '@generatedata/types';
+// TODO make sense of this file
+import { DatabaseTypes } from '@generatedata/types';
+import type { CountryDataType, CountryNames } from '../typings/countries';
+import type { AnyObject } from '../typings/general';
 import { getStrings } from '@generatedata/utils/lang';
 import Alphanumeric from './dataTypes/Alphanumeric/config';
 import AutoIncrement from './dataTypes/AutoIncrement/config';
@@ -40,6 +41,8 @@ import Track1 from './dataTypes/Track1/config';
 import Track2 from './dataTypes/Track2/config';
 import URLs from './dataTypes/URLs/config';
 import WeightedList from './dataTypes/WeightedList/config';
+
+export type { CountryDataType, CountryNames } from '../typings/countries';
 
 export type Dimensions = {
   width: number;

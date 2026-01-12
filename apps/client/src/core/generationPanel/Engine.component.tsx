@@ -1,6 +1,5 @@
 import C from '@generatedata/config/constants';
-import { CountryNamesMap, DataTypeMap, ExportTypeMap } from '@generatedata/plugins';
-import { CountryDataType } from '@generatedata/types';
+import type { CountryDataType, CountryNamesMap, DataTypeMap, ExportTypeMap } from '@generatedata/plugins';
 import { useEffect } from 'react';
 import { DataPacket } from '~store/packets/packets.reducer';
 import useDidUpdate from '../../hooks/useDidUpdate';

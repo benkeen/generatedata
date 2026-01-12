@@ -1,5 +1,4 @@
-import { CountryNamesMap, DataTypeMap, GenerationTemplate } from '@generatedata/plugins';
-import { CountryDataType } from '@generatedata/types';
+import type { CountryDataType, CountryNamesMap, DataTypeMap, GenerationTemplate } from '@generatedata/plugins';
 import { UnchangedGenerationData } from '~types/generator';
 
 export type GenerationWorkerActionType =
