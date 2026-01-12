@@ -1,9 +1,9 @@
 import C from '@generatedata/config/constants';
 import { getCountryData } from '@generatedata/plugins';
-import { GeneratorLayout } from '@generatedata/types';
 import React, { useEffect } from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import * as coreUtils from '../../../utils/coreUtils';
+import { GeneratorLayout } from '~types/generator';
 
 export type CodeMirrorWrapperProps = {
   previewRows: any;

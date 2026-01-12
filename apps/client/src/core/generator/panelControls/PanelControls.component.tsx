@@ -1,5 +1,5 @@
 import { Tooltip } from '@generatedata/core';
-import { GeneratorLayout } from '@generatedata/types';
+import { GeneratorLayout } from '~types/generator';
 import { toSentenceCase } from '@generatedata/utils/string';
 import CheckBox from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank';

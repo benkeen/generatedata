@@ -1,5 +1,5 @@
 import { TextField } from '@generatedata/core';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETValidateTitleField } from '@generatedata/types';
+import type { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETValidateTitleField } from '~typings/exportTypes';
 import { useClasses } from './XML.styles';
 
 export const Settings = ({ data, i18n, coreI18n, id, onUpdate }: ETSettings) => {

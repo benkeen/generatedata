@@ -1,4 +1,4 @@
-import { ETSettings, GeneratorLayout } from '@generatedata/types';
+import { ETSettings } from '~typings/exportTypes';
 
 export const defaultETSettings: ETSettings = {
   onUpdate: () => {},
@@ -6,7 +6,7 @@ export const defaultETSettings: ETSettings = {
   coreI18n: {},
   i18n: {},
   id: 'id',
-  layout: 'horizontal' as GeneratorLayout
+  layout: 'horizontal'
 };
 
 // requires the DT test to supply i18n and rowState (if pertinent)

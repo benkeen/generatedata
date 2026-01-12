@@ -1,5 +1,5 @@
 import { Dropdown, TextField } from '@generatedata/core';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
+import type { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~typings/exportTypes';
 import Switch from '@mui/material/Switch';
 import * as React from 'react';
 import { SQLSettings } from './SQL.state';

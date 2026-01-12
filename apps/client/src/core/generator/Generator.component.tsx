@@ -1,5 +1,5 @@
 import C from '@generatedata/config/constants';
-import { GeneratorLayout } from '@generatedata/types';
+import { GeneratorLayout } from '~types/generator';
 import { useWindowSize } from 'react-hooks-window-size';
 import { SplitPane, Pane, Size } from 'react-split-pane';
 import { usePersistence } from 'react-split-pane/persistence';

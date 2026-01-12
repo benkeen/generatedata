@@ -1,4 +1,4 @@
-import { ETDefinition } from '@generatedata/types';
+import type { ETDefinition } from '~typings/exportTypes';
 
 const definition: ETDefinition = {
   fieldGroup: 'programmingLanguage',

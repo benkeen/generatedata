@@ -1,4 +1,4 @@
-import { ETState } from '@generatedata/types';
+import { ETState } from '~typings/exportTypes';
 
 export type GenerationOptionsType = {
   rootNodeName: string;

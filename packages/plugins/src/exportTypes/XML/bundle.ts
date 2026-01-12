@@ -1,4 +1,4 @@
-import { ETBundle } from '@generatedata/types';
+import type { ETBundle } from '~typings/exportTypes';
 import { Settings, getCodeMirrorMode, getDownloadFileInfo, validateTitleField } from './XML';
 import { initialState } from './XML.state';
 

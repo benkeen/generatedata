@@ -1,10 +1,8 @@
-import { GeneratorLayout } from './generator';
-
 export type ETSettings = {
   onUpdate: Function; // from container
   data: any; // from store
   id: string;
-  layout: GeneratorLayout;
+  layout: 'horizontal' | 'vertical';
   i18n: any;
   coreI18n: any;
 };

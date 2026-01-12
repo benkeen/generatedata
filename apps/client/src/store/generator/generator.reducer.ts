@@ -2,7 +2,7 @@ import { AnyAction } from 'redux';
 import clientConfig from '@generatedata/config/clientConfig';
 import C from '@generatedata/config/constants';
 import { DataTypeFolder, DTOptionsMetadata, ExportTypeFolder } from '@generatedata/plugins';
-import { GeneratorLayout } from '@generatedata/types';
+import { GeneratorLayout } from '~types/generator';
 import { produce } from 'immer';
 import { nanoid } from 'nanoid';
 import { GeneratorPanel } from '~types/general';

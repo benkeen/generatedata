@@ -1,4 +1,4 @@
-import { ETBundle } from '@generatedata/types';
+import type { ETBundle } from '~typings/exportTypes';
 import { Settings, getCodeMirrorMode, getDownloadFileInfo } from './JSON';
 import { initialState } from './JSON.state';
 

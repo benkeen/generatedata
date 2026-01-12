@@ -1,4 +1,4 @@
-import { ETBundle } from '@generatedata/types';
+import type { ETBundle } from '~typings/exportTypes';
 import { getCodeMirrorMode, getDownloadFileInfo } from './LDIF';
 
 const bundle: ETBundle = {

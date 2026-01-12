@@ -1,5 +1,5 @@
 import { TextField } from '@generatedata/core';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '@generatedata/types';
+import type { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~typings/exportTypes';
 import { TypescriptSettings } from './Typescript.state';
 import { useClasses } from './Typescript.styles';
 

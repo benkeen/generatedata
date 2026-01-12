@@ -1,4 +1,4 @@
-import { ETDownloadPacket, ETDownloadPacketResponse } from '@generatedata/types';
+import type { ETDownloadPacket, ETDownloadPacketResponse } from '~typings/exportTypes';
 
 export const getCodeMirrorMode = (): string => 'text/x-yaml';
 

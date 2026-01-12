@@ -1,5 +1,4 @@
 // TODO make sense of this file
-import { DatabaseTypes } from '@generatedata/types';
 import type { CountryDataType, CountryNames } from '../typings/countries';
 import type { AnyObject } from '../typings/general';
 import { getStrings } from '@generatedata/utils/lang';
@@ -42,7 +41,21 @@ import Track2 from './dataTypes/Track2/config';
 import URLs from './dataTypes/URLs/config';
 import WeightedList from './dataTypes/WeightedList/config';
 
-export type { CountryDataType, CountryNames } from '../typings/countries';
+export * from '../typings';
+
+// this is for Data Types to describe how their field should be described for the SQL DB table creation statement
+export type DatabaseTypes = {
+  // e.g. "varchar(50)". This is the default value used for all DB types if they're not defined in one of the custom
+  // properties below
+  field?: string;
+
+  // database type-specific field descriptions
+  field_Oracle?: string;
+  field_MySQL?: string;
+  field_MSSQL?: string;
+  field_Postgres?: string;
+  field_SQLite?: string;
+};
 
 export type Dimensions = {
   width: number;

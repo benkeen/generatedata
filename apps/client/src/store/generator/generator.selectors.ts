@@ -1,5 +1,5 @@
 import type { ColumnData, DataTypeFolder, ExportTypeFolder, GenerationTemplate } from '@generatedata/plugins';
-import { GeneratorLayout } from '@generatedata/types';
+import { GeneratorLayout } from '~types/generator';
 import * as langUtils from '@generatedata/utils/lang';
 import { createSelector } from 'reselect';
 import { GDLocale, GeneratorPanel, Store } from '~types/general';
