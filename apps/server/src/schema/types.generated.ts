@@ -105,10 +105,10 @@ export type DataSetHistoryResults = {
 export type DataSetListItem = {
   __typename?: 'DataSetListItem';
   content?: Maybe<Scalars['String']['output']>;
-  dataCreatedUnix?: Maybe<Scalars['Int']['output']>;
   dataSetId?: Maybe<Scalars['ID']['output']>;
   dataSetName?: Maybe<Scalars['String']['output']>;
   dateCreated?: Maybe<Scalars['String']['output']>;
+  dateCreatedUnix?: Maybe<Scalars['Int']['output']>;
   historyDateCreatedUnix?: Maybe<Scalars['Int']['output']>;
   historyId?: Maybe<Scalars['ID']['output']>;
   numRowsGenerated?: Maybe<Scalars['Int']['output']>;
@@ -472,10 +472,10 @@ export type DataSetHistoryResultsResolvers<ContextType = any, ParentType extends
 
 export type DataSetListItemResolvers<ContextType = any, ParentType extends ResolversParentTypes['DataSetListItem'] = ResolversParentTypes['DataSetListItem']> = {
   content?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  dataCreatedUnix?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   dataSetId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   dataSetName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   dateCreated?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  dateCreatedUnix?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   historyDateCreatedUnix?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   historyId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   numRowsGenerated?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;

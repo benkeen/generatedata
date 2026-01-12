@@ -13,6 +13,7 @@
   "scripts": {
     "build": "run-s precheck buildCmd",
     "buildCmd": "turbo build",
+    "clean": "turbo clean",
     "precheck": "node ./scripts/precheck.js",
     "dev": "run-s precheck devCmd",
     "devCmd": "turbo dev --parallel --filter=@generatedata/client...",

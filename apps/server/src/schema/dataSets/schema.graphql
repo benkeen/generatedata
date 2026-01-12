@@ -30,7 +30,7 @@ type DataSetListItem {
   historyId: ID
   dataSetName: String
   content: String
-  dataCreatedUnix: Int
+  dateCreatedUnix: Int
   historyDateCreatedUnix: Int
 }
 

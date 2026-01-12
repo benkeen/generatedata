@@ -22,23 +22,23 @@ export const generateTableFormat = (data: ETMessageData): string => {
 
   let content = '';
   if (data.isFirstBatch) {
-    content += `<table>${newline}${tab}<tr>${newline}`;
+    content += `<table>${newline}${tab}<thead>${newline}${tab}${tab}<tr>${newline}`;
     data.columns.forEach(({ title }) => {
-      content += `${tab}${tab}<th>${title}</th>${newline}`;
+      content += `${tab}${tab}${tab}<th>${title}</th>${newline}`;
     });
-    content += `${tab}</tr>${newline}`;
+    content += `${tab}${tab}</tr>${newline}${tab}</thead>${newline}${tab}<tbody>${newline}`;
   }
 
   data.rows.forEach((row) => {
-    content += `${tab}<tr>${newline}`;
+    content += `${tab}${tab}<tr>${newline}`;
     data.columns.forEach((col, colIndex) => {
-      content += `${tab}${tab}<td>${row[colIndex]}</td>${newline}`;
+      content += `${tab}${tab}${tab}<td>${row[colIndex]}</td>${newline}`;
     });
-    content += `${tab}</tr>${newline}`;
+    content += `${tab}${tab}</tr>${newline}`;
   });
 
   if (data.isLastBatch) {
-    content += '</table>';
+    content += `${tab}</tbody>${newline}</table>`;
   }
 
   return content;

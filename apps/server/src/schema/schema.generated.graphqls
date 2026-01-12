@@ -80,10 +80,10 @@ type DataSetHistoryResults {
 
 type DataSetListItem {
   content: String
-  dataCreatedUnix: Int
   dataSetId: ID
   dataSetName: String
   dateCreated: String
+  dateCreatedUnix: Int
   historyDateCreatedUnix: Int
   historyId: ID
   numRowsGenerated: Int
