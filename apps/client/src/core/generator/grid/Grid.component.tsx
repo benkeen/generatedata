@@ -28,7 +28,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
   const [numRows, setNumRows] = useState(1);
   const windowSize = useWindowSize();
   const [measureRef, { width = 0, height = 0 }] = useMeasure();
-  const classNames = useClasses(width);
+  const classNames = useClasses(false, width);
   const [draggingRowId, setDraggingRowId] = useState<UniqueIdentifier | null>(null);
 
   const sensors = useSensors(
@@ -93,6 +93,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
                     rows.findIndex((r) => r.id === over.id)
                   );
                 }
+                setDraggingRowId(null);
               }}
             >
               <SortableContext items={rows} strategy={verticalListSortingStrategy}>
@@ -100,6 +101,7 @@ const Grid = ({ rows, onAddRows, onSort, i18n, columnTitle, toggleGrid, changeSm
                   <GridRow
                     row={row}
                     key={row.id}
+                    highlight={draggingRowId === row.id}
                     index={index}
                     gridPanelDimensions={memoizedDimensions}
                     showHelpDialog={showHelpDialog}

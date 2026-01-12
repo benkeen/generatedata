@@ -180,10 +180,13 @@ const useBaseClasses = makeStyles({
   },
   hidden: {
     display: 'none'
+  },
+  highlight: {
+    backgroundColor: '#e0ebfd'
   }
 });
 
-export const useClasses = (width?: number | null) => {
+export const useClasses = (highlight: boolean, width?: number | null) => {
   const baseClasses = useBaseClasses();
 
   let hideOptions = false;
@@ -201,9 +204,11 @@ export const useClasses = (width?: number | null) => {
   const optionsCol = mergeClasses(baseClasses.optionsCol, hideOptions ? baseClasses.hidden : '');
   const examplesCol = mergeClasses(baseClasses.examplesCol, hideExamples ? baseClasses.hidden : '');
   const settingsIconCol = mergeClasses(baseClasses.settingsIconCol, hideSettingsCol ? baseClasses.hidden : '');
+  const gridRow = mergeClasses(baseClasses.gridRow, highlight ? baseClasses.highlight : '');
 
   return {
     ...baseClasses,
+    gridRow,
     gridHeaderRow,
     optionsCol,
     examplesCol,

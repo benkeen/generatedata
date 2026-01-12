@@ -11,18 +11,6 @@ import { DataRow } from '~store/generator/generator.reducer';
 import { useClasses } from './Grid.styles';
 import { SmallScreenSettingsIcon } from './SmallScreenSettingsIcon';
 
-// const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
-//   const styles: React.CSSProperties = {
-//     ...draggableStyle,
-//     userSelect: 'none',
-//     margin: '0 0 0 0'
-//   };
-//   if (isDragging) {
-//     styles.background = '#e0ebfd';
-//   }
-//   return styles;
-// };
-
 export type GridRowProps = {
   row: DataRow;
   index: number;
@@ -47,6 +35,7 @@ export type GridRowProps = {
   isCountryNamesLoaded: boolean;
   countryNamesMap: CountryNamesMap | null;
   gridWidth: number | null;
+  highlight: boolean;
 };
 
 const NoExample = ({ coreI18n, emptyColClass }: any) => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>;
@@ -72,10 +61,11 @@ export const GridRow = ({
   isCountryNamesLoading,
   isCountryNamesLoaded,
   countryNamesMap,
-  gridWidth
+  gridWidth,
+  highlight
 }: GridRowProps) => {
   const sharedClasses = useSharedClasses();
-  const classNames = useClasses(gridWidth);
+  const classNames = useClasses(highlight, gridWidth);
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id: row.id
   });

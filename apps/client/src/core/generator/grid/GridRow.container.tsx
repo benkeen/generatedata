@@ -18,6 +18,7 @@ type OwnProps = {
     height: number;
   };
   showHelpDialog: (dataType: DataTypeFolder) => void;
+  highlight: boolean;
 };
 
 const mapStateToProps = (

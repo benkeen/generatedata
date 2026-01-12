@@ -23,7 +23,7 @@ export const SmallScreenSettingsIcon = ({
   const popoverRef = React.useRef<HTMLElement>(undefined);
   const [open, setOpen] = React.useState(false);
   const sharedClasses = useSharedClasses();
-  const classNames = useClasses();
+  const classNames = useClasses(false);
 
   useOnClickOutside(popoverRef as RefObject<HTMLElement>, (e) => {
     // the `gd-is-portal` part is added in case Data Types use other portal-based content besides react select. If
