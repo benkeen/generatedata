@@ -7,6 +7,12 @@ const md5File = require('md5-file');
 const path = require('path');
 const concurrently = require('concurrently');
 
+// this script outputs a ton of logs, and sometimes it's hard to make sense of. Pass a --filter argument to only build a specific worker
+// (note it's case sensitive)
+// example:
+//    npm run generate-web-workers -- --filter=Company
+const filter = process.argv.indexOf('--filter') !== -1 ? process.argv[process.argv.indexOf('--filter') + 1] : null;
+
 const workersFolder = path.join(__dirname, '../dist/workers');
 if (!fs.existsSync(workersFolder)) {
   fs.mkdirSync(workersFolder, { recursive: true });
@@ -35,6 +41,10 @@ const getWorkQueue = (pluginType) => {
     const sourceFile = `${baseFolderAbsPath}/${folder}/${folder}.worker.js`;
 
     if (!fs.existsSync(sourceFile)) {
+      return;
+    }
+
+    if (filter && folder.indexOf(filter) === -1) {
       return;
     }
     

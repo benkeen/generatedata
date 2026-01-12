@@ -41,7 +41,10 @@ import Track2 from './dataTypes/Track2/config';
 import URLs from './dataTypes/URLs/config';
 import WeightedList from './dataTypes/WeightedList/config';
 
-export * from '../typings';
+// TODO the ~typings path doesn't get converted in the dist/ which causes export failures for these typings
+export type * from '../typings/countries';
+export type * from '../typings/exportTypes';
+export type * from '../typings/general';
 
 // this is for Data Types to describe how their field should be described for the SQL DB table creation statement
 export type DatabaseTypes = {

@@ -1,6 +1,6 @@
 import { TextField } from '@generatedata/core';
 import type { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~typings/exportTypes';
-import { TypescriptSettings } from './Typescript.state';
+import type { TypescriptSettings } from './Typescript.state';
 import { useClasses } from './Typescript.styles';
 
 export const Settings = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings) => {
