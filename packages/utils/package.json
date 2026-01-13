@@ -23,7 +23,6 @@
   "devDependencies": {
     "@date-io/date-fns": "catalog:",
     "@generatedata/config": "workspace:*",
-    "@generatedata/types": "workspace:*",
     "@rollup/plugin-commonjs": "catalog:",
     "@rollup/plugin-node-resolve": "catalog:",
     "@rollup/plugin-typescript": "catalog:",

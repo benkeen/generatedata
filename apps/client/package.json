@@ -129,7 +129,6 @@
     "@generatedata/config": "workspace:*",
     "@generatedata/plugins": "workspace:*",
     "@generatedata/utils": "workspace:*",
-    "@generatedata/types": "workspace:*",
     "@griffel/react": "catalog:",
     "@rollup/plugin-commonjs": "catalog:",
     "@rollup/plugin-node-resolve": "catalog:",

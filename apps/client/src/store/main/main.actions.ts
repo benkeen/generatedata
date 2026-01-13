@@ -54,7 +54,7 @@ export const selectLocale =
         }
       };
       const s = document.createElement('script');
-      const filename = localeFileMap[locale];
+      const filename = localeFileMap[locale as keyof typeof localeFileMap];
       s.src = `./${filename}`;
       document.body.appendChild(s);
     };

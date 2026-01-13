@@ -727,9 +727,6 @@ importers:
       '@generatedata/plugins':
         specifier: workspace:*
         version: link:../../packages/plugins
-      '@generatedata/types':
-        specifier: workspace:*
-        version: link:../../packages/types
       '@generatedata/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -970,9 +967,6 @@ importers:
       '@generatedata/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
-      '@generatedata/types':
-        specifier: workspace:*
-        version: link:../../packages/types
       '@generatedata/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -1285,9 +1279,6 @@ importers:
       '@generatedata/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@generatedata/types':
-        specifier: workspace:*
-        version: link:../types
       '@generatedata/utils':
         specifier: workspace:*
         version: link:../utils
@@ -1355,15 +1346,6 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
 
-  packages/types:
-    devDependencies:
-      '@generatedata/config':
-        specifier: workspace:*
-        version: link:../config
-      rimraf:
-        specifier: 'catalog:'
-        version: 6.0.1
-
   packages/utils:
     dependencies:
       '@mui/lab':
@@ -1400,9 +1382,6 @@ importers:
       '@generatedata/config':
         specifier: workspace:*
         version: link:../config
-      '@generatedata/types':
-        specifier: workspace:*
-        version: link:../types
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
         version: 15.1.0(rollup@2.79.2)

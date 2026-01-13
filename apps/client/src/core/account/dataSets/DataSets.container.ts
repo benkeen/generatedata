@@ -1,4 +1,4 @@
-import { DataSetListItem } from '@generatedata/types';
+import { DataSetListItem } from '../../../../types/dataSets';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { withAuth } from '~core/auth/withAuth';

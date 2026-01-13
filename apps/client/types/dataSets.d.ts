@@ -1,4 +1,4 @@
-//
+// TODO drop this and extend graphql type
 export type DataSetListItem = {
   historyId: number;
   dataSetId: number;

@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client/react';
 import { SecondaryButton, useSharedClasses } from '@generatedata/core';
-import { DataSetListItem } from '@generatedata/types';
+import { DataSetListItem } from '../../../../types/dataSets';
 import { formatUnixTime } from '@generatedata/utils/date';
 import { getFormattedNum } from '@generatedata/utils/number';
 import { getLocale } from '@generatedata/utils/lang';

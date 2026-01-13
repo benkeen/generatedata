@@ -7,7 +7,6 @@ const externalPackages = [
   '@as-integrations/express5',
   '@generatedata/config',
   '@generatedata/i18n',
-  '@generatedata/types',
   '@generatedata/utils',
   'bcryptjs',
   'codemirror',

@@ -21,7 +21,6 @@
     "@as-integrations/express5": "catalog:",
     "@generatedata/config": "workspace:*",
     "@generatedata/i18n": "workspace:*",
-    "@generatedata/types": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "bcryptjs": "catalog:",
     "codemirror": "catalog:",

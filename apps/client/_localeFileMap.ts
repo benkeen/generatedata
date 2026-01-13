@@ -1,4 +1,4 @@
-import { GDLocaleMap } from '@generatedata/types';
+import type { GDLocaleMap } from '@generatedata/config';
 
 export const localeFileMap: GDLocaleMap = {
 	"ar": "ar-9196a7eb.js",

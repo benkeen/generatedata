@@ -27,7 +27,6 @@
   },
   "devDependencies": {
     "@babel/runtime": "catalog:",
-    "@generatedata/types": "workspace:*",
     "@generatedata/config": "workspace:*",
     "@generatedata/core": "workspace:*",
     "@generatedata/i18n": "workspace:*",

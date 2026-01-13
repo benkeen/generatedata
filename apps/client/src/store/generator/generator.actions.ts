@@ -1,6 +1,6 @@
 import C from '@generatedata/config/constants';
 import { DataTypeFolder, DTBundle, DTOptionsMetadata, ExportTypeFolder, getCountryData } from '@generatedata/plugins';
-import { DataSetListItem } from '@generatedata/types';
+import { DataSetListItem } from '../../../types/dataSets';
 import { getUnique } from '@generatedata/utils/array';
 import { getStrings } from '@generatedata/utils/lang';
 import { getUniqueString } from '@generatedata/utils/string';

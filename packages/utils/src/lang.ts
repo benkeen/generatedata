@@ -1,4 +1,4 @@
-import { GDLocale } from '@generatedata/types';
+import type { GDLocale } from '@generatedata/config';
 import C from '@generatedata/config/constants';
 
 // standalone location for the selected locale. Keeping this out of redux lets us just import it wherever
