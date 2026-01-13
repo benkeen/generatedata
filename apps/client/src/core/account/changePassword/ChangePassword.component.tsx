@@ -1,4 +1,4 @@
-import { PrimaryButton, TextField } from '@generatedata/core';
+import { PrimaryButton, TextField } from '@generatedata/shared';
 import Alert from '@mui/material/Alert';
 import { useRef, useState } from 'react';
 

@@ -1,4 +1,4 @@
-import { CopyToClipboard, Dropdown, TextField, useSharedClasses } from '@generatedata/core';
+import { CopyToClipboard, Dropdown, TextField, useSharedClasses } from '@generatedata/shared';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { AlphanumericState, GenerationOptionsType } from './Alphanumeric.state';
 import { useClasses } from './Alphanumeric.styles';

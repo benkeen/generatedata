@@ -1,9 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import { TextField } from '@generatedata/core';
-import { PrimaryButton } from '@generatedata/core';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/core';
+import { TextField } from '@generatedata/shared';
+import { PrimaryButton } from '@generatedata/shared';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@generatedata/shared';
 import { useClasses } from './SaveDataSet.styles';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 

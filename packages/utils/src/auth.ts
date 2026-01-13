@@ -4,6 +4,7 @@ import clientConfig from '@generatedata/config/clientConfig';
 // TODO maybe invert this?
 // import { SignInWithGoogleButton, initGoogleAuth } from '~core/auth/google/google';
 
+// TODO
 // refresh the token 1 minute before it expires
 export const setAuthTokenRefresh = (tokenExpiry: number, onRefresh: any): void => {
   const oneMinFromExpiry = clientConfig.auth.GD_JWT_LIFESPAN_MINS * 60 * 1000 - 60 * 1000;
@@ -13,6 +14,7 @@ export const setAuthTokenRefresh = (tokenExpiry: number, onRefresh: any): void =
   }, oneMinFromExpiry);
 };
 
+// TODO
 export const initAuthVendors = (): void => {
   if (clientConfig.auth.GD_GOOGLE_AUTH_CLIENT_ID) {
     // initGoogleAuth();
@@ -20,10 +22,7 @@ export const initAuthVendors = (): void => {
 };
 
 export const hasVendorLogin = (): boolean => {
-  if (clientConfig.auth.GD_GOOGLE_AUTH_CLIENT_ID) {
-    return true;
-  }
-  return false;
+  return !!clientConfig.auth.GD_GOOGLE_AUTH_CLIENT_ID;
 };
 
 export const getVendorLoginButtons = (): React.ReactNode[] => {

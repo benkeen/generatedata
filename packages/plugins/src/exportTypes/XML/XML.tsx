@@ -1,4 +1,4 @@
-import { TextField } from '@generatedata/core';
+import { TextField } from '@generatedata/shared';
 import type { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETValidateTitleField } from '~typings/exportTypes';
 import { useClasses } from './XML.styles';
 

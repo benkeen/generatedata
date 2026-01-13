@@ -6,7 +6,7 @@ import Tab from '@mui/material/Tab';
 import PreviewSettingsTab from './PreviewSettingsTab.container';
 import ExportTypeTab from './ExportTypeTab.container';
 import { useClasses } from './ExportSettings.styles';
-import { PrimaryButton } from '@generatedata/core';
+import { PrimaryButton } from '@generatedata/shared';
 
 export type ExportSettingsProps = {
   i18n: any;

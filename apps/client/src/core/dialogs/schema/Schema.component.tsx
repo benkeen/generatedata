@@ -3,8 +3,8 @@ import { styled } from '@mui/material/styles';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { PrimaryButton } from '@generatedata/core';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
+import { PrimaryButton } from '@generatedata/shared';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/shared';
 import FeatureToggles from '../../featureToggles';
 import { useClasses } from './Schema.styles';
 

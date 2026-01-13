@@ -1,4 +1,4 @@
-import { CreatablePillField, Dropdown } from '@generatedata/core';
+import { CreatablePillField, Dropdown } from '@generatedata/shared';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { GenerationOptionsType, PhoneState } from './Phone.state';
 

@@ -1,7 +1,5 @@
-import dateFns from 'date-fns';
 import clientConfig from '@generatedata/config/clientConfig';
 import serverConfig from '@generatedata/config/serverConfig';
-import { getPasswordHash } from './helpers.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

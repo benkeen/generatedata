@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, PrimaryButton, TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, PrimaryButton, TextField } from '@generatedata/shared';
 import { getVendorLoginButtons, hasVendorLogin } from '@generatedata/utils/auth';
 import { isValidEmail } from '@generatedata/utils/general';
 import { useEffect, useRef, useState } from 'react';

@@ -1,4 +1,4 @@
-import { CenteredSpinner, DefaultSpinner } from '@generatedata/core';
+import { CenteredSpinner, DefaultSpinner } from '@generatedata/shared';
 import { PropsWithChildren } from 'react';
 import Footer from '../footer/Footer.container';
 import Header from '../header/Header.container';

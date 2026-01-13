@@ -1,5 +1,5 @@
 import React from 'react';
-import { PreviewPanelButton } from '@generatedata/core';
+import { PreviewPanelButton } from '@generatedata/shared';
 import { useClasses } from './DataSetHistory.styles';
 
 export type PanelButtonsProps = {

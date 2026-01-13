@@ -1,4 +1,4 @@
-import { Dropdown, TextField } from '@generatedata/core';
+import { Dropdown, TextField } from '@generatedata/shared';
 import type { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~typings/exportTypes';
 import Switch from '@mui/material/Switch';
 import * as React from 'react';

@@ -26,7 +26,6 @@ export default (cmdLineArgs) => {
       format: 'es'
     },
     treeshake: false,
-    // preserveSymlinks: true,
     plugins: [
       nodeResolve(),
       commonjs(), 

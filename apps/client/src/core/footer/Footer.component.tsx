@@ -1,5 +1,5 @@
 import C from '@generatedata/config/constants';
-import { GithubIcon, Tooltip } from '@generatedata/core';
+import { GithubIcon, Tooltip } from '@generatedata/shared';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Person from '@mui/icons-material/EmojiPeople';
 import SaveIcon from '@mui/icons-material/Save';

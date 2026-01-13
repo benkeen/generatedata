@@ -1,4 +1,4 @@
-import { AlertButton, Dialog, DialogActions, DialogContent, DialogTitle, PrimaryButton, Tooltip } from '@generatedata/core';
+import { AlertButton, Dialog, DialogActions, DialogContent, DialogTitle, PrimaryButton, Tooltip } from '@generatedata/shared';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Pause from '@mui/icons-material/Pause';
 import PlayArrow from '@mui/icons-material/PlayArrow';

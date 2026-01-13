@@ -8,7 +8,7 @@ import {
   RadioPill,
   RadioPillRow,
   type DropdownOption
-} from '@generatedata/core';
+} from '@generatedata/shared';
 import { removeItem } from '@generatedata/utils/array';
 import { getI18nString } from '@generatedata/utils/lang';
 import * as React from 'react';

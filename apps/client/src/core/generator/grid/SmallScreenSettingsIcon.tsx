@@ -1,5 +1,5 @@
 import C from '@generatedata/config/constants';
-import { HtmlTooltip, SmallSpinner, useSharedClasses } from '@generatedata/core';
+import { HtmlTooltip, SmallSpinner, useSharedClasses } from '@generatedata/shared';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import type { RefObject } from 'react';
 import React from 'react';

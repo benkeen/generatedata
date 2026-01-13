@@ -1,4 +1,4 @@
-import { Dropdown, TextField } from '@generatedata/core';
+import { Dropdown, TextField } from '@generatedata/shared';
 import { isNumeric } from '@generatedata/utils/number';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '../../';
 import { AutoIncrementState, GenerationOptionsType } from './AutoIncrement.state';

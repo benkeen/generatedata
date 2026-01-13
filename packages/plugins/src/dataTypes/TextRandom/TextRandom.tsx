@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, PrimaryButton, RadioPill, RadioPillRow, TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, PrimaryButton, RadioPill, RadioPillRow, TextField } from '@generatedata/shared';
 import { getLipsumWords } from '@generatedata/utils/string';
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';

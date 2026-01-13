@@ -1,8 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const helpers = require('./build/helpers');
-const i18n = require('./build/i18n');
+// const helpers = require('./build/helpers');
+// const i18n = require('./build/i18n');
+
+console.log('----->', require.resolve('@generatedata/config/clientConfig'));
+
 const clientConfig = require('@generatedata/config/clientConfig');
 
 const locales = clientConfig.default.appSettings.GD_LOCALES;

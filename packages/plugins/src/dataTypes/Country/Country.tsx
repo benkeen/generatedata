@@ -8,7 +8,7 @@ import {
   RadioPill,
   RadioPillRow,
   type DropdownOption
-} from '@generatedata/core';
+} from '@generatedata/shared';
 import * as React from 'react';
 import { countryList, CountryType, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { CountrySource } from './Country.state';

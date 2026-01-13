@@ -1,4 +1,4 @@
-import { useSharedClasses } from '@generatedata/core';
+import { useSharedClasses } from '@generatedata/shared';
 import { useEffect, useState } from 'react';
 import { SelectedAccountTab } from '~types/account';
 import { useClasses } from './Account.styles';

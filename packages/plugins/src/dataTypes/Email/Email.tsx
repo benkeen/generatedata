@@ -9,7 +9,7 @@ import {
   RadioPillRow,
   TextField,
   Tooltip
-} from '@generatedata/core';
+} from '@generatedata/shared';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';

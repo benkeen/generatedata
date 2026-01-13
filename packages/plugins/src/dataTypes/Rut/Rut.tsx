@@ -1,4 +1,4 @@
-import { Dropdown, type DropdownOption } from '@generatedata/core';
+import { Dropdown, type DropdownOption } from '@generatedata/shared';
 import { DTMetadata, DTOptionsProps } from '../../';
 
 export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps) => {

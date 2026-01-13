@@ -1,4 +1,4 @@
-import { vars } from '@generatedata/core';
+import { vars } from '@generatedata/shared';
 import { makeStyles, mergeClasses } from '@griffel/react';
 import C from '@generatedata/config/constants';
 

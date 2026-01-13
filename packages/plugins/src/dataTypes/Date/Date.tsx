@@ -1,5 +1,5 @@
 import C from '@generatedata/config/constants';
-import { CopyToClipboard, Dropdown, ErrorTooltip, DatePicker, TextField, useSharedClasses } from '@generatedata/core';
+import { CopyToClipboard, Dropdown, ErrorTooltip, DatePicker, TextField, useSharedClasses } from '@generatedata/shared';
 import { isValidDateFormat } from '@generatedata/utils/date';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import Event from '@mui/icons-material/Event';

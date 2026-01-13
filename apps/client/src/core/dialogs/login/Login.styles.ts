@@ -1,4 +1,4 @@
-import { vars } from '@generatedata/core';
+import { vars } from '@generatedata/shared';
 import { makeStyles } from '@griffel/react';
 
 export const useClasses = makeStyles({

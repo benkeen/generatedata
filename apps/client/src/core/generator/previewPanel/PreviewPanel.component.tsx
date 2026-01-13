@@ -1,5 +1,5 @@
 import C from '@generatedata/config/constants';
-import { Portal, PreviewPanelButton, Tooltip } from '@generatedata/core';
+import { Portal, PreviewPanelButton, Tooltip } from '@generatedata/shared';
 import AddCircle from '@mui/icons-material/AddCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import ErrorSolidIcon from '@mui/icons-material/Error';

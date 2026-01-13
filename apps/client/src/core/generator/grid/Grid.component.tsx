@@ -2,7 +2,7 @@ import { closestCenter, DndContext, KeyboardSensor, PointerSensor, UniqueIdentif
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import C from '@generatedata/config/constants';
-import { PrimaryButton, Tooltip } from '@generatedata/core';
+import { PrimaryButton, Tooltip } from '@generatedata/shared';
 import { DataTypeFolder } from '@generatedata/plugins';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';

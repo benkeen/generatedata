@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client/react';
-import { HtmlTooltip } from '@generatedata/core';
+import { HtmlTooltip } from '@generatedata/shared';
 import { enqueueSnackbar } from 'notistack';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Divider, IconButton, List, ListItemButton, ListItemText } from '@mui/material';

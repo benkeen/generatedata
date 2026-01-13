@@ -1,4 +1,4 @@
-import { useSharedClasses } from '@generatedata/core';
+import { useSharedClasses } from '@generatedata/shared';
 import { TooltipProps } from '@mui/material/Tooltip';
 import React, { forwardRef, useState } from 'react';
 import { useThrottle } from '../../hooks/useThrottle';

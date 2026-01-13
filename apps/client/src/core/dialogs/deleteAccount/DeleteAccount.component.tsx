@@ -1,6 +1,6 @@
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
-import { PrimaryButton, NullButton } from '@generatedata/core';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/shared';
+import { PrimaryButton, NullButton } from '@generatedata/shared';
 import { useClasses } from './DeleteAccount.styles';
 
 export type DeleteAccountDialogProps = {

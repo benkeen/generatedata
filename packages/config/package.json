@@ -10,6 +10,7 @@
     "build": "run-s confirm-setup build:esm build:cjs build:database-config",
     "clean": "npx rimraf dist",
     "create-database-sql": "node build/generate-create-database-sql.js",
+    "dev": "npm run build",
     "purge": "npx rimraf node_modules dist .turbo",
     "confirm-setup": "node ./scripts/confirm-setup.js"
   },

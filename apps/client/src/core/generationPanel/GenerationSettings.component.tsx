@@ -8,7 +8,7 @@ import {
   MediumSpinner,
   PrimaryButton,
   useSharedClasses
-} from '@generatedata/core';
+} from '@generatedata/shared';
 import { getI18nString, getLocale } from '@generatedata/utils/lang';
 import { getFormattedNum } from '@generatedata/utils/number';
 import CheckIcon from '@mui/icons-material/Check';

@@ -1,4 +1,4 @@
-import { TextField } from '@generatedata/core';
+import { TextField } from '@generatedata/shared';
 import { useClasses } from './AccountsList.styles';
 
 export type SearchFilterProps = {

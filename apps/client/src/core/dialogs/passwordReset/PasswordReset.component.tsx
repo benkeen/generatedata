@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, PrimaryButton, TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, PrimaryButton, TextField } from '@generatedata/shared';
 import { isValidEmail } from '@generatedata/utils/general';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { useEffect, useRef, useState } from 'react';

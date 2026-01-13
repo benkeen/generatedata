@@ -12,12 +12,14 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const separator = '-'.repeat(80);
+
 if (
   !fs.existsSync(path.resolve(__dirname, '../src/client.config.ts')) ||
   !fs.existsSync(path.resolve(__dirname, '../src/server.config.ts'))
 ) {
   console.error(
-    'Build cancelled! Please create the two configuration files in order to proceed. See here for the documentation:\nhttps://github.com/benkeen/generatedata/tree/master/packages/config\n'
+    `${separator}\nBuild cancelled. Please create the two configuration files in order to proceed. See here for the documentation:\nhttps://github.com/benkeen/generatedata/tree/master/packages/config\n${separator}\n`
   );
   process.exit(1);
 }

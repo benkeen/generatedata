@@ -1,4 +1,4 @@
-import { TextField } from '@generatedata/core';
+import { TextField } from '@generatedata/shared';
 import type { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~typings/exportTypes';
 import type { TypescriptSettings } from './Typescript.state';
 import { useClasses } from './Typescript.styles';

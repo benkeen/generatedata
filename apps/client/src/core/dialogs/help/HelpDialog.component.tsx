@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, DropdownOption, MediumSpinner, SecondaryButton } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, DropdownOption, MediumSpinner, SecondaryButton } from '@generatedata/shared';
 import { DataTypeFolder } from '@generatedata/plugins';
 import Button from '@mui/material/Button';
 import React, { useState } from 'react';

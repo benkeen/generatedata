@@ -12,7 +12,7 @@ import {
   SmallSpinner,
   Tooltip,
   type DropdownOption
-} from '@generatedata/core';
+} from '@generatedata/shared';
 import WorldIcon from '@mui/icons-material/Public';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';

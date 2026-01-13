@@ -3,7 +3,7 @@ import { ApolloProvider } from '@apollo/client/react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import IconButton from '@mui/material/IconButton';
 // import C from '@generatedata/config/constants';
-import { useGlobalStyles } from '@generatedata/core';
+import { useGlobalStyles } from '@generatedata/shared';
 import { ThemeProvider } from '@mui/material/styles';
 import * as codemirror from 'codemirror';
 import { useEffect } from 'react';

@@ -1,6 +1,6 @@
 import React from 'react';
 // import { persistor } from './store';
-import { CockroachIcon } from '@generatedata/core';
+import { CockroachIcon } from '@generatedata/shared';
 import Button from '@mui/material/Button';
 import Footer from './footer/Footer.container';
 import Header from './header/Header.container';

@@ -1,4 +1,4 @@
-import { CopyToClipboard } from '@generatedata/core';
+import { CopyToClipboard } from '@generatedata/shared';
 import { useClasses } from './Email.styles';
 
 export type EmailProps = {

@@ -1,4 +1,4 @@
-import { Tooltip } from '@generatedata/core';
+import { Tooltip } from '@generatedata/shared';
 import CheckCircle from '@mui/icons-material/CheckCircle';
 import Chip from '@mui/material/Chip';
 import { useNavigate } from 'react-router';

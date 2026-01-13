@@ -8,7 +8,7 @@ import {
   SecondaryButton,
   Tooltip,
   vars
-} from '@generatedata/core';
+} from '@generatedata/shared';
 import { Link } from '~components/Link.component';
 import { useClasses } from './About.styles';
 

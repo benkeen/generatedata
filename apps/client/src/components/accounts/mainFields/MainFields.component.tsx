@@ -1,4 +1,4 @@
-import { Dropdown, PrimaryButton, TextField, useSharedClasses } from '@generatedata/core';
+import { Dropdown, PrimaryButton, TextField, useSharedClasses } from '@generatedata/shared';
 import { canadianProvinceOptions, countryDropdownOptions } from '@generatedata/plugins';
 import { isValidEmail } from '@generatedata/utils/general';
 import { generateRandomAlphanumericStr } from '@generatedata/utils/random';

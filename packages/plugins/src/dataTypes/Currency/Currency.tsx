@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, PrimaryButton, TextField } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, PrimaryButton, TextField } from '@generatedata/shared';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';

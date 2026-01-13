@@ -1,4 +1,4 @@
-import { CopyToClipboard, TextField as CoreTextField, Dropdown, ErrorTooltip, useSharedClasses } from '@generatedata/core';
+import { CopyToClipboard, TextField as CoreTextField, Dropdown, ErrorTooltip, useSharedClasses } from '@generatedata/shared';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import TextField from '@mui/material/TextField';
 import { format, fromUnixTime, parse } from 'date-fns';

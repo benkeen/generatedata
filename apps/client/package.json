@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "@apollo/client": "catalog:",
-    "@generatedata/core": "workspace:*",
+    "@generatedata/shared": "workspace:*",
     "@generatedata/i18n": "workspace:*",
     "@generatedata/server": "workspace:*",
     "@mui/material": "catalog:",

@@ -1,4 +1,4 @@
-import { DatePicker, RadioPill, RadioPillRow } from '@generatedata/core';
+import { DatePicker, RadioPill, RadioPillRow } from '@generatedata/shared';
 import { getFormattedNum } from '@generatedata/utils/number';
 import { getLocale } from '@generatedata/utils/lang';
 import { add, format, fromUnixTime } from 'date-fns';

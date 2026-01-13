@@ -1,4 +1,4 @@
-import { Dropdown, TextField, useETStyles, type DropdownOption } from '@generatedata/core';
+import { Dropdown, TextField, useETStyles, type DropdownOption } from '@generatedata/shared';
 import type { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~typings/exportTypes';
 import { CSVSettings } from './CSV.state';
 import { useClasses } from './CSV.styles';

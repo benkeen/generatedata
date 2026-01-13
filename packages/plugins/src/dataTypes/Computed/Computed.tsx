@@ -1,4 +1,4 @@
-import { CopyToClipboard, useSharedClasses } from '@generatedata/core';
+import { CopyToClipboard, useSharedClasses } from '@generatedata/shared';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { useClasses } from './Computed.styles';
 

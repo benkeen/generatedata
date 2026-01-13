@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client/react';
 import C from '@generatedata/config/constants';
-import { CenteredSpinner, DefaultSpinner, PrimaryButton, SecondaryButton, Tooltip } from '@generatedata/core';
+import { CenteredSpinner, DefaultSpinner, PrimaryButton, SecondaryButton, Tooltip } from '@generatedata/shared';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import Drawer from '@mui/material/Drawer';

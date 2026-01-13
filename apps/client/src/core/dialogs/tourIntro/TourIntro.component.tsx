@@ -6,7 +6,7 @@ import {
   DialogTitle,
   PrimaryButton,
   SecondaryButton
-} from '@generatedata/core';
+} from '@generatedata/shared';
 import { getTourComponents } from '@generatedata/utils/general';
 import { useEffect, useState } from 'react';
 import { useWindowSize } from 'react-hooks-window-size';

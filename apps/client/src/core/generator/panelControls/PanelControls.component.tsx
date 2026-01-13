@@ -1,4 +1,4 @@
-import { Tooltip } from '@generatedata/core';
+import { Tooltip } from '@generatedata/shared';
 import { GeneratorLayout } from '~types/generator';
 import { toSentenceCase } from '@generatedata/utils/string';
 import CheckBox from '@mui/icons-material/CheckBox';

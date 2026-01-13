@@ -15,7 +15,7 @@
     "copy-i18n-files": "copyfiles -u 1 ./src/*/*/i18n/*.json dist"
   },
   "dependencies": {
-    "@generatedata/core": "workspace:*",
+    "@generatedata/shared": "workspace:*",
     "@mui/material": "catalog:",
     "@mui/icons-material": "catalog:",
     "@mui/lab": "catalog:",
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@babel/runtime": "catalog:",
     "@generatedata/config": "workspace:*",
-    "@generatedata/core": "workspace:*",
+    "@generatedata/shared": "workspace:*",
     "@generatedata/i18n": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@griffel/react": "catalog:",

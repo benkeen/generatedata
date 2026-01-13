@@ -7,7 +7,7 @@ import {
   Dropdown,
   PrimaryButton,
   type DropdownOption
-} from '@generatedata/core';
+} from '@generatedata/shared';
 import { cloneObj } from '@generatedata/utils/general';
 import { getI18nString } from '@generatedata/utils/lang';
 import { toSentenceCase } from '@generatedata/utils/string';

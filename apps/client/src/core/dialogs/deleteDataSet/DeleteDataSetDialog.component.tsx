@@ -1,7 +1,7 @@
 import React from 'react';
-import { AlertButton, SecondaryButton } from '@generatedata/core';
+import { AlertButton, SecondaryButton } from '@generatedata/shared';
 import WarningIcon from '@mui/icons-material/Warning';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/core';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@generatedata/shared';
 import { useClasses } from './DeleteDataSetDialog.styles';
 
 export type DeleteDataSetDialogProps = {

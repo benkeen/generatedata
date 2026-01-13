@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown } from '@generatedata/core';
+import { Dropdown } from '@generatedata/shared';
 import Switch from '@mui/material/Switch';
 import { getArrayOfSize } from '@generatedata/utils/array';
 import { useClasses } from './ExportSettings.styles';

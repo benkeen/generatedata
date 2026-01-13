@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, AlertButton, PrimaryButton } from '@generatedata/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, AlertButton, PrimaryButton } from '@generatedata/shared';
 import WarningIcon from '@mui/icons-material/Warning';
 import { useClasses } from './ClearPage.styles';
 

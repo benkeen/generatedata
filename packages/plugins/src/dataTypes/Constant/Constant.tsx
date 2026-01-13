@@ -1,4 +1,4 @@
-import { CreatablePillField, TextField, useSharedClasses } from '@generatedata/core';
+import { CreatablePillField, TextField, useSharedClasses } from '@generatedata/shared';
 import { isBoolean } from '@generatedata/utils/general';
 import { isNumeric } from '@generatedata/utils/number';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '../../';

@@ -1,4 +1,4 @@
-import { CenteredSpinner, DefaultSpinner } from '@generatedata/core';
+import { CenteredSpinner, DefaultSpinner } from '@generatedata/shared';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

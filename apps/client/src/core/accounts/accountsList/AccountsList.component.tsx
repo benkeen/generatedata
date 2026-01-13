@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client/react';
 import C from '@generatedata/config/constants';
-import { Dropdown, DropdownOption, SecondaryButton, SmallSpinner, useSharedClasses } from '@generatedata/core';
+import { Dropdown, DropdownOption, SecondaryButton, SmallSpinner, useSharedClasses } from '@generatedata/shared';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Button from '@mui/material/Button';
 import { format, fromUnixTime } from 'date-fns';

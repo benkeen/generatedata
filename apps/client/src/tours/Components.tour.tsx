@@ -1,4 +1,4 @@
-import { PrimaryButton, SecondaryButton } from '@generatedata/core';
+import { PrimaryButton, SecondaryButton } from '@generatedata/shared';
 import { getStrings } from '@generatedata/utils/lang';
 
 export const TourCompleteStep = ({ close }: any) => {

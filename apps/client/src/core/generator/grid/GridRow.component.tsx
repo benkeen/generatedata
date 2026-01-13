@@ -1,6 +1,6 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Dropdown, SmallSpinner, TextField, useSharedClasses } from '@generatedata/core';
+import { Dropdown, SmallSpinner, TextField, useSharedClasses } from '@generatedata/shared';
 import { CountryNamesMap, DataTypeFolder, DTOptionsMetadata } from '@generatedata/plugins';
 import DragIndicator from '@mui/icons-material/DragIndicator';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';

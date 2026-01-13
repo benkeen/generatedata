@@ -8,7 +8,7 @@ import {
   PrimaryButton,
   TextField,
   Tooltip
-} from '@generatedata/core';
+} from '@generatedata/shared';
 import utils from '@generatedata/utils';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import * as React from 'react';

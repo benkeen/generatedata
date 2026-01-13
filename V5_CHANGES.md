@@ -22,13 +22,12 @@ Logical units of the code are now found under `apps` and `packages`.
 **Packages**
 
 - `packages/cli` - this was the never-completed CLI package. Still **definitely** something I want to complete!
-- `packages/core` - contains shared components for use across the client application and plugins
 - `packages/cli-test` - testing for the CLI package. This might be temporary. Not sure it needs to be separate from `cli` itself.
 - `packages/config` - this'll house the main configuration settings and replace the old `.env` file. For simplicity and backward compatibility, I've left the same uppercase names from the old .env variables.
+- `packages/shared` - contains shared components, hooks etc. for use across the monorepo
 - `packages/plugins` - the countries, Data Types and Export Types. Perhaps I'll split them into separate packages for each, but for now they're lumped in the same package.
-- `packages/types` - global types.
 - `packages/utils` - utility methods
-  
+
 ## Other changes
 
 - now uses turborepo

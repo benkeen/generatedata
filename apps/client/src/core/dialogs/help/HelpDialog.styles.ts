@@ -1,5 +1,5 @@
 import { makeStyles } from '@griffel/react';
-import { vars } from '@generatedata/core';
+import { vars } from '@generatedata/shared';
 
 export const useClasses = makeStyles({
   helpDialog: {

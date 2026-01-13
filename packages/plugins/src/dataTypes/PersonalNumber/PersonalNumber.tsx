@@ -1,4 +1,4 @@
-import { Dropdown } from '@generatedata/core';
+import { Dropdown } from '@generatedata/shared';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 
 // TODO: figure out what this component IS. Is it for specific countries? Sweden has 12 chars...

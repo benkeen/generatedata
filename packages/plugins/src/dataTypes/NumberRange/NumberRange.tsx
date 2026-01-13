@@ -1,4 +1,4 @@
-import { TextField } from '@generatedata/core';
+import { TextField } from '@generatedata/shared';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import { NumberRangeState } from './NumberRange.state';
 

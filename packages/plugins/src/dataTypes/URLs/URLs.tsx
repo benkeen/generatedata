@@ -1,4 +1,4 @@
-import { CheckboxPill, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, PrimaryButton } from '@generatedata/core';
+import { CheckboxPill, Dialog, DialogActions, DialogContent, DialogTitle, Dropdown, PrimaryButton } from '@generatedata/shared';
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTExampleProps, DTMetadata, DTOptionsProps } from '../../';
