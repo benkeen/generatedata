@@ -87,7 +87,8 @@ const AppWrapper = () => (
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <SnackbarProvider
-            autoHideDuration={5000}
+            autoHideDuration={3000}
+            maxSnack={1}
             anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
             classes={{ containerRoot: 'gdToastContainer', root: 'gdToast' }}
             action={(snackbarId) => (

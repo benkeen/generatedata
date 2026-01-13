@@ -1,10 +1,10 @@
 /* istanbul ignore file */
 import C from '@generatedata/config/constants';
 import { DataTypeFolder } from '@generatedata/plugins';
-import { initAuthVendors } from '@generatedata/utils/auth';
 import { getCurrentPageLocale } from '@generatedata/utils/lang';
 import { requestCountryNames } from '~store/generator/generator.actions';
 import * as coreUtils from '../utils/coreUtils';
+import { initAuthVendors } from '../utils/authUtils';
 import store from '~store/index';
 import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';

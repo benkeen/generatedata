@@ -76,7 +76,7 @@ export const useClasses = makeStyles({
     cursor: 'pointer'
   },
   userAccount: {
-    display: 'flex',
+    display: 'flex !important',
     alignItems: 'center',
     '& img': {
       width: '24px',

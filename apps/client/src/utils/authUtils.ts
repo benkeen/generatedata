@@ -1,8 +1,6 @@
-import bcrypt from 'bcryptjs'; // TODO was bcrypt
+// import bcrypt from 'bcryptjs'; // TODO was bcrypt
 import clientConfig from '@generatedata/config/clientConfig';
-
-// TODO maybe invert this?
-// import { SignInWithGoogleButton, initGoogleAuth } from '~core/auth/google/google';
+import { SignInWithGoogleButton, initGoogleAuth } from '~core/auth/google/google';
 
 // TODO
 // refresh the token 1 minute before it expires
@@ -14,10 +12,9 @@ export const setAuthTokenRefresh = (tokenExpiry: number, onRefresh: any): void =
   }, oneMinFromExpiry);
 };
 
-// TODO
 export const initAuthVendors = (): void => {
   if (clientConfig.auth.GD_GOOGLE_AUTH_CLIENT_ID) {
-    // initGoogleAuth();
+    initGoogleAuth();
   }
 };
 
@@ -29,7 +26,7 @@ export const getVendorLoginButtons = (): React.ReactNode[] => {
   const buttons: any[] = [];
 
   if (clientConfig.auth.GD_GOOGLE_AUTH_CLIENT_ID) {
-    // buttons.push(SignInWithGoogleButton);
+    buttons.push(SignInWithGoogleButton);
   }
 
   return buttons;

@@ -1,12 +1,11 @@
 import React, { useRef } from 'react';
-import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
 import { apolloClient } from '../../apolloClient';
 import store from '~store/index';
 import { onLoginSuccess, setAuthenticated, setAuthenticationData, setOnloadAuthDetermined } from '~store/main/main.actions';
 import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';
-import langUtils from '@generatedata/utils/lang';
+import { getStrings } from '@generatedata/utils/lang';
 import clientConfig from '@generatedata/config/clientConfig';
 import { LOGIN_WITH_GOOGLE } from '../../mutations';
 import { enqueueSnackbar } from 'notistack';
@@ -26,7 +25,7 @@ export type AuthenticatedOptions = {
 };
 
 const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {}): Promise<any> => {
-  const i18n = langUtils.getStrings();
+  const i18n = getStrings();
 
   const options = {
     onPageRender: false,

@@ -1,5 +1,5 @@
 import { Dialog, DialogActions, DialogContent, DialogLoadingSpinner, DialogTitle, PrimaryButton, TextField } from '@generatedata/shared';
-import { getVendorLoginButtons, hasVendorLogin } from '@generatedata/utils/auth';
+import { getVendorLoginButtons, hasVendorLogin } from '../../../utils/authUtils';
 import { isValidEmail } from '@generatedata/utils/general';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';

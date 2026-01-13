@@ -12,7 +12,8 @@ export const persistStore = (store: any) => {
     ...getAccountInitialState(),
     selectedTab: account.selectedTab,
     dataSets: account.dataSets,
-    selectedAccountsTab: account.selectedAccountsTab
+    selectedAccountsTab: account.selectedAccountsTab,
+    profileImage: account.profileImage
   };
 
   const mainPersistor: MainState = {
