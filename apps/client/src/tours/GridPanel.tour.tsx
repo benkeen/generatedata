@@ -150,7 +150,7 @@ const steps = [
         }
 
         const layout = selectors.getGeneratorLayout(state);
-        if (layout === GeneratorLayout.vertical) {
+        if (layout === 'vertical') {
           store.dispatch(actions.toggleLayout());
         }
 

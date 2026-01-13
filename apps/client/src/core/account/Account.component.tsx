@@ -24,9 +24,9 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps) => {
     let changePasswordClasses = classNames.hidden;
     let yourAccountClasses = classNames.hidden;
 
-    if (selectedTab === SelectedAccountTab.yourAccount) {
+    if (selectedTab === 'yourAccount') {
       yourAccountClasses = classNames.shown;
-    } else if (selectedTab === SelectedAccountTab.dataSets) {
+    } else if (selectedTab === 'dataSets') {
       dataSetsClasses = classNames.shown;
     } else {
       changePasswordClasses = classNames.shown;
@@ -38,10 +38,10 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps) => {
   }, [selectedTab]);
 
   const getTab = () => {
-    if (selectedTab === SelectedAccountTab.dataSets) {
+    if (selectedTab === 'dataSets') {
       return <DataSets className={dataSetsClasses} />;
     }
-    if (selectedTab === SelectedAccountTab.yourAccount) {
+    if (selectedTab === 'yourAccount') {
       return <YourAccount className={yourAccountClasses} />;
     }
 
@@ -52,21 +52,15 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps) => {
     <section className={sharedClasses.twoColPage} data-automation="account-page">
       <nav>
         <ul>
-          <li
-            className={selectedTab === SelectedAccountTab.dataSets ? sharedClasses.selected : ''}
-            onClick={(): void => onChangeTab(SelectedAccountTab.dataSets)}
-          >
+          <li className={selectedTab === 'dataSets' ? sharedClasses.selected : ''} onClick={(): void => onChangeTab('dataSets')}>
             {i18n.dataSets}
           </li>
-          <li
-            className={selectedTab === SelectedAccountTab.yourAccount ? sharedClasses.selected : ''}
-            onClick={(): void => onChangeTab(SelectedAccountTab.yourAccount)}
-          >
+          <li className={selectedTab === 'yourAccount' ? sharedClasses.selected : ''} onClick={(): void => onChangeTab('yourAccount')}>
             {i18n.yourAccount}
           </li>
           <li
-            className={selectedTab === SelectedAccountTab.changePassword ? sharedClasses.selected : ''}
-            onClick={(): void => onChangeTab(SelectedAccountTab.changePassword)}
+            className={selectedTab === 'changePassword' ? sharedClasses.selected : ''}
+            onClick={(): void => onChangeTab('changePassword')}
           >
             {i18n.changePassword}
           </li>

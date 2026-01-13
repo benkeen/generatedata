@@ -9,7 +9,7 @@ import ActivityPanel, { ActivityPanelProps } from './ActivityPanel.component';
 
 const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: string | null } => {
   const packet = packetSelectors.getCurrentPacket(state);
-  const largePacketSize = !!packet && getGenerationActivityPanel(packet.config.numRowsToGenerate) === GenerationActivityPanel.large;
+  const largePacketSize = !!packet && getGenerationActivityPanel(packet.config.numRowsToGenerate) === 'large';
 
   const props: Partial<ActivityPanelProps> & { packetId: string | null } = {
     visible: largePacketSize && packetSelectors.isGenerating(state),

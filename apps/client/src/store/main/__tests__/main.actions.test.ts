@@ -33,7 +33,7 @@ describe('main actions', () => {
 
     store.dispatch(
       setAuthenticationData({
-        authMethod: AuthMethod.google,
+        authMethod: 'google',
         token: '123456',
         accountId: '5',
         firstName: 'Jim',

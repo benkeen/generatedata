@@ -21,10 +21,7 @@ export type Store = {
   account: AccountState;
 };
 
-export const enum AuthMethod {
-  default = 'default',
-  google = 'google'
-}
+export type AuthMethod = 'default' | 'google';
 
 export type GDLocale = (typeof availableLocales)[number];
 
@@ -74,26 +71,7 @@ export type TourProps = {
   className: string;
 };
 
-export const enum GenerationActivityPanel {
-  small = 'small',
-  large = 'large'
-}
-
-export const enum GeneratorPanel {
-  grid = 'grid',
-  preview = 'preview'
-}
-
-export const enum LoadTimeGraphDuration {
-  all = 'all',
-  s15 = '15seconds',
-  s30 = '30seconds',
-  m1 = '1minute'
-}
-
-export const enum AccountStatusFilter {
-  all = 'all',
-  live = 'live',
-  expired = 'expired',
-  disabled = 'disabled'
-}
+export type GenerationActivityPanel = 'small' | 'large';
+export type GeneratorPanel = 'grid' | 'preview';
+export type LoadTimeGraphDuration = 'all' | '15seconds' | '30seconds' | '1minute';
+export type AccountStatusFilter = 'all' | 'live' | 'expired' | 'disabled';

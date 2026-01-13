@@ -231,10 +231,10 @@ const AccountsList = ({
           value={accountStatusFilter}
           onChange={(selected: DropdownOption): void => setAccountStatusFilter(selected.value as AccountStatusFilter)}
           options={[
-            { value: AccountStatusFilter.all, label: 'Any status' },
-            { value: AccountStatusFilter.live, label: i18n.live },
-            { value: AccountStatusFilter.expired, label: i18n.expired },
-            { value: AccountStatusFilter.disabled, label: i18n.disabled }
+            { value: 'all', label: 'Any status' },
+            { value: 'live', label: i18n.live },
+            { value: 'expired', label: i18n.expired },
+            { value: 'disabled', label: i18n.disabled }
           ]}
         />
         {loading && <SmallSpinner />}

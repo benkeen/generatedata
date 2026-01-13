@@ -35,7 +35,7 @@ export type MainState = {
 
 export const getInitialState = (): MainState => ({
   appStateVersion: C.APP_STATE_VERSION,
-  authMethod: AuthMethod.default,
+  authMethod: 'default',
   localeFileLoading: false,
   localeFileLoaded: false,
   locale: clientConfig.appSettings.GD_DEFAULT_LOCALE,
@@ -53,9 +53,9 @@ export const getInitialState = (): MainState => ({
   tourBundleLoaded: false,
   accountsCurrentPage: 1,
   accountsSortCol: 'lastName',
-  accountsSortDir: ColSortDir.asc,
+  accountsSortDir: 'ASC',
   accountsFilterStr: '',
-  accountStatusFilter: AccountStatusFilter.all
+  accountStatusFilter: 'all'
 });
 
 export const reducer = produce((draft: MainState, action: AnyAction) => {
@@ -110,7 +110,7 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
       draft.authToken = '';
       draft.accountsCurrentPage = 1;
       draft.accountsSortCol = 'lastName';
-      draft.accountsSortDir = ColSortDir.asc;
+      draft.accountsSortDir = 'ASC';
       draft.accountsFilterStr = '';
       break;
 

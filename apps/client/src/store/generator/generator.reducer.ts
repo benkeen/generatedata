@@ -177,8 +177,8 @@ export const getInitialState = (): GeneratorState => ({
   sortedRows: [],
   showGrid: true,
   showPreview: true,
-  smallScreenVisiblePanel: GeneratorPanel.grid,
-  generatorLayout: GeneratorLayout.vertical,
+  smallScreenVisiblePanel: 'grid',
+  generatorLayout: 'vertical',
   showExportSettings: false,
   exportTypeSettings: {},
   numPreviewRows: 5,
@@ -387,7 +387,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
       break;
 
     case actions.TOGGLE_LAYOUT:
-      draft.generatorLayout = draft.generatorLayout === GeneratorLayout.horizontal ? GeneratorLayout.vertical : GeneratorLayout.horizontal;
+      draft.generatorLayout = draft.generatorLayout === 'horizontal' ? 'vertical' : 'horizontal';
       break;
 
     case actions.TOGGLE_LINE_WRAPPING:
@@ -455,7 +455,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
       break;
 
     case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL:
-      draft.smallScreenVisiblePanel = draft.smallScreenVisiblePanel === GeneratorPanel.grid ? GeneratorPanel.preview : GeneratorPanel.grid;
+      draft.smallScreenVisiblePanel = draft.smallScreenVisiblePanel === 'grid' ? 'preview' : 'grid';
       break;
 
     case actions.SET_BULK_ACTION:

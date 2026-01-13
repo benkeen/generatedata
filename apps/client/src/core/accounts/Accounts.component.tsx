@@ -22,9 +22,9 @@ const Accounts = ({ selectedTab, onChangeTab, onDestroy, i18n }: AccountsPagePro
   }, []);
 
   const getTab = () => {
-    if (selectedTab === SelectedAccountsTab.accounts) {
+    if (selectedTab === 'accounts') {
       return <AccountsList />;
-    } else if (selectedTab === SelectedAccountsTab.editAccount) {
+    } else if (selectedTab === 'editAccount') {
       return <EditAccount />;
     }
     return <CreateAccount />;
@@ -34,16 +34,10 @@ const Accounts = ({ selectedTab, onChangeTab, onDestroy, i18n }: AccountsPagePro
     <section className={sharedClasses.twoColPage}>
       <nav>
         <ul>
-          <li
-            className={selectedTab === SelectedAccountsTab.accounts ? sharedClasses.selected : ''}
-            onClick={(): void => onChangeTab(SelectedAccountsTab.accounts)}
-          >
+          <li className={selectedTab === 'accounts' ? sharedClasses.selected : ''} onClick={(): void => onChangeTab('accounts')}>
             {i18n.accounts}
           </li>
-          <li
-            className={selectedTab === SelectedAccountsTab.createAccount ? sharedClasses.selected : ''}
-            onClick={(): void => onChangeTab(SelectedAccountsTab.createAccount)}
-          >
+          <li className={selectedTab === 'createAccount' ? sharedClasses.selected : ''} onClick={(): void => onChangeTab('createAccount')}>
             {i18n.createAccount}
           </li>
         </ul>

@@ -72,8 +72,8 @@ export const onCleanupAccountsPage =
     async (dispatch: Dispatch, getState: any): Promise<any> => {
       const tab = getSelectedAccountsPageTab(getState());
 
-      if (tab === SelectedAccountsTab.editAccount) {
-        dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
+      if (tab === 'editAccount') {
+        dispatch(onChangeAccountsTab('accounts'));
       }
     };
 
@@ -123,7 +123,7 @@ export const saveAccount =
 
       enqueueSnackbar(i18n.core.userAccountUpdated, { variant: 'success' });
 
-      dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
+      dispatch(onChangeAccountsTab('accounts'));
     };
 
 export const clearOneTimePassword = (): GDAction => ({
@@ -278,7 +278,7 @@ export const createAccount =
       });
 
       if (response?.data?.createUserAccount?.success) {
-        dispatch(onChangeAccountsTab(SelectedAccountsTab.accounts));
+        dispatch(onChangeAccountsTab('accounts'));
         enqueueSnackbar(i18n.core.accountCreatedDesc, { variant: 'success' });
       } else {
         enqueueSnackbar(i18n.core.errorCreatingAccount, { variant: 'error' });

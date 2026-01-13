@@ -116,11 +116,11 @@
 //     expect(selectors.getSelectedTab(store.getState())).toEqual('dataSets');
 
 //     // change tabs
-//     store.dispatch(actions.onChangeTab(SelectedAccountTab.yourAccount));
-//     expect(selectors.getSelectedTab(store.getState())).toEqual(SelectedAccountTab.yourAccount);
+//     store.dispatch(actions.onChangeTab('yourAccount'));
+//     expect(selectors.getSelectedTab(store.getState())).toEqual('yourAccount');
 
-//     store.dispatch(actions.onChangeTab(SelectedAccountTab.changePassword));
-//     expect(selectors.getSelectedTab(store.getState())).toEqual(SelectedAccountTab.changePassword);
+//     store.dispatch(actions.onChangeTab('changePassword'));
+//     expect(selectors.getSelectedTab(store.getState())).toEqual('changePassword');
 //   });
 
 //   it('save dialog visibility', () => {
@@ -136,7 +136,7 @@
 //   it('auth data gets set', () => {
 //     store.dispatch(
 //       setAuthenticationData({
-//         authMethod: AuthMethod.google,
+//         authMethod: 'google',
 //         token: '123456',
 //         accountId: '5',
 //         firstName: 'Jim',

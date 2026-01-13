@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client';
 import C from '@generatedata/config/constants';
 import type { AuthResponse } from '@generatedata/server';
-import { setAuthTokenRefresh } from '@generatedata/utils/auth';
 import { setTourComponents } from '@generatedata/utils/general';
 import { getCurrentLocalizedPath, getStrings, setLocale } from '@generatedata/utils/lang';
 import Cookies from 'js-cookie';
@@ -13,9 +12,9 @@ import { SaveDataDialogType } from '~store/account/account.reducer';
 import * as actions from '~store/generator/generator.actions';
 import { CLEAR_GRID } from '~store/generator/generator.actions';
 import { getCurrentPage, getLocale } from '~store/main/main.selectors';
-import { SelectedAccountTab } from '~types/account';
 import { AccountStatusFilter, AuthMethod, GDAction, GDLocale } from '~types/general';
 import { getGeneratorPageRoute, isGeneratorPage } from '~utils/routeUtils';
+import { setAuthTokenRefresh } from '~utils/authUtils';
 import { localeFileMap } from '../../../_localeFileMap';
 import { apolloClient } from '../../core/apolloClient';
 import { enqueueSnackbar } from 'notistack';
@@ -147,7 +146,7 @@ export const login = (email: string, password: string, navigate: any, onLoginErr
       dispatch(
         setAuthenticationData({
           ...data.login,
-          authMethod: AuthMethod.default
+          authMethod: 'default'
         })
       );
 
@@ -199,7 +198,7 @@ export const onOneTimeLoginSuccess = (tokenExpiry: number, password: string, nav
   dispatch(setOneTimePassword(password));
 
   navigate('/account');
-  dispatch(onChangeTab(SelectedAccountTab.changePassword));
+  dispatch(onChangeTab('changePassword'));
 
   enqueueSnackbar(i18n.core.nowLoggedIn, { variant: 'success' });
 };

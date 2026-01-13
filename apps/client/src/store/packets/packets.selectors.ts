@@ -4,7 +4,7 @@ import { formatDuration } from '@generatedata/utils/date';
 import { getFormattedNum } from '@generatedata/utils/number';
 import prettyBytes from 'pretty-bytes';
 import { createSelector } from 'reselect';
-import { LoadTimeGraphDuration, Store } from '~types/general';
+import { Store } from '~types/general';
 import { getLocale } from '../main/main.selectors';
 import { DataPackets } from './packets.reducer';
 
@@ -42,10 +42,10 @@ export const getBatchLoadTimes = createSelector(getCurrentPacket, (packet) => {
   }
 
   const map = {
-    [LoadTimeGraphDuration.s15]: 15,
-    [LoadTimeGraphDuration.s30]: 30,
-    [LoadTimeGraphDuration.all]: 30,
-    [LoadTimeGraphDuration.m1]: 60
+    ['15seconds']: 15,
+    ['30seconds']: 30,
+    ['all']: 30,
+    ['1minute']: 60
   };
   const numSecondsToShow = map[packet.loadTimeGraphDuration];
 

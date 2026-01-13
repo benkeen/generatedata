@@ -67,15 +67,15 @@ describe('generator section', () => {
   });
 
   it('layout is horizontal by default', () => {
-    expect(selectors.getGeneratorLayout(store.getState())).toEqual(GeneratorLayout.horizontal);
+    expect(selectors.getGeneratorLayout(store.getState())).toEqual('horizontal');
   });
 
   it('toggling the layout', () => {
     store.dispatch(actions.toggleLayout());
-    expect(selectors.getGeneratorLayout(store.getState())).toEqual(GeneratorLayout.vertical);
+    expect(selectors.getGeneratorLayout(store.getState())).toEqual('vertical');
 
     store.dispatch(actions.toggleLayout());
-    expect(selectors.getGeneratorLayout(store.getState())).toEqual(GeneratorLayout.horizontal);
+    expect(selectors.getGeneratorLayout(store.getState())).toEqual('horizontal');
   });
 
   it('sets the default number of rows to 5', () => {

@@ -53,7 +53,7 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
       store.dispatch(
         setAuthenticationData({
           ...data.loginWithGoogle,
-          authMethod: AuthMethod.google
+          authMethod: 'google'
         })
       );
 

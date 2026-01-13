@@ -57,7 +57,7 @@ const DataSets = ({ onLoadDataSet, locale, i18n, currentDataSetId, className = '
   const [currentPage, setCurrentPage] = useState(1);
   const [dialogVisible, setDeleteDialogVisibility] = useState(false);
   const [sortCol, setSortCol] = useState('dataSetName');
-  const [sortDir, setSortDir] = useState<ColSortDir>(ColSortDir.asc);
+  const [sortDir, setSortDir] = useState<ColSortDir>('ASC');
   const sharedClasses = useSharedClasses();
 
   const { data } = useQuery(queries.GET_DATA_SETS, {

@@ -8,7 +8,6 @@ import ManageAccount, {
 import * as accountActions from '~store/account/account.actions';
 import * as actionSelectors from '~store/account/account.selectors';
 import * as selectors from '~store/generator/generator.selectors';
-import { SelectedAccountsTab } from '~types/account';
 import { Store } from '~types/general';
 
 const mapStateToProps = (state: Store): Pick<ManageAccountProps, 'initialState' | 'i18n' | 'submitButtonLabel'> => {
@@ -28,7 +27,7 @@ const mapStateToProps = (state: Store): Pick<ManageAccountProps, 'initialState' 
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<ManageAccountProps, 'onSave' | 'onCancel'> => ({
   onSave: (data: any): any => dispatch(accountActions.saveAccount(data)),
-  onCancel: (): any => dispatch(accountActions.onChangeAccountsTab(SelectedAccountsTab.accounts))
+  onCancel: (): any => dispatch(accountActions.onChangeAccountsTab('accounts'))
 });
 
 const container: any = connect(mapStateToProps, mapDispatchToProps)(ManageAccount);

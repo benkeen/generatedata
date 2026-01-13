@@ -59,7 +59,4 @@ export type DataTypeBatchGeneratedPayload = {
   generatedData: any;
 };
 
-export const enum GeneratorLayout {
-  horizontal = 'horizontal',
-  vertical = 'vertical'
-}
+export type GeneratorLayout = 'horizontal' | 'vertical';

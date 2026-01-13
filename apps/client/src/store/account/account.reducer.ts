@@ -59,8 +59,8 @@ export const getInitialState = (): AccountState => ({
   profileImage: null,
   numRowsGenerated: 0,
   dataSets: [],
-  selectedTab: SelectedAccountTab.dataSets,
-  selectedAccountsTab: SelectedAccountsTab.accounts,
+  selectedTab: 'dataSets',
+  selectedAccountsTab: 'accounts',
   editingData: {
     firstName: '',
     lastName: '',
@@ -167,7 +167,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
       const { accountId, accountStatus, firstName, lastName, email, country, region, expiryDate, numRowsGenerated } =
         action.payload.accountInfo;
 
-      draft.selectedAccountsTab = SelectedAccountsTab.editAccount;
+      draft.selectedAccountsTab = 'editAccount';
       draft.editingData = {
         accountId,
         disabled: accountStatus === 'disabled',

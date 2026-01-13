@@ -9,10 +9,7 @@ export type TableCol = {
   sortable?: boolean;
 };
 
-export const enum ColSortDir {
-  asc = 'ASC',
-  desc = 'DESC'
-}
+export type ColSortDir = 'ASC' | 'DESC';
 
 export type TableHeaderProps = {
   cols: TableCol[];
@@ -38,15 +35,15 @@ const TableHeader = ({ cols, sortCol, sortDir, onSort }: TableHeaderProps) => {
     };
 
     let sorter: any = null;
-    let colSortDir = sortDir === ColSortDir.asc ? ColSortDir.desc : ColSortDir.asc;
+    let colSortDir: ColSortDir = sortDir === 'ASC' ? 'DESC' : 'ASC';
 
     if (col.field === sortCol) {
-      if (sortDir === ColSortDir.asc) {
+      if (sortDir === 'ASC') {
         sorter = <ArrowDropUp />;
-        colSortDir = ColSortDir.desc;
+        colSortDir = 'DESC';
       } else {
         sorter = <ArrowDropDown />;
-        colSortDir = ColSortDir.asc;
+        colSortDir = 'ASC';
       }
     }
 

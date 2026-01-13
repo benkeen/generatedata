@@ -6,7 +6,6 @@ export const vowels = 'AEIOU';
 export const lowercaseVowels = vowels.toLowerCase();
 export const hex = '0123456789ABCDEF';
 
-// TODO should accommodate negative numbers
 export const getRandomNum = (min: number, max: number): number => {
   const range = Math.abs(max - min);
   let val = Math.round(Math.random() * range);

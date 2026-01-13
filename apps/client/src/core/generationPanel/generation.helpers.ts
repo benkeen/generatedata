@@ -166,19 +166,19 @@ export const getUnchangedData = (
 };
 
 export const getGenerationActivityPanel = (numRowsToGenerate: number): GenerationActivityPanel => {
-  return numRowsToGenerate > C.SMALL_GENERATION_COUNT ? GenerationActivityPanel.large : GenerationActivityPanel.small;
+  return numRowsToGenerate > C.SMALL_GENERATION_COUNT ? 'large' : 'small';
 };
 
 export const getGraphDuration = (numRowsToGenerate: number): LoadTimeGraphDuration => {
   if (numRowsToGenerate < C.GRAPH_RANGES.RANGE1) {
-    return LoadTimeGraphDuration.all;
+    return 'all';
   } else if (numRowsToGenerate < C.GRAPH_RANGES.RANGE2) {
-    return LoadTimeGraphDuration.s15;
+    return '15seconds';
   } else if (numRowsToGenerate < C.GRAPH_RANGES.RANGE3) {
     // return LoadTimeGraphDuration.s30;
   }
 
-  return LoadTimeGraphDuration.s30;
+  return '30seconds';
 
   // return LoadTimeGraphDuration.m1;
 };
