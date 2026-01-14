@@ -1,6 +1,5 @@
 import type { WorkerUtils } from '@generatedata/utils/worker';
 import { DTGenerateResult } from '../../';
-import { NamesSource } from './Names.state';
 
 const maleNames = [
   'Aaron',
@@ -2177,7 +2176,7 @@ export const generate = (data: any, utils: WorkerUtils): DTGenerateResult => {
 
   // for backward compatibility. Prior to 4.0.6, rowState would just be an array of options
   let options = [];
-  let source = NamesSource.any;
+  let source = 'any';
   let selectedCountries = [];
   if (rowState.hasOwnProperty('source')) {
     options = rowState.options;
@@ -2187,7 +2186,7 @@ export const generate = (data: any, utils: WorkerUtils): DTGenerateResult => {
     options = rowState;
   }
 
-  if (source === NamesSource.countries && !selectedCountries.length) {
+  if (source === 'countries' && !selectedCountries.length) {
     return {
       display: ''
     };
@@ -2210,7 +2209,7 @@ export const generate = (data: any, utils: WorkerUtils): DTGenerateResult => {
   let femaleNamesSource = femaleNames;
   let lastNamesSource = lastNames;
 
-  if (source === NamesSource.countries) {
+  if (source === 'countries') {
     const randomCountry: string = utils.randomUtils.getRandomArrayValue(selectedCountries);
     maleNamesSource = countryNames[randomCountry].maleNames;
     femaleNamesSource = countryNames[randomCountry].femaleNames;

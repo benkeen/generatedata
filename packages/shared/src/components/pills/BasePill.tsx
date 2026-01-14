@@ -13,10 +13,7 @@ export const PillRow = ({ className, children }: any) => {
   return <div className={classes}>{children}</div>;
 };
 
-export const enum PillType {
-  radio = 'radio',
-  checkbox = 'checkbox'
-}
+export type PillType = 'radio' | 'checkbox';
 
 type PillProps = {
   type: PillType;

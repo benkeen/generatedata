@@ -1,7 +1,6 @@
 import utils from '@generatedata/utils/worker';
 import * as sinon from 'sinon';
 import { generate } from '../Names.generate';
-import { NamesSource } from '../Names.state';
 
 describe('generate method converts all placeholders', () => {
   afterEach(() => {
@@ -15,7 +14,7 @@ describe('generate method converts all placeholders', () => {
         {
           rowState: {
             options: ['MaleName'],
-            source: NamesSource.any
+            source: 'any'
           }
         },
         utils
@@ -34,7 +33,7 @@ describe('generate method converts all placeholders', () => {
         {
           rowState: {
             options: ['FemaleName'],
-            source: NamesSource.any
+            source: 'any'
           }
         },
         utils
@@ -53,7 +52,7 @@ describe('generate method converts all placeholders', () => {
         {
           rowState: {
             options: ['MaleName, MaleName'],
-            source: NamesSource.any
+            source: 'any'
           }
         },
         utils
@@ -72,7 +71,7 @@ describe('generate method converts all placeholders', () => {
         {
           rowState: {
             options: ['[MaleName]!!MaleName--MaleName'],
-            source: NamesSource.any
+            source: 'any'
           }
         },
         utils
@@ -91,7 +90,7 @@ describe('generate method converts all placeholders', () => {
         {
           rowState: {
             options: ['FemaleName,MaleName'],
-            source: NamesSource.any
+            source: 'any'
           }
         },
         utils
@@ -110,7 +109,7 @@ describe('generate method converts all placeholders', () => {
         {
           rowState: {
             options: ['Surname'],
-            source: NamesSource.any
+            source: 'any'
           }
         },
         utils
@@ -129,7 +128,7 @@ describe('generate method converts all placeholders', () => {
         {
           rowState: {
             options: ['Initial'],
-            source: NamesSource.any
+            source: 'any'
           }
         },
         utils

@@ -6,27 +6,15 @@ alphas. Under the hood it uses the [randomColor package](https://github.com/davi
 ## Typings
 
 ```typescript
-export const enum ColourFormatEnum {
-	hex = 'hex',
-	rgb = 'rgb',
-	rgba = 'rgba'
-}
-export type ColourFormat = `${ColourFormatEnum}`;
-
-export const enum LuminosityTypeEnum {
-	any = 'any',
-	bright = 'bright',
-	light = 'light',
-	dark = 'dark'
-}
-export type LuminosityType = `${LuminosityTypeEnum}`;
+export type ColourFormat = 'hex' | 'rgb' | 'rgba';
+export type LuminosityType = 'any' | 'bright' | 'light' | 'dark';
 
 export type ColourState = {
-	example: string;
-	value: string;
-	luminosity: LuminosityType;
-	format: ColourFormat;
-	alpha: number;
+  example: string;
+  value: string;
+  luminosity: LuminosityType;
+  format: ColourFormat;
+  alpha: number;
 };
 ```
 

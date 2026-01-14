@@ -1,13 +1,12 @@
 import type { WorkerUtils } from '@generatedata/utils/worker';
 import { DTGenerateResult, DTGenerationData } from '../../';
-import { WeightedListTypeEnum } from './WeightedList.state';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
   const { listType, values, exactly, betweenLow, betweenHigh, delimiter, allowDuplicates } = data.rowState;
   const numValues = Object.keys(values).length;
 
   let items: any = [];
-  if (listType === WeightedListTypeEnum.exactly) {
+  if (listType === 'exactly') {
     items = utils.randomUtils.getRandomWeightedSubset(values, exactly, allowDuplicates);
   } else if (betweenLow && betweenHigh) {
     const numItems = utils.randomUtils.getRandomNum(betweenLow, betweenHigh);

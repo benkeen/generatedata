@@ -13,7 +13,7 @@ export type CheckboxPillProps = {
 
 export const CheckboxPill = ({ label, onClick, name, checked, disabled, tooltip, style }: CheckboxPillProps) => (
   <BasePill
-    type={PillType.checkbox}
+    type="checkbox"
     label={label}
     onClick={onClick}
     name={name}

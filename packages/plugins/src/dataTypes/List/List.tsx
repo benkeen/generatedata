@@ -93,10 +93,10 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                   <input
                     type="radio"
                     id={`listType1-${id}`}
-                    value={ListType.exactly}
-                    checked={data.listType === ListType.exactly}
+                    value="exactly"
+                    checked={data.listType === 'exactly'}
                     onChange={(): void => {
-                      onChange('listType', ListType.exactly);
+                      onChange('listType', 'exactly');
                       exactlyField.current.focus();
                     }}
                   />
@@ -113,7 +113,7 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                       onUpdate({
                         ...data,
                         exactly: e.target.value,
-                        listType: ListType.exactly
+                        listType: 'exactly'
                       });
                     }}
                   />
@@ -122,10 +122,10 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                   <input
                     type="radio"
                     id={`listType2-${id}`}
-                    value={ListType.between}
-                    checked={data.listType !== ListType.exactly}
+                    value="between"
+                    checked={data.listType !== 'exactly'}
                     onChange={(): void => {
-                      onChange('listType', ListType.between);
+                      onChange('listType', 'between');
                       dtListBetweenLow.current.focus();
                     }}
                   />
@@ -142,7 +142,7 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                       onUpdate({
                         ...data,
                         betweenLow: e.target.value,
-                        listType: ListType.between
+                        listType: 'between'
                       });
                     }}
                   />
@@ -158,7 +158,7 @@ const ListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i18n }: an
                       onUpdate({
                         ...data,
                         betweenHigh: e.target.value,
-                        listType: ListType.between
+                        listType: 'between'
                       });
                     }}
                   />
@@ -202,7 +202,7 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps) 
   }
 
   let label;
-  if (safeData.listType === ListType.exactly) {
+  if (safeData.listType === 'exactly') {
     if (safeData.exactly === '1') {
       label = utils.langUtils.getI18nString(i18n.exactly1Item, ['<b>1</b>']);
     } else {
@@ -275,7 +275,7 @@ export const rowStateReducer = ({
   let cleanBetweenLow: any = '';
   let cleanBetweenHigh: any = '';
 
-  if (listType === ListType.exactly) {
+  if (listType === 'exactly') {
     if (exactly.trim() !== '') {
       cleanExactly = parseInt(exactly.trim(), 10);
     }

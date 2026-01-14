@@ -14,7 +14,6 @@ import {
   type DropdownOption
 } from '@generatedata/shared';
 import WorldIcon from '@mui/icons-material/Public';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import * as React from 'react';
 import { countryList, CountryType, DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
@@ -88,7 +87,7 @@ const NamesDialog = ({
   };
 
   const getCountryContent = () => {
-    if (data.source !== NamesSource.countries) {
+    if (data.source !== 'countries') {
       return null;
     }
 
@@ -120,18 +119,18 @@ const NamesDialog = ({
           <RadioPillRow>
             <RadioPill
               label={i18n.westernNames}
-              onClick={(): void => onUpdateSource(NamesSource.any)}
+              onClick={(): void => onUpdateSource('any')}
               name={`${id}-source`}
-              checked={data.source === NamesSource.any}
+              checked={data.source === 'any'}
               tooltip={i18n.defaultWesternNames}
             />
             <RadioPill
               label={i18n.regionalNames}
-              onClick={(): void => onUpdateSource(NamesSource.countries)}
+              onClick={(): void => onUpdateSource('countries')}
               name={`${id}-source`}
-              checked={data.source === NamesSource.countries}
+              checked={data.source === 'countries'}
             />
-            {isCountryNamesLoading && data.source === NamesSource.countries && <SmallSpinner />}
+            {isCountryNamesLoading && data.source === 'countries' && <SmallSpinner />}
           </RadioPillRow>
           {getCountryContent()}
         </DialogContent>
@@ -158,7 +157,7 @@ export const Options = ({
   const classNames = useClasses();
 
   const safeData = {
-    source: NamesSource.any,
+    source: 'any',
     selectedCountries: [],
     ...data
   };
@@ -170,7 +169,7 @@ export const Options = ({
         source
       },
       {
-        useCountryNames: source === NamesSource.countries
+        useCountryNames: source === 'countries'
       }
     );
   };
@@ -184,7 +183,7 @@ export const Options = ({
 
   let iconClasses = classNames.anyNamesIcon;
   let iconTooltip = i18n.westernNames;
-  if (data.source === NamesSource.countries) {
+  if (data.source === 'countries') {
     iconClasses = classNames.regionalNamesIcon;
     iconTooltip = i18n.regionalNames;
   }

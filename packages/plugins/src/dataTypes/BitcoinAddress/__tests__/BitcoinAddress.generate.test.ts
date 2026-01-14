@@ -1,19 +1,19 @@
 import { DTGenerationData } from '../../../';
 import { generate } from '../BitcoinAddress.generate';
-import { BitcoinAddressFormat, BitcoinAddressState } from '../BitcoinAddress.state';
+import { BitcoinAddressState } from '../BitcoinAddress.state';
 
 describe('generate', () => {
   it('generates', () => {
     const rowState: BitcoinAddressState = {
-      [BitcoinAddressFormat.Legacy]: {
+      Legacy: {
         enabled: true,
         weight: 1
       },
-      [BitcoinAddressFormat.Compatibility]: {
+      Compatibility: {
         enabled: false,
         weight: 1
       },
-      [BitcoinAddressFormat.Segwit]: {
+      Segwit: {
         enabled: false,
         weight: 1
       }

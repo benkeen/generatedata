@@ -11,14 +11,14 @@ import { DTGenerateResult, DTGenerationData } from '../../';
 export const generate = ({ rowState }: DTGenerationData): DTGenerateResult => {
   // utils: WorkerUtils
   const formats: any = {};
-  if (rowState[BitcoinAddressFormat.Legacy].enabled && rowState[BitcoinAddressFormat.Legacy].weight) {
-    formats[BitcoinAddressFormat.Legacy] = rowState[BitcoinAddressFormat.Legacy].weight;
+  if (rowState.Legacy.enabled && rowState.Legacy.weight) {
+    formats.Legacy = rowState.Legacy.weight;
   }
-  if (rowState[BitcoinAddressFormat.Compatibility].enabled && rowState[BitcoinAddressFormat.Compatibility].weight) {
-    formats[BitcoinAddressFormat.Compatibility] = rowState[BitcoinAddressFormat.Compatibility].weight;
+  if (rowState.Compatibility.enabled && rowState.Compatibility.weight) {
+    formats.Compatibility = rowState.Compatibility.weight;
   }
-  if (rowState[BitcoinAddressFormat.Segwit].enabled && rowState[BitcoinAddressFormat.Segwit].weight) {
-    formats[BitcoinAddressFormat.Segwit] = rowState[BitcoinAddressFormat.Segwit].weight;
+  if (rowState.Segwit.enabled && rowState.Segwit.weight) {
+    formats.Segwit = rowState.Segwit.weight;
   }
 
   // get a random format

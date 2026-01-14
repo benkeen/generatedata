@@ -1,9 +1,6 @@
 import { CountryNameFiles } from '../../names';
 
-export const enum NamesSource {
-  any = 'any',
-  countries = 'countries'
-}
+export type NamesSource = 'any' | 'countries';
 
 export type NamesState = {
   example: string;
@@ -20,7 +17,7 @@ export type GenerationOptionsType = {
 
 export const defaultGenerationOptions: Required<GenerationOptionsType> = {
   options: ['Name Surname'],
-  source: NamesSource.any,
+  source: 'any',
   selectedCountries: []
 };
 

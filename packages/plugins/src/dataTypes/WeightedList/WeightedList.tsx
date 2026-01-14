@@ -21,8 +21,7 @@ import {
   getWeightedListLabels,
   presets,
   WeightedListItem,
-  WeightedListState,
-  WeightedListTypeEnum
+  WeightedListState
 } from './WeightedList.state';
 import { useClasses } from './WeightedList.styles';
 
@@ -98,7 +97,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
   let exactlyError = '';
   let betweenLowError = '';
   let betweenHighError = '';
-  if (data.listType === WeightedListTypeEnum.exactly) {
+  if (data.listType === 'exactly') {
     if (!data.exactly) {
       exactlyError = coreI18n.requiredField;
     } else if (displayStrings.length < parseInt(data.exactly, 10)) {
@@ -149,10 +148,10 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
                   <input
                     type="radio"
                     id={`listType1-${id}`}
-                    value={WeightedListTypeEnum.exactly}
-                    checked={data.listType === WeightedListTypeEnum.exactly}
+                    value="exactly"
+                    checked={data.listType === 'exactly'}
                     onChange={(): void => {
-                      onChange('listType', WeightedListTypeEnum.exactly);
+                      onChange('listType', 'exactly');
                       exactlyField.current.focus();
                     }}
                   />
@@ -169,7 +168,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
                       onUpdate({
                         ...data,
                         exactly: e.target.value,
-                        listType: WeightedListTypeEnum.exactly
+                        listType: 'exactly'
                       });
                     }}
                   />
@@ -178,10 +177,10 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
                   <input
                     type="radio"
                     id={`listType2-${id}`}
-                    value={WeightedListTypeEnum.between}
-                    checked={data.listType !== WeightedListTypeEnum.exactly}
+                    value="between"
+                    checked={data.listType !== 'exactly'}
                     onChange={(): void => {
-                      onChange('listType', WeightedListTypeEnum.between);
+                      onChange('listType', 'between');
                       dtListBetweenLow.current.focus();
                     }}
                   />
@@ -199,7 +198,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
                       onUpdate({
                         ...data,
                         betweenLow: e.target.value,
-                        listType: WeightedListTypeEnum.between
+                        listType: 'between'
                       });
                     }}
                   />
@@ -216,7 +215,7 @@ const WeightedListDialog = ({ visible, data, id, onClose, onUpdate, coreI18n, i1
                       onUpdate({
                         ...data,
                         betweenHigh: e.target.value,
-                        listType: WeightedListTypeEnum.between
+                        listType: 'between'
                       });
                     }}
                   />
@@ -325,7 +324,7 @@ export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps) 
   }
 
   let label;
-  if (safeData.listType === WeightedListTypeEnum.exactly) {
+  if (safeData.listType === 'exactly') {
     if (safeData.exactly === '1') {
       label = langUtils.getI18nString(i18n.exactly1Item, ['<b>1</b>']);
     } else {
@@ -417,7 +416,7 @@ export const rowStateReducer = ({
   let cleanBetweenLow: any = '';
   let cleanBetweenHigh: any = '';
 
-  if (listType === WeightedListTypeEnum.exactly) {
+  if (listType === 'exactly') {
     if (exactly.trim() !== '') {
       cleanExactly = parseInt(exactly.trim(), 10);
     }

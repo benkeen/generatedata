@@ -51,9 +51,9 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
                 <td className={classNames.labelCol}>
                   <CheckboxPill
                     label="P2PKH / Legacy"
-                    onClick={(): void => onToggleFormat(BitcoinAddressFormat.Legacy, !data[BitcoinAddressFormat.Legacy].enabled)}
+                    onClick={(): void => onToggleFormat('Legacy', !data.Legacy.enabled)}
                     name={`format-${id}`}
-                    checked={data[BitcoinAddressFormat.Legacy].enabled}
+                    checked={data.Legacy.enabled}
                   />
                 </td>
                 <td>
@@ -61,10 +61,10 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
                     type="number"
                     min={0}
                     step={1}
-                    value={data[BitcoinAddressFormat.Legacy].weight}
+                    value={data.Legacy.weight}
                     style={{ width: 60 }}
-                    disabled={!data[BitcoinAddressFormat.Legacy].enabled}
-                    onChange={(e: any): void => onChangeWeight(BitcoinAddressFormat.Legacy, parseInt(e.target.value))}
+                    disabled={!data.Legacy.enabled}
+                    onChange={(e: any): void => onChangeWeight('Legacy', parseInt(e.target.value))}
                   />
                 </td>
               </tr>
@@ -72,11 +72,9 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
                 <td className={classNames.labelCol}>
                   <CheckboxPill
                     label="P2SH / Compatibility"
-                    onClick={(): void =>
-                      onToggleFormat(BitcoinAddressFormat.Compatibility, !data[BitcoinAddressFormat.Compatibility].enabled)
-                    }
+                    onClick={(): void => onToggleFormat('Compatibility', !data.Compatibility.enabled)}
                     name={`format-${id}`}
-                    checked={data[BitcoinAddressFormat.Compatibility].enabled}
+                    checked={data.Compatibility.enabled}
                   />
                 </td>
                 <td>
@@ -84,10 +82,10 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
                     type="number"
                     min={0}
                     step={1}
-                    value={data[BitcoinAddressFormat.Compatibility].weight}
+                    value={data.Compatibility.weight}
                     style={{ width: 60 }}
-                    disabled={!data[BitcoinAddressFormat.Compatibility].enabled}
-                    onChange={(e: any): void => onChangeWeight(BitcoinAddressFormat.Compatibility, parseInt(e.target.value))}
+                    disabled={!data.Compatibility.enabled}
+                    onChange={(e: any): void => onChangeWeight('Compatibility', parseInt(e.target.value))}
                   />
                 </td>
               </tr>
@@ -95,9 +93,9 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
                 <td className={classNames.labelCol}>
                   <CheckboxPill
                     label="P2WPKH / Bech32"
-                    onClick={(): void => onToggleFormat(BitcoinAddressFormat.Segwit, !data[BitcoinAddressFormat.Segwit].enabled)}
+                    onClick={(): void => onToggleFormat('Segwit', !data.Segwit.enabled)}
                     name={`format-${id}`}
-                    checked={data[BitcoinAddressFormat.Segwit].enabled}
+                    checked={data.Segwit.enabled}
                   />
                 </td>
                 <td>
@@ -105,10 +103,10 @@ const BitcoinDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, i18n }:
                     type="number"
                     min={0}
                     step={1}
-                    value={data[BitcoinAddressFormat.Segwit].weight}
+                    value={data.Segwit.weight}
                     style={{ width: 60 }}
-                    disabled={!data[BitcoinAddressFormat.Segwit].enabled}
-                    onChange={(e: any): void => onChangeWeight(BitcoinAddressFormat.Segwit, parseInt(e.target.value))}
+                    disabled={!data.Segwit.enabled}
+                    onChange={(e: any): void => onChangeWeight('Segwit', parseInt(e.target.value))}
                   />
                 </td>
               </tr>
@@ -127,13 +125,13 @@ export const Options = ({ data, id, i18n, coreI18n, onUpdate }: DTOptionsProps) 
   const [dialogVisible, setDialogVisibility] = React.useState(false);
 
   let count = 0;
-  if (data[BitcoinAddressFormat.Legacy].enabled) {
+  if (data.Legacy.enabled) {
     count++;
   }
-  if (data[BitcoinAddressFormat.Compatibility].enabled) {
+  if (data.Compatibility.enabled) {
     count++;
   }
-  if (data[BitcoinAddressFormat.Segwit].enabled) {
+  if (data.Segwit.enabled) {
     count++;
   }
 

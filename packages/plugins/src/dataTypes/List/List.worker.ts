@@ -1,12 +1,11 @@
 import utils from '@generatedata/utils/worker';
 import { DTGenerateResult, DTGenerationData, DTWorkerOnMessage } from '../../';
-import { ListType } from './List.state';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
   const { listType, values, exactly, betweenLow, betweenHigh, delimiter } = data.rowState;
 
   let items: any = [];
-  if (listType === ListType.exactly) {
+  if (listType === 'exactly') {
     items = utils.randomUtils.getRandomSubset(values, exactly);
   } else if (betweenLow && betweenHigh) {
     const numItems = utils.randomUtils.getRandomNum(betweenLow, betweenHigh);

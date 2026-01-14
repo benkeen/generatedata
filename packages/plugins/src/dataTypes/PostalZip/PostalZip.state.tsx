@@ -1,12 +1,6 @@
 import { CountryType } from '../../';
 
-export const enum PostalZipSourceEnum {
-  any = 'any',
-  countries = 'countries',
-  countryRow = 'countryRow',
-  regionRow = 'regionRow'
-}
-export type PostalZipSource = `${PostalZipSourceEnum}`;
+export type PostalZipSource = 'any' | 'countries' | 'countryRow' | 'regionRow';
 
 export type PostalZipState = {
   source: PostalZipSource;
@@ -15,7 +9,7 @@ export type PostalZipState = {
 };
 
 export const initialState: PostalZipState = {
-  source: PostalZipSourceEnum.any,
+  source: 'any',
   selectedCountries: [],
   targetRowId: ''
 };
@@ -23,16 +17,16 @@ export const initialState: PostalZipState = {
 export const defaultGenerationOptions = initialState;
 
 export type PostalZipStateAny = {
-  source: 'any' | PostalZipSourceEnum.any;
+  source: 'any';
 };
 
 export type PostalZipStateCountries = {
-  source: 'countries' | PostalZipSourceEnum.countries;
+  source: 'countries';
   selectedCountries: CountryType[];
 };
 
 export type PostalZipStateDataRow = {
-  source: PostalZipSourceEnum.countryRow | PostalZipSourceEnum.regionRow | 'countryRow' | 'regionRow';
+  source: 'countryRow' | 'regionRow';
   targetRowId: string;
 };
 

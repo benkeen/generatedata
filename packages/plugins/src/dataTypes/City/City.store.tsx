@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 // import { REMOVE_ROW, SELECT_DATA_TYPE } from '~store/generator/generator.actions';
 // import { getSortedRowsArray } from '~store/generator/generator.selectors';
-import { CityState, CityStateRegionRow, RegionSourceEnum } from './City.state';
+import { CityState, CityStateRegionRow } from './City.state';
 
 const getRegionRows = (selectors: any) => {
   return createSelector(selectors.getSortedRowsArray, (rows) =>
@@ -20,7 +20,7 @@ const getActionInterceptors = (actions: any) => {
       if (actionPayload.id === rowState.targetRowId) {
         return {
           ...rowState,
-          source: RegionSourceEnum.any,
+          source: 'any',
           targetRowId: ''
         };
       }
@@ -32,7 +32,7 @@ const getActionInterceptors = (actions: any) => {
         if (actionPayload.value !== 'Region') {
           return {
             ...rowState,
-            source: RegionSourceEnum.any,
+            source: 'any',
             targetRowId: ''
           };
         }

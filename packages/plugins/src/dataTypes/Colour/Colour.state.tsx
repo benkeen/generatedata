@@ -1,17 +1,6 @@
-export const enum ColourFormatEnum {
-  hex = 'hex',
-  rgb = 'rgb',
-  rgba = 'rgba'
-}
-export type ColourFormat = `${ColourFormatEnum}`;
+export type ColourFormat = 'hex' | 'rgb' | 'rgba';
 
-export const enum LuminosityTypeEnum {
-  any = 'any',
-  bright = 'bright',
-  light = 'light',
-  dark = 'dark'
-}
-export type LuminosityType = `${LuminosityTypeEnum}`;
+export type LuminosityType = 'any' | 'bright' | 'light' | 'dark';
 
 export type ColourState = {
   example: string;

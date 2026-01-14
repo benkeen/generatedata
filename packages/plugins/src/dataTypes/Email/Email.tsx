@@ -13,14 +13,14 @@ import {
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 import React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
-import { EmailState, GenerationOptionsType, StringSourceEnum, defaultDomainSuffixes, defaultDomains } from './Email.state';
+import { EmailState, GenerationOptionsType, defaultDomainSuffixes, defaultDomains } from './Email.state';
 import { useClasses } from './Email.styles';
 
 const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOptions, i18n }: any) => {
   const classNames = useClasses();
 
   const getFieldsRow = () => {
-    if (data.source === StringSourceEnum.random) {
+    if (data.source === 'random') {
       return null;
     }
 
@@ -58,17 +58,17 @@ const EmailDialog = ({ visible, data, id, onClose, coreI18n, onUpdate, rowOption
           <RadioPillRow>
             <RadioPill
               label={i18n.randomStringsLabel}
-              onClick={(): void => onUpdate('source', StringSourceEnum.random)}
+              onClick={(): void => onUpdate('source', 'random')}
               name={`${id}-source`}
-              checked={data.source === StringSourceEnum.random}
+              checked={data.source === 'random'}
               tooltip={i18n.countryPluginsDesc}
               style={{ marginRight: 10 }}
             />
             <RadioPill
               label={i18n.fieldsLabel}
-              onClick={(): void => onUpdate('source', StringSourceEnum.fields)}
+              onClick={(): void => onUpdate('source', 'fields')}
               name={`${id}-source`}
-              checked={data.source === StringSourceEnum.fields}
+              checked={data.source === 'fields'}
               disabled={rowOptions.length === 0}
               tooltip={rowOptions.length === 0 ? 'disabled.' : ''}
             />
@@ -114,7 +114,7 @@ const getSafeState = (data: EmailState | undefined): EmailState => {
   return data
     ? data
     : {
-        source: StringSourceEnum.random,
+        source: 'random',
         fieldId1: '',
         fieldId2: '',
         domains: defaultDomains,
@@ -128,7 +128,7 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOpti
   const classNames = useClasses();
 
   let label = `${i18n.source} ${i18n.random}`;
-  if (safeData.source === StringSourceEnum.fields) {
+  if (safeData.source === 'fields') {
     label = `${i18n.source} ${i18n.fieldsLabel}`;
   }
 
@@ -138,10 +138,10 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOpti
   }));
 
   React.useEffect(() => {
-    if (!nameRows.length && safeData.source === StringSourceEnum.fields) {
+    if (!nameRows.length && safeData.source === 'fields') {
       onUpdate({
         ...safeData,
-        source: StringSourceEnum.random
+        source: 'random'
       });
     }
   }, [nameRows]);

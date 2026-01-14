@@ -1,7 +1,7 @@
 import { Region } from '~typings/countries';
 import type { WorkerUtils } from '@generatedata/utils/worker';
 import { countryList, type CountryType, type DTGenerateResult, type DTGenerationData, type DTGenerationExistingRowData } from '../../';
-import { CityState, RegionSourceEnum } from './City.state';
+import { CityState } from './City.state';
 
 export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerateResult => {
   const { rowState } = data;
@@ -9,10 +9,10 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
 
   let country: CountryType;
   let regionRow: any;
-  if (source === RegionSourceEnum.regionRow) {
+  if (source === 'regionRow') {
     regionRow = data.existingRowData.find(({ id }: DTGenerationExistingRowData) => id === rowState.targetRowId);
     country = regionRow!.data.countryDataType;
-  } else if (source === RegionSourceEnum.any) {
+  } else if (source === 'any') {
     country = utils.randomUtils.getRandomArrayValue(countryList as CountryType[]);
   } else {
     const list = rowState.selectedCountries.length ? selectedCountries : countryList;

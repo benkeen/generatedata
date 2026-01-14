@@ -6,7 +6,7 @@ regional names for specific countries that support the feature.
 
 ## Typings
 
-The `settings` property for the `Names` plugin `dataTemplate` entry allows the following options (see examples below 
+The `settings` property for the `Names` plugin `dataTemplate` entry allows the following options (see examples below
 for an illustration of all of these):
 
 ```
@@ -19,8 +19,8 @@ for an illustration of all of these):
 
 ## Placeholders
 
-The `options` property is an array of strings that outlines a list of name formats. The script will randomly choose 
-one of the formats for each row (see the [Single name field with different formats](#single-name-field-with-different-formats) 
+The `options` property is an array of strings that outlines a list of name formats. The script will randomly choose
+one of the formats for each row (see the [Single name field with different formats](#single-name-field-with-different-formats)
 for an illustration of this). These are the available placeholders within that field:
 
 - `Name` - a random first name (male or female)
@@ -29,7 +29,6 @@ for an illustration of this). These are the available placeholders within that f
 - `Initial` - a random letter, generally you'll want to follow this with a period
 - `Surname` - a random surname.
 
-
 ## Examples
 
 - [First and last names in separate fields](#first-and-last-names-in-separate-fields)
@@ -37,7 +36,6 @@ for an illustration of this). These are the available placeholders within that f
 - [Single field containing male name, female name, any gender name in a comma delimited list](#single-field-containing-male-name-female-name-any-gender-name-in-a-comma-delimited-list)
 - [Single name field with different formats](#single-name-field-with-different-formats)
 - [Regional Names](#regional-names)
-
 
 ### First and last names in separate fields
 
@@ -242,7 +240,6 @@ Sample output:
 ]
 ```
 
-
 ## Regional names
 
 ```javascript
@@ -306,4 +303,3 @@ Sample output:
     ...
 ]
 ```
-

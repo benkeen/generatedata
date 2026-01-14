@@ -16,7 +16,7 @@ export type RadioPillProps = {
 
 export const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style, id }: RadioPillProps) => (
   <BasePill
-    type={PillType.radio}
+    type="radio"
     label={label}
     onClick={onClick}
     name={name}

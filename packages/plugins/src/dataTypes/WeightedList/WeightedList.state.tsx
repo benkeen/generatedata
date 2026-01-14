@@ -64,11 +64,7 @@ export const presets = {
   }
 };
 
-export const enum WeightedListTypeEnum {
-  exactly = 'exactly',
-  between = 'between'
-}
-export type WeightedListType = `${WeightedListTypeEnum}`;
+export type WeightedListType = 'exactly' | 'between';
 
 export type WeightedListItem = {
   value: string;

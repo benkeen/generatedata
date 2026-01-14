@@ -1,11 +1,6 @@
 import { type CountryType } from '../../';
 
-export const enum RegionSourceEnum {
-  any = 'any',
-  countries = 'countries',
-  regionRow = 'regionRow'
-}
-export type RegionSource = `${RegionSourceEnum}`;
+export type RegionSource = 'any' | 'countries' | 'regionRow';
 
 export type CityStateAny = {
   source: 'any';
