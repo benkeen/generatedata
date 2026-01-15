@@ -35,7 +35,7 @@ const getWorkQueue = (pluginType) => {
   const baseFolder = pluginType === 'dataType' ? '../dist/dataTypes' : '../dist/exportTypes';
   const baseFolderAbsPath = path.resolve(__dirname, baseFolder);
   const folders = fs.readdirSync(baseFolderAbsPath);
-  
+
   const map = [];
   folders.forEach((folder) => {
     const sourceFile = `${baseFolderAbsPath}/${folder}/${folder}.worker.js`;
@@ -47,14 +47,14 @@ const getWorkQueue = (pluginType) => {
     if (filter && folder.indexOf(filter) === -1) {
       return;
     }
-    
+
     const fileHash = md5File.sync(sourceFile);
     const targetFile = getScopedWorkerFilename(`${folder}.worker-${fileHash}.js`, pluginType);
     map.push({
       plugin: folder,
       pluginType,
       targetFile,
-      command: `npx rollup -c ./build/rollup.workers.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`
+      command: `npx rollup -c ./config/rollup.workers.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`
     });
   });
 
@@ -62,20 +62,20 @@ const getWorkQueue = (pluginType) => {
 };
 
 const generateWorkers = () => {
-  const workQueue = [
-    ...getWorkQueue('dataType'),
-    ...getWorkQueue('exportType')
-  ];
+  const workQueue = [...getWorkQueue('dataType'), ...getWorkQueue('exportType')];
 
-  const commands = workQueue.map((item) => ({ command: item.command }))
-  const { result } = concurrently(commands, { maxProcesses: 4 })
-  result.then(() => {
-    console.log('All web workers built');
-  }, (err) => {
-    console.log("Error generating plugin web worker(s): ", err);
-    process.exit(1);
-  });
-  
+  const commands = workQueue.map((item) => ({ command: item.command }));
+  const { result } = concurrently(commands, { maxProcesses: 4 });
+  result.then(
+    () => {
+      console.log('All web workers built');
+    },
+    (err) => {
+      console.log('Error generating plugin web worker(s): ', err);
+      process.exit(1);
+    }
+  );
+
   // lastly, generate the worker file map and typings file
   const workerPluginsFileMap = {};
   workQueue.forEach((item) => {
@@ -90,11 +90,7 @@ const generateWorkers = () => {
 export default ${JSON.stringify(workerPluginsFileMap, null, 2)};
 `;
 
-  fs.writeFileSync(
-    path.join(__dirname, '../dist/workers/workerPluginsFileMap.js'),
-    mapFileContent,
-    'utf-8'
-  );
+  fs.writeFileSync(path.join(__dirname, '../dist/workers/workerPluginsFileMap.js'), mapFileContent, 'utf-8');
 
   const typingsFileContent = `// This file is auto-generated during the build process
 import type { DataType, ExportType } from '../';
@@ -110,11 +106,7 @@ declare const _workerPluginsFileMap: {
 export default _workerPluginsFileMap;
 `;
 
-  fs.writeFileSync(
-    path.join(__dirname, '../dist/workers/workerPluginsFileMap.d.ts'),
-    typingsFileContent,
-    'utf-8'
-  );
+  fs.writeFileSync(path.join(__dirname, '../dist/workers/workerPluginsFileMap.d.ts'), typingsFileContent, 'utf-8');
 };
 
 generateWorkers();

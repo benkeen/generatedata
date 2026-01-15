@@ -3,14 +3,14 @@ import { render } from '@testing-library/react';
 import { Help } from '../CVV';
 
 const defaultProps = {
-	coreI18n: {},
-	countryI18n: {},
-	i18n
+  coreI18n: {},
+  countryI18n: {},
+  i18n
 };
 
 describe('Help', () => {
-	it('renders', () => {
-		const { container } = render(<Help {...defaultProps}/>);
-		expect(container).toBeTruthy();
-	});
+  it('renders', () => {
+    const { container } = render(<Help {...defaultProps} />);
+    expect(container).toBeTruthy();
+  });
 });

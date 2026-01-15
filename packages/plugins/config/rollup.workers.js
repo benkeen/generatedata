@@ -3,10 +3,10 @@ import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import removeExports from 'rollup-plugin-strip-exports';
 import removeUtilsImport from './rollup-plugin-remove-utils-import';
-import terser from '@rollup/plugin-terser';
+// import terser from '@rollup/plugin-terser';
 
 // example usage:
-//    npx rollup -c ./build/rollup.workers.js --build-src=src/plugins/dataTypes/AutoIncrement/AutoIncrement.generator.ts --build-target=dist/workers/DT-AutoIncrement.generator.js
+//    npx rollup -c ./config/rollup.workers.js --build-src=src/plugins/dataTypes/AutoIncrement/AutoIncrement.generator.ts --build-target=dist/workers/DT-AutoIncrement.generator.js
 export default (cmdLineArgs) => {
   // the `config-` prefix is a rollup-ism to allow custom args
   const { 'config-src': src, 'config-target': target } = cmdLineArgs;
@@ -29,7 +29,7 @@ export default (cmdLineArgs) => {
       nodeResolve(),
       commonjs(),
       babel({ babelHelpers: 'bundled' }),
-      removeExports(),
+      removeExports()
 
       // TODO - currently causes the workers to fail to work
       // terser()

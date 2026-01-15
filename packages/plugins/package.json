@@ -7,12 +7,13 @@
   "scripts": {
     "tsc": "tsc",
     "build": "run-s tsc copy-i18n-files generate-web-workers",
+    "copy-i18n-files": "copyfiles -u 1 ./src/*/*/i18n/*.json dist",
     "dev": "npm run watch",
-    "generate-web-workers": "node ./build/webworkers.build.js",
+    "generate-web-workers": "node ./config/webworkers.build.js",
     "watch": "tsc --watch",
     "clean": "npx rimraf dist",
     "purge": "npx rimraf node_modules dist .turbo",
-    "copy-i18n-files": "copyfiles -u 1 ./src/*/*/i18n/*.json dist"
+    "test": "jest --config=./config/jest.config.js"
   },
   "dependencies": {
     "@generatedata/shared": "workspace:*",
@@ -51,7 +52,8 @@
     "rollup": "catalog:",
     "rollup-plugin-strip-exports": "catalog:",
     "sinon": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "ts-jest": "catalog:"
   },
   "exports": {
     ".": {
