@@ -130,7 +130,7 @@ export const GridRow = ({
   }
 
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
     transition
   };
 
