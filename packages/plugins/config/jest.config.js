@@ -9,21 +9,25 @@ module.exports = {
       'ts-jest',
       {
         useESM: true,
-        tsconfig: {
-          jsx: 'react-jsx',
-          esModuleInterop: true,
-          allowSyntheticDefaultImports: true
-        }
+        tsconfig: './tsconfig.json'
       }
     ]
   },
   testMatch: ['**/__tests__/**/*.test.ts?(x)', '**/?(*.)+test.ts?(x)'],
   testPathIgnorePatterns: ['/.*.d.ts$', '/dist/'],
-  transformIgnorePatterns: ['node_modules/(?!(@generatedata|react-select|creatable-select)/)'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!(@generatedata|react-select|creatable-select|@react-hook|@testing-library)/)',
+    'sinon/pkg/sinon-esm.js'
+  ],
   moduleNameMapper: {
-    '^@generatedata/utils(.*)$': '<rootDir>/../../packages/utils/src$1.ts',
+    '^@generatedata/utils/(.+)$': '<rootDir>/../../packages/utils/src/$1.ts',
+    '^@generatedata/utils$': '<rootDir>/../../packages/utils/src/index.ts',
     '^@generatedata/i18n$': '<rootDir>/../../packages/i18n/locales/en.json',
-    '^@generatedata/shared$': '<rootDir>/../../packages/shared/src/index.ts',
-    '^@generatedata/config/(.*)$': '<rootDir>/../../packages/config/src/$1.ts'
+    '^@generatedata/shared$': '<rootDir>/../../packages/shared/dist/index.js',
+    '^@generatedata/shared/(.+)$': '<rootDir>/../../packages/shared/dist/$1.js',
+    '^@generatedata/config/constants$': '<rootDir>/../../packages/config/src/constants.ts',
+    '^@generatedata/config/(.+)$': '<rootDir>/../../packages/config/src/$1.ts',
+    '^sinon$': '<rootDir>/../../node_modules/.pnpm/sinon@21.0.0/node_modules/sinon/lib/sinon.js',
+    '^@react-hook/throttle$': '<rootDir>/../../packages/shared/node_modules/@react-hook/throttle/dist/umd/use-throttle.js'
   }
 };

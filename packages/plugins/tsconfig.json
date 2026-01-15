@@ -19,7 +19,13 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "~types/*": ["types/*"]
+      "~types/*": ["types/*"],
+      "@generatedata/utils": ["../utils/src/index.ts"],
+      "@generatedata/utils/*": ["../utils/src/*"],
+      "@generatedata/config/*": ["../config/src/*"],
+      "@generatedata/shared": ["../shared/dist/index.d.ts"],
+      "@generatedata/shared/*": ["../shared/dist/*"],
+      "@generatedata/i18n": ["../i18n/locales/en.json"]
     }
   },
   "include": ["src", "types"],

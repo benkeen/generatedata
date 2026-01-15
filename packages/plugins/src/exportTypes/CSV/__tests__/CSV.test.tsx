@@ -1,4 +1,4 @@
-import langUtils from '@generatedata/utils/lang';
+import * as langUtils from '@generatedata/utils/lang';
 import { render } from '@testing-library/react';
 import sinon from 'sinon';
 import { defaultETSettings } from '../../../tests/testHelpers';

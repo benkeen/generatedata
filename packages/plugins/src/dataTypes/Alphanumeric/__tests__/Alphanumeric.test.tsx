@@ -1,5 +1,5 @@
 import i18n from '@generatedata/i18n';
-import langUtils from '@generatedata/utils/lang';
+import * as langUtils from '@generatedata/utils/lang';
 import { fireEvent, render } from '@testing-library/react';
 import sinon from 'sinon';
 import { Example, Help, Options } from '../Alphanumeric';
