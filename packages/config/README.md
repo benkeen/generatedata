@@ -21,7 +21,7 @@ Alright! Let's look at the content of your newly created `client.config.ts` file
 **Note: you don't need to edit any of these values** but you'll probably want to examine them all to see if there's anything you want changed. Also note that the `GD_APP_TYPE` setting is a _one off_. It's used during the initial installation to set up the database, then not afterwards.
 
 ```typescript
-import type { GDClientConfig } from '../typings';
+import type { GDClientConfig } from '../types';
 
 const config: GDClientConfig = {
   appSettings: {
@@ -102,7 +102,7 @@ export default config;
 ### Server-side settings
 
 ```typescript
-import type { GDServerConfig } from '../typings';
+import type { GDServerConfig } from '../types';
 
 const serverConfig: GDServerConfig = {
   auth: {

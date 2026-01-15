@@ -1,21 +1,22 @@
 # [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; Region
 
-This Data Type generates a random region. A region is something like a State, Province or County - whatever is 
-applicable for a particular country. The region data is stored in the [Country Plugins](../../countries/README.md), so 
+This Data Type generates a random region. A region is something like a State, Province or County - whatever is
+applicable for a particular country. The region data is stored in the [Country Plugins](../../countries/README.md), so
 see that section to see what information is currently available. All country plugins provide regions.
 
 Countries are typically subdivided geographically in numerous ways, so we choose the one that's most useful overall -
 almost always whatever region is used for addresses. For the shortcodes, typically they follow the ISO-3166-2 standard.
 
-This Data Type lets you generate regions in a number of different ways, hence the varied typings listed below. 
+This Data Type lets you generate regions in a number of different ways, hence the varied typings listed below.
 
-You can choose to generate regions from 3 different sources: 
-1. `Any region` - This will generate a random region pulled from _any_ of the country plugins. 
+You can choose to generate regions from 3 different sources:
+
+1. `Any region` - This will generate a random region pulled from _any_ of the country plugins.
 2. `Countries` - This generates a region from whatever list of countries you supply.
 3. `Country Row` - This option lets you target a Country Data Type row in your data set, and use that as the source. It'll
-then generate a region in whatever random country is generated for that row. 
+   then generate a region in whatever random country is generated for that row.
 
-You can also choose whether this field outputs the full region name or a shortcode version (or either). 
+You can also choose whether this field outputs the full region name or a shortcode version (or either).
 
 ## Typings
 
@@ -24,29 +25,28 @@ export type RegionSource = 'anyRegion' | 'countries' | 'countryRow';
 export type RegionFormat = 'full' | 'short';
 
 export type RegionState = {
-    source: RegionSource;
-    targetRowId: string;
-    selectedCountries: CountryType[];
-    formats: RegionFormat[];
-}
+  source: RegionSource;
+  targetRowId: string;
+  selectedCountries: CountryType[];
+  formats: RegionFormat[];
+};
 
 export type RegionStateAny = Pick<RegionState, 'source' | 'formats'>;
 export type RegionStateCountryRow = Pick<RegionState, 'source' | 'targetRowId' | 'formats'>;
 export type RegionStateCountries = Pick<RegionState, 'source' | 'selectedCountries' | 'formats'>;
 ```
 
-## Examples 
+## Examples
 
 - [Any region, with full and short names](#any-region-with-full-and-short-names)
 - [Any region from two countries](#any-region-from-two-countries)
 - [Any region mapped to a country row](#any-region-mapped-to-a-country-row)
 - [Full Region mapped to Country Subset row](#full-region-mapped-to-country-subset-row)
 
-
 ### Any region, with full and short names
 
 This example outputs three rows of region data using the `anyRegion` option as a data source. The first displays the
-full region name, the second shows their shortcode, the third shows randomly short or full. 
+full region name, the second shows their shortcode, the third shows randomly short or full.
 
 ```javascript
 {
@@ -116,7 +116,7 @@ Sample output:
         "Full Region": "Punjab",
         "Short Region Code": "Adana",
         "Short/Full Region Code": "Overijssel"
-    },    
+    },
     ...
 ]
 ```

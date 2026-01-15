@@ -7,9 +7,9 @@ of words you want to generate.
 
 ```typescript
 export type GenerationOptionsType = {
-	words: string[];
-	numWordsToGenerate: number;
-}
+  words: string[];
+  numWordsToGenerate: number;
+};
 ```
 
 ### Examples
@@ -38,7 +38,7 @@ export type GenerationOptionsType = {
 }
 ```
 
-Sample output: 
+Sample output:
 
 ```javascript
 

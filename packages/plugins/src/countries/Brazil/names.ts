@@ -1,4 +1,4 @@
-import { CountryNames } from '~typings/countries';
+import { CountryNames } from '~types/countries';
 
 const femaleNames = [
   'Agatha',

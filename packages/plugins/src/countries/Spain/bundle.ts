@@ -4,7 +4,7 @@
  * Source: https://es.wikipedia.org/wiki/Anexo%3AMunicipios_de_Espa%C3%B1a_por_poblaci%C3%B3n
  * @package Countries
  */
-import { GetCountryData } from '~typings/countries';
+import { GetCountryData } from '~types/countries';
 
 const Spain: GetCountryData = (i18n) => ({
   countryName: i18n.countryName,

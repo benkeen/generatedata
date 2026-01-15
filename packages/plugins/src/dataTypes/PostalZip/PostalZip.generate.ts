@@ -1,4 +1,4 @@
-import { CountryDataType, Region } from '~typings/countries';
+import { CountryDataType, Region } from '~types/countries';
 import type { WorkerUtils } from '@generatedata/utils/worker';
 import utils from '@generatedata/utils/worker';
 import { CountryType, DTGenerateResult, DTGenerationData, getCountryList } from '../../';

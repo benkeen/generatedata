@@ -1,4 +1,4 @@
-import { ETDefinition } from '~typings/exportTypes';
+import { ETDefinition } from '~types/exportTypes';
 
 const definition: ETDefinition = {
   fieldGroup: 'core',

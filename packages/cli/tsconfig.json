@@ -1,30 +1,30 @@
 {
-	"compilerOptions": {
-		"module": "commonjs",
-		"lib": ["es6"],
-		"types": ["node", "jest"],
-		"outDir": "./dist",
-		"esModuleInterop": true,
-		"noImplicitAny": true,
-		"noImplicitThis": true,
-		"strictNullChecks": true,
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"declaration": true,
-		"target": "es2019",
-		"allowSyntheticDefaultImports": true,
-		"removeComments": true,
-		"baseUrl": "../../",
-		"jsx": "react",
-		"importsNotUsedAsValues": "remove",
-		"skipLibCheck": true,
-		"paths": {
-			"~components/*": ["client/src/components/*"],
-			"~utils/*": ["client/src/utils/*"],
-			"~store/*": ["client/src/core/store/*"],
-			"~core/*": ["client/src/core/*"],
-			"~types/*": ["client/types/*"]
-		}
-	},
-	"exclude": ["node_modules", "typings"]
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["es6"],
+    "types": ["node", "jest"],
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "target": "es2019",
+    "allowSyntheticDefaultImports": true,
+    "removeComments": true,
+    "baseUrl": "../../",
+    "jsx": "react",
+    "importsNotUsedAsValues": "remove",
+    "skipLibCheck": true,
+    "paths": {
+      "~components/*": ["client/src/components/*"],
+      "~utils/*": ["client/src/utils/*"],
+      "~store/*": ["client/src/core/store/*"],
+      "~core/*": ["client/src/core/*"],
+      "~types/*": ["client/types/*"]
+    }
+  },
+  "exclude": ["node_modules"]
 }

@@ -9,20 +9,20 @@ There are a lot of fields you need to enter for this field. See the examples bel
 
 ```typescript
 export enum PrefixLocationEnum {
-	prefix = 'prefix',
-	suffix = 'suffix'
+  prefix = 'prefix',
+  suffix = 'suffix'
 }
 export type PrefixLocation = `${PrefixLocationEnum}`;
 
 export type GenerationOptionsType = {
-	from: number;
-	to: number;
-	currencySymbol: string;
-	currencySymbolLocation: PrefixLocation;
-	includeCents: boolean;
-	thousandsSeparator: string;
-	centsSeparator: string;
-}
+  from: number;
+  to: number;
+  currencySymbol: string;
+  currencySymbolLocation: PrefixLocation;
+  includeCents: boolean;
+  thousandsSeparator: string;
+  centsSeparator: string;
+};
 ```
 
 ## Examples

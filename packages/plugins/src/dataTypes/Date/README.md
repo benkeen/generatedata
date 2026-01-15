@@ -1,19 +1,19 @@
 # [Docs](../../../../../docs/README.md) &raquo; [Plugins](../../README.md) &raquo; [Data Types](../README.md) &raquo; Date
 
-This Data Type generates a random date in a particular format. 
+This Data Type generates a random date in a particular format.
 
-- the `fromDate` and `toDate` settings should be a number in _seconds timestamp_ format. I realize this isn't the 
-easiest format to work with, so we have a feature request to improve the DX here: https://github.com/benkeen/generatedata/issues/825
-Try using an online service such as the [epochconvertor site](https://www.epochconverter.com/) to generate those values for you.
-- the `placeholder` setting should define a date format as per the [datefns library formatting options](https://date-fns.org/v2.16.1/docs/format). 
+- the `fromDate` and `toDate` settings should be a number in _seconds timestamp_ format. I realize this isn't the
+  easiest format to work with, so we have a feature request to improve the DX here: https://github.com/benkeen/generatedata/issues/825
+  Try using an online service such as the [epochconvertor site](https://www.epochconverter.com/) to generate those values for you.
+- the `placeholder` setting should define a date format as per the [datefns library formatting options](https://date-fns.org/v2.16.1/docs/format).
 
 ## Typings
 
 ```typescript
 export type GenerationOptionsType = {
-	fromDate: number;
-	toDate: number;
-	format: string;
+  fromDate: number;
+  toDate: number;
+  format: string;
 };
 ```
 
@@ -45,7 +45,7 @@ export type GenerationOptionsType = {
     }
 }
 ```
- 
+
 Sample output:
 
 ```

@@ -1,4 +1,4 @@
-import type { ETBundle } from '~typings/exportTypes';
+import type { ETBundle } from '~types/exportTypes';
 import { getCodeMirrorMode, getDownloadFileInfo } from './Perl';
 
 const bundle: ETBundle = {

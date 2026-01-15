@@ -1,7 +1,7 @@
 /**
  * @package Countries
  */
-import { GetCountryData } from '~typings/countries';
+import { GetCountryData } from '~types/countries';
 
 const NewZealand: GetCountryData = (i18n) => ({
   countryName: i18n.countryName,

@@ -18,9 +18,9 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "~typings/*": ["typings/*"]
+      "~types/*": ["types/*"]
     }
   },
-  "include": ["src", "typings"],
+  "include": ["src", "types"],
   "exclude": ["node_modules"]
 }

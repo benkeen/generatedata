@@ -1,6 +1,6 @@
 // TODO make sense of this file
-import type { CountryDataType, CountryNames } from '../typings/countries';
-import type { AnyObject } from '../typings/general';
+import type { CountryDataType, CountryNames } from '../types/countries';
+import type { AnyObject } from '../types/general';
 import { getStrings } from '@generatedata/utils/lang';
 import Alphanumeric from './dataTypes/Alphanumeric/config';
 import AutoIncrement from './dataTypes/AutoIncrement/config';
@@ -42,9 +42,9 @@ import URLs from './dataTypes/URLs/config';
 import WeightedList from './dataTypes/WeightedList/config';
 
 // TODO the ~typings path doesn't get converted in the dist/ which causes export failures for these typings
-export type * from '../typings/countries';
-export type * from '../typings/exportTypes';
-export type * from '../typings/general';
+export type * from '../types/countries';
+export type * from '../types/exportTypes';
+export type * from '../types/general';
 
 // this is for Data Types to describe how their field should be described for the SQL DB table creation statement
 export type DatabaseTypes = {

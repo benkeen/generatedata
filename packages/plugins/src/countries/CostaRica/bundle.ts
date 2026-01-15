@@ -4,7 +4,7 @@
  *
  * @author Andre Fortin <andre.v.fortin@gmail.com>
  */
-import { GetCountryData } from '~typings/countries';
+import { GetCountryData } from '~types/countries';
 
 const CostaRica: GetCountryData = (i18n) => ({
   countryName: i18n.countryName,

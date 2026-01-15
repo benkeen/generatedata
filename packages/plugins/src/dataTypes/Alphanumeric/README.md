@@ -11,7 +11,7 @@ together.
 
 ```typescript
 {
-	value: string;
+  value: string;
 }
 ```
 

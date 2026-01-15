@@ -1,4 +1,4 @@
-import type { ETBundle } from '~typings/exportTypes';
+import type { ETBundle } from '~types/exportTypes';
 import { getCodeMirrorMode, getDownloadFileInfo } from './CSharp';
 
 const bundle: ETBundle = {

@@ -1,4 +1,4 @@
-import { ETSettings } from '~typings/exportTypes';
+import { ETSettings } from '~types/exportTypes';
 
 export const defaultETSettings: ETSettings = {
   onUpdate: () => {},

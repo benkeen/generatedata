@@ -1,4 +1,4 @@
-import type { ETDownloadPacket, ETDownloadPacketResponse } from '~typings/exportTypes';
+import type { ETDownloadPacket, ETDownloadPacketResponse } from '~types/exportTypes';
 
 export const getCodeMirrorMode = (): string => 'text/x-ruby';
 

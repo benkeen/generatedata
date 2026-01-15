@@ -1,5 +1,5 @@
 import { RadioPill, RadioPillRow, useETStyles } from '@generatedata/shared';
-import type { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~typings/exportTypes';
+import type { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
 
 export const Settings = ({ i18n, id, data, onUpdate }: ETSettings) => {
   const classNames = useETStyles();

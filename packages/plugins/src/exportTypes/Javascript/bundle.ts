@@ -1,4 +1,4 @@
-import type { ETBundle } from '~typings/exportTypes';
+import type { ETBundle } from '~types/exportTypes';
 import { Settings, getCodeMirrorMode, getDownloadFileInfo } from './Javascript';
 import { initialState } from './Javascript.state';
 

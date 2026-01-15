@@ -1,4 +1,4 @@
-import { ETState } from '~typings/exportTypes';
+import { ETState } from '~types/exportTypes';
 
 export type ExportFormat = 'table' | 'ul' | 'dl';
 
