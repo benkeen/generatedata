@@ -21,6 +21,7 @@ catalog:
   "@esbuild-plugins/tsconfig-paths": ^0.0.4
   "@graphql-codegen/cli": ^6.1.0
   "@griffel/react": ^1.5.32
+  "@jest/globals": ^30.2.0
   "@mui/icons-material": ^7.3.5
   "@mui/lab": ^7.0.1-beta.19
   "@mui/material": ^7.3.5
@@ -159,7 +160,7 @@ catalog:
   stream-browserify: ^3.0.0
   styled-components: ^4.0.0
   terser-webpack-plugin: ^5.3.14
-  ts-jest: ^29.2.5
+  ts-jest: ^30.2.1
   ts-loader: ^9.4.2
   ts-node: ^10.9.2
   tsconfig-paths: 4.1.1

@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 import { getI18nString, getCurrentLocalizedPath } from '../lang';
 
 describe('getI18nString', () => {

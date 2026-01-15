@@ -28,16 +28,17 @@ export default (cmdLineArgs) => {
     treeshake: false,
     plugins: [
       nodeResolve(),
-      commonjs(), 
+      commonjs(),
       typescript({
-        tsconfig: './tsconfig.workers.json',
-			}),
-			terser({
-				mangle: false,
-				compress: {
-					...terserCompressProps
-				}
-			}),
-      removeExports()]
+        tsconfig: './tsconfig.workers.json'
+      }),
+      terser({
+        mangle: false,
+        compress: {
+          ...terserCompressProps
+        }
+      }),
+      removeExports()
+    ]
   };
 };

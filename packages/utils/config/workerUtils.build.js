@@ -13,7 +13,7 @@ const generateWorkerUtils = () => {
   const sourceFile = path.resolve(__dirname, '../dist/worker.js');
   const fileHash = md5File.sync(sourceFile);
   const targetFile = `workerUtils-${fileHash}.js`;
-  const command = `npx rollup -c ./build/rollup.workers.js --config-src=${sourceFile} --config-target=./dist-tmp/${targetFile}`;
+  const command = `npx rollup -c ./config/rollup.workers.js --config-src=${sourceFile} --config-target=./dist-tmp/${targetFile}`;
 
   execSync(command, { stdio: 'inherit' });
 
@@ -26,28 +26,19 @@ const generateWorkerUtils = () => {
 export default ${JSON.stringify(workerUtilsFileMap, null, 2)};
 `;
 
-  fs.writeFileSync(
-    path.join(__dirname, '../dist/workers/workerUtilsFileMap.js'),
-    mapFileContent,
-    'utf-8'
-  );  
+  fs.writeFileSync(path.join(__dirname, '../dist/workers/workerUtilsFileMap.js'), mapFileContent, 'utf-8');
 
   execSync(`mv ./dist-tmp/${targetFile} ./dist/workers/${targetFile}`, { stdio: 'inherit' });
   execSync(`rm -Rf ./dist-tmp`, { stdio: 'inherit' });
 
-    const typingsFileContent = `// This file is auto-generated during the build process
+  const typingsFileContent = `// This file is auto-generated during the build process
 declare const _workerUtilsFileMap: {
   workerUtils: string;
 };
 export default _workerUtilsFileMap;
 `;
 
-  fs.writeFileSync(
-    path.join(__dirname, '../dist/workers/workerUtilsFileMap.d.ts'),
-    typingsFileContent,
-    'utf-8'
-  );
-
+  fs.writeFileSync(path.join(__dirname, '../dist/workers/workerUtilsFileMap.d.ts'), typingsFileContent, 'utf-8');
 };
 
 generateWorkerUtils();

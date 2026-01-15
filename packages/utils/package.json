@@ -5,8 +5,9 @@
     "build": "run-s tsc generate-worker-utils",
     "clean": "npx rimraf dist",
     "dev": "npm run build",
-    "generate-worker-utils": "node ./build/workerUtils.build.js",
+    "generate-worker-utils": "node ./config/workerUtils.build.js",
     "purge": "npx rimraf node_modules dist .turbo",
+    "test": "jest --config=./config/jest.config.js",
     "tsc": "tsc"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@date-io/date-fns": "catalog:",
     "@generatedata/config": "workspace:*",
+    "@jest/globals": "catalog:",
     "@rollup/plugin-commonjs": "catalog:",
     "@rollup/plugin-node-resolve": "catalog:",
     "@rollup/plugin-typescript": "catalog:",
@@ -38,6 +40,7 @@
     "rollup-plugin-strip-exports": "catalog:",
     "rollup-plugin-terser": "catalog:",
     "sinon": "catalog:",
+    "ts-jest": "catalog:",
     "typescript": "catalog:"
   },
   "exports": {
