@@ -1,4 +1,4 @@
-import i18n from '@generatedata/i18n';
+import i18n from '../i18n/en.json';
 import utils from '@generatedata/utils/worker';
 import * as sinon from 'sinon';
 import { DTGenerationData } from '../../../';

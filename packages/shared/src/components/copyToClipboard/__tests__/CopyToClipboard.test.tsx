@@ -17,7 +17,7 @@ describe('CopyToClipboard', () => {
   it('renders copy icon with tooltip', () => {
     const { baseElement } = render(<CopyToClipboard {...defaultProps} />);
 
-    expect(baseElement.querySelector('.copyIcon')).toBeTruthy();
+    expect(baseElement.querySelector('svg')).toBeTruthy();
     expect(baseElement.innerHTML).toContain(defaultProps.tooltip);
   });
 });

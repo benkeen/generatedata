@@ -9,7 +9,8 @@
     "watch": "tsc --watch",
     "clean": "npx rimraf dist",
     "purge": "npx rimraf node_modules dist .turbo",
-    "storybook": "storybook dev -p 6006"
+    "storybook": "storybook dev -p 6006",
+    "test": "jest --config=./config/jest.config.js"
   },
   "dependencies": {
     "@date-io/date-fns": "catalog:",
