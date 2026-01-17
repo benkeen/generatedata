@@ -17,8 +17,7 @@ export const sendPasswordResetEmail: NonNullable<MutationResolvers['sendPassword
   });
 
   if (user) {
-    // if the user's account has expired, let 'em know. Sodding ORM adds a degree of confusion but expiryDate is
-    // actually a JS object
+    // if the user's account has expired, let 'em know. The expiryDate is actually a JS object
     const { firstName, expiryDate } = user.dataValues;
 
     const accountExpired = authUtils.accountExpired(expiryDate);
@@ -43,6 +42,9 @@ export const sendPasswordResetEmail: NonNullable<MutationResolvers['sendPassword
         tempPassword,
         i18n
       });
+
+      console.log('!!!!! ---', { subject, text, tempPasswordHash });
+
       await emailUtils.sendEmail(email, subject, text, html);
     }
   }

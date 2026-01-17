@@ -9,7 +9,6 @@ type PasswordResetParams = {
   i18n: any;
 };
 
-// TODO rename
 /**
  * Used to send a password reset email with a temporary password.
  */

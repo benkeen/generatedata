@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "dev": "COMPOSE_HTTP_TIMEOUT=150 docker compose -f ./docker-compose.yml up",
+    "dev": "COMPOSE_INTERACTIVE_NO_CLI=1 COMPOSE_HTTP_TIMEOUT=150 docker compose -f ./docker-compose.yml up",
     "generate-schema": "graphql-codegen --config src/codegen.ts",
     "purge": "npx rimraf node_modules dist .turbo",
     "run-server": "nodemon ./dist/app.js",

@@ -218,7 +218,7 @@
   "passwordResetEmailContent1": "Your password has been reset. You may use the following password to log in: %1",
   "passwordResetEmailContent2": "Please change it once you've logged in.",
   "passwordResetEmailDesc": "We've received a request to reset your password. This email contains a temporary one-time password you can use to log in. After logging in, you'll need to set a new password.",
-  "passwordResetMsg": "If the email was on file, your password has been reset and your have been emailed temporary login information.",
+  "passwordResetMsg": "If the email was on file, your password has been reset and you've been emailed some temporary login information.",
   "passwordUpdateInvalidPassword": "Your current password is incorrect. Please re-enter.",
   "passwordUpdated": "Your password has been updated.",
   "pause": "Pause",
