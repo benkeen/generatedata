@@ -41,12 +41,10 @@ export const useClasses = makeStyles({
     left: '50%',
     transform: 'translate(-50%, -50%)'
   },
-
   overlayWrapper: {
     position: 'relative',
     height: '100%'
   },
-
   background: {
     position: 'absolute',
     backgroundColor: '#efefef',

@@ -8,3 +8,8 @@ textarea:focus,
 select:focus {
   border: 1px solid #2684ff;
 }
+
+svg,
+path {
+  outline: none;
+}

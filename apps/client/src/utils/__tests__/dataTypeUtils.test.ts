@@ -81,7 +81,7 @@ describe('getProcessBatches', () => {
     };
     try {
       getProcessBatches(testDataTypes);
-    } catch (e) {
+    } catch (e: any) {
       expect(e.name).toEqual('Recursive dependency');
     }
   });
@@ -98,7 +98,7 @@ describe('getProcessBatches', () => {
     };
     try {
       getProcessBatches(testDataTypes);
-    } catch (e) {
+    } catch (e: any) {
       expect(e.name).toEqual('Recursive dependency');
     }
   });

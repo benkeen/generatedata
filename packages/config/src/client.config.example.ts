@@ -2,7 +2,7 @@ import type { GDClientConfig } from './types';
 
 const config: GDClientConfig = {
   appSettings: {
-    // this setting controls the overall type of the installation. It's used on initial installation only. The options are:
+    // this setting controls the type of the installation. It's used on initial installation only. The options are:
     //    login - allows anonymous access via the browser, but unless the user has logged in they can't save their data sets
     //            or generate more rows than GD_MAX_DEMO_MODE_ROWS at a time
     //    single - there's only ever a single account and that user is logged in by default

@@ -13,8 +13,8 @@ const serverConfig: GDServerConfig = {
     GD_GOOGLE_AUTH_CLIENT_SECRET: ''
   },
 
-  // (optional) this gives you the optional of tying in email functionality, to enable features like emailing for lost passwords,
-  // registering and so on
+  // this provides email functionality, to enable features like emailing for lost passwords, registering and so on. This
+  // is REQUIRED for any GD_APP_TYPE other than 'single'. See client.config.example.ts for more information about that setting.
   email: {
     GD_EMAIL_OAUTH_SERVICE_CLIENT_ID: '',
     GD_EMAIL_OAUTH_PRIVATE_KEY: ''
