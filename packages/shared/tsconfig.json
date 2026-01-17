@@ -13,14 +13,7 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
-    "isolatedModules": true,
-    "baseUrl": "./",
-    "paths": {
-      "@generatedata/utils": ["../utils/src/index.ts"],
-      "@generatedata/utils/*": ["../utils/src/*"],
-      "@generatedata/config/*": ["../config/src/*"],
-      "@generatedata/i18n": ["../i18n/locales/en.json"]
-    }
+    "isolatedModules": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

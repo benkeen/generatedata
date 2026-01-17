@@ -12,7 +12,7 @@ const generateGenerationWorker = () => {
   const sourceFile = path.resolve(__dirname, '../dist-workers/src/core/generator/generation.worker.js');
   const fileHash = md5File.sync(sourceFile);
   const targetFile = `generation.worker-${fileHash}.js`;
-  const command = `npx rollup -c ./build/rollup.generationWorker.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`;
+  const command = `npx rollup -c ./config/rollup.generationWorker.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`;
 
   execSync(command, { stdio: 'inherit' });
 
@@ -22,11 +22,7 @@ const generateGenerationWorker = () => {
 export const generationWorker = ${JSON.stringify(targetFile, null, 2)}
 `;
 
-  fs.writeFileSync(
-    path.join(__dirname, '../src/_generationWorker.ts'),
-    mapFileContent,
-    'utf-8'
-  );  
+  fs.writeFileSync(path.join(__dirname, '../src/_generationWorker.ts'), mapFileContent, 'utf-8');
 };
 
 generateGenerationWorker();

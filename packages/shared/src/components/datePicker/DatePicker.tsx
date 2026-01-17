@@ -1,5 +1,5 @@
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV2';
-import { getLocale } from '@generatedata/utils/lang'; // getStrings
+import { getLocale } from '@generatedata/utils/lang';
 import { MobileDatePicker, MobileDatePickerProps } from '@mui/x-date-pickers/MobileDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { arDZ, de, enUS, es, fr, hi, ja, nl, pt, ru, ta, zhCN } from 'date-fns/locale';
