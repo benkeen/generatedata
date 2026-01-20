@@ -5,7 +5,7 @@ import PlayArrow from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
 import IconButton from '@mui/material/IconButton';
 import Slider from '@mui/material/Slider';
-import { useMeasure } from '@uidotdev/usehooks';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import React from 'react';
 import CountUp from 'react-countup';
 import { Bar, BarChart, CartesianGrid, Cell, Label, Pie, PieChart, XAxis, YAxis } from 'recharts';
@@ -81,7 +81,7 @@ const ActivityPanel = ({
   fullI18n
 }: ActivityPanelProps): any => {
   const classNames = useClasses();
-  const [measureRef, { width = 0, height = 0 }] = useMeasure();
+  const fullScreen = useMediaQuery('(max-width:600px)');
   const prevGeneratedRows = usePrevious(packet?.numGeneratedRows ?? 0);
 
   if (packet === null || fullI18n === null) {
@@ -161,7 +161,6 @@ const ActivityPanel = ({
             </IconButton>
           </span>
         </Tooltip>
-
         <Slider
           value={speed}
           aria-labelledby="discrete-slider-always"
@@ -181,8 +180,8 @@ const ActivityPanel = ({
 
   return (
     <>
-      <Dialog className={classNames.activityPanel} onClose={onClose} open={visible}>
-        <div style={{ width: 800 }} ref={measureRef}>
+      <Dialog className={classNames.activityPanel} onClose={onClose} open={visible} fullScreen={fullScreen}>
+        <div className={classNames.activityPanelSizer}>
           <DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
             {coreI18n.generatedC}
             <CountUp
@@ -198,7 +197,7 @@ const ActivityPanel = ({
           <DialogContent dividers style={{ padding: 0 }}>
             <div className={classNames.overlayWrapper}>
               <div style={{ display: 'flex' }}>
-                <div className={classNames.panel1} style={{ flex: '0 1 250px' }}>
+                <div className={classNames.panel1}>
                   <div className={classNames.pie}>
                     <PieChart style={{ width: '100%', height: '100%' }}>
                       <Pie
@@ -246,16 +245,14 @@ const ActivityPanel = ({
                 <div className={classNames.panel2}>
                   <h4>{coreI18n.rowsGeneratedPerSecond}</h4>
 
-                  {width && height && (
-                    <BarChart width="100%" height={height - 185} data={batchLoadTimes} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
-                        <Label value={coreI18n.seconds} offset={0} position="insideBottom" />
-                      </XAxis>
-                      <YAxis dataKey="rowsPerSecond" />
-                      <Bar dataKey="rowsPerSecond" stroke="#4981dc" fill="#4981dc" isAnimationActive={false} />
-                    </BarChart>
-                  )}
+                  <BarChart width="100%" height={340} data={batchLoadTimes} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
+                      <Label value={coreI18n.seconds} offset={0} position="insideBottom" />
+                    </XAxis>
+                    <YAxis dataKey="rowsPerSecond" />
+                    <Bar dataKey="rowsPerSecond" stroke="#4981dc" fill="#4981dc" isAnimationActive={false} />
+                  </BarChart>
                 </div>
               </div>
             </div>

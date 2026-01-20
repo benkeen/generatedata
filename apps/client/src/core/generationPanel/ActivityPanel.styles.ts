@@ -18,17 +18,21 @@ export const useClasses = makeStyles({
   },
   activityPanel: {
     width: '100%',
-    // maxWidth: '1000px',
     height: '100%'
-    // maxHeight: '600px'
+  },
+  activityPanelSizer: {
+    width: '100%',
+    maxWidth: '800px'
+    // '@media screen and (max-width: 600px)': { display: 'none' }
   },
   panel1: {
-    flex: 1,
+    flex: '0 1 250px',
     position: 'relative',
     padding: '10px'
   },
   panel2: {
     flex: 1
+    // '@media screen and (max-width: 600px)': { display: 'none' }
   },
   generateOverlay: {
     position: 'absolute',
