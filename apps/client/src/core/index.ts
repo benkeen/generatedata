@@ -23,13 +23,54 @@ export const initApp = (): void => {
   const isLoggedIn = mainSelectors.isLoggedIn(state);
   const exportType = selectors.getExportType(state);
   const numRows = selectors.getNumRows(state);
+  const preloadDataTypes = selectors.getRowDataTypes(state);
+  const loadedDataTypes: Partial<Record<DataTypeFolder, boolean>> = {};
+  const loadCountryNames = selectors.currentDataSetNeedsCountryNames(state);
+  // const isPreviewVisible = selectors.isPreviewVisible(state);
+
+  let exportTypeLoaded = false;
+  let countriesLoaded = false;
+
+  // all of this is pretty awkward. Normally, the preview panel handles refreshing its own data, but for situations
+  // where the first page load doesn't contain the preview panel, we still need to enable the footer buttons - which
+  // requires the preview data to be ready, hence all of this
+  const maybeRefreshOnComplete = (): void => {
+    // console.log(isPreviewVisible);
+    // if (isPreviewVisible) {
+    //   return;
+    // }
+
+    if (!exportTypeLoaded || Object.values(loadedDataTypes).some((loaded) => !loaded)) {
+      return;
+    }
+    if (loadCountryNames && !countriesLoaded) {
+      return;
+    }
+
+    // this does work, but it causes a double-refresh if the preview panel is visible
+    // store.dispatch(actions.refreshPreview());
+  };
 
   store.dispatch(mainActions.selectLocale(pageLocale));
-  store.dispatch(actions.onSelectExportType(exportType, { shouldRefreshPreviewPanel: false }));
+  store.dispatch(
+    actions.onSelectExportType(exportType, {
+      shouldRefreshPreviewPanel: false,
+      onLoadComplete: () => {
+        exportTypeLoaded = true;
+        maybeRefreshOnComplete();
+      }
+    })
+  );
 
-  const loadCountryNames = selectors.currentDataSetNeedsCountryNames(state);
   if (loadCountryNames) {
-    store.dispatch(requestCountryNames());
+    store.dispatch(
+      requestCountryNames({
+        onLoadComplete: () => {
+          countriesLoaded = true;
+          maybeRefreshOnComplete();
+        }
+      })
+    );
   }
 
   // if there's a live session, verify the JWT is still valid
@@ -44,11 +85,17 @@ export const initApp = (): void => {
     store.dispatch(actions.addRows(C.NUM_DEFAULT_ROWS));
   }
 
-  const preloadDataTypes = selectors.getRowDataTypes(state);
-
-  preloadDataTypes.forEach((dataType) =>
+  preloadDataTypes.forEach((dataType) => {
+    if (!dataType) {
+      return;
+    }
+    loadedDataTypes[dataType] = false;
     actions.loadDataTypeBundle(store.dispatch, store.getState, dataType as DataTypeFolder, {
-      shouldRefreshPreviewPanel: false
-    })
-  );
+      shouldRefreshPreviewPanel: false,
+      onLoadComplete: (plugin: DataTypeFolder) => {
+        loadedDataTypes[plugin] = true;
+        maybeRefreshOnComplete();
+      }
+    });
+  });
 };

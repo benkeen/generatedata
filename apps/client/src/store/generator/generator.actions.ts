@@ -131,12 +131,15 @@ export const loadDataTypeBundle = (
 export const REQUEST_COUNTRY_NAMES = 'REQUEST_COUNTRY_NAMES';
 export const COUNTRY_NAMES_LOADED = 'COUNTRY_NAMES_LOADED';
 export const requestCountryNames =
-  (): any =>
+  ({ onLoadComplete }: { onLoadComplete?: () => void } = {}): any =>
     (dispatch: any): any => {
       dispatch({ type: REQUEST_COUNTRY_NAMES });
 
       getCountryNamesBundle().then(() => {
         dispatch({ type: COUNTRY_NAMES_LOADED });
+        if (onLoadComplete) {
+          onLoadComplete();
+        }
       });
     };
 
