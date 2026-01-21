@@ -26,7 +26,9 @@ export const initApp = (): void => {
   const preloadDataTypes = selectors.getRowDataTypes(state);
   const loadedDataTypes: Partial<Record<DataTypeFolder, boolean>> = {};
   const loadCountryNames = selectors.currentDataSetNeedsCountryNames(state);
-  // const isPreviewVisible = selectors.isPreviewVisible(state);
+
+  // this is only false if the panel has been explicitly hidden. FOr small screens, it may be hidden as well
+  const isPreviewVisible = selectors.isPreviewVisible(state);
 
   let exportTypeLoaded = false;
   let countriesLoaded = false;
@@ -35,10 +37,9 @@ export const initApp = (): void => {
   // where the first page load doesn't contain the preview panel, we still need to enable the footer buttons - which
   // requires the preview data to be ready, hence all of this
   const maybeRefreshOnComplete = (): void => {
-    // console.log(isPreviewVisible);
-    // if (isPreviewVisible) {
-    //   return;
-    // }
+    if (isPreviewVisible && window.innerWidth >= C.SMALL_SCREEN_WIDTH) {
+      return;
+    }
 
     if (!exportTypeLoaded || Object.values(loadedDataTypes).some((loaded) => !loaded)) {
       return;
@@ -48,7 +49,7 @@ export const initApp = (): void => {
     }
 
     // this does work, but it causes a double-refresh if the preview panel is visible
-    // store.dispatch(actions.refreshPreview());
+    store.dispatch(actions.refreshPreview());
   };
 
   store.dispatch(mainActions.selectLocale(pageLocale));
