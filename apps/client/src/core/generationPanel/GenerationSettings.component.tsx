@@ -54,7 +54,6 @@ const GenerationSettingsPanel = ({
   const sharedClasses = useSharedClasses();
   const classNames = useClasses();
   const locale = getLocale();
-
   let error = '';
 
   if (!numRowsToGenerate) {

@@ -8,7 +8,6 @@ export const useClasses = makeStyles({
   generationRow: {
     fontSize: '14px',
     marginBottom: '10px',
-
     '& input': {
       width: '100px',
       margin: '0 6px',
@@ -21,14 +20,24 @@ export const useClasses = makeStyles({
     height: '100%'
   },
   activityPanelSizer: {
-    width: '100%',
-    maxWidth: '800px'
-    // '@media screen and (max-width: 600px)': { display: 'none' }
+    width: '800px',
+    '@media screen and (max-width: 600px)': {
+      width: '100%'
+    }
+  },
+  panelWrapper: {
+    display: 'flex',
+    '@media screen and (max-width: 600px)': {
+      flexDirection: 'column'
+    }
   },
   panel1: {
     flex: '0 1 250px',
     position: 'relative',
-    padding: '10px'
+    padding: '10px',
+    '@media screen and (max-width: 600px)': {
+      display: 'flex'
+    }
   },
   panel2: {
     flex: 1
@@ -95,7 +104,10 @@ export const useClasses = makeStyles({
   },
   dataRowLabel: {
     flex: '1 0 60%',
-    color: '#888888'
+    color: '#888888',
+    '@media screen and (max-width: 600px)': {
+      flex: '1 0 80%'
+    }
   },
   dataRowValue: {
     flex: '1 0 40%',

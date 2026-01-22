@@ -16,6 +16,7 @@ import * as coreUtils from '../../utils/coreUtils';
 import { useClasses } from './ActivityPanel.styles';
 import Engine from './Engine.container';
 import { getPercentageLabel } from './generation.helpers';
+import { useWindowSize } from 'react-hooks-window-size';
 
 export type ActivityPanelProps = {
   visible: boolean;
@@ -83,6 +84,7 @@ const ActivityPanel = ({
   const classNames = useClasses();
   const fullScreen = useMediaQuery('(max-width:600px)');
   const prevGeneratedRows = usePrevious(packet?.numGeneratedRows ?? 0);
+  const size = useWindowSize();
 
   if (packet === null || fullI18n === null) {
     return null;
@@ -196,7 +198,7 @@ const ActivityPanel = ({
           </DialogTitle>
           <DialogContent dividers style={{ padding: 0 }}>
             <div className={classNames.overlayWrapper}>
-              <div style={{ display: 'flex' }}>
+              <div className={classNames.panelWrapper}>
                 <div className={classNames.panel1}>
                   <div className={classNames.pie}>
                     <PieChart style={{ width: '100%', height: '100%' }}>
@@ -244,8 +246,11 @@ const ActivityPanel = ({
 
                 <div className={classNames.panel2}>
                   <h4>{coreI18n.rowsGeneratedPerSecond}</h4>
-
-                  <BarChart width="100%" height={340} data={batchLoadTimes} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
+                  <BarChart
+                    style={{ width: '100%', height: '100%' }}
+                    data={batchLoadTimes}
+                    margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
                       <Label value={coreI18n.seconds} offset={0} position="insideBottom" />
