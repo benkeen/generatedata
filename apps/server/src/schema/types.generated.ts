@@ -11,11 +11,11 @@ export type EnumResolverSignature<T, AllowedValues = any> = { [key in keyof T]?:
 export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string | number; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
+  ID: { input: string; output: string | number };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
 };
 
 export type Account = {
@@ -37,15 +37,9 @@ export type Account = {
   region?: Maybe<Scalars['String']['output']>;
 };
 
-export type AccountStatus =
-  | 'disabled'
-  | 'expired'
-  | 'live';
+export type AccountStatus = 'disabled' | 'expired' | 'live';
 
-export type AccountType =
-  | 'admin'
-  | 'superuser'
-  | 'user';
+export type AccountType = 'admin' | 'superuser' | 'user';
 
 export type AccountsResults = {
   __typename?: 'AccountsResults';
@@ -121,8 +115,7 @@ export type DataSetResults = {
   totalCount?: Maybe<Scalars['Int']['output']>;
 };
 
-export type ErrorType =
-  | 'permissionDenied';
+export type ErrorType = 'permissionDenied';
 
 export type GeneralResponse = {
   __typename?: 'GeneralResponse';
@@ -149,7 +142,6 @@ export type Mutation = {
   updatePassword?: Maybe<GeneralResponse>;
 };
 
-
 export type MutationcreateUserAccountArgs = {
   accountStatus?: InputMaybe<AccountStatus>;
   country?: InputMaybe<Scalars['String']['input']>;
@@ -161,50 +153,41 @@ export type MutationcreateUserAccountArgs = {
   region?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type MutationdeleteAccountArgs = {
   accountId: Scalars['ID']['input'];
 };
 
-
 export type MutationdeleteDataSetArgs = {
   dataSetId: Scalars['ID']['input'];
 };
-
 
 export type MutationloginArgs = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
 };
 
-
 export type MutationloginWithGoogleArgs = {
   googleToken: Scalars['String']['input'];
 };
-
 
 export type MutationrenameDataSetArgs = {
   dataSetId: Scalars['ID']['input'];
   dataSetName: Scalars['String']['input'];
 };
 
-
 export type MutationsaveDataSetArgs = {
   content: Scalars['String']['input'];
   dataSetId: Scalars['ID']['input'];
 };
-
 
 export type MutationsaveNewDataSetArgs = {
   content: Scalars['String']['input'];
   dataSetName: Scalars['String']['input'];
 };
 
-
 export type MutationsendPasswordResetEmailArgs = {
   email: Scalars['String']['input'];
 };
-
 
 export type MutationupdateAccountArgs = {
   accountId: Scalars['ID']['input'];
@@ -217,7 +200,6 @@ export type MutationupdateAccountArgs = {
   region?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type MutationupdateCurrentAccountArgs = {
   country: Scalars['String']['input'];
   email: Scalars['String']['input'];
@@ -226,12 +208,10 @@ export type MutationupdateCurrentAccountArgs = {
   region?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type MutationupdateDataSetGenerationCountArgs = {
   dataSetId: Scalars['ID']['input'];
   generatedRows: Scalars['Int']['input'];
 };
-
 
 export type MutationupdatePasswordArgs = {
   currentPassword: Scalars['String']['input'];
@@ -246,7 +226,6 @@ export type Query = {
   dataSets?: Maybe<DataSetResults>;
 };
 
-
 export type QueryaccountsArgs = {
   filterStr?: InputMaybe<Scalars['String']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -256,13 +235,11 @@ export type QueryaccountsArgs = {
   status?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type QuerydataSetHistoryArgs = {
   dataSetId: Scalars['ID']['input'];
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type QuerydataSetsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -279,19 +256,19 @@ export type SavedDataSetResponse = {
   success?: Maybe<Scalars['Boolean']['output']>;
 };
 
-export type SortDir =
-  | 'ASC'
-  | 'DESC';
-
-
+export type SortDir = 'ASC' | 'DESC';
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
-
 
 export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
   resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
 };
-export type Resolver<TResult, TParent = Record<PropertyKey, never>, TContext = Record<PropertyKey, never>, TArgs = Record<PropertyKey, never>> = ResolverFn<TResult, TParent, TContext, TArgs> | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
+export type Resolver<
+  TResult,
+  TParent = Record<PropertyKey, never>,
+  TContext = Record<PropertyKey, never>,
+  TArgs = Record<PropertyKey, never>
+> = ResolverFn<TResult, TParent, TContext, TArgs> | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
 
 export type ResolverFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
@@ -328,7 +305,13 @@ export type SubscriptionObject<TResult, TKey extends string, TParent, TContext, 
   | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
   | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
 
-export type SubscriptionResolver<TResult, TKey extends string, TParent = Record<PropertyKey, never>, TContext = Record<PropertyKey, never>, TArgs = Record<PropertyKey, never>> =
+export type SubscriptionResolver<
+  TResult,
+  TKey extends string,
+  TParent = Record<PropertyKey, never>,
+  TContext = Record<PropertyKey, never>,
+  TArgs = Record<PropertyKey, never>
+> =
   | ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
   | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
 
@@ -338,11 +321,20 @@ export type TypeResolveFn<TTypes, TParent = Record<PropertyKey, never>, TContext
   info: GraphQLResolveInfo
 ) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
 
-export type IsTypeOfResolverFn<T = Record<PropertyKey, never>, TContext = Record<PropertyKey, never>> = (obj: T, context: TContext, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
+export type IsTypeOfResolverFn<T = Record<PropertyKey, never>, TContext = Record<PropertyKey, never>> = (
+  obj: T,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => boolean | Promise<boolean>;
 
 export type NextResolverFn<T> = () => Promise<T>;
 
-export type DirectiveResolverFn<TResult = Record<PropertyKey, never>, TParent = Record<PropertyKey, never>, TContext = Record<PropertyKey, never>, TArgs = Record<PropertyKey, never>> = (
+export type DirectiveResolverFn<
+  TResult = Record<PropertyKey, never>,
+  TParent = Record<PropertyKey, never>,
+  TContext = Record<PropertyKey, never>,
+  TArgs = Record<PropertyKey, never>
+> = (
   next: NextResolverFn<TResult>,
   parent: TParent,
   args: TArgs,
@@ -350,20 +342,32 @@ export type DirectiveResolverFn<TResult = Record<PropertyKey, never>, TParent = 
   info: GraphQLResolveInfo
 ) => TResult | Promise<TResult>;
 
-
-
-
-
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Account: ResolverTypeWrapper<Omit<Account, 'accountStatus' | 'accountType' | 'errorType'> & { accountStatus?: Maybe<ResolversTypes['AccountStatus']>, accountType?: Maybe<ResolversTypes['AccountType']>, errorType?: Maybe<ResolversTypes['ErrorType']> }>;
+  Account: ResolverTypeWrapper<
+    Omit<Account, 'accountStatus' | 'accountType' | 'errorType'> & {
+      accountStatus?: Maybe<ResolversTypes['AccountStatus']>;
+      accountType?: Maybe<ResolversTypes['AccountType']>;
+      errorType?: Maybe<ResolversTypes['ErrorType']>;
+    }
+  >;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   AccountStatus: ResolverTypeWrapper<'live' | 'disabled' | 'expired'>;
   AccountType: ResolverTypeWrapper<'superuser' | 'admin' | 'user'>;
-  AccountsResults: ResolverTypeWrapper<Omit<AccountsResults, 'errorType' | 'results'> & { errorType?: Maybe<ResolversTypes['ErrorType']>, results?: Maybe<Array<Maybe<ResolversTypes['Account']>>> }>;
-  AuthResponse: ResolverTypeWrapper<Omit<AuthResponse, 'accountStatus' | 'accountType'> & { accountStatus?: Maybe<ResolversTypes['AccountStatus']>, accountType?: Maybe<ResolversTypes['AccountType']> }>;
+  AccountsResults: ResolverTypeWrapper<
+    Omit<AccountsResults, 'errorType' | 'results'> & {
+      errorType?: Maybe<ResolversTypes['ErrorType']>;
+      results?: Maybe<Array<Maybe<ResolversTypes['Account']>>>;
+    }
+  >;
+  AuthResponse: ResolverTypeWrapper<
+    Omit<AuthResponse, 'accountStatus' | 'accountType'> & {
+      accountStatus?: Maybe<ResolversTypes['AccountStatus']>;
+      accountType?: Maybe<ResolversTypes['AccountType']>;
+    }
+  >;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   DataSet: ResolverTypeWrapper<DataSet>;
   DataSetHistory: ResolverTypeWrapper<DataSetHistory>;
@@ -416,17 +420,23 @@ export type AccountResolvers<ContextType = any, ParentType extends ResolversPare
   region?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
 
-export type AccountStatusResolvers = EnumResolverSignature<{ disabled?: any, expired?: any, live?: any }, ResolversTypes['AccountStatus']>;
+export type AccountStatusResolvers = EnumResolverSignature<{ disabled?: any; expired?: any; live?: any }, ResolversTypes['AccountStatus']>;
 
-export type AccountTypeResolvers = EnumResolverSignature<{ admin?: any, superuser?: any, user?: any }, ResolversTypes['AccountType']>;
+export type AccountTypeResolvers = EnumResolverSignature<{ admin?: any; superuser?: any; user?: any }, ResolversTypes['AccountType']>;
 
-export type AccountsResultsResolvers<ContextType = any, ParentType extends ResolversParentTypes['AccountsResults'] = ResolversParentTypes['AccountsResults']> = {
+export type AccountsResultsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['AccountsResults'] = ResolversParentTypes['AccountsResults']
+> = {
   errorType?: Resolver<Maybe<ResolversTypes['ErrorType']>, ParentType, ContextType>;
   results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Account']>>>, ParentType, ContextType>;
   totalCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
 };
 
-export type AuthResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['AuthResponse'] = ResolversParentTypes['AuthResponse']> = {
+export type AuthResponseResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['AuthResponse'] = ResolversParentTypes['AuthResponse']
+> = {
   accountId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   accountStatus?: Resolver<Maybe<ResolversTypes['AccountStatus']>, ParentType, ContextType>;
   accountType?: Resolver<Maybe<ResolversTypes['AccountType']>, ParentType, ContextType>;
@@ -458,19 +468,28 @@ export type DataSetResolvers<ContextType = any, ParentType extends ResolversPare
   status?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
 
-export type DataSetHistoryResolvers<ContextType = any, ParentType extends ResolversParentTypes['DataSetHistory'] = ResolversParentTypes['DataSetHistory']> = {
+export type DataSetHistoryResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['DataSetHistory'] = ResolversParentTypes['DataSetHistory']
+> = {
   content?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   dataSetId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   dateCreated?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   historyId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
 };
 
-export type DataSetHistoryResultsResolvers<ContextType = any, ParentType extends ResolversParentTypes['DataSetHistoryResults'] = ResolversParentTypes['DataSetHistoryResults']> = {
+export type DataSetHistoryResultsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['DataSetHistoryResults'] = ResolversParentTypes['DataSetHistoryResults']
+> = {
   results?: Resolver<Maybe<Array<Maybe<ResolversTypes['DataSetHistory']>>>, ParentType, ContextType>;
   totalCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
 };
 
-export type DataSetListItemResolvers<ContextType = any, ParentType extends ResolversParentTypes['DataSetListItem'] = ResolversParentTypes['DataSetListItem']> = {
+export type DataSetListItemResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['DataSetListItem'] = ResolversParentTypes['DataSetListItem']
+> = {
   content?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   dataSetId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   dataSetName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -482,51 +501,125 @@ export type DataSetListItemResolvers<ContextType = any, ParentType extends Resol
   status?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
 
-export type DataSetResultsResolvers<ContextType = any, ParentType extends ResolversParentTypes['DataSetResults'] = ResolversParentTypes['DataSetResults']> = {
+export type DataSetResultsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['DataSetResults'] = ResolversParentTypes['DataSetResults']
+> = {
   results?: Resolver<Maybe<Array<Maybe<ResolversTypes['DataSetListItem']>>>, ParentType, ContextType>;
   totalCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
 };
 
 export type ErrorTypeResolvers = EnumResolverSignature<{ permissionDenied?: any }, ResolversTypes['ErrorType']>;
 
-export type GeneralResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GeneralResponse'] = ResolversParentTypes['GeneralResponse']> = {
+export type GeneralResponseResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['GeneralResponse'] = ResolversParentTypes['GeneralResponse']
+> = {
   error?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   success?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createUserAccount?: Resolver<Maybe<ResolversTypes['GeneralResponse']>, ParentType, ContextType, RequireFields<MutationcreateUserAccountArgs, 'email' | 'firstName' | 'lastName'>>;
-  deleteAccount?: Resolver<Maybe<ResolversTypes['GeneralResponse']>, ParentType, ContextType, RequireFields<MutationdeleteAccountArgs, 'accountId'>>;
-  deleteDataSet?: Resolver<Maybe<ResolversTypes['GeneralResponse']>, ParentType, ContextType, RequireFields<MutationdeleteDataSetArgs, 'dataSetId'>>;
+  createUserAccount?: Resolver<
+    Maybe<ResolversTypes['GeneralResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationcreateUserAccountArgs, 'email' | 'firstName' | 'lastName'>
+  >;
+  deleteAccount?: Resolver<
+    Maybe<ResolversTypes['GeneralResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationdeleteAccountArgs, 'accountId'>
+  >;
+  deleteDataSet?: Resolver<
+    Maybe<ResolversTypes['GeneralResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationdeleteDataSetArgs, 'dataSetId'>
+  >;
   login?: Resolver<Maybe<ResolversTypes['AuthResponse']>, ParentType, ContextType, RequireFields<MutationloginArgs, 'email' | 'password'>>;
-  loginWithGoogle?: Resolver<Maybe<ResolversTypes['AuthResponse']>, ParentType, ContextType, RequireFields<MutationloginWithGoogleArgs, 'googleToken'>>;
+  loginWithGoogle?: Resolver<
+    Maybe<ResolversTypes['AuthResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationloginWithGoogleArgs, 'googleToken'>
+  >;
   logout?: Resolver<Maybe<ResolversTypes['GeneralResponse']>, ParentType, ContextType>;
   refreshToken?: Resolver<Maybe<ResolversTypes['AuthResponse']>, ParentType, ContextType>;
-  renameDataSet?: Resolver<Maybe<ResolversTypes['GeneralResponse']>, ParentType, ContextType, RequireFields<MutationrenameDataSetArgs, 'dataSetId' | 'dataSetName'>>;
-  saveDataSet?: Resolver<Maybe<ResolversTypes['SavedDataSetResponse']>, ParentType, ContextType, RequireFields<MutationsaveDataSetArgs, 'content' | 'dataSetId'>>;
-  saveNewDataSet?: Resolver<Maybe<ResolversTypes['SavedDataSetResponse']>, ParentType, ContextType, RequireFields<MutationsaveNewDataSetArgs, 'content' | 'dataSetName'>>;
-  sendPasswordResetEmail?: Resolver<Maybe<ResolversTypes['GeneralResponse']>, ParentType, ContextType, RequireFields<MutationsendPasswordResetEmailArgs, 'email'>>;
-  updateAccount?: Resolver<Maybe<ResolversTypes['GeneralResponse']>, ParentType, ContextType, RequireFields<MutationupdateAccountArgs, 'accountId' | 'country' | 'email' | 'firstName' | 'lastName'>>;
-  updateCurrentAccount?: Resolver<Maybe<ResolversTypes['GeneralResponse']>, ParentType, ContextType, RequireFields<MutationupdateCurrentAccountArgs, 'country' | 'email' | 'firstName' | 'lastName'>>;
-  updateDataSetGenerationCount?: Resolver<Maybe<ResolversTypes['GeneralResponse']>, ParentType, ContextType, RequireFields<MutationupdateDataSetGenerationCountArgs, 'dataSetId' | 'generatedRows'>>;
-  updatePassword?: Resolver<Maybe<ResolversTypes['GeneralResponse']>, ParentType, ContextType, RequireFields<MutationupdatePasswordArgs, 'currentPassword' | 'newPassword'>>;
+  renameDataSet?: Resolver<
+    Maybe<ResolversTypes['GeneralResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationrenameDataSetArgs, 'dataSetId' | 'dataSetName'>
+  >;
+  saveDataSet?: Resolver<
+    Maybe<ResolversTypes['SavedDataSetResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationsaveDataSetArgs, 'content' | 'dataSetId'>
+  >;
+  saveNewDataSet?: Resolver<
+    Maybe<ResolversTypes['SavedDataSetResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationsaveNewDataSetArgs, 'content' | 'dataSetName'>
+  >;
+  sendPasswordResetEmail?: Resolver<
+    Maybe<ResolversTypes['GeneralResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationsendPasswordResetEmailArgs, 'email'>
+  >;
+  updateAccount?: Resolver<
+    Maybe<ResolversTypes['GeneralResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationupdateAccountArgs, 'accountId' | 'country' | 'email' | 'firstName' | 'lastName'>
+  >;
+  updateCurrentAccount?: Resolver<
+    Maybe<ResolversTypes['GeneralResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationupdateCurrentAccountArgs, 'country' | 'email' | 'firstName' | 'lastName'>
+  >;
+  updateDataSetGenerationCount?: Resolver<
+    Maybe<ResolversTypes['GeneralResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationupdateDataSetGenerationCountArgs, 'dataSetId' | 'generatedRows'>
+  >;
+  updatePassword?: Resolver<
+    Maybe<ResolversTypes['GeneralResponse']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationupdatePasswordArgs, 'currentPassword' | 'newPassword'>
+  >;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   account?: Resolver<Maybe<ResolversTypes['Account']>, ParentType, ContextType>;
   accounts?: Resolver<Maybe<ResolversTypes['AccountsResults']>, ParentType, ContextType, Partial<QueryaccountsArgs>>;
-  dataSetHistory?: Resolver<Maybe<ResolversTypes['DataSetHistoryResults']>, ParentType, ContextType, RequireFields<QuerydataSetHistoryArgs, 'dataSetId'>>;
+  dataSetHistory?: Resolver<
+    Maybe<ResolversTypes['DataSetHistoryResults']>,
+    ParentType,
+    ContextType,
+    RequireFields<QuerydataSetHistoryArgs, 'dataSetId'>
+  >;
   dataSets?: Resolver<Maybe<ResolversTypes['DataSetResults']>, ParentType, ContextType, Partial<QuerydataSetsArgs>>;
 };
 
-export type SavedDataSetResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['SavedDataSetResponse'] = ResolversParentTypes['SavedDataSetResponse']> = {
+export type SavedDataSetResponseResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['SavedDataSetResponse'] = ResolversParentTypes['SavedDataSetResponse']
+> = {
   dataSetId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   error?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   savedDate?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   success?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
 };
 
-export type SortDirResolvers = EnumResolverSignature<{ ASC?: any, DESC?: any }, ResolversTypes['SortDir']>;
+export type SortDirResolvers = EnumResolverSignature<{ ASC?: any; DESC?: any }, ResolversTypes['SortDir']>;
 
 export type Resolvers<ContextType = any> = {
   Account?: AccountResolvers<ContextType>;
@@ -546,4 +639,3 @@ export type Resolvers<ContextType = any> = {
   SavedDataSetResponse?: SavedDataSetResponseResolvers<ContextType>;
   SortDir?: SortDirResolvers;
 };
-

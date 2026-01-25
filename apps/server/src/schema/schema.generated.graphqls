@@ -105,7 +105,16 @@ type GeneralResponse {
 }
 
 type Mutation {
-  createUserAccount(accountStatus: AccountStatus, country: String, email: String!, expiryDate: String, firstName: String!, lastName: String!, oneTimePassword: String, region: String): GeneralResponse
+  createUserAccount(
+    accountStatus: AccountStatus
+    country: String
+    email: String!
+    expiryDate: String
+    firstName: String!
+    lastName: String!
+    oneTimePassword: String
+    region: String
+  ): GeneralResponse
   deleteAccount(accountId: ID!): GeneralResponse
   deleteDataSet(dataSetId: ID!): GeneralResponse
   login(email: String!, password: String!): AuthResponse
@@ -116,7 +125,16 @@ type Mutation {
   saveDataSet(content: String!, dataSetId: ID!): SavedDataSetResponse
   saveNewDataSet(content: String!, dataSetName: String!): SavedDataSetResponse
   sendPasswordResetEmail(email: String!): GeneralResponse
-  updateAccount(accountId: ID!, accountStatus: AccountStatus, country: String!, email: String!, expiryDate: String, firstName: String!, lastName: String!, region: String): GeneralResponse
+  updateAccount(
+    accountId: ID!
+    accountStatus: AccountStatus
+    country: String!
+    email: String!
+    expiryDate: String
+    firstName: String!
+    lastName: String!
+    region: String
+  ): GeneralResponse
   updateCurrentAccount(country: String!, email: String!, firstName: String!, lastName: String!, region: String): GeneralResponse
   updateDataSetGenerationCount(dataSetId: ID!, generatedRows: Int!): GeneralResponse
   updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
