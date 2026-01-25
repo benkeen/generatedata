@@ -175,10 +175,8 @@ export const getGraphDuration = (numRowsToGenerate: number): LoadTimeGraphDurati
   } else if (numRowsToGenerate < C.GRAPH_RANGES.RANGE2) {
     return '15seconds';
   } else if (numRowsToGenerate < C.GRAPH_RANGES.RANGE3) {
-    // return LoadTimeGraphDuration.s30;
+    return '30seconds';
   }
 
-  return '30seconds';
-
-  // return LoadTimeGraphDuration.m1;
+  return '1minute';
 };

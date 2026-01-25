@@ -16,7 +16,7 @@ import * as coreUtils from '../../utils/coreUtils';
 import { useClasses } from './ActivityPanel.styles';
 import Engine from './Engine.container';
 import { getPercentageLabel } from './generation.helpers';
-import { useWindowSize } from 'react-hooks-window-size';
+import { styled } from '@mui/material/styles';
 
 export type ActivityPanelProps = {
   visible: boolean;
@@ -36,6 +36,11 @@ export type ActivityPanelProps = {
   loadTimeGraphDuration: LoadTimeGraphDuration;
   countUpSpeed: number;
 };
+
+const GradientSlider = styled(Slider)(() => ({
+  padding: '15px 0',
+  '& .MuiSlider-track': { border: 'none', background: 'linear-gradient(90deg, #cccccc, #275eb5)' }
+}));
 
 const valueLabelFormat = (value: number): string => `${value}%`;
 
@@ -84,7 +89,6 @@ const ActivityPanel = ({
   const classNames = useClasses();
   const fullScreen = useMediaQuery('(max-width:600px)');
   const prevGeneratedRows = usePrevious(packet?.numGeneratedRows ?? 0);
-  const size = useWindowSize();
 
   if (packet === null || fullI18n === null) {
     return null;
@@ -163,7 +167,7 @@ const ActivityPanel = ({
             </IconButton>
           </span>
         </Tooltip>
-        <Slider
+        <GradientSlider
           value={speed}
           aria-labelledby="discrete-slider-always"
           step={1}
@@ -172,7 +176,7 @@ const ActivityPanel = ({
           valueLabelDisplay="auto"
           valueLabelFormat={valueLabelFormat}
           marks={marks}
-          onChange={(e, value): void => onChangeSpeed(value as number)}
+          onChange={(_e, value): void => onChangeSpeed(value as number)}
         />
       </div>
     );
@@ -201,6 +205,8 @@ const ActivityPanel = ({
               <div className={classNames.panelWrapper}>
                 <div className={classNames.panel1}>
                   <div className={classNames.pie}>
+                    <div className={classNames.pieCenterText}>{`${getPercentageLabel(percentage, numRowsToGenerate)}%`}</div>
+
                     <PieChart style={{ width: '100%', height: '100%' }}>
                       <Pie
                         dataKey="value"
@@ -212,15 +218,12 @@ const ActivityPanel = ({
                         outerRadius="98%"
                         startAngle={90}
                         endAngle={-270}
-                        strokeWidth={0.5}
+                        strokeWidth={0.6}
                       >
                         {pieChartData.map((_entry, index) => (
                           <Cell key={index} fill={pieChartData[index].color} />
                         ))}
                       </Pie>
-                      <Label position="center" fill="#000000" fontSize="9px">
-                        {`${getPercentageLabel(percentage, numRowsToGenerate)}%`}
-                      </Label>
                     </PieChart>
                   </div>
 
@@ -247,12 +250,13 @@ const ActivityPanel = ({
                 <div className={classNames.panel2}>
                   <h4>{coreI18n.rowsGeneratedPerSecond}</h4>
                   <BarChart
-                    style={{ width: '100%', height: '100%' }}
+                    style={{ width: '100%', height: '360px' }}
                     data={batchLoadTimes}
                     margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+                    responsive
                   >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
+                    <XAxis dataKey="label" interval="equidistantPreserveStart" tick={{ fontSize: '7px' }}>
                       <Label value={coreI18n.seconds} offset={0} position="insideBottom" />
                     </XAxis>
                     <YAxis dataKey="rowsPerSecond" />

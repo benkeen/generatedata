@@ -1,4 +1,4 @@
-import { makeStyles } from '@griffel/react';
+import { makeStyles, shorthands } from '@griffel/react';
 
 export const useClasses = makeStyles({
   row: {
@@ -17,13 +17,14 @@ export const useClasses = makeStyles({
   },
   activityPanel: {
     width: '100%',
-    height: '100%'
-  },
-  activityPanelSizer: {
-    width: '800px',
-    '@media screen and (max-width: 600px)': {
+    height: '100%',
+    '& .MuiPaper-root': {
+      maxWidth: '1000px',
       width: '100%'
     }
+  },
+  activityPanelSizer: {
+    maxWidth: '1000px'
   },
   panelWrapper: {
     display: 'flex',
@@ -36,12 +37,20 @@ export const useClasses = makeStyles({
     position: 'relative',
     padding: '10px',
     '@media screen and (max-width: 600px)': {
-      display: 'flex'
+      display: 'flex',
+      '& > div': {
+        flex: 1
+      }
     }
   },
   panel2: {
-    flex: 1
-    // '@media screen and (max-width: 600px)': { display: 'none' }
+    flex: 1,
+    '@media screen and (max-width: 600px)': {
+      padding: '10px',
+      '& h4': {
+        ...shorthands.margin('0px', '0', '10px', '0')
+      }
+    }
   },
   generateOverlay: {
     position: 'absolute',
@@ -93,6 +102,13 @@ export const useClasses = makeStyles({
       zIndex: 1
     }
   },
+  pieCenterText: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    fontSize: '20px'
+  },
   dataPanel: {
     padding: '0 5%'
   },
@@ -106,7 +122,7 @@ export const useClasses = makeStyles({
     flex: '1 0 60%',
     color: '#888888',
     '@media screen and (max-width: 600px)': {
-      flex: '1 0 80%'
+      flex: '1 0 55%'
     }
   },
   dataRowValue: {

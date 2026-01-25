@@ -10,6 +10,7 @@ select:focus {
 }
 
 svg,
-path {
+path,
+g {
   outline: none;
 }
