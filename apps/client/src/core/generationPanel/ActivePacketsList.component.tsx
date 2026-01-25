@@ -40,7 +40,7 @@ const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps) =
           <Pie
             dataKey="value"
             stroke=""
-            isAnimationActive={true}
+            isAnimationActive={false}
             data={pieChartData}
             outerRadius="100%"
             startAngle={90}
