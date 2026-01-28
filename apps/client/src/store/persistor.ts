@@ -38,7 +38,7 @@ export const persistStore = (store: any) => {
     exportSettingsTab: generator.exportSettingsTab,
     numPreviewRows: generator.numPreviewRows,
     stripWhitespace: generator.stripWhitespace,
-    panelSizes: generator.panelSizes,
+    // panelSizes: generator.panelSizes,
     numRowsToGenerate: generator.numRowsToGenerate,
 
     // TODO persist for page refreshes, but not if the user logs out

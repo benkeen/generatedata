@@ -15,7 +15,7 @@ import { registerInterceptors } from '../actionInterceptor';
 import { getUnchangedData } from '../../core/generationPanel/generation.helpers';
 import type { ExportSettingsTab } from '../../core/generator/exportSettings/ExportSettings.types';
 import * as selectors from './generator.selectors';
-import { UpdatePanelSizeData } from './generator.reducer';
+// import { UpdatePanelSizeData } from './generator.reducer';
 import * as allSelectors from '../selectors';
 import * as allActions from '../actions';
 import { enqueueSnackbar } from 'notistack';
@@ -421,12 +421,18 @@ export const clearPage =
     };
 
 export const SET_PANEL_SIZE = 'SET_PANEL_SIZE';
-export const updatePanelSizes = (panelSizeData: UpdatePanelSizeData): GDAction => ({
+export const setPanelSize = (size: number): GDAction => ({
   type: SET_PANEL_SIZE,
   payload: {
-    panelSizeData
+    size
   }
 });
+// export const updatePanelSizes = (panelSizeData: UpdatePanelSizeData): GDAction => ({
+//   type: SET_PANEL_SIZE,
+//   payload: {
+//     panelSizeData
+//   }
+// });
 
 export const CHANGE_SMALL_SCREEN_VISIBLE_PANEL = 'CHANGE_SMALL_SCREEN_VISIBLE_PANEL';
 export const changeSmallScreenVisiblePanel = (): GDAction => ({

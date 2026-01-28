@@ -10,7 +10,6 @@ import LoginDialog from '../dialogs/login/Login.container';
 import PasswordResetDialog from '../dialogs/passwordReset/PasswordReset.container';
 import GeneratorControls from './GeneratorControls.container';
 import HeaderLinks, { MobileLinks } from './HeaderLinks.component';
-// import sharedStyles from '../../styles/shared.scss';
 import { GDLocale } from '~types/general';
 import { useClasses } from './Header.styles';
 

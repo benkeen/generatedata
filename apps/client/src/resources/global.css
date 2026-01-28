@@ -14,3 +14,24 @@ path,
 g {
   outline: none;
 }
+
+.Resizer.horizontal {
+  flex: 0 0 auto;
+  height: 5px;
+  cursor: row-resize;
+  width: 100%;
+}
+
+.Resizer.vertical {
+  flex: 0 0 auto;
+  width: 5px;
+  cursor: col-resize;
+  height: 100%;
+}
+
+.Resizer {
+  background-image: url('./images/bg.png');
+  z-index: 1;
+  box-sizing: border-box;
+  background-clip: padding-box;
+}

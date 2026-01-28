@@ -11,7 +11,7 @@ import {
 } from '~utils/exportTypeUtils';
 import * as coreUtils from '../../utils/coreUtils';
 import * as mainSelectors from '../main/main.selectors';
-import { CurrentDataSet, DataRow, DataRows, PanelSizes } from './generator.reducer';
+import { CurrentDataSet, DataRow, DataRows } from './generator.reducer';
 
 export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
 export const getLoadedExportTypes = (state: Store): any => state.generator.loadedExportTypes;
@@ -39,7 +39,9 @@ export const isSchemaDialogVisible = (state: Store): boolean => state.generator.
 export const isClearPageDialogVisible = (state: Store): boolean => state.generator.showClearPageDialog;
 export const getHelpDialogSection = (state: Store): DataTypeFolder | null => state.generator.helpDialogSection;
 export const getNumRowsToGenerate = (state: Store): number => state.generator.numRowsToGenerate;
-export const getPanelSizes = (state: Store): PanelSizes | null => state.generator.panelSizes;
+export const getLastLayoutWidth = (state: Store): number | null => state.generator.lastLayoutWidth;
+export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
+// export const getPanelSizes = (state: Store): PanelSizes | null => state.generator.panelSizes;
 export const isInitialDependenciesLoaded = (state: Store): boolean => state.generator.initialDependenciesLoaded;
 export const shouldStripWhitespace = (state: Store): boolean => state.generator.stripWhitespace;
 export const getCurrentDataSetId = (state: Store): number | null => state.generator.currentDataSet.dataSetId;

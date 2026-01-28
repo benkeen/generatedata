@@ -1,8 +1,8 @@
 import C from '@generatedata/config/constants';
 import { GeneratorLayout } from '~types/generator';
 import { useWindowSize } from 'react-hooks-window-size';
-import { SplitPane, Pane, Size } from 'react-split-pane';
-import { usePersistence } from 'react-split-pane/persistence';
+import SplitPane from 'react-split-pane';
+// import { usePersistence } from 'react-split-pane/persistence';
 import TourDialog from '~core/dialogs/tourIntro/TourIntro.container';
 import { GeneratorPanel } from '~types/general';
 import ClearPageDialog from '../dialogs/clearPage/ClearPage.container';
@@ -15,15 +15,18 @@ import ExportSettings from './exportSettings/ExportSettings.container';
 import Grid from './grid/Grid.container';
 import Preview from './previewPanel/PreviewPanel.container';
 import { useGlobalStyles } from './Generator.styles';
-import { useEffect, useState } from 'react';
-import { PanelSizes, UpdatePanelSizeData } from '~store/generator/generator.reducer';
+// import { useEffect, useState } from 'react';
+// import { PanelSizes, UpdatePanelSizeData } from '~store/generator/generator.reducer';
 
 export type GeneratorProps = {
   isGridVisible: boolean;
   isPreviewVisible: boolean;
   generatorLayout: GeneratorLayout;
-  updatePanelSizes: (panelSizeData: UpdatePanelSizeData) => void;
-  panelSizes: PanelSizes | null;
+  // updatePanelSizes: (panelSizeData: UpdatePanelSizeData) => void;
+  // panelSizes: PanelSizes | null;
+  onResizePanels: (size: number) => void;
+  lastLayoutWidth: number | null;
+  lastLayoutHeight: number | null;
   smallScreenVisiblePanel: GeneratorPanel;
   showDataSetHistory: boolean;
 };
@@ -32,45 +35,33 @@ const Builder = ({
   isGridVisible,
   isPreviewVisible,
   generatorLayout,
-  updatePanelSizes,
-  panelSizes,
+  onResizePanels,
+  lastLayoutWidth,
+  lastLayoutHeight,
   smallScreenVisiblePanel,
   showDataSetHistory
 }: GeneratorProps) => {
   useGlobalStyles();
 
-  const [hSizes, setHSizes] = usePersistence({ key: 'layout-horizontal' });
-  const [vSizes, setVSizes] = usePersistence({ key: 'layout-vertical' });
-
   const windowSize = useWindowSize();
+  const onResize = (size: number): void => onResizePanels(size);
 
-  const onResize = (sizes: number[]) => {
-    if (generatorLayout === 'horizontal') {
-      setHSizes(sizes as [number, number]);
-    } else {
-      setVSizes(sizes as [number, number]);
+  let minSize: number;
+  let maxSize: number;
+  let defaultSize: number | string = '50%';
+  if (generatorLayout === 'vertical') {
+    minSize = 350;
+    maxSize = windowSize.width - 350;
+    if (lastLayoutWidth) {
+      defaultSize = lastLayoutWidth < maxSize ? lastLayoutWidth : maxSize;
     }
-    // updatePanelSizes({
-    //   windowHeight: windowSize.height,
-    //   windowWidth: windowSize.width,
-    //   size: sizes[0]
-    // });
-  };
-
-  // on initial render, if the last saved window dimensions has changed, reset
-  // useEffect(() => {
-  // if (panelSizes?.windowWidth === windowSize.width && panelSizes?.windowHeight === windowSize.height) {
-  //   if (panelSizes.sizes) {
-  //     setSizes(panelSizes.sizes);
-  //   }
-  //   return;
-  // }
-  // updatePanelSizes({
-  //   windowHeight: windowSize.height,
-  //   windowWidth: windowSize.width,
-  //   sizes
-  // });
-  // }, []);
+  } else {
+    minSize = 100;
+    maxSize = windowSize.height - (C.HEADER_HEIGHT + C.FOOTER_HEIGHT) - 100;
+    if (lastLayoutHeight) {
+      defaultSize = lastLayoutHeight < maxSize ? lastLayoutHeight : maxSize;
+    }
+  }
 
   const getContent = () => {
     if (windowSize.width < C.SMALL_SCREEN_WIDTH) {
@@ -82,34 +73,20 @@ const Builder = ({
       return <Preview />;
     }
 
-    // const computedSizes: [number, number] = [0, 0];
-    // if (generatorLayout === 'horizontal') {
-    //   computedSizes[0] = windowSize.width / 2;
-    //   computedSizes[1] = windowSize.width / 2;
-    //   if (panelSizes?.[generatorLayout]) {
-    //     computedSizes[0] = panelSizes[generatorLayout];
-    //     computedSizes[1] = windowSize.width - panelSizes[generatorLayout];
-    //   }
-    // } else {
-    //   const availableHeight = windowSize.height - (C.HEADER_HEIGHT + C.FOOTER_HEIGHT);
-    //   computedSizes[0] = availableHeight / 2;
-    //   computedSizes[1] = availableHeight / 2;
-    //   if (panelSizes?.[generatorLayout]) {
-    //     computedSizes[0] = panelSizes[generatorLayout];
-    //     computedSizes[1] = availableHeight - panelSizes[generatorLayout];
-    //   }
-    // }
-
     if (isGridVisible && isPreviewVisible) {
-      const computedSizes: Size[] = generatorLayout === 'horizontal' ? hSizes || ['50%', '50%'] : vSizes || ['50%', '50%'];
       return (
-        <SplitPane className="gdGridPanel" direction={generatorLayout} onResize={onResize}>
-          <Pane size={computedSizes[0]} minSize={100}>
-            <Grid />
-          </Pane>
-          <Pane size={computedSizes[1]} minSize={100}>
-            <Preview />
-          </Pane>
+        /* @ts-ignore-line */
+        <SplitPane
+          className="gdGridPanel"
+          split={generatorLayout}
+          minSize={minSize}
+          maxSize={maxSize}
+          defaultSize={defaultSize}
+          // size={defaultSize}
+          onChange={onResize}
+        >
+          <Grid />
+          <Preview />
         </SplitPane>
       );
     }

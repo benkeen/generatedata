@@ -418,8 +418,8 @@ catalogs:
       specifier: ^5.10.2
       version: 5.10.2
     react-split-pane:
-      specifier: ^3.0.5
-      version: 3.0.5
+      specifier: ^0.1.89
+      version: 0.1.92
     reactour:
       specifier: ^1.19.4
       version: 1.19.4
@@ -671,7 +671,7 @@ importers:
         version: 5.10.2(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-split-pane:
         specifier: 'catalog:'
-        version: 3.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.1.92(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       reactour:
         specifier: 'catalog:'
         version: 1.19.4(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.0)(react@18.3.1)(styled-components@4.4.1(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -8574,6 +8574,9 @@ packages:
   react-is@19.2.0:
     resolution: {integrity: sha512-x3Ax3kNSMIIkyVYhWPyO09bu0uttcAIoecO/um/rKGQ4EltYWVYtyiGkS/3xMynrbVQdS69Jhlv8FXUEZehlzA==}
 
+  react-lifecycles-compat@3.0.4:
+    resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
+
   react-number-format@5.4.4:
     resolution: {integrity: sha512-wOmoNZoOpvMminhifQYiYSTCLUDOiUbBunrMrMjA+dV52sY+vck1S4UhR6PkgnoCquvvMSeJjErXZ4qSaWCliA==}
     peerDependencies:
@@ -8615,12 +8618,14 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  react-split-pane@3.0.5:
-    resolution: {integrity: sha512-6UJ6eK8SO9yBd67QhOUbCZfETtUfOUWaz55joXX2VQwqbBtVGica24sx9g7Qk7U+Lk91ZLhkfr2f+KejvgwJew==}
-    engines: {node: '>=20.0.0'}
+  react-split-pane@0.1.92:
+    resolution: {integrity: sha512-GfXP1xSzLMcLJI5BM36Vh7GgZBpy+U/X0no+VM3fxayv+p1Jly5HpMofZJraeaMl73b3hvlr+N9zJKvLB/uz9w==}
     peerDependencies:
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: ^16.0.0-0
+      react-dom: ^16.0.0-0
+
+  react-style-proptype@3.2.2:
+    resolution: {integrity: sha512-ywYLSjNkxKHiZOqNlso9PZByNEY+FTyh3C+7uuziK0xFXu9xzdyfHwg4S9iyiRRoPCR4k2LqaBBsWVmSBwCWYQ==}
 
   react-transition-group@4.4.5:
     resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
@@ -19350,6 +19355,8 @@ snapshots:
 
   react-is@19.2.0: {}
 
+  react-lifecycles-compat@3.0.4: {}
+
   react-number-format@5.4.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
@@ -19395,10 +19402,17 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  react-split-pane@3.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-split-pane@0.1.92(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
+      prop-types: 15.8.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+      react-lifecycles-compat: 3.0.4
+      react-style-proptype: 3.2.2
+
+  react-style-proptype@3.2.2:
+    dependencies:
+      prop-types: 15.8.1
 
   react-transition-group@4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:

@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 import { apolloClient } from '../../apolloClient';
 import store from '~store/index';
 import { onLoginSuccess, setAuthenticated, setAuthenticationData, setOnloadAuthDetermined } from '~store/main/main.actions';
-import { AuthMethod } from '~types/general';
 import * as mainSelectors from '~store/main/main.selectors';
 import { getStrings } from '@generatedata/utils/lang';
 import clientConfig from '@generatedata/config/clientConfig';

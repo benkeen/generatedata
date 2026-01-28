@@ -65,6 +65,8 @@ export type StashedGeneratorState = {
   exportSettingsTab: ExportSettingsTab;
   numPreviewRows: number;
   stripWhitespace: boolean;
+  lastLayoutWidth: number | null;
+  lastLayoutHeight: number | null;
   numRowsToGenerate: number;
   currentDataSetId: number | null;
   currentDataSetName: string;
@@ -114,12 +116,12 @@ export type SelectedDataSetHistoryItem = {
   isLatest: boolean;
 };
 
-export type PanelSizes = {
-  windowHeight: number;
-  windowWidth: number;
-  horizontal?: number;
-  vertical?: number;
-};
+// export type PanelSizes = {
+//   windowHeight: number;
+//   windowWidth: number;
+//   horizontal?: number;
+//   vertical?: number;
+// };
 
 export type UpdatePanelSizeData = {
   windowHeight?: number;
@@ -159,7 +161,9 @@ export type GeneratorState = {
   exportSettingsTab: ExportSettingsTab;
   numPreviewRows: number;
   stripWhitespace: boolean;
-  panelSizes: PanelSizes | null;
+  lastLayoutWidth: number | null;
+  lastLayoutHeight: number | null;
+  // panelSizes: PanelSizes | null;
   numRowsToGenerate: number;
   currentDataSet: CurrentDataSet;
   selectedDataSetHistory: SelectedDataSetHistoryItem;
@@ -197,7 +201,9 @@ export const getInitialState = (): GeneratorState => ({
   helpDialogSection: null,
   numRowsToGenerate: clientConfig.appSettings.GD_DEFAULT_NUM_ROWS,
   stripWhitespace: false,
-  panelSizes: null,
+  lastLayoutWidth: null,
+  lastLayoutHeight: null,
+  // panelSizes: null,
   currentDataSet: {
     dataSetId: null,
     dataSetName: '',
@@ -437,21 +443,26 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
       draft.stripWhitespace = !draft.stripWhitespace;
       break;
 
-    case actions.SET_PANEL_SIZE:
-      if (!draft.panelSizes) {
-        draft.panelSizes = {
-          windowHeight: 0,
-          windowWidth: 0
-        };
-      }
-      if (action.payload.panelSizeData.windowHeight !== undefined) {
-        draft.panelSizes.windowHeight = action.payload.panelSizeData.windowHeight;
-      }
-      if (action.payload.panelSizeData.windowWidth !== undefined) {
-        draft.panelSizes.windowWidth = action.payload.panelSizeData.windowWidth;
-      }
+      // case actions.SET_PANEL_SIZE:
+      //   if (!draft.panelSizes) {
+      //     draft.panelSizes = {
+      //       windowHeight: 0,
+      //       windowWidth: 0
+      //     };
+      //   }
+      //   if (action.payload.panelSizeData.windowHeight !== undefined) {
+      //     draft.panelSizes.windowHeight = action.payload.panelSizeData.windowHeight;
+      //   }
+      //   if (action.payload.panelSizeData.windowWidth !== undefined) {
+      //     draft.panelSizes.windowWidth = action.payload.panelSizeData.windowWidth;
+      //   }
 
-      draft.panelSizes[draft.generatorLayout] = action.payload.panelSizeData.size;
+      //   draft.panelSizes[draft.generatorLayout] = action.payload.panelSizeData.size;
+      //   break;
+
+    case actions.SET_PANEL_SIZE:
+      const setting = draft.generatorLayout === 'horizontal' ? 'lastLayoutHeight' : 'lastLayoutWidth';
+      draft[setting] = action.payload.size;
       break;
 
     case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL:
