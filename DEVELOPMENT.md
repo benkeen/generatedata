@@ -31,6 +31,10 @@ Gaps: changing the generation.worker.ts isn't updated during watch mode.
     right node version specified in the `.nvmrc` file. If you're not running the correct version of node it will
     throw an error during startup.
 
+- `corepack enable`
+
+  - this is kind of like nvm, but we can use it for pnpm.
+
 - `pnpm install`
 
 [TODO]

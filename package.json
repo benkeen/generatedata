@@ -3,11 +3,11 @@
   "description": "Free, MIT-licensed tool for generating random test data. Have at it.",
   "version": "5.0.0-alpha1",
   "author": "Ben Keen <ben.keen@gmail.com>",
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@10.28.2",
   "license": "GPL-3.0+",
   "engines": {
     "node": ">=24",
-    "pnpm": ">=9.15.9"
+    "pnpm": ">=10.28.2"
   },
   "engineStrict": true,
   "scripts": {
