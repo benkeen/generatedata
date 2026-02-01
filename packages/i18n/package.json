@@ -1,12 +1,11 @@
 {
-  "name": "@generatedata/i18n-core",
-  "description": "Contains the core localization files for generatedata.",
+  "name": "@generatedata/i18n",
+  "description": "Generatedata.com internationalization locale files, including both the core and plugins.",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "run-s tsc validate",
+    "build": "",
     "tsc": "tsc",
-    "validate": "",
     "purge": "npx rimraf .turbo"
   },
   "exports": {
@@ -25,7 +24,6 @@
     "./zh": "./locales/zh.json"
   },
   "devDependencies": {
-    "npm-run-all": "catalog:",
     "rimraf": "catalog:"
   }
 }

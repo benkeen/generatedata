@@ -1,0 +1,11 @@
+{
+  "name": "@generatedata/tools",
+  "description": "General tooling and binaries for generatedata packages",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}

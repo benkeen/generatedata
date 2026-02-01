@@ -28,10 +28,3 @@ export const removeKey = (key: string, filePath: string) => {
 
   fs.writeFileSync(filePath, JSON.stringify(updatedFileContent, null, '\t'));
 };
-
-/*
-
-  i18n (contains everytghing?)
-  
-
-*/

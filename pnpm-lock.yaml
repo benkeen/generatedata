@@ -1134,6 +1134,15 @@ importers:
         specifier: 'catalog:'
         version: 6.0.1
 
+  packages/i18n-core:
+    devDependencies:
+      npm-run-all:
+        specifier: 'catalog:'
+        version: 4.1.5
+      rimraf:
+        specifier: 'catalog:'
+        version: 6.0.1
+
   packages/plugins:
     dependencies:
       '@generatedata/shared':
@@ -1351,6 +1360,12 @@ importers:
       storybook-react-rsbuild:
         specifier: 'catalog:'
         version: 3.1.0(@rsbuild/core@1.6.14)(@rspack/core@1.6.7(@swc/helpers@0.5.18))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@2.79.2)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.9.3)(webpack@5.103.0(esbuild@0.25.0))
+
+  packages/tools:
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
 
   packages/utils:
     dependencies:
