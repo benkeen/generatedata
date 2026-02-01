@@ -14,7 +14,7 @@ import { setLocaleFileLoaded } from '~store/main/main.actions';
 import mainReducer, { getInitialState as getMainInitialState } from '~store/main/main.reducer';
 import packetsReducer, { getInitialState as getInitialPacketState } from '~store/packets/packets.reducer';
 
-import i18n from '@generatedata/i18n';
+import i18n from '../../../packages/i18n-core/locales/en.json';
 
 // @ts-ignore - TODO
 import jsonI18n from '@generatedata/plugins/dist/exportTypes/JSON/i18n/en.json';

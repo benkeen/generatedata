@@ -1,5 +1,5 @@
 {
-  "name": "@generatedata/i18n",
+  "name": "@generatedata/i18n-core",
   "version": "1.0.0",
   "private": true,
   "scripts": {

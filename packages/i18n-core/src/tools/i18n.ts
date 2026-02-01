@@ -167,21 +167,6 @@ window.gd.localeLoaded(i18n);
   	}
   };
 
-  const sortI18nFiles = () => {
-  	i18n.locales.forEach((locale) => {
-  		const data = i18n.getCoreLocaleFileStrings(locale);
-  		const file = `./src/i18n/${locale}.json`;
-  		const sortedKeys = Object.keys(data).sort();
-
-  		let sortedObj = {};
-  		sortedKeys.forEach((key) => {
-  			sortedObj[key] = data[key];
-  		});
-
-  		fs.writeFileSync(file, JSON.stringify(sortedObj, null, '\t'));
-  	});
-  };
-
   // helper methods to operate on all lang files at once
   grunt.registerTask('removeI18nKey', () => {
   	const key = grunt.option('key') || null;
