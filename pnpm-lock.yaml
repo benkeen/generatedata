@@ -1136,6 +1136,9 @@ importers:
 
   packages/i18n-core:
     devDependencies:
+      '@generatedata/tools':
+        specifier: workspace:*
+        version: link:../tools
       npm-run-all:
         specifier: 'catalog:'
         version: 4.1.5

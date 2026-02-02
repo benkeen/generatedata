@@ -2,6 +2,9 @@
   "name": "@generatedata/tools",
   "description": "General tooling and binaries for generatedata packages",
   "version": "1.0.0",
+  "bin": {
+    "validate-i18n-files": "./bin/validation-i18n-files.js"
+  },
   "scripts": {
     "build": "tsc"
   },
