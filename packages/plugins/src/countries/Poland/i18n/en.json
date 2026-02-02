@@ -1,4 +1,6 @@
 {
-  "countryName": "Poland",
-  "regionNames": "Polish States"
+	"countryName": "Poland",
+	"countryName:comment": "",
+	"regionNames": "Polish States",
+	"regionNames:comment": ""
 }

@@ -1,4 +1,6 @@
 {
-  "countryName": "Germany",
-  "regionNames": "German States"
+	"countryName": "Germany",
+	"countryName:comment": "",
+	"regionNames": "German States",
+	"regionNames:comment": ""
 }

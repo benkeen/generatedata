@@ -1,4 +1,6 @@
 {
-  "countryName": "Costa Rica",
-  "regionNames": "Costa Rican Provinces"
+	"countryName": "Costa Rica",
+	"countryName:comment": "",
+	"regionNames": "Costa Rican Provinces",
+	"regionNames:comment": ""
 }

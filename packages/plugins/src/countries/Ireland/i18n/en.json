@@ -1,4 +1,6 @@
 {
-  "countryName": "Ireland",
-  "regionNames": "Irish provinces."
+	"countryName": "Ireland",
+	"countryName:comment": "",
+	"regionNames": "Irish provinces.",
+	"regionNames:comment": ""
 }

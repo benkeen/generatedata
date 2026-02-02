@@ -1,5 +1,8 @@
 {
-  "NAME": "Company",
-  "DESC": "Generates a random company name, comprised of a lorem ipsum word and an appropriate suffix, like Dolor Inc., or Convallis Limited.",
-  "DEFAULT_TITLE": "company"
+	"NAME": "Company",
+	"NAME:comment": "",
+	"DESC": "Generates a random company name, comprised of a lorem ipsum word and an appropriate suffix, like Dolor Inc., or Convallis Limited.",
+	"DESC:comment": "",
+	"DEFAULT_TITLE": "company",
+	"DEFAULT_TITLE:comment": ""
 }

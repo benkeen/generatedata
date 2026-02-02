@@ -1,4 +1,6 @@
 {
-  "countryName": "Peru",
-  "regionNames": "Peruvian regions"
+	"countryName": "Peru",
+	"countryName:comment": "",
+	"regionNames": "Peruvian regions",
+	"regionNames:comment": ""
 }

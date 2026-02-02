@@ -1,4 +1,6 @@
 {
-  "countryName": "New Zealand",
-  "regionNames": "NZ Regions"
+	"countryName": "New Zealand",
+	"countryName:comment": "",
+	"regionNames": "NZ Regions",
+	"regionNames:comment": ""
 }

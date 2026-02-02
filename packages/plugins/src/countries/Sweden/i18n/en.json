@@ -1,4 +1,6 @@
 {
-  "countryName": "Sweden",
-  "regionNames": "Swedish counties"
+	"countryName": "Sweden",
+	"countryName:comment": "",
+	"regionNames": "Swedish counties",
+	"regionNames:comment": ""
 }

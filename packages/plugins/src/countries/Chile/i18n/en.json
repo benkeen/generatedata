@@ -1,4 +1,6 @@
 {
-  "countryName": "Chile",
-  "regionNames": "Chilean Regions"
+	"countryName": "Chile",
+	"countryName:comment": "",
+	"regionNames": "Chilean Regions",
+	"regionNames:comment": ""
 }

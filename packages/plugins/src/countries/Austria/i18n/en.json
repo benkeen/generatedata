@@ -1,4 +1,6 @@
 {
-    "countryName": "Austria",
-    "regionNames": "Austrian states"
+	"countryName": "Austria",
+	"countryName:comment": "",
+	"regionNames": "Austrian states",
+	"regionNames:comment": ""
 }

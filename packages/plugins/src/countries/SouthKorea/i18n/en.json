@@ -1,4 +1,6 @@
 {
-  "countryName": "South Korea",
-  "regionNames": "South Korea provinces"
+	"countryName": "South Korea",
+	"countryName:comment": "",
+	"regionNames": "South Korea provinces",
+	"regionNames:comment": ""
 }

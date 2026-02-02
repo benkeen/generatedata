@@ -1,4 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "C#",
-  "COL_TITLE": "Property Name"
+  "EXPORT_TYPE_NAME:comment": "",
+  "COL_TITLE": "Property Name",
+  "COL_TITLE:comment": ""
 }

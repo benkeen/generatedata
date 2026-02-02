@@ -1,4 +1,6 @@
 {
-  "countryName": "Indonesia",
-  "regionNames": "Indonesian provinces"
+	"countryName": "Indonesia",
+	"countryName:comment": "",
+	"regionNames": "Indonesian provinces",
+	"regionNames:comment": ""
 }

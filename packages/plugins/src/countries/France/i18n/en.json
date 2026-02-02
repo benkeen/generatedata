@@ -1,4 +1,6 @@
 {
-  "countryName": "France",
-  "regionNames": "France regions"
+	"countryName": "France",
+	"countryName:comment": "",
+	"regionNames": "France regions",
+	"regionNames:comment": ""
 }

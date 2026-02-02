@@ -1,10 +1,18 @@
 {
-  "EXPORT_TYPE_NAME": "Javascript",
-  "COL_TITLE": "Property Name",
-  "row_label": "Var/Prop Name",
-  "language": "Language",
-  "variable": "Variable",
-  "format": "Format",
-  "es6Format": "ES6 export",
-  "commonJsFormat": "CommonJS export"
+	"EXPORT_TYPE_NAME": "Javascript",
+	"EXPORT_TYPE_NAME:comment": "",
+	"COL_TITLE": "Property Name",
+	"COL_TITLE:comment": "",
+	"row_label": "Var/Prop Name",
+	"row_label:comment": "",
+	"language": "Language",
+	"language:comment": "",
+	"variable": "Variable",
+	"variable:comment": "",
+	"format": "Format",
+	"format:comment": "",
+	"es6Format": "ES6 export",
+	"es6Format:comment": "",
+	"commonJsFormat": "CommonJS export",
+	"commonJsFormat:comment": ""
 }

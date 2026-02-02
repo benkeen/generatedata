@@ -1,4 +1,6 @@
 {
-  "countryName": "South Africa",
-  "regionNames": "South Africa provinces"
+	"countryName": "South Africa",
+	"countryName:comment": "",
+	"regionNames": "South Africa provinces",
+	"regionNames:comment": ""
 }

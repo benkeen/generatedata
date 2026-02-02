@@ -1,4 +1,6 @@
 {
-  "countryName": "Ukraine",
-  "regionNames": "Ukrainian Oblasts"
+	"countryName": "Ukraine",
+	"countryName:comment": "",
+	"regionNames": "Ukrainian Oblasts",
+	"regionNames:comment": ""
 }

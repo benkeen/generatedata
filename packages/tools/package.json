@@ -3,6 +3,7 @@
   "description": "General tooling and binaries for generatedata packages",
   "version": "1.0.0",
   "bin": {
+    "sort-i18n-files": "./bin/sort-i18n-files.js",
     "validate-i18n-files": "./bin/validation-i18n-files.js"
   },
   "scripts": {

@@ -1,4 +1,6 @@
 {
-  "countryName": "Nigeria",
-  "regionNames": "Nigerian States"
+	"countryName": "Nigeria",
+	"countryName:comment": "",
+	"regionNames": "Nigerian States",
+	"regionNames:comment": ""
 }

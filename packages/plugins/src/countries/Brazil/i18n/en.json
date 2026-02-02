@@ -1,4 +1,6 @@
 {
-    "countryName": "Brazil",
-    "regionNames": "Brazilian States"
+	"countryName": "Brazil",
+	"countryName:comment": "",
+	"regionNames": "Brazilian States",
+	"regionNames:comment": ""
 }

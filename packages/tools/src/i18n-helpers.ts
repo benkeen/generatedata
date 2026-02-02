@@ -22,6 +22,65 @@ export const sortI18nFile = (filePath: string) => {
   fs.writeFileSync(filePath, JSON.stringify(sortedObj, null, '\t'));
 };
 
+export type SortI18nFileSetResult = {
+  folderPath: string;
+  sortedFiles: string[];
+  errors: { fileName: string; error: string }[];
+};
+
+/**
+ * Sorts all i18n JSON files in a folder alphabetically by key.
+ */
+export const sortI18nFileSet = (folderPath: string): SortI18nFileSetResult => {
+  const fileNames = fs.readdirSync(folderPath).filter((fileName) => fileName.endsWith('.json'));
+  const sortedFiles: string[] = [];
+  const errors: { fileName: string; error: string }[] = [];
+
+  for (const fileName of fileNames) {
+    const filePath = path.join(folderPath, fileName);
+    try {
+      sortI18nFile(filePath);
+      sortedFiles.push(fileName);
+    } catch (e) {
+      errors.push({
+        fileName,
+        error: e instanceof Error ? e.message : String(e)
+      });
+    }
+  }
+
+  return {
+    folderPath,
+    sortedFiles,
+    errors
+  };
+};
+
+export const formatSortResults = (result: SortI18nFileSetResult): string => {
+  const lines: string[] = [];
+
+  if (result.errors.length > 0) {
+    lines.push(``);
+    lines.push(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+    lines.push(`  i18n Sort Errors: ${result.folderPath}`);
+    lines.push(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+    lines.push(``);
+    lines.push(`  ❌ Errors (${result.errors.length} file${result.errors.length > 1 ? 's' : ''}):`);
+    lines.push(`  ─────────────────────────────────────`);
+    for (const error of result.errors) {
+      lines.push(`    • ${error.fileName}`);
+      lines.push(`      ${error.error}`);
+    }
+    lines.push(``);
+  }
+
+  if (result.sortedFiles.length > 0) {
+    lines.push(`✓ Sorted ${result.sortedFiles.length} file${result.sortedFiles.length > 1 ? 's' : ''} in ${result.folderPath}`);
+  }
+
+  return lines.join('\n');
+};
+
 export const removeKey = (key: string, filePath: string) => {
   const fileContent = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
   const updatedFileContent = { ...fileContent };
@@ -68,14 +127,19 @@ export const validateI18nFileSet = (folderPath: string, options?: { checkComment
     const keys = Object.keys(data);
     fileKeyMaps[fileName] = new Set(keys);
     fileDataMaps[fileName] = data;
-    keys.forEach((key) => allKeysSet.add(key));
+
+    // Only add non-comment keys to the allKeysSet (since only en.json has comments)
+    keys.filter((key) => !key.endsWith(':comment')).forEach((key) => allKeysSet.add(key));
   }
 
-  const allKeys = Array.from(allKeysSet).sort();
+  // Content keys only (no :comment keys) - this is what all locale files should have
+  const allContentKeys = Array.from(allKeysSet).sort();
 
   // Second pass: check for missing keys in each file
   for (const [fileName, keySet] of Object.entries(fileKeyMaps)) {
-    const missingKeys = allKeys.filter((key) => !keySet.has(key));
+    // For non-English files, only check content keys (not :comment keys)
+    // For en.json, also only check content keys here (comments are checked separately)
+    const missingKeys = allContentKeys.filter((key) => !keySet.has(key));
     if (missingKeys.length > 0) {
       errors.push({
         type: 'missing-keys',

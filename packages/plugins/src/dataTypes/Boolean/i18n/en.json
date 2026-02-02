@@ -1,6 +1,10 @@
 {
-  "NAME": "Boolean",
-  "DESC": "Generates a boolean value in the format you need.",
-  "DEFAULT_TITLE": "boolean",
-  "helpIntro": "The Examples dropdown contains several example boolean values (all English or universal). To create other values, just type text into the Options field and click &lt;enter&gt;."
+	"NAME": "Boolean",
+	"NAME:comment": "",
+	"DESC": "Generates a boolean value in the format you need.",
+	"DESC:comment": "",
+	"DEFAULT_TITLE": "boolean",
+	"DEFAULT_TITLE:comment": "",
+	"helpIntro": "The Examples dropdown contains several example boolean values (all English or universal). To create other values, just type text into the Options field and click &lt;enter&gt;.",
+	"helpIntro:comment": ""
 }

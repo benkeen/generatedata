@@ -1,8 +1,14 @@
 {
-  "NAME": "Street Address",
-  "DESC": "Generates random street addresses.",
-  "DEFAULT_TITLE": "address",
-  "apNum": "Ap #",
-  "poBox": "P.O. Box",
-  "streetTypes": "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue"
+	"NAME": "Street Address",
+	"NAME:comment": "",
+	"DESC": "Generates random street addresses.",
+	"DESC:comment": "",
+	"DEFAULT_TITLE": "address",
+	"DEFAULT_TITLE:comment": "",
+	"apNum": "Ap #",
+	"apNum:comment": "",
+	"poBox": "P.O. Box",
+	"poBox:comment": "",
+	"streetTypes": "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue",
+	"streetTypes:comment": ""
 }

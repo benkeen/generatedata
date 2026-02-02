@@ -1,7 +1,12 @@
 {
-  "EXPORT_TYPE_NAME": "JSON",
-  "COL_TITLE": "Property Name",
-  "complex": "Complex",
-  "simple": "Simple",
-  "dataStructureFormat": "Data structure format"
+	"EXPORT_TYPE_NAME": "JSON",
+	"EXPORT_TYPE_NAME:comment": "",
+	"COL_TITLE": "Property Name",
+	"COL_TITLE:comment": "",
+	"complex": "Complex",
+	"complex:comment": "",
+	"simple": "Simple",
+	"simple:comment": "",
+	"dataStructureFormat": "Data structure format",
+	"dataStructureFormat:comment": ""
 }

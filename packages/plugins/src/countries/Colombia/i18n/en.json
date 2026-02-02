@@ -1,4 +1,6 @@
 {
-  "countryName": "Colombia",
-  "regionNames": "Col. Departments"
+	"countryName": "Colombia",
+	"countryName:comment": "",
+	"regionNames": "Col. Departments",
+	"regionNames:comment": ""
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npm run validate ",
     "validate": "validate-i18n-files --folder ./locales",
+    "sortI18nFiles": "sort-i18n-files --folder ./locales",
     "purge": "npx rimraf .turbo"
   },
   "exports": {

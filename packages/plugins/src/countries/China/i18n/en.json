@@ -1,10 +1,18 @@
 {
-  "countryName": "China",
-  "regionNames": "China regions",
-  "regionNorthChina": "Huáběi",
-  "regionNortheastChina": "Dōngběi",
-  "regionEastChina": "Huádōng",
-  "regionSouthCentralChina": "Zhōngnán",
-  "regionSouthwestChina": "Xīnán",
-  "regionNorthwestChina": "Xīběi"
+	"countryName": "China",
+	"countryName:comment": "",
+	"regionNames": "China regions",
+	"regionNames:comment": "",
+	"regionNorthChina": "Huáběi",
+	"regionNorthChina:comment": "",
+	"regionNortheastChina": "Dōngběi",
+	"regionNortheastChina:comment": "",
+	"regionEastChina": "Huádōng",
+	"regionEastChina:comment": "",
+	"regionSouthCentralChina": "Zhōngnán",
+	"regionSouthCentralChina:comment": "",
+	"regionSouthwestChina": "Xīnán",
+	"regionSouthwestChina:comment": "",
+	"regionNorthwestChina": "Xīběi",
+	"regionNorthwestChina:comment": ""
 }

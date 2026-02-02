@@ -1,4 +1,6 @@
 {
-  "countryName": "India",
-  "regionNames": "Indian States & Union Territories"
+	"countryName": "India",
+	"countryName:comment": "",
+	"regionNames": "Indian States & Union Territories",
+	"regionNames:comment": ""
 }

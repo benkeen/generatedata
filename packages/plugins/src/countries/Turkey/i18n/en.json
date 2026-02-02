@@ -1,4 +1,6 @@
 {
-  "countryName": "Turkey",
-  "regionNames": "Turkey prov."
+	"countryName": "Turkey",
+	"countryName:comment": "",
+	"regionNames": "Turkey prov.",
+	"regionNames:comment": ""
 }

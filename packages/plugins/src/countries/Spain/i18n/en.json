@@ -1,4 +1,6 @@
 {
-  "countryName": "Spain",
-  "regionNames": "Spanish Autonomies"
+	"countryName": "Spain",
+	"countryName:comment": "",
+	"regionNames": "Spanish Autonomies",
+	"regionNames:comment": ""
 }

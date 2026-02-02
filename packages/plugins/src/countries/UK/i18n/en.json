@@ -1,4 +1,6 @@
 {
-  "countryName": "United Kingdom",
-  "regionNames": "UK Counties"
+	"countryName": "United Kingdom",
+	"countryName:comment": "",
+	"regionNames": "UK Counties",
+	"regionNames:comment": ""
 }

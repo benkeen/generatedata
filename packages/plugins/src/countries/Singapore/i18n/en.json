@@ -1,4 +1,6 @@
 {
-  "countryName": "Singapore",
-  "regionNames": "Singapore regions"
+	"countryName": "Singapore",
+	"countryName:comment": "",
+	"regionNames": "Singapore regions",
+	"regionNames:comment": ""
 }

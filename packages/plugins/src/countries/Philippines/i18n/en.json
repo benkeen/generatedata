@@ -1,4 +1,6 @@
 {
-  "countryName": "Philippines",
-  "regionNames": "Philippine Regions"
+	"countryName": "Philippines",
+	"countryName:comment": "",
+	"regionNames": "Philippine Regions",
+	"regionNames:comment": ""
 }

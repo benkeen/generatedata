@@ -1,4 +1,6 @@
 {
-  "countryName": "Norway",
-  "regionNames": "Norwegian counties"
+	"countryName": "Norway",
+	"countryName:comment": "",
+	"regionNames": "Norwegian counties",
+	"regionNames:comment": ""
 }

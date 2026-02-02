@@ -1,4 +1,6 @@
 {
-    "countryName": "Belgium",
-    "regionNames": "Belgian Prov."
+	"countryName": "Belgium",
+	"countryName:comment": "",
+	"regionNames": "Belgian Prov.",
+	"regionNames:comment": ""
 }

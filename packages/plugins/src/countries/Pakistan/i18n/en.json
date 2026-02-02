@@ -1,4 +1,6 @@
 {
-  "countryName": "Pakistan",
-  "regionNames": "Pakistan States"
+	"countryName": "Pakistan",
+	"countryName:comment": "",
+	"regionNames": "Pakistan States",
+	"regionNames:comment": ""
 }

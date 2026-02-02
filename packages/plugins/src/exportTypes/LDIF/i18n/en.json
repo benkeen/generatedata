@@ -1,4 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "LDIF",
-  "COL_TITLE": "LDAP Attribute"
+	"EXPORT_TYPE_NAME": "LDIF",
+	"EXPORT_TYPE_NAME:comment": "",
+	"COL_TITLE": "LDAP Attribute",
+	"COL_TITLE:comment": ""
 }

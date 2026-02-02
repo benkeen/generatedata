@@ -1,4 +1,6 @@
 {
-    "countryName": "Vietnam",
-    "regionNames": "Vietnam regions"
+	"countryName": "Vietnam",
+	"countryName:comment": "",
+	"regionNames": "Vietnam regions",
+	"regionNames:comment": ""
 }

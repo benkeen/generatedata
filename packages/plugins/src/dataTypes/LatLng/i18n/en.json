@@ -1,7 +1,12 @@
 {
-  "NAME": "Latitude / Longitude",
-  "DESC": "This data type generates a random latitude and/or longitude. If both are selected, it displays both separated by a comma.",
-  "DEFAULT_TITLE": "latlng",
-  "latitude": "Latitude",
-  "longitude": "Longitude"
+	"NAME": "Latitude / Longitude",
+	"NAME:comment": "",
+	"DESC": "This data type generates a random latitude and/or longitude. If both are selected, it displays both separated by a comma.",
+	"DESC:comment": "",
+	"DEFAULT_TITLE": "latlng",
+	"DEFAULT_TITLE:comment": "",
+	"latitude": "Latitude",
+	"latitude:comment": "",
+	"longitude": "Longitude",
+	"longitude:comment": ""
 }

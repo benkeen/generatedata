@@ -1,4 +1,6 @@
 {
-  "countryName": "Italy",
-  "regionNames": "Italian regions."
+	"countryName": "Italy",
+	"countryName:comment": "",
+	"regionNames": "Italian regions.",
+	"regionNames:comment": ""
 }

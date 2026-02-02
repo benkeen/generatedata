@@ -1,4 +1,6 @@
 {
-  "countryName": "Russian Federation",
-  "regionNames": "Federal Subjects"
+	"countryName": "Russian Federation",
+	"countryName:comment": "",
+	"regionNames": "Federal Subjects",
+	"regionNames:comment": ""
 }

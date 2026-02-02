@@ -1,6 +1,10 @@
 {
 	"EXPORT_TYPE_NAME": "CSV",
+	"EXPORT_TYPE_NAME:comment": "",
 	"delimiterChars": "Delimiter char(s)",
+	"delimiterChars:comment": "",
 	"validationNoDelimiter": "Please enter a delimiter character for the CSV export type.",
-	"eolChar": "End of line character"
+	"validationNoDelimiter:comment": "",
+	"eolChar": "End of line character",
+	"eolChar:comment": ""
 }
