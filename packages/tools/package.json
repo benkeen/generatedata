@@ -7,9 +7,14 @@
     "validate-i18n-files": "./bin/validation-i18n-files.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest --config=./config/jest.config.js"
   },
   "devDependencies": {
+    "@jest/globals": "catalog:",
+    "@types/jest": "catalog:",
+    "jest": "catalog:",
+    "ts-jest": "catalog:",
     "typescript": "catalog:"
   }
 }

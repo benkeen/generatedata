@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npm run validate ",
+    "build": "npm run validate",
     "validate": "validate-i18n-files --folder ./locales",
     "sortI18nFiles": "sort-i18n-files --folder ./locales",
     "purge": "npx rimraf .turbo"
