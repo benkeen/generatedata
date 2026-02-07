@@ -1,8 +1,8 @@
 {
-  "NAME": "Standardabweichung",
-  "DESC": "Erzeugt ZufallsnormalverteiltenWerten mit einem kundengerechten Mittelwert und Standardabweichung .",
-  "DEFAULT_TITLE": "feld",
-  "mean": "Bedeuten",
-  "precision": "Präzision",
-  "standardDeviation": "Standardabweichung"
+	"DEFAULT_TITLE": "feld",
+	"DESC": "Erzeugt ZufallsnormalverteiltenWerten mit einem kundengerechten Mittelwert und Standardabweichung .",
+	"NAME": "Standardabweichung",
+	"mean": "Bedeuten",
+	"precision": "Präzision",
+	"standardDeviation": "Standardabweichung"
 }

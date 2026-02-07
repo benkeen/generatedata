@@ -1,8 +1,8 @@
 {
-  "NAME": "正态分布",
-  "DESC": "生成具有可自定义平均值和标准偏差的随机正态分布值。",
-  "DEFAULT_TITLE": "normaldist",
-  "mean": "意思",
-  "standardDeviation": "标准开发",
-  "precision": "精确"
+	"DEFAULT_TITLE": "normaldist",
+	"DESC": "生成具有可自定义平均值和标准偏差的随机正态分布值。",
+	"NAME": "正态分布",
+	"mean": "意思",
+	"precision": "精确",
+	"standardDeviation": "标准开发"
 }

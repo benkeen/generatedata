@@ -1,6 +1,6 @@
 {
 	"EXPORT_TYPE_NAME": "CSV",
 	"delimiterChars": "Символ(ы) разделителя",
-	"validationNoDelimiter": "Введите символ-разделитель для типа экспорта CSV.",
-	"eolChar": "Символ конца строки"
+	"eolChar": "Символ конца строки",
+	"validationNoDelimiter": "Введите символ-разделитель для типа экспорта CSV."
 }

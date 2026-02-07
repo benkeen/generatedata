@@ -1,7 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "Typescript",
-  "COL_TITLE": "Nom de la propriété",
-  "typeName": "Nom du type",
-  "exportedVarName": "Nom de la variable exportée"
+	"COL_TITLE": "Nom de la propriété",
+	"EXPORT_TYPE_NAME": "Typescript",
+	"exportedVarName": "Nom de la variable exportée",
+	"typeName": "Nom du type"
 }
-

@@ -1,13 +1,13 @@
 {
-  "NAME": "Французский SIRET",
-  "DESC": "Этот тип данных генерирует случайный французский бизнес-идентификационный номер SIRET/SIREN.",
-  "DEFAULT_TITLE": "siret",
-  "incompleteFields": "Тип данных SIRET должен иметь формат, введенный в текстовом поле «Параметры». Исправьте следующие строки:",
-  "exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
-  "exampleSIREN": "508102811 (SIREN)",
-  "typeSIRET": "Случайное соединение SIRET SIREN и NIC (508102811-00009).",
-  "typeSIREN": "Случайная СИРЕНА (508102811).",
-  "SIRET": "SIRET:",
-  "SIREN": "SIREN:",
-  "moreInfo": "Больше информации:"
+	"DEFAULT_TITLE": "siret",
+	"DESC": "Этот тип данных генерирует случайный французский бизнес-идентификационный номер SIRET/SIREN.",
+	"NAME": "Французский SIRET",
+	"SIREN": "SIREN:",
+	"SIRET": "SIRET:",
+	"exampleSIREN": "508102811 (SIREN)",
+	"exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
+	"incompleteFields": "Тип данных SIRET должен иметь формат, введенный в текстовом поле «Параметры». Исправьте следующие строки:",
+	"moreInfo": "Больше информации:",
+	"typeSIREN": "Случайная СИРЕНА (508102811).",
+	"typeSIRET": "Случайное соединение SIRET SIREN и NIC (508102811-00009)."
 }

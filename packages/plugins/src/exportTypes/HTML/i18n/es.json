@@ -1,6 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Título de la columna",
-  "dataFormat": "Formato de datos",
-  "batchVars": "Indica si el lote actual de resultados que será generado será el primero o el último. Esto sólo se usa para datos generado en la misma página, lo que genera los resultados por lotes. En el resto de situaciones, ambos son verdaderos."
+	"COL_TITLE": "Título de la columna",
+	"EXPORT_TYPE_NAME": "HTML",
+	"batchVars": "Indica si el lote actual de resultados que será generado será el primero o el último. Esto sólo se usa para datos generado en la misma página, lo que genera los resultados por lotes. En el resto de situaciones, ambos son verdaderos.",
+	"dataFormat": "Formato de datos"
 }

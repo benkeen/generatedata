@@ -1,8 +1,8 @@
 {
-  "NAME": "தெரு முகவரி",
-  "DESC": "சீரற்ற தெரு முகவரிகளை உருவாக்குகிறது.",
-  "DEFAULT_TITLE": "முகவரி",
-  "apNum": "Ap #",
-  "poBox": "பி.ஓ. பெட்டி",
-  "streetTypes": "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue"
+	"DEFAULT_TITLE": "முகவரி",
+	"DESC": "சீரற்ற தெரு முகவரிகளை உருவாக்குகிறது.",
+	"NAME": "தெரு முகவரி",
+	"apNum": "Ap #",
+	"poBox": "பி.ஓ. பெட்டி",
+	"streetTypes": "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue"
 }

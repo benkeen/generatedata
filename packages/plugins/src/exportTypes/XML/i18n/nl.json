@@ -1,9 +1,9 @@
 {
-  "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Knooppuntnaam",
-  "rowLabel": "Knooppuntnaam",
-  "rowLabelPlural": "Node Namen",
-  "invalidNodeName": "Voer een geldige XML-knooppuntnaam in.",
-  "rootNodeName": "Naam van hoofdknooppunt",
-  "recordNodeName": "Knooppuntnaam opnemen"
+	"COL_TITLE": "Knooppuntnaam",
+	"EXPORT_TYPE_NAME": "XML",
+	"invalidNodeName": "Voer een geldige XML-knooppuntnaam in.",
+	"recordNodeName": "Knooppuntnaam opnemen",
+	"rootNodeName": "Naam van hoofdknooppunt",
+	"rowLabel": "Knooppuntnaam",
+	"rowLabelPlural": "Node Namen"
 }

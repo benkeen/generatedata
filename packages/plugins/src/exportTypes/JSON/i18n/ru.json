@@ -1,7 +1,7 @@
 {
-  "EXPORT_TYPE_NAME": "JSON",
-  "COL_TITLE": "Имя свойства",
-  "complex": "Сложный",
-  "simple": "Простой",
-  "dataStructureFormat": "Формат структуры данных"
+	"COL_TITLE": "Имя свойства",
+	"EXPORT_TYPE_NAME": "JSON",
+	"complex": "Сложный",
+	"dataStructureFormat": "Формат структуры данных",
+	"simple": "Простой"
 }

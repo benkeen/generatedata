@@ -1,15 +1,15 @@
 {
-  "NAME": "Téléphone / Fax",
-  "DESC": "Génère un numéro de téléphone / fax aléatoire dans une variété de formats pour les différents pays / régions .",
-  "DEFAULT_TITLE": "telephone",
-  "australia": "Australie",
-  "differentFormats": "Différents formats",
-  "northAmerica": "Amérique du Nord",
-  "france": "France",
-  "germany": "Allemagne",
-  "helpText1": "Quel que soit le texte que vous saisissez dans le champ de texte options, il sera utilisé pour générer des numéros de téléphone. Les <b>X</b> majuscules seront converties en un nombre aléatoire compris entre 1 et 9 et les <b>x</b> minuscules seront converties en un nombre aléatoire entre 0 et 9.",
-  "helpText2": "Sélectionnez l'une des valeurs de l'exemple pour avoir une idée du fonctionnement. Rappelez-vous: rien d'autre que les caractères <b>X</b> et <b>x</b> ne sera converti.",
-  "incompleteFields": "Le type de téléphone / fax de données doit avoir un format précisé dans le champ de texte Options. Corrigez les lignes suivantes:",
-  "japan": "Japon",
-  "uk": "Royaume-Uni"
+	"DEFAULT_TITLE": "telephone",
+	"DESC": "Génère un numéro de téléphone / fax aléatoire dans une variété de formats pour les différents pays / régions .",
+	"NAME": "Téléphone / Fax",
+	"australia": "Australie",
+	"differentFormats": "Différents formats",
+	"france": "France",
+	"germany": "Allemagne",
+	"helpText1": "Quel que soit le texte que vous saisissez dans le champ de texte options, il sera utilisé pour générer des numéros de téléphone. Les <b>X</b> majuscules seront converties en un nombre aléatoire compris entre 1 et 9 et les <b>x</b> minuscules seront converties en un nombre aléatoire entre 0 et 9.",
+	"helpText2": "Sélectionnez l'une des valeurs de l'exemple pour avoir une idée du fonctionnement. Rappelez-vous: rien d'autre que les caractères <b>X</b> et <b>x</b> ne sera converti.",
+	"incompleteFields": "Le type de téléphone / fax de données doit avoir un format précisé dans le champ de texte Options. Corrigez les lignes suivantes:",
+	"japan": "Japon",
+	"northAmerica": "Amérique du Nord",
+	"uk": "Royaume-Uni"
 }

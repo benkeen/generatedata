@@ -1,7 +1,7 @@
 {
-  "EXPORT_TYPE_NAME": "JSON",
-  "COL_TITLE": "اسم الخاصية",
-  "complex": "مركب",
-  "simple": "بسيط",
-  "dataStructureFormat": "تنسيق هيكل البيانات"
+	"COL_TITLE": "اسم الخاصية",
+	"EXPORT_TYPE_NAME": "JSON",
+	"complex": "مركب",
+	"dataStructureFormat": "تنسيق هيكل البيانات",
+	"simple": "بسيط"
 }

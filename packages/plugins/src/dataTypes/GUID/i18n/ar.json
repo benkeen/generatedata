@@ -1,5 +1,5 @@
 {
-  "NAME": "GUID",
-  "DESC": "يولد GUID فريدًا عشوائيًا (معرف فريد عمومي) للنموذج: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX ، حيث X هي أي رقم سداسي عشري).",
-  "DEFAULT_TITLE": "guid"
+	"DEFAULT_TITLE": "guid",
+	"DESC": "يولد GUID فريدًا عشوائيًا (معرف فريد عمومي) للنموذج: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX ، حيث X هي أي رقم سداسي عشري).",
+	"NAME": "GUID"
 }

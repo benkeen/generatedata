@@ -1,9 +1,9 @@
 {
-  "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Knotenname",
-  "rowLabel": "Knotenname",
-  "rowLabelPlural": "Knotennamen",
-  "invalidNodeName": "Bitte geben Sie einen gültigen XML-Knotennamen ein.",
-  "rootNodeName": "Stammknotenname",
-  "recordNodeName": "Knotennamen aufzeichnen"
+	"COL_TITLE": "Knotenname",
+	"EXPORT_TYPE_NAME": "XML",
+	"invalidNodeName": "Bitte geben Sie einen gültigen XML-Knotennamen ein.",
+	"recordNodeName": "Knotennamen aufzeichnen",
+	"rootNodeName": "Stammknotenname",
+	"rowLabel": "Knotenname",
+	"rowLabelPlural": "Knotennamen"
 }

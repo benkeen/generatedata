@@ -1,12 +1,12 @@
 {
-  "NAME": "Track2",
-  "DESC": "Track2是用于在磁卡条带上存储信息的数据格式。 它包含持卡人的帐号，加密的PIN和其他任意数据。 信用卡可以是任何类型（Visa，Mastercard等）。",
-  "DEFAULT_TITLE": "track2",
-  "dialogTitle": "Track2数据源",
-  "dialogDesc": "这使您可以将PAN行作为目标，以创建更逼真的Track值。 默认情况下，它将为PAN生成任意字符串，因此提供实际的PAN行可确保有效且一致的Track2值。",
-  "panSource": "PAN源",
-  "randomString": "随机字符串",
-  "panRow": "PAN行",
-  "row": "排",
-  "customizeSource": "自订来源"
+	"DEFAULT_TITLE": "track2",
+	"DESC": "Track2是用于在磁卡条带上存储信息的数据格式。 它包含持卡人的帐号，加密的PIN和其他任意数据。 信用卡可以是任何类型（Visa，Mastercard等）。",
+	"NAME": "Track2",
+	"customizeSource": "自订来源",
+	"dialogDesc": "这使您可以将PAN行作为目标，以创建更逼真的Track值。 默认情况下，它将为PAN生成任意字符串，因此提供实际的PAN行可确保有效且一致的Track2值。",
+	"dialogTitle": "Track2数据源",
+	"panRow": "PAN行",
+	"panSource": "PAN源",
+	"randomString": "随机字符串",
+	"row": "排"
 }

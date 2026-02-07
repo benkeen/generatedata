@@ -1,6 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "Typescript",
-  "COL_TITLE": "संपत्ति का नाम",
-  "typeName": "नाम लिखो",
-  "exportedVarName": "निर्यातित चर नाम"
+	"COL_TITLE": "संपत्ति का नाम",
+	"EXPORT_TYPE_NAME": "Typescript",
+	"exportedVarName": "निर्यातित चर नाम",
+	"typeName": "नाम लिखो"
 }

@@ -1,8 +1,8 @@
 {
-  "NAME": "Distribution Normale",
-  "DESC": "Génère des valeurs aléatoires normalement distribuées avec un écart moyen et l'écart personnalisable .",
-  "DEFAULT_TITLE": "champ",
-  "mean": "Moyenne",
-  "standardDeviation": "Écart type",
-  "precision": "Précision"
+	"DEFAULT_TITLE": "champ",
+	"DESC": "Génère des valeurs aléatoires normalement distribuées avec un écart moyen et l'écart personnalisable .",
+	"NAME": "Distribution Normale",
+	"mean": "Moyenne",
+	"precision": "Précision",
+	"standardDeviation": "Écart type"
 }

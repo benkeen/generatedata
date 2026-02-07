@@ -1,4 +1,4 @@
 {
-  "EXPORT_TYPE_NAME": "C#",
-  "COL_TITLE": "物业名称"
+	"COL_TITLE": "物业名称",
+	"EXPORT_TYPE_NAME": "C#"
 }

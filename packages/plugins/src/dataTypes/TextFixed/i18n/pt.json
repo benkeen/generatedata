@@ -1,15 +1,15 @@
 {
-  "NAME": "Número Fixo de Palavras",
-  "DESC": "Esta opção gera um número fixo de palavras aleatórias, extraídas do texto latino lorem ipsum.",
-  "DEFAULT_TITLE": "texto",
-  "TextFixed_generate": "Gerar",
-  "TextFixed_help": "Este tipo de dados gera uma sequência aleatória de palavras. Você tem a opção de usar o texto fictício lorem ipsum aleatório padrão ou fornecer um texto próprio.",
-  "TextFixed_words": "palavras",
-  "selectTextSource": "Selecione a fonte do texto",
-  "lipsumDesc": "Lorem ipsum é um texto fictício padrão baseado em latim que é usado desde 1500.",
-  "customTextDesc": "Este campo permite inserir qualquer texto que você gostaria de usar como fonte de dados.",
-  "source": "Fonte",
-  "explanation": "Esta seção permite personalizar o texto usado como fonte de dados.",
-  "enterCustomText": "Insira algum texto personalizado aqui. Certifique-se de inserir uma boa quantidade de palavras.",
-  "custom": "Personalizada"
+	"DEFAULT_TITLE": "texto",
+	"DESC": "Esta opção gera um número fixo de palavras aleatórias, extraídas do texto latino lorem ipsum.",
+	"NAME": "Número Fixo de Palavras",
+	"TextFixed_generate": "Gerar",
+	"TextFixed_help": "Este tipo de dados gera uma sequência aleatória de palavras. Você tem a opção de usar o texto fictício lorem ipsum aleatório padrão ou fornecer um texto próprio.",
+	"TextFixed_words": "palavras",
+	"custom": "Personalizada",
+	"customTextDesc": "Este campo permite inserir qualquer texto que você gostaria de usar como fonte de dados.",
+	"enterCustomText": "Insira algum texto personalizado aqui. Certifique-se de inserir uma boa quantidade de palavras.",
+	"explanation": "Esta seção permite personalizar o texto usado como fonte de dados.",
+	"lipsumDesc": "Lorem ipsum é um texto fictício padrão baseado em latim que é usado desde 1500.",
+	"selectTextSource": "Selecione a fonte do texto",
+	"source": "Fonte"
 }

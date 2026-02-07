@@ -1,7 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "CSV",
-  "delimiterChars": "Scheidingsteken",
-  "eolChar": "Einde van de lijn karakter",
-  "validationNoDelimiter": "Geef een scheidingsteken voor het CSV export type."
+	"EXPORT_TYPE_NAME": "CSV",
+	"delimiterChars": "Scheidingsteken",
+	"eolChar": "Einde van de lijn karakter",
+	"validationNoDelimiter": "Geef een scheidingsteken voor het CSV export type."
 }
-

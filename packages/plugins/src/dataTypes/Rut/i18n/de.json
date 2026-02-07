@@ -1,7 +1,7 @@
 {
-  "NAME": "Chilenische RUT-Nummer",
-  "DESC": "Generiert eine chilenische nationale RUT / RUN-Identifikationsnummer.",
-  "DEFAULT_TITLE": "rut",
-  "onlyDigit": "Nur Bestätigungsziffer",
-  "digitUppercase": "Großbuchstabe"
+	"DEFAULT_TITLE": "rut",
+	"DESC": "Generiert eine chilenische nationale RUT / RUN-Identifikationsnummer.",
+	"NAME": "Chilenische RUT-Nummer",
+	"digitUppercase": "Großbuchstabe",
+	"onlyDigit": "Nur Bestätigungsziffer"
 }

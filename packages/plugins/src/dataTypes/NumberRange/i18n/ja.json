@@ -1,9 +1,9 @@
 {
-  "NAME": "番号の範囲",
-  "DESC": "これにより、指定した値の間にランダムに数値が生成されます。 どちらのフィールドでも、負の数を入力できます。",
-  "DEFAULT_TITLE": "番号の範囲",
-  "and": "そして",
-  "between": "の間に",
-  "enterNumericValue": "数値を入力してください",
-  "minValueGreaterThanMax": "最大値を最小値より大きくしてください"
+	"DEFAULT_TITLE": "番号の範囲",
+	"DESC": "これにより、指定した値の間にランダムに数値が生成されます。 どちらのフィールドでも、負の数を入力できます。",
+	"NAME": "番号の範囲",
+	"and": "そして",
+	"between": "の間に",
+	"enterNumericValue": "数値を入力してください",
+	"minValueGreaterThanMax": "最大値を最小値より大きくしてください"
 }

@@ -1,7 +1,7 @@
 {
-  "NAME": "智利RUT号码",
-  "DESC": "生成RUT / RUN智利国家标识号。",
-  "DEFAULT_TITLE": "rut",
-  "onlyDigit": "仅验证码",
-  "digitUppercase": "大写数字"
+	"DEFAULT_TITLE": "rut",
+	"DESC": "生成RUT / RUN智利国家标识号。",
+	"NAME": "智利RUT号码",
+	"digitUppercase": "大写数字",
+	"onlyDigit": "仅验证码"
 }

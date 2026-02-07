@@ -1,18 +1,18 @@
 {
-	"NAME": "Bitcoin Address",
-	"NAME:comment": "",
-	"DESC": "This generates a random Bitcoin address in any of the three formats: P2PKH/Legacy, P2SH/Compatibility and P2WPKH/Bech32.",
-	"DESC:comment": "",
 	"DEFAULT_TITLE": "bitcoin",
 	"DEFAULT_TITLE:comment": "",
-	"weight": "Weight",
-	"weight:comment": "",
-	"weightDesc": "The weight field determines how likely the format will be generated relative to the other selected formats. So if you select 2 formats and enter weights of 9 and 1, the first format will be 9 times more likely to appear than the second.",
-	"weightDesc:comment": "",
+	"DESC": "This generates a random Bitcoin address in any of the three formats: P2PKH/Legacy, P2SH/Compatibility and P2WPKH/Bech32.",
+	"DESC:comment": "",
+	"NAME": "Bitcoin Address",
+	"NAME:comment": "",
+	"bitcoinSettings": "Bitcoin Settings",
+	"bitcoinSettings:comment": "",
 	"format": "Format",
 	"format:comment": "",
 	"formats": "Formats",
 	"formats:comment": "",
-	"bitcoinSettings": "Bitcoin Settings",
-	"bitcoinSettings:comment": ""
+	"weight": "Weight",
+	"weight:comment": "",
+	"weightDesc": "The weight field determines how likely the format will be generated relative to the other selected formats. So if you select 2 formats and enter weights of 9 and 1, the first format will be 9 times more likely to appear than the second.",
+	"weightDesc:comment": ""
 }

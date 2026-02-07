@@ -1,6 +1,6 @@
 {
 	"EXPORT_TYPE_NAME": "CSV",
 	"delimiterChars": "حرف (أحرف) محدد",
-	"validationNoDelimiter": "الرجاء إدخال حرف محدد لنوع تصدير CSV.",
-	"eolChar": "نهاية حرف السطر"
+	"eolChar": "نهاية حرف السطر",
+	"validationNoDelimiter": "الرجاء إدخال حرف محدد لنوع تصدير CSV."
 }

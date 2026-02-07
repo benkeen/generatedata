@@ -3,8 +3,8 @@
 	"EXPORT_TYPE_NAME:comment": "",
 	"delimiterChars": "Delimiter char(s)",
 	"delimiterChars:comment": "",
-	"validationNoDelimiter": "Please enter a delimiter character for the CSV export type.",
-	"validationNoDelimiter:comment": "",
 	"eolChar": "End of line character",
-	"eolChar:comment": ""
+	"eolChar:comment": "",
+	"validationNoDelimiter": "Please enter a delimiter character for the CSV export type.",
+	"validationNoDelimiter:comment": ""
 }

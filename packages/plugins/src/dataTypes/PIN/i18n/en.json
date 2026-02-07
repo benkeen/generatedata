@@ -1,8 +1,8 @@
 {
-	"NAME": "PIN",
-	"NAME:comment": "",
+	"DEFAULT_TITLE": "pin",
+	"DEFAULT_TITLE:comment": "",
 	"DESC": "Generates a random credit card PIN number from 1111 to 9999.",
 	"DESC:comment": "",
-	"DEFAULT_TITLE": "pin",
-	"DEFAULT_TITLE:comment": ""
+	"NAME": "PIN",
+	"NAME:comment": ""
 }

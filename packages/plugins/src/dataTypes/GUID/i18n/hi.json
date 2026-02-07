@@ -1,5 +1,5 @@
 {
-  "NAME": "GUID",
-  "DESC": "प्रपत्र का एक अद्वितीय, यादृच्छिक GUID (वैश्विक रूप से विशिष्ट पहचानकर्ता) उत्पन्न करता है: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, जहां X कोई हेक्साडेसिमल अंक है)।",
-  "DEFAULT_TITLE": "guid"
+	"DEFAULT_TITLE": "guid",
+	"DESC": "प्रपत्र का एक अद्वितीय, यादृच्छिक GUID (वैश्विक रूप से विशिष्ट पहचानकर्ता) उत्पन्न करता है: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, जहां X कोई हेक्साडेसिमल अंक है)।",
+	"NAME": "GUID"
 }

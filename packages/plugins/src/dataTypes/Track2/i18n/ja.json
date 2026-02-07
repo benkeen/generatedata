@@ -1,12 +1,12 @@
 {
-  "NAME": "Track2",
-  "DESC": "Track2は、磁気カードストライプに情報を保存するために使用されるデータ形式です。 カード所有者のアカウント番号、暗号化されたPIN、およびその他の任意のデータが含まれています。 クレジットカードはどのタイプでもかまいません（Visa、Mastercardなど）。",
-  "DEFAULT_TITLE": "track2",
-  "dialogTitle": "Track2データソース",
-  "dialogDesc": "これにより、PAN行をターゲットにして、より現実的なTrack2値を作成できます。 デフォルトでは、PANに対して任意の文字列が生成されるため、実際のPAN行を指定すると、有効で一貫性のあるTrack2値が保証されます。",
-  "panSource": "PANソース",
-  "randomString": "ランダムな文字列",
-  "panRow": "PAN行",
-  "row": "行",
-  "customizeSource": "ソースをカスタマイズする"
+	"DEFAULT_TITLE": "track2",
+	"DESC": "Track2は、磁気カードストライプに情報を保存するために使用されるデータ形式です。 カード所有者のアカウント番号、暗号化されたPIN、およびその他の任意のデータが含まれています。 クレジットカードはどのタイプでもかまいません（Visa、Mastercardなど）。",
+	"NAME": "Track2",
+	"customizeSource": "ソースをカスタマイズする",
+	"dialogDesc": "これにより、PAN行をターゲットにして、より現実的なTrack2値を作成できます。 デフォルトでは、PANに対して任意の文字列が生成されるため、実際のPAN行を指定すると、有効で一貫性のあるTrack2値が保証されます。",
+	"dialogTitle": "Track2データソース",
+	"panRow": "PAN行",
+	"panSource": "PANソース",
+	"randomString": "ランダムな文字列",
+	"row": "行"
 }

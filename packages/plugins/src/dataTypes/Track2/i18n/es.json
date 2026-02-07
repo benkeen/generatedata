@@ -1,12 +1,12 @@
 {
-  "NAME": "Track2",
-  "DESC": "Track2 es un formato de datos que se utiliza para almacenar información en bandas de tarjetas magnéticas. Contiene el número de cuenta del titular de la tarjeta, el PIN cifrado y otros datos discrecionales. La tarjeta de crédito puede ser de cualquier tipo (Visa, Mastercard, etc).",
-  "DEFAULT_TITLE": "track2",
-  "dialogTitle": "Fuente de datos Track2",
-  "dialogDesc": "Esto le permite apuntar a una fila PAN para crear valores Track2 más realistas. De forma predeterminada, genera cadenas arbitrarias para el PAN, por lo que el suministro de una fila PAN real garantiza un valor Track2 válido y consistente.",
-  "panSource": "Fuente PAN",
-  "randomString": "Cadena aleatoria",
-  "panRow": "Fila PAN",
-  "row": "Fila",
-  "customizeSource": "Personalizar fuente"
+	"DEFAULT_TITLE": "track2",
+	"DESC": "Track2 es un formato de datos que se utiliza para almacenar información en bandas de tarjetas magnéticas. Contiene el número de cuenta del titular de la tarjeta, el PIN cifrado y otros datos discrecionales. La tarjeta de crédito puede ser de cualquier tipo (Visa, Mastercard, etc).",
+	"NAME": "Track2",
+	"customizeSource": "Personalizar fuente",
+	"dialogDesc": "Esto le permite apuntar a una fila PAN para crear valores Track2 más realistas. De forma predeterminada, genera cadenas arbitrarias para el PAN, por lo que el suministro de una fila PAN real garantiza un valor Track2 válido y consistente.",
+	"dialogTitle": "Fuente de datos Track2",
+	"panRow": "Fila PAN",
+	"panSource": "Fuente PAN",
+	"randomString": "Cadena aleatoria",
+	"row": "Fila"
 }

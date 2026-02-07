@@ -1,9 +1,9 @@
 {
-  "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Имя узла",
-  "rowLabel": "Имя узла",
-  "rowLabelPlural": "Имена узлов",
-  "invalidNodeName": "Введите допустимое имя узла XML.",
-  "rootNodeName": "Имя корневого узла",
-  "recordNodeName": "Записать имя узла"
+	"COL_TITLE": "Имя узла",
+	"EXPORT_TYPE_NAME": "XML",
+	"invalidNodeName": "Введите допустимое имя узла XML.",
+	"recordNodeName": "Записать имя узла",
+	"rootNodeName": "Имя корневого узла",
+	"rowLabel": "Имя узла",
+	"rowLabelPlural": "Имена узлов"
 }

@@ -1,8 +1,8 @@
 {
-  "NAME": "Endereço da Rua",
-  "DESC": "Gera endereços de ruas aleatórios.",
-  "DEFAULT_TITLE": "morada",
-  "apNum": "Ap #",
-  "poBox": "P.O. Caixa",
-  "streetTypes": "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue"
+	"DEFAULT_TITLE": "morada",
+	"DESC": "Gera endereços de ruas aleatórios.",
+	"NAME": "Endereço da Rua",
+	"apNum": "Ap #",
+	"poBox": "P.O. Caixa",
+	"streetTypes": "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue"
 }

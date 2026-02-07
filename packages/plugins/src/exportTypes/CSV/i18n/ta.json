@@ -1,6 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "CSV",
-  "delimiterChars": "டிலிமிட்டர் கரி (கள்)",
-  "validationNoDelimiter": "CSV ஏற்றுமதி வகைக்கு ஒரு டிலிமிட்டர் எழுத்தை உள்ளிடவும்.",
-  "eolChar": "வரி எழுத்தின் முடிவு"
+	"EXPORT_TYPE_NAME": "CSV",
+	"delimiterChars": "டிலிமிட்டர் கரி (கள்)",
+	"eolChar": "வரி எழுத்தின் முடிவு",
+	"validationNoDelimiter": "CSV ஏற்றுமதி வகைக்கு ஒரு டிலிமிட்டர் எழுத்தை உள்ளிடவும்."
 }

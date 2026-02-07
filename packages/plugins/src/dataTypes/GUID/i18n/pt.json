@@ -1,5 +1,5 @@
 {
-  "NAME": "GUID",
-  "DESC": "Gera um GUID único e aleatório (identificador globalmente exclusivo) no formato: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, onde X é qualquer dígito hexadecimal).",
-  "DEFAULT_TITLE": "guid"
+	"DEFAULT_TITLE": "guid",
+	"DESC": "Gera um GUID único e aleatório (identificador globalmente exclusivo) no formato: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, onde X é qualquer dígito hexadecimal).",
+	"NAME": "GUID"
 }

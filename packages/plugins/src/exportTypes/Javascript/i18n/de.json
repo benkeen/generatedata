@@ -1,10 +1,10 @@
 {
-  "EXPORT_TYPE_NAME": "Javascript",
-  "COL_TITLE": "Name des Anwesens",
-  "row_label": "Var/Prop Name",
-  "language": "Sprache",
-  "variable": "Variable",
-  "format": "Format",
-  "es6Format": "ES6-Export",
-  "commonJsFormat": "CommonJS-Export"
+	"COL_TITLE": "Name des Anwesens",
+	"EXPORT_TYPE_NAME": "Javascript",
+	"commonJsFormat": "CommonJS-Export",
+	"es6Format": "ES6-Export",
+	"format": "Format",
+	"language": "Sprache",
+	"row_label": "Var/Prop Name",
+	"variable": "Variable"
 }

@@ -1,6 +1,6 @@
 {
 	"EXPORT_TYPE_NAME": "CSV",
 	"delimiterChars": "सीमांकक चार(रों)",
-	"validationNoDelimiter": "कृपया CSV निर्यात प्रकार के लिए एक सीमांकक वर्ण दर्ज करें।",
-	"eolChar": "पंक्ति वर्ण का अंत"
+	"eolChar": "पंक्ति वर्ण का अंत",
+	"validationNoDelimiter": "कृपया CSV निर्यात प्रकार के लिए एक सीमांकक वर्ण दर्ज करें।"
 }

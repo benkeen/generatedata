@@ -1,5 +1,5 @@
 {
-  "NAME": "GUID",
-  "DESC": "Создает уникальный случайный GUID (глобальный уникальный идентификатор) в следующем формате: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, где X — любая шестнадцатеричная цифра).",
-  "DEFAULT_TITLE": "guid"
+	"DEFAULT_TITLE": "guid",
+	"DESC": "Создает уникальный случайный GUID (глобальный уникальный идентификатор) в следующем формате: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, где X — любая шестнадцатеричная цифра).",
+	"NAME": "GUID"
 }

@@ -1,5 +1,5 @@
 {
-  "NAME": "PIN",
-  "DESC": "生成1111到9999之间的随机信用卡PIN码。",
-  "DEFAULT_TITLE": "pin"
+	"DEFAULT_TITLE": "pin",
+	"DESC": "生成1111到9999之间的随机信用卡PIN码。",
+	"NAME": "PIN"
 }

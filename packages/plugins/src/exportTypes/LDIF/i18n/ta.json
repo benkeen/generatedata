@@ -1,4 +1,4 @@
 {
-  "EXPORT_TYPE_NAME": "LDIF",
-  "COL_TITLE": "LDAP பண்புக்கூறு"
+	"COL_TITLE": "LDAP பண்புக்கூறு",
+	"EXPORT_TYPE_NAME": "LDIF"
 }

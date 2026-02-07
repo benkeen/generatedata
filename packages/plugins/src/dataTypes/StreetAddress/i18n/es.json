@@ -1,8 +1,8 @@
 {
-  "NAME": "Dirección",
-  "DESC": "Genera direcciones de calles al azar .",
-  "DEFAULT_TITLE": "habla",
-  "apNum": "Apdo.:",
-  "poBox": "Apartado núm.:",
-  "streetTypes": "C/,C.,Calle,Carretera,Ctra.,,Av.,Avda.,Avenida"
+	"DEFAULT_TITLE": "habla",
+	"DESC": "Genera direcciones de calles al azar .",
+	"NAME": "Dirección",
+	"apNum": "Apdo.:",
+	"poBox": "Apartado núm.:",
+	"streetTypes": "C/,C.,Calle,Carretera,Ctra.,,Av.,Avda.,Avenida"
 }

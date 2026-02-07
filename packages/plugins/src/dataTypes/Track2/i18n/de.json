@@ -1,12 +1,12 @@
 {
-  "NAME": "Track2",
-  "DESC": "Track2 ist ein Datenformat, in dem Informationen auf Magnetkartenstreifen gespeichert werden. Es enthält die Kontonummer des Karteninhabers, die verschlüsselte PIN und andere diskretionäre Daten. Die Kreditkarte kann von einem beliebigen Typ sein (Visa, Mastercard usw.).",
-  "DEFAULT_TITLE": "track2",
-  "dialogTitle": "Track2-Datenquelle",
-  "dialogDesc": "Auf diese Weise können Sie eine PAN-Zeile als Ziel festlegen, um realistischere Track2-Werte zu erstellen. Standardmäßig werden beliebige Zeichenfolgen für die PAN generiert, sodass durch die Angabe einer tatsächlichen PAN-Zeile ein gültiger und konsistenter Track2-Wert sichergestellt wird.",
-  "panSource": "PAN-Quelle",
-  "randomString": "Zufällige Zeichenfolge",
-  "panRow": "PAN-Reihe",
-  "row": "Reihe",
-  "customizeSource": "Quelle anpassen"
+	"DEFAULT_TITLE": "track2",
+	"DESC": "Track2 ist ein Datenformat, in dem Informationen auf Magnetkartenstreifen gespeichert werden. Es enthält die Kontonummer des Karteninhabers, die verschlüsselte PIN und andere diskretionäre Daten. Die Kreditkarte kann von einem beliebigen Typ sein (Visa, Mastercard usw.).",
+	"NAME": "Track2",
+	"customizeSource": "Quelle anpassen",
+	"dialogDesc": "Auf diese Weise können Sie eine PAN-Zeile als Ziel festlegen, um realistischere Track2-Werte zu erstellen. Standardmäßig werden beliebige Zeichenfolgen für die PAN generiert, sodass durch die Angabe einer tatsächlichen PAN-Zeile ein gültiger und konsistenter Track2-Wert sichergestellt wird.",
+	"dialogTitle": "Track2-Datenquelle",
+	"panRow": "PAN-Reihe",
+	"panSource": "PAN-Quelle",
+	"randomString": "Zufällige Zeichenfolge",
+	"row": "Reihe"
 }

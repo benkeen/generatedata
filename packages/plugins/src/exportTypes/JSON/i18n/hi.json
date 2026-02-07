@@ -1,7 +1,7 @@
 {
-  "EXPORT_TYPE_NAME": "JSON",
-  "COL_TITLE": "संपत्ति का नाम",
-  "complex": "जटिल",
-  "simple": "सरल",
-  "dataStructureFormat": "डेटा संरचना प्रारूप"
+	"COL_TITLE": "संपत्ति का नाम",
+	"EXPORT_TYPE_NAME": "JSON",
+	"complex": "जटिल",
+	"dataStructureFormat": "डेटा संरचना प्रारूप",
+	"simple": "सरल"
 }

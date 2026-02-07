@@ -1,5 +1,5 @@
 {
-  "NAME": "会社",
-  "DESC": "Loremipsumの単語と適切な接尾辞で構成されるランダムな会社名を生成します（DolorInc。やConvallisLimitedなど）。",
-  "DEFAULT_TITLE": "会社"
+	"DEFAULT_TITLE": "会社",
+	"DESC": "Loremipsumの単語と適切な接尾辞で構成されるランダムな会社名を生成します（DolorInc。やConvallisLimitedなど）。",
+	"NAME": "会社"
 }

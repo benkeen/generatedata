@@ -1,13 +1,13 @@
 {
-  "NAME": "SIRET",
-  "DESC": "Este tipo de datos al azar genera SIRET según el formato que usted especifica.",
-  "DEFAULT_TITLE": "siret",
-  "incompleteFields": "El tipo de datos SIRET tiene que tener el formato entrado en el campo de texto de Opciones. Por favor fije las filas siguientes:",
-  "exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
-  "exampleSIREN": "508102811 (SIREN)",
-  "typeSIRET": " Un SIRET aleatorio compuesto de un SIREN y un NIC 508102811-00009.",
-  "typeSIREN": " Un SIREN aleatorio (508102811).",
-  "SIRET": "SIRET:",
-  "SIREN": "SIREN:",
-  "moreInfo": "Más información:"
+	"DEFAULT_TITLE": "siret",
+	"DESC": "Este tipo de datos al azar genera SIRET según el formato que usted especifica.",
+	"NAME": "SIRET",
+	"SIREN": "SIREN:",
+	"SIRET": "SIRET:",
+	"exampleSIREN": "508102811 (SIREN)",
+	"exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
+	"incompleteFields": "El tipo de datos SIRET tiene que tener el formato entrado en el campo de texto de Opciones. Por favor fije las filas siguientes:",
+	"moreInfo": "Más información:",
+	"typeSIREN": " Un SIREN aleatorio (508102811).",
+	"typeSIRET": " Un SIRET aleatorio compuesto de un SIREN y un NIC 508102811-00009."
 }

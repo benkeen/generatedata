@@ -1,5 +1,5 @@
 {
-  "NAME": "GUID",
-  "DESC": "次の形式の一意のランダムGUID（グローバルに一意の識別子）を生成します：XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX、ここでXは任意の16進数です）。",
-  "DEFAULT_TITLE": "guid"
+	"DEFAULT_TITLE": "guid",
+	"DESC": "次の形式の一意のランダムGUID（グローバルに一意の識別子）を生成します：XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX、ここでXは任意の16進数です）。",
+	"NAME": "GUID"
 }

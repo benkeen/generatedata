@@ -1,8 +1,8 @@
 {
-  "NAME": "Straatnamen",
-  "DESC": "Genereert willekeurige adressen.",
-  "DEFAULT_TITLE": "adresse",
-  "apNum": "Appartement #",
-  "poBox": "Postbus",
-  "streetTypes": "Street, St., Straat, Weg, Road, Rd., Ave, Av., Avenue"
+	"DEFAULT_TITLE": "adresse",
+	"DESC": "Genereert willekeurige adressen.",
+	"NAME": "Straatnamen",
+	"apNum": "Appartement #",
+	"poBox": "Postbus",
+	"streetTypes": "Street, St., Straat, Weg, Road, Rd., Ave, Av., Avenue"
 }

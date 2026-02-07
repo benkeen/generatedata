@@ -1,6 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Kolomtitel",
-  "batchVars": "Booleans om aan te geven van de huidige export batch de eerste van de laatste is. Dit wordt alleen gebruikt bij data die in-page wordt gegenereerd, waarbij de resultaten in blokken worden gegenereerd. In alle andere gevallen is deze waarde altijd waar.",
-  "dataFormat": "Data Formaat"
+	"COL_TITLE": "Kolomtitel",
+	"EXPORT_TYPE_NAME": "HTML",
+	"batchVars": "Booleans om aan te geven van de huidige export batch de eerste van de laatste is. Dit wordt alleen gebruikt bij data die in-page wordt gegenereerd, waarbij de resultaten in blokken worden gegenereerd. In alle andere gevallen is deze waarde altijd waar.",
+	"dataFormat": "Data Formaat"
 }

@@ -1,10 +1,10 @@
 {
-  "countryName": "الصين",
-  "regionNames": "مناطق الصين",
-  "regionNorthChina": "Huáběi",
-  "regionNortheastChina": "Dōngběi",
-  "regionEastChina": "Huádōng",
-  "regionSouthCentralChina": "Zhōngnán",
-  "regionSouthwestChina": "Xīnán",
-  "regionNorthwestChina": "Xīběi"
+	"countryName": "الصين",
+	"regionEastChina": "Huádōng",
+	"regionNames": "مناطق الصين",
+	"regionNorthChina": "Huáběi",
+	"regionNortheastChina": "Dōngběi",
+	"regionNorthwestChina": "Xīběi",
+	"regionSouthCentralChina": "Zhōngnán",
+	"regionSouthwestChina": "Xīnán"
 }

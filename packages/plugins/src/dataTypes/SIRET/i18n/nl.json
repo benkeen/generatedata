@@ -1,13 +1,13 @@
 {
-  "NAME": "SIRET",
-  "DESC": "Dit datatype genereert een willekeurig SIRET nummer volgens het opgegeven formaat.",
-  "DEFAULT_TITLE": "siret",
-  "incompleteFields": "De SIRET gegevenstype moet hebben het formaat in de Opties tekst veld. Verbeter de volgende rijen:",
-  "exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
-  "exampleSIREN": "508102811 (SIREN)",
-  "typeSIRET": " EEN willekeurige SIRET samengesteld van een SIREN en NIC ( 508102811-00009 ).",
-  "typeSIREN": " EEN willekeurige SIREN (508102811).",
-  "SIRET": "SIRET:",
-  "SIREN": "SIREN:",
-  "moreInfo": "Meer informatie:"
+	"DEFAULT_TITLE": "siret",
+	"DESC": "Dit datatype genereert een willekeurig SIRET nummer volgens het opgegeven formaat.",
+	"NAME": "SIRET",
+	"SIREN": "SIREN:",
+	"SIRET": "SIRET:",
+	"exampleSIREN": "508102811 (SIREN)",
+	"exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
+	"incompleteFields": "De SIRET gegevenstype moet hebben het formaat in de Opties tekst veld. Verbeter de volgende rijen:",
+	"moreInfo": "Meer informatie:",
+	"typeSIREN": " EEN willekeurige SIREN (508102811).",
+	"typeSIRET": " EEN willekeurige SIRET samengesteld van een SIREN en NIC ( 508102811-00009 )."
 }

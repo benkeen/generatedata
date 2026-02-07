@@ -1,15 +1,15 @@
 {
-  "NAME": "Texte - Longueur Fixe",
-  "DESC": "Cette option génère un nombre fixe de mots aléatoires lorem ipsum (faux texte latin).",
-  "DEFAULT_TITLE": "texto",
-  "TextFixed_generate": "Générer",
-  "TextFixed_help": "Ce type de données génère une chaîne aléatoire de mots. Vous avez le choix d'utiliser le texte factice aléatoire par défaut de lorem ipsum ou de fournir un texte de votre choix.",
-  "TextFixed_words": "mots",
-  "selectTextSource": "Sélectionnez la source du texte",
-  "lipsumDesc": "Lorem ipsum est un texte factice standard basé en latin et utilisé depuis les années 1500.",
-  "customTextDesc": "Ce champ vous permet de saisir le texte que vous souhaitez utiliser comme source de données.",
-  "source": "La source",
-  "explanation": "Cette section vous permet de choisir la source de données pour les mots.",
-  "enterCustomText": "Entrez un texte personnalisé ici. Assurez-vous de saisir une bonne quantité de mots.",
-  "custom": "Douane"
+	"DEFAULT_TITLE": "texto",
+	"DESC": "Cette option génère un nombre fixe de mots aléatoires lorem ipsum (faux texte latin).",
+	"NAME": "Texte - Longueur Fixe",
+	"TextFixed_generate": "Générer",
+	"TextFixed_help": "Ce type de données génère une chaîne aléatoire de mots. Vous avez le choix d'utiliser le texte factice aléatoire par défaut de lorem ipsum ou de fournir un texte de votre choix.",
+	"TextFixed_words": "mots",
+	"custom": "Douane",
+	"customTextDesc": "Ce champ vous permet de saisir le texte que vous souhaitez utiliser comme source de données.",
+	"enterCustomText": "Entrez un texte personnalisé ici. Assurez-vous de saisir une bonne quantité de mots.",
+	"explanation": "Cette section vous permet de choisir la source de données pour les mots.",
+	"lipsumDesc": "Lorem ipsum est un texte factice standard basé en latin et utilisé depuis les années 1500.",
+	"selectTextSource": "Sélectionnez la source du texte",
+	"source": "La source"
 }

@@ -1,10 +1,10 @@
 {
-  "EXPORT_TYPE_NAME": "Javascript",
-  "COL_TITLE": "சொத்தின் பெயர்",
-  "row_label": "வர் / ப்ராப் பெயர்",
-  "language": "மொழி",
-  "variable": "மாறி",
-  "format": "வடிவம்",
-  "es6Format": "ES6 ஏற்றுமதி",
-  "commonJsFormat": "காமன்ஜேஎஸ் ஏற்றுமதி"
+	"COL_TITLE": "சொத்தின் பெயர்",
+	"EXPORT_TYPE_NAME": "Javascript",
+	"commonJsFormat": "காமன்ஜேஎஸ் ஏற்றுமதி",
+	"es6Format": "ES6 ஏற்றுமதி",
+	"format": "வடிவம்",
+	"language": "மொழி",
+	"row_label": "வர் / ப்ராப் பெயர்",
+	"variable": "மாறி"
 }

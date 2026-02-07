@@ -1,11 +1,11 @@
 {
-  "NAME": "Automatisches Inkrementieren",
-  "DESC": "Bietet viele Variationen eines Standardfelds für die automatische Inkrementierung: benutzerdefinierter Startwert, anpassbare Schrittgrößen, willkürliche Zeichenfolgeneinbeziehung, Inkrementierung oder Dekrementierung und mehr.",
-  "DEFAULT_TITLE": "autoink",
-  "helpIntro": "Erzeugt eine Spalte, die in jeder Zeile eine eindeutige Nummer enthält, die um den von Ihnen eingegebenen Wert erhöht wird. Diese Option kann hilfreich sein, um die Daten mit einem automatisch inkrementierten Primärschlüssel in ein Datenbankfeld einzufügen.",
-  "helpPara2": "Mit der optionalen Platzhalterzeichenfolge können Sie den generierten Inkrementwert über den Platzhalter {{INCR}} in eine Zeichenfolge einbetten. Beispielsweise:",
-  "increment": "Zuwachs:",
-  "placeholderStr": "Platzhalterzeichenfolge:",
-  "startAt": "Anfangen bei:",
-  "incompleteFields": "Bitte geben Sie die Felder Start bei und Inkrementieren für alle Zeilen mit automatischer Inkrementierung ein:"
+	"DEFAULT_TITLE": "autoink",
+	"DESC": "Bietet viele Variationen eines Standardfelds für die automatische Inkrementierung: benutzerdefinierter Startwert, anpassbare Schrittgrößen, willkürliche Zeichenfolgeneinbeziehung, Inkrementierung oder Dekrementierung und mehr.",
+	"NAME": "Automatisches Inkrementieren",
+	"helpIntro": "Erzeugt eine Spalte, die in jeder Zeile eine eindeutige Nummer enthält, die um den von Ihnen eingegebenen Wert erhöht wird. Diese Option kann hilfreich sein, um die Daten mit einem automatisch inkrementierten Primärschlüssel in ein Datenbankfeld einzufügen.",
+	"helpPara2": "Mit der optionalen Platzhalterzeichenfolge können Sie den generierten Inkrementwert über den Platzhalter {{INCR}} in eine Zeichenfolge einbetten. Beispielsweise:",
+	"incompleteFields": "Bitte geben Sie die Felder Start bei und Inkrementieren für alle Zeilen mit automatischer Inkrementierung ein:",
+	"increment": "Zuwachs:",
+	"placeholderStr": "Platzhalterzeichenfolge:",
+	"startAt": "Anfangen bei:"
 }

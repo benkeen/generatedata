@@ -1,5 +1,5 @@
 {
-  "NAME": "CVV",
-  "DESC": "يولد رقم بطاقة ائتمان عشوائي CVV من 111 إلى 999",
-  "DEFAULT_TITLE": "cvv"
+	"DEFAULT_TITLE": "cvv",
+	"DESC": "يولد رقم بطاقة ائتمان عشوائي CVV من 111 إلى 999",
+	"NAME": "CVV"
 }

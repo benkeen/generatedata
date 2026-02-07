@@ -1,6 +1,6 @@
 {
-  "NAME": "Boolean",
-  "DESC": "Dieser Datentyp zufällig generiert eine Boolean nach dem Format, das Sie angeben.",
-  "DEFAULT_TITLE": "boolescherwert",
-  "helpIntro": "Die Dropdown-Liste Beispiele enthält mehrere boolesche Beispielwerte (alle englisch oder universell). Um andere Werte zu erstellen, geben Sie einfach Text in das Feld Optionen ein und klicken Sie auf die Eingabetaste."
+	"DEFAULT_TITLE": "boolescherwert",
+	"DESC": "Dieser Datentyp zufällig generiert eine Boolean nach dem Format, das Sie angeben.",
+	"NAME": "Boolean",
+	"helpIntro": "Die Dropdown-Liste Beispiele enthält mehrere boolesche Beispielwerte (alle englisch oder universell). Um andere Werte zu erstellen, geben Sie einfach Text in das Feld Optionen ein und klicken Sie auf die Eingabetaste."
 }

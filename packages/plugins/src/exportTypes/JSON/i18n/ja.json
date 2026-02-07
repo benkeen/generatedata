@@ -1,7 +1,7 @@
 {
-  "EXPORT_TYPE_NAME": "JSON",
-  "COL_TITLE": "プロパティ名",
-  "complex": "繁雑",
-  "simple": "シンプル",
-  "dataStructureFormat": "データ構造フォーマット"
+	"COL_TITLE": "プロパティ名",
+	"EXPORT_TYPE_NAME": "JSON",
+	"complex": "繁雑",
+	"dataStructureFormat": "データ構造フォーマット",
+	"simple": "シンプル"
 }

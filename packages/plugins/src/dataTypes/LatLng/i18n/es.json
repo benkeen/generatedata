@@ -1,7 +1,7 @@
 {
-  "NAME": "Latitud / Longitud",
-  "DESC": "Este tipo de dato genera una longitud y/o latitud aleatoria. Si se eligen ambas, mostrará ambas separadas por una coma.",
-  "DEFAULT_TITLE": "latlng",
-  "latitude": "Latitud",
-  "longitude": "Longitud"
+	"DEFAULT_TITLE": "latlng",
+	"DESC": "Este tipo de dato genera una longitud y/o latitud aleatoria. Si se eligen ambas, mostrará ambas separadas por una coma.",
+	"NAME": "Latitud / Longitud",
+	"latitude": "Latitud",
+	"longitude": "Longitud"
 }

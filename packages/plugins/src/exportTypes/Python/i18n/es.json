@@ -1,4 +1,4 @@
 {
-  "EXPORT_TYPE_NAME": "Python",
-  "COL_TITLE": "Nombre de la propiedad"
+	"COL_TITLE": "Nombre de la propiedad",
+	"EXPORT_TYPE_NAME": "Python"
 }

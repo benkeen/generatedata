@@ -1,9 +1,9 @@
 {
-  "NAME": "Faixa de Números",
-  "DESC": "Isso gera aleatoriamente um número entre os valores que você especifica. Ambos os campos permitem que você insira números negativos.",
-  "DEFAULT_TITLE": "faixanumero",
-  "and": "e",
-  "between": "Entre",
-  "enterNumericValue": "Por favor, coloque um numero",
-  "minValueGreaterThanMax": "Faça o valor máximo maior ou igual ao valor mínimo"
+	"DEFAULT_TITLE": "faixanumero",
+	"DESC": "Isso gera aleatoriamente um número entre os valores que você especifica. Ambos os campos permitem que você insira números negativos.",
+	"NAME": "Faixa de Números",
+	"and": "e",
+	"between": "Entre",
+	"enterNumericValue": "Por favor, coloque um numero",
+	"minValueGreaterThanMax": "Faça o valor máximo maior ou igual ao valor mínimo"
 }

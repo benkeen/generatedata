@@ -1,14 +1,14 @@
 {
-  "NAME": "Track1",
-  "DESC": "トラック1は、磁気カードストライプに情報を保存するために使用されるデータ形式です。 カード所有者の名前、口座番号、その他の任意のデータが含まれています。 クレジットカードはどのタイプでもかまいません（Visa、Mastercardなど）。",
-  "DEFAULT_TITLE": "track1",
-  "dialogTitle": "Track1データソース",
-  "dialogDesc": "これにより、他のフィールドをターゲットにして、より現実的なTrack1値を作成できます。 デフォルトでは、PANと名前の部分に任意の文字列が生成されるため、実際のソース行を指定すると、有効で一貫性のあるTrack1値が保証されます。",
-  "panSource": "PANソース",
-  "randomString": "ランダムな文字列",
-  "panRow": "PAN行",
-  "nameRow": "名前の行",
-  "row": "行",
-  "nameSource": "名前の出典",
-  "customizeSource": "ソースをカスタマイズする"
+	"DEFAULT_TITLE": "track1",
+	"DESC": "トラック1は、磁気カードストライプに情報を保存するために使用されるデータ形式です。 カード所有者の名前、口座番号、その他の任意のデータが含まれています。 クレジットカードはどのタイプでもかまいません（Visa、Mastercardなど）。",
+	"NAME": "Track1",
+	"customizeSource": "ソースをカスタマイズする",
+	"dialogDesc": "これにより、他のフィールドをターゲットにして、より現実的なTrack1値を作成できます。 デフォルトでは、PANと名前の部分に任意の文字列が生成されるため、実際のソース行を指定すると、有効で一貫性のあるTrack1値が保証されます。",
+	"dialogTitle": "Track1データソース",
+	"nameRow": "名前の行",
+	"nameSource": "名前の出典",
+	"panRow": "PAN行",
+	"panSource": "PANソース",
+	"randomString": "ランダムな文字列",
+	"row": "行"
 }

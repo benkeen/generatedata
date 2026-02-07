@@ -1,5 +1,5 @@
 {
-  "NAME": "PIN",
-  "DESC": "Erzeugt eine Zufallskreditkarte PIN-Nummer von 1111 bis 9999.",
-  "DEFAULT_TITLE": "pin"
+	"DEFAULT_TITLE": "pin",
+	"DESC": "Erzeugt eine Zufallskreditkarte PIN-Nummer von 1111 bis 9999.",
+	"NAME": "PIN"
 }

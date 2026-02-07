@@ -1,8 +1,8 @@
 {
-  "NAME": "正規分布",
-  "DESC": "カスタマイズ可能な平均と標準偏差を持つランダムな正規分布値を生成します。",
-  "DEFAULT_TITLE": "正規分布",
-  "mean": "平均",
-  "standardDeviation": "標準偏差",
-  "precision": "精度"
+	"DEFAULT_TITLE": "正規分布",
+	"DESC": "カスタマイズ可能な平均と標準偏差を持つランダムな正規分布値を生成します。",
+	"NAME": "正規分布",
+	"mean": "平均",
+	"precision": "精度",
+	"standardDeviation": "標準偏差"
 }

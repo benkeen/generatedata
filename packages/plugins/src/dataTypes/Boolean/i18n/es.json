@@ -1,6 +1,6 @@
 {
-  "NAME": "Boolean",
-  "DESC": "Este tipo de dato genera aleatoriamente Boolean de acuerdo al formato que especifiques.",
-  "DEFAULT_TITLE": "booleano",
-  "helpIntro": "El menú desplegable Ejemplos contiene varios valores booleanos de ejemplo (todos en inglés o universales). Para crear otros valores, simplemente escriba texto en el campo Opciones y haga clic en Intro."
+	"DEFAULT_TITLE": "booleano",
+	"DESC": "Este tipo de dato genera aleatoriamente Boolean de acuerdo al formato que especifiques.",
+	"NAME": "Boolean",
+	"helpIntro": "El menú desplegable Ejemplos contiene varios valores booleanos de ejemplo (todos en inglés o universales). Para crear otros valores, simplemente escriba texto en el campo Opciones y haga clic en Intro."
 }

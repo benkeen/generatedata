@@ -1185,6 +1185,9 @@ importers:
       '@generatedata/i18n':
         specifier: workspace:*
         version: link:../i18n
+      '@generatedata/tools':
+        specifier: workspace:*
+        version: link:../tools
       '@generatedata/utils':
         specifier: workspace:*
         version: link:../utils

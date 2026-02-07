@@ -1,4 +1,4 @@
 {
-  "EXPORT_TYPE_NAME": "PHP",
-  "COL_TITLE": "Nom de la propriété"
+	"COL_TITLE": "Nom de la propriété",
+	"EXPORT_TYPE_NAME": "PHP"
 }

@@ -1,16 +1,16 @@
 {
-	"EXPORT_TYPE_NAME": "XML",
-	"EXPORT_TYPE_NAME:comment": "",
 	"COL_TITLE": "Node name",
 	"COL_TITLE:comment": "",
+	"EXPORT_TYPE_NAME": "XML",
+	"EXPORT_TYPE_NAME:comment": "",
+	"invalidNodeName": "Please enter a valid XML node name.",
+	"invalidNodeName:comment": "",
+	"recordNodeName": "Record node name",
+	"recordNodeName:comment": "",
+	"rootNodeName": "Root node name",
+	"rootNodeName:comment": "",
 	"rowLabel": "Node Name",
 	"rowLabel:comment": "",
 	"rowLabelPlural": "Node Names",
-	"rowLabelPlural:comment": "",
-	"invalidNodeName": "Please enter a valid XML node name.",
-	"invalidNodeName:comment": "",
-	"rootNodeName": "Root node name",
-	"rootNodeName:comment": "",
-	"recordNodeName": "Record node name",
-	"recordNodeName:comment": ""
+	"rowLabelPlural:comment": ""
 }

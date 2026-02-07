@@ -1,10 +1,10 @@
 {
-	"EXPORT_TYPE_NAME": "Typescript",
-	"EXPORT_TYPE_NAME:comment": "",
 	"COL_TITLE": "Property Name",
 	"COL_TITLE:comment": "",
-	"typeName": "Type name",
-	"typeName:comment": "",
+	"EXPORT_TYPE_NAME": "Typescript",
+	"EXPORT_TYPE_NAME:comment": "",
 	"exportedVarName": "Exported variable name",
-	"exportedVarName:comment": ""
+	"exportedVarName:comment": "",
+	"typeName": "Type name",
+	"typeName:comment": ""
 }

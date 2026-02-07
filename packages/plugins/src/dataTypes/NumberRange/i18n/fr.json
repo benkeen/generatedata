@@ -1,9 +1,9 @@
 {
-  "NAME": "Plage de numéros",
-  "DESC": "Cela génère au hasard un nombre entre les valeurs que vous spécifiez. Les deux champs vous permettent d'entrer des nombres négatifs.",
-  "DEFAULT_TITLE": "plagenumeros",
-  "and": "et",
-  "between": "Entre",
-  "enterNumericValue": "Veuillez saisir une valeur numérique",
-  "minValueGreaterThanMax": "Veuillez rendre la valeur maximale supérieure à la valeur minimale"
+	"DEFAULT_TITLE": "plagenumeros",
+	"DESC": "Cela génère au hasard un nombre entre les valeurs que vous spécifiez. Les deux champs vous permettent d'entrer des nombres négatifs.",
+	"NAME": "Plage de numéros",
+	"and": "et",
+	"between": "Entre",
+	"enterNumericValue": "Veuillez saisir une valeur numérique",
+	"minValueGreaterThanMax": "Veuillez rendre la valeur maximale supérieure à la valeur minimale"
 }

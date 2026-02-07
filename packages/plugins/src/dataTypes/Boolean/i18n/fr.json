@@ -1,6 +1,6 @@
 {
-  "NAME": "Booléen",
-  "DESC": "Ce type de données génère aléatoirement des noms de personnes (principalement occidentaux) en fonction du format que vous spécifiez.",
-  "DEFAULT_TITLE": "booleen",
-  "helpIntro": "La liste déroulante Exemples contient plusieurs exemples de valeurs booléennes (toutes en anglais ou universelles). Pour créer d'autres valeurs, tapez simplement du texte dans le champ Options et cliquez sur Entrée."
+	"DEFAULT_TITLE": "booleen",
+	"DESC": "Ce type de données génère aléatoirement des noms de personnes (principalement occidentaux) en fonction du format que vous spécifiez.",
+	"NAME": "Booléen",
+	"helpIntro": "La liste déroulante Exemples contient plusieurs exemples de valeurs booléennes (toutes en anglais ou universelles). Pour créer d'autres valeurs, tapez simplement du texte dans le champ Options et cliquez sur Entrée."
 }

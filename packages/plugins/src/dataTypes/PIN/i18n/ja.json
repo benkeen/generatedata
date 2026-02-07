@@ -1,5 +1,5 @@
 {
-  "NAME": "PIN",
-  "DESC": "1111から9999までのランダムなクレジットカードPIN番号を生成します。",
-  "DEFAULT_TITLE": "pin"
+	"DEFAULT_TITLE": "pin",
+	"DESC": "1111から9999までのランダムなクレジットカードPIN番号を生成します。",
+	"NAME": "PIN"
 }

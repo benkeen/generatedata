@@ -1,5 +1,5 @@
 {
-  "NAME": "CVV",
-  "DESC": "Gera um número CVV de cartão de crédito aleatório de 111 a 999.",
-  "DEFAULT_TITLE": "cvv"
+	"DEFAULT_TITLE": "cvv",
+	"DESC": "Gera um número CVV de cartão de crédito aleatório de 111 a 999.",
+	"NAME": "CVV"
 }

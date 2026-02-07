@@ -1,7 +1,7 @@
 {
-  "NAME": "சிலி RUT எண்",
-  "DESC": "RUT / RUN சிலி தேசிய அடையாள எண்ணை உருவாக்குகிறது.",
-  "DEFAULT_TITLE": "rut",
-  "onlyDigit": "சரிபார்ப்பு இலக்கத்தை மட்டுமே",
-  "digitUppercase": "பெரிய எண்"
+	"DEFAULT_TITLE": "rut",
+	"DESC": "RUT / RUN சிலி தேசிய அடையாள எண்ணை உருவாக்குகிறது.",
+	"NAME": "சிலி RUT எண்",
+	"digitUppercase": "பெரிய எண்",
+	"onlyDigit": "சரிபார்ப்பு இலக்கத்தை மட்டுமே"
 }

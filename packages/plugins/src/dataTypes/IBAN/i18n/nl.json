@@ -1,7 +1,7 @@
 {
-  "NAME": "Burgerservicenummer",
-  "DESC": "Genereert een willekeurige Amerikaanse sofi-nummer.",
-  "DEFAULT_TITLE": "iban",
-  "help1": "De gegenereerde IBAN heeft een geldige checksum, landcode en lengte en de BIC staat op de juiste plaats.",
-  "help2": "Het is echter hoogst onwaarschijnlijk dat het nummer echt geldig is, aangezien er meestal een aantal controles moet worden uitgevoerd die landspecifiek zijn."
+	"DEFAULT_TITLE": "iban",
+	"DESC": "Genereert een willekeurige Amerikaanse sofi-nummer.",
+	"NAME": "Burgerservicenummer",
+	"help1": "De gegenereerde IBAN heeft een geldige checksum, landcode en lengte en de BIC staat op de juiste plaats.",
+	"help2": "Het is echter hoogst onwaarschijnlijk dat het nummer echt geldig is, aangezien er meestal een aantal controles moet worden uitgevoerd die landspecifiek zijn."
 }

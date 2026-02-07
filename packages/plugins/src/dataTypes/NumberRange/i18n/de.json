@@ -1,9 +1,9 @@
 {
-  "NAME": "Nummernkreis",
-  "DESC": "Diese zufällig generiert eine Zahl zwischen den Werten, die Sie angeben. Beide Felder können Sie negative Werte eingeben.",
-  "DEFAULT_TITLE": "nummernkreis",
-  "and": "und",
-  "between": "Zwischen",
-  "enterNumericValue": "Bitte geben Sie einen numerischen Wert ein",
-  "minValueGreaterThanMax": "Bitte machen Sie den Maximalwert größer als den Minimalwert"
+	"DEFAULT_TITLE": "nummernkreis",
+	"DESC": "Diese zufällig generiert eine Zahl zwischen den Werten, die Sie angeben. Beide Felder können Sie negative Werte eingeben.",
+	"NAME": "Nummernkreis",
+	"and": "und",
+	"between": "Zwischen",
+	"enterNumericValue": "Bitte geben Sie einen numerischen Wert ein",
+	"minValueGreaterThanMax": "Bitte machen Sie den Maximalwert größer als den Minimalwert"
 }

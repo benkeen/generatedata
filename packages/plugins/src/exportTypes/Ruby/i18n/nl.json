@@ -1,4 +1,4 @@
 {
-  "EXPORT_TYPE_NAME": "Ruby",
-  "COL_TITLE": "Eigendomsnaam"
+	"COL_TITLE": "Eigendomsnaam",
+	"EXPORT_TYPE_NAME": "Ruby"
 }

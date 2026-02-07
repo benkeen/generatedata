@@ -1,6 +1,6 @@
 {
-	"EXPORT_TYPE_NAME": "Ruby",
-	"EXPORT_TYPE_NAME:comment": "",
 	"COL_TITLE": "Property Name",
-	"COL_TITLE:comment": ""
+	"COL_TITLE:comment": "",
+	"EXPORT_TYPE_NAME": "Ruby",
+	"EXPORT_TYPE_NAME:comment": ""
 }

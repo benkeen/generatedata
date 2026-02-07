@@ -1,7 +1,7 @@
 {
-  "EXPORT_TYPE_NAME": "JSON",
-  "COL_TITLE": "物业名称",
-  "complex": "数据结构格式",
-  "simple": "简单",
-  "dataStructureFormat": "数据结构格式"
+	"COL_TITLE": "物业名称",
+	"EXPORT_TYPE_NAME": "JSON",
+	"complex": "数据结构格式",
+	"dataStructureFormat": "数据结构格式",
+	"simple": "简单"
 }

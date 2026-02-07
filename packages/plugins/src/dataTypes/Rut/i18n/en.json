@@ -1,12 +1,12 @@
 {
-	"NAME": "Chilean RUT number",
-	"NAME:comment": "",
-	"DESC": "Generates a RUT/RUN Chilean National Identification Number.",
-	"DESC:comment": "",
 	"DEFAULT_TITLE": "rut",
 	"DEFAULT_TITLE:comment": "",
-	"onlyDigit": "Only verification digit",
-	"onlyDigit:comment": "",
+	"DESC": "Generates a RUT/RUN Chilean National Identification Number.",
+	"DESC:comment": "",
+	"NAME": "Chilean RUT number",
+	"NAME:comment": "",
 	"digitUppercase": "Uppercase digit",
-	"digitUppercase:comment": ""
+	"digitUppercase:comment": "",
+	"onlyDigit": "Only verification digit",
+	"onlyDigit:comment": ""
 }

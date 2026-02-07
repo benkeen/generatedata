@@ -1,8 +1,8 @@
 {
-  "NAME": "Distribución normal",
-  "DESC": "Genera valores normalmente distribuidos al azar con una desviación media y estándar adaptable .",
-  "DEFAULT_TITLE": "campo",
-  "mean": "Media",
-  "standardDeviation": "Desviación estándar",
-  "precision": "Precisión"
+	"DEFAULT_TITLE": "campo",
+	"DESC": "Genera valores normalmente distribuidos al azar con una desviación media y estándar adaptable .",
+	"NAME": "Distribución normal",
+	"mean": "Media",
+	"precision": "Precisión",
+	"standardDeviation": "Desviación estándar"
 }

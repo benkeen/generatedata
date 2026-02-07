@@ -1,7 +1,7 @@
 {
-  "EXPORT_TYPE_NAME": "JSON",
-  "COL_TITLE": "சொத்தின் பெயர்",
-  "complex": "சிக்கலான",
-  "simple": "எளிமையானது",
-  "dataStructureFormat": "தரவு கட்டமைப்பு வடிவம்"
+	"COL_TITLE": "சொத்தின் பெயர்",
+	"EXPORT_TYPE_NAME": "JSON",
+	"complex": "சிக்கலான",
+	"dataStructureFormat": "தரவு கட்டமைப்பு வடிவம்",
+	"simple": "எளிமையானது"
 }

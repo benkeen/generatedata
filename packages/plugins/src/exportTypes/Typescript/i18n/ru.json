@@ -1,6 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "Typescript",
-  "COL_TITLE": "Имя свойства",
-  "typeName": "Введите название",
-  "exportedVarName": "Имя экспортируемой переменной"
+	"COL_TITLE": "Имя свойства",
+	"EXPORT_TYPE_NAME": "Typescript",
+	"exportedVarName": "Имя экспортируемой переменной",
+	"typeName": "Введите название"
 }

@@ -1,6 +1,6 @@
 {
-  "NAME": "Boolean",
-  "DESC": "Genereerd een Boolean waarde in elk gewenst formaat.",
-  "DEFAULT_TITLE": "boolean",
-  "helpIntro": "De vervolgkeuzelijst Voorbeelden bevat verschillende voorbeeldbooleaanse waarden (allemaal Engels of universeel). Om andere waarden te maken, typ gewoon tekst in het veld Opties en klik op Enter."
+	"DEFAULT_TITLE": "boolean",
+	"DESC": "Genereerd een Boolean waarde in elk gewenst formaat.",
+	"NAME": "Boolean",
+	"helpIntro": "De vervolgkeuzelijst Voorbeelden bevat verschillende voorbeeldbooleaanse waarden (allemaal Engels of universeel). Om andere waarden te maken, typ gewoon tekst in het veld Opties en klik op Enter."
 }

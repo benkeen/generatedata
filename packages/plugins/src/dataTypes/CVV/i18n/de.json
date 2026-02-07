@@ -1,5 +1,5 @@
 {
-  "NAME": "CVV",
-  "DESC": "Erzeugt eine Zufalls CVV-Nummer von 111 bis 999.",
-  "DEFAULT_TITLE": "cvv"
+	"DEFAULT_TITLE": "cvv",
+	"DESC": "Erzeugt eine Zufalls CVV-Nummer von 111 bis 999.",
+	"NAME": "CVV"
 }

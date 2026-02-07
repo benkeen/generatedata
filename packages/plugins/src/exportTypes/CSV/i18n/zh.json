@@ -1,6 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "CSV",
-  "delimiterChars": "行尾字符",
-  "validationNoDelimiter": "请输入CSV导出类型的分隔符。",
-  "eolChar": "行尾字符"
+	"EXPORT_TYPE_NAME": "CSV",
+	"delimiterChars": "行尾字符",
+	"eolChar": "行尾字符",
+	"validationNoDelimiter": "请输入CSV导出类型的分隔符。"
 }

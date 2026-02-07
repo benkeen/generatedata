@@ -1,9 +1,9 @@
 {
-  "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Nom du nœud",
-  "rowLabel": "Nom du nœud",
-  "rowLabelPlural": "Noms des nœuds",
-  "invalidNodeName": "Veuillez entrer un nom de nœud XML valide.",
-  "rootNodeName": "Nom du nœud racine",
-  "recordNodeName": "Enregistrer le nom du nœud"
+	"COL_TITLE": "Nom du nœud",
+	"EXPORT_TYPE_NAME": "XML",
+	"invalidNodeName": "Veuillez entrer un nom de nœud XML valide.",
+	"recordNodeName": "Enregistrer le nom du nœud",
+	"rootNodeName": "Nom du nœud racine",
+	"rowLabel": "Nom du nœud",
+	"rowLabelPlural": "Noms des nœuds"
 }

@@ -13,7 +13,9 @@
     "watch": "tsc --watch",
     "clean": "npx rimraf dist",
     "purge": "npx rimraf node_modules dist .turbo",
-    "test": "jest --config=./config/jest.config.js"
+    "test": "jest --config=./config/jest.config.js",
+    "validate": "node ./scripts/validate-plugin-i18n.js",
+    "sortI18nFiles": "node ./scripts/sort-plugin-i18n.js"
   },
   "dependencies": {
     "@generatedata/shared": "workspace:*",
@@ -31,6 +33,7 @@
     "@generatedata/config": "workspace:*",
     "@generatedata/shared": "workspace:*",
     "@generatedata/i18n": "workspace:*",
+    "@generatedata/tools": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@griffel/react": "catalog:",
     "@rollup/plugin-babel": "catalog:",

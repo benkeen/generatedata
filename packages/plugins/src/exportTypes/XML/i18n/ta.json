@@ -1,9 +1,9 @@
 {
-  "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "முனை பெயர்",
-  "rowLabel": "முனை பெயர்",
-  "rowLabelPlural": "முனை பெயர்கள்",
-  "invalidNodeName": "சரியான XML நோட் பெயரை உள்ளிடவும்.",
-  "rootNodeName": "ரூட் முனை பெயர்",
-  "recordNodeName": "பதிவு முனை பெயர்"
+	"COL_TITLE": "முனை பெயர்",
+	"EXPORT_TYPE_NAME": "XML",
+	"invalidNodeName": "சரியான XML நோட் பெயரை உள்ளிடவும்.",
+	"recordNodeName": "பதிவு முனை பெயர்",
+	"rootNodeName": "ரூட் முனை பெயர்",
+	"rowLabel": "முனை பெயர்",
+	"rowLabelPlural": "முனை பெயர்கள்"
 }

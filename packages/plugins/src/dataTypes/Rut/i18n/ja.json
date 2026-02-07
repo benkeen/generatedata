@@ -1,7 +1,7 @@
 {
-  "NAME": "チリのRUT番号",
-  "DESC": "RUT / RUNチリ国民識別番号を生成します。",
-  "DEFAULT_TITLE": "rut",
-  "onlyDigit": "確認桁のみ",
-  "digitUppercase": "大文字"
+	"DEFAULT_TITLE": "rut",
+	"DESC": "RUT / RUNチリ国民識別番号を生成します。",
+	"NAME": "チリのRUT番号",
+	"digitUppercase": "大文字",
+	"onlyDigit": "確認桁のみ"
 }

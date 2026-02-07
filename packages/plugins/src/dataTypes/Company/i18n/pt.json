@@ -1,5 +1,5 @@
 {
-  "NAME": "Empresa",
-  "DESC": "Gera um nome de empresa aleatório, composto de uma palavra lorem ipsum e um sufixo apropriado, como Dolor Inc. ou Convallis Limited.",
-  "DEFAULT_TITLE": "empresa"
+	"DEFAULT_TITLE": "empresa",
+	"DESC": "Gera um nome de empresa aleatório, composto de uma palavra lorem ipsum e um sufixo apropriado, como Dolor Inc. ou Convallis Limited.",
+	"NAME": "Empresa"
 }

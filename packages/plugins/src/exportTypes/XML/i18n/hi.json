@@ -1,9 +1,9 @@
 {
-  "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "नोड का नाम",
-  "rowLabel": "नोड का नाम",
-  "rowLabelPlural": "नोड नाम",
-  "invalidNodeName": "कृपया एक मान्य XML नोड नाम दर्ज करें।",
-  "rootNodeName": "रूट नोड नाम",
-  "recordNodeName": "रिकॉर्ड नोड नाम"
+	"COL_TITLE": "नोड का नाम",
+	"EXPORT_TYPE_NAME": "XML",
+	"invalidNodeName": "कृपया एक मान्य XML नोड नाम दर्ज करें।",
+	"recordNodeName": "रिकॉर्ड नोड नाम",
+	"rootNodeName": "रूट नोड नाम",
+	"rowLabel": "नोड का नाम",
+	"rowLabelPlural": "नोड नाम"
 }

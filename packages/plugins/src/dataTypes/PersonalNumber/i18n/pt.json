@@ -1,13 +1,13 @@
 {
-  "NAME": "Número pessoal sueco",
-  "DESC": "Gera um número pessoal, usado em alguns países para seguro de previdência social.",
-  "DEFAULT_TITLE": "númeropessoal",
-  "help_text": "Os números pessoais são gerados de acordo com o formato que você especificar:",
-  "incomplete_fields": "O tipo de dados PersonalNumber precisa ter o formato inserido no campo de texto Opções. Corrija as seguintes linhas:",
-  "example_PersonalNumberWithoutHyphen": "167502241016",
-  "example_PersonalNumberWithHyphen": "16750224-1016",
-  "type_PersonalNumberWithoutHyphen": "Um número pessoal (sueco) com 12 siffers e nenhum hífen",
-  "type_PersonalNumberWithHyphen": "Um número pessoal (sueco) com 12 siffers e um hífen",
-  "separators": "Separadores:",
-  "separator_help": "Os caracteres inseridos aqui serão usados como separadores nos campos de números pessoais. Nota: você pode misturar vários separadores, use | para separá-los (por exemplo - | +)."
+	"DEFAULT_TITLE": "númeropessoal",
+	"DESC": "Gera um número pessoal, usado em alguns países para seguro de previdência social.",
+	"NAME": "Número pessoal sueco",
+	"example_PersonalNumberWithHyphen": "16750224-1016",
+	"example_PersonalNumberWithoutHyphen": "167502241016",
+	"help_text": "Os números pessoais são gerados de acordo com o formato que você especificar:",
+	"incomplete_fields": "O tipo de dados PersonalNumber precisa ter o formato inserido no campo de texto Opções. Corrija as seguintes linhas:",
+	"separator_help": "Os caracteres inseridos aqui serão usados como separadores nos campos de números pessoais. Nota: você pode misturar vários separadores, use | para separá-los (por exemplo - | +).",
+	"separators": "Separadores:",
+	"type_PersonalNumberWithHyphen": "Um número pessoal (sueco) com 12 siffers e um hífen",
+	"type_PersonalNumberWithoutHyphen": "Um número pessoal (sueco) com 12 siffers e nenhum hífen"
 }

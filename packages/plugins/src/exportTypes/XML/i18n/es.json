@@ -1,9 +1,9 @@
 {
-  "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Nombre del nodo",
-  "rowLabel": "Nombre del nodo",
-  "rowLabelPlural": "Nombres de nodo",
-  "invalidNodeName": "Introduzca un nombre de nodo XML válido.",
-  "rootNodeName": "Nombre del nodo raíz",
-  "recordNodeName": "Registrar nombre de nodo"
+	"COL_TITLE": "Nombre del nodo",
+	"EXPORT_TYPE_NAME": "XML",
+	"invalidNodeName": "Introduzca un nombre de nodo XML válido.",
+	"recordNodeName": "Registrar nombre de nodo",
+	"rootNodeName": "Nombre del nodo raíz",
+	"rowLabel": "Nombre del nodo",
+	"rowLabelPlural": "Nombres de nodo"
 }

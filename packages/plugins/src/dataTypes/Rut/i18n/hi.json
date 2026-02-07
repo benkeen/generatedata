@@ -1,7 +1,7 @@
 {
-  "NAME": "चिली आरयूटी नंबर",
-  "DESC": "एक RUT/RUN चिली राष्ट्रीय पहचान संख्या उत्पन्न करता है।",
-  "DEFAULT_TITLE": "rut",
-  "onlyDigit": "केवल सत्यापन अंक",
-  "digitUppercase": "अपरकेस अंक"
+	"DEFAULT_TITLE": "rut",
+	"DESC": "एक RUT/RUN चिली राष्ट्रीय पहचान संख्या उत्पन्न करता है।",
+	"NAME": "चिली आरयूटी नंबर",
+	"digitUppercase": "अपरकेस अंक",
+	"onlyDigit": "केवल सत्यापन अंक"
 }

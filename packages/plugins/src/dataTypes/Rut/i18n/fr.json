@@ -1,7 +1,7 @@
 {
-  "NAME": "Numéro RUT chilien",
-  "DESC": "Génère un numéro d'identification national chilien RUT / RUN.",
-  "DEFAULT_TITLE": "rut",
-  "onlyDigit": "Seul le chiffre de vérification",
-  "digitUppercase": "Chiffre majuscule"
+	"DEFAULT_TITLE": "rut",
+	"DESC": "Génère un numéro d'identification national chilien RUT / RUN.",
+	"NAME": "Numéro RUT chilien",
+	"digitUppercase": "Chiffre majuscule",
+	"onlyDigit": "Seul le chiffre de vérification"
 }

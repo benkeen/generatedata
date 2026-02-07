@@ -1,8 +1,8 @@
 {
-	"NAME": "CVV",
-	"NAME:comment": "",
+	"DEFAULT_TITLE": "cvv",
+	"DEFAULT_TITLE:comment": "",
 	"DESC": "Generates a random credit card CVV number from 111 to 999.",
 	"DESC:comment": "",
-	"DEFAULT_TITLE": "cvv",
-	"DEFAULT_TITLE:comment": ""
+	"NAME": "CVV",
+	"NAME:comment": ""
 }

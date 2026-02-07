@@ -1,7 +1,7 @@
 {
-  "NAME": "رقم RUT التشيلي",
-  "DESC": "يُنشئ رقم تعريف RUT / RUN الوطني الشيلي.",
-  "DEFAULT_TITLE": "rut",
-  "onlyDigit": "فقط رقم التحقق",
-  "digitUppercase": "رقم كبير"
+	"DEFAULT_TITLE": "rut",
+	"DESC": "يُنشئ رقم تعريف RUT / RUN الوطني الشيلي.",
+	"NAME": "رقم RUT التشيلي",
+	"digitUppercase": "رقم كبير",
+	"onlyDigit": "فقط رقم التحقق"
 }

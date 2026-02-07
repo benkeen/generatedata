@@ -1,5 +1,5 @@
 {
-  "NAME": "CVV",
-  "DESC": "生成从111到999的随机信用卡CVV号码。",
-  "DEFAULT_TITLE": "cvv"
+	"DEFAULT_TITLE": "cvv",
+	"DESC": "生成从111到999的随机信用卡CVV号码。",
+	"NAME": "CVV"
 }

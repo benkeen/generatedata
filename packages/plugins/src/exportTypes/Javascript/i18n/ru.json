@@ -1,10 +1,10 @@
 {
-  "EXPORT_TYPE_NAME": "Javascript",
-  "COL_TITLE": "Имя свойства",
-  "row_label": "Имя переменной/свойства",
-  "language": "Язык",
-  "variable": "Переменная",
-  "format": "Формат",
-  "es6Format": "Экспорт ES6",
-  "commonJsFormat": "Экспорт CommonJS"
+	"COL_TITLE": "Имя свойства",
+	"EXPORT_TYPE_NAME": "Javascript",
+	"commonJsFormat": "Экспорт CommonJS",
+	"es6Format": "Экспорт ES6",
+	"format": "Формат",
+	"language": "Язык",
+	"row_label": "Имя переменной/свойства",
+	"variable": "Переменная"
 }

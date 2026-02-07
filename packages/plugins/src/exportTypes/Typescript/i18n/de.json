@@ -1,6 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "Typescript",
-  "COL_TITLE": "Name des Anwesens",
-  "typeName": "Modellname",
-  "exportedVarName": "Name der exportierten Variablen"
+	"COL_TITLE": "Name des Anwesens",
+	"EXPORT_TYPE_NAME": "Typescript",
+	"exportedVarName": "Name der exportierten Variablen",
+	"typeName": "Modellname"
 }

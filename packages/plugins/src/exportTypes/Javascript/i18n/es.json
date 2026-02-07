@@ -1,10 +1,10 @@
 {
-  "EXPORT_TYPE_NAME": "Javascript",
-  "COL_TITLE": "Nombre de la propiedad",
-  "row_label": "Var/Prop Name",
-  "language": "Idioma",
-  "variable": "Variable",
-  "format": "Formato",
-  "es6Format": "Exportación ES6",
-  "commonJsFormat": "Exportación CommonJS"
+	"COL_TITLE": "Nombre de la propiedad",
+	"EXPORT_TYPE_NAME": "Javascript",
+	"commonJsFormat": "Exportación CommonJS",
+	"es6Format": "Exportación ES6",
+	"format": "Formato",
+	"language": "Idioma",
+	"row_label": "Var/Prop Name",
+	"variable": "Variable"
 }

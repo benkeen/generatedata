@@ -1,6 +1,6 @@
 {
 	"EXPORT_TYPE_NAME": "CSV",
 	"delimiterChars": "Carácter(es) delimitador(es)",
-	"validationNoDelimiter": "Por favor, introduce un carácter delimitador para el tipo de exportación CSV.",
-	"eolChar": "Carácter de fin de línea"
+	"eolChar": "Carácter de fin de línea",
+	"validationNoDelimiter": "Por favor, introduce un carácter delimitador para el tipo de exportación CSV."
 }

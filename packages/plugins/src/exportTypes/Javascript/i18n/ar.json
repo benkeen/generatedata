@@ -1,10 +1,10 @@
 {
-  "EXPORT_TYPE_NAME": "Javascript",
-  "COL_TITLE": "اسم الخاصية",
-  "row_label": "Var / اسم الدعامة",
-  "language": "لغة",
-  "variable": "متغير",
-  "format": "شكل",
-  "es6Format": "تصدير ES6",
-  "commonJsFormat": "تصدير CommonJS"
+	"COL_TITLE": "اسم الخاصية",
+	"EXPORT_TYPE_NAME": "Javascript",
+	"commonJsFormat": "تصدير CommonJS",
+	"es6Format": "تصدير ES6",
+	"format": "شكل",
+	"language": "لغة",
+	"row_label": "Var / اسم الدعامة",
+	"variable": "متغير"
 }

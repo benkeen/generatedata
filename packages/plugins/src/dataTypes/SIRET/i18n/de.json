@@ -1,13 +1,13 @@
 {
-  "NAME": "SIRET",
-  "DESC": "Dieser Datentyp erzeugt zufällig SIRET nach dem Format, das Sie angeben.",
-  "DEFAULT_TITLE": "siret",
-  "incompleteFields": "Der SIRET Datentyp muß das im Optionstext-Feld eingegangene Format lassen. Befestigen Sie bitte die folgenden Reihen(Rudern):",
-  "exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
-  "exampleSIREN": "508102811 (SIREN)",
-  "typeSIRET": " Ein zusammengesetzter unsicherer SIRET eines SIREN und NIC (508102811-00009).",
-  "typeSIREN": " Ein SIREN unsicher (508102811).",
-  "SIRET": "SIRET:",
-  "SIREN": "SIREN:",
-  "moreInfo": "Mehr Informationen:"
+	"DEFAULT_TITLE": "siret",
+	"DESC": "Dieser Datentyp erzeugt zufällig SIRET nach dem Format, das Sie angeben.",
+	"NAME": "SIRET",
+	"SIREN": "SIREN:",
+	"SIRET": "SIRET:",
+	"exampleSIREN": "508102811 (SIREN)",
+	"exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
+	"incompleteFields": "Der SIRET Datentyp muß das im Optionstext-Feld eingegangene Format lassen. Befestigen Sie bitte die folgenden Reihen(Rudern):",
+	"moreInfo": "Mehr Informationen:",
+	"typeSIREN": " Ein SIREN unsicher (508102811).",
+	"typeSIRET": " Ein zusammengesetzter unsicherer SIRET eines SIREN und NIC (508102811-00009)."
 }

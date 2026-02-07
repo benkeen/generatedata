@@ -1,9 +1,9 @@
 {
-  "NAME": "Rango numérico",
-  "DESC": "Este tipo genera un número aleatorio entre los valores que especifiques. Ambos campos permite introducir números negativos.",
-  "DEFAULT_TITLE": "rangonumeros",
-  "and": "y",
-  "between": "Entre",
-  "enterNumericValue": "Por favor, introduzca un valor numérico",
-  "minValueGreaterThanMax": "Haz que el valor máximo sea mayor que el valor mínimo"
+	"DEFAULT_TITLE": "rangonumeros",
+	"DESC": "Este tipo genera un número aleatorio entre los valores que especifiques. Ambos campos permite introducir números negativos.",
+	"NAME": "Rango numérico",
+	"and": "y",
+	"between": "Entre",
+	"enterNumericValue": "Por favor, introduzca un valor numérico",
+	"minValueGreaterThanMax": "Haz que el valor máximo sea mayor que el valor mínimo"
 }

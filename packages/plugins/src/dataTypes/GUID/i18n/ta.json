@@ -1,5 +1,5 @@
 {
-  "NAME": "GUID",
-  "DESC": "வடிவத்தின் தனித்துவமான, சீரற்ற GUID (உலகளவில் தனித்துவமான அடையாளங்காட்டி) ஐ உருவாக்குகிறது: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-  "DEFAULT_TITLE": "guid"
+	"DEFAULT_TITLE": "guid",
+	"DESC": "வடிவத்தின் தனித்துவமான, சீரற்ற GUID (உலகளவில் தனித்துவமான அடையாளங்காட்டி) ஐ உருவாக்குகிறது: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+	"NAME": "GUID"
 }

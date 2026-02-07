@@ -1,15 +1,15 @@
 {
-  "NAME": "Feste Anzahl der Worte",
-  "DESC": "Diese Option erzeugt eine feste Anzahl von zufälligen Wörtern, von der Norm Lorem ipsum lateinischen Text.",
-  "DEFAULT_TITLE": "text",
-  "TextFixed_generate": "Erzeugen",
-  "TextFixed_help": "Dieser Datentyp generiert eine zufällige Wortfolge. Sie haben die Wahl, den standardmäßigen zufälligen Lorem-Ipsum-Dummy-Text zu verwenden oder einen eigenen Text bereitzustellen.",
-  "TextFixed_words": "Text",
-  "selectTextSource": "Wählen Sie Textquelle",
-  "lipsumDesc": "Lorem ipsum ist ein Standard-Dummy-Text in lateinischer Sprache, der seit dem 16. Jahrhundert verwendet wird.",
-  "customTextDesc": "In dieses Feld können Sie den Text eingeben, den Sie als Datenquelle verwenden möchten.",
-  "source": "Quelle",
-  "explanation": "In diesem Abschnitt können Sie die Datenquelle für die Wörter auswählen.",
-  "enterCustomText": "Geben Sie hier einen benutzerdefinierten Text ein. Stellen Sie sicher, dass Sie eine gute Anzahl von Wörtern eingeben.",
-  "custom": "Benutzerdefiniert"
+	"DEFAULT_TITLE": "text",
+	"DESC": "Diese Option erzeugt eine feste Anzahl von zufälligen Wörtern, von der Norm Lorem ipsum lateinischen Text.",
+	"NAME": "Feste Anzahl der Worte",
+	"TextFixed_generate": "Erzeugen",
+	"TextFixed_help": "Dieser Datentyp generiert eine zufällige Wortfolge. Sie haben die Wahl, den standardmäßigen zufälligen Lorem-Ipsum-Dummy-Text zu verwenden oder einen eigenen Text bereitzustellen.",
+	"TextFixed_words": "Text",
+	"custom": "Benutzerdefiniert",
+	"customTextDesc": "In dieses Feld können Sie den Text eingeben, den Sie als Datenquelle verwenden möchten.",
+	"enterCustomText": "Geben Sie hier einen benutzerdefinierten Text ein. Stellen Sie sicher, dass Sie eine gute Anzahl von Wörtern eingeben.",
+	"explanation": "In diesem Abschnitt können Sie die Datenquelle für die Wörter auswählen.",
+	"lipsumDesc": "Lorem ipsum ist ein Standard-Dummy-Text in lateinischer Sprache, der seit dem 16. Jahrhundert verwendet wird.",
+	"selectTextSource": "Wählen Sie Textquelle",
+	"source": "Quelle"
 }

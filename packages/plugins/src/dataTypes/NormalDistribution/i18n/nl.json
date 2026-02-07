@@ -1,8 +1,8 @@
 {
-  "NAME": "Normaal Distributie",
-  "DESC": "Toevalsgetallen normaal waarden met een aanpasbare gemiddelde en de standaarddeviatie .",
-  "DEFAULT_TITLE": "veld",
-  "mean": "Signifier",
-  "standardDeviation": "Écart type",
-  "precision": "Précision"
+	"DEFAULT_TITLE": "veld",
+	"DESC": "Toevalsgetallen normaal waarden met een aanpasbare gemiddelde en de standaarddeviatie .",
+	"NAME": "Normaal Distributie",
+	"mean": "Signifier",
+	"precision": "Précision",
+	"standardDeviation": "Écart type"
 }

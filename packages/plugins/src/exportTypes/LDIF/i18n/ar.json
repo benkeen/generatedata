@@ -1,4 +1,4 @@
 {
-  "EXPORT_TYPE_NAME": "LDIF",
-  "COL_TITLE": "سمة LDAP"
+	"COL_TITLE": "سمة LDAP",
+	"EXPORT_TYPE_NAME": "LDIF"
 }

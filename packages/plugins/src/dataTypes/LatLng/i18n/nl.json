@@ -1,7 +1,7 @@
 {
-  "NAME": "Breedtegraad / Lengtegraad",
-  "DESC": "Dit gegevenstype genereert een willekeurige lengte- en/of breedtegraad. Indien beide zijn geselecteerd worden beide weergegeven gescheiden door een komma.",
-  "DEFAULT_TITLE": "latlng",
-  "latitude": "Breedtegraad",
-  "longitude": "Lengtegraad"
+	"DEFAULT_TITLE": "latlng",
+	"DESC": "Dit gegevenstype genereert een willekeurige lengte- en/of breedtegraad. Indien beide zijn geselecteerd worden beide weergegeven gescheiden door een komma.",
+	"NAME": "Breedtegraad / Lengtegraad",
+	"latitude": "Breedtegraad",
+	"longitude": "Lengtegraad"
 }

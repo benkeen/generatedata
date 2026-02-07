@@ -1,9 +1,9 @@
 {
-  "NAME": "Nummer Range",
-  "DESC": "Dit genereert een willekeurig getal tussen de waarden die u opgeeft. In beide velden kunt u een negatieve waarde invoeren.",
-  "DEFAULT_TITLE": "nummerbereik",
-  "and": "en",
-  "between": "Tussen",
-  "enterNumericValue": "Voer een numerieke waarde in",
-  "minValueGreaterThanMax": "Maak de maximale waarde groter dan de minimale waarde"
+	"DEFAULT_TITLE": "nummerbereik",
+	"DESC": "Dit genereert een willekeurig getal tussen de waarden die u opgeeft. In beide velden kunt u een negatieve waarde invoeren.",
+	"NAME": "Nummer Range",
+	"and": "en",
+	"between": "Tussen",
+	"enterNumericValue": "Voer een numerieke waarde in",
+	"minValueGreaterThanMax": "Maak de maximale waarde groter dan de minimale waarde"
 }

@@ -1,14 +1,14 @@
 {
-  "NAME": "Track1",
-  "DESC": "Track1 es un formato de datos que se utiliza para almacenar información en bandas de tarjetas magnéticas. Contiene el nombre del titular de la tarjeta, así como el número de cuenta y otros datos discrecionales. La tarjeta de crédito puede ser de cualquier tipo (Visa, Mastercard, etc).",
-  "DEFAULT_TITLE": "track1",
-  "dialogTitle": "Fuente de datos Track1",
-  "dialogDesc": "Esto le permite apuntar a otros campos para crear valores Track1 más realistas. De forma predeterminada, genera cadenas arbitrarias para el PAN y las partes del nombre, por lo que el suministro de filas de origen reales garantiza un valor Track1 válido y consistente.",
-  "panSource": "Fuente PAN",
-  "randomString": "Cadena aleatoria",
-  "panRow": "Fila PAN",
-  "nameRow": "Fila de nombre",
-  "row": "Fila",
-  "nameSource": "Fuente de nombre",
-  "customizeSource": "Personalizar fuente"
+	"DEFAULT_TITLE": "track1",
+	"DESC": "Track1 es un formato de datos que se utiliza para almacenar información en bandas de tarjetas magnéticas. Contiene el nombre del titular de la tarjeta, así como el número de cuenta y otros datos discrecionales. La tarjeta de crédito puede ser de cualquier tipo (Visa, Mastercard, etc).",
+	"NAME": "Track1",
+	"customizeSource": "Personalizar fuente",
+	"dialogDesc": "Esto le permite apuntar a otros campos para crear valores Track1 más realistas. De forma predeterminada, genera cadenas arbitrarias para el PAN y las partes del nombre, por lo que el suministro de filas de origen reales garantiza un valor Track1 válido y consistente.",
+	"dialogTitle": "Fuente de datos Track1",
+	"nameRow": "Fila de nombre",
+	"nameSource": "Fuente de nombre",
+	"panRow": "Fila PAN",
+	"panSource": "Fuente PAN",
+	"randomString": "Cadena aleatoria",
+	"row": "Fila"
 }

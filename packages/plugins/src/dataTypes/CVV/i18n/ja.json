@@ -1,5 +1,5 @@
 {
-  "NAME": "CVV",
-  "DESC": "111から999までのランダムなクレジットカードCVV番号を生成します。",
-  "DEFAULT_TITLE": "cvv"
+	"DEFAULT_TITLE": "cvv",
+	"DESC": "111から999までのランダムなクレジットカードCVV番号を生成します。",
+	"NAME": "CVV"
 }

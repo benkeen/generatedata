@@ -1,14 +1,14 @@
 {
-	"NAME": "Normal Distribution",
-	"NAME:comment": "",
-	"DESC": "Generates random normally distributed values with a customizable mean and standard deviation.",
-	"DESC:comment": "",
 	"DEFAULT_TITLE": "normaldist",
 	"DEFAULT_TITLE:comment": "",
+	"DESC": "Generates random normally distributed values with a customizable mean and standard deviation.",
+	"DESC:comment": "",
+	"NAME": "Normal Distribution",
+	"NAME:comment": "",
 	"mean": "Mean",
 	"mean:comment": "",
-	"standardDeviation": "Standard Dev.",
-	"standardDeviation:comment": "",
 	"precision": "Precision",
-	"precision:comment": ""
+	"precision:comment": "",
+	"standardDeviation": "Standard Dev.",
+	"standardDeviation:comment": ""
 }

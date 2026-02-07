@@ -1,12 +1,12 @@
 {
-	"EXPORT_TYPE_NAME": "JSON",
-	"EXPORT_TYPE_NAME:comment": "",
 	"COL_TITLE": "Property Name",
 	"COL_TITLE:comment": "",
+	"EXPORT_TYPE_NAME": "JSON",
+	"EXPORT_TYPE_NAME:comment": "",
 	"complex": "Complex",
 	"complex:comment": "",
-	"simple": "Simple",
-	"simple:comment": "",
 	"dataStructureFormat": "Data structure format",
-	"dataStructureFormat:comment": ""
+	"dataStructureFormat:comment": "",
+	"simple": "Simple",
+	"simple:comment": ""
 }

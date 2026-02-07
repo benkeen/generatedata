@@ -1,10 +1,10 @@
 {
-  "NAME": "URLs",
-  "DESC": "Dieser Datentyp generiert zufällige URLs, sodass Sie eine vollständige URL mit Protokoll, Hostname, Pfadname und Abfrageparametern generieren können. Alternativ können Sie eine beliebige Teilmenge dieser Optionen generieren.",
-  "DEFAULT_TITLE": "URL",
-  "optionsDesc": "Verwenden Sie die Felder unten, um das Format der von diesem Feld generierten URLs anzupassen. Die Textfelder enthalten durch Kommas getrennte Optionen, die für diesen Abschnitt der URL verwendet werden.",
-  "protocol": "Protokoll",
-  "hostname": "Hostname",
-  "path": "Weg",
-  "queryParams": "Parameter abfragen"
+	"DEFAULT_TITLE": "URL",
+	"DESC": "Dieser Datentyp generiert zufällige URLs, sodass Sie eine vollständige URL mit Protokoll, Hostname, Pfadname und Abfrageparametern generieren können. Alternativ können Sie eine beliebige Teilmenge dieser Optionen generieren.",
+	"NAME": "URLs",
+	"hostname": "Hostname",
+	"optionsDesc": "Verwenden Sie die Felder unten, um das Format der von diesem Feld generierten URLs anzupassen. Die Textfelder enthalten durch Kommas getrennte Optionen, die für diesen Abschnitt der URL verwendet werden.",
+	"path": "Weg",
+	"protocol": "Protokoll",
+	"queryParams": "Parameter abfragen"
 }

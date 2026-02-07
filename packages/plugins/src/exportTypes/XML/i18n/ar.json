@@ -1,9 +1,9 @@
 {
-  "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "اسم العقدة",
-  "rowLabel": "اسم العقدة",
-  "rowLabelPlural": "أسماء العقدة",
-  "invalidNodeName": "الرجاء إدخال اسم صالح لعقدة XML.",
-  "rootNodeName": "اسم عقدة الجذر",
-  "recordNodeName": "تسجيل اسم العقدة"
+	"COL_TITLE": "اسم العقدة",
+	"EXPORT_TYPE_NAME": "XML",
+	"invalidNodeName": "الرجاء إدخال اسم صالح لعقدة XML.",
+	"recordNodeName": "تسجيل اسم العقدة",
+	"rootNodeName": "اسم عقدة الجذر",
+	"rowLabel": "اسم العقدة",
+	"rowLabelPlural": "أسماء العقدة"
 }

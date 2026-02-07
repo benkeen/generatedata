@@ -1,12 +1,12 @@
 {
-  "NAME": "Track2",
-  "DESC": "Track2は、磁気カードストライプに情報を保存するために使用されるデータ形式です。 カード所有者のアカウント番号、暗号化されたPIN、およびその他の任意のデータが含まれています。 クレジットカードはどのタイプでもかまいません（Visa、Mastercardなど）。",
-  "DEFAULT_TITLE": "track2",
-  "dialogTitle": "Track2-gegevensbron",
-  "dialogDesc": "Hiermee kunt u een PAN-rij targeten om meer realistische Track2-waarden te creëren. Standaard genereert het willekeurige strings voor de PAN, dus het leveren van een werkelijke PAN-rij zorgt voor een geldige en consistente Track2-waarde.",
-  "panSource": "PAN-bron",
-  "randomString": "Willekeurige tekenreeks",
-  "panRow": "PAN-rij",
-  "row": "Rij",
-  "customizeSource": "Pas de bron aan"
+	"DEFAULT_TITLE": "track2",
+	"DESC": "Track2は、磁気カードストライプに情報を保存するために使用されるデータ形式です。 カード所有者のアカウント番号、暗号化されたPIN、およびその他の任意のデータが含まれています。 クレジットカードはどのタイプでもかまいません（Visa、Mastercardなど）。",
+	"NAME": "Track2",
+	"customizeSource": "Pas de bron aan",
+	"dialogDesc": "Hiermee kunt u een PAN-rij targeten om meer realistische Track2-waarden te creëren. Standaard genereert het willekeurige strings voor de PAN, dus het leveren van een werkelijke PAN-rij zorgt voor een geldige en consistente Track2-waarde.",
+	"dialogTitle": "Track2-gegevensbron",
+	"panRow": "PAN-rij",
+	"panSource": "PAN-bron",
+	"randomString": "Willekeurige tekenreeks",
+	"row": "Rij"
 }

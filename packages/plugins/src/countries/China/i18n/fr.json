@@ -1,10 +1,10 @@
 {
-  "countryName": "Chine",
-  "regionNames": "Régions de la Chine",
-  "regionNorthChina": "Huáběi",
-  "regionNortheastChina": "Dōngběi",
-  "regionEastChina": "Huádōng",
-  "regionSouthCentralChina": "Zhōngnán",
-  "regionSouthwestChina": "Xīnán",
-  "regionNorthwestChina": "Xīběi"
+	"countryName": "Chine",
+	"regionEastChina": "Huádōng",
+	"regionNames": "Régions de la Chine",
+	"regionNorthChina": "Huáběi",
+	"regionNortheastChina": "Dōngběi",
+	"regionNorthwestChina": "Xīběi",
+	"regionSouthCentralChina": "Zhōngnán",
+	"regionSouthwestChina": "Xīnán"
 }

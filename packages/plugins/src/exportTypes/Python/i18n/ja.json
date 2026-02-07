@@ -1,4 +1,4 @@
 {
-  "EXPORT_TYPE_NAME": "Python",
-  "COL_TITLE": "プロパティ名"
+	"COL_TITLE": "プロパティ名",
+	"EXPORT_TYPE_NAME": "Python"
 }

@@ -1,9 +1,9 @@
 {
-  "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "ノード名",
-  "rowLabel": "ノード名",
-  "rowLabelPlural": "ノード名",
-  "invalidNodeName": "有効な XML ノード名を入力してください。",
-  "rootNodeName": "ルートノード名",
-  "recordNodeName": "レコードノード名"
+	"COL_TITLE": "ノード名",
+	"EXPORT_TYPE_NAME": "XML",
+	"invalidNodeName": "有効な XML ノード名を入力してください。",
+	"recordNodeName": "レコードノード名",
+	"rootNodeName": "ルートノード名",
+	"rowLabel": "ノード名",
+	"rowLabelPlural": "ノード名"
 }

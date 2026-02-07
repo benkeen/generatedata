@@ -1,9 +1,9 @@
 {
-  "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Nome do nó",
-  "rowLabel": "Nome do nó",
-  "rowLabelPlural": "Nomes de Nó",
-  "invalidNodeName": "Insira um nome de nó XML válido.",
-  "rootNodeName": "Nome do nó raiz",
-  "recordNodeName": "Nome do nó de registro"
+	"COL_TITLE": "Nome do nó",
+	"EXPORT_TYPE_NAME": "XML",
+	"invalidNodeName": "Insira um nome de nó XML válido.",
+	"recordNodeName": "Nome do nó de registro",
+	"rootNodeName": "Nome do nó raiz",
+	"rowLabel": "Nome do nó",
+	"rowLabelPlural": "Nomes de Nó"
 }

@@ -1,13 +1,13 @@
 {
-  "NAME": "Número da Organização",
-  "DESC": "Gera números de organizações, usados em alguns países para registro de empresas, associações etc.",
-  "DEFAULT_TITLE": "numero",
-  "help_text": "No momento, apenas os suecos são suportados. Os números da organização são gerados de acordo com o formato que você especificar:",
-  "incomplete_fields": "O tipo de dados do número da organização precisa ter o formato inserido no campo de texto Opções. Corrija as seguintes linhas:",
-  "example_OrganisationNumberWithoutHyphen": "167502241016",
-  "example_OrganisationNumberWithHyphen": "16750224-1016",
-  "type_OrganisationNumberWithoutHyphen": "Um número de organização (sueco) com 12 siffers e nenhum hífen",
-  "type_OrganisationNumberWithHyphen": "Um número de organização (sueco) com 12 siffers e um hífen",
-  "separators": "Separadores:",
-  "separator_help": "Os caracteres inseridos aqui serão usados como separadores nos campos de número da organização. Nota: você pode misturar vários separadores, use | para separá-los (por exemplo - | +)"
+	"DEFAULT_TITLE": "numero",
+	"DESC": "Gera números de organizações, usados em alguns países para registro de empresas, associações etc.",
+	"NAME": "Número da Organização",
+	"example_OrganisationNumberWithHyphen": "16750224-1016",
+	"example_OrganisationNumberWithoutHyphen": "167502241016",
+	"help_text": "No momento, apenas os suecos são suportados. Os números da organização são gerados de acordo com o formato que você especificar:",
+	"incomplete_fields": "O tipo de dados do número da organização precisa ter o formato inserido no campo de texto Opções. Corrija as seguintes linhas:",
+	"separator_help": "Os caracteres inseridos aqui serão usados como separadores nos campos de número da organização. Nota: você pode misturar vários separadores, use | para separá-los (por exemplo - | +)",
+	"separators": "Separadores:",
+	"type_OrganisationNumberWithHyphen": "Um número de organização (sueco) com 12 siffers e um hífen",
+	"type_OrganisationNumberWithoutHyphen": "Um número de organização (sueco) com 12 siffers e nenhum hífen"
 }

@@ -1,5 +1,5 @@
 {
-  "NAME": "CVV",
-  "DESC": "Genereert een willekeurig creditcard CVV-nummer tussen 111 en 999.",
-  "DEFAULT_TITLE": "cvv"
+	"DEFAULT_TITLE": "cvv",
+	"DESC": "Genereert een willekeurig creditcard CVV-nummer tussen 111 en 999.",
+	"NAME": "CVV"
 }

@@ -1,6 +1,6 @@
 {
-  "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Spaltentitel",
-  "dataFormat": "Datenformat",
-  "batchVars": "Boolsche ob die aktuelle Charge der Ergebnisse erzeugt ist die erste oder letzte. Dies wird immer nur für Benutzer Erzeugen der Daten in-Seite, die die Ergebnisse in Blöcken generiert verwendet. In allen anderen Situationen, beide sind immer wahr."
+	"COL_TITLE": "Spaltentitel",
+	"EXPORT_TYPE_NAME": "HTML",
+	"batchVars": "Boolsche ob die aktuelle Charge der Ergebnisse erzeugt ist die erste oder letzte. Dies wird immer nur für Benutzer Erzeugen der Daten in-Seite, die die Ergebnisse in Blöcken generiert verwendet. In allen anderen Situationen, beide sind immer wahr.",
+	"dataFormat": "Datenformat"
 }

@@ -1,13 +1,13 @@
 {
-  "NAME": "SIRET francês",
-  "DESC": "Este tipo de dados gera um número de identificação comercial francês SIRET / SIREN aleatório.",
-  "DEFAULT_TITLE": "siret",
-  "incompleteFields": "O tipo de dados SIRET precisa ter o formato inserido no campo de texto Opções. Corrija as seguintes linhas:",
-  "exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
-  "exampleSIREN": "508102811 (SIREN)",
-  "typeSIRET": "Um composto SIRET aleatório de um SIREN e NIC (508102811-00009).",
-  "typeSIREN": "Uma SIRENE aleatória (508102811).",
-  "SIRET": "SIRET:",
-  "SIREN": "SIREN:",
-  "moreInfo": "Mais informações:"
+	"DEFAULT_TITLE": "siret",
+	"DESC": "Este tipo de dados gera um número de identificação comercial francês SIRET / SIREN aleatório.",
+	"NAME": "SIRET francês",
+	"SIREN": "SIREN:",
+	"SIRET": "SIRET:",
+	"exampleSIREN": "508102811 (SIREN)",
+	"exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
+	"incompleteFields": "O tipo de dados SIRET precisa ter o formato inserido no campo de texto Opções. Corrija as seguintes linhas:",
+	"moreInfo": "Mais informações:",
+	"typeSIREN": "Uma SIRENE aleatória (508102811).",
+	"typeSIRET": "Um composto SIRET aleatório de um SIREN e NIC (508102811-00009)."
 }
