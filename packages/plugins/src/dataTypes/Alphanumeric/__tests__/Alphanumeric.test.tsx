@@ -1,4 +1,4 @@
-import i18n from '@generatedata/i18n';
+import i18n from '../i18n/en.json';
 import * as langUtils from '@generatedata/utils/lang';
 import { fireEvent, render } from '@testing-library/react';
 import sinon from 'sinon';

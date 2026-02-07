@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "~types/*": ["types/*"],
+      "@generatedata/utils/*": ["node_modules/@generatedata/utils/src/*"],
+      "@generatedata/utils": ["node_modules/@generatedata/utils/src/index.ts"],
+      "@generatedata/shared/*": ["node_modules/@generatedata/shared/src/*"],
+      "@generatedata/shared": ["node_modules/@generatedata/shared/src/index.ts"],
+      "@generatedata/config/*": ["node_modules/@generatedata/config/src/*"],
+      "@generatedata/config": ["node_modules/@generatedata/config/src/index.ts"],
+      "@generatedata/i18n": ["node_modules/@generatedata/i18n/locales/en.json"]
+    }
+  },
+  "include": ["src", "types", "node_modules/@generatedata/*/src/**/*"]
+}

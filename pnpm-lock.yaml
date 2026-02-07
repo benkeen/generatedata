@@ -1194,6 +1194,9 @@ importers:
       '@griffel/react':
         specifier: 'catalog:'
         version: 1.5.32(react@18.3.1)
+      '@react-hook/throttle':
+        specifier: 'catalog:'
+        version: 2.2.0(react@18.3.1)
       '@rollup/plugin-babel':
         specifier: 'catalog:'
         version: 6.1.0(@babel/core@7.28.5)(@types/babel__core@7.20.5)(rollup@2.79.2)

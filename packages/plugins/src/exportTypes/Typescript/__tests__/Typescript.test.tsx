@@ -3,7 +3,7 @@ import { defaultETSettings } from '../../../tests/testHelpers';
 import { Settings } from '../Typescript';
 import { initialState } from '../Typescript.state';
 
-import i18n from '@generatedata/i18n';
+import i18n from '../i18n/en.json';
 
 describe('Settings', () => {
   it('renders', () => {

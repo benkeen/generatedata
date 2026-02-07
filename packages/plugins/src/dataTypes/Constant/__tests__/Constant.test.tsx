@@ -1,4 +1,4 @@
-import i18n from '@generatedata/i18n';
+import i18n from '../i18n/en.json';
 import { render } from '@testing-library/react';
 import { Example, Help, Options } from '../Constant';
 

@@ -1,4 +1,4 @@
-import i18n from '@generatedata/i18n';
+import i18n from '../i18n/en.json';
 import { getBlankDTGeneratorPayload } from '../../../tests/testHelpers';
 import { initialState } from '../AutoIncrement.state';
 import { onmessage } from '../AutoIncrement.worker';

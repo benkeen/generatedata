@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "tsc": "tsc",
-    "build": "run-s tsc copy-i18n-files generate-web-workers",
+    "build": "run-s validateI18nFiles tsc copy-i18n-files generate-web-workers",
     "copy-i18n-files": "copyfiles -u 1 ./src/*/*/i18n/*.json dist",
     "dev": "npm run watch",
     "generate-web-workers": "node ./config/webworkers.build.js",
@@ -14,7 +14,7 @@
     "clean": "npx rimraf dist",
     "purge": "npx rimraf node_modules dist .turbo",
     "test": "jest --config=./config/jest.config.js",
-    "validate": "node ./scripts/validate-plugin-i18n.js",
+    "validateI18nFiles": "node ./scripts/validate-plugin-i18n.js",
     "sortI18nFiles": "node ./scripts/sort-plugin-i18n.js"
   },
   "dependencies": {
@@ -36,6 +36,7 @@
     "@generatedata/tools": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@griffel/react": "catalog:",
+    "@react-hook/throttle": "catalog:",
     "@rollup/plugin-babel": "catalog:",
     "@rollup/plugin-commonjs": "catalog:",
     "@rollup/plugin-node-resolve": "catalog:",

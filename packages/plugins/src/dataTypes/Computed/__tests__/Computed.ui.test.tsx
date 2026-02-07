@@ -1,4 +1,4 @@
-import i18n from '@generatedata/i18n';
+import i18n from '../i18n/en.json';
 import { fireEvent, render } from '@testing-library/react';
 import { Help, Options } from '../Computed';
 import { initialState } from '../Computed.state';
