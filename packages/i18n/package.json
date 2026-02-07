@@ -4,26 +4,22 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "",
-    "tsc": "tsc",
-    "purge": "npx rimraf .turbo"
+    "build": "run-s build-src build-dist",
+    "build-src": "tsc -p tsconfig.lib.json",
+    "build-dist": "node ./lib/i18n.js",
+    "purge": "npx rimraf .turbo",
+    "clean": "npx rimraf dist lib node_modules .turbo"
   },
   "exports": {
-    ".": "./locales/en.json",
-    "./ar": "./locales/ar.json",
-    "./de": "./locales/de.json",
-    "./en": "./locales/en.json",
-    "./es": "./locales/es.json",
-    "./fr": "./locales/fr.json",
-    "./hi": "./locales/hi.json",
-    "./ja": "./locales/ja.json",
-    "./nl": "./locales/nl.json",
-    "./pt": "./locales/pt.json",
-    "./ru": "./locales/ru.json",
-    "./ta": "./locales/ta.json",
-    "./zh": "./locales/zh.json"
+    ".": "./dist/localeFileMap.js"
   },
   "devDependencies": {
-    "rimraf": "catalog:"
+    "@generatedata/i18n-core": "workspace:*",
+    "@generatedata/config": "workspace:*",
+    "@generatedata/plugins": "workspace:*",
+    "crypto-browserify": "catalog:",
+    "npm-run-all": "catalog:",
+    "rimraf": "catalog:",
+    "typescript": "catalog:"
   }
 }

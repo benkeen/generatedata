@@ -13,34 +13,6 @@ const getCoreLocaleFileStrings = (locale) => {
   return require(getCoreLocaleFilePath(locale));
 };
 
-const findMissingStrings = (stringsByLocale, targetLocale = null, baseLocale = 'en') => {
-  const locales = Object.keys(stringsByLocale);
-  const results = [];
-
-  const baseLocaleKeys = Object.keys(stringsByLocale[baseLocale]);
-  locales.forEach((locale) => {
-    if (targetLocale && targetLocale !== locale) {
-      return;
-    }
-
-    const targetLocaleKeys = Object.keys(stringsByLocale[locale]);
-
-    // missing from source file
-    const missing = helpers.arrayDiff(baseLocaleKeys, targetLocaleKeys);
-    missing.forEach((key) => {
-      results.push({ key, locale });
-    });
-
-    // extra ones in locale file
-    const extra = helpers.arrayDiff(targetLocaleKeys, baseLocaleKeys);
-    extra.forEach((key) => {
-      results.push({ key, locale, isExtra: true });
-    });
-  });
-
-  return results;
-};
-
 const findStringsInDataTypeEnFileMissingFromOtherLangFiles = (results, dataType, stringsByLocale) => {
   const langs = Object.keys(stringsByLocale);
 
@@ -81,60 +53,6 @@ const getPluginLocaleFilePath = (plugin, pluginType, locale) => {
   return path.join(__dirname, '..', `src/plugins/${pluginFolder}/${plugin}/i18n/${locale}.json`);
 };
 
-const parseCoreToFindUnusedStrings = (results, en) => {
-  // let missingKeys = Object.keys(en);
-  //
-  // const ignoreFolders = [
-  // 	'src/global/lang/',
-  // 	'src/global/vendor/',
-  // 	'src/global/codemirror/',
-  // 	'src/global/fancybox/',
-  // 	'src/global/images/',
-  // 	'dist/',
-  // 	'node_modules/',
-  // 	'src/modules/'
-  // ];
-  //
-  // const files = walk('./src');
-  // files.forEach((file) => {
-  // 	for (let i=0; i<ignoreFolders.length; i++) {
-  // 		const re = new RegExp(ignoreFolders[i]);
-  // 		if (re.test(file)) {
-  // 			return;
-  // 		}
-  // 	}
-  //
-  // 	if (!(/[php|txt|tpl|html|js]$/.test(file))) {
-  // 		return;
-  // 	}
-  //
-  // 	const lines = new lineByLine(file);
-  // 	let line;
-  // 	while (line = lines.next()) {
-  // 		line.toString('ascii');
-  //
-  // 		// loop through all keys that still haven't been found yet and remove any that are found on the row
-  // 		let updatedKeys = [];
-  // 		missingKeys.forEach((key) => {
-  // 			const regex = new RegExp(key);
-  //
-  // 			// very kludgy, but the only place Form Tools uses dynamic keys is for dates: ignore all those keys.
-  // 			// We also ignore any i18n keys flagged for global use across FT modules
-  // 			if (!(/^date_/.test(key)) && !regex.test(line) && globalI18nStrings.indexOf(key) === -1) {
-  // 				updatedKeys.push(key);
-  // 			}
-  // 		});
-  //
-  // 		missingKeys = updatedKeys;
-  // 	}
-  // });
-  //
-  // if (missingKeys.length > 0) {
-  // 	results.error = true;
-  // 	results.lines.push(`\nUNUSED KEYS:\n${missingKeys.join('\n  --')}`);
-  // }
-};
-
 const getPluginLocaleStrings = (plugin, pluginType) => {
   const result = {};
   locales.forEach((locale) => {
@@ -143,84 +61,10 @@ const getPluginLocaleStrings = (plugin, pluginType) => {
   return result;
 };
 
-const validateCoreI18n = (baseLocale, targetLocale) => {
-  const stringsByLocale = {};
-  locales.forEach((locale) => {
-    stringsByLocale[locale] = getCoreLocaleFileStrings(locale);
-  });
-
-  const missing = findMissingStrings(stringsByLocale, targetLocale, baseLocale);
-  return getMissingStrMessage(missing, baseLocale);
-};
-
-const validateDataTypeI18n = (baseLocale, targetDataType) => {
-  const dataTypes = helpers.getPlugins('dataTypes', [], false);
-
-  let str = '';
-  dataTypes.forEach((dataType) => {
-    if (targetDataType && targetDataType !== dataType) {
-      return;
-    }
-
-    const stringsByLocale = getPluginLocaleStrings(dataType, 'dataType');
-    const missing = findMissingStrings(stringsByLocale);
-
-    str += getMissingStrMessage(missing, baseLocale, `${dataType} -- `);
-  });
-
-  return str;
-};
-
-const validateExportTypeI18n = (baseLocale, targetExportType) => {
-  const exportTypes = helpers.getPlugins('exportTypes', [], false);
-
-  let str = '';
-  exportTypes.forEach((dataType) => {
-    if (targetExportType && targetExportType !== dataType) {
-      return;
-    }
-
-    const stringsByLocale = getPluginLocaleStrings(dataType, 'exportType');
-    const missing = findMissingStrings(stringsByLocale);
-
-    str += getMissingStrMessage(missing, baseLocale, `${dataType} -- `);
-  });
-
-  return str;
-};
-
-const getMissingStrMessage = (missing, baseLocale, prefix) => {
-  let str = '';
-  if (missing.length) {
-    let missingStr = [];
-    let extraStr = [];
-    missing.forEach(({ key, locale, isExtra }) => {
-      if (isExtra) {
-        extraStr.push(`- ${key}: ${locale}`);
-      } else {
-        missingStr.push(`- ${key}: ${locale}`);
-      }
-    });
-
-    if (missingStr.length) {
-      str += `\n\n${prefix}"${baseLocale}" strings missing from other lang files:\n-------------------------------------------\n`;
-      str += missingStr.join('\n');
-    }
-    if (extraStr.length) {
-      str += `\n\n${prefix}Extra strings in locale files that are NOT in "${baseLocale}" file:\n-------------------------------------------\n`;
-      str += extraStr.join('\n');
-    }
-  }
-  return str;
-};
-
 module.exports = {
   locales,
   getCoreLocaleFileStrings,
   parseCoreToFindUnusedStrings,
   removeKeyFromI18nFiles,
-  getPluginLocaleStrings,
-  validateCoreI18n,
-  validateDataTypeI18n,
-  validateExportTypeI18n
+  getPluginLocaleStrings
 };

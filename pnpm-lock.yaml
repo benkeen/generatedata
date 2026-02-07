@@ -1130,9 +1130,27 @@ importers:
 
   packages/i18n:
     devDependencies:
+      '@generatedata/config':
+        specifier: workspace:*
+        version: link:../config
+      '@generatedata/i18n-core':
+        specifier: workspace:*
+        version: link:../i18n-core
+      '@generatedata/plugins':
+        specifier: workspace:*
+        version: link:../plugins
+      crypto-browserify:
+        specifier: 'catalog:'
+        version: 3.12.1
+      npm-run-all:
+        specifier: 'catalog:'
+        version: 4.1.5
       rimraf:
         specifier: 'catalog:'
         version: 6.0.1
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
 
   packages/i18n-core:
     devDependencies:
@@ -1182,9 +1200,6 @@ importers:
       '@generatedata/config':
         specifier: workspace:*
         version: link:../config
-      '@generatedata/i18n':
-        specifier: workspace:*
-        version: link:../i18n
       '@generatedata/tools':
         specifier: workspace:*
         version: link:../tools

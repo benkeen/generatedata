@@ -10,15 +10,6 @@ if (!fs.existsSync(distFolder)) {
   fs.mkdirSync(distFolder);
 }
 
-// returns an 8 char version of the filename hash, used for cache-busting
-const getFilenameHash = (filename) => {
-  const fileBuffer = fs.readFileSync(filename);
-  const hashSum = crypto.createHash('sha256');
-  hashSum.update(fileBuffer);
-
-  return hashSum.digest('hex').substring(0, 8);
-};
-
 // move the logic to gather up all localization files from into a `tools` package. It'll be used in CLI too. For 5.0.0
 // we can probably punt on this though.
 module.exports = function (grunt) {

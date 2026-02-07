@@ -32,7 +32,6 @@
     "@babel/runtime": "catalog:",
     "@generatedata/config": "workspace:*",
     "@generatedata/shared": "workspace:*",
-    "@generatedata/i18n": "workspace:*",
     "@generatedata/tools": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@griffel/react": "catalog:",
@@ -71,11 +70,23 @@
     "./workerPluginsFileMap": {
       "default": "./dist/workers/workerPluginsFileMap.js"
     },
+    "./dataTypes": {
+      "default": "./dist/dataTypes"
+    },
     "./dataTypes/*": {
       "default": "./dist/dataTypes/*"
     },
+    "./exportTypes": {
+      "default": "./dist/exportTypes"
+    },
     "./exportTypes/*": {
       "default": "./dist/exportTypes/*"
+    },
+    "./countries": {
+      "default": "./dist/countries"
+    },
+    "./countries/*": {
+      "default": "./dist/countries/*"
     }
   }
 }
