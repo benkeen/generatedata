@@ -15,7 +15,7 @@ import { getCurrentPage, getLocale } from '~store/main/main.selectors';
 import { AccountStatusFilter, AuthMethod, GDAction, GDLocale } from '~types/general';
 import { getGeneratorPageRoute, isGeneratorPage } from '~utils/routeUtils';
 import { setAuthTokenRefresh } from '~utils/authUtils';
-import { localeFileMap } from '../../../_localeFileMap';
+import { localeFileMap } from '@generatedata/i18n';
 import { apolloClient } from '../../core/apolloClient';
 import { enqueueSnackbar } from 'notistack';
 

@@ -17,7 +17,6 @@
     "@generatedata/i18n-core": "workspace:*",
     "@generatedata/config": "workspace:*",
     "@generatedata/plugins": "workspace:*",
-    "crypto-browserify": "catalog:",
     "npm-run-all": "catalog:",
     "rimraf": "catalog:",
     "typescript": "catalog:"

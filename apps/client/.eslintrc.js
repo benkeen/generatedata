@@ -62,5 +62,5 @@ module.exports = {
       version: '19.1.1'
     }
   },
-  ignorePatterns: ['_localeFileMap.ts', '_pluginWebWorkers.ts']
+  ignorePatterns: ['_pluginWebWorkers.ts']
 };

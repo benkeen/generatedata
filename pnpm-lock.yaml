@@ -967,9 +967,9 @@ importers:
       '@generatedata/config':
         specifier: workspace:*
         version: link:../../packages/config
-      '@generatedata/i18n':
+      '@generatedata/i18n-core':
         specifier: workspace:*
-        version: link:../../packages/i18n
+        version: link:../../packages/i18n-core
       '@generatedata/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -1139,9 +1139,6 @@ importers:
       '@generatedata/plugins':
         specifier: workspace:*
         version: link:../plugins
-      crypto-browserify:
-        specifier: 'catalog:'
-        version: 3.12.1
       npm-run-all:
         specifier: 'catalog:'
         version: 4.1.5

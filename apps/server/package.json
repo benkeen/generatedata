@@ -20,7 +20,7 @@
     "@apollo/server": "catalog:",
     "@as-integrations/express5": "catalog:",
     "@generatedata/config": "workspace:*",
-    "@generatedata/i18n": "workspace:*",
+    "@generatedata/i18n-core": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "bcryptjs": "catalog:",
     "codemirror": "catalog:",

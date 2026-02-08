@@ -1,15 +1,15 @@
-import ar from '@generatedata/i18n/ar';
-import de from '@generatedata/i18n/de';
-import en from '@generatedata/i18n/en';
-import es from '@generatedata/i18n/es';
-import fr from '@generatedata/i18n/fr';
-import hi from '@generatedata/i18n/hi';
-import ja from '@generatedata/i18n/ja';
-import nl from '@generatedata/i18n/nl';
-import pt from '@generatedata/i18n/pt';
-import ru from '@generatedata/i18n/ru';
-import ta from '@generatedata/i18n/ta';
-import zh from '@generatedata/i18n/zh';
+import ar from '@generatedata/i18n-core/ar';
+import de from '@generatedata/i18n-core/de';
+import en from '@generatedata/i18n-core/en';
+import es from '@generatedata/i18n-core/es';
+import fr from '@generatedata/i18n-core/fr';
+import hi from '@generatedata/i18n-core/hi';
+import ja from '@generatedata/i18n-core/ja';
+import nl from '@generatedata/i18n-core/nl';
+import pt from '@generatedata/i18n-core/pt';
+import ru from '@generatedata/i18n-core/ru';
+import ta from '@generatedata/i18n-core/ta';
+import zh from '@generatedata/i18n-core/zh';
 import type { GDLocale } from '@generatedata/config';
 
 export { getI18n, getI18nString } from '@generatedata/utils/lang';

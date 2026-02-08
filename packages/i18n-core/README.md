@@ -5,4 +5,5 @@ provides the complete translations - core and plugins - to the main `apps/client
 
 ### Commands
 
-`build` - this actually doesn't build anything, but validates the localization files and throws and error when there are problems. This ensures the package is always in a valid state for building the monorepo.
+`build` - this actually doesn't build anything, but validates the localization files and throws and error when there are
+problems. This ensures the package is always in a valid state for building the monorepo.
