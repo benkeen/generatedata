@@ -1,0 +1,71 @@
+# Production Docker Compose configuration for generatedata
+#
+# Prerequisites:
+#   1. Copy and configure packages/config/src/client.config.ts
+#   2. Copy and configure packages/config/src/server.config.ts
+#   3. Run: pnpm run prod
+#
+# Port values are read from .env.prod (generated from config files)
+
+networks:
+  gd-network:
+    driver: bridge
+
+services:
+  db:
+    container_name: gd-db-prod
+    image: mariadb:10.5.8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    expose:
+      - "${GD_DB_PORT}"
+    ports:
+      - "${GD_DB_PORT}:3306"
+    networks:
+      - gd-network
+    env_file:
+      - .env.prod
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: ok
+    volumes:
+      - ./packages/config/_dbStructure.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./data/db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  server:
+    container_name: gd-server-prod
+    build:
+      context: .
+      dockerfile: ./apps/server/Dockerfile.prod
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - gd-network
+    env_file:
+      - .env.prod
+    expose:
+      - "${GD_API_SERVER_PORT}"
+    ports:
+      - "${GD_API_SERVER_PORT}:3001"
+    restart: on-failure
+
+  client:
+    container_name: gd-client-prod
+    build:
+      context: .
+      dockerfile: ./apps/client/Dockerfile.prod
+    depends_on:
+      - server
+    networks:
+      - gd-network
+    env_file:
+      - .env.prod
+    ports:
+      - "${GD_WEB_SERVER_PORT}:9000"
+    restart: on-failure

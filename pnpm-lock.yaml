@@ -534,6 +534,9 @@ importers:
       semver:
         specifier: 'catalog:'
         version: 7.7.3
+      tsx:
+        specifier: 'catalog:'
+        version: 4.21.0
       turbo:
         specifier: 'catalog:'
         version: 2.8.1

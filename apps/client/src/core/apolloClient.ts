@@ -13,12 +13,8 @@ import { clientConfig } from '@generatedata/config';
 
 const protocol = process.env.GD_WEB_USE_HTTPS === 'true' ? 'https' : 'http';
 
-// this could be improved For prod environments we use the same port and use nginx to route the requests
-// to the graphql server
-let uri = `${protocol}://${clientConfig.webServer.GD_WEB_DOMAIN}/graphql`;
-if (process.env.NODE_ENV === 'development') {
-  uri = `${protocol}://${clientConfig.webServer.GD_WEB_DOMAIN}:${clientConfig.api.GD_API_SERVER_PORT}/graphql`;
-}
+// Always include the API server port - browser requests go directly to the GraphQL server
+const uri = `${protocol}://${clientConfig.webServer.GD_WEB_DOMAIN}:${clientConfig.api.GD_API_SERVER_PORT}/graphql`;
 
 const httpLink = new HttpLink({
   uri,

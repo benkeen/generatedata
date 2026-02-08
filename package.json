@@ -14,12 +14,19 @@
     "build": "run-s precheck buildCmd",
     "buildCmd": "turbo run build",
     "clean": "turbo run clean",
+    "purge": "turbo run purge",
     "precheck": "node ./scripts/precheck.js",
     "dev": "run-s precheck devCmd",
-    "devCmd": "turbo dev --filter=@generatedata/client...",
-    "prodAll": "COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up",
+    "devCmd": "turbo --parallel dev --filter=@generatedata/client...",
+    "extract-config": "tsx ./scripts/extract-config.ts",
+    "check-ports": "tsx ./scripts/check-ports.ts",
+    "prod": "run-s precheck extract-config check-ports prodUp",
+    "prodUp": "COMPOSE_HTTP_TIMEOUT=150 docker compose --env-file .env.prod -f docker-compose.prod.yml up --build",
+    "prod:rebuild": "run-s precheck extract-config check-ports prodUpNoCache",
+    "prodUpNoCache": "COMPOSE_HTTP_TIMEOUT=150 docker compose --env-file .env.prod -f docker-compose.prod.yml build --no-cache && docker compose --env-file .env.prod -f docker-compose.prod.yml up",
+    "prod:down": "docker compose -f docker-compose.prod.yml down",
+    "prod:logs": "docker compose -f docker-compose.prod.yml logs -f",
     "initApp": "-- build config, create database, output some sort of message summarizing what just happened + handle re-runs gracefully --",
-    "startApp": "npm run prod && COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up --build",
     "stopApp": "pnpm --filter @generatedata/server run stopDevServer",
     "dockerCleanup": "docker system prune -a && docker volume rm $(docker volume ls -qf dangling=true)"
   },
@@ -34,6 +41,7 @@
   "dependencies": {
     "npm-run-all": "catalog:",
     "semver": "catalog:",
+    "tsx": "catalog:",
     "turbo": "catalog:"
   },
   "pnpm": {

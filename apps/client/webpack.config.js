@@ -51,6 +51,9 @@ module.exports = (env, argv) => {
     },
 
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(mode)
+      }),
       new ESLintPlugin({
         extensions: ['js', 'ts']
       }),

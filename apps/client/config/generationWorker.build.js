@@ -9,7 +9,7 @@ if (!fs.existsSync(workersFolder)) {
 }
 
 const generateGenerationWorker = () => {
-  const sourceFile = path.resolve(__dirname, '../dist-workers/src/core/generator/generation.worker.js');
+  const sourceFile = path.resolve(__dirname, '../dist-workers/core/generator/generation.worker.js');
   const fileHash = md5File.sync(sourceFile);
   const targetFile = `generation.worker-${fileHash}.js`;
   const command = `npx rollup -c ./config/rollup.generationWorker.js --config-src=${sourceFile} --config-target=./dist/workers/${targetFile}`;

@@ -1,0 +1,59 @@
+# Production Dockerfile for generatedata server
+# Builds and runs the GraphQL server
+
+FROM --platform=linux/amd64 node:24-slim AS builder
+
+ENV HOME=/home/app/generatedata
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV COREPACK_ENABLE_AUTO_PIN=0
+
+WORKDIR $HOME
+
+# Enable corepack and install pnpm
+RUN corepack enable && corepack prepare pnpm@10.28.2 --activate
+
+# Copy package files first for better caching
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml $HOME/
+COPY ./apps/server/package.json $HOME/apps/server/
+COPY ./packages/ $HOME/packages/
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile --ignore-scripts
+
+# Copy server source code
+COPY ./apps/server $HOME/apps/server/
+
+# Build the server
+WORKDIR $HOME/apps/server
+RUN npm run build
+
+# ============================================
+# Stage 2: Production runtime
+# ============================================
+FROM --platform=linux/amd64 node:24-slim AS production
+
+ENV HOME=/home/app/generatedata
+ENV NODE_ENV=production
+ENV COREPACK_ENABLE_AUTO_PIN=0
+
+WORKDIR $HOME
+
+# Enable corepack and install pnpm
+RUN corepack enable && corepack prepare pnpm@10.28.2 --activate
+
+# Copy package files
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml $HOME/
+COPY ./apps/server/package.json $HOME/apps/server/
+COPY ./packages/ $HOME/packages/
+
+# Install production dependencies only
+RUN pnpm install --frozen-lockfile --ignore-scripts --prod
+
+# Copy built server from builder
+COPY --from=builder /home/app/generatedata/apps/server/dist $HOME/apps/server/dist
+
+WORKDIR $HOME/apps/server
+
+EXPOSE 3001
+
+CMD ["node", "./dist/app.js"]

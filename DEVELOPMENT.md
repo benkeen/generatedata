@@ -12,15 +12,10 @@ trade-off I had to make.
 #### Pre-requisites:
 
 - [Docker](https://docs.docker.com/get-docker/)
-- [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) - namely node 12.
+- [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
 - Grunt CLI (`npm install grunt-cli -g`)
 
 ### Running dev environment
-
-TODO: clarify this. `turbo build` then `npm run dev` in the root should run the dev env. Running a _local_ environment
-without needing to alter the code would mean Docker.
-
-Gaps: changing the generation.worker.ts isn't updated during watch mode.
 
 - `git clone https://github.com/benkeen/generatedata.git` - this clones the repo to your local computer. On Mac, I'd
   suggest putting it in your `~` folder; I tried it in other locations but Docker ran into permissions issues.
@@ -35,16 +30,16 @@ Gaps: changing the generation.worker.ts isn't updated during watch mode.
 
   - this is kind of like nvm, but we can use it for pnpm.
 
-- `pnpm install`
+- `pnpm install` - bootstraps the repo
 
-[TODO]
+- `npm run build`
 
-- After starting Docker, in one tab run: `npm run startAndBuildDevServer` - this boots up the server + database containers.
-  For subsequent runs you can just use `npm run startDevServer` and it'll be faster.
-- In a second tab, `npm run start` - this boots up the client-side code. Be warned: this does a _LOT_ of stuff and the
-  first time you run it it'll take a very long time to run.
+  - this is important. When starting afresh you have to have do a full build before starting the dev server. You'll only need
+    to run this once.
 
-After running the second command it should open up `http://localhost:9000` in your browser.
+- `npm run dev`
+  - this starts the whole application, backend server, and load it in your browser. Note: at the time of writing, you may see
+    a blank page. Just click refresh and the app should load.
 
 #### Shutting down dev env
 

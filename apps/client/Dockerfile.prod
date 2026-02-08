@@ -1,0 +1,49 @@
+# Production Dockerfile for generatedata client
+# Multi-stage build: build assets, then serve via nginx
+
+# ============================================
+# Stage 1: Build the client
+# ============================================
+FROM --platform=linux/amd64 node:24-slim AS builder
+
+ENV HOME=/home/app/generatedata
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV COREPACK_ENABLE_AUTO_PIN=0
+
+WORKDIR $HOME
+
+# Enable corepack and install pnpm
+RUN corepack enable && corepack prepare pnpm@10.28.2 --activate
+
+# Copy package files first for better caching
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml $HOME/
+COPY ./apps/client/package.json $HOME/apps/client/
+COPY ./apps/server/package.json $HOME/apps/server/
+COPY ./packages/ $HOME/packages/
+
+# Install all dependencies
+RUN pnpm install --frozen-lockfile --ignore-scripts
+
+# Copy client source code (also need server for shared types)
+COPY ./apps/client $HOME/apps/client/
+COPY ./apps/server $HOME/apps/server/
+
+# Build the client
+WORKDIR $HOME/apps/client
+RUN npm run build
+
+# ============================================
+# Stage 2: Serve with nginx
+# ============================================
+FROM nginx:alpine AS production
+
+# Copy nginx config
+COPY ./apps/server/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy built assets from builder stage
+COPY --from=builder /home/app/generatedata/apps/client/dist /usr/share/nginx/html
+
+# Expose the port nginx listens on
+EXPOSE 9000
+
+CMD ["nginx", "-g", "daemon off;"]
