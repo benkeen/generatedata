@@ -4,14 +4,18 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "run-s build-src build-dist",
+    "build": "run-s clean:dist clean:lib build-src build-dist",
     "build-src": "tsc -p tsconfig.lib.json",
     "build-dist": "node ./lib/i18n.js",
     "purge": "npx rimraf .turbo",
-    "clean": "npx rimraf dist lib node_modules .turbo"
+    "clean": "npm-run-all clean:*",
+    "clean:dist": "npx rimraf dist",
+    "clean:lib": "npx rimraf lib",
+    "clean:node_modules": "npx rimraf node_modules",
+    "clean:turbo": "npx rimraf .turbo"
   },
   "exports": {
-    ".": "./dist/localeFileMap.js"
+    ".": "./dist/localeFileMap.ts"
   },
   "devDependencies": {
     "@generatedata/i18n-core": "workspace:*",
