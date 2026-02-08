@@ -10,10 +10,12 @@
       "dependsOn": ["^build"]
     },
     "clean": {
-      "dependsOn": ["^clean"]
+      "dependsOn": ["^clean"],
+      "cache": false
     },
     "purge": {
-      "dependsOn": ["^purge"]
+      "dependsOn": ["^purge"],
+      "cache": false
     },
     "dev": {
       "dependsOn": [],

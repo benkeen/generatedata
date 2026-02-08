@@ -4,6 +4,11 @@ import clientConfig from '@generatedata/config/clientConfig';
 import { GDLocale } from '@generatedata/config';
 import { createHash } from 'crypto';
 
+// Strips out any keys ending with `:comment` - these are used for translator context only
+const stripCommentKeys = (obj: Record<string, unknown>): Record<string, unknown> => {
+  return Object.fromEntries(Object.entries(obj).filter(([key]) => !key.endsWith(':comment')));
+};
+
 const LOCALES = clientConfig.appSettings.GD_LOCALES;
 const DATA_TYPES_FOLDER = path.resolve(__dirname, '../node_modules/@generatedata/plugins/dist/dataTypes');
 const EXPORT_TYPES_FOLDER = path.resolve(__dirname, '../node_modules/@generatedata/plugins/dist/exportTypes');
@@ -13,7 +18,9 @@ const I18N_CORE_FOLDER = path.resolve(__dirname, '../node_modules/@generatedata/
 
 const generateI18nBundles = () => {
   const fileHashMap = LOCALES.reduce((acc, locale) => {
-    const coreLocaleStrings = JSON.parse(fs.readFileSync(path.join(I18N_CORE_FOLDER, 'locales', `${locale}.json`), 'utf8'));
+    const coreLocaleStrings = stripCommentKeys(
+      JSON.parse(fs.readFileSync(path.join(I18N_CORE_FOLDER, 'locales', `${locale}.json`), 'utf8'))
+    );
     const dtImports = getPluginLocaleFiles(locale, DATA_TYPES_FOLDER);
     const etImports = getPluginLocaleFiles(locale, EXPORT_TYPES_FOLDER);
     const countryImports = getPluginLocaleFiles(locale, COUNTRIES_FOLDER);
@@ -52,7 +59,7 @@ const getPluginLocaleFiles = (locale: GDLocale, pluginTypeFolder: string) => {
     const localeFile = `${pluginTypeFolder}/${folder}/i18n/${locale}.json`;
     if (fs.existsSync(localeFile)) {
       try {
-        imports[folder] = JSON.parse(fs.readFileSync(localeFile, 'utf8'));
+        imports[folder] = stripCommentKeys(JSON.parse(fs.readFileSync(localeFile, 'utf8'))) as { [key: string]: string };
       } catch (e) {
         console.error('problem parsing i18n file: ' + localeFile);
         process.exit(1);

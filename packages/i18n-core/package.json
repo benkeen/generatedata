@@ -7,7 +7,7 @@
     "build": "npm run validateI18nFiles",
     "validateI18nFiles": "validate-i18n-files --folder ./locales",
     "sortI18nFiles": "sort-i18n-files --folder ./locales",
-    "purge": "npx rimraf .turbo"
+    "purge": "npx rimraf .turbo node_modules"
   },
   "exports": {
     ".": "./locales/en.json",
