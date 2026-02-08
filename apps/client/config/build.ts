@@ -139,7 +139,7 @@ const build = () => {
   copyPluginWorkers();
   copyI18n();
 
-  console.log('\n✅ Build complete!\n');
+  console.log('\n✅ Client assets built!\n');
 };
 
 // Parse command line arguments

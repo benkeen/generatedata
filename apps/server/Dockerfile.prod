@@ -1,7 +1,7 @@
 # Production Dockerfile for generatedata server
 # Builds and runs the GraphQL server
 
-FROM --platform=linux/amd64 node:24-slim AS builder
+FROM node:24-slim AS builder
 
 ENV HOME=/home/app/generatedata
 ENV NODE_OPTIONS="--max-old-space-size=4096"
@@ -30,7 +30,7 @@ RUN npm run build
 # ============================================
 # Stage 2: Production runtime
 # ============================================
-FROM --platform=linux/amd64 node:24-slim AS production
+FROM node:24-slim AS production
 
 ENV HOME=/home/app/generatedata
 ENV NODE_ENV=production

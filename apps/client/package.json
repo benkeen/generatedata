@@ -6,6 +6,7 @@
     "build": "run-s build-assets create-generation-worker-bundle build-webpack",
     "build-assets": "tsx ./config/build.ts",
     "build-webpack": "npm run webpackProd",
+    "build-webpack:dev": "npm run webpackDev",
     "bundle-generation-worker": "node ./config/generationWorker.build.js",
     "clean": "npx rimraf dist dist-workers",
     "dev": "npm run watch",
@@ -13,7 +14,7 @@
     "create-generation-worker-bundle": "run-s worker-tsc bundle-generation-worker",
     "coverage": "npx jest --coverage",
     "purge": "npx rimraf node_modules dist dist-workers .turbo",
-    "watch": "npm run build-assets & npm run build & npm run webpackDev",
+    "watch": "npm run build-assets & npm run build-webpack:dev",
     "test": "jest --config=./config/jest.config.js",
     "webpackDev": "webpack serve --config ./webpack.config.js --mode=development",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production"

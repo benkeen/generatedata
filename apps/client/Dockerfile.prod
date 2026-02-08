@@ -4,7 +4,7 @@
 # ============================================
 # Stage 1: Build the client
 # ============================================
-FROM --platform=linux/amd64 node:24-slim AS builder
+FROM node:24-slim AS builder
 
 ENV HOME=/home/app/generatedata
 ENV NODE_OPTIONS="--max-old-space-size=4096"
