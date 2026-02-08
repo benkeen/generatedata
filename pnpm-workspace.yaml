@@ -83,7 +83,7 @@ catalog:
   crypto-browserify: ^3.12.1
   date-fns: ^2.17.0
   dotenv: ^8.2.0
-  eslint: ^8.52.0
+  eslint: ^9.26.0
   eslint-config-airbnb: ^19.0.4
   eslint-config-airbnb-base: ^15.0.0
   eslint-plugin-import: ^2.27.5
