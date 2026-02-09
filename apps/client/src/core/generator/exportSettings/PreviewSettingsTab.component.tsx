@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dropdown } from '@generatedata/shared';
 import Switch from '@mui/material/Switch';
 import { getArrayOfSize } from '@generatedata/utils/array';
@@ -11,11 +10,11 @@ export type PreviewSettingsTabProps = {
   showLineNumbers: boolean;
   enableLineWrapping: boolean;
   previewTextSize: number;
-  onChangeTheme: Function;
-  toggleLineNumbers: Function;
-  toggleLineWrapping: Function;
-  onChangePreviewTextSize: Function;
-  updateNumPreviewRows: Function;
+  onChangeTheme: (theme: string) => void;
+  toggleLineNumbers: () => void;
+  toggleLineWrapping: () => void;
+  onChangePreviewTextSize: (size: number) => void;
+  updateNumPreviewRows: (rows: number) => void;
   i18n: any;
 };
 

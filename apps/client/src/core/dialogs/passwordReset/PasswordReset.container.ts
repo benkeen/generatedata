@@ -14,7 +14,7 @@ const mapStateToProps = (state: any): Pick<PasswordResetDialogProps, 'i18n' | 'v
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<PasswordResetDialogProps, 'onClose' | 'onSubmit' | 'showLoginDialog'> => ({
   onClose: (): any => dispatch(mainActions.setPasswordResetDialogVisibility(false)),
-  onSubmit: (email: string, onLoginError: any): any => {
+  onSubmit: (email: string, onLoginError: () => void): any => {
     dispatch(mainActions.sendPasswordResetEmail(email, onLoginError));
   },
   showLoginDialog: (email: string): void => {

@@ -1,5 +1,4 @@
 import { DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
-import { GeneratorLayout } from '~types/generator';
 import { getStrings } from '@generatedata/utils/lang';
 import Reactour, { ReactourStepPosition } from 'reactour';
 import store from '~store/index';

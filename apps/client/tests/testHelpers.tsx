@@ -1,11 +1,10 @@
 import { ApolloProvider } from '@apollo/client/react';
 import type { GDLocale } from '@generatedata/config';
-import type { CountryNames, DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
+import type { CountryType, DataTypeFolder, ExportTypeFolder } from '@generatedata/plugins';
 import { setLocale } from '@generatedata/utils/lang';
 import { configureStore } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import React from 'react';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import { combineReducers } from 'redux';
@@ -29,7 +28,7 @@ export type I18nBundle = {
   core: Record<string, string>;
   dataTypes: Record<DataTypeFolder, Record<string, string>>;
   exportTypes: Record<ExportTypeFolder, Record<string, string>>;
-  countries: Record<CountryNames, Record<string, string>>;
+  countries: Record<CountryType, Record<string, string>>;
 };
 
 /**
@@ -98,7 +97,7 @@ export const getExportTypeI18n = (exportType: ExportTypeFolder, locale: GDLocale
  * const canadaI18n = getCountryI18n('Canada');
  * const usI18n = getCountryI18n('US');
  */
-export const getCountryI18n = (country: CountryNames, locale: GDLocale = 'en'): Record<string, string> => {
+export const getCountryI18n = (country: CountryType, locale: GDLocale = 'en'): Record<string, string> => {
   return getTestI18n(locale).countries[country];
 };
 

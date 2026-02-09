@@ -9,13 +9,13 @@ import { Store } from '~types/general';
 import { withAuth } from '~core/auth/withAuth';
 
 const mapStateToProps = (state: Store): Pick<AccountsPageProps, 'i18n' | 'selectedTab'> => ({
-	i18n: selectors.getCoreI18n(state),
-	selectedTab: accountSelectors.getSelectedAccountsPageTab(state)
+  i18n: selectors.getCoreI18n(state),
+  selectedTab: accountSelectors.getSelectedAccountsPageTab(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<AccountsPageProps, 'onChangeTab' | 'onDestroy'> => ({
-	onChangeTab: (tab: SelectedAccountsTab): any => dispatch(accountActions.onChangeAccountsTab(tab)),
-	onDestroy: (): any => dispatch(accountActions.onCleanupAccountsPage())
+  onChangeTab: (tab: SelectedAccountsTab): any => dispatch(accountActions.onChangeAccountsTab(tab)),
+  onDestroy: (): any => dispatch(accountActions.onCleanupAccountsPage())
 });
 
 const container: any = connect(mapStateToProps, mapDispatchToProps)(AccountsPage);

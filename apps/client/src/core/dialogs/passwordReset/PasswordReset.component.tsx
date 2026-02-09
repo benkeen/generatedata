@@ -9,7 +9,7 @@ export type PasswordResetDialogProps = {
   dialogProcessing: boolean;
   defaultEmail: string;
   onClose: () => void;
-  onSubmit: (email: string, onError: Function) => void;
+  onSubmit: (email: string, onError: () => void) => void;
   showLoginDialog: (email: string) => void;
   i18n: any;
 };

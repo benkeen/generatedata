@@ -314,7 +314,7 @@ export const loadTourBundle =
     };
 
 export const sendPasswordResetEmail =
-  (email: string, onLoginError: any): any =>
+  (email: string, onLoginError: () => void): any =>
     async (dispatch: Dispatch): Promise<any> => {
       const i18n = getStrings();
 

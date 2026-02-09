@@ -44,7 +44,7 @@ export const useRouteListener = () => {
 
 const routes = getRoutes();
 
-const LocalizationWrapper = (args: any) => {
+const LocalizationWrapper = () => {
   // this rewrites any routes that include a valid (known) lang path root folder so the routing
   // works as expected. Note: the actual loading of the locale file will have taken place prior to here. It either
   // occurs on first boot and <Page> handles waiting to show the whole application until it's ready, or when

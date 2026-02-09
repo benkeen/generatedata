@@ -85,7 +85,6 @@ export const SignInWithGoogleButton = () => {
       setTimeout(() => {
         if (document.contains(document.getElementById(googleBtnId)) && window.google) {
           window.google.accounts.id.initialize({
-            /* eslint-disable @typescript-eslint/camelcase */
             client_id: clientConfig.auth.GD_GOOGLE_AUTH_CLIENT_ID,
             callback: onAuthenticated
           });

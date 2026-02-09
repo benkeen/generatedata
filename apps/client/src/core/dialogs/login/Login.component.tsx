@@ -15,7 +15,7 @@ export type LoginDialogProps = {
   dialogProcessing: boolean;
   onClose: () => void;
   onExited: () => void;
-  onSubmit: (email: string, password: string, navigate: any, onError: Function) => void;
+  onSubmit: (email: string, password: string, navigate: any, onError: (err: string) => void) => void;
   showPasswordResetDialog: (email: string) => void;
   i18n: any;
 };

@@ -9,27 +9,27 @@ import * as mainSelectors from '~store/main/main.selectors';
 import clientConfig from '@generatedata/config/clientConfig';
 
 const mapStateToProps = (
-	state: any
+  state: any
 ): Pick<SaveDataSetDialogProps, 'i18n' | 'visible' | 'isLoggedIn' | 'dialogType' | 'showRegistration'> => ({
-	i18n: selectors.getCoreI18n(state),
-	visible: accountSelectors.shouldShowSaveDataSetDialog(state),
-	isLoggedIn: mainSelectors.isLoggedIn(state),
-	dialogType: accountSelectors.getSaveDataDialogType(state),
+  i18n: selectors.getCoreI18n(state),
+  visible: accountSelectors.shouldShowSaveDataSetDialog(state),
+  isLoggedIn: mainSelectors.isLoggedIn(state),
+  dialogType: accountSelectors.getSaveDataDialogType(state),
 
-	// TODO. We should offer an option for users to register themselves and not rely on the admin to do it for them
-	showRegistration: clientConfig.appSettings.GD_APP_TYPE === 'prod'
+  // TODO. We should offer an option for users to register themselves and not rely on the admin to do it for them
+  showRegistration: clientConfig.appSettings.GD_APP_TYPE === 'prod'
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<SaveDataSetDialogProps, 'onClose' | 'onRedirectToLogin' | 'onSave'> => ({
-	onClose: (): any => dispatch(actions.hideSaveDataSetDialog()),
-	onRedirectToLogin: (): any => {
-		dispatch(actions.hideSaveDataSetDialog());
-		dispatch(mainActions.setLoginDialogVisibility(true));
+  onClose: (): any => dispatch(actions.hideSaveDataSetDialog()),
+  onRedirectToLogin: (): any => {
+    dispatch(actions.hideSaveDataSetDialog());
+    dispatch(mainActions.setLoginDialogVisibility(true));
 
-		// this returns them to the save dialog after logging in
-		mainActions.setReturnToSaveDataSet();
-	},
-	onSave: (dataSetName: string): any => dispatch(actions.saveNewDataSet(dataSetName))
+    // this returns them to the save dialog after logging in
+    mainActions.setReturnToSaveDataSet();
+  },
+  onSave: (dataSetName: string): any => dispatch(actions.saveNewDataSet(dataSetName))
 });
 
 const container: any = connect(mapStateToProps, mapDispatchToProps)(SaveDataSetDialog);

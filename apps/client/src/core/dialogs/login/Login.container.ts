@@ -17,7 +17,7 @@ const mapDispatchToProps = (
 ): Pick<LoginDialogProps, 'onClose' | 'onExited' | 'onSubmit' | 'showPasswordResetDialog'> => ({
   onClose: (): any => dispatch(mainActions.setLoginDialogVisibility(false)),
   onExited: (): any => dispatch(mainActions.clearLoginFlow()),
-  onSubmit: (email: string, password: string, navigate: any, onLoginError: any): any => {
+  onSubmit: (email: string, password: string, navigate: any, onLoginError: (err: string) => void): any => {
     dispatch(mainActions.login(email, password, navigate, onLoginError));
   },
   showPasswordResetDialog: (email: string): void => {

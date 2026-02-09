@@ -2,7 +2,6 @@ import { useMutation, useQuery } from '@apollo/client/react';
 import C from '@generatedata/config/constants';
 import { Dropdown, DropdownOption, SecondaryButton, SmallSpinner, useSharedClasses } from '@generatedata/shared';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import Button from '@mui/material/Button';
 import { format, fromUnixTime } from 'date-fns';
 import { useEffect, useState } from 'react';
 import AccountStatusPill from '~components/accounts/accountStatusPill/AccountStatusPill.component';
@@ -40,12 +39,12 @@ const Row = ({ i18n, firstName, lastName, onEdit, onDelete, accountStatus, lastL
     if (expiryDate) {
       expiryDateVal = format(fromUnixTime(expiryDate / 1000), C.DATE_FORMAT);
     }
-  } catch (e) {}
+  } catch (_e) {}
 
   let lastLoggedInVal: any = <span className={sharedClasses.blank}>&#8212;</span>;
   try {
     lastLoggedInVal = format(fromUnixTime(lastLoggedIn), C.DATE_FORMAT);
-  } catch (lastLoggedInVal) {}
+  } catch (_e) {}
 
   return (
     <div className={classNames.row}>

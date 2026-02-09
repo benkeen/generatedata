@@ -4,7 +4,6 @@ import * as selectors from '../main.selectors';
 import * as actions from '../main.actions';
 import { setAuthenticationData } from '../main.actions';
 import C from '@generatedata/config/constants';
-import { AuthMethod } from '~types/general';
 
 describe('main actions', () => {
   let store: any;

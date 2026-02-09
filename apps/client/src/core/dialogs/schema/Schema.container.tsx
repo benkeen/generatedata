@@ -5,14 +5,14 @@ import * as selectors from '~store/generator/generator.selectors';
 import * as actions from '~store/generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<SchemaDialogProps> => ({
-	visible: selectors.isSchemaDialogVisible(state),
-	i18n: selectors.getCoreI18n(state),
-	schema: selectors.getGenerationSchema(state),
-	theme: selectors.getTheme(state)
+  visible: selectors.isSchemaDialogVisible(state),
+  i18n: selectors.getCoreI18n(state),
+  schema: selectors.getGenerationSchema(state),
+  theme: selectors.getTheme(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): SchemaDialogProps['onClose'] => ({
-	onClose: (): any => dispatch(actions.hideSchemaDialog())
+  onClose: (): any => dispatch(actions.hideSchemaDialog())
 });
 
 const container: any = connect(mapStateToProps, mapDispatchToProps)(SchemaDialog);

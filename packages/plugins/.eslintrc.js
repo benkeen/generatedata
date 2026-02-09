@@ -64,6 +64,5 @@ module.exports = {
     react: {
       version: '18.3.1'
     }
-  },
-  ignorePatterns: ['_pluginWebWorkers.ts']
+  }
 };

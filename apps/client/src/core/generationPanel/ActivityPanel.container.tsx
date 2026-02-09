@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { getGenerationActivityPanel } from '~core/generationPanel/generation.helpers';
-import { GDAction, GenerationActivityPanel } from '~types/general';
+import { GDAction } from '~types/general';
 import * as selectors from '~store/generator/generator.selectors';
 import * as packetActions from '~store/packets/packets.actions';
 import * as packetSelectors from '~store/packets/packets.selectors';
