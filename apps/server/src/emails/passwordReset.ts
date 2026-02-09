@@ -14,7 +14,7 @@ type PasswordResetParams = {
  */
 export const passwordReset = ({ firstName, email, tempPassword, i18n }: PasswordResetParams) => {
   const emailIntroLineWithName = langUtils.getI18nString(i18n.emailIntroLineWithName, [firstName]);
-  const adminEmail = emailUtils.getAdminEmail();
+  const adminEmail = emailUtils.getSenderEmail();
   const siteUrl = generalUtils.getSiteUrl();
 
   const text = `${emailIntroLineWithName}

@@ -39,6 +39,8 @@ export type GDServerConfig = {
   email: {
     GD_EMAIL_OAUTH_SERVICE_CLIENT_ID: string;
     GD_EMAIL_OAUTH_PRIVATE_KEY: string;
+    GD_EMAIL_SENDER_EMAIL: string;
+    GD_EMAIL_SENDER_NAME: string;
   };
   auth: {
     GD_JWT_SECRET: string;
@@ -48,7 +50,6 @@ export type GDServerConfig = {
   defaultAdminAccount: {
     GD_DEFAULT_ADMIN_FIRST_NAME: string;
     GD_DEFAULT_ADMIN_LAST_NAME: string;
-    GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME: string;
     GD_DEFAULT_ADMIN_EMAIL: string;
     GD_DEFAULT_ADMIN_PASSWORD: string;
   };

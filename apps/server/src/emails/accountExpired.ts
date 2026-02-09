@@ -12,7 +12,7 @@ type PasswordResetAccountExpiredParams = {
  */
 export const passwordResetAccountExpired = ({ firstName, i18n }: PasswordResetAccountExpiredParams) => {
   const emailIntroLineWithName = langUtils.getI18nString(i18n.emailIntroLineWithName, [firstName]);
-  const adminEmail = emailUtils.getAdminEmail();
+  const adminEmail = emailUtils.getSenderEmail();
   const siteUrl = generalUtils.getSiteUrl();
 
   const text = `${emailIntroLineWithName}

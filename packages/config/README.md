@@ -121,7 +121,9 @@ const serverConfig: GDServerConfig = {
   // registering and so on
   email: {
     GD_EMAIL_OAUTH_SERVICE_CLIENT_ID: '',
-    GD_EMAIL_OAUTH_PRIVATE_KEY: ''
+    GD_EMAIL_OAUTH_PRIVATE_KEY: '',
+    GD_EMAIL_SENDER_EMAIL: '',
+    GD_EMAIL_SENDER_NAME: ''
   },
 
   // You can either set these values before installing the app, or customize the values via the UI
@@ -129,7 +131,6 @@ const serverConfig: GDServerConfig = {
   defaultAdminAccount: {
     GD_DEFAULT_ADMIN_FIRST_NAME: 'John',
     GD_DEFAULT_ADMIN_LAST_NAME: 'Smith',
-    GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME: 'YourSite',
     GD_DEFAULT_ADMIN_EMAIL: 'admin@youremail.net',
     GD_DEFAULT_ADMIN_PASSWORD: 'admin123'
   }

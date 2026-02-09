@@ -59,7 +59,7 @@ const SchemaDialog = ({ visible, onClose, schema, theme, i18n }: SchemaDialogPro
     return null;
   }
 
-  const handleChange = (_e: React.ChangeEvent, newValue: number) => {
+  const handleChange = (_e: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 

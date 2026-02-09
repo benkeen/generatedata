@@ -14,18 +14,20 @@ const serverConfig: GDServerConfig = {
   },
 
   // this provides email functionality, to enable features like emailing for lost passwords, registering and so on. This
-  // is REQUIRED for any GD_APP_TYPE other than 'single'. See client.config.example.ts for more information about that setting.
+  // is REQUIRED for any GD_APP_TYPE other than 'single'. See client.config.example.ts for more information about that
+  // setting. Note that this is independent of the admin account below: updating that account doesn't affect this info
   email: {
     GD_EMAIL_OAUTH_SERVICE_CLIENT_ID: '',
-    GD_EMAIL_OAUTH_PRIVATE_KEY: ''
+    GD_EMAIL_OAUTH_PRIVATE_KEY: '',
+    GD_EMAIL_SENDER_EMAIL: '',
+    GD_EMAIL_SENDER_NAME: 'YourSite'
   },
 
   // You can either set these values before installing the app, or customize the values via the UI
-  // afterwards. This information is only used during the initial setup of the application
+  // afterwards
   defaultAdminAccount: {
     GD_DEFAULT_ADMIN_FIRST_NAME: 'John',
     GD_DEFAULT_ADMIN_LAST_NAME: 'Smith',
-    GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME: 'YourSite',
     GD_DEFAULT_ADMIN_EMAIL: 'admin@youremail.net',
     GD_DEFAULT_ADMIN_PASSWORD: 'admin123'
   },

@@ -8,8 +8,8 @@ export const sendEmail = async (recipientEmail: string, subject: string, textCon
     secure: true,
     auth: {
       type: 'OAuth2',
-      user: getAdminEmail(),
-      serviceClient: process.env.GD_EMAIL_OAUTH_SERVICE_CLIENT_ID,
+      user: getSenderEmail(),
+      serviceClient: serverConfig.email.GD_EMAIL_OAUTH_SERVICE_CLIENT_ID,
       privateKey: serverConfig.email.GD_EMAIL_OAUTH_PRIVATE_KEY.replace(/\\n/g, '\n')
     }
   });
@@ -28,10 +28,10 @@ export const sendEmail = async (recipientEmail: string, subject: string, textCon
   }
 };
 
-export const getAdminEmail = () => {
-  return process.env.GD_DEFAULT_ADMIN_EMAIL;
+export const getSenderEmail = () => {
+  return serverConfig.email.GD_EMAIL_SENDER_EMAIL;
 };
 
 export const getEmailSender = () => {
-  return `${process.env.GD_DEFAULT_ADMIN_EMAIL_SENDER_NAME} <${process.env.GD_DEFAULT_ADMIN_EMAIL}>`;
+  return `${serverConfig.email.GD_EMAIL_SENDER_NAME} <${serverConfig.email.GD_EMAIL_SENDER_EMAIL}>`;
 };

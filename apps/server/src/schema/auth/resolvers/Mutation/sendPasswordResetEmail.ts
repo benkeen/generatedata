@@ -43,8 +43,6 @@ export const sendPasswordResetEmail: NonNullable<MutationResolvers['sendPassword
         i18n
       });
 
-      console.log('!!!!! ---', { subject, text, tempPasswordHash });
-
       await emailUtils.sendEmail(email, subject, text, html);
     }
   }
