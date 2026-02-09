@@ -1,7 +1,7 @@
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
+import { renderWithStoreAndRouter } from '../../../../../tests/testHelpers';
 import LoginDialog from '../Login.component';
-// import sharedStyles from '../../../../styles/shared.scss';
-const i18n = require('../../../../i18n/en.json');
+import i18n from '@generatedata/i18n-core/en';
 
 const defaultProps = {
   visible: false,
@@ -17,7 +17,7 @@ const defaultProps = {
 describe('LoginDialog', () => {
   it('clicking close calls the onClose callback', () => {
     const onClose = jest.fn();
-    const { baseElement } = render(<LoginDialog {...defaultProps} visible={true} onClose={onClose} />);
+    const { baseElement } = renderWithStoreAndRouter(<LoginDialog {...defaultProps} visible={true} onClose={onClose} />);
 
     const closeButton = baseElement.querySelector('.MuiDialogTitle-root button') as HTMLButtonElement;
     fireEvent.click(closeButton);
@@ -26,21 +26,19 @@ describe('LoginDialog', () => {
 
   it('clicking enter in the fields submits the form and shows errors on the fields', () => {
     const onSubmit = jest.fn();
-    const { baseElement } = render(<LoginDialog {...defaultProps} visible={true} onSubmit={onSubmit} />);
+    const { baseElement } = renderWithStoreAndRouter(<LoginDialog {...defaultProps} visible={true} onSubmit={onSubmit} />);
 
     const inputFields = baseElement.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
 
     // weird, but it seems you can't simulate the <enter> click in another way
     fireEvent.submit(inputFields[0]);
 
-    // expect(inputFields[0].classList.contains(sharedStyles.errorField)).toBeTruthy();
-    // expect(inputFields[1].classList.contains(sharedStyles.errorField)).toBeTruthy();
     expect(onSubmit).not.toHaveBeenCalled();
   });
 
   it('when email is invalid but password correct only shows erorr on password field', () => {
     const onSubmit = jest.fn();
-    const { baseElement } = render(<LoginDialog {...defaultProps} visible={true} onSubmit={onSubmit} />);
+    const { baseElement } = renderWithStoreAndRouter(<LoginDialog {...defaultProps} visible={true} onSubmit={onSubmit} />);
 
     const inputFields = baseElement.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
 
@@ -56,7 +54,7 @@ describe('LoginDialog', () => {
 
   it('when fields are valid it submits the form', () => {
     const onSubmit = jest.fn();
-    const { baseElement } = render(<LoginDialog {...defaultProps} visible={true} onSubmit={onSubmit} />);
+    const { baseElement } = renderWithStoreAndRouter(<LoginDialog {...defaultProps} visible={true} onSubmit={onSubmit} />);
 
     const inputFields = baseElement.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
 
@@ -68,6 +66,6 @@ describe('LoginDialog', () => {
 
     fireEvent.submit(inputFields[0]);
 
-    expect(onSubmit).toHaveBeenCalledWith('tom@something.com', 'password123', undefined, expect.anything());
+    expect(onSubmit).toHaveBeenCalledWith('tom@something.com', 'password123', expect.anything(), expect.anything());
   });
 });

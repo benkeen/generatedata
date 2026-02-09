@@ -6,84 +6,83 @@ import GridPanelTour from '../GridPanel.tour';
 import IntroToGenerator from '../IntroToGenerator.tour';
 import PreviewPanel from '../PreviewPanel.tour';
 import langUtils from '@generatedata/utils/lang';
-
-const i18n = require('../../i18n/en.json');
+import i18n from '@generatedata/i18n-core/en';
 
 describe('TourCompleteStep', () => {
-	afterEach(function () {
-		sinon.restore();
-	});
+  afterEach(function () {
+    sinon.restore();
+  });
 
-	it('renders', () => {
-		sinon.stub(langUtils, 'getStrings').returns({
-			core: i18n,
-			dataTypes: {}
-		});
+  it('renders', () => {
+    sinon.stub(langUtils, 'getStrings').returns({
+      core: i18n,
+      dataTypes: {}
+    });
 
-		const { container } = render(<TourCompleteStep close={() => {}} />);
+    const { container } = render(<TourCompleteStep close={() => {}} />);
 
-		// there should be two buttons
-		expect(container.querySelectorAll('button').length).toEqual(2);
-	});
+    // there should be two buttons
+    expect(container.querySelectorAll('button').length).toEqual(2);
+  });
 });
 
 const tourProps = {
-	isOpen: true,
-	onClose: () => {},
-	maskClassName: 'test',
-	closeWithMask: true,
-	disableInteraction: true,
-	accentColor: '#444400',
-	className: 'classname'
+  isOpen: true,
+  onClose: () => {},
+  maskClassName: 'test',
+  closeWithMask: true,
+  disableInteraction: true,
+  accentColor: '#444400',
+  className: 'classname'
 };
 
 describe('GriaPanel tour', () => {
-	afterEach(function () {
-		sinon.restore();
-	});
+  afterEach(function () {
+    sinon.restore();
+  });
 
-	it('renders', () => {
-		sinon.stub(langUtils, 'getStrings').returns({
-			core: i18n,
-			dataTypes: {}
-		});
+  it('renders', () => {
+    sinon.stub(langUtils, 'getStrings').returns({
+      core: i18n,
+      dataTypes: {}
+    });
 
-		const { baseElement } = render(<GridPanelTour {...tourProps} />);
+    const { baseElement } = render(<GridPanelTour {...tourProps} />);
 
-		expect(baseElement.querySelector('svg')).toBeTruthy();
-	});
+    expect(baseElement.querySelector('svg')).toBeTruthy();
+  });
 });
 
 describe('IntroToGenerator tour', () => {
-	afterEach(function () {
-		sinon.restore();
-	});
+  afterEach(function () {
+    sinon.restore();
+  });
 
-	it('renders', () => {
-		sinon.stub(langUtils, 'getStrings').returns({
-			core: i18n,
-			dataTypes: {}
-		});
+  it('renders', () => {
+    sinon.stub(langUtils, 'getStrings').returns({
+      core: i18n,
+      dataTypes: {}
+    });
 
-		const { baseElement } = render(<IntroToGenerator {...tourProps} />);
+    const { baseElement } = render(<IntroToGenerator {...tourProps} />);
 
-		expect(baseElement.querySelector('svg')).toBeTruthy();
-	});
+    expect(baseElement.querySelector('svg')).toBeTruthy();
+  });
 });
 
 describe('PreviewPanel tour', () => {
-	afterEach(function () {
-		sinon.restore();
-	});
+  afterEach(function () {
+    sinon.restore();
+  });
 
-	it('renders', () => {
-		sinon.stub(langUtils, 'getStrings').returns({
-			core: i18n,
-			dataTypes: {}
-		});
+  it('renders', () => {
+    sinon.stub(langUtils, 'getStrings').returns({
+      core: i18n,
+      dataTypes: {}
+    });
 
-		const { baseElement } = render(<PreviewPanel {...tourProps} />);
+    const { baseElement } = render(<PreviewPanel {...tourProps} />);
 
-		expect(baseElement.querySelector('svg')).toBeTruthy();
-	});
+    expect(baseElement.querySelector('svg')).toBeTruthy();
+  });
 });

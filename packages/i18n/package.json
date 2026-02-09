@@ -13,7 +13,19 @@
     "purge": "npx rimraf .turbo node_modules dist lib"
   },
   "exports": {
-    ".": "./dist/localeFileMap.ts"
+    ".": "./dist/localeFileMap.ts",
+    "./locales/ar": "./dist/ar.json",
+    "./locales/de": "./dist/de.json",
+    "./locales/en": "./dist/en.json",
+    "./locales/es": "./dist/es.json",
+    "./locales/fr": "./dist/fr.json",
+    "./locales/hi": "./dist/hi.json",
+    "./locales/ja": "./dist/ja.json",
+    "./locales/nl": "./dist/nl.json",
+    "./locales/pt": "./dist/pt.json",
+    "./locales/ru": "./dist/ru.json",
+    "./locales/ta": "./dist/ta.json",
+    "./locales/zh": "./dist/zh.json"
   },
   "devDependencies": {
     "@generatedata/i18n-core": "workspace:*",

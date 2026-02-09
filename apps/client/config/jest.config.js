@@ -26,7 +26,7 @@ module.exports = {
   testPathIgnorePatterns: ['/.*.d.ts$', '/dist/'],
   setupFilesAfterEnv: ['<rootDir>/tests/jestSetup.ts'],
   transformIgnorePatterns: [
-    '/node_modules/(?!(@generatedata|react-select|creatable-select|@react-hook|@testing-library|nanoid|@griffel|@uidotdev)/)'
+    'node_modules/(?!(.pnpm|@generatedata|react-select|creatable-select|@react-hook|@testing-library|nanoid|@griffel|@uidotdev|pretty-bytes)/)'
   ],
   moduleNameMapper: {
     '^@generatedata/utils/array$': '<rootDir>/../../packages/utils/src/array.ts',
@@ -43,7 +43,7 @@ module.exports = {
     '^@generatedata/plugins/dist/(.+)$': '<rootDir>/../../packages/plugins/dist/$1',
     '^@generatedata/plugins/(.+)$': '<rootDir>/../../packages/plugins/src/$1.ts',
     '^@generatedata/plugins$': '<rootDir>/../../packages/plugins/src/index.ts',
-    '^@generatedata/i18n$': '<rootDir>/../../packages/i18n/locales/en.json',
+    '^@generatedata/i18n$': '<rootDir>/../../packages/i18n/dist/localeFileMap.ts',
     '^@generatedata/shared$': '<rootDir>/../../packages/shared/dist/index.js',
     '^@generatedata/shared/(.+)$': '<rootDir>/../../packages/shared/dist/$1.js',
     '^@generatedata/config/constants$': '<rootDir>/../../packages/config/dist/cjs/constants.js',

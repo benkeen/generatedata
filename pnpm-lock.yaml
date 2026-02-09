@@ -718,6 +718,9 @@ importers:
       '@generatedata/config':
         specifier: workspace:*
         version: link:../../packages/config
+      '@generatedata/i18n-core':
+        specifier: workspace:*
+        version: link:../../packages/i18n-core
       '@generatedata/plugins':
         specifier: workspace:*
         version: link:../../packages/plugins

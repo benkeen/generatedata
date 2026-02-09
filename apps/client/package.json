@@ -87,6 +87,7 @@
     "@babel/preset-react": "catalog:",
     "@esbuild-plugins/tsconfig-paths": "catalog:",
     "@generatedata/config": "workspace:*",
+    "@generatedata/i18n-core": "workspace:*",
     "@generatedata/plugins": "workspace:*",
     "@generatedata/utils": "workspace:*",
     "@griffel/react": "catalog:",

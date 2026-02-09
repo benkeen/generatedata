@@ -1,9 +1,7 @@
 import React from 'react';
 import { renderWithStoreAndRouter } from '../../../../tests/testHelpers';
 import Account from '../Account.component';
-import { SelectedAccountTab } from '~types/account';
-
-const i18n = require('../../../i18n/en.json');
+import i18n from '@generatedata/i18n-core/en';
 
 describe('Account component', () => {
   it('render', () => {

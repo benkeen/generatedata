@@ -11,7 +11,7 @@
     "__build": "grunt && tsc",
     "__clean": "npx rimraf dist",
     "__purge": "npx rimraf node_modules dist .turbo",
-    "test": "jest"
+    "__test": "jest"
   },
   "files": [
     "dist/*",

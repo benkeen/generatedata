@@ -1,6 +1,5 @@
 import { Dialog, DialogActions, DialogContent, DialogTitle, DropdownOption, MediumSpinner, SecondaryButton } from '@generatedata/shared';
 import { DataTypeFolder } from '@generatedata/plugins';
-import Button from '@mui/material/Button';
 import React, { useState } from 'react';
 import { getDataType, getSortedGroupedDataTypes } from '~utils/dataTypeUtils';
 import { useClasses } from './HelpDialog.styles';

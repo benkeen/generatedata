@@ -1,6 +1,8 @@
 import { fireEvent, render } from '@testing-library/react';
 import DeleteDataSetDialog from '../DeleteDataSetDialog.component';
-const i18n = require('../../../../i18n/en.json');
+import { getTestI18n } from '../../../../../tests/testHelpers';
+
+const i18n = getTestI18n();
 
 const defaultProps = {
   visible: true,

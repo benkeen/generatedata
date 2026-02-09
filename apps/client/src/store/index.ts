@@ -44,10 +44,10 @@ function initStore(): any {
 let store: any;
 if (process.env.NODE_ENV !== 'test') {
   store = initStore();
-}
 
-// custom serialization layer. This is a real shame - redux-persist was good. But the project is abandoned, and I didn't
-// like the current available alternatives.
-store.subscribe(() => persistStore(store));
+  // custom serialization layer. This is a real shame - redux-persist was good. But the project is abandoned, and I didn't
+  // like the current available alternatives.
+  store.subscribe(() => persistStore(store));
+}
 
 export default store;

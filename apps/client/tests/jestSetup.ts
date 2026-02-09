@@ -1,3 +1,9 @@
+import { TextEncoder, TextDecoder } from 'util';
+
+global.TextEncoder = TextEncoder;
+// @ts-ignore
+global.TextDecoder = TextDecoder;
+
 // @ts-ignore-line
 global.MutationObserver = class {
   constructor() {}

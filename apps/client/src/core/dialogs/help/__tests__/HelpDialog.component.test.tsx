@@ -1,11 +1,12 @@
 import { DataTypeFolder } from '@generatedata/plugins';
-import langUtils from '@generatedata/utils/lang';
 import { fireEvent, render } from '@testing-library/react';
 import sinon from 'sinon';
+import { getDataTypeI18n, getTestI18n } from '../../../../../tests/testHelpers';
 import * as dataTypeUtils from '~utils/dataTypeUtils';
 import HelpDialog from '../HelpDialog.component';
-const i18n = require('../../../../i18n/en.json');
-const NamesI18n = require('../../../../plugins/dataTypes/Names/i18n/en.json');
+
+const i18n = getTestI18n();
+const NamesI18n = getDataTypeI18n('Names');
 
 const defaultProps = {
   initialDataType: 'Names' as DataTypeFolder,
@@ -21,12 +22,6 @@ const defaultProps = {
 
 describe('HelpDialog', () => {
   it('clicking close calls the onClose callback', () => {
-    sinon.stub(langUtils, 'getStrings').returns({
-      core: i18n,
-      dataTypes: {
-        Names: NamesI18n
-      }
-    });
     sinon.stub(dataTypeUtils, 'getSortedGroupedDataTypes').returns([
       {
         label: 'Blah',
