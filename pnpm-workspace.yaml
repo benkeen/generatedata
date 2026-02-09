@@ -6,12 +6,12 @@ catalog:
   '@apollo/client': ^4.1.3
   '@apollo/server': ^5.4.0
   '@as-integrations/express5': ^1.1.2
-  '@babel/core': ^7.7.4
-  '@babel/plugin-proposal-class-properties': ^7.10.4
+  '@babel/core': ^7.29.0
+  '@babel/plugin-proposal-class-properties': ^7.18.6
   '@babel/plugin-syntax-dynamic-import': ^7.8.3
-  '@babel/preset-env': ^7.7.4
-  '@babel/preset-react': ^7.7.4
-  '@babel/runtime': ^7.28.4
+  '@babel/preset-env': ^7.29.0
+  '@babel/preset-react': ^7.28.5
+  '@babel/runtime': ^7.28.6
   '@date-io/date-fns': ^1.3.13
   '@dnd-kit/core': ^6.3.1
   '@dnd-kit/modifiers': ^9.0.0
@@ -42,8 +42,8 @@ catalog:
   '@stylistic/eslint-plugin-js': ^3.1.0
   '@testing-library/dom': ^10.4.1
   '@testing-library/react': ^16.3.0
-  '@types/codemirror': ^0.0.99
   '@types/clean-css': ^4.2.11
+  '@types/codemirror': ^0.0.99
   '@types/cookie-parser': ^1.4.10
   '@types/cors': ^2.8.19
   '@types/express': ^5.0.6
@@ -72,8 +72,8 @@ catalog:
   bcryptjs: ^3.0.3
   browserify-zlib: ^0.2.0
   case-sensitive-paths-webpack-plugin: ^2.4.0
-  cli-progress: ^3.11.2
   clean-css: ^5.3.3
+  cli-progress: ^3.11.2
   codemirror: ^5.58.2
   cookie-parser: ^1.4.5
   copy-webpack-plugin: ^13.0.1
@@ -167,9 +167,9 @@ catalog:
   ts-loader: ^9.4.2
   ts-node: ^10.9.2
   tsconfig-paths: 4.1.1
+  tsx: ^4.19.2
   turbo: ^2.8.1
   typescript: ^5.9.3
-  tsx: ^4.19.2
   underscore: ^1.13.7
   use-onclickoutside: ^0.4.1
   vm-browserify: ^1.1.2
