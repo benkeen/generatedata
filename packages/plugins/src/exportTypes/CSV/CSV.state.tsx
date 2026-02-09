@@ -1,11 +1,11 @@
 export type CSVSettings = {
-	delimiter: string;
-	lineEndings: 'Windows' | 'Unix' | 'Mac';
+  delimiter: string;
+  lineEndings: 'Windows' | 'Unix' | 'Mac';
 };
 
 export const initialState: CSVSettings = {
-	delimiter: ',',
-	lineEndings: 'Unix'
+  delimiter: ',',
+  lineEndings: 'Unix'
 };
 
 export const defaultGenerationOptions = initialState;

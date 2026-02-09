@@ -114,12 +114,12 @@ const getSafeState = (data: EmailState | undefined): EmailState => {
   return data
     ? data
     : {
-        source: 'random',
-        fieldId1: '',
-        fieldId2: '',
-        domains: defaultDomains,
-        domainSuffixes: defaultDomainSuffixes
-      };
+      source: 'random',
+      fieldId1: '',
+      fieldId2: '',
+      domains: defaultDomains,
+      domainSuffixes: defaultDomainSuffixes
+    };
 };
 
 export const Options = ({ i18n, coreI18n, id, data, onUpdate, nameRows }: DTOptionsProps) => {

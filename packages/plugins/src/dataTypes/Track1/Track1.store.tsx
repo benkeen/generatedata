@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 // import { REMOVE_ROW, SELECT_DATA_TYPE } from '~store/generator/generator.actions';
 // import { getSortedRowsArray } from '~store/generator/generator.selectors';
-import { DTCustomProps } from '../../';
+// import { DTCustomProps } from '../../';
 import { Track1State } from './Track1.state';
 
 // this defines a custom selector that extracts information about the country fields, needed by this component. The
@@ -18,7 +18,7 @@ const getNameRows = (selectors: any) => {
   );
 };
 
-const customProps: DTCustomProps = {};
+// const customProps: DTCustomProps = {};
 
 const getCustomProps = (selectors: any) => ({
   panRows: getPANRows(selectors),

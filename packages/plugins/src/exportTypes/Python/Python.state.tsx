@@ -1,2 +1,2 @@
 export const defaultGenerationOptions = {};
-export type GenerationOptionsType = {};
+export type GenerationOptionsType = object;

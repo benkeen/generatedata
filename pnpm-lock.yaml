@@ -1215,12 +1215,39 @@ importers:
       '@types/sinon':
         specifier: ^21.0.0
         version: 21.0.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: 'catalog:'
+        version: 8.47.0(@typescript-eslint/parser@8.47.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1)(typescript@5.9.3)
+      '@typescript-eslint/parser':
+        specifier: 'catalog:'
+        version: 8.47.0(eslint@8.57.1)(typescript@5.9.3)
       concurrently:
         specifier: ^9.2.1
         version: 9.2.1
       copyfiles:
         specifier: 'catalog:'
         version: 2.4.1
+      eslint:
+        specifier: 'catalog:'
+        version: 8.57.1
+      eslint-config-airbnb:
+        specifier: 'catalog:'
+        version: 19.0.4(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.47.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint-plugin-jsx-a11y@6.10.2(eslint@8.57.1))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.1))(eslint-plugin-react@7.37.4(eslint@8.57.1))(eslint@8.57.1)
+      eslint-config-airbnb-base:
+        specifier: 'catalog:'
+        version: 15.0.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.47.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import:
+        specifier: 'catalog:'
+        version: 2.31.0(@typescript-eslint/parser@8.47.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1)
+      eslint-plugin-jsx-a11y:
+        specifier: 'catalog:'
+        version: 6.10.2(eslint@8.57.1)
+      eslint-plugin-react:
+        specifier: 'catalog:'
+        version: 7.37.4(eslint@8.57.1)
+      eslint-webpack-plugin:
+        specifier: 'catalog:'
+        version: 4.2.0(eslint@8.57.1)(webpack@5.103.0)
       jest:
         specifier: 'catalog:'
         version: 30.2.0(node-notifier@8.0.2)

@@ -1,17 +1,17 @@
 export type GenerationOptionsType = {
-	values: string[];
+  values: string[];
 };
 
 export type BooleanState = {
-	example: string;
-	values: string[];
+  example: string;
+  values: string[];
 };
 
 export const defaultGenerationOptions = {
-	values: ['Yes', 'No']
+  values: ['Yes', 'No']
 };
 
 export const initialState: BooleanState = {
-	example: 'Yes|No',
-	...defaultGenerationOptions
+  example: 'Yes|No',
+  ...defaultGenerationOptions
 };

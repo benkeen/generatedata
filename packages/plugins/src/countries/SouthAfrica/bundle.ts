@@ -25,7 +25,7 @@ const SouthAfrica: GetCountryData = (i18n) => ({
         'East London',
         'Graaff-Reinet',
         'Grahamstown',
-        "King William's Town",
+        'King William\'s Town',
         'Mthatha',
         'Port Elizabeth',
         'Queenstown',
@@ -122,7 +122,7 @@ const SouthAfrica: GetCountryData = (i18n) => ({
         'Hopefield',
         'Oudtshoorn',
         'Paarl',
-        "Simon's Town",
+        'Simon\'s Town',
         'Stellenbosch',
         'Swellendam',
         'Worcester'

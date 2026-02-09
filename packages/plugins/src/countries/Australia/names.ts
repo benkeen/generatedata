@@ -269,7 +269,7 @@ const lastNames = [
   'Murphy',
   'Murray',
   'Nguyen',
-  "O'Brien",
+  'O\'Brien',
   'Parker',
   'Pearce',
   'Phillips',

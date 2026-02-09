@@ -1,17 +1,17 @@
 type SiretState = {
-	example: string;
-	option: string;
+  example: string;
+  option: string;
 };
 
 export type GenerationOptions = {
-	option: string;
+  option: string;
 };
 
 export const defaultGenerationOptions: GenerationOptions = {
-	option: ''
+  option: ''
 };
 
 export const initialState: SiretState = {
-	example: '',
-	...defaultGenerationOptions
+  example: '',
+  ...defaultGenerationOptions
 };

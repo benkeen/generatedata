@@ -1,11 +1,11 @@
 export type OrganizationNumberState = {
-	example: string;
-	separator: string;
+  example: string;
+  separator: string;
 };
 
 export const initialState: OrganizationNumberState = {
-	example: '',
-	separator: ' '
+  example: '',
+  separator: ' '
 };
 
 export const defaultGenerationOptions = {};

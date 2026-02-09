@@ -1,8 +1,8 @@
 export const defaultGenerationOptions = {
-	separator: ' '
+  separator: ' '
 };
 
 export const initialState = {
-	example: '',
-	...defaultGenerationOptions
+  example: '',
+  ...defaultGenerationOptions
 };

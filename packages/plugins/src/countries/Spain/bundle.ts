@@ -82,7 +82,7 @@ const Spain: GetCountryData = (i18n) => ({
         'Tarragona',
         'Girona',
         'Lleida',
-        "L'Hospitalet de Llobregat",
+        'L\'Hospitalet de Llobregat',
         'Badalona',
         'Tarrasa',
         'Sabadell',

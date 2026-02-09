@@ -10,7 +10,6 @@ import {
   Tooltip,
   type DropdownOption
 } from '@generatedata/shared';
-import Button from '@mui/material/Button';
 import Slider from '@mui/material/Slider';
 import rc from 'randomcolor';
 import * as React from 'react';

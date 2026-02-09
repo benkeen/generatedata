@@ -11,7 +11,6 @@ import {
 } from '@generatedata/shared';
 import { langUtils } from '@generatedata/utils';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
-import Button from '@mui/material/Button';
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '../../';
 import {

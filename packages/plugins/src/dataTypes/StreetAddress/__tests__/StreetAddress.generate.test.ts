@@ -5,7 +5,7 @@ import { DTGenerationData } from '../../../';
 import { generate } from '../StreetAddress.generate';
 
 describe('generate', () => {
-  let data: DTGenerationData = {
+  const data: DTGenerationData = {
     rowNum: 1,
     rowState: '',
     i18n,
@@ -14,7 +14,6 @@ describe('generate', () => {
     countryData: {},
     template: {}
   };
-
   afterEach(() => {
     sinon.restore();
   });

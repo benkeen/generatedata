@@ -1,4 +1,4 @@
-import { BitcoinAddressFormat } from './BitcoinAddress.state';
+// import { BitcoinAddressFormat } from './BitcoinAddress.state';
 // import { WorkerUtils } from '../../';
 import { DTGenerateResult, DTGenerationData } from '../../';
 // import { BitcoinAddressFormat, BitcoinAddressState } from './BitcoinAddress';

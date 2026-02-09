@@ -41,7 +41,7 @@ const France: GetCountryData = (i18n) => ({
       ]
     },
     {
-      regionName: "Provence-Alpes-Côte d'Azur",
+      regionName: 'Provence-Alpes-Côte d\'Azur',
       regionShort: 'PR',
       regionSlug: 'provence_alpes',
       weight: 9.6,
@@ -80,7 +80,7 @@ const France: GetCountryData = (i18n) => ({
         'Dunkerque',
         'Tourcoing',
         'Calais',
-        "Villeneuve-d'Ascq",
+        'Villeneuve-d\'Ascq',
         'Valenciennes',
         'Boulogne-sur-Mer',
         'Douai',
@@ -133,7 +133,7 @@ const France: GetCountryData = (i18n) => ({
         'Agen',
         'Mont-de-Marsan',
         'Périgueux',
-        "Villenave-d'Ornon",
+        'Villenave-d\'Ornon',
         'Saint-Médard-en-Jalles',
         'Bergerac',
         'Biarritz',

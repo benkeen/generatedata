@@ -125,7 +125,7 @@ const Chile: GetCountryData = (i18n) => ({
       ]
     },
     {
-      regionName: "O'Higgins",
+      regionName: 'O\'Higgins',
       regionShort: 'VI',
       regionSlug: 'ohiggins',
       weight: 511,
@@ -368,7 +368,7 @@ const Chile: GetCountryData = (i18n) => ({
       regionShort: 'XIV',
       regionSlug: 'aisen',
       weight: 60,
-      cities: ['Coihaique', 'Lago Verde', 'Aisén', 'Cisnes', 'Guaitecas', 'Cochrane', "O'Higgins", 'Tortel', 'Chile Chico', 'Río Ibáñez']
+      cities: ['Coihaique', 'Lago Verde', 'Aisén', 'Cisnes', 'Guaitecas', 'Cochrane', 'O\'Higgins', 'Tortel', 'Chile Chico', 'Río Ibáñez']
     },
     {
       regionName: 'Magallanes y Antártica Chilena',

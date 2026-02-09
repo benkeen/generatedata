@@ -202,7 +202,7 @@ const UK: GetCountryData = (i18n) => ({
       regionShort: 'FL',
       regionSlug: 'flintshire',
       weight: 1,
-      cities: ['Mold', 'Flint', 'Rhyl', 'Prestatyn', "Connah's Quay", 'Holywell', 'Buckley', 'St. Asaph']
+      cities: ['Mold', 'Flint', 'Rhyl', 'Prestatyn', 'Connah\'s Quay', 'Holywell', 'Buckley', 'St. Asaph']
     },
     {
       regionName: 'Glamorgan',
@@ -356,7 +356,7 @@ const UK: GetCountryData = (i18n) => ({
       regionShort: 'NF',
       regionSlug: 'norfolk',
       weight: 1,
-      cities: ['Norwich', 'Great Yarmouth', "King's Lynn", 'Dereham', 'Cromer', 'Hunstanton']
+      cities: ['Norwich', 'Great Yarmouth', 'King\'s Lynn', 'Dereham', 'Cromer', 'Hunstanton']
     },
     {
       regionName: 'Northamptonshire',
@@ -391,7 +391,7 @@ const UK: GetCountryData = (i18n) => ({
       regionShort: 'PE',
       regionSlug: 'pembrokeshire',
       weight: 1,
-      cities: ['Pembroke', 'Milford Haven', 'Haverfordwest', 'Fishguard', 'Tenby', "St. David's"]
+      cities: ['Pembroke', 'Milford Haven', 'Haverfordwest', 'Fishguard', 'Tenby', 'St. David\'s']
     },
     {
       regionName: 'Radnorshire',
@@ -524,7 +524,7 @@ const UK: GetCountryData = (i18n) => ({
       regionShort: 'WL',
       regionSlug: 'west_lothian',
       weight: 1,
-      cities: ['Linlithgow', 'Livingston', "Bo'ness", 'Broxburn', 'Whitburn', 'Armadale', 'Bathgate']
+      cities: ['Linlithgow', 'Livingston', 'Bo\'ness', 'Broxburn', 'Whitburn', 'Armadale', 'Bathgate']
     },
     {
       regionName: 'Worcestershire',

@@ -12,7 +12,7 @@ export const generate = (data: DTGenerationData, utils: WorkerUtils): DTGenerate
   let display = '';
   try {
     display = format(fromUnixTime(time), displayFormat);
-  } catch (e) {}
+  } catch (_e) {}
 
   return {
     display

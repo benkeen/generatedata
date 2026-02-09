@@ -1,11 +1,11 @@
 export type GenerationOptionsType = {
-	value: string;
+  value: string;
 };
 
 export const initialState = {
-	value: ''
+  value: ''
 };
 
 export const defaultGenerationOptions: GenerationOptionsType = {
-	value: ''
+  value: ''
 };

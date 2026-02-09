@@ -19,7 +19,7 @@ export const generate = (data: ETMessageData): string => {
 };
 
 export const enum QuoteType {
-  single = "'",
+  single = '\'',
   double = '"'
 }
 
@@ -65,7 +65,7 @@ export const generateMySQL = (data: ETMessageData): string => {
         content += `  ${backquote}id${backquote} mediumint(8) unsigned NOT NULL auto_increment,\n`;
       }
       const cols: any[] = [];
-      columns.forEach(({ title, dataType, metadata }) => {
+      columns.forEach(({ title, metadata }) => {
         let columnTypeInfo = 'MEDIUMTEXT';
         if (metadata && metadata.sql) {
           if (metadata.sql.field_MySQL) {
@@ -97,7 +97,7 @@ export const generateMySQL = (data: ETMessageData): string => {
   rows.forEach((row: any, rowIndex: number) => {
     if (sqlSettings.statementType === 'insert') {
       const displayVals: any = [];
-      colTitles.forEach((columnTitle: string, colIndex: number) => {
+      colTitles.forEach((_columnTitle: string, colIndex: number) => {
         displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
       });
       rowDataStr.push(displayVals.join(','));
@@ -107,7 +107,7 @@ export const generateMySQL = (data: ETMessageData): string => {
       }
     } else if (sqlSettings.statementType === 'insertIgnore') {
       const displayVals: any = [];
-      colTitles.forEach((columnTitle: string, colIndex: number) => {
+      colTitles.forEach((_columnTitle: string, colIndex: number) => {
         displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
       });
       rowDataStr.push(displayVals.join(','));
@@ -156,7 +156,7 @@ export const generatePostgres = (generationData: ETMessageData): string => {
         content += '  id SERIAL PRIMARY KEY,\n';
       }
       const cols: any[] = [];
-      generationData.columns.forEach(({ title, dataType, metadata }) => {
+      generationData.columns.forEach(({ title, metadata }) => {
         let columnTypeInfo = 'MEDIUMTEXT';
         if (metadata) {
           if (metadata.sql && metadata.sql.field_Postgres) {
@@ -179,7 +179,7 @@ export const generatePostgres = (generationData: ETMessageData): string => {
   generationData.rows.forEach((row: any, rowIndex: number) => {
     if (sqlSettings.statementType === 'insert') {
       const displayVals: any = [];
-      colTitles.forEach((columnTitle: string, colIndex: number) => {
+      colTitles.forEach((_columnTitle: string, colIndex: number) => {
         displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes, QuoteType.single));
       });
       rowDataStr.push(displayVals.join(','));
@@ -225,7 +225,7 @@ export const generateSQLite = (generationData: ETMessageData): string => {
       }
       const cols: any[] = [];
 
-      generationData.columns.forEach(({ title, dataType, metadata }) => {
+      generationData.columns.forEach(({ title, metadata }) => {
         let columnTypeInfo = 'MEDIUMTEXT';
 
         // figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
@@ -305,7 +305,7 @@ export const generateOracle = (generationData: ETMessageData): string => {
       }
 
       const cols: any[] = [];
-      generationData.columns.forEach(({ title, dataType, metadata }) => {
+      generationData.columns.forEach(({ title, metadata }) => {
         let columnTypeInfo = 'MEDIUMTEXT';
         if (metadata && metadata.sql) {
           if (metadata.sql.field_Oracle) {
@@ -385,7 +385,7 @@ export const generateMSSQL = (generationData: ETMessageData): string => {
       }
 
       const cols: any[] = [];
-      generationData.columns.forEach(({ title, dataType, metadata }) => {
+      generationData.columns.forEach(({ title, metadata }) => {
         let columnTypeInfo = 'MEDIUMTEXT';
         if (metadata && metadata.sql) {
           if (metadata.sql.field_MSSQL) {
