@@ -4,7 +4,7 @@ import clientConfig from '@generatedata/config/clientConfig';
 import { GDLocale } from '@generatedata/config';
 import { createHash } from 'crypto';
 
-// Strips out any keys ending with `:comment` - these are used for translator context only
+// strips out any keys ending with `:comment` - these are used for translator context only
 const stripCommentKeys = (obj: Record<string, unknown>): Record<string, unknown> => {
   return Object.fromEntries(Object.entries(obj).filter(([key]) => !key.endsWith(':comment')));
 };

@@ -1,5 +1,4 @@
-import React from 'react';
-import BasePill, { PillType } from './BasePill';
+import BasePill from './BasePill';
 
 export type CheckboxPillProps = {
   label: string;

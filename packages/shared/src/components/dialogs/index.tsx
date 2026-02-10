@@ -5,18 +5,14 @@ import MuiDialogContent, { type DialogContentProps } from '@mui/material/DialogC
 import type { DialogTitleProps as MuiDialogTitleProps } from '@mui/material/DialogTitle';
 import MuiDialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 
 type DialogTitleProps = MuiDialogTitleProps & {
   onClose?: () => void;
   customCloseIcon?: any;
-  classes?: {
-    [className: string]: string;
-  };
 };
 
 export const DialogTitle = (props: DialogTitleProps) => {
-  const { children, classes, onClose, customCloseIcon, ...other } = props;
+  const { children, onClose, customCloseIcon, ...other } = props;
   const Close = customCloseIcon ? customCloseIcon : CloseIcon;
 
   return (

@@ -8,6 +8,7 @@
     "dev": "npm run watch",
     "watch": "tsc --watch",
     "clean": "npx rimraf dist",
+    "lint": "eslint src --ext .ts,.tsx",
     "purge": "npx rimraf node_modules dist .turbo",
     "storybook": "storybook dev -p 6006",
     "test": "jest --config=./config/jest.config.js"

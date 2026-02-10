@@ -1,5 +1,3 @@
-import React from 'react';
-import Button from '@mui/material/Button';
 import { Tooltip } from '../tooltips';
 import { useClasses } from './BasePill.styles';
 import { PrimaryButton } from '../buttons';

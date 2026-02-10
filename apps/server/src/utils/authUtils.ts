@@ -14,7 +14,7 @@ export const authenticate = async (token: string) => {
     try {
       jwt.verify(token, serverConfig.auth.GD_JWT_SECRET);
       return true;
-    } catch (e) {
+    } catch (_e) {
       return false;
     }
   }

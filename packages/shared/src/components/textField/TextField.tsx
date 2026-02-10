@@ -4,7 +4,6 @@ import React, { forwardRef, useState } from 'react';
 import { useThrottle } from '../../hooks/useThrottle';
 import { ErrorTooltip } from '../tooltips';
 
-// TODO update to pull from native field. Sheesh.
 export type TextFieldProps = {
   type?: string;
   value: string;

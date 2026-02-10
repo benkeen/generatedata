@@ -69,7 +69,7 @@ const ChangePassword = ({ oneTimePassword, onSave, className, i18n, throttle = f
   const getCurrentPasswordBlock = () => {
     if (oneTimePassword) {
       return (
-        <Alert severity="warning" style={{ marginBottom: 15 }}>
+        <Alert severity="warning" style={{ marginBottom: 15, fontSize: 13 }}>
           {i18n.oneTimePasswordLogin}
         </Alert>
       );

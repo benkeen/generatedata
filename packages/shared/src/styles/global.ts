@@ -47,8 +47,7 @@ export const useGlobalStyles = makeStaticStyles({
     textDecoration: 'none',
     color: primaryColor,
     '&:hover': {
-      textDecoration: 'underline',
-      color: `1px solid color.adjust(c.$primary-color, $lightness: -30%)` // TODO fix
+      textDecoration: 'underline'
     }
   },
   h3: {

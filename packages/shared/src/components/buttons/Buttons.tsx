@@ -17,11 +17,9 @@ export const AlertButton = styled((props: ButtonProps) => (
   color: `${theme.palette.error.main} !important`
 }));
 
-export const NullButton = styled((props: ButtonProps) => <Button variant="outlined" disableElevation disableRipple {...props} />)(
-  ({ theme }) => ({
-    // Theme defaults are automatically applied through styled
-  })
-);
+export const NullButton = styled((props: ButtonProps) => <Button variant="outlined" disableElevation disableRipple {...props} />)(() => ({
+  // Theme defaults are automatically applied through styled
+}));
 
 export const SecondaryButton = styled((props: ButtonProps) => (
   <Button color="secondary" variant="outlined" disableElevation disableRipple {...props} />

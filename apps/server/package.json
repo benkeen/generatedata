@@ -7,6 +7,7 @@
     "clean": "npx rimraf dist",
     "dev": "COMPOSE_INTERACTIVE_NO_CLI=1 COMPOSE_HTTP_TIMEOUT=150 docker compose -f ./docker-compose.yml up",
     "generate-schema": "graphql-codegen --config src/codegen.ts",
+    "lint": "eslint src --ext .ts",
     "purge": "npx rimraf node_modules dist .turbo",
     "run-server": "nodemon ./dist/app.js",
     "run-server:debug": "nodemon --exec node --trace-warnings ./dist/app.js",

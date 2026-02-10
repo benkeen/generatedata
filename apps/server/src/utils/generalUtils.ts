@@ -10,7 +10,7 @@ export const getSiteUrl = () => {
 
   // @ts-ignore-line
   let cleanPort = '';
-  let port = clientConfig.webServer.GD_WEB_SERVER_PORT;
+  const port = clientConfig.webServer.GD_WEB_SERVER_PORT;
   if (port && port !== 80 && port !== 443) {
     cleanPort = `:${port}`;
   }

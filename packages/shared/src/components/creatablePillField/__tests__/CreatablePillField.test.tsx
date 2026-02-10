@@ -9,5 +9,7 @@ const defaultProps = {
 describe('CreatablePillField', () => {
   it('renders', () => {
     const { baseElement } = render(<CreatablePillField {...defaultProps} />);
+
+    expect(baseElement).not.toBeUndefined();
   });
 });
