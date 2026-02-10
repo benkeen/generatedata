@@ -2,7 +2,7 @@ import { useSharedClasses } from '@generatedata/shared';
 import { useEffect, useState } from 'react';
 import { SelectedAccountTab } from '~types/account';
 import { useClasses } from './Account.styles';
-import ChangePassword from './changePassword/ChangePassword.container';
+import ChangePassword from './changePassword';
 import DataSets from './dataSets/DataSets.container';
 import YourAccount from './yourAccount/YourAccount.container';
 

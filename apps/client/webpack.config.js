@@ -9,9 +9,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 // this defaults to the ESM version, so it pulls from the direct location
 const { clientConfig } = require('@generatedata/config');
 
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
-module.exports = (env, argv) => {
+module.exports = (_env, argv) => {
   const mode = argv.mode === 'production' ? 'production' : 'development'; // TODO not working with package.json commands
 
   var config = {
@@ -109,10 +107,6 @@ module.exports = (env, argv) => {
       port: clientConfig.webServer.GD_WEB_SERVER_PORT,
       open: true
     };
-
-    // just uncomment this & the include above to auto-generate the bundle analyzer treemap. It'll show up when
-    // running `npm run start`
-    // config.plugins.push(new BundleAnalyzerPlugin());
   }
 
   if (mode === 'production') {

@@ -1,14 +1,15 @@
 import { CopyToClipboard } from '@generatedata/shared';
 import { useClasses } from './Email.styles';
+import { useEmailContainer } from './hooks/useEmailContainer';
 
 export type EmailProps = {
   email: string;
-  i18n: any;
   text?: string;
 };
 
-const Email = ({ email, text = '', i18n }: EmailProps) => {
+const Email = ({ email, text = '' }: EmailProps) => {
   const classNames = useClasses();
+  const { i18n } = useEmailContainer();
   const textString = text || email;
 
   return (

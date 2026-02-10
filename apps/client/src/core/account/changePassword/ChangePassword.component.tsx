@@ -1,16 +1,16 @@
 import { PrimaryButton, TextField } from '@generatedata/shared';
 import Alert from '@mui/material/Alert';
 import { useRef, useState } from 'react';
+import { useChangePasswordContainer } from './hooks/useChangePasswordContainer';
 
 export type ChangePasswordProps = {
-  oneTimePassword: string;
-  onSave: (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void) => void;
   className: string;
-  i18n: any;
   throttle?: boolean;
 };
 
-const ChangePassword = ({ oneTimePassword, onSave, className, i18n, throttle = false }: ChangePasswordProps) => {
+export const ChangePassword = ({ className, throttle = false }: ChangePasswordProps) => {
+  const { oneTimePassword, i18n, onSave } = useChangePasswordContainer();
+
   const currentPasswordField = useRef<HTMLInputElement>(null);
   const [currentPassword, setCurrentPassword] = useState('');
   const [currentPasswordError, setCurrentPasswordError] = useState('');
@@ -156,5 +156,3 @@ const ChangePassword = ({ oneTimePassword, onSave, className, i18n, throttle = f
     </form>
   );
 };
-
-export default ChangePassword;
