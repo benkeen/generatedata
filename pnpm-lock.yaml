@@ -424,8 +424,8 @@ catalogs:
       specifier: ^6.0.1
       version: 6.0.1
     rollup:
-      specifier: ^2.31.0
-      version: 2.79.2
+      specifier: ^2.80.0
+      version: 2.80.0
     rollup-plugin-strip-exports:
       specifier: ^2.0.6
       version: 2.0.7
@@ -674,7 +674,7 @@ importers:
         version: 5.0.1
       rollup:
         specifier: 'catalog:'
-        version: 2.79.2
+        version: 2.80.0
       rxjs:
         specifier: 'catalog:'
         version: 7.8.2
@@ -732,10 +732,10 @@ importers:
         version: 1.5.32(react@18.3.1)
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
-        version: 15.1.0(rollup@2.79.2)
+        version: 15.1.0(rollup@2.80.0)
       '@rollup/plugin-node-resolve':
         specifier: 'catalog:'
-        version: 13.3.0(rollup@2.79.2)
+        version: 13.3.0(rollup@2.80.0)
       '@stylistic/eslint-plugin-js':
         specifier: 'catalog:'
         version: 3.1.0(eslint@8.57.1)
@@ -882,10 +882,10 @@ importers:
         version: 2.0.7
       rollup-plugin-terser:
         specifier: 'catalog:'
-        version: 7.0.2(rollup@2.79.2)
+        version: 7.0.2(rollup@2.80.0)
       rollup-plugin-typescript2:
         specifier: 'catalog:'
-        version: 0.27.3(rollup@2.79.2)(typescript@5.9.3)
+        version: 0.27.3(rollup@2.80.0)(typescript@5.9.3)
       sinon:
         specifier: 'catalog:'
         version: 21.0.0
@@ -1000,13 +1000,13 @@ importers:
         version: 6.1.0(@parcel/watcher@2.5.1)(@types/node@24.10.1)(graphql@16.12.0)(typescript@5.9.3)
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
-        version: 15.1.0(rollup@2.79.2)
+        version: 15.1.0(rollup@2.80.0)
       '@rollup/plugin-node-resolve':
         specifier: 'catalog:'
-        version: 13.3.0(rollup@2.79.2)
+        version: 13.3.0(rollup@2.80.0)
       '@rollup/plugin-typescript':
         specifier: 'catalog:'
-        version: 12.3.0(rollup@2.79.2)(tslib@2.8.1)(typescript@5.9.3)
+        version: 12.3.0(rollup@2.80.0)(tslib@2.8.1)(typescript@5.9.3)
       '@types/cookie-parser':
         specifier: 'catalog:'
         version: 1.4.10(@types/express@5.0.6)
@@ -1039,7 +1039,7 @@ importers:
         version: 6.0.1
       rollup:
         specifier: 'catalog:'
-        version: 2.79.2
+        version: 2.80.0
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
@@ -1187,16 +1187,16 @@ importers:
         version: 2.2.0(react@18.3.1)
       '@rollup/plugin-babel':
         specifier: 'catalog:'
-        version: 6.1.0(@babel/core@7.29.0)(@types/babel__core@7.20.5)(rollup@2.79.2)
+        version: 6.1.0(@babel/core@7.29.0)(@types/babel__core@7.20.5)(rollup@2.80.0)
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
-        version: 15.1.0(rollup@2.79.2)
+        version: 15.1.0(rollup@2.80.0)
       '@rollup/plugin-node-resolve':
         specifier: 'catalog:'
-        version: 13.3.0(rollup@2.79.2)
+        version: 13.3.0(rollup@2.80.0)
       '@rollup/plugin-terser':
         specifier: 'catalog:'
-        version: 0.4.4(rollup@2.79.2)
+        version: 0.4.4(rollup@2.80.0)
       '@testing-library/dom':
         specifier: 'catalog:'
         version: 10.4.1
@@ -1262,7 +1262,7 @@ importers:
         version: 6.0.1
       rollup:
         specifier: 'catalog:'
-        version: 2.79.2
+        version: 2.80.0
       rollup-plugin-strip-exports:
         specifier: 'catalog:'
         version: 2.0.7
@@ -1350,7 +1350,7 @@ importers:
         version: 10.1.9(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@storybook/addon-docs':
         specifier: 'catalog:'
-        version: 10.1.9(@types/react@18.3.27)(esbuild@0.27.3)(rollup@2.79.2)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.105.0(esbuild@0.27.3))
+        version: 10.1.9(@types/react@18.3.27)(esbuild@0.27.3)(rollup@2.80.0)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.105.0(esbuild@0.27.3))
       '@storybook/react':
         specifier: 'catalog:'
         version: 10.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.9.3)
@@ -1383,7 +1383,7 @@ importers:
         version: 10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       storybook-react-rsbuild:
         specifier: 'catalog:'
-        version: 3.1.0(@rsbuild/core@1.6.14)(@rspack/core@1.6.7(@swc/helpers@0.5.18))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@2.79.2)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.9.3)(webpack@5.105.0(esbuild@0.27.3))
+        version: 3.1.0(@rsbuild/core@1.6.14)(@rspack/core@1.6.7(@swc/helpers@0.5.18))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@2.80.0)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.9.3)(webpack@5.105.0(esbuild@0.27.3))
 
   packages/tools:
     devDependencies:
@@ -1447,13 +1447,13 @@ importers:
         version: 30.2.0
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
-        version: 15.1.0(rollup@2.79.2)
+        version: 15.1.0(rollup@2.80.0)
       '@rollup/plugin-node-resolve':
         specifier: 'catalog:'
-        version: 13.3.0(rollup@2.79.2)
+        version: 13.3.0(rollup@2.80.0)
       '@rollup/plugin-typescript':
         specifier: 'catalog:'
-        version: 12.3.0(rollup@2.79.2)(tslib@2.8.1)(typescript@5.9.3)
+        version: 12.3.0(rollup@2.80.0)(tslib@2.8.1)(typescript@5.9.3)
       '@testing-library/react':
         specifier: 'catalog:'
         version: 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1480,13 +1480,13 @@ importers:
         version: 6.0.1
       rollup:
         specifier: 'catalog:'
-        version: 2.79.2
+        version: 2.80.0
       rollup-plugin-strip-exports:
         specifier: 'catalog:'
         version: 2.0.7
       rollup-plugin-terser:
         specifier: 'catalog:'
-        version: 7.0.2(rollup@2.79.2)
+        version: 7.0.2(rollup@2.80.0)
       sinon:
         specifier: 'catalog:'
         version: 21.0.0
@@ -8907,8 +8907,8 @@ packages:
   rollup-pluginutils@2.8.2:
     resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
 
-  rollup@2.79.2:
-    resolution: {integrity: sha512-fS6iqSPZDs3dr/y7Od6y5nha8dW1YnbgtsyotCVvoFGKbERG++CVRFv1meyGDE1SNItQA8BrnCw7ScdAhRJ3XQ==}
+  rollup@2.80.0:
+    resolution: {integrity: sha512-cIFJOD1DESzpjOBl763Kp1AH7UE/0fcdHe6rZXUdQ9c50uvgigvW97u3IcSeBwOkgqL/PXPBktBCh0KEu5L8XQ==}
     engines: {node: '>=10.0.0'}
     hasBin: true
 
@@ -13371,69 +13371,69 @@ snapshots:
 
   '@repeaterjs/repeater@3.0.6': {}
 
-  '@rollup/plugin-babel@6.1.0(@babel/core@7.29.0)(@types/babel__core@7.20.5)(rollup@2.79.2)':
+  '@rollup/plugin-babel@6.1.0(@babel/core@7.29.0)(@types/babel__core@7.20.5)(rollup@2.80.0)':
     dependencies:
       '@babel/core': 7.29.0
       '@babel/helper-module-imports': 7.27.1(supports-color@5.5.0)
-      '@rollup/pluginutils': 5.3.0(rollup@2.79.2)
+      '@rollup/pluginutils': 5.3.0(rollup@2.80.0)
     optionalDependencies:
       '@types/babel__core': 7.20.5
-      rollup: 2.79.2
+      rollup: 2.80.0
     transitivePeerDependencies:
       - supports-color
 
-  '@rollup/plugin-commonjs@15.1.0(rollup@2.79.2)':
+  '@rollup/plugin-commonjs@15.1.0(rollup@2.80.0)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(rollup@2.79.2)
+      '@rollup/pluginutils': 3.1.0(rollup@2.80.0)
       commondir: 1.0.1
       estree-walker: 2.0.2
       glob: 7.2.3
       is-reference: 1.2.1
       magic-string: 0.25.9
       resolve: 1.22.11
-      rollup: 2.79.2
+      rollup: 2.80.0
 
-  '@rollup/plugin-node-resolve@13.3.0(rollup@2.79.2)':
+  '@rollup/plugin-node-resolve@13.3.0(rollup@2.80.0)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(rollup@2.79.2)
+      '@rollup/pluginutils': 3.1.0(rollup@2.80.0)
       '@types/resolve': 1.17.1
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
       is-module: 1.0.0
       resolve: 1.22.11
-      rollup: 2.79.2
+      rollup: 2.80.0
 
-  '@rollup/plugin-terser@0.4.4(rollup@2.79.2)':
+  '@rollup/plugin-terser@0.4.4(rollup@2.80.0)':
     dependencies:
       serialize-javascript: 6.0.2
       smob: 1.5.0
       terser: 5.39.0
     optionalDependencies:
-      rollup: 2.79.2
+      rollup: 2.80.0
 
-  '@rollup/plugin-typescript@12.3.0(rollup@2.79.2)(tslib@2.8.1)(typescript@5.9.3)':
+  '@rollup/plugin-typescript@12.3.0(rollup@2.80.0)(tslib@2.8.1)(typescript@5.9.3)':
     dependencies:
-      '@rollup/pluginutils': 5.3.0(rollup@2.79.2)
+      '@rollup/pluginutils': 5.3.0(rollup@2.80.0)
       resolve: 1.22.11
       typescript: 5.9.3
     optionalDependencies:
-      rollup: 2.79.2
+      rollup: 2.80.0
       tslib: 2.8.1
 
-  '@rollup/pluginutils@3.1.0(rollup@2.79.2)':
+  '@rollup/pluginutils@3.1.0(rollup@2.80.0)':
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.1
-      rollup: 2.79.2
+      rollup: 2.80.0
 
-  '@rollup/pluginutils@5.3.0(rollup@2.79.2)':
+  '@rollup/pluginutils@5.3.0(rollup@2.80.0)':
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
       picomatch: 4.0.3
     optionalDependencies:
-      rollup: 2.79.2
+      rollup: 2.80.0
 
   '@rooks/use-mutation-observer@4.11.2(react@18.3.1)':
     dependencies:
@@ -13547,10 +13547,10 @@ snapshots:
       axe-core: 4.10.2
       storybook: 10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
-  '@storybook/addon-docs@10.1.9(@types/react@18.3.27)(esbuild@0.27.3)(rollup@2.79.2)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.105.0(esbuild@0.27.3))':
+  '@storybook/addon-docs@10.1.9(@types/react@18.3.27)(esbuild@0.27.3)(rollup@2.80.0)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.105.0(esbuild@0.27.3))':
     dependencies:
       '@mdx-js/react': 3.1.1(@types/react@18.3.27)(react@18.3.1)
-      '@storybook/csf-plugin': 10.1.9(esbuild@0.27.3)(rollup@2.79.2)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.105.0(esbuild@0.27.3))
+      '@storybook/csf-plugin': 10.1.9(esbuild@0.27.3)(rollup@2.80.0)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.105.0(esbuild@0.27.3))
       '@storybook/icons': 2.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@storybook/react-dom-shim': 10.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       react: 18.3.1
@@ -13564,13 +13564,13 @@ snapshots:
       - vite
       - webpack
 
-  '@storybook/csf-plugin@10.1.9(esbuild@0.27.3)(rollup@2.79.2)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.105.0(esbuild@0.27.3))':
+  '@storybook/csf-plugin@10.1.9(esbuild@0.27.3)(rollup@2.80.0)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.105.0(esbuild@0.27.3))':
     dependencies:
       storybook: 10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       unplugin: 2.3.11
     optionalDependencies:
       esbuild: 0.27.3
-      rollup: 2.79.2
+      rollup: 2.80.0
       webpack: 5.105.0(esbuild@0.27.3)
 
   '@storybook/global@5.0.0': {}
@@ -19461,21 +19461,21 @@ snapshots:
       magic-string: 0.25.9
       rollup-pluginutils: 2.8.2
 
-  rollup-plugin-terser@7.0.2(rollup@2.79.2):
+  rollup-plugin-terser@7.0.2(rollup@2.80.0):
     dependencies:
       '@babel/code-frame': 7.27.1
       jest-worker: 26.6.2
-      rollup: 2.79.2
+      rollup: 2.80.0
       serialize-javascript: 4.0.0
       terser: 5.39.0
 
-  rollup-plugin-typescript2@0.27.3(rollup@2.79.2)(typescript@5.9.3):
+  rollup-plugin-typescript2@0.27.3(rollup@2.80.0)(typescript@5.9.3):
     dependencies:
-      '@rollup/pluginutils': 3.1.0(rollup@2.79.2)
+      '@rollup/pluginutils': 3.1.0(rollup@2.80.0)
       find-cache-dir: 3.3.2
       fs-extra: 8.1.0
       resolve: 1.17.0
-      rollup: 2.79.2
+      rollup: 2.80.0
       tslib: 2.0.1
       typescript: 5.9.3
 
@@ -19483,7 +19483,7 @@ snapshots:
     dependencies:
       estree-walker: 0.6.1
 
-  rollup@2.79.2:
+  rollup@2.80.0:
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -19944,9 +19944,9 @@ snapshots:
       - msw
       - vite
 
-  storybook-react-rsbuild@3.1.0(@rsbuild/core@1.6.14)(@rspack/core@1.6.7(@swc/helpers@0.5.18))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@2.79.2)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.9.3)(webpack@5.105.0(esbuild@0.27.3)):
+  storybook-react-rsbuild@3.1.0(@rsbuild/core@1.6.14)(@rspack/core@1.6.7(@swc/helpers@0.5.18))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@2.80.0)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.9.3)(webpack@5.105.0(esbuild@0.27.3)):
     dependencies:
-      '@rollup/pluginutils': 5.3.0(rollup@2.79.2)
+      '@rollup/pluginutils': 5.3.0(rollup@2.80.0)
       '@rsbuild/core': 1.6.14
       '@storybook/react': 10.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@10.1.11(@testing-library/dom@10.4.1)(prettier@3.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.9.3)
       '@storybook/react-docgen-typescript-plugin': 1.0.1(typescript@5.9.3)(webpack@5.105.0(esbuild@0.27.3))
