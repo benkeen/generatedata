@@ -84,6 +84,7 @@ const Builder = ({
           defaultSize={defaultSize}
           // size={defaultSize}
           onChange={onResize}
+          pane2Style={{ overflow: 'hidden' }}
         >
           <Grid />
           <Preview />
