@@ -170,7 +170,7 @@ catalog:
   tsx: ^4.19.2
   turbo: ^2.8.1
   typescript: ^5.9.3
-  underscore: ^1.13.7
+  underscore: ^1.13.8
   use-onclickoutside: ^0.4.1
   vm-browserify: ^1.1.2
   webpack: ^5.105.0
