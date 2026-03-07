@@ -12,6 +12,14 @@ global.MutationObserver = class {
   observe() {}
 };
 
+// @ts-ignore-line
+global.ResizeObserver = class {
+  constructor() {}
+  disconnect() {}
+  observe() {}
+  unobserve() {}
+};
+
 let count = 1;
 jest.mock('nanoid', () => ({
   nanoid: () => `p${count++}`

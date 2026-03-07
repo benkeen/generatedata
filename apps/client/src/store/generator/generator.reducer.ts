@@ -116,13 +116,6 @@ export type SelectedDataSetHistoryItem = {
   isLatest: boolean;
 };
 
-// export type PanelSizes = {
-//   windowHeight: number;
-//   windowWidth: number;
-//   horizontal?: number;
-//   vertical?: number;
-// };
-
 export type UpdatePanelSizeData = {
   windowHeight?: number;
   windowWidth?: number;

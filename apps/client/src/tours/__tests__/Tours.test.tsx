@@ -1,11 +1,10 @@
-import React from 'react';
 import sinon from 'sinon';
 import { render } from '@testing-library/react';
 import { TourCompleteStep } from '../Components.tour';
 import GridPanelTour from '../GridPanel.tour';
 import IntroToGenerator from '../IntroToGenerator.tour';
 import PreviewPanel from '../PreviewPanel.tour';
-import langUtils from '@generatedata/utils/lang';
+import * as langUtils from '@generatedata/utils/lang';
 import i18n from '@generatedata/i18n-core/en';
 
 describe('TourCompleteStep', () => {

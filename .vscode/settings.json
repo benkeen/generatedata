@@ -1,4 +1,5 @@
 {
+  "jestrunner.jestCommand": "node_modules/.bin/jest --config=config/jest.config.js",
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "editor.formatOnType": false,
   "editor.formatOnPaste": false,
