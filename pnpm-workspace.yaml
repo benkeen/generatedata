@@ -149,7 +149,7 @@ catalog:
   redux-testkit: ^1.0.6
   reselect: ^5.1.1
   rimraf: ^6.0.1
-  rollup: ^2.31.0
+  rollup: ^2.80.0
   rollup-plugin-strip-exports: ^2.0.6
   rollup-plugin-terser: ^7.0.2
   rollup-plugin-typescript2: ^0.27.1
