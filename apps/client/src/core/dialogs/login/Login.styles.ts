@@ -8,14 +8,25 @@ export const useClasses = makeStyles({
     },
     '& input': {
       fontSize: '14px'
+    },
+    '& .MuiDialog-paper': {
+      '@media (max-width: 570px)': {
+        maxWidth: 'calc(100vw - 32px) !important',
+        margin: '16px !important',
+        width: 'calc(100vw - 32px) !important'
+      }
     }
   },
   withSecondCol: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    '@media (max-width:570px)': {
+      flexDirection: 'column'
+    }
   },
   col: {
-    flex: 1
+    flex: 1,
+    minWidth: 0
   },
   separator: {
     margin: '0 25px',
@@ -23,6 +34,7 @@ export const useClasses = makeStyles({
     display: 'flex',
     alignItems: 'center',
     borderLeft: '1px solid #efefef',
+    flex: '0 0 auto',
 
     '& > div': {
       position: 'absolute',
@@ -30,6 +42,20 @@ export const useClasses = makeStyles({
       backgroundColor: 'white',
       padding: '2px',
       color: '#555555'
+    },
+
+    '@media (max-width:570px)': {
+      margin: '15px 0',
+      borderLeft: 'none',
+      borderTop: '1px solid #efefef',
+      paddingTop: '10px',
+
+      '& > div': {
+        left: '50%',
+        top: '-12px',
+        transform: 'translateX(-50%)',
+        padding: '2px 10px'
+      }
     }
   },
   actionsRow: {

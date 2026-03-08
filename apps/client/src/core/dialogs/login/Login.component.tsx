@@ -37,6 +37,8 @@ const LoginDialog = ({
   const navigate = useNavigate();
   const classNames = useClasses();
 
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
+
   const textFieldRef = useRef<any>();
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -52,6 +54,13 @@ const LoginDialog = ({
       return;
     }
   }, [visible]);
+
+  useEffect(() => {
+    const update = () => setWindowWidth(typeof window !== 'undefined' ? window.innerWidth : null);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   useEffect(() => {
     if (email === '' && defaultEmail) {
@@ -113,6 +122,11 @@ const LoginDialog = ({
     layoutClass = classNames.withSecondCol;
   }
 
+  if (windowWidth && windowWidth < 570) {
+    // keep some page padding
+    width = Math.max(320, windowWidth - 40);
+  }
+
   const getSecondColumn = () => {
     if (!showVendorLoginColumn) {
       return null;
@@ -157,7 +171,7 @@ const LoginDialog = ({
         }}
       >
         <form onSubmit={onLogin}>
-          <div style={{ width }}>
+          <div style={{ width, maxWidth: 'calc(100vw - 40px)' }}>
             <DialogTitle onClose={onClose}>{i18n.login}</DialogTitle>
             <DialogContent dividers>
               <div className={layoutClass}>
