@@ -28,5 +28,35 @@ const checkNodeVersion = () => {
   }
 };
 
+const getDbPort = () => {
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const configPath = path.join(__dirname, '../packages/config/src/server.config.ts');
+    const contents = fs.readFileSync(configPath, 'utf8');
+    const match = contents.match(/GD_DB_PORT\s*:\s*(\d+)/);
+    return match ? match[1] : '3306';
+  } catch (err) {
+    return '3306';
+  }
+};
+
+const checkForConflictingDbContainer = () => {
+  const dbPort = getDbPort();
+  try {
+    const result = execSync(`docker ps --filter publish=${dbPort} --format "{{.Names}}"`, { encoding: 'utf8' }).trim();
+    if (result) {
+      const names = result.split('\n').join(', ');
+      console.error(
+        `${separator}\nError: A Docker container is already running with port ${dbPort} bound: ${names}\nThis will conflict with the dev database container and cause InnoDB lock errors.\nStop the conflicting container first, e.g.:\n  docker stop ${result.split('\n')[0]}\n${separator}\n`
+      );
+      process.exit(1);
+    }
+  } catch (err) {
+    // If the docker command fails for any reason, skip this check
+  }
+};
+
 checkDocker();
 checkNodeVersion();
+checkForConflictingDbContainer();
