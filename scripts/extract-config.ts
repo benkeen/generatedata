@@ -7,7 +7,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-// Import the config files
 import serverConfig from '../packages/config/src/server.config';
 import clientConfig from '../packages/config/src/client.config';
 

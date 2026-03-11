@@ -1,9 +1,10 @@
 /**
  * Precheck script ran on all root commands to ensure Docker is running and Node.js version is compatible.
  */
-const { execSync } = require('child_process');
-const semver = require('semver');
-const packageJson = require('../package.json');
+import { execSync } from 'child_process';
+import semver from 'semver';
+import packageJson from '../package.json';
+import serverConfig from '../packages/config/src/server.config';
 
 const separator = '-'.repeat(80);
 
@@ -28,21 +29,8 @@ const checkNodeVersion = () => {
   }
 };
 
-const getDbPort = () => {
-  try {
-    const fs = require('fs');
-    const path = require('path');
-    const configPath = path.join(__dirname, '../packages/config/src/server.config.ts');
-    const contents = fs.readFileSync(configPath, 'utf8');
-    const match = contents.match(/GD_DB_PORT\s*:\s*(\d+)/);
-    return match ? match[1] : '3306';
-  } catch (err) {
-    return '3306';
-  }
-};
-
 const checkForConflictingDbContainer = () => {
-  const dbPort = getDbPort();
+  const dbPort = serverConfig.database.GD_DB_PORT;
   try {
     const result = execSync(`docker ps --filter publish=${dbPort} --format "{{.Names}}"`, { encoding: 'utf8' }).trim();
     if (result) {
