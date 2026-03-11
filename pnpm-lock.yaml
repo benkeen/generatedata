@@ -445,8 +445,8 @@ catalogs:
       specifier: 7.7.3
       version: 7.7.3
     sequelize:
-      specifier: ^6.37.7
-      version: 6.37.7
+      specifier: ^6.37.8
+      version: 6.37.8
     sinon:
       specifier: ^21.0.0
       version: 21.0.0
@@ -990,7 +990,7 @@ importers:
         version: 3.1.11
       sequelize:
         specifier: 'catalog:'
-        version: 6.37.7(mysql2@3.16.0)
+        version: 6.37.8(mysql2@3.16.0)
     devDependencies:
       '@eddeee888/gcg-typescript-resolver-files':
         specifier: 'catalog:'
@@ -9031,8 +9031,8 @@ packages:
     resolution: {integrity: sha512-G9c0qlIWQSK29pR/5U2JF5dDQeqqHRragoyahj/Nx4KOOQ3CPPfzxnfqFPCSB7x5UgjOgnZ61nSxz+fjDpRlJg==}
     engines: {node: '>= 10.0.0'}
 
-  sequelize@6.37.7:
-    resolution: {integrity: sha512-mCnh83zuz7kQxxJirtFD7q6Huy6liPanI67BSlbzSYgVNl5eXVdE2CN1FuAeZwG1SNpGsNRCV+bJAVVnykZAFA==}
+  sequelize@6.37.8:
+    resolution: {integrity: sha512-HJ0IQFqcTsTiqbEgiuioYFMSD00TP6Cz7zoTti+zVVBwVe9fEhev9cH6WnM3XU31+ABS356durAb99ZuOthnKw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       ibm_db: '*'
@@ -14091,7 +14091,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.3
-      semver: 7.7.3
+      semver: 7.7.4
       ts-api-utils: 1.4.3(typescript@5.9.3)
     optionalDependencies:
       typescript: 5.9.3
@@ -14108,7 +14108,7 @@ snapshots:
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.3
+      semver: 7.7.4
       ts-api-utils: 2.1.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -17368,7 +17368,7 @@ snapshots:
       '@babel/parser': 7.29.0
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.2
-      semver: 7.7.3
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
@@ -17870,7 +17870,7 @@ snapshots:
       jest-message-util: 30.2.0
       jest-util: 30.2.0
       pretty-format: 30.2.0
-      semver: 7.7.3
+      semver: 7.7.4
       synckit: 0.11.11
     transitivePeerDependencies:
       - supports-color
@@ -19639,7 +19639,7 @@ snapshots:
 
   sequelize-pool@7.1.0: {}
 
-  sequelize@6.37.7(mysql2@3.16.0):
+  sequelize@6.37.8(mysql2@3.16.0):
     dependencies:
       '@types/debug': 4.1.12
       '@types/validator': 13.12.2
@@ -19651,7 +19651,7 @@ snapshots:
       moment-timezone: 0.5.47
       pg-connection-string: 2.7.0
       retry-as-promised: 7.0.4
-      semver: 7.7.3
+      semver: 7.7.4
       sequelize-pool: 7.1.0
       toposort-class: 1.0.1
       uuid: 8.3.2
@@ -19795,7 +19795,7 @@ snapshots:
 
   simple-update-notifier@2.0.0:
     dependencies:
-      semver: 7.7.3
+      semver: 7.7.4
 
   sinon@21.0.0:
     dependencies:
@@ -20819,7 +20819,7 @@ snapshots:
       espree: 9.6.1
       esquery: 1.6.0
       lodash: 4.17.21
-      semver: 7.7.3
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
