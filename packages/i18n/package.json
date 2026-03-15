@@ -27,6 +27,9 @@
     "./locales/ta": "./dist/ta.json",
     "./locales/zh": "./dist/zh.json"
   },
+  "i18n-extensions": {
+    "core": "@generatedata/i18n-core"
+  },
   "devDependencies": {
     "@generatedata/i18n-core": "workspace:*",
     "@generatedata/config": "workspace:*",
