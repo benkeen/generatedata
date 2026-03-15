@@ -133,7 +133,6 @@
     "mini-css-extract-plugin": "catalog:",
     "npm-run-all": "catalog:",
     "prettier": "catalog:",
-    "prettier-eslint": "catalog:",
     "promise": "catalog:",
     "redux-testkit": "catalog:",
     "reselect": "catalog:",
