@@ -44,6 +44,9 @@
     "tsx": "catalog:",
     "turbo": "catalog:"
   },
+  "devDependencies": {
+    "@types/semver": "^7.7.1"
+  },
   "pnpm": {
     "neverBuiltDependencies": [],
     "overrides": {
