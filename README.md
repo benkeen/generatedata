@@ -11,8 +11,7 @@ way you want.
 ## Requirements
 
 - Docker
-- node
-- nvm
+- node 24 (use nvm)
 
 See the [Installation instructions](https://benkeen.github.io/generatedata/userdoc/installation/intro) for full details.
 
