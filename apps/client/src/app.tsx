@@ -2,7 +2,6 @@
 import { ApolloProvider } from '@apollo/client/react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import IconButton from '@mui/material/IconButton';
-// import C from '@generatedata/config/constants';
 import { useGlobalStyles } from '@generatedata/shared';
 import { ThemeProvider } from '@mui/material/styles';
 import * as codemirror from 'codemirror';
@@ -17,8 +16,6 @@ import Page from '~core/page/Page.container';
 import store from '~store/index';
 import theme from '~core/theme';
 import '~store/generator/generator.reducer';
-// import { resetStore } from '~store/main/main.actions';
-// import { getAppStateVersion } from '~store/main/main.selectors';
 import { getRoutes, updateBodyClass } from '~utils/routeUtils';
 import { initApp } from './core';
 import { closeSnackbar, SnackbarProvider } from 'notistack';
@@ -34,14 +31,6 @@ export const useRouteListener = () => {
   }, [location]);
 };
 
-// TODO
-// const checkState = async (state: any): Promise<any> => {
-//   const lastAppStateVersion = getAppStateVersion(state.getState());
-//   if (lastAppStateVersion !== C.APP_STATE_VERSION) {
-//     await state.dispatch(resetStore());
-//   }
-// };
-
 const routes = getRoutes();
 
 const LocalizationWrapper = () => {
@@ -50,7 +39,6 @@ const LocalizationWrapper = () => {
   // occurs on first boot and <Page> handles waiting to show the whole application until it's ready, or when
   // the user changes is via the lang selector dialog - that alters the URL to include the locale only after it's been
   // successfully loaded
-  // if (lang && lang !== 'en' && availableLocalesMap[lang]) {
   const localizedRoutes = routes.map((route) => ({
     ...route,
     path: `/:lang?${route.path}`

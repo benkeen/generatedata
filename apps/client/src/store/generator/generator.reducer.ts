@@ -175,7 +175,7 @@ export const getInitialState = (): GeneratorState => ({
   showGrid: true,
   showPreview: true,
   smallScreenVisiblePanel: 'grid',
-  generatorLayout: 'vertical',
+  generatorLayout: 'horizontal',
   showExportSettings: false,
   exportTypeSettings: {},
   numPreviewRows: 5,
@@ -435,23 +435,6 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
     case actions.TOGGLE_STRIP_WHITESPACE:
       draft.stripWhitespace = !draft.stripWhitespace;
       break;
-
-      // case actions.SET_PANEL_SIZE:
-      //   if (!draft.panelSizes) {
-      //     draft.panelSizes = {
-      //       windowHeight: 0,
-      //       windowWidth: 0
-      //     };
-      //   }
-      //   if (action.payload.panelSizeData.windowHeight !== undefined) {
-      //     draft.panelSizes.windowHeight = action.payload.panelSizeData.windowHeight;
-      //   }
-      //   if (action.payload.panelSizeData.windowWidth !== undefined) {
-      //     draft.panelSizes.windowWidth = action.payload.panelSizeData.windowWidth;
-      //   }
-
-      //   draft.panelSizes[draft.generatorLayout] = action.payload.panelSizeData.size;
-      //   break;
 
     case actions.SET_PANEL_SIZE:
       const setting = draft.generatorLayout === 'horizontal' ? 'lastLayoutHeight' : 'lastLayoutWidth';

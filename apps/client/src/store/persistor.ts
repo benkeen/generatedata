@@ -4,7 +4,7 @@ import { MainState, getInitialState as getMainInitialState } from './main/main.r
 import { getInitialState as getPacketsInitialState, PacketsState } from './packets/packets.reducer';
 import { ReduxStore } from './types';
 
-// throttle the storage to every second or so.
+// TODO throttle the storage to every second or so
 export const persistStore = (store: any) => {
   const { account, generator, main } = store.getState() as ReduxStore;
 

@@ -111,7 +111,7 @@ export const MobileLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
   );
 };
 
-export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps) => {
+export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog, onLogout, i18n }: HeaderLinksProps) => {
   const classNames = useClasses();
   const generatorPath = getUnlocalizedGeneratorRoute();
 
@@ -150,12 +150,11 @@ export const HeaderLinks = ({ locale, currentPage, headerLinks, showLoginDialog,
     }
 
     if (headerLink === 'userAccount') {
-      const userImage = profileImage ? <img src={profileImage} /> : null;
       const classes = `${classNames.userAccount} ${getClassName(classNames, 'account', currentPage)}`;
 
       return (
         <li key="account" className={classes}>
-          {userImage} <Link to={getLink('/account', locale)}>{i18n.yourAccount}</Link>
+          <Link to={getLink('/account', locale)}>{i18n.yourAccount}</Link>
         </li>
       );
     }

@@ -34,9 +34,14 @@ const checkForConflictingDbContainer = () => {
   try {
     const result = execSync(`docker ps --filter publish=${dbPort} --format "{{.Names}}"`, { encoding: 'utf8' }).trim();
     if (result) {
-      const names = result.split('\n').join(', ');
+      const runningNames = result.split('\n').map((n) => n.trim());
+      // If the only container on this port is the project's own db container, it's safe to reuse it
+      if (runningNames.length === 1 && runningNames[0] === 'db') {
+        return;
+      }
+      const names = runningNames.join(', ');
       console.error(
-        `${separator}\nError: A Docker container is already running with port ${dbPort} bound: ${names}\nThis will conflict with the dev database container and cause InnoDB lock errors.\nStop the conflicting container first, e.g.:\n  docker stop ${result.split('\n')[0]}\n${separator}\n`
+        `${separator}\nError: A Docker container is already running with port ${dbPort} bound: ${names}\nThis will conflict with the dev database container and cause InnoDB lock errors.\nStop the conflicting container first, e.g.:\n  docker stop ${runningNames[0]}\n${separator}\n`
       );
       process.exit(1);
     }

@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import C from '@generatedata/config/constants';
 import actionInterceptor from './actionInterceptor';
 import accountReducer from './account/account.reducer';
 import generatorReducer from './generator/generator.reducer'; // , { GeneratorState }
@@ -15,6 +16,11 @@ function initStore(): any {
     preloadedState = preloadedDataStr ? JSON.parse(preloadedDataStr) : undefined;
   } catch {
     // do nothing
+  }
+
+  if (preloadedState?.main?.appStateVersion !== C.APP_STATE_VERSION) {
+    localStorage.removeItem('generatedata');
+    preloadedState = undefined;
   }
 
   const rootReducer = combineReducers({
