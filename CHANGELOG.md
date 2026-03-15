@@ -1,5 +1,12 @@
 ## Changelog
 
+- `5.0.0-beta1` - Mar 15, 2026
+  - Codebase rearchitecture. Now structured as a monorepo with turborepo for management.
+  - Node 24 now required
+  - Migration to React 18, and other more modern packages
+  - A few minor visual improvements from responsive modals and improved activity modal for downloading large data sets.
+  - See [running generatedata in Production Mode](https://github.com/benkeen/generatedata/blob/master/PRODUCTION.md) page for installation instructions.
+  - https://github.com/benkeen/generatedata/milestone/55?closed=1
 - `4.1.9` - Feb 16, 2025
   - Bug fixes
   - https://github.com/benkeen/generatedata/milestone/53?closed=1

@@ -41,47 +41,12 @@ trade-off I had to make.
   - this starts the whole application, backend server, and load it in your browser. Note: at the time of writing, you may see
     a blank page. Just click refresh and the app should load.
 
-#### Shutting down dev env
-
-`npm run stopDevServer` - shuts down docker.
-
-I've found that sometimes that command chokes and you have to wait a few minutes before it runs properly. Presumably
-it's because the docker container was still in the process of booting up. If there are still problems, you might want to just run
-`npm run dockerCleanup`. I do this on the live server every time I update it. It completely clears everything out so you
-can start from scratch. It WON'T, however, delete your
-
 ### Troubleshooting
 
 > ERROR: for db Cannot start service db: error while creating mount source path '/host_mnt/xxx/data/db': mkdir /host_mnt/Users/xxx/data/db: no such file or directory
 > ERROR: Encountered errors while bringing up the project.
 
 Restarting Docker seemed to fix this. I did that via the UI tool.
-
-## Locale file helpers
-
-There are a several grunt helper functions for validation and managing the locale files. It's important to keep the files
-up to date so every i18n file contains the same keys and won't cause bugs when the user selects the language.
-
-#### Core localization files
-
-These are found in `src/i18n`. They contain all the core i18n files.
-
-- `grunt validateI18n` - general validation function to examine all the localization files and check everything in sync.
-- `grunt validateI18n --key=fr` - same as above, except it only looks at a particular locale file.
-- `grunt removeI18nKey --key=xxx` - where xxx is the property name.
-- `grunt sortI18nFiles` - sorts the keys of all i18n files alphabetically.
-
-### Text rules:
-
-- titles, headings: capitalize every letter
-- tooltips: sentence case, no ending period
-
-### Building
-
-Local dev, general steps:
-
-- `npm run start` - builds and rubs the client-side code
-- `npm run startDevServer` - starts the dev server
 
 ### Common problems
 

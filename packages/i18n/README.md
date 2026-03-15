@@ -9,3 +9,8 @@ The single export from this package is the map of locales to the hashed i18n fil
 For convenience, JSON forms of all the strings are also found in the dist. These can be imported like so:
 
 `import en from '@generatedata/i18n/en`;`
+
+### Text rules:
+
+- titles, headings: capitalize every letter
+- tooltips: sentence case, no ending period
