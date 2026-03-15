@@ -43,8 +43,6 @@
   "devDependencies": {
     "@generatedata/plugins": "workspace:*",
     "@types/jest": "catalog:",
-    "grunt": "catalog:",
-    "grunt-cli": "catalog:",
     "jest": "catalog:",
     "jest-cli": "catalog:",
     "jest-css-modules": "catalog:",
