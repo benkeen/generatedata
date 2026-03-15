@@ -53,7 +53,8 @@ module.exports = (_env, argv) => {
         'process.env.NODE_ENV': JSON.stringify(mode)
       }),
       new ESLintPlugin({
-        extensions: ['js', 'ts']
+        extensions: ['js', 'ts', 'tsx'],
+        configType: 'flat'
       }),
       new CaseSensitivePathsPlugin(),
       new HtmlWebpackPlugin({

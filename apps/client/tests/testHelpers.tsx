@@ -120,7 +120,7 @@ export const renderWithStoreAndRouter = (component: any) => {
 
   setLocale('en', {
     core: enI18n.core,
-    dataTypes: {},
+    dataTypes: enI18n.dataTypes,
     exportTypes: {
       JSON: jsonI18n
     },

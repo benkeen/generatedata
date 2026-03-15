@@ -1,4 +1,3 @@
-import { FlushThunks } from 'redux-testkit';
 import { configureStore, Store } from '@reduxjs/toolkit';
 import { rootReducer } from '../../../../tests/testHelpers';
 import * as actions from '../account.actions';
@@ -7,11 +6,9 @@ import { LOGOUT, setAuthenticationData } from '~store/main/main.actions';
 import { SaveDataDialogType } from '~store/account/account.reducer';
 
 describe('accounts section', () => {
-  let flushThunks;
   let store: Store;
 
   beforeEach(() => {
-    flushThunks = FlushThunks.createMiddleware();
     store = configureStore({
       reducer: rootReducer
     });
