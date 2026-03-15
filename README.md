@@ -12,6 +12,7 @@ way you want.
 
 - Docker
 - node 24 (use nvm)
+- pnpm 
 
 See the [Installation instructions](https://benkeen.github.io/generatedata/userdoc/installation/intro) for full details.
 
