@@ -3,23 +3,35 @@ import { vars } from '@generatedata/shared';
 
 export const useClasses = makeStyles({
   helpDialog: {
-    height: '100%'
-
     // :global(.MuiDialog-paper) {
     // 	height: 100%;
     // }
   },
   contentPanel: {
     display: 'flex',
-    overflow: 'hidden !important'
+    overflow: 'hidden !important',
+    '@media (max-width: 570px)': {
+      flexDirection: 'column'
+    }
   },
 
   dialog: {
     width: '800px',
-    height: '100%',
+    maxWidth: 'calc(100vw - 64px)',
+    height: '540px',
+    maxHeight: 'calc(100vh - 64px)',
     display: 'flex',
     flexDirection: 'column',
     overflow: 'hidden'
+  },
+
+  mobileDropdown: {
+    display: 'none',
+    '@media (max-width: 570px)': {
+      display: 'block',
+      flexShrink: 0,
+      marginBottom: '6px'
+    }
   },
   list: {
     flex: 1,
@@ -29,11 +41,6 @@ export const useClasses = makeStyles({
     position: 'absolute',
     top: 'calc(50% - 40px)',
     left: 'calc(50% - 40px)'
-
-    // '&.fadeOut': {
-    //   opacity: 0,
-    //   transition: 'opacity 0.25s ease-in-out'
-    // }
   },
   fadeOut: {
     opacity: 0,
@@ -43,6 +50,7 @@ export const useClasses = makeStyles({
   helpContent: {
     position: 'relative',
     flex: 1,
+    minHeight: 0,
     paddingBottom: '15px',
     overflow: 'scroll',
     fontSize: '13px',
@@ -58,12 +66,9 @@ export const useClasses = makeStyles({
     flexDirection: 'column',
     overflow: 'hidden',
     fontSize: '13px',
-
-    // 	input {
-    // 		width: 100%;
-    // 		flex: 0 0 auto;
-    // 	}
-
+    '@media (max-width: 570px)': {
+      display: 'none'
+    },
     '& ul': {
       margin: 0,
       listStyle: 'none',

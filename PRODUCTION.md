@@ -21,7 +21,7 @@ cp packages/config/src/server.config.example.ts packages/config/src/server.confi
 # 3. Edit the config files with your settings (see Configuration below)
 
 # 4. Start the application
-pnpm run prod
+npm run prod
 ```
 
 The application will be available at `http://localhost:9000` (or whatever port you configured).
@@ -59,12 +59,12 @@ Before running, you **must** configure the application by editing two files:
 
 ## Commands
 
-| Command                 | Description                                    |
-| ----------------------- | ---------------------------------------------- |
-| `pnpm run prod`         | Start the production environment               |
-| `pnpm run prod:rebuild` | Rebuild all containers from scratch (no cache) |
-| `pnpm run prod:down`    | Stop all containers                            |
-| `pnpm run prod:logs`    | View container logs                            |
+| Command                | Description                                    |
+| ---------------------- | ---------------------------------------------- |
+| `npm run prod`         | Start the production environment               |
+| `npm run prod:rebuild` | Rebuild all containers from scratch (no cache) |
+| `npm run prod:down`    | Stop all containers                            |
+| `npm run prod:logs`    | View container logs                            |
 
 ## Architecture
 
@@ -99,7 +99,7 @@ If you see an error about ports being in use, the development server may still b
 docker compose -f apps/server/docker-compose.yml down
 
 # Then try again
-pnpm run prod
+npm run prod
 ```
 
 ### Database connection issues
@@ -107,8 +107,8 @@ pnpm run prod
 If the server can't connect to the database, try rebuilding:
 
 ```bash
-pnpm run prod:down
-pnpm run prod:rebuild
+npm run prod:down
+npm run prod:rebuild
 ```
 
 ### Viewing logs
@@ -126,7 +126,7 @@ docker logs gd-client-prod
 ## Stopping the Application
 
 ```bash
-pnpm run prod:down
+npm run prod:down
 ```
 
 This stops all containers but preserves your database data.

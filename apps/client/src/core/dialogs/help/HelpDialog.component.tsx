@@ -1,4 +1,13 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, DropdownOption, MediumSpinner, SecondaryButton } from '@generatedata/shared';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dropdown,
+  DropdownOption,
+  MediumSpinner,
+  SecondaryButton
+} from '@generatedata/shared';
 import { DataTypeFolder } from '@generatedata/plugins';
 import React, { useState } from 'react';
 import { getDataType, getSortedGroupedDataTypes } from '~utils/dataTypeUtils';
@@ -91,6 +100,15 @@ const HelpDialog = ({ visible, initialDataType, onClose, coreI18n, dataTypeI18n,
             <div className={classNames.list}>
               <DataTypeList filterString={filterString} onSelect={selectDataType} />
             </div>
+          </div>
+          <div className={classNames.mobileDropdown}>
+            <Dropdown
+              isGrouped
+              value={dataType || ''}
+              options={getSortedGroupedDataTypes()}
+              onChange={(opt: any): void => selectDataType(opt.value)}
+              placeholder={coreI18n.filterDataTypes}
+            />
           </div>
           <div className={classNames.helpContent}>
             {Help ? <Help coreI18n={coreI18n} i18n={i18n} /> : null}
