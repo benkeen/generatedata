@@ -20,8 +20,8 @@ catalog:
   '@eddeee888/gcg-typescript-resolver-files': ^0.15.0
   '@emotion/styled': ^11.14.1
   '@esbuild-plugins/tsconfig-paths': ^0.0.4
-  '@graphql-codegen/cli': ^6.1.0
-  '@griffel/react': ^1.5.32
+  '@graphql-codegen/cli': ^6.2.1
+  '@griffel/react': ^1.6.1
   '@jest/globals': ^30.2.0
   '@mui/icons-material': ^7.3.5
   '@mui/lab': ^7.0.1-beta.19
@@ -36,9 +36,9 @@ catalog:
   '@rollup/plugin-node-resolve': ^13.3.0
   '@rollup/plugin-terser': ^0.4.4
   '@rollup/plugin-typescript': ^12.3.0
-  '@storybook/addon-a11y': ^10.1.9
-  '@storybook/addon-docs': ^10.1.9
-  '@storybook/react': 10.1.9
+  '@storybook/addon-a11y': ^10.1.19
+  '@storybook/addon-docs': ^10.2.19
+  '@storybook/react': ^10.2.19
   '@stylistic/eslint-plugin-js': ^3.1.0
   '@testing-library/dom': ^10.4.1
   '@testing-library/react': ^16.3.0
@@ -83,13 +83,13 @@ catalog:
   crypto-browserify: ^3.12.1
   date-fns: ^2.17.0
   dotenv: ^8.2.0
-  eslint: ^8.52.0
+  eslint: ^8.57.1
   eslint-config-airbnb: ^19.0.4
   eslint-config-airbnb-base: ^15.0.0
-  eslint-plugin-import: ^2.27.5
-  eslint-plugin-jsx-a11y: ^6.7.1
-  eslint-plugin-react: ^7.32.0
-  eslint-webpack-plugin: ^4.0.1
+  eslint-plugin-import: ^2.32.0
+  eslint-plugin-jsx-a11y: ^6.10.2
+  eslint-plugin-react: ^7.37.5
+  eslint-webpack-plugin: ^4.2.0
   express: ^5.2.1
   google-auth-library: ^10.5.0
   googleapis: ^169.0.0
@@ -156,10 +156,10 @@ catalog:
   rxjs: ^7.3.0
   sass: ^1.49.9
   semver: 7.7.3
-  sequelize: ^6.37.7
+  sequelize: ^6.37.8
   sinon: ^21.0.0
-  storybook: ^10.1.10
-  storybook-react-rsbuild: ^3.1.0
+  storybook: ^10.2.19
+  storybook-react-rsbuild: ^3.3.2
   stream-browserify: ^3.0.0
   styled-components: ^4.0.0
   terser-webpack-plugin: ^5.3.14

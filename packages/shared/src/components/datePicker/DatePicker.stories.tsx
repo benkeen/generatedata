@@ -4,8 +4,6 @@ import { useState } from 'react';
 
 import { DatePicker } from './';
 
-// import { fn } from 'storybook/test';
-
 const meta = {
   title: 'Components/DatePicker',
   tags: ['autodocs'],

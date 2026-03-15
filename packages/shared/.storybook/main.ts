@@ -15,6 +15,24 @@ function getAbsolutePath(value: string): any {
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [getAbsolutePath('@storybook/addon-a11y'), getAbsolutePath('@storybook/addon-docs')],
-  framework: getAbsolutePath('storybook-react-rsbuild')
+  framework: getAbsolutePath('storybook-react-rsbuild'),
+  rsbuildFinal: (config: any) => ({
+    ...config,
+    tools: {
+      ...config.tools,
+      swc: [
+        ...(config.tools?.swc ? (Array.isArray(config.tools.swc) ? config.tools.swc : [config.tools.swc]) : []),
+        {
+          jsc: {
+            transform: {
+              react: {
+                runtime: 'automatic'
+              }
+            }
+          }
+        }
+      ]
+    }
+  })
 };
 export default config;

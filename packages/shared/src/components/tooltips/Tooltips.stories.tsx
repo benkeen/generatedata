@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tooltip, HtmlTooltip, ErrorTooltip } from './Tooltips';
 import { Meta, StoryObj } from '@storybook/react';
 
