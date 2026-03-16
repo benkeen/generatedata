@@ -1,7 +1,7 @@
 {
   "name": "generatedata",
   "description": "Free, MIT-licensed tool for generating random test data. Have at it.",
-  "version": "5.0.0-beta1",
+  "version": "5.0.0-beta2",
   "author": "Ben Keen <ben.keen@gmail.com>",
   "packageManager": "pnpm@10.31.0",
   "license": "GPL-3.0+",
