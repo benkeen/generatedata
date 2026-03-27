@@ -115,7 +115,7 @@ catalog:
   mini-css-extract-plugin: ^2.9.4
   mysql2: ^3.9.8
   nanoid: ^3.3.4
-  nodemailer: ^8.0.1
+  nodemailer: ^8.0.4
   nodemon: ^3.1.11
   notistack: ^3.0.2
   npm-run-all: ^4.1.5

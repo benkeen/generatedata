@@ -316,8 +316,8 @@ catalogs:
       specifier: ^3.3.4
       version: 3.3.8
     nodemailer:
-      specifier: ^8.0.1
-      version: 8.0.1
+      specifier: ^8.0.4
+      version: 8.0.4
     nodemon:
       specifier: ^3.1.11
       version: 3.1.11
@@ -958,7 +958,7 @@ importers:
         version: 3.3.8
       nodemailer:
         specifier: 'catalog:'
-        version: 8.0.1
+        version: 8.0.4
       nodemon:
         specifier: 'catalog:'
         version: 3.1.11
@@ -7766,8 +7766,8 @@ packages:
   node-releases@2.0.27:
     resolution: {integrity: sha512-nmh3lCkYZ3grZvqcCH+fjmQ7X+H0OeZgP40OierEaAptX4XofMh5kwNbWh7lBduUzCcV/8kZ+NDLCwm2iorIlA==}
 
-  nodemailer@8.0.1:
-    resolution: {integrity: sha512-5kcldIXmaEjZcHR6F28IKGSgpmZHaF1IXLWFTG+Xh3S+Cce4MiakLtWY+PlBU69fLbRa8HlaGIrC/QolUpHkhg==}
+  nodemailer@8.0.4:
+    resolution: {integrity: sha512-k+jf6N8PfQJ0Fe8ZhJlgqU5qJU44Lpvp2yvidH3vp1lPnVQMgi4yEEMPXg5eJS1gFIJTVq1NHBk7Ia9ARdSBdQ==}
     engines: {node: '>=6.0.0'}
 
   nodemon@3.1.11:
@@ -17768,7 +17768,7 @@ snapshots:
 
   node-releases@2.0.27: {}
 
-  nodemailer@8.0.1: {}
+  nodemailer@8.0.4: {}
 
   nodemon@3.1.11:
     dependencies:
