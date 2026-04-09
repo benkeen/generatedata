@@ -10,8 +10,8 @@ catalogs:
       specifier: ^4.1.3
       version: 4.1.3
     '@apollo/server':
-      specifier: ^5.4.0
-      version: 5.4.0
+      specifier: ^5.5.0
+      version: 5.5.0
     '@as-integrations/express5':
       specifier: ^1.1.2
       version: 1.1.2
@@ -910,10 +910,10 @@ importers:
     dependencies:
       '@apollo/server':
         specifier: 'catalog:'
-        version: 5.4.0(graphql@16.12.0)
+        version: 5.5.0(graphql@16.12.0)
       '@as-integrations/express5':
         specifier: 'catalog:'
-        version: 1.1.2(@apollo/server@5.4.0(graphql@16.12.0))(express@5.2.1)
+        version: 1.1.2(@apollo/server@5.5.0(graphql@16.12.0))(express@5.2.1)
       '@generatedata/config':
         specifier: workspace:*
         version: link:../../packages/config
@@ -1530,8 +1530,8 @@ packages:
     peerDependencies:
       graphql: 14.x || 15.x || 16.x
 
-  '@apollo/server@5.4.0':
-    resolution: {integrity: sha512-E0/2C5Rqp7bWCjaDh4NzYuEPDZ+dltTf2c0FI6GCKJA6GBetVferX3h1//1rS4+NxD36wrJsGGJK+xyT/M3ysg==}
+  '@apollo/server@5.5.0':
+    resolution: {integrity: sha512-vWtodBOK/SZwBTJzItECOmLfL8E8pn/IdvP7pnxN5g2tny9iW4+9sxdajE798wV1H2+PYp/rRcl/soSHIBKMPw==}
     engines: {node: '>=20'}
     peerDependencies:
       graphql: ^16.11.0
@@ -3018,12 +3018,6 @@ packages:
 
   '@graphql-tools/relay-operation-optimizer@7.1.1':
     resolution: {integrity: sha512-va+ZieMlz6Fj18xUbwyQkZ34PsnzIdPT6Ccy1BNOQw1iclQwk52HejLMZeE/4fH+4cu80Q2HXi5+FjCKpmnJCg==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-
-  '@graphql-tools/schema@10.0.29':
-    resolution: {integrity: sha512-+Htiupnq6U/AWOEAJerIOGT1pAf4u43Q3n2JmFpqFfYJchz6sKWZ7L9Lpe/NusaaUQty/IOF+eQlNFypEaWxhg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
@@ -9950,7 +9944,7 @@ snapshots:
       '@apollo/utils.logger': 3.0.0
       graphql: 16.12.0
 
-  '@apollo/server@5.4.0(graphql@16.12.0)':
+  '@apollo/server@5.5.0(graphql@16.12.0)':
     dependencies:
       '@apollo/cache-control-types': 1.0.3(graphql@16.12.0)
       '@apollo/server-gateway-interface': 2.0.0(graphql@16.12.0)
@@ -9962,7 +9956,7 @@ snapshots:
       '@apollo/utils.logger': 3.0.0
       '@apollo/utils.usagereporting': 2.1.0(graphql@16.12.0)
       '@apollo/utils.withrequired': 3.0.0
-      '@graphql-tools/schema': 10.0.29(graphql@16.12.0)
+      '@graphql-tools/schema': 10.0.31(graphql@16.12.0)
       async-retry: 1.3.3
       body-parser: 2.2.2
       content-type: 1.0.5
@@ -10053,9 +10047,9 @@ snapshots:
       immutable: 5.1.5
       invariant: 2.2.4
 
-  '@as-integrations/express5@1.1.2(@apollo/server@5.4.0(graphql@16.12.0))(express@5.2.1)':
+  '@as-integrations/express5@1.1.2(@apollo/server@5.5.0(graphql@16.12.0))(express@5.2.1)':
     dependencies:
-      '@apollo/server': 5.4.0(graphql@16.12.0)
+      '@apollo/server': 5.5.0(graphql@16.12.0)
       express: 5.2.1
 
   '@babel/code-frame@7.27.1':
@@ -11486,7 +11480,7 @@ snapshots:
   '@graphql-codegen/core@5.0.1(graphql@16.12.0)':
     dependencies:
       '@graphql-codegen/plugin-helpers': 6.2.0(graphql@16.12.0)
-      '@graphql-tools/schema': 10.0.29(graphql@16.12.0)
+      '@graphql-tools/schema': 10.0.31(graphql@16.12.0)
       '@graphql-tools/utils': 11.0.0(graphql@16.12.0)
       graphql: 16.12.0
       tslib: 2.6.3
@@ -11647,7 +11641,7 @@ snapshots:
     dependencies:
       '@graphql-tools/batch-execute': 10.0.5(graphql@16.12.0)
       '@graphql-tools/executor': 1.4.13(graphql@16.12.0)
-      '@graphql-tools/schema': 10.0.29(graphql@16.12.0)
+      '@graphql-tools/schema': 10.0.31(graphql@16.12.0)
       '@graphql-tools/utils': 11.0.0(graphql@16.12.0)
       '@repeaterjs/repeater': 3.0.6
       '@whatwg-node/promise-helpers': 1.3.2
@@ -11825,13 +11819,6 @@ snapshots:
       graphql: 16.12.0
       tslib: 2.8.1
 
-  '@graphql-tools/schema@10.0.29(graphql@16.12.0)':
-    dependencies:
-      '@graphql-tools/merge': 9.1.5(graphql@16.12.0)
-      '@graphql-tools/utils': 10.10.3(graphql@16.12.0)
-      graphql: 16.12.0
-      tslib: 2.8.1
-
   '@graphql-tools/schema@10.0.31(graphql@16.12.0)':
     dependencies:
       '@graphql-tools/merge': 9.1.7(graphql@16.12.0)
@@ -11881,7 +11868,7 @@ snapshots:
   '@graphql-tools/wrap@11.1.9(graphql@16.12.0)':
     dependencies:
       '@graphql-tools/delegate': 12.0.9(graphql@16.12.0)
-      '@graphql-tools/schema': 10.0.29(graphql@16.12.0)
+      '@graphql-tools/schema': 10.0.31(graphql@16.12.0)
       '@graphql-tools/utils': 11.0.0(graphql@16.12.0)
       '@whatwg-node/promise-helpers': 1.3.2
       graphql: 16.12.0
