@@ -490,8 +490,8 @@ catalogs:
       specifier: ^7.4.5
       version: 7.4.5
     webpack-dev-server:
-      specifier: ^5.2.3
-      version: 5.2.3
+      specifier: ^5.2.4
+      version: 5.2.4
     webpack-hot-middleware:
       specifier: ^2.26.1
       version: 2.26.1
@@ -892,13 +892,13 @@ importers:
         version: 5.0.1
       webpack-cli:
         specifier: 'catalog:'
-        version: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.3)(webpack@5.105.0)
+        version: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.4)(webpack@5.105.0)
       webpack-dev-middleware:
         specifier: 'catalog:'
         version: 7.4.5(webpack@5.105.0)
       webpack-dev-server:
         specifier: 'catalog:'
-        version: 5.2.3(webpack-cli@6.0.1)(webpack@5.105.0)
+        version: 5.2.4(webpack-cli@6.0.1)(webpack@5.105.0)
       webpack-hot-middleware:
         specifier: 'catalog:'
         version: 2.26.1
@@ -4537,6 +4537,7 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@unrs/resolver-binding-android-arm-eabi@1.11.1':
     resolution: {integrity: sha512-ppLRUgHVaGRWUx0R0Ut06Mjo9gBaBkg3v/8AxusGLhsIotbBLuRk51rAzqLC8gq6NyyAojEXglNjzf6R948DNw==}
@@ -9570,6 +9571,7 @@ packages:
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   v8-compile-cache-lib@3.0.1:
@@ -9649,8 +9651,8 @@ packages:
       webpack:
         optional: true
 
-  webpack-dev-server@5.2.3:
-    resolution: {integrity: sha512-9Gyu2F7+bg4Vv+pjbovuYDhHX+mqdqITykfzdM9UyKqKHlsE5aAjRhR+oOEfXW5vBeu8tarzlJFIZva4ZjAdrQ==}
+  webpack-dev-server@5.2.4:
+    resolution: {integrity: sha512-GqDPGZN9bRqKBTkp4aWkobDDHMsrXKoGSdOH56smIri8qR0JG8gfL8/v/f/OZR3/OKXjG8uwJbFVhKm/FNU/UA==}
     engines: {node: '>= 18.12.0'}
     hasBin: true
     peerDependencies:
@@ -13832,19 +13834,19 @@ snapshots:
   '@webpack-cli/configtest@3.0.1(webpack-cli@6.0.1)(webpack@5.105.0)':
     dependencies:
       webpack: 5.105.0(esbuild@0.27.3)(webpack-cli@6.0.1)
-      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.3)(webpack@5.105.0)
+      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.4)(webpack@5.105.0)
 
   '@webpack-cli/info@3.0.1(webpack-cli@6.0.1)(webpack@5.105.0)':
     dependencies:
       webpack: 5.105.0(esbuild@0.27.3)(webpack-cli@6.0.1)
-      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.3)(webpack@5.105.0)
+      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.4)(webpack@5.105.0)
 
-  '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.3)(webpack@5.105.0)':
+  '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.4)(webpack@5.105.0)':
     dependencies:
       webpack: 5.105.0(esbuild@0.27.3)(webpack-cli@6.0.1)
-      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.3)(webpack@5.105.0)
+      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.4)(webpack@5.105.0)
     optionalDependencies:
-      webpack-dev-server: 5.2.3(webpack-cli@6.0.1)(webpack@5.105.0)
+      webpack-dev-server: 5.2.4(webpack-cli@6.0.1)(webpack@5.105.0)
 
   '@whatwg-node/disposablestack@0.0.6':
     dependencies:
@@ -17266,7 +17268,7 @@ snapshots:
       whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
-      ws: 8.18.3
+      ws: 8.19.0
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -19950,12 +19952,12 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  webpack-cli@6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.3)(webpack@5.105.0):
+  webpack-cli@6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.4)(webpack@5.105.0):
     dependencies:
       '@discoveryjs/json-ext': 0.6.3
       '@webpack-cli/configtest': 3.0.1(webpack-cli@6.0.1)(webpack@5.105.0)
       '@webpack-cli/info': 3.0.1(webpack-cli@6.0.1)(webpack@5.105.0)
-      '@webpack-cli/serve': 3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.3)(webpack@5.105.0)
+      '@webpack-cli/serve': 3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.4)(webpack@5.105.0)
       colorette: 2.0.20
       commander: 12.1.0
       cross-spawn: 7.0.6
@@ -19968,7 +19970,7 @@ snapshots:
       webpack-merge: 6.0.1
     optionalDependencies:
       webpack-bundle-analyzer: 5.0.1
-      webpack-dev-server: 5.2.3(webpack-cli@6.0.1)(webpack@5.105.0)
+      webpack-dev-server: 5.2.4(webpack-cli@6.0.1)(webpack@5.105.0)
 
   webpack-dev-middleware@7.4.5(webpack@5.105.0):
     dependencies:
@@ -19981,7 +19983,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.105.0(esbuild@0.27.3)(webpack-cli@6.0.1)
 
-  webpack-dev-server@5.2.3(webpack-cli@6.0.1)(webpack@5.105.0):
+  webpack-dev-server@5.2.4(webpack-cli@6.0.1)(webpack@5.105.0):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -20010,10 +20012,10 @@ snapshots:
       sockjs: 0.3.24
       spdy: 4.0.2
       webpack-dev-middleware: 7.4.5(webpack@5.105.0)
-      ws: 8.18.3
+      ws: 8.19.0
     optionalDependencies:
       webpack: 5.105.0(esbuild@0.27.3)(webpack-cli@6.0.1)
-      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.3)(webpack@5.105.0)
+      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.4)(webpack@5.105.0)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -20102,7 +20104,7 @@ snapshots:
       watchpack: 2.5.1
       webpack-sources: 3.3.3
     optionalDependencies:
-      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.3)(webpack@5.105.0)
+      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.0.1)(webpack-dev-server@5.2.4)(webpack@5.105.0)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
