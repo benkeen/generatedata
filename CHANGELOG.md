@@ -1,5 +1,8 @@
 ## Changelog
 
+- `5.0.0-beta4` - Jul 22, 2026
+  - Docs update: added a release publishing workflow to `DEVELOPMENT.md` (version bump, changelog, tag, push, GitHub release).
+
 - `5.0.0-beta3` - Jul 22, 2026
 
   - Security fix: hardened GraphQL authentication and JWT validation in `apps/server`.
