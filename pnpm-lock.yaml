@@ -295,8 +295,8 @@ catalogs:
       specifier: ^29.4.3
       version: 29.7.0
     js-cookie:
-      specifier: ^3.0.5
-      version: 3.0.5
+      specifier: ^3.0.7
+      version: 3.0.7
     json-loader:
       specifier: 0.5.4
       version: 0.5.4
@@ -594,7 +594,7 @@ importers:
         version: 11.0.1
       js-cookie:
         specifier: 'catalog:'
-        version: 3.0.5
+        version: 3.0.7
       nanoid:
         specifier: 'catalog:'
         version: 3.3.8
@@ -7242,9 +7242,9 @@ packages:
     resolution: {integrity: sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==}
     hasBin: true
 
-  js-cookie@3.0.5:
-    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
-    engines: {node: '>=14'}
+  js-cookie@3.0.7:
+    resolution: {integrity: sha512-z/wZZgDrkNV1eA0ULjM/F9/50Ya8fbzgKneSpoPsXSGd0KnpdtHfOZWK+GcwLk+EZbS4F9RBhU+K2RgzuDaItw==}
+    engines: {node: '>=20'}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -17229,7 +17229,7 @@ snapshots:
 
   jiti@2.6.1: {}
 
-  js-cookie@3.0.5: {}
+  js-cookie@3.0.7: {}
 
   js-tokens@4.0.0: {}
 
