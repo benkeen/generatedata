@@ -1,6 +1,6 @@
 ## Changelog
 
-- `5.0.0-beta2` - Jul 22, 2026
+- `5.0.0-beta3` - Jul 22, 2026
   - Security fix: hardened GraphQL authentication and JWT validation in `apps/server`.
   - Fixed JWT claim trust bug by replacing unsigned token decoding with verified signature checks (HS256).
   - Fixed GraphQL context token wiring so auth checks and user derivation use the same `Authorization` bearer token.
