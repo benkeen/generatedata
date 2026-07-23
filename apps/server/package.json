@@ -13,6 +13,7 @@
     "run-server:debug": "nodemon --exec node --trace-warnings ./dist/app.js",
     "startServer": "run-server",
     "start": "run-s build run-server",
+    "test": "npm run build && node --test tests/**/*.test.cjs",
     "startNodeDevServer": "npm run start",
     "startDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker compose -f ./docker-compose.yml up",
     "startAndBuildDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker compose -f . up --build",

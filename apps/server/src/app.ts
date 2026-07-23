@@ -38,12 +38,13 @@ const server = new ApolloServer<RequestContext>({
     // @ts-expect-error
     expressMiddleware(server, {
       context: async ({ req, res }) => {
-        const token = (req.headers.authorization || '').replace('Bearer ', '');
+        const authHeader = Array.isArray(req.headers.authorization) ? req.headers.authorization[0] : req.headers.authorization || '';
+        const token = authHeader.replace(/^Bearer\s+/i, '').trim();
 
         // try to retrieve a user with the token
         const user = authUtils.getUser(token);
 
-        return { req, res, token: req.headers.token, user };
+        return { req, res, token, user };
       }
     })
   );

@@ -7,7 +7,11 @@ export const saveNewDataSet: NonNullable<MutationResolvers['saveNewDataSet']> = 
   { dataSetName, content },
   { token, user }
 ) => {
-  authUtils.authenticate(token);
+  if (!authUtils.authenticate(token)) {
+    return {
+      success: false
+    };
+  }
 
   const { accountId } = user;
 

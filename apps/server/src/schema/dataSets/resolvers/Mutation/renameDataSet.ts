@@ -7,7 +7,11 @@ export const renameDataSet: NonNullable<MutationResolvers['renameDataSet']> = as
   { dataSetId, dataSetName },
   { token, user }
 ) => {
-  authUtils.authenticate(token);
+  if (!authUtils.authenticate(token)) {
+    return {
+      success: false
+    };
+  }
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
   if (!dataSet || dataSet.dataValues.accountId !== user.accountId) {

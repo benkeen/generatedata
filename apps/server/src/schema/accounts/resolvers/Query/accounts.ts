@@ -5,7 +5,13 @@ import * as authUtils from '../../../../utils/authUtils';
 import { getAccountNumRowsGenerated } from '../../helpers';
 
 export const accounts: NonNullable<QueryResolvers['accounts']> = async (_parent, args, { token, user }) => {
-  authUtils.authenticate(token);
+  if (!authUtils.authenticate(token)) {
+    return {
+      results: [],
+      totalCount: 0,
+      errorStatus: 'permissionDenied'
+    };
+  }
 
   const userRecord = await db.accounts.findByPk(user.accountId);
   if (!userRecord || userRecord.dataValues.accountType !== 'superuser') {

@@ -6,7 +6,12 @@ import * as authUtils from '../../../../utils/authUtils';
 export const dataSets: NonNullable<QueryResolvers['dataSets']> = async (_parent, args, { token, user }) => {
   const { limit, offset, sortDir, sortCol } = args;
 
-  authUtils.authenticate(token);
+  if (!authUtils.authenticate(token)) {
+    return {
+      totalCount: 0,
+      results: []
+    };
+  }
 
   const sortColMap = {
     dataSetName: 'd.dataset_name',

@@ -7,7 +7,12 @@ import { db } from '../../../../database';
 export const dataSetHistory: NonNullable<QueryResolvers['dataSetHistory']> = async (_parent, args, { token, user }) => {
   const { dataSetId, limit, offset } = args;
 
-  authUtils.authenticate(token);
+  if (!authUtils.authenticate(token)) {
+    return {
+      results: [],
+      totalCount: 0
+    };
+  }
 
   // confirm dataSetId belongs to current user
   const exists = await db.dataSets.findOne({

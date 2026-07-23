@@ -1,5 +1,12 @@
 ## Changelog
 
+- `5.0.0-beta2` - Jul 22, 2026
+  - Security fix: hardened GraphQL authentication and JWT validation in `apps/server`.
+  - Fixed JWT claim trust bug by replacing unsigned token decoding with verified signature checks (HS256).
+  - Fixed GraphQL context token wiring so auth checks and user derivation use the same `Authorization` bearer token.
+  - Fixed resolver auth enforcement where `authenticate()` calls were ineffective; all protected account/data set resolvers now fail closed.
+  - Added server auth regression tests covering unsigned/invalid JWT rejection and unauthenticated denial for protected mutations.
+
 - `5.0.0-beta1` - Mar 15, 2026
   - Codebase rearchitecture. Now structured as a monorepo with turborepo for management.
   - Node 24 now required

@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { clientConfig, serverConfig } from '@generatedata/config';
+import { clientConfig } from '@generatedata/config';
+import serverConfig from '@generatedata/config/serverConfig';
 
 export const isValidPassword = async (plainTextPassword: string, hash: string) => await bcrypt.compare(plainTextPassword, hash);
 
@@ -9,10 +10,10 @@ export const getJwt = (payload: any) =>
     expiresIn: `${clientConfig.auth.GD_JWT_LIFESPAN_MINS}m`
   });
 
-export const authenticate = async (token: string) => {
+export const authenticate = (token: string) => {
   if (token) {
     try {
-      jwt.verify(token, serverConfig.auth.GD_JWT_SECRET);
+      jwt.verify(token, serverConfig.auth.GD_JWT_SECRET, { algorithms: ['HS256'] });
       return true;
     } catch (_e) {
       return false;
@@ -23,21 +24,30 @@ export const authenticate = async (token: string) => {
 };
 
 export const decodeToken = (token: string) => {
-  const decodedToken = jwt.decode(token, { complete: true });
+  const decodedToken = jwt.verify(token, serverConfig.auth.GD_JWT_SECRET, { algorithms: ['HS256'] });
 
   if (!decodedToken) {
     throw new Error();
   }
 
-  return decodedToken;
+  if (typeof decodedToken === 'string') {
+    throw new Error();
+  }
+
+  return { payload: decodedToken };
 };
 
 export const getUser = (token: string) => {
   if (!token) {
     return {};
   }
-  const decodedToken = decodeToken(token);
-  return decodedToken.payload;
+
+  try {
+    const decodedToken = decodeToken(token);
+    return decodedToken.payload;
+  } catch (_e) {
+    return {};
+  }
 };
 
 export const accountExpired = (expiryDate: Date | null) => {

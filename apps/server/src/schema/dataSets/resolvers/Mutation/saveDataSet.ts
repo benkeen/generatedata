@@ -3,7 +3,11 @@ import { db } from '../../../../database';
 import * as authUtils from '../../../../utils/authUtils';
 
 export const saveDataSet: NonNullable<MutationResolvers['saveDataSet']> = async (_parent, { dataSetId, content }, { token, user }) => {
-  authUtils.authenticate(token);
+  if (!authUtils.authenticate(token)) {
+    return {
+      success: false
+    };
+  }
 
   const dataSet = await db.dataSets.findByPk(dataSetId);
   if (!dataSet || dataSet.dataValues.accountId !== user.accountId) {
