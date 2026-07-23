@@ -41,6 +41,68 @@ trade-off I had to make.
   - this starts the whole application, backend server, and load it in your browser. Note: at the time of writing, you may see
     a blank page. Just click refresh and the app should load.
 
+### Publishing a new version
+
+There isn't an automated release script yet. For now, use the manual workflow below.
+
+1. Ensure your local repo is up to date and clean.
+
+```bash
+git checkout master
+git pull origin master
+git status
+```
+
+2. Use the repo's Node version.
+
+```bash
+nvm use
+```
+
+3. Update the root version in `package.json`.
+
+- Example: `5.0.0-beta3` -> `5.0.0-beta4`
+
+4. Add a new top entry in `CHANGELOG.md` for that version.
+
+5. Run a quick validation pass.
+
+```bash
+npm run build
+```
+
+6. Commit the release bump.
+
+```bash
+git add package.json CHANGELOG.md
+git commit -m "chore(release): cut <version>"
+```
+
+7. Create a matching git tag.
+
+```bash
+git tag <version>
+```
+
+8. Push the branch and tag.
+
+```bash
+git push origin master
+git push origin <version>
+```
+
+9. Create a GitHub Release from the tag.
+
+- Open: `https://github.com/benkeen/generatedata/releases/new`
+- Tag: `<version>`
+- Title: `<version>`
+- Body: paste the relevant changelog notes.
+
+Notes:
+
+- Keep version, changelog header, commit, and tag names identical.
+- If there are unrelated local changes, commit them separately before doing the release bump.
+
 ### Troubleshooting
 
 > ERROR: for db Cannot start service db: error while creating mount source path '/host_mnt/xxx/data/db': mkdir /host_mnt/Users/xxx/data/db: no such file or directory
