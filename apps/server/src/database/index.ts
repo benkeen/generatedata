@@ -3,7 +3,7 @@ import accounts from './tables/accounts';
 import dataSets from './tables/dataSets';
 import dataSetHistory from './tables/dataSetHistory';
 import settings from './tables/settings';
-import { serverConfig } from '@generatedata/config';
+import serverConfig from '@generatedata/config/serverConfig';
 
 const sequelize = new Sequelize(
   serverConfig.database.GD_DB_NAME,

@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { serverConfig } from '@generatedata/config';
+import serverConfig from '@generatedata/config/serverConfig';
 
 export const sendEmail = async (recipientEmail: string, subject: string, textContent: string, htmlContent: string) => {
   const transporter = nodemailer.createTransport({
