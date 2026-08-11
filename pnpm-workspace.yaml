@@ -114,7 +114,7 @@ catalog:
   md5-file: ^5.0.0
   mini-css-extract-plugin: ^2.9.4
   mysql2: ^3.9.8
-  nanoid: ^3.3.4
+  nanoid: ^3.3.17
   nodemailer: ^8.0.5
   nodemon: ^3.1.11
   notistack: ^3.0.2
