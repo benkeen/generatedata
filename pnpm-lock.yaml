@@ -313,8 +313,8 @@ catalogs:
       specifier: ^3.9.8
       version: 3.16.0
     nanoid:
-      specifier: ^3.3.4
-      version: 3.3.8
+      specifier: ^3.3.18
+      version: 3.3.18
     nodemailer:
       specifier: ^8.0.5
       version: 8.0.5
@@ -597,7 +597,7 @@ importers:
         version: 3.0.5
       nanoid:
         specifier: 'catalog:'
-        version: 3.3.8
+        version: 3.3.18
       notistack:
         specifier: 'catalog:'
         version: 3.0.2(csstype@3.2.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -955,7 +955,7 @@ importers:
         version: 3.16.0
       nanoid:
         specifier: 'catalog:'
-        version: 3.3.8
+        version: 3.3.18
       nodemailer:
         specifier: 'catalog:'
         version: 8.0.5
@@ -1420,7 +1420,7 @@ importers:
         version: 2.30.0
       nanoid:
         specifier: 'catalog:'
-        version: 3.3.8
+        version: 3.3.18
       react:
         specifier: 'catalog:'
         version: 18.3.1
@@ -7698,8 +7698,8 @@ packages:
     resolution: {integrity: sha512-eLoBxg6wE/rZkJPhU/xRX1WTpkFEwDJEN96oxFrTsqBdbT5ec295Q+CoHrL9IT0DipqKhmGcaZmwOt8OON5x1w==}
     engines: {node: '>=12.0.0'}
 
-  nanoid@3.3.8:
-    resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
+  nanoid@3.3.18:
+    resolution: {integrity: sha512-DTg4MJbGMWkfi6VZFdNt2/caMbQy4Ou+Op/hJQvGEWcnVfoA1QA+xzRKAzw9jD6+GVOOeYr/mIcuDSdug6F6+w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -13452,7 +13452,7 @@ snapshots:
 
   '@types/nanoid@3.0.0':
     dependencies:
-      nanoid: 3.3.8
+      nanoid: 3.3.18
 
   '@types/node@20.19.11':
     dependencies:
@@ -17708,7 +17708,7 @@ snapshots:
     dependencies:
       lru-cache: 7.18.3
 
-  nanoid@3.3.8: {}
+  nanoid@3.3.18: {}
 
   napi-postinstall@0.3.4: {}
 
